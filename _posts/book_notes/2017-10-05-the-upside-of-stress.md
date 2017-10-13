@@ -2,6 +2,8 @@
 layout: post
 title: "自控力：和压力做朋友"
 author: "Bin Li"
+tags: Books
+comments: true
 ---
 
 

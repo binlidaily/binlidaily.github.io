@@ -29,3 +29,6 @@ github:
 # Gems
 gems:
   - jekyll-paginate
+
+# Comments
+comments:       true
