@@ -2,7 +2,7 @@
 permalink:      /:year-:month-:day/:title
 
 # Setup
-title:          Tale
+title:          Be A Better Me
 paginate:       5
 baseurl:        ""
 url:            "https://binlidaily.github.io"
@@ -24,7 +24,7 @@ author:
 # Custom vars
 version:        3.4.1
 github:
-  repo:         https://github.com/chesterhow/tale
+  # repo:         https://github.com/chesterhow/tale
 
 # Gems
 gems:
