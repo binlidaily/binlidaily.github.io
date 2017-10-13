@@ -17,9 +17,9 @@ markdown:       kramdown
 
 # About
 author:
-  name:         Chester How
-  url:          http://chester.how
-  email:        chesterhow@gmail.com
+  name:         Bin Li
+  url:          http://binlidaily.github.io
+  email:        bin.li.daily@gmail.com
 
 # Custom vars
 version:        3.4.1
