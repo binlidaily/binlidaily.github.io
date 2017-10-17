@@ -16,10 +16,10 @@ sass:
 markdown:       kramdown
 
 # highlight
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+# highlighter: rouge
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge
 
 # About
 author:
