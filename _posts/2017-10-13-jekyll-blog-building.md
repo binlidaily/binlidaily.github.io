@@ -17,7 +17,7 @@ Dependency Error: Yikes! It looks like you don't have jekyll-paginate or one of 
 
 在页面上显示数学公式，这里要在` head.html` 中加入如下代码：
 
-```Html
+```html
 <!--MathJax的配置脚本，用于临时简单的配置 -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({

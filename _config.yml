@@ -15,6 +15,12 @@ sass:
 # Build settings
 markdown:       kramdown
 
+# highlight
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
 # About
 author:
   name:         Bin Li
