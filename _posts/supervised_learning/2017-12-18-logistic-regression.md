@@ -2,6 +2,7 @@
 layout: post
 title: "逻辑斯特回归"
 author: "Bin Li"
+tags: Machine Learning
 comments: true
 ---
 
@@ -27,16 +28,17 @@ $$D = (x^1, y^1),~(x^2, y^2),~...,~(x^N, y^N)$$
 $${g(x) }= {1\over{1+e^{-x}}}$$
 
 从式子上可以看出，当$x$接近与无穷大时，分母会接近于$1$，则整体结果接近与$1$；当$x$接近于无穷小时，分母接近于无穷大，则整体结果接近于0。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于0.5的认为是1，小于0.5的认为是0.
-![](images/15068430849483.jpg)
+![](/media/15068430849483.jpg)
 
 
 ### Logistic Regression 决策函数
 通过在线性回归模型 ($f(x) = \Theta^Tx$) 的基础上套一个 Sigmoid function，我们得到了Logistic Regression 的决策函数如下：
 
 $${P(y = 1| x; \Theta) = g(\Theta^Tx)}={1\over{1+e^{-{\Theta^Tx}}}}$$
+
 $${P(y = 0| x; \Theta) = 1- g(\Theta^Tx)}={e^{-{\Theta^Tx}}\over{1+e^{-{\Theta^Tx}}}}$$
 
-当 $P(y=1|x)>0.5$，则预测的结果 $y^*=1$。当然这个选定的阈值也不一定就必须是0.5，可以看特定的情况选择不同的阈值。如果整理的判别准确性要求高一些，可以选择阈值大一些。对正例的召回率要求高，则可以选择阈值小一些。
+当 $P(y=1 \vert x)>0.5$，则预测的结果 $y^*=1$。当然这个选定的阈值也不一定就必须是0.5，可以看特定的情况选择不同的阈值。如果整理的判别准确性要求高一些，可以选择阈值大一些。对正例的召回率要求高，则可以选择阈值小一些。
 
 ### 求解 Logistic Regression 模型
 对于一般的机器学习模型，都有一个训练目标函数，可以是最小化损失函数。这里我们就想着怎么从已知的决策函数入手，构成对应的损失函数。从决策函数中可以看出，其实我们还有一个很重要的参数尚且不知道，那就是$\Theta$。如何去求得这个 $\Theta$ 呢？可以利用统计学里面常用的方法——最大似然估计法来估计参数，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大。那么 Logistic Regression 问题的似然度（概率）可以表示成如下形式，我们将结果是0/1的两种情况结合表达：
@@ -73,8 +75,8 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\Theta$$
 
 求导过程如下：
-![1731507971179_.pic_hd](/media/1731507971179_.pic_hd.jpg)
 
+![](/media/1731507971179_.pic_hd.jpg)
 
 
 沿着梯度负方向选择一个较小的步长可以保证损失函数是减小的，另一方面，逻辑回归的损失函数凸函数（加入正则项后是严格凸函数？），可以保证我们找到的局部最优值同时是全局最优。此外，常用的凸优化的方法都可以用于求解该问题。例如共轭梯度下降，牛顿法，LBFGS等。这样就代码实现 Logistic Regression 了。
@@ -102,6 +104,7 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 | 品类 | 销量，购买用户，浏览用户 ... |
 | 交叉 | 购买频次，浏览频次，购买间隔 ... |
 
+
 其中提取的特征的时间跨度为30天，标签为2天。生成的训练数据大约在7000万量级（美团一个月有过行为的用户），我们人工把相似的小品类聚合起来，最后有18个较为典型的品类集合。如果用户在给定的时间内购买某一品类集合，就作为正例。有了训练数据后，使用Spark版的LR算法对每个品类训练一个二分类模型，迭代次数设为100次的话模型训练需要40分钟左右，平均每个模型2分钟，测试集上的AUC也大多在0.8以上。训练好的模型会保存下来，用于预测在各个品类上的购买概率。预测的结果则会用于推荐等场景。
 
 由于不同品类之间正负例分布不同，有些品类正负例分布很不均衡，我们还尝试了不同的采样方法，最终目标是提高下单率等线上指标。经过一些参数调优，品类偏好特征为推荐和排序带来了超过1%的下单率提升。
@@ -110,9 +113,18 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 
 ## References
+
 [美团点评](https://tech.meituan.com/intro_to_logistic_regression.html)
+
 [Logistic Regression](http://ufldl.stanford.edu/tutorial/supervised/LogisticRegression/)
+
 [Softmax 回归](http://deeplearning.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92)
+
 [Code for Logistic Regression](https://github.com/perborgen/LogisticRegression.git)
+
 [How To Implement Logistic Regression With Stochastic Gradient Descent From Scratch With Python](https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python/)
+
+
+
+
 
