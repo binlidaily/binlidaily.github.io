@@ -68,11 +68,13 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 * 选择步长，更新参数 $\Theta^i = \Theta^{i-1}+\alpha^i(-\nabla J(\Theta^{i-1}))$
 * 重复以上两步直到满足终止条件
 
-<div align=center>
+<p align="center"> 
+    <img src="/media/15068489255584.jpg">
+</p>
 
 ![](/media/15068489255584.jpg)
 
-</div>
+
 
 在计算时，对平均 log 损失函数求导，来求得梯度：
 
