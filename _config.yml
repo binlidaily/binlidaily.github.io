@@ -15,8 +15,9 @@
 # in the templates via {{ site.myvariable }}.
 title: Be A Better Me
 author: Bin
-description: A learner.
-baseurl: "/" # the subpath of your site, e.g. /blog
+description: Be A Better Me
+# baseurl: "/whiteglass" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://binlidaily.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 lang: en
 timezone: UTC
@@ -69,4 +70,5 @@ jekyll-archives:
     - categories
   layout: category_archives
   permalinks:
-    category: /categories/:name/
+    # category: /categories/:name/
+    category: /categories/
