@@ -68,9 +68,6 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 * 选择步长，更新参数 $\Theta^i = \Theta^{i-1}+\alpha^i(-\nabla J(\Theta^{i-1}))$
 * 重复以上两步直到满足终止条件
 
-<p align="center"> 
-    <img src="/media/15068489255584.jpg">
-</p>
 
 ![](/media/15068489255584.jpg)
 
