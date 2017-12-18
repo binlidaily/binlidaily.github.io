@@ -38,7 +38,7 @@ twitter_image:
 facebook_app_id:
 facebook_image:
 google_analytics:
-comments: true
+comments: false
 
 # Plugins
 gems:
@@ -48,7 +48,7 @@ gems:
 
 # Build settings
 markdown: kramdown
-excerpt_separator: "<!-- more -->"
+excerpt_separator: <!-- more -->
 
 # Outputting
 permalink: /:year/:month/:day/:title/
