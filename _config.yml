@@ -17,7 +17,7 @@ title: Be A Better Me
 author: Bin
 description: Be A Better Me
 # baseurl: "/whiteglass" # the subpath of your site, e.g. /blog
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://binlidaily.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 lang: en
 timezone: UTC
@@ -48,7 +48,7 @@ gems:
 
 # Build settings
 markdown: kramdown
-excerpt_separator: <!-- more -->
+excerpt_separator: "<!-- more -->"
 
 # Outputting
 permalink: /:year/:month/:day/:title/
