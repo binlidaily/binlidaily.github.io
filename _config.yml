@@ -70,5 +70,5 @@ jekyll-archives:
     - categories
   layout: category_archives
   permalinks:
-    # category: /categories/:name/
-    category: /categories/
+    category: /categories/:name/
+    # category: /categories/
