@@ -2,7 +2,8 @@
 layout: post
 title: "逻辑斯特回归"
 author: "Bin Li"
-tags: Machine Learning
+categories: "Machine Learning"
+meta: "Springfield"
 comments: true
 ---
 
