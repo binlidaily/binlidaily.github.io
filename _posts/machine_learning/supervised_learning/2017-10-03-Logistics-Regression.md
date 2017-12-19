@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "逻辑斯特回归"
-author: "Bin Li"
+author: Bin
 categories: Machine Learning
 comments: true
 ---

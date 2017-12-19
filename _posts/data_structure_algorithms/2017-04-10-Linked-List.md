@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Linked List
+author: Bin
 date: 2017-04-10 13:44:16
 tags: Interview
 ---
