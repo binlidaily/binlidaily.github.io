@@ -2,7 +2,7 @@
 layout: post
 title: "逻辑斯特回归"
 author: Bin
-categories: Machine Learning
+categories: "Machine Learning"
 comments: true
 ---
 
