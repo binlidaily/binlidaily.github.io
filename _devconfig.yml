@@ -10,13 +10,9 @@ encoding: utf-8
 title:               My Website
 #tagline:             'foo's website
 description:         Foo's blog...
-url: https://lanyon-plus.sbamin.com
-baseurl: ""
-urlimg: https://lanyon-plus.sbamin.com/images/
-## If you do not have custom domain, comment top three lines, uncomment three lines below and replace dyndna with your github userid and lanyon-plus with your project name. Also, rename CNAME file to CNAME.sample
-#url: https://dyndna.github.io/lanyon-plus
-#baseurl: "/lanyon-plus"
-#urlimg: https://dyndna.github.io/lanyon-plus/images/
+url:                 http://localhost:4000
+baseurl:  ""
+urlimg: http://localhost:4000/images/
 markdown: kramdown
 kramdown:
   math_engine: mathjax
