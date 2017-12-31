@@ -5,6 +5,10 @@ author: "Bin Li"
 categories: "Machine Learning"
 meta: "Springfield"
 comments: true
+style: |
+  .container {
+        max-width: 48rem;
+    } 
 ---
 
 最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 Random Features for Large-Scale Kernel Machines 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将详细做一介绍。
