@@ -1,0 +1,37 @@
+# Site configuration
+domain: "http://binlidaily.github.io"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://binlidaily.github.io/" # the base hostname & protocol for your site
+permalink: /:title/
+avatar: http://7xof48.com1.z0.glb.clouddn.com/avatar.jpg
+about: http://7xof48.com1.z0.glb.clouddn.com/about.jpg
+favicon: http://7xof48.com1.z0.glb.clouddn.com/favicon.png
+basecss: 
+# Theme specific configuration
+title: binlidaily
+description: >
+  Hi there, My name is Luozhan.Song, usually I use "binlidaily" as my ID everywhere.
+  I was born and raised in Hunan China. 
+  I'm really fond of beautiful design, drawing etc.
+
+# Contact and social media links
+twitter_username: binlidailyo
+github_username: binlidaily
+facebook_username: song.roger.1
+instagram_username: binlidaily198
+linkedin_username: binlidaily
+
+exclude: ['node_modules', 'gulpfile.js', 'package.json']
+
+kramdown:
+  input: GFM
+
+# If U enable the comment, edit disqus or duoshuo account
+# before deploy your webpage
+enable_comment: false
+# disqus_account: binlidaily
+
+gems: ['jekyll-paginate']
+# Pagination
+paginate: 5
+paginate_path: /archive/page:num
