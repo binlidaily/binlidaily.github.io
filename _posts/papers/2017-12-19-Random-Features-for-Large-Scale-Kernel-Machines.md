@@ -52,7 +52,7 @@ shift-invariant kernel，平移不变核是什么？
 * 一个是smooth
 * 另一个非smooth
 
-![](/media/15144604725009.jpg)
+![](/images/media/15144604725009.jpg)
 
 
 ## Related Work
@@ -83,38 +83,38 @@ sklearn 里面有 [kernel approximation](https://github.com/scikit-learn/scikit-
 
 ## The Understanding of the paper
 
-![](/media/15142117647699.jpg)
+![](/images/media/15142117647699.jpg)
 
-![](/media/15145090094145.jpg)
+![](/images/media/15145090094145.jpg)
 
-![](/media/15145091469265.jpg)
+![](/images/media/15145091469265.jpg)
 
-![](/media/15145096856315.jpg)
+![](/images/media/15145096856315.jpg)
 
-![](/media/15145152048882.jpg)
+![](/images/media/15145152048882.jpg)
 
-![](/media/15145161499742.jpg)
-![](/media/15145200804210.jpg)
-![](/media/15145203289366.jpg)
+![](/images/media/15145161499742.jpg)
+![](/images/media/15145200804210.jpg)
+![](/images/media/15145203289366.jpg)
 
-![](/media/15145203057590.jpg)
-
-
-![](/media/15145103285063.jpg)
-
-![](/media/15145104134270.jpg)
-
-![](/media/15145105547817.jpg)
+![](/images/media/15145203057590.jpg)
 
 
-![](/media/15145235336412.jpg)
+![](/images/media/15145103285063.jpg)
+
+![](/images/media/15145104134270.jpg)
+
+![](/images/media/15145105547817.jpg)
 
 
-![](/media/15145229581530.jpg)
-![](/media/15145241371207.jpg)
+![](/images/media/15145235336412.jpg)
 
 
-![](/media/15145238467219.jpg)
+![](/images/media/15145229581530.jpg)
+![](/images/media/15145241371207.jpg)
+
+
+![](/images/media/15145238467219.jpg)
 
 
 grid up your input space, lay down a random grid, pick the pitch of the grid
@@ -126,7 +126,7 @@ inner product, 1 if there are in the same bin
 hat transfe
 
 
-![](/media/15145105880619.jpg)
+![](/images/media/15145105880619.jpg)
 
 
 What is random feature?
@@ -137,30 +137,30 @@ What is random feature?
 # PPT
 ## Introduction
 ### Background
-![](/media/15144718498039.jpg)
+![](/images/media/15144718498039.jpg)
 
-![](/media/15144721110768.jpg)
-
-
-![](/media/15144721233406.jpg)
+![](/images/media/15144721110768.jpg)
 
 
-![](/media/15144721395399.jpg)
+![](/images/media/15144721233406.jpg)
+
+
+![](/images/media/15144721395399.jpg)
 
 RBF
-![](/media/15144804742032.jpg)
+![](/images/media/15144804742032.jpg)
 
 
 
-![](/media/15144811528834.jpg)
+![](/images/media/15144811528834.jpg)
 
 找到能使loss最小的f(x;a)，这里累加了高斯核的基函数
 
-![](/media/15144812965651.jpg)
+![](/images/media/15144812965651.jpg)
 
 对于高斯核的基函数，我们想用不急于数据的random function的加和来逼近。
 
-![](/media/15144813697492.jpg)
+![](/images/media/15144813697492.jpg)
 
 其中线性组合的线性组合还是线性组合，把z和a的乘积继承b，这样的话就降低了需要选择的参数。
 
@@ -170,7 +170,7 @@ RBF
 
 有何拓展？
 
-更加有效地评估，![](/media/15144824631369.jpg) ，O(D + d)
+更加有效地评估，![](/images/media/15144824631369.jpg) ，O(D + d)
 
 
 
@@ -181,9 +181,9 @@ $$K(z) = e^{-\gamma ||z^2||_2 } $$
 For which the sampling distribution p is gaussian too: 
 $$ w \sim \mathcal{N}\left(0,\sqrt{2\gamma}I_d\right) $$
 
-![](/media/15145214560842.jpg)
+![](/images/media/15145214560842.jpg)
 
 
-![](/media/15145218809495.jpg)
+![](/images/media/15145218809495.jpg)
 
 
