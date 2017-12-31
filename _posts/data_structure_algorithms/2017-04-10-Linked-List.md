@@ -4,11 +4,13 @@ title: Linked List
 author: Bin
 date: 2017-04-10 13:44:16
 tags: Interview
+comments: true
 ---
 
-## 简介
 
-链表简介
+链表作为算法中非常重要的
+
+<!--more-->
 
 ## 链表相关面试题
 
