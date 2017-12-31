@@ -3,6 +3,10 @@ layout: post
 title: "Jekyll 搭建博客遇到的问题"
 author: "Bin Li"
 comments: true
+style: |
+  .container {
+        max-width: 48rem;
+    } 
 ---
 ## jekyll-paginate 依赖问题
 

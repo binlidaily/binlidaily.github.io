@@ -4,6 +4,10 @@ title: "Latex 使用记录"
 author: "Bin Li"
 tags: Tools
 comments: true
+style: |
+  .container {
+        max-width: 48rem;
+    } 
 ---
 
 本文记录一下在使用 latex 的问题和解决方法。
