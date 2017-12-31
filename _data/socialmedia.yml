@@ -3,10 +3,10 @@
   class: fa fa-twitter-square
   title: "Follow me @foo"
 
-- name: Google Plus
-  url: https://plus.google.com/+foo
-  class: fa fa-google-plus-square
-  title: "Follow me +foo"
+# - name: Google Plus
+#   url: https://plus.google.com/+foo
+#   class: fa fa-google-plus-square
+#   title: "Follow me +foo"
 
 - name: GitHub
   url: https://github.com/xyz123abc
