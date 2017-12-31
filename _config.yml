@@ -7,12 +7,12 @@ relative_permalinks: false
 encoding: utf-8
 
 # Setup
-title:               My Website
+title:               Be A Better Me
 #tagline:             'foo's website
-description:         Foo's blog...
-url: https://lanyon-plus.sbamin.com
+description:         Bin's blog...
+url: https://binlidaily.github.io
 baseurl: ""
-urlimg: https://lanyon-plus.sbamin.com/images/
+urlimg: https://binlidaily.github.io/images/
 ## If you do not have custom domain, comment top three lines, uncomment three lines below and replace dyndna with your github userid and lanyon-plus with your project name. Also, rename CNAME file to CNAME.sample
 #url: https://dyndna.github.io/lanyon-plus
 #baseurl: "/lanyon-plus"
@@ -49,22 +49,22 @@ exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "l
 
 # About/contact
 author:
-  name:              Foo Boo
-  url:               https://twitter.com/abcd
+  name:              Bin Li
+  url:               https://twitter.com/gitlinux
   avatar:         foo.png
   #email:           
 
 # Owner/author information
 owner:
   name:           Foo Boo
-  avatar:         foo.png
+  avatar:         foo.jpg
   #email:          
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        abcd
+  twitter:        gitlinux
   facebook:       
-  github:         xyz123abc
+  github:         gitlinux
   stackexchange:  
   linkedin:       https://www.linkedin.com/in/foo
   instagram:      
@@ -72,8 +72,8 @@ owner:
   tumblr:  
   google_plus:    https://plus.google.com/+foo
   # orcid and google scholar IDs are different than standard username.
-  orcid: xyz123abc
-  gscholar: xyz123abc
+  orcid: gitlinux
+  gscholar: gitlinux
 
 ## sidebar links:
 # For external links add external: true
@@ -100,17 +100,17 @@ links:
     url: /feed.xml
 
 # Google Custom Search:
-#google_search: xyz123abc
+#google_search: gitlinux
 
 # Twitter stream widget:
-# Replace xyz123abc with your twitter widget id from https://twitter.com/settings/widgets
-#twitter_widget_id: xyz123abc
+# Replace gitlinux with your twitter widget id from https://twitter.com/settings/widgets
+#twitter_widget_id: gitlinux
 
 # Add disqus username for Disqus comment board:
 disqus_shortname: foo
 
 # Analytics and webmaster tools stuff goes here
-#google_analytics:   xyz123abc
+#google_analytics:   gitlinux
 
 #### For dummy website only - remove if you wish ####
 github_repo: https://github.com/dyndna/lanyon-plus
