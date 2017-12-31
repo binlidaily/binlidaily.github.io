@@ -70,7 +70,7 @@ owner:
   instagram:      
   flickr:
   tumblr:  
-  google_plus:    https://plus.google.com/+foo
+  google_plus:    
   # orcid and google scholar IDs are different than standard username.
   orcid: gitlinux
   gscholar: gitlinux
@@ -88,9 +88,9 @@ links:
     url: /tags/
   - title: <i class="fa fa-archive"></i> Archive
     url: /archive/
-  - title: <i class="iconside iconm-wordpress"></i> Old Blog
-    url: https://foo.wordpress.com
-    external: true
+  # - title: <i class="iconside iconm-wordpress"></i> Old Blog
+  #   url: https://foo.wordpress.com
+  #   external: true
   - title: <i class="iconside iconm-envelop"></i> Contact
     url: /contact/
   - title: <i class="iconside iconm-twitter"></i> Twitter
@@ -113,6 +113,6 @@ disqus_shortname: foo
 #google_analytics:   gitlinux
 
 #### For dummy website only - remove if you wish ####
-github_repo: https://github.com/dyndna/lanyon-plus
-version: 1.1.1
+# github_repo: https://github.com/dyndna/lanyon-plus
+# version: 1.1.1
 ## END ##
