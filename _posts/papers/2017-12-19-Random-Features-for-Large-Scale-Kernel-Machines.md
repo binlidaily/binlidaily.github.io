@@ -9,6 +9,8 @@ comments: true
 
 最近要在组会上汇报一篇论文
 
+<!--more-->
+
 ## Key words
 shift-invariant kernel
 
