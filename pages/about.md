@@ -3,6 +3,9 @@ layout: page
 title: About
 permalink: /about/
 show_meta: true
+---
+
+
 # imagefeature path is relative to images/ directory.
 imagefeature: foo.png
 published: true
@@ -39,3 +42,5 @@ Donec egestas eros arcu, id fermentum orci faucibus ac. Pellentesque facilisis e
 Nam imperdiet consequat lorem. Donec sagittis tortor eu dolor efficitur ullamcorper. Pellentesque dolor arcu, vestibulum quis laoreet at, tincidunt nec mauris. Praesent id laoreet arcu. Quisque blandit nunc at elit auctor, eget tempor nunc sodales. Cras venenatis lacinia tempus. Proin erat nisl, pharetra a massa volutpat, rhoncus pellentesque nisi. Mauris in elit dictum, egestas tellus et, laoreet velit. Nam auctor tempus augue sit amet fermentum. Nulla accumsan arcu quis efficitur aliquam. Nulla dapibus in neque eget facilisis. Nullam nisi augue, maximus at lectus sit amet, ornare malesuada ante. Morbi volutpat justo a urna pharetra elementum. Proin tempor ac felis ac consequat. Proin feugiat, nulla ac sagittis consequat, ante diam auctor tortor, in suscipit leo ante id dolor. Vivamus posuere pellentesque magna, sagittis blandit neque convallis sed.
 
 *[volutpat]: Tooltip for abbreviation.
+
+
