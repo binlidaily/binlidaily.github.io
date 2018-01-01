@@ -1,7 +1,7 @@
 ---
 <!--
 
----
+
 layout: post
 title: "Random Features for Large-Scale Kernel Machines"
 author: "Bin Li"
@@ -12,7 +12,7 @@ style: |
   .container {
         max-width: 44rem;
     } 
----
+
 
 -->
 
