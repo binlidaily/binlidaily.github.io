@@ -2,7 +2,6 @@
 layout: post
 title: Linked List
 author: Bin
-date: 2017-04-10
 tags: Interview
 comments: true
 style: |
