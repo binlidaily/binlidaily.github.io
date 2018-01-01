@@ -1,11 +1,8 @@
 ---
-<!--
-
----
 layout: post
-title: "Random Features for Large-Scale Kernel Machines"
+title: "局外人"
 author: "Bin Li"
-categories: "Machine Learning"
+categories: "Books"
 meta: "Springfield"
 comments: true
 style: |
@@ -14,7 +11,7 @@ style: |
     } 
 ---
 
--->
+局外人是
 
----
+
 
