@@ -5,7 +5,7 @@ author: "Bin Li"
 comments: true
 style: |
   .container {
-        max-width: 48rem;
+        max-width: 44rem;
     } 
 ---
 ## jekyll-paginate 依赖问题

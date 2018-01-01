@@ -6,7 +6,7 @@ tags: Tools
 comments: true
 style: |
   .container {
-        max-width: 48rem;
+        max-width: 44rem;
     } 
 ---
 
