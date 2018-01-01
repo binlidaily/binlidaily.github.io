@@ -7,7 +7,7 @@ meta: "Springfield"
 comments: true
 style: |
   .container {
-        max-width: 40rem;
+        max-width: 42rem;
     } 
 ---
 
