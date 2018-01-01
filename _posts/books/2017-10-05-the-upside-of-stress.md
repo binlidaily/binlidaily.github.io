@@ -5,10 +5,10 @@ author: "Bin Li"
 tags: Books
 comments: true
 meta: "Springfield"
-<!--style: |
+style: |
   .container {
         max-width: 44rem;
-    } -->
+    } 
 ---
 
 
