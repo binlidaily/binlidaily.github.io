@@ -11,188 +11,105 @@ style: |
     } 
 ---
 
-最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 Random Features for Large-Scale Kernel Machines 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将详细做一介绍。
+最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf) 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将简要做一介绍。
 
-<!--more-->
+## Motivation
+现在的数据集普遍非常大，能用 kernel machines 处理的数据量比较小，因为有 kernel matrix 的存在，需要相对较大的存储和计算资源。而且一般的 kernel machines 都有如下的形式：
 
+$$f(x) = \Sigma_{i=1}^N c_i k(X_i, X) \Longrightarrow O(N*d)$$
 
-
-
-## Key words
-shift-invariant kernel
-
-## Abstract
-
-* 如何利用了快速的线性方法在低维的特征空间？
+及时是在测试或者预测的时候，计算复杂度依然是很高。于是，这篇文章想针对 large scale 的 kernel machines 做一个优化，提高其训练和测试（预测）的速度。
 
 ## Introduction
-解决什么问题？
-核矩阵是一个问题，$Q_{ij}$
+在实践过程中我们知道，很多情况下，我们是没有办法保证所有的数据都是线性可分的，那么，于是我们就会使用核技巧，使得在原来空间不可分的数据，映射到高维的特征空间后变得线性可分。具体就不展开介绍，如下图所示：
 
-- 什么是 Random Feature?
+![](/images/media/15149048791755.jpg)
 
-提出结合线性和非线性的方法。
 
-**定义 Kernel Function**
-Kernel trick 是为了避免拿线性学习算法去映射非线性的函数或者决策边界。
+我们从核函数的特性出发，每个核函数都有如下的特性：
 
-由 randomized algorithms for approximating kernel matrices 受到启发，已经成功地通过映射数据到一个相对低维的randomized feature space，而转换对于任何核函数的training和evaluation到对线性machine的操作。
+$$k(x,y) = <\phi(x),\phi(y)>$$
 
-* Random projection, margins, kernels, and feature-selection
-* Sampling techniques for kernel methods
+但是问题是我们将原来的数据空间映射到**高维**的特征空间后，往往是使得我们的模型变得复杂了。那么我们能不能找到一种映射或者转换，使得在保证结果和向高维映射的结果接近但其本身是很低维的转换呢？这篇论文就是朝着这个目标出发，想办法设计这样的**低维转换**。
 
-核函数的特性：
+$$k(x,y) = ~ <\phi(x),\phi(y)>  ~ \approx z(x)^T z(y)$$
 
-$$k(x,y)=<\phi(x), \phi(y)>$$
+即我们想要找到这样的转换 $z(x)$，使得输入数据空间转换之后的结果与往高维映射后的结果接近。那么接下来的问题就是我们怎么去找这个 $z(x)$ 了。
 
-这篇文章想找到一个更加容易理解的映射，利用一个随机化的矩阵映射z将输入映射到低维欧几里得内积空间上。
+但是文中对于怎么找 $z(x)$ 的思考过程没有给出详细的阐释，就直接给出了结果说我们针对 shift-invariant kernels 有了基于傅里叶变换和基于平移网格变换的两种方法 Random Fourier Features 和 Random Binning Features。
 
-$$k(x,y)=<\phi(x), \phi(y)>\approx z(x)\prime z(y)$$
-
-z 是低维的。
-
-shift-invariant kernel，平移不变核是什么？
 > Let $x,y∈ℝ$ where $y=x−t$. Translation-invariant (or shift-invariant) kernel $κ(⋅,⋅)$ is defined as $κ(x,y)=κ(x,x−t)=κ(t)$.
-> 其实就是这样的公式：$κ(x,y)=κ(x-y)$
-为什么要满足这个东西？
 
-为什么设置两个实验：
-
-* 一个是smooth
-* 另一个非smooth
-
-![](/images/media/15144604725009.jpg)
-
-
-## Related Work
-
-## Algorithms
-### Random Fourier Features
-调和分析
-
-Fourier bases
-
-basis function：可以把它想象成基向量，任何的函数都可以有基函数的线性组合形成。
-
-利用算法1可以求解那个接近的式子，那么问题来了，如何去求解D？
-
-如何体现这里的smooth？用的是Fourier？
-
-### Ramdom Binning Features
-
-
-
-
-
-
-## Addition
-sklearn 里面有 [kernel approximation](https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/kernel_approximation.py) 的应用。
-
-----
-
-## The Understanding of the paper
-
-![](/images/media/15142117647699.jpg)
-
-![](/images/media/15145090094145.jpg)
-
-![](/images/media/15145091469265.jpg)
-
-![](/images/media/15145096856315.jpg)
-
-![](/images/media/15145152048882.jpg)
-
-![](/images/media/15145161499742.jpg)
-![](/images/media/15145200804210.jpg)
-![](/images/media/15145203289366.jpg)
-
-![](/images/media/15145203057590.jpg)
-
-
-![](/images/media/15145103285063.jpg)
-
-![](/images/media/15145104134270.jpg)
-
-![](/images/media/15145105547817.jpg)
-
-
-![](/images/media/15145235336412.jpg)
-
-
-![](/images/media/15145229581530.jpg)
-![](/images/media/15145241371207.jpg)
-
-
-![](/images/media/15145238467219.jpg)
-
-
-grid up your input space, lay down a random grid, pick the pitch of the grid
-
-in each bin of the grid, a sign
-
-inner product, 1 if there are in the same bin
-
-hat transfe
-
-
-![](/images/media/15145105880619.jpg)
-
-
-What is random feature?
-映射函数z(·)可以看成是
-
-----
-
-# PPT
-## Introduction
-### Background
-![](/images/media/15144718498039.jpg)
-
-![](/images/media/15144721110768.jpg)
-
-
-![](/images/media/15144721233406.jpg)
-
-
-![](/images/media/15144721395399.jpg)
-
-RBF
-![](/images/media/15144804742032.jpg)
-
-
-
-![](/images/media/15144811528834.jpg)
-
-找到能使loss最小的f(x;a)，这里累加了高斯核的基函数
-
-![](/images/media/15144812965651.jpg)
-
-对于高斯核的基函数，我们想用不急于数据的random function的加和来逼近。
-
-![](/images/media/15144813697492.jpg)
-
-其中线性组合的线性组合还是线性组合，把z和a的乘积继承b，这样的话就降低了需要选择的参数。
-
-为什么有效？
-* 快？
-* 准？
-
-有何拓展？
-
-更加有效地评估，![](/images/media/15144824631369.jpg) ，O(D + d)
-
-
-
-
-RBF Kernel: 
-$$K(z) = e^{-\gamma ||z^2||_2 } $$ 
-
-For which the sampling distribution p is gaussian too: 
-$$ w \sim \mathcal{N}\left(0,\sqrt{2\gamma}I_d\right) $$
-
-![](/images/media/15145214560842.jpg)
-
-
-![](/images/media/15145218809495.jpg)
+## Random Fourier Features
+![](/images/media/15149073920888.jpg)
+
+![](/images/media/15149074215505.jpg)
+
+这里其实还没有完全从数学的角度推导细致，大家先看下，如有问题请在评论区指出。
+
+该算法有两个条件：
+
+1. 核函数是平移不变核（shift-invariant kernels），$k(x,y) = k(z)$, 其中 $x-y=z$。
+2. k(z) 必须在 $R^d$ 上正定
+
+Random Fourier Features 算法步骤如下：
+
+1. Compute the Fourier transform of $k$: 
+    $$\mathcal{F}_k(w) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{\mathbb{R}^d} k(\textbf{z}) e^{i\langle w,z \rangle} d\textbf{z} $$
+2. Sample $D$ $i.i.d$ vectors $w$ from: 
+    $$p(\textbf{w}) = \frac{1}{(2\pi)^{\frac{d}{2}}} \mathcal{F}_k(w) $$ 
+3. Sample $D$  $i.i.d$ vectors b from the uniform distribution.
+4. Compute the new features
+    $$Z(X) = \sqrt{\frac{2}{D}}\left[ cos(w_1X + u_1), \dots, cos(w_DX + u_D) \right] $$
+
+5. Compute the Kernel estimates:
+    $$ k(\textbf{x},\textbf{y}) = \langle Z(\textbf{x}), Z(\textbf{y}) \rangle $$
+
+代码实现非常简洁：
+
+```python
+class RFF(BaseEstimator):
+    def __init__(self, gamma = 1, D = 50, metric = "rbf"):
+        self.gamma = gamma
+        self.metric = metric
+        #Dimensionality D (number of MonteCarlo samples)
+        self.D = D
+        self.fitted = False
+        
+    def fit(self, X, y=None):
+        """ Generates MonteCarlo random samples """
+        d = X.shape[1]
+        #Generate D iid samples from p(w) 
+        if self.metric == "rbf":
+            self.w = np.sqrt(2*self.gamma)*np.random.normal(size=(self.D,d))
+        elif self.metric == "laplace":
+            self.w = cauchy.rvs(scale = self.gamma, size=(self.D,d))
+        
+        #Generate D iid samples from Uniform(0,2*pi) 
+        self.u = 2*np.pi*np.random.rand(self.D)
+        self.fitted = True
+        return self
+    
+    def transform(self,X):
+        """ Transforms the data X (n_samples, n_features) to the new map space Z(X) (n_samples, n_components)"""
+        if not self.fitted:
+            raise NotFittedError("RBF_MonteCarlo must be fitted beform computing the feature map Z")
+        #Compute feature map Z(x):
+        Z = np.sqrt(2/self.D)*np.cos((X.dot(self.w.T) + self.u[np.newaxis,:]))
+        return Z
+    
+    def compute_kernel(self, X):
+        """ Computes the approximated kernel matrix K """
+        if not self.fitted:
+            raise NotFittedError("RBF_MonteCarlo must be fitted beform computing the kernel matrix")
+        Z = self.transform(X)
+        K = Z.dot(Z.T)
+        return K
+```
+
+其他部分后续再继续补充了。
+
+### References
+[Code for Random Fourier Features](https://github.com/hichamjanati/srf/blob/master/RFF-I.ipynb)
 
 
