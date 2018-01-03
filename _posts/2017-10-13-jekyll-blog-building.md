@@ -2,6 +2,7 @@
 layout: post
 title: "Jekyll 搭建博客遇到的问题"
 author: "Bin Li"
+tags: "Tools"
 comments: true
 style: |
   .container {
