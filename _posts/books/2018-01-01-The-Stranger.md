@@ -2,7 +2,7 @@
 layout: post
 title: "局外人"
 author: "Bin Li"
-categories: "Books"
+tags: Books
 meta: "Springfield"
 comments: true
 style: |
