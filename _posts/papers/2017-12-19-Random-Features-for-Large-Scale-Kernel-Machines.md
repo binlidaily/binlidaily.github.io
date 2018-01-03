@@ -2,7 +2,7 @@
 layout: post
 title: "Random Features for Large-Scale Kernel Machines"
 author: "Bin Li"
-tags: "Machine Learning"
+tags: "Machine\ Learning"
 comments: true
 style: |
   .container {
