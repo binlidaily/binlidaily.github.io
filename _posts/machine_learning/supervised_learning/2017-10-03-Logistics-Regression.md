@@ -2,8 +2,12 @@
 layout: post
 title: "逻辑斯特回归"
 author: Bin
-categories: "Machine Learning"
+tags: "Machine Learning"
 comments: true
+style: |
+  .container {
+        max-width: 44rem;
+    } 
 ---
 
 逻辑斯特回归 (Logistic Regression) 是机器学习中的一种分类模型，由于算法的简单高效，在实际运用中非常的广泛。
@@ -30,8 +34,12 @@ $$D = (x^1, y^1),~(x^2, y^2),~...,~(x^N, y^N)$$
 $${g(x) }= {1\over{1+e^{-x}}}$$
 
 从式子上可以看出，当$x$接近与无穷大时，分母会接近于$1$，则整体结果接近与$1$；当$x$接近于无穷小时，分母接近于无穷大，则整体结果接近于0。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于0.5的认为是1，小于0.5的认为是0.
+
+<span style="display:block;text-align:center">![](/images/media/15068430849483.jpg)</span>
+
 ![](/images/media/15068430849483.jpg)
 
+<img align="center" src="/images/media/15068430849483.jpg" alt="...">
 
 ### Logistic Regression 决策函数
 通过在线性回归模型 ($f(x) = \Theta^Tx$) 的基础上套一个 Sigmoid function，我们得到了Logistic Regression 的决策函数如下：
