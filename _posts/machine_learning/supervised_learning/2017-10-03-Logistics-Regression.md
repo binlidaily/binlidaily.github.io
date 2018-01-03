@@ -35,11 +35,10 @@ $${g(x) }= {1\over{1+e^{-x}}}$$
 
 从式子上可以看出，当$x$接近与无穷大时，分母会接近于$1$，则整体结果接近与$1$；当$x$接近于无穷小时，分母接近于无穷大，则整体结果接近于0。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于0.5的认为是1，小于0.5的认为是0.
 
-<span style="display:block;text-align:center">![](/images/media/15068430849483.jpg)</span>
+
 
 ![](/images/media/15068430849483.jpg)
 
-<img align="center" src="/images/media/15068430849483.jpg" alt="...">
 
 ### Logistic Regression 决策函数
 通过在线性回归模型 ($f(x) = \Theta^Tx$) 的基础上套一个 Sigmoid function，我们得到了Logistic Regression 的决策函数如下：
@@ -80,6 +79,9 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 * 重复以上两步直到满足终止条件
 
 ![](/images/media/15068489255584.jpg)
+
+
+<span style="display:block;text-align:center">![](/images/media/15068489255584.jpg)</span>
 
 在计算时，对平均 log 损失函数求导，来求得梯度：
 
