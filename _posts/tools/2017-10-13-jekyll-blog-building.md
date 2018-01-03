@@ -58,6 +58,13 @@ $$x^2+y^2=1$$
 
 将所有的 `post` 图片放到根目录下新建的 `media` 文件夹中，然后在引入图片的时候要用`![](\media\name_of_pic.jpg)` 这样来引入，不能有名字，要有 `\media` 开头。
 
+如果想要图片对齐，以及对图片大小做操作可以用如下的方式：
+
+```javascript
+<p align="center">
+  <img width="" height="" src="/images/media/15068489255584.jpg">
+</p>
+```
 
 ## Jekyll Themes
 [Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
