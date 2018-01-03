@@ -56,7 +56,7 @@ author:
 
 # Owner/author information
 owner:
-  name:           Foo Boo
+  name:           Bin Li
   avatar:         foo.jpg
   #email:          
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
@@ -110,7 +110,7 @@ links:
 disqus_shortname: gitlinux
 
 # Analytics and webmaster tools stuff goes here
-#google_analytics:   gitlinux
+google_analytics:   gitlinux
 
 #### For dummy website only - remove if you wish ####
 # github_repo: https://github.com/dyndna/lanyon-plus
