@@ -2,7 +2,7 @@
 layout: post
 title: "逻辑斯特回归"
 author: Bin
-tags: "Machine Learning"
+tags: "Machine_Learning"
 comments: true
 style: |
   .container {
@@ -81,7 +81,10 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 ![](/images/media/15068489255584.jpg)
 
 
-<span style="display:block;text-align:center">![](/images/media/15068489255584.jpg)</span>
+<p align="center">
+  <img width="460" height="600" src="/images/media/15068489255584.jpg">
+</p>
+
 
 在计算时，对平均 log 损失函数求导，来求得梯度：
 
