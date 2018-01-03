@@ -19,7 +19,7 @@ tags:
 ---
 
 | <i class="fa fa-twitter"></i> | [@{{ site.owner.twitter }}](https://twitter.com/{{ site.owner.twitter }})  | 
-| - | :- |
+| -: | :- |
 | <i class="fa fa-envelope"></i> | bin.li.daily@gmail.com   | 
 | - | :- |
 | <i class="fa fa-car"></i>  | [Driving directions]({{ site.url }}/directions) | 
