@@ -91,8 +91,8 @@ links:
   # - title: <i class="iconside iconm-wordpress"></i> Old Blog
   #   url: https://foo.wordpress.com
   #   external: true
-  - title: <i class="iconside iconm-envelop"></i> Contact
-    url: /contact/
+  # - title: <i class="iconside iconm-envelop"></i> Contact
+  #   url: /contact/
   - title: <i class="iconside iconm-twitter"></i> Twitter
     url: https://twitter.com/gitlinux
     external: true
