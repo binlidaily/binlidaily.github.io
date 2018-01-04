@@ -2,7 +2,7 @@
 layout: post
 title: "心理学导论"
 author: "Bin Li"
-tags: "Open_Courses"
+tags: "Open_Courses, Psychology"
 comments: true
 style: |
   .container {

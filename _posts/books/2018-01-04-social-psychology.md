@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "topic"
+title: "社会心理学"
 author: "Bin Li"
-tags: "tags"
+tags: "Psychology"
 comments: true
 style: |
   .container {
