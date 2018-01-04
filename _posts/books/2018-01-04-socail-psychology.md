@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "爱的艺术"
+title: "topic"
 author: "Bin Li"
-tags: "Books"
+tags: "tags"
 comments: true
 style: |
   .container {
@@ -10,7 +10,5 @@ style: |
     } 
 published: false
 ---
-
-## 第一章 爱是门艺术吗？
 
 

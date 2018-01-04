@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "topic"
+title: "心理学导论"
 author: "Bin Li"
-tags: "tags"
+tags: "Open_Courses"
 comments: true
 style: |
   .container {
         max-width: 44rem;
     } 
+published: true
 ---
 
 本文是耶鲁大学的[《心理学导论》](http://open.163.com/special/sp/introductiontopsychology.html)的公开课观看笔记，可能有点儿乱，看日后在整理吧。
