@@ -2,7 +2,7 @@
 layout: post
 title: "Python 基础教程"
 author: "Bin Li"
-tags: "Books Programming Python"
+tags: "Programming Python"
 comments: true
 style: |
   .container {
@@ -39,6 +39,8 @@ raw_input 会将所有的输入当做原始数据，然后将其放入字符串�
 
 >>> raw_input("Enter a number: ") Enter a number: 3 '3'
 ```
+
+----
 
 ## 第二章 列表和元组
 数据结构
@@ -236,4 +238,6 @@ append, count, extend, index, ...
 
 1. 元组可以在映射（和集合的成员）中当做键使用
 2. 元组作为很多内建函数和方法的返回值存在
+
+----
 
