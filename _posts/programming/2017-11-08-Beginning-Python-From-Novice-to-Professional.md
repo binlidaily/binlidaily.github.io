@@ -11,7 +11,7 @@ style: |
 published: true
 ---
 
-## # 第一章 基础知识
+## 第一章 基础知识
 ### 模块
 `from model import function`
 
