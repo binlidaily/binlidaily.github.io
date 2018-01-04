@@ -10,7 +10,7 @@ style: |
     } 
 ---
 
-最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf) 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将简要做一介绍。
+最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf) 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将简要做一介绍。这篇文章的作者在 2017 年获奖时做报告的时候还提出了一个富有争议性的观点，[“Machine Learning is Alchemy.”](http://www.argmin.net/2017/12/05/kitchen-sinks/)，这个论点被 Yann Lecun 抨击了。
 
 <!--more-->
 
@@ -112,5 +112,7 @@ class RFF(BaseEstimator):
 
 ### References
 [Code for Random Fourier Features](https://github.com/hichamjanati/srf/blob/master/RFF-I.ipynb)
-
+[“Machine Learning is Alchemy.”](http://www.argmin.net/2017/12/05/kitchen-sinks/)
+[An Addendum to Alchemy](http://www.argmin.net/2017/12/11/alchemy-addendum/)
+[Solving Large Scale Kernel Machines using Random Features](http://www.mit.edu/~9.520/spring11/project-ideas/9520_Nick.pdf)
 
