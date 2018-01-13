@@ -57,7 +57,7 @@ author:
 # Owner/author information
 owner:
   name:           Bin Li
-  avatar:         foo.jpg
+  avatar:         foo.png
   #email:          
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:
@@ -66,7 +66,7 @@ owner:
   facebook:       
   github:         gitlinux
   stackexchange:  
-  linkedin:       https://www.linkedin.com/in/foo
+  linkedin:       https://www.linkedin.com/in/bin-li-569744b8
   instagram:      
   flickr:
   tumblr:  
