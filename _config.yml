@@ -79,15 +79,13 @@ owner:
 # For external links add external: true
 links:
   - title: <i class="iconside iconm-home"></i> Home
-    url: /
-  - title: <i class="iconside iconm-user"></i> About
-    url: /about/
-  - title: <i class="iconside iconm-quill"></i> Blog
-    url: /blog/
+    url: /archive/
+  # - title: <i class="iconside iconm-quill"></i> Blog
+  #   url: /blog/
   - title: <i class="fa fa-tags"></i> Tags
     url: /tags/
-  - title: <i class="fa fa-archive"></i> Archive
-    url: /archive/
+  # - title: <i class="fa fa-archive"></i> Archive
+  #   url: /archive/
   # - title: <i class="iconside iconm-wordpress"></i> Old Blog
   #   url: https://foo.wordpress.com
   #   external: true
@@ -96,6 +94,8 @@ links:
   - title: <i class="iconside iconm-twitter"></i> Twitter
     url: https://twitter.com/gitlinux
     external: true
+  - title: <i class="iconside iconm-user"></i> About
+    url: /about/
   - title: <i class="iconside iconm-feed2"></i> Feed
     url: /feed.xml
 
