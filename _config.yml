@@ -10,7 +10,7 @@ encoding: utf-8
 title:               Be A Better Me
 #tagline:             'foo's website
 description:         Bin's blog...
-url: https://binlidaily.github.io
+url: https://binlidaily.github.io/archive
 baseurl: ""
 urlimg: https://binlidaily.github.io/images/
 ## If you do not have custom domain, comment top three lines, uncomment three lines below and replace dyndna with your github userid and lanyon-plus with your project name. Also, rename CNAME file to CNAME.sample
