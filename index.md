@@ -3,6 +3,10 @@ layout: default
 permalink: index.html
 title: Personal Homepage of foo boo
 description: "Blogging on ...."
+style: |
+  .container {
+        max-width: 44rem;
+    } 
 ---
 
 <!-- ## [lanyon-plus](https://github.com/dyndna/lanyon-plus)
