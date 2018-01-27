@@ -4,6 +4,10 @@ title: Archive
 description: "Archive"
 permalink: /archive/
 category: base
+style: |
+  .container {
+        max-width: 44rem;
+    } 
 ---
 
 <section id="archive">
