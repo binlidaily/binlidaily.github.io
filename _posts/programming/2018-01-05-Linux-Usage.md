@@ -39,4 +39,18 @@ du -sh */
 ```
 
 
+## 参数
+### Verbose Mode
+A verbose mode is an option available in many computer operating systems, including Microsoft Windows, macOS and Linux that provides additional details as to what the computer is doing and what drivers and software it is loading during startup.
+
+verbose 模式就是能够输出比较详细的运行信息。
+
+
+
+
+---
+
+较长的文本，找到关键词句，用来分类
+
+Attention
 
