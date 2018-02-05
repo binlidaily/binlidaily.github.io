@@ -6,7 +6,7 @@ tags: "Machine_Learning"
 comments: true
 style: |
   .container {
-        max-width: 44rem;
+        max-width: 48rem;
     } 
 ---
 
