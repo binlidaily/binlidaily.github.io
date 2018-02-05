@@ -6,6 +6,10 @@ description: "Browse website by tag based index"
 comments: false
 sitemap: false
 category: base
+style: |
+  .container {
+        max-width: 48rem;
+    } 
 ---
 
 {:.text-center}
