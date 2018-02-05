@@ -24,3 +24,5 @@ published: true
 然后在本地使用这样的命令：
 `ssh -N -f -L localhost:8888:localhost:8889 server_username@server_ip`
 
+然后本地用 `localhost:8888` 访问即可。
+
