@@ -1,3 +1,8 @@
+permalink: /blog/:year/:month/:day/:title/
+relative_permalinks: false
+encoding: utf-8
+
+
 title: Better Me
 author: Bin Li
 email: bin.li.daily@gmail.com
@@ -43,3 +48,10 @@ theme: minima
 exclude:
   - Gemfile
   - Gemfile.lock
+
+
+# Add disqus username for Disqus comment board:
+disqus_shortname: gitlinux
+
+# Analytics and webmaster tools stuff goes here
+google_analytics:   gitlinux
