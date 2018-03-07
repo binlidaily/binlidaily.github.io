@@ -51,6 +51,11 @@ exclude:
 
 gems:
   - jekyll-seo-tag
+  - github-pages
+  - jekyll-feed
+
+
+
 # Add disqus username for Disqus comment board:
 disqus_shortname: gitlinux
 
