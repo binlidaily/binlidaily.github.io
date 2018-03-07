@@ -240,15 +240,15 @@
     @include relative-font-size(1.625);
 
     @include media-query($on-laptop) {
-      @include relative-font-size(1.575);
+      @include relative-font-size(1.375);
     }
   }
 
   h4 {
-    @include relative-font-size(1.50);
+    @include relative-font-size(1.25);
 
     @include media-query($on-laptop) {
-      @include relative-font-size(1.45);
+      @include relative-font-size(1.125);
     }
   }
 }
