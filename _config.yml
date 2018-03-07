@@ -60,4 +60,4 @@ gems:
 disqus_shortname: gitlinux
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   gitlinux
+google_analytics: "UA-111874196-1"
