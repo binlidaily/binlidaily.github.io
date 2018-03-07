@@ -38,6 +38,19 @@ cd /dir/to/root
 du -sh */
 ```
 
+## 解压文件
+### .gz 后缀
+```
+gunzip file.gz
+```
+
+如果解压之后需要保留原压缩包，可用：
+
+```
+gunzip -k file.gz
+```
+
+
 
 ## 参数
 ### Verbose Mode

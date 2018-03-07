@@ -24,8 +24,23 @@ TensorFlow 中的每一个变量都要 init
 placeholder 类似于 Variable，唯一的区别是 placeholder 中的变量可能是不同的变量。可以先定义变量的类型，后用不同的参数赋值，就好像形参一样。
 
 如何使用 tensorboard，[远程](https://stackoverflow.com/questions/37987839/how-can-i-run-tensorboard-on-a-remote-server)。
+```shell
+tensorboard --logdir=logs --port=6006
+```
 
+```
+/usr/local/bin/jupyter notebook
+ssh libin@l154 -N -f -L localhost:16006:localhost:6006
+ssh -N -f -L localhost:8888:localhost:8889 libin@l154
+# 8889 是服务器的port，8888是本地的
+
+# set password
+jupyter notebook password
+```
 
 ## AlexNet
 
+
+## TensorFlow
+[集锦](https://github.com/jtoy/awesome-tensorflow)
 
