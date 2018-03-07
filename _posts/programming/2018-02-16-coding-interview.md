@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux 使用记录"
+title: "剑指 Offer"
 author: "Bin Li"
 tags: "Python Programming"
 comments: true

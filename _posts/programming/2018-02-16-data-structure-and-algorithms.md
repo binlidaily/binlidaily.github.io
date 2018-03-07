@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux 使用记录"
+title: "算法与数据结构"
 author: "Bin Li"
 tags: "Python Programming"
 comments: true
