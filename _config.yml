@@ -54,6 +54,9 @@ gems:
   - github-pages
   - jekyll-feed
 
+paginate: 10
+paginate_path: "/page/:num/"
+
 
 
 # Add disqus username for Disqus comment board:
