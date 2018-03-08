@@ -9,6 +9,8 @@ email: bin.li.daily@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   A reader, learner and thinker.
 
+base_url: ""
+
 # social links
 twitter_username: gitlinux
 github_username:  binlidaily
