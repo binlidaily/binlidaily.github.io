@@ -53,6 +53,7 @@ gems:
   - jekyll-seo-tag
   - github-pages
   - jekyll-feed
+  - jekyll-paginate
 
 paginate: 10
 paginate_path: "/blog/page/:num/"
