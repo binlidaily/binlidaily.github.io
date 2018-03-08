@@ -112,7 +112,10 @@ class RFF(BaseEstimator):
 
 ### References
 [Code for Random Fourier Features](https://github.com/hichamjanati/srf/blob/master/RFF-I.ipynb)
+
 [“Machine Learning is Alchemy.”](http://www.argmin.net/2017/12/05/kitchen-sinks/)
+
 [An Addendum to Alchemy](http://www.argmin.net/2017/12/11/alchemy-addendum/)
+
 [Solving Large Scale Kernel Machines using Random Features](http://www.mit.edu/~9.520/spring11/project-ideas/9520_Nick.pdf)
 
