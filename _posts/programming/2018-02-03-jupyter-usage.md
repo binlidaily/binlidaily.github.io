@@ -11,6 +11,8 @@ style: |
 published: true
 ---
 
+使用 TensorFlow 的时候总是登陆服务器不是很方便，现在大多数开始 Jupyter，每次重新搭都忘，还是记录下来的好。
+
 ## Install
 `sudo pip install jupyter`
 

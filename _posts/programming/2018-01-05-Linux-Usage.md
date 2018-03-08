@@ -11,6 +11,8 @@ style: |
 published: true
 ---
 
+本文记录平时常用的 Linux 相关的命令记录。
+
 ## 找到对应路径下所有包含关键词的命令
 
 ```shell
