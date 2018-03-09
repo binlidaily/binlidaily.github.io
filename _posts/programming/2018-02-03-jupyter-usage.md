@@ -16,11 +16,11 @@ published: true
 ## Install
 `sudo pip install jupyter`
 
-**Start**
+### Start
 
 `jupyter notebook`
 
-**Remote access jupyter**
+### Remote access jupyter
 
 首先在服务器端开启 jupyter，设定端口 8889
 `jupyter notebook --port 8889`
