@@ -14,7 +14,7 @@ base_url: ""
 # social links
 twitter_username: gitlinux
 github_username:  binlidaily
-rss: rss
+# rss: rss
 # dribbble_username: jekyll
 # facebook_username: jekyll
 # flickr_username: jekyll
