@@ -11,6 +11,8 @@ style: |
 published: true
 ---
 
+本文是阅读 Python 基础教程的一些笔记，方便复习掌握。
+
 ## 第一章 基础知识
 ### 模块
 `from model import function`

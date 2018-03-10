@@ -9,6 +9,9 @@ style: |
         max-width: 44rem;
     } 
 ---
+
+本文记录在用 Jekyll 搭建博客时遇到的一些问题。
+
 ## jekyll-paginate 依赖问题
 
 当在根目录下运行 `jekyll s` 时会报如下依赖错误的话：
