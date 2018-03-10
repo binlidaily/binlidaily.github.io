@@ -31,6 +31,7 @@ style: |
 | $\mu ~ M$ | \mu M | $\omega ~ \Omega$ | \omega \Omega |
 
 ### Arrows
+
 | Greek | English | Greek | English |
 | :---: | :---: | :---: | :---: |
 |$\leftarrow$ | \leftarrow | $\Leftarrow$ | \Leftarrow|
@@ -46,6 +47,7 @@ style: |
 |$\leftharpoondown$  | \leftharpoondown | $\rightharpoondown$ | \rightharpoondown|
 
 ### Miscellaneous symbols
+
 | Greek | English | Greek | English |
 | :---: | :---: | :---: | :---: |
 |$\infty$ | \infty | $\forall$ | \forall|
@@ -59,6 +61,7 @@ style: |
 |$\blacksquare$ | \blacksquare | $\triangle$ | \triangle|
 
 ### Binary Operation/Relation Symbols
+
 | Greek | English | Greek | English |
 | :---: | :---: | :---: | :---: |
 |$\times$ | \times | $\otimes$ | \otimes|
