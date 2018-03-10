@@ -7,7 +7,7 @@ permalink: /about/
 ## Short Bio
 
 <p align="center">
-  <img width="185" height="" src="/images/media/4f33da32d6b5f.jpg">
+  <img width="200" height="" src="/images/media/4f33da32d6b5f.jpg">
 </p>
 
 My name is Bin Li, I completed my Master's degree at South China University of Technology in 2018, and received a bachelor's degree in Computer Science from Guangzhou University of Chinese Medicine in 2015.
