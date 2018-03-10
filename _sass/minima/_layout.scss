@@ -25,7 +25,7 @@
 }
 
 .site-nav {
-  float: right;
+  float: right-2;
   line-height: $base-line-height * $base-font-size * 2.25;
 
   .nav-trigger {
@@ -42,7 +42,7 @@
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
-      margin-right: 140px;
+      margin-right: 20px;
     }
   }
 
