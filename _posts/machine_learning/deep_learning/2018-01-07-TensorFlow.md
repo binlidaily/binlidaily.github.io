@@ -11,6 +11,8 @@ style: |
 published: True
 ---
 
+最近在使用 TensorFlow 跑一些模型，由于刚接触 TensorFlow，做一些笔记方便翻看。
+
 ## TensorFlow 运行调试相关
 ### 运行 Tensorboard
 
