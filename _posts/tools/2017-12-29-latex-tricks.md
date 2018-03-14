@@ -78,6 +78,7 @@ style: |
 
 ### 公式编辑常用
 反斜杠 (\\): `$\backslash$`
+
 花体 ($\cal{T}$): `\cal{T}`
 
 ## Presentation
