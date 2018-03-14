@@ -78,7 +78,7 @@ style: |
 
 ### 公式编辑常用
 反斜杠 (\\): `$\backslash$`
-
+花体 ($\cal{T}$): `\cal{T}`
 
 ## Presentation
 ### 一页ppt不会自动居中对齐
@@ -87,4 +87,7 @@ style: |
 ...
 \end{frame}
 ```
+
+## References
+[Cmd Markdown 公式指导手册](https://www.zybuluo.com/codeep/note/163962)
 
