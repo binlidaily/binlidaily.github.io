@@ -12,11 +12,11 @@ published: false
 
 ### 块算法(chunking algorithm)
 
-Chunking算法 [10] 的出发点是删除矩阵中对应 Lagrange乘数为零的行和列将不会影响最终的结 果。对于给定的样本，Chunking算法的目标是通过 某种迭代方式逐步排除非支持向量，从而降低训练 过程对存储器容量的要求。具体做法是，将一个大 型QP问题分解为一系列较小规模的QP问题，然后找 到所有非零的Lagrange乘数并删除。在算法的每步 中Chunking都解决一个QP问题，其样本为上一步所剩的具有非零Lagrange乘数的样本以及M个不满足 KKT条件的最差样本。如果在某一步中，不满足KKT 条件的样本数不足M个，则这些样本全部加入到新 的QP问题中。每个QP子问题都采用上一个QP子问 题的结果作为初始值。在算法进行到最后一步时， 所有非零Lagrange乘数都被找到，从而解决了初始 的大型QP问题。
+Chunking算法[10]的出发点是删除矩阵中对应Lagrange乘数为零的行和列将不会影响最终的结果。对于给定的样本，Chunking算法的目标是通过某种迭代方式逐步排除非支持向量，从而降低训练过程对存储器容量的要求。具体做法是，将一个大型QP问题分解为一系列较小规模的QP问题，然后找到所有非零的Lagrange乘数并删除。在算法的每步中Chunking都解决一个QP问题，其样本为上一步所剩的具有非零Lagrange乘数的样本以及M个不满足KKT条件的最差样本。如果在某一步中，不满足KKT条件的样本数不足M个，则这些样本全部加入到新的QP问题中。每个QP子问题都采用上一个QP子问题的结果作为初始值。在算法进行到最后一步时，所有非零Lagrange乘数都被找到，从而解决了初始的大型QP问题。
 
-Chunking算法将矩阵规模从训练样本数的平方 减少到具有非零Lagrange乘数的样本数的平方，在 很大程度上降低了训练过程对存储容量的要求。 Chunking算法能够大大提高训练速度，尤其是当支 持向量的数目远远小于训练样本的数目时。然而， 如果支持向量个数比较多，随着算法迭代次数的增 多，所选的块也会越来越大，算法的训练速度依旧 会变得十分缓慢。
+Chunking算法将矩阵规模从训练样本数的平方减少到具有非零Lagrange乘数的样本数的平方，在很大程度上降低了训练过程对存储容量的要求。Chunking算法能够大大提高训练速度，尤其是当支持向量的数目远远小于训练样本的数目时。然而，如果支持向量个数比较多，随着算法迭代次数的增多，所选的块也会越来越大，算法的训练速度依旧会变得十分缓慢。
 
-如块算法、Osuna 方法、SVMlight、SMO算法、Generalized Decomposition Algorithm算法、GSMO 算法。
+如块算法、Osuna方法、SVMlight、SMO算法、Generalized Decomposition Algorithm算法、GSMO算法。
 
 ### 分解算法（decomposition algorithm）
 
@@ -45,6 +45,14 @@ SMO算法提出后，许多学者对其进行了有效的改进。文献[14]提�
 
 单个数据分割产生对风险的验证估计，而对多个分割进行平均得到交叉验证估计。交叉验证的主要兴趣在于数据分裂启发式的普遍性。 它只假定数据是相同分布的，训练和验证样本是独立的，甚至可以放宽（见第8.1节）。 因此，CV可应用于（几乎）任何框架中的几乎任何算法，如回归（Stone，1974; Geisser，1975），密度估计（Rudemo，1982; Stone，1984）和分类（Devroye和Wagner ，1979; Bartlett等，2002）等等。 大多数其他模型选择程序（参见第3节）并不具备这种普遍性，这些程序往往是特定的框架，在另一个框架中可能会完全误导。 例如，C p（Mallows，1973）是特定的最小二乘回归。
 
+### 交叉验证的定义
+Geisser（1975）给出了CV策略的一般描述：简而言之，CV包括对相应于不同数据拆分的风险进行平均的几个保留估计。设$ B \geq 1 $是一个整数，$ I _ { 1} ^ { ( t ) } ,\ldots ,I _ { B } ^ { ( t ) } $是$ \{ 1,\dots ,n \} $的非空适当子集序列。$ \mathcal { A } \left( D _ { n } \right) $在训练集$ \left( I _ { j } ^ { ( t ) } \right) _ { 1\leq j \leq B } $中的风险的交叉验证估计量可以定义为
+
+$ \hat { \mathcal { L } } ^ { \text{CV} } \left( \mathcal { A } ; D _ { n } ; \left( I _ { j } ^ { ( t ) } \right) _ { 1\leq j \leq B } \right) : = \frac { 1} { B } \sum _ { j = 1} ^ { B } \hat { \mathcal { L } } ^ { \text{I} O } \left( \mathcal { A } ; D _ { n } ; I _ { j } ^ { ( t ) } \right) $
+
+所有通常的CV风险估计值都是这种形式（10）。 每一个由$ \left( I _ { j } ^ { ( t ) } \right) _ { 1} \leq j \leq B $唯一确定，即划分训练集和验证机方案的选择。
+
+注意到在用于识别的模型选择中，Yang提出了CV的另一种定义（2006, 2007），称为带投票的交叉验证（CV with voting, CV-v）。 当比较两个算法$ \mathcal { A } _ { 1} $和$ \mathcal { A } _ { 2} $时，当且仅当对于大部分分裂$ j = 1,\dots ,B $满足$ \hat { \mathcal { L } } ^ { \text{HO} } \left( \mathcal { A } _ { 1} ; D _ { n } ; I _ { j } ^ { ( t ) } \right) < \hat { \mathcal { L } } ^ { \text{HO} } \left( \mathcal { A } _ { 2} ; D _ { n } ; I _ { j } ^ { ( t ) } \right) $。 相比之下，形式（10）的CV程序可以称为平均交叉验证（CV with averaging，CV-a），因为在比较之前风险的估计值是平均的。
 
 ### 交叉验证的方法
 在本节中，风险的保留（或验证）估计被定义，接着引出我们对的一般定义。
@@ -54,14 +62,25 @@ SMO算法提出后，许多学者对其进行了有效的改进。文献[14]提�
 
 hold-out[8]: 最早由Devroye和Wagner在1979年提出，主要思想是将数据集进行一次切分，一部分用来训练模型，另一部分用来测试，这是最简单的一种方法，也是交叉验证的雏形。下面我们用数学语言进行描述，通常设 $I^t$ 为集合见 $D_n={\{1,\cdot \cdot \cdot, n\}}$ 的非空子集合，$I^v={(I^t)}={\{1,\cdots, n\}}$ 为其补集，我们用 $I^t$ 作为训练集来进行模型训练，$I^v$ 作为测试集来进行泛化误差的估计，这种方法通常只对数据集进行一次随机切分，训练生成的模型用 $A(D_n)$ 表示，最后泛化误差的估计为
 
-$$ \hat{R}_{HO}(A;D_n;I^i) = {1\over{n_v}}{\Sigma_{i\in{D_n^v}}L(A(D_n);\xi_i)} $$
+$ \hat{R}_{HO}(A;D_n;I^i) = {1\over{n_v}}{\Sigma_{i\in{D_n^v}}L(A(D_n);\xi_i)} $
 
-![](/images/media/15208399461745.jpg)
+其中$D_{n}^{(t)}:=(\xi)_{i \in I^{(t)}}$是大小为$n_t={Car(I^{(t)})}$的训练样本，$D_{n}^{(t)}:=(\xi)_{i \in I^{(v)}}$，大小为$n_v=n-n_t$，$I^{(v)}$称为验证集。
 
-Geisser（1975）给出了CV策略的一般描述：简而言之，CV包括对相应于不同数据拆分的风险进行平均的几个保留估计。
-![](/images/media/15208400328559.jpg)
 
-![](/images/media/15208402247378.jpg)
+leave-one-out（LOO，Stone，1974; Allen，1974; Geisser，1975）是最经典的穷举性CV程序。 它对应于选择$ n _ { t } = n - 1 $：每个数据点连续地从样本中“遗漏”并用于验证。 （t）c形式上，LOO由（10）定义，$ B = n $，$ I _ { j } ^ { ( t ) } = \{ j \} ^ { c } $，对于$ j = 1,\dots ,n $：
+
+$ \hat { \mathcal { L } } ^ { L O O } \left( \mathcal { A } ; D _ { n } \right) = \frac { 1} { n } \sum _ { j = 1} ^ { n } \gamma \left( \mathcal { A } \left( D _ { n } ^ { ( - j ) } \right) ; \xi _ { j } \right) $
+
+其中$ D _ { n } ^ { ( - j ) } = \left( \xi _ { i } \right) _ { i \neq j } $。LOO的名字可以追溯到Picard和Cook（1984）以及Breiman和Spector（1992）的论文; LOO在文献中有其他几个名称，如delete-one CV（Li，1987），ordinary CV（Stone，1974; Burman，1989），或者simply CV（Efron，1983; Li，1987）。
+
+Leave-p-out（LPO，Shao，1993）与$ p \in \{ 1,\dots ,n - 1\} $是$ n _ { t } = n - p $的穷举交叉验证：p个数据的每个可能的子集被连续地“排除”在样本上并用于验证。因此，LPO定义为（10）其中$ B = \left( \begin{array} { l } { n } \\ { p } \end{array} \right) $，且$ \left( I _ { j } ^ { ( t ) } \right) _ { 1\leq j \leq B } $都是$ \{ 1,\dots ,n \} $的子集大小为$ n - p $。 LPO也被称为delete-p CV或delete-p multifold CV（Zhang，1993）。值得注意的是，$ p = 1 $的LPO是LOO。
+
+V-fold CV (VFCV)：具有$ V \in \{ 1,\dots ,n \} $由Geisser（1975）引入，作为计算上耗时的LOO的替代方法（例如，参见Breiman等，1984）。 VFCV依靠将数据初步划分为大约相等基数$ n / V $的$V$子样本。 每个子样本依次扮演验证样本的角色。 形式上，让$ A _ { 1} ,\dots ,A _ { V } $作为$ \{ 1,\dots ,n \} $的一些分区，其中保证对于$ \forall j $有$ \operatorname{Card} \left( A _ { j } \right) \approx n / V $。 然后，$ \mathcal { A } \left( D _ { n } \right) $的风险的VFCV估计量（t）由（10）给出，其中$ B = V $和$ I _ { j } ^ { ( t ) } = A _ { j } ^ { c } $，对于$ j = 1,\dots ,B $：
+
+$ \hat { \mathcal { L } } ^ { \text{VF} } \left( \mathcal { A } ; D _ { n } ; \left( A _ { j } \right) _ { 1\leq j \leq V } \right) = \frac { 1} { V } \sum _ { j = 1} ^ { V } \left[ \frac { 1} { \operatorname{Card} \left( A _ { j } \right) } \sum _ { i \in A _ { j } } \gamma \left( \hat { s } \left( D _ { n } ^ { \left( - A _ { j } \right) } \right) ; \xi _ { i } \right) \right] $
+
+其中$ D _ { n } ^ { \left( - A _ { j } \right) } = \left( \xi _ { i } \right) _ { i \in A _ { j } ^ { c } } $。VFCV的计算成本仅为训练$ \mathcal { A } $的 $ n - n / V $点的$ \mathcal { V } $倍; 如果$ V \ll n $，它远小于LOO或LPO。 请注意，$ V = n $的VFCV是LOO。
+
 
 #### 历史评论
 简单验证是第一个类似CV的过程。 它被引入心理学领域（Larson，1931），因为需要一个可靠的替代重构替代错误的方法，正如Anderson等人所说的。（1972年）。 Herzberg（1969）使用它来评估预测因子的质量。 Stone（1974）首先考虑选择训练集的问题，其中“可控”和“不可控”数据分裂是有区别的。
@@ -86,7 +105,8 @@ Geisser（1975）给出了CV策略的一般描述：简而言之，CV包括对�
 **梯度下降法**
 
 2002年，Chapelle[3]等提出了一种采用梯度下降法、通过最小化一般错误的分解上界实现SVM参数的自动选择。梯度下降法，就是利用负梯度方向来决定每次迭代的新的搜索方向，使得每次迭代能使待优化的目标函数逐步减小。其公式如下所示：
-![](/images/media/15209054203776.jpg)
+
+$ x _ { n + 1} = x _ { n } - a ^ { * } g _ { n } $
 
 其中a为称为学习速率，可以是较小的常数。gn是xn的梯度。使用梯度下降法来对SVM参数进行选择首先需要根据经验确定一组参数，作为梯度下降法的初始点，然后再使用梯度下降法寻找最佳参数。
 
@@ -127,156 +147,291 @@ PSO算法首先随机产生n组参数作为初始粒子群，然后通过迭代�
 ## 第三章 基于 Alpha Seeding 的支持向量机交叉验证优化
 ### 3.1 算法推导前期基础
 在前一章我们介绍了支持向量机的数学基本公式，在序列最小优化算法的算法中，训练实例$x_i$与如下定义的最优性指标$f_i$相关联。
-![](/images/media/15209477179442.jpg)
+
+$ f _ { i } = y _ { i } \sum _ { j = 1} ^ { n } \alpha _ { j } Q _ { i ,j } - y _ { i } $
 
 SVM训练的最优性条件是KarushKuhn-Tucker（KKT）（Kuhn，2014）条件。 当满足最优条件时，我们有最优指标满足以下约束条件。
 
-![](/images/media/15209483089391.jpg)
+$ \min \left\{ f _ { i } | i \in I _ { u } \cup I _ { m } \right\} \geq \max \left\{ f _ { i } | i \in I _ { l } \cup I _ { m } \right\} $
 
 其中
-![](/images/media/15209483233470.jpg)
+$I_{m} = \{i | \boldsymbol{x}_i \in \mathcal{X}, 0 < \alpha_i < C\},  \\I_{u} = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = +1, \alpha_i = 0\} \cup\\ \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = -1, \alpha_i = C\}, \\ I_{l} = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = +1, \alpha_i = C\} \cup\\ \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = -1, \alpha_i = 0\} $
 
 正如Keerthi等人所观察到的那样。 （Keerthi et al.2001），约束条件（3）等价于下面的约束条件。
-![](/images/media/15209483599791.jpg)
 
-其中b是超平面的偏差，我们在接下来的章节中提出的算法会利用到这个约束条件。
+$ I _ { \mathcal { R } } = \left\{ i | x _ { i } \in \mathcal { R } \right\} ,I \tau = \left\{ i | x _ { i } \in \mathcal { T } \right\} ,I _ { S } = \left\{ i | x _ { i } \in \mathcal { S } \right\} $
 
-k折交叉验证将数据集均匀分成k个子集。 一个子集被用作测试集合T，而其余（k-1）个子集合一起形成训练集合X.假设我们已经使用第一到第（h-1）训练了第h个SVM（在第h轮） ）和第（h + 1）到第k个子集作为训练集，第h个子集作为测试集（参见图1b）。 现在我们要训练第（h + 1）个SVM。 然后，在两轮训练之间共享第1至第（h-1）子集和第（h + 2）至第k子集。 为了将第h轮中使用的训练集转换为第（h + 1）轮的训练集，我们只需从第（h + 1）个子集中删除并将第h个子集添加到所使用的训练集 在第h轮。 此后，我们分别将第h和第（h + 1）个SVM称为先前的SVM和下一个SVM。
+其中$b$是超平面的偏差，我们在接下来的章节中提出的算法会利用到这个约束条件。
 
-为便于表示，我们用S表示共享子集（k-2）子集，用S表示前一轮训练中的非共享子集R，并表示前一轮测试子集T。 让我们继续使用图1所示的例子，S由第1到第（h-1）个子集和第（h + 2）到第k个子集组成; R是第（h + 1）子集; T是第h个子集。 为了将第h轮中使用的训练集X转换为训练集X？ 对于第（h + 1）轮，我们只需要从X中删除R并将T加到X，即X？ =T∪X\ R =T∪S。 我们分别用I R，I T和I S表示如下对应于R，T和S的三组索引。
+$k$折交叉验证将数据集均匀分成$k$个子集。 一个子集被用作测试集合$\mathcal{T}$，而其余$(k-1)$个子集合一起形成训练集合$\mathcal{X}$.假设我们已经使用第一到第$(h-1)$训练了第h个SVM（在第$h$轮） ）和第$(h + 1)$到第$k$个子集作为训练集，第$h$个子集作为测试集（参见图1b）。 现在我们要训练第$(h + 1)$个SVM。 然后，在两轮训练之间共享第1至第$(h-1)$子集和第$(h + 2)$至第$k$子集。 为了将第$h$轮中使用的训练集转换为第$(h + 1)$轮的训练集，我们只需从第$(h + 1)$个子集中删除并将第$h$个子集添加到所使用的训练集在第$h$轮。 此后，我们分别将第$h$和第$(h + 1)$个SVM称为先前的SVM和下一个SVM。
 
-![](/images/media/15209494880266.jpg)
+为便于表示，我们用S表示共享子集$(k-2)$子集，用$\mathcal{S}$表示前一轮训练中的非共享子集$\mathcal{R}$，并表示前一轮测试子集$\mathcal{T}$。 让我们继续使用图1所示的例子，$\mathcal{S}$由第1到第$(h-1)$个子集和第$(h + 2)$到第$k$个子集组成; $\mathcal{R}$是第$(h + 1)$子集; $\mathcal{T}$是第$h$个子集。 为了将第$h$轮中使用的训练集$\mathcal{X}$转换为训练集$\mathcal{X^\prime}$ 对于第$(h + 1)$轮，我们只需要从$\mathcal{X}$中删除$\mathcal{R}$并将$\mathcal{T}$加到$\mathcal{X}$，即$ \mathcal { X } ^ { \prime } = \mathcal { T } \cup \mathcal { X } | \mathcal { R } = \mathcal { T } \cup \mathcal { S } $。 我们分别用$I_\mathcal {R}$，$I_\mathcal {T}$和$I_\mathcal {S}$表示如下对应于$\mathcal {R}$，$\mathcal {T}$和$\mathcal {S}$的三组索引。
 
-两轮k次交叉验证通常具有许多共同的训练实例，如这里的S集合的样本。 当k是10时，X和X中有9 8（或〜90％）的实例？ 是S的实例。接下来，我们研究了三个重用先前的SVM的算法来训练下一个SVM。
+$ I _ { R } = \left\{ i | x _ { i } \in \mathcal { R } \right\} ,I \tau = \left\{ i | x _ { i } \in \mathcal { T } \right\} ,I _ { S } = \left\{ i | x _ { i } \in \mathcal { S } \right\} $
 
-我们提出了三种算法，它们重复使用先前的SVM来训练下一个SVM，我们逐渐地将一种算法依次重新定义。 （i）我们的第一种算法旨在初始化α值α？基于前一个SVM的α值α，将其转化为下一个SVM的最优值。我们将第一种算法称为调整阿尔法最佳值（ATO）。 （ii）为了有效地初始化α？ ，我们的第二个算法保持S中实例的α值不变（即对于s∈IS，αs？=αs），并估计αt？对于t∈IT。该算法通过在问题（1）的约束下将R替换为T来有效地执行α值初始化，因此我们称之为多重实例替换（MIR）算法。 （iii）与MIR相似，我们的第三种算法也保持S中实例的alpha值不变;与MIR不同，该算法一次将T中的实例替换为T中的实例，这大大缩短了初始化α的时间？ 。我们称之为第三种算法单实例替换（SIR）。接下来，我们详细阐述这三种算法。
 
+两轮$k$次交叉验证通常具有许多共同的训练实例，如这里的$I_\mathcal {S}$集合的样本。 当$k$是10时，$I_\mathcal {X}$ 和$I_\mathcal {X^\prime}$中有$8\over9$（或〜90％）的实例是$I_\mathcal {S}$的实例。接下来，我们研究了三个重用先前的SVM的算法来训练下一个SVM。
+
+我们提出了三种算法，它们重复使用先前的SVM来训练下一个SVM，我们逐渐地将一种算法依次重新定义。 （i）我们的第一种算法旨在初始化$\alpha$值$\alpha^\prime$？基于前一个SVM的$\alpha$值，将其转化为下一个SVM的最优值。我们将第一种算法称为调整阿尔法最佳值（ATO）。 （ii）为了有效地初始化$\alpha$？，我们的第二个算法保持$I_\mathcal {S}$中实例的$\alpha$值不变（即对于$ s \in I _ { S } $，$ \alpha _ { S } ^ { \prime } = \alpha _ { s } $），并估计$ a _ { t } ^ { \prime } $对于$ t \in I _ { T } $。该算法通过在问题（1）的约束下将R替换为T来有效地执行α值初始化，因此我们称之为多重实例替换（MIR）算法。 （iii）与MIR相似，我们的第三种算法也保持$\mathcal {S}$中实例的$\alpha$值不变;与MIR不同，该算法一次将$\mathcal {T}$中的实例替换为T中的实例，这大大缩短了初始化$\alpha$的时间？ 。我们称之为第三种算法单实例替换（SIR）。接下来，我们详细阐述这三种算法。
 
 
 ### 3.2 权重 Alpha 调优方法
-第一种算法我们直接调整alpha值到最优（Alpha Towards Optimum, ATO），ATO旨在将alpha值初始化为最佳值。 它采用由Karasuyama和Takeuchi（Karasuyama和Takeuchi 2009）设计的在线SVM训练技术进行k次交叉验证。 在在线SVM训练中，从训练组X中去除过时训练实例的子集R，即X？ = X \ R; 将新到达的训练实例的子集T添加到训练集中，即X？ = X？ ∪T。 先前使用X训练的SVM通过移除和添加实例的子集来调整，以获得下一个SVM。
+第一种算法我们直接调整$\alpha$值到最优（Alpha Towards Optimum, ATO），ATO旨在将$\alpha$值初始化为最佳值。 它采用由Karasuyama和Takeuchi（Karasuyama和Takeuchi 2009）设计的在线SVM训练技术进行$k$次交叉验证。 在在线SVM训练中，从训练组X中去除过时训练实例的子集$\mathcal {R}$，即$ \mathcal { X } ^ { \prime } = \mathcal { X } \backslash \mathcal { R } $; 将新到达的训练实例的子集$ \mathcal { T }$添加到训练集中，即$ \mathcal { X } ^ { \prime } = \mathcal { X } ^ { \prime } \cup \mathcal { T } $。 先前使用X训练的SVM通过移除和添加实例的子集来调整，以获得下一个SVM。
 
-在ATO算法中，我们首先构造一个新的训练数据集X？ 其中X？ = S = X \ R然后，我们逐渐？ 增加T中实例的α值（即对于t∈IT增加αt），用αT表示。 ，（接近）它们的最佳值;同时，我们逐渐减少R中实例的α值（即对于r∈IR，减少αr？），用αR？表示。 一旦T中实例的α值满足最优条件（即约束（5）），我们将实例从T移动到训练集X？; 类似地，一旦R中的实例的α值等于0（成为非支持向量），我们从R中移除实例。当R为空时，ATO终止α值初始化。
+在ATO算法中，我们首先构造一个新的训练数据集$ X ^ { \prime } $其中$ \mathcal { X } ^ { \prime } = \mathcal { S } = \mathcal { X } \backslash \mathcal { R } $然后，我们逐渐增加$ \mathcal { T } $中实例的$\alpha$值（即对于$ t \in I _{\mathcal { T }} $增加$ a _ { t } ^ { \prime } $），用$ a _ { T } ^ { \prime } $表示，知道接近它们的最优值；同时，我们逐渐减少$\mathcal { R }$中实例的$\alpha$值（即对于$ r \in I _ { R } $，减少$ \alpha _ { r } ^ { \prime } $），我们用$ \alpha _ { R } ^ { \prime } $表示。 一旦$\mathcal { T }$中实例的$\alpha$值满足最优条件（即约束（5）），我们将实例从$\mathcal { T }$移动到训练集$\mathcal{ X} ^ { \prime } $; 类似地，一旦$\mathcal { R }$中的实例的$\alpha$值等于0（成为非支持向量），我们从$\mathcal { R }$中移除实例。当$\mathcal { R }$为空时，ATO终止$\alpha$值初始化。
 
-接着我们就要更新alpha的权值了，接下来，我们介绍一下增加αT的细节。 并减少αR？。 我们用αT表示增量的步长大小？ 并在αR上递减？ 由η表示。 从问题（1）的约束中，所有的alpha值必须在？ [0，C]。 因此，对于t∈IT是αt的增量，记为Δαt？ ，不能超过（C - αt？）; 对于r∈IR的递减？？？ αr表示为Δαr，不能超过αr。 我们用ΔαT表示T中所有实例的α值的变化。 并且R中实例的所有α值由ΔαR变化？。 那么，我们可以计算ΔαT？ 和ΔαR？ 如下。
-![](/images/media/15209519788688.jpg)
+接着我们就要更新$\alpha$的权值了，接下来，我们介绍一下增加$ \alpha _ { T } ^ { \prime } $并减少$ \alpha _ { R } ^ { \prime } $的细节。我们用$\eta$表示在$ \alpha _ { T } ^ { \prime } $上增量的步长大小以及在$ \alpha _ { \mathcal { R } } ^ { \prime } $上递减量的步长大小。 从问题（1）的约束中，所有的$\alpha$值必须在$ [ 0,C ] $。 因此，对于$ t \in I _\mathcal{T} $是$ a _ { r } ^ { \prime } $的增量，记为$ \Delta \alpha _ { t } ^ { \prime } $，不能超过$ \left( C - \alpha _ { t } ^ { \prime } \right) $; 对于$ r \in I _ { \mathcal { R } } $的递减$ a _ { r } ^ { \prime } $表示为$ \Delta \alpha _ { r } ^ { \prime } $，不能超过$ a _ { r } ^ { \prime } $。 我们用$ \Delta \alpha _ { T } ^ { \prime } $表示$\mathcal { T }$中所有实例的$\alpha$值的变化。 并且$\mathcal { R }$中实例的所有$\alpha$值由$ \Delta \alpha _ { R } ^ { \prime } $变化？。 那么，我们可以计算$ \Delta \alpha _ { T } ^ { \prime } $和$ \Delta \alpha _ { R } ^ { \prime } $如下。
 
-其中1是所有维度都为1的向量。当我们加上ΔαT？ 到αT？ 和ΔαR？ 到αR？ 问题（1）的约束必须满足。 但是，调整αT后？ 和？？ αR？ ，我们需要调整X中的训练实例的alpha值。 （回想一下，在这个阶段X = S）。 我们建议调整X中训练实例的alpha值？ 这也在M中，其中x i∈M，给定i∈Im。 总之，增加αT后？ 并减少αR？ ，我们调整αM？。 所以当调整αT？ ，αR？ 和αM？ ，根据问题（1）的约束，我们有下面的等式。
+$\Delta \boldsymbol{\alpha}_\mathcal{T}'= \eta (C\boldsymbol{1} - \boldsymbol{\alpha}_\mathcal{T}'),  \Delta \boldsymbol{\alpha}_\mathcal{R}' = -\eta \boldsymbol{\alpha}_\mathcal{R}'$
 
-![](/images/media/15209562607324.jpg)
 
-M通常具有大量的实例，并且有许多可能的方法来调整αM？。 在这里，我们建议使用αM的调整？ 确保M中的所有训练实例满足最优条件（即约束（5））。 根据约束条件（5），我们有∀i∈I m和f i = b。 结合f i = b和f i的定义（参见方程（2）），对于每个i∈Im，我们有以下方程。
-![](/images/media/15209562920278.jpg)
+其中$1$是所有维度都为1的向量，当我们加$\Delta \boldsymbol{\alpha}_\mathcal{T}'$到$\boldsymbol{\alpha}_\mathcal{T}'$和$\Delta \boldsymbol{\alpha}_\mathcal{R}'$ 到$\boldsymbol{\alpha}_\mathcal{R}'$问题（1）的约束必须满足。 但是，调整$\boldsymbol{\alpha}_\mathcal{T}'$后和$ \sum _ { i \in I \mp U I _ { S } \cup I _ { R } } y _ { i } \alpha _ { i } ^ { \prime } = 0 $，我们需要调整$\mathcal{X}$中的训练实例的$\alpha$值。（回想一下，在这个阶段$ \mathcal { X } ^ { \prime } = \mathcal { S } $）。 我们建议调整$ \mathcal { X } ^ { \prime } $中训练实例的$\alpha$值？ 这也在$\mathcal{M}$中，其中$ x _ { i } \in \mathcal { M } $，给定$ i \in I _ { m } $。 总之，增加$ a _ { T } ^ { \prime } $后同时减少$ \alpha _ { R } ^ { \prime } $，我们调整$ \alpha _ { M } ^ { \prime } $。 所以当调整$ a _ { T } ^ { \prime } $，$ \alpha _ { R } ^ { \prime } $和$ \alpha _ { M } ^ { \prime } $，根据问题（1）的约束，我们有下面的等式。
 
-请注意，在上面的等式中y i可以省略。 我们可以用M的所有训练实例的矩阵符号重写方程（8）和方程（9）。
+$\sum_{t \in I_\mathcal{T}}y_t \Delta \alpha_t' +\sum_{r \in I_\mathcal{R}}y_r \Delta \alpha_r' +\sum_{i \in I_m}y_i \Delta \alpha_i' =0$
+
+
+$\mathcal{M}$通常具有大量的实例，并且有许多可能的方法来调整$\boldsymbol{\alpha}_\mathcal{M}'$。 在这里，我们建议使用$\boldsymbol{\alpha}_\mathcal{M}'$的调整确保$\mathcal{M}$中的所有训练实例满足最优条件（即约束（5））。 根据约束条件（5），我们有$\forall i \in I_m$和$f_i = b$。 结合$f_i = b$和$f_i$的定义（参见方程（2）），对于每个$i \in I_m$，我们有以下方程。
+
+$y_i(\sum_{t \in I_\mathcal{T}} Q_{i,t}\Delta\alpha_t' +\sum_{r \in I_\mathcal{R}} Q_{i,r}\Delta\alpha_r' +\sum_{j \in I_m} Q_{i,j}\Delta\alpha_j')=0$
+
+
+请注意，在上面的等式中$y_i$可以省略。 我们可以用M的所有训练实例的矩阵符号重写方程（8）和方程（9）。
 
 ![](/images/media/15209934994110.jpg)
 
-我们用ΔαT？ 和ΔαR？ 使用等式（7）; 上面的等式可以重写如下。
-
+我们用$\Delta \boldsymbol{\alpha}_\mathcal{T}'$和$\Delta \boldsymbol{\alpha}_\mathcal{R}'$使用等式（7）; 上面的等式可以重写如下。
+$\boldsymbol{\Delta \alpha}_\mathcal{T}' = -\eta \Phi$
 ![](/images/media/15209935300906.jpg)
 
 如果方程（10）中矩阵的逆不存在，我们找到伪逆（Greville，1960）。
 
-计算步长eta：给定了步长eta，我们就可以用公式（7）和（10）来调整${\alpha\prime}_m$, ${\alpha\prime}_T$和${\alpha\prime}_R$。α值的变化导致所有最优性指标f的变化。 我们用Δf来表示对f的改变，这可以通过从等式（2）导出的以下等式来计算。
+计算步长$\eta$：给定了步长$\eta$，我们就可以用公式（7）和（10）来调整${\alpha\prime}_m$, ${\alpha\prime}_T$和${\alpha\prime}_R$。α值的变化导致所有最优性指标f的变化。 我们用Δf来表示对f的改变，这可以通过从等式（2）导出的以下等式来计算。
+$\boldsymbol{y} \odot \boldsymbol{\Delta f} = \eta [-\boldsymbol{Q}_{\mathcal{X}, \mathcal{M}} \Phi+ \boldsymbol{Q}_{\mathcal{X},\mathcal{T}}(C\boldsymbol{1} - \boldsymbol{\alpha}_\mathcal{T}') - \boldsymbol{Q}_{\mathcal{X},\mathcal{R}}\boldsymbol{\alpha}_\mathcal{R}']$
 
-![](/images/media/15210096019190.jpg)
 
-如果步长η太大，更多的最优性指标往往违反约束条件（5）。 在这里，我们使用方程（11）通过让更新后的fi（其中i∈Iu∪Il）刚好违反约束条件（5）来计算步长η，即fi +Δfi = b对于i∈Iu∪I l。
+如果步长$\eta$太大，更多的最优性指标往往违反约束条件（5）。 在这里，我们使用方程（11）通过让更新后的$f_i$（其中$ i \in I _ { u } \cup I _ { l } $）刚好违反约束条件（5）来计算步长$\eta$，即$ f _ { i } + \Delta f _ { i } = b $对于$ i \in I _ { u } \cup I _ { l } $。
 
-更新 f：在更新$\alpha\prime$之后，我们使用等式（2）和（11）更新f。 然后，根据约束（5）我们更新集合I m，I u和I l。
+更新$f$：在更新$\alpha\prime$之后，我们使用等式（2）和（11）更新$f$。 然后，根据约束（5）我们更新集合$ I _ { m } ,I _ { u } $和$ I _ { l } $。
 
-重复计算η和更新α和f的过程，直到R为空。
+重复计算$eta$和更新$ \alpha ^ { \prime } $和$f$的过程，直到$ \mathcal R $为空。
 
-终止：当集合$R$为空时，SVM可能不是最优的，因为集合$T$可能不是空的。 从上述过程获得的阿尔法值作为下一个SVM的初始阿尔法值。 为了获得最佳SVM，我们使用SMO来调整初始alpha值，直到满足最优条件。 完整算法的伪代码显示在Wen等人的算法1中（2016）。
+终止：当集合$R$为空时，SVM可能不是最优的，因为集合$T$可能不是空的。 从上述过程获得的阿尔法值作为下一个SVM的初始阿尔法值。 为了获得最佳SVM，我们使用SMO来调整初始$\alpha$值，直到满足最优条件。 完整算法的伪代码显示在Wen等人的算法1中（2016）。
 
 
 ### 3.3 多样本替换优化方法
-ATO的限制是它需要调整所有的α值，无限次（即直到R为空）。 因此，初始化alpha值的成本可能非常高。 接下来，我们提出只需调整一次αT的多实例替换（MIR）算法。 两轮之间的共享实例的α值保持不变（即αS =αS），直觉是许多支持向量倾向于保持不变。 MIR的关键思想是立即用T替换R.
+ATO的限制是它需要调整所有的$\alpha$值，无限次（即直到$ \mathcal R $为空）。 因此，初始化$\alpha$值的成本可能非常高。 接下来，我们提出只需调整一次$ \alpha _ { T } ^ { \prime } $的多实例替换（Multiple Instance Replacement, MIR）算法。 两轮之间的共享实例的$\alpha$值保持不变（即$ \alpha _ { S } ^ { \prime } = \alpha _ { S } $），直觉是许多支持向量倾向于保持不变。 MIR的关键思想是立即用$ \mathcal T $替换$ \mathcal R $。
 
-我们从前一个SVM获得S和R中实例的alpha值，这些alpha值满足以下约束条件。
-![](/images/media/15210107049056.jpg)
+我们从前一个SVM获得$ \mathcal S $和$ \mathcal R $中实例的$\alpha$值，这些$\alpha$值满足以下约束条件。
 
-在下一轮SVM k-fold交叉验证中，删除R并添加T. 在重新使用alpha值时，我们应该保证上面的约束条件成立。 为了提高初始化alpha值的效率，我们在约束（12）的第一项中不改变alpha值。例如，![](/images/media/15210107515500.jpg)
+$\sum_{s \in I_\mathcal{S}}{y_s\alpha_s} + \sum_{r \in I_\mathcal{R}}{y_r\alpha_r} = 0$
 
-为了满足上述约束条件，将$R$替换为T后，只需要确保r∈Iy rαr =t∈Iy tαt。 接下来，我们提出一种计算$\alpha\prime_T$的方法。
+
+在下一轮SVM k-fold交叉验证中，删除 $\mathcal R $并添加 $\mathcal T $. 在重新使用$\alpha$值时，我们应该保证上面的约束条件成立。 为了提高初始化$\alpha$值的效率，我们在约束（12）的第一项中不改变$\alpha$值。例如，$ \sum _ { s \in I _ { S } } y _ { s } \alpha _ { s } $
+
+
+为了满足上述约束条件，将$ \mathcal R $替换为$ \mathcal T $后，只需要确保$ \sum _ { r \in I _ { R } } y _ { r } \alpha _ { r } = \sum t \in I _ { T } y _ { t } \alpha _ { t } ^ { \prime } $。 接下来，我们提出一种计算$\alpha\prime_T$的方法。
 
 根据等式（2），我们可以在将$R$替换为$T$之前重写$f_i$，如下所示。
-![](/images/media/15210112172036.jpg)
+$f_i = y_i(\sum_{r \in I_\R}{\alpha_r Q_{i, r}} + \sum_{s \in I_\Ss}{\alpha_s Q_{i, s}} - 1)$
+
 
 在用$T$代替$R$之后，可以如下计算$f_i$。
-![](/images/media/15210113055653.jpg)
 
-其中$\alpha\prime_s = \alpha_s$，即$S$中的$\alpha$值保持不变。我们可以通过从等式（14）中减去等式（13）来计算f i的变化，用Δfi表示。 然后，我们有下面的等式。
-![](/images/media/15210162392650.jpg)
+$f_i = y_i(\sum_{t \in I_\mathcal{T}}{\alpha_t' Q_{i, t}} + \sum_{s \in I_\mathcal{S}}{\alpha_s' Q_{i, s}} - 1)$
 
-为了满足在用$\cal{T}$代替$\cal{R}$之后的约束y iαi = 0，我们有下面的等式。
 
-![](/images/media/15210168011805.jpg)
+其中$\alpha\prime_s = \alpha_s$，即$S$中的$\alpha$值保持不变。我们可以通过从等式（14）中减去等式（13）来计算$f_i$的变化，用$ \Delta f _ { i } $表示。 然后，我们有下面的等式。
+
+$\Delta f_i = y_i[\sum_{t \in I_\mathcal{T}}{\alpha_t' Q_{i, t}} - \sum_{r \in I_\mathcal{R}}{\alpha_r Q_{i, r}}]$
+
+
+为了满足在用$\cal{T}$代替$\cal{R}$之后的约束$ \sum y _ { i } \alpha _ { i } = 0 $，我们有下面的等式。
+
+$\sum_{s \in I_\mathcal{S}}{y_s\alpha_s} + \sum_{r \in I_\mathcal{R}}{y_r\alpha_r} = \sum_{s \in I_\mathcal{S}}{y_s\alpha_s'} + \sum_{t \in I_\mathcal{T}}{y_t \alpha_t'}$
+
 
 由于$\alpha\prime_s=\alpha_s$，我们重写上面的等式如下。
-![](/images/media/15210173211462.jpg)
+$\sum_{r \in I_\mathcal{R}}{y_r\alpha_r} = \sum_{t \in I_\mathcal{T}}{y_t \alpha_t'}$
+
 
 等式（15）和（16）写在一起的话得到如下等式。
+
 ![](/images/media/15210173685421.jpg)
 
 类似于我们在ATO算法中计算$\Delta f_i$的方式，给定$i$在$I_u \cup I_l$中，我们通过确保$f_i+\Delta f_i = b$（参见约束条件（5））来计算$\Delta f_i$。 给定$I_m$，我们设定$\Delta f_i = 0$，因为我们试图避免$f_i$违反约束条件（5）。 一旦我们得到了$\Delta f$，方程（17）中唯一未知的就是$\alpha \prime_T$。
 
-找到一个$\alpha \prime _T$的近似解：等式（17）中所示的线性系统可能没有解决方案。 这是因为αS也可能需要调整，但在等式（17）中未考虑。 在这里，我们建议通过使用线性最小二乘法（Lawson和Hanson 1974）找出方程（17）的近似解αT，我们有下面的等式。
+找到一个$\alpha \prime _T$的近似解：等式（17）中所示的线性系统可能没有对应的解。 这是因为$\alpha\prime_S$也可能需要调整，但在等式（17）中未考虑。 在这里，我们通过使用线性最小二乘法（Lawson和Hanson 1974）找出方程（17）的近似解αT，得到如下的等式。
 
+![](/images/media/15210273855513.jpg)
 
+然后我们可以使用下面的等式计算$\alpha\prime _T$。
+![](/images/media/15210276717556.jpg)
+
+如果上述方程中的矩阵的逆不存在，我们找到与ATO类似的伪逆。
+
+调整$\alpha\prime _T$： 由于就到的$\alpha\prime _t$是近似解，约束条件$0\le\alpha\prime _t\le C$和$\Sigma_{r\in I_R}y_r\alpha_r = \Sigma_{t\in I_T}y_t\alpha\prime _t$可能不成立。因此，我们需要调整$\alpha\prime _T$以满足约束，我们执行以下步骤。
+
+* 如果$\alpha\prime _t \lt 0$，我们设$\alpha\prime _t = 0$; 如果$\alpha\prime _t \gt 0$，我们设$\alpha\prime _t = C$。
+* 如果$\Sigma_{I_{\cal{T}}}y_t\alpha\prime _t \gt \Sigma_{I_{\cal{R}}}y_r\alpha _r$（如果$\Sigma_{I_{\cal{T}}}y_t\alpha\prime _t \lt \Sigma_{I_{\cal{R}}}y_r\alpha _r$），我们统一减少（增加）所有的$y_t\alpha\prime _t$直到$\Sigma_{I_{\cal{T}}}y_t\alpha\prime _t = \Sigma_{I_{\cal{R}}}y_r\alpha _r$，受到约束$0\le \alpha\prime _t \le C$.
+
+经过上述调整，$\alpha\prime _t$满足约束$0\le \alpha\prime _t \le C$且$\Sigma_{I_{\cal{T}}}y_t\alpha\prime _t \gt \Sigma_{I_{\cal{R}}}y_r\alpha _r$。 那么，我们使用SMO和$\alpha\prime$（其中$\alpha\prime=\alpha\prime_{\cal{S}} \cup\alpha\prime_{\cal{T}}$）作为训练最优SVM的初始α值。Wen等人的算法2给出了整个算法的伪码（2016）。
 
 
 ### 3.4 单样本替换优化方法
+ATO和MIR都有以下主要限制：计算$\alpha\prime_T$是昂贵的（例如需要计算矩阵的逆矩阵）。 ATO和MIR的目标是最大限度地减少违反最优条件的实例数量。 在我们这里提出的算法中，我们试图最小化$\Delta f_i$，希望$f_i$的小改变不会违反最优性条件。 这个目标的轻微变化导致计算$\alpha\prime_T$的计算成本大大降低。我们的主要想法是用$\cal{T}$中的类似实例一个接一个地替换$\cal{R}$中的实例。 由于我们每次用$\cal{T}$中的实例替换$\cal{R}$中的一个实例，我们称之为单实例替换（Single Instance Replacement, SIR）算法。 接下来，我们介绍SIR算法的细节。
+
+根据等式（2），我们可以如下重写先前的SVM的$f_i$。
+
+$f_i = y_i(\sum_{j \in I_\mathcal{S} \cup I_\mathcal{R} \setminus \{p\}}{\alpha_j Q_{i, j}} +	  \alpha_p Q_{i, p} - 1)$
+
+其中 $p \in I_{\cal{R}}$。我们用$x_q$代替训练实例$x_p$，其中$q\in I_{\cal{T}}$，然后用$x_q$代替$x_p$后的$f_i$的值如下。
+
+$f_i = y_i(\sum_{j \in I_\mathcal{S} \cup I_\mathcal{R} \setminus \{p\}}{\alpha_j Q_{i, j}} + \alpha_q' Q_{i, q} - 1)$
+
+
+其中$\alpha\prime_q = \alpha_p$,通过从等式（20）中减去等式（19），由$\Delta f_i$表示的$f_i$的变化可以通过$\Delta f_i = y_i\alpha_p(Q_{i,q}-Q_{i,p})$来计算。 回想一下$Q_{i,j}=y_iy_jK(x_i,x_j)$。 我们可以按如下方式写出$\Delta f_i$。
+
+$\Delta f_i = \alpha_p (y_q K(\boldsymbol{x}_i, \boldsymbol{x}_q) - y_p K(\boldsymbol{x}_i, \boldsymbol{x}_p))$
+
+
+回想一下，在SIR中，我们想用$x_q$表示一个实例来代替$x_p$，这个实例使$\Delta f_i$最小化。当$\alpha_p=0$时，在将$x_p$替换为$x_q$后，$\Delta f_i$没有变化。 在下文中，我们关注$\alpha_p \gt 0$的情况。
+
+如果$x_q$是$\cal{T}$中所有实例中$x_p$的“最相似”实例，我们建议用$x_q$代替$x_p$。 当满足以下两个条件时，实例$x_q$被称为与$\cal{T}$中所有实例之间的实例$x_p$最相似。
+
+* $x_p$和$x_q$具有相同的标签，即$x_p = x_q$。
+* 对于所有$x_t \in \cal{T}$，$K(x_p, x_q)\ge K(x_p, x_t)$。
+
+请注意，在第二种情况下，我们使用核函数近似两个实例之间的相似性的事实（Balcan，Blum和Srebro 2008）。 如果我们可以找到与$\cal{R}$中每个实例最相似的实例，那么约束$\Sigma_{s\in I_{\cal{S}}}y_{s}\alpha\prime_{s} + \Sigma_{t\in I_{\cal{T}}}y_{t}\alpha\prime_{t} = 0$将在替换R之后被T满足。而如果我们找不到T中与$x_p$具有相同标签的任何实例，我们从$\cal{T}$中随机选取一个实例来替换$x_p$。 当上述情况发生时，违反了约束$\Sigma_{s\in I_{\cal{S}}}y_{s}\alpha\prime_{s} + \Sigma_{t\in I_{\cal{T}}}y_{t}\alpha\prime_{t} = 0$。 因此，我们需要调整$\alpha\prime_{\cal{T}}$以使约束成立。 我们使用与MIR相同的方法来调整$\alpha\prime_{\cal{T}}$。SIR的伪代码在Wen等人的算法3中给出（2016）。
+
+## 第四章 基于 Warm Start 和 GPU 加速的支持向量机参数选择优化
+已知训练SVM是耗时的，特别是当使用非线性核函数时。核化的SVM通常比线性SVM效果会更好，但是也相对更耗时。 选择合适的参数对于获得有效的SVM非常重要。 但是，参数选择过程非常昂贵，因为需要对许多SVM进行培训和评估。
+
+这项工作旨在提高SVM参数选择的效率。 特别是，我们利用先前训练的SVM来初始化当前的SVM以实现更快的收敛。 为了进一步加速参数选择过程，我们利用图形处理单元（GPU）加速初始化和训练过程。
+
+我们使用的技术包括α播种[1]和暖启动[2]。 我们在这项工作中的贡献总结如下。
+
+* 这是探索非线性SVM的首次工作。 我们设计了新的技术来重用先前交叉验证中训练的SVM和先前训练过当前交叉验证的SVM以训练当前SVM。
+* 为了进一步改进参数选择过程，我们开发了高度优化的基于GPU的算法，以加速初始化和训练。
+* 我们进行了全面的实验，以研究我们提出的技术与现有技术（如α播种和热启动）相比的有效性。
+
+### 4.1 复用训练好的交叉验证过程中的支持向量机
+在本节中，我们介绍我们的技术，重用最后一次交叉验证的SVM来训练当前的SVM。 我们选择使用与当前SVM相同的训练数据集进行最后一次交叉验证训练的SVM，与以前有关线性SVM的热启动[2]相同。 接下来，我们提供将在我们提出的技术中使用的最优条件。
+
+在SMO中，训练实例被划分为以下五个组。
+$I_{0} = \{i | \boldsymbol{x}_i \in \mathcal{X}, 0 < \alpha_i < C\},  \\ I_{1} = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = +1, \alpha_i = 0\}, \\ I_2 = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = -1, \alpha_i = C\},  \\
+I_{3} = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = +1, \alpha_i = C\}, \\
+I_4 = \{i | \boldsymbol{x}_i \in \mathcal{X}, y_i = -1, \alpha_i = 0\}.  $
+
+
+设$I_m = I_0$, $I_u = I_1 \cup I_2$ 以及$I_l = I_3 \cup I_4$。 正如Keerthi[3]等人所观察到的那样, 最佳条件（即KKT条件）等同于以下约束条件。
+$f_i > b \text{ for } i \in I_u;  f_i = b \text{ for } i \in I_m;  f_i < b \text{ for } i \in I_l$
+
+
+其中b是超平面的偏差。 由于我们想要重用的SVM已经在最后的交叉验证中进行了训练，因此给定超参数（例如C）时，最优条件已满足。
+
+当将$C$增加到$\Delta C$（其中$\Delta \gt 1$）时，$I_0$，$I_1$和$I_4$中的所有实例都满足最优条件，因为$C$的变化并不直接影响这些实例的最优条件。相比之下，$I_2$和$I_3$中的实例违反了最优条件，因为当$C$增加到$\Delta C$时，这些实例变成自由支持向量，即$I_2 \cup I_3$中的实例移动到$I_0$。更具体地说，对于任何具有$i \in I_2 \cup I_3$的实例，其最优性指标$f_i \neq b$。 由于$C$增加到$\Delta C$的变化，$i$ 被移到$I_0$，因此违反了最佳条件。 这是因为$f_i$不变（即$f_i \neq b$），但具有新参数的SVM的最优条件需要$f_i = b$。
+
+根据以上分析，只有$I_1 \cup I_2$中的实例违反了最优条件，而其余实例满足最优条件。 一种天真的方法是使用先前的交叉验证的SVM直接初始化当前的SVM。 然后，使用SMO调整$\alpha$值直到达到最佳条件。 但是，SMO只会在每次迭代时更新两个alpha值，并且还需要计算许多内核值。
+
+接下来，我们建议只调整$I_2 \cup I_3$中的实例的alpha值，以便更好地进行初始化，这可能会导致更快的收敛。
+
+### 4.2 调整$i$在$I_2 \cup I_3$中的$\alpha_i$
+由于$I_2$和$I_3$中的实例违反了KKT条件，目标函数可能会得到改善。 由于我们对当前的SVM有一些先验知识，因此我们可以更好地初始化当前的SVM，而不是直接在以前的交叉验证中使用SVM。我们的主要想法是以增加目标函数的方式更新$I_2$和$I_3$中的$\alpha$值。根据对偶问题的线性P约束（即$\Sigma \alpha_i y_i = 0$），我们需要修改至少两个$\alpha$值。 这里我们讨论修改两个$\alpha$值的方法，这会导致目标函数的增加。
+
+回想一下对偶问题可以写成如下。
+
+![](/images/media/15211263505540.jpg)
+
+我们可以如下改写对偶问题的目标函数：
+$\sum_{i=1, i \neq j}^{n}{\alpha_i}- \frac{1}{2}\sum_{i=1, i\neq j}^n\sum_{k=1, k\neq j}^n  y_i y_k \alpha_i\alpha_k K(\boldsymbol{x}_k, \boldsymbol{x}_i) \\
+- \frac{1}{2}y_j \alpha_j\sum_{i=1, i\neq j}^n  y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i)\\
++ \alpha_j - \frac{1}{2}y_j \alpha_j \sum_{i=1}^n y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i)$
+
+
+接下来，我们解释最后两个术语，即$\alpha_j - \frac{1}{2}\alpha_j y_j\sum_{i=1}^n y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i)$
+
+
+我们可以用下面的形式重写这两个术语：
+$\alpha_j y_j (y_j - \frac{1}{2}\sum_{i=1}^n y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i))$
+
+
+对偶问题的线性约束表明$\Sigma_{i=1}^n \alpha_i y_i = 0$; 核函数的值近似于两个实例的相似度，因此$K(x_j, x_i)\in[0,1]$。
+
+实际上，使用高斯核函数计算的核值总是$[0, 1]$中的。 因此，$\Sigma_{i=1}^n \alpha_i y_iK(x_j, x_i)$的范围是$[-{1\over2}C, {1\over2}C]$。 当所有$\alpha$等于$C$，$y_i\alpha_i=-C$且$K(x_j, x_i)=1$；$y_i\alpha_i=C$和$K(x_j, x_i)=0$时，能达到最小值（即$-{1\over2}C$），对于取得最大值的情况也类似这里最小值的分析。
+
+根据最优性指标的定义$f_j = \sum_{i=1}^n y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i) - y_j$，我们能得到$f_j \in [-\frac{n}{2}(C + 2), \frac{n}{2} (C + 2)]$以及以下的公式。
+$\alpha_j y_j (y_j - \frac{1}{2}\sum_{i=1}^n y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i)) = \frac{1}{2} \alpha_j y_j (y_j - f_j)$
+
+同样，我们如下可以得到（4）中的第三项。
+$\frac{1}{2}y_j \alpha_j\sum_{i=1, i\neq j}^n  y_i \alpha_i K(\boldsymbol{x}_j, \boldsymbol{x}_i) = \frac{1}{2}y_j \alpha_j (f_j + y_j - y_j \alpha_j K(\boldsymbol{x}_j, \boldsymbol{x}_j))$
+
+让我们考虑以下两种情况。 请注意，我们只考虑$\alpha_j = C$的实例，因为只有这些实例违反了最优条件。
+
+#### 4.2.1 正例的调整
+如果我们将$C$增加到$\Delta C$，则（6）式的变化量是$\Delta C \frac{1}{2} (1 - f'_j) - C  \frac{1}{2} (1 - f_j) = \frac{1}{2}(\Delta C - C) + \frac{1}{2}(f_j - f'_j)$。 使用$f_j$的定义，我们有$f_j - f'_j = (C - \Delta C) K(\boldsymbol{x}_j, \boldsymbol{x}_j)$。 因此，（6）式的变化等于$\frac{1}{2}(\Delta C - C) + \frac{1}{2}(C - \Delta C) K(\boldsymbol{x}_j, \boldsymbol{x}_j) = \frac{1}{2}(\Delta C - C)(1 - K(\boldsymbol{x}_j, \boldsymbol{x}_j))$。
+
+当$C$增加到$\Delta C$时，（7）式的变化为$(\frac{1}{2}\Delta C + \frac{1}{2}C)(f_j + 1 - C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j)) = \frac{1}{2}(C - \Delta C)(f_j + 1 - C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j))$。
+
+因此，目标函数的变化是
+$\frac{1}{2}(\Delta C - C)(1 - K(\boldsymbol{x}_j, \boldsymbol{x}_j)) + \frac{1}{2}(C - \Delta C)(f_j + 1 - C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j)) \\ = \frac{1}{2}(\Delta C - C)(1 - K(\boldsymbol{x}_j, \boldsymbol{x}_j) - f_j - 1 + C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j))\\ = \frac{1}{2}(\Delta C - C)((C - 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j) - f_j)$
+
+由于我们想要改进目标函数（即增加它的值），所以我们更新$f_j$满足以下约束条件的实例。
+
+$\frac{1}{2}(\Delta C - C)((C - 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j) - f_j) > 0\\ \Leftrightarrow f_j < (C - 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j)$
+
+在满足上述约束的所有实例中，我们更喜欢选择$f_j$较小的实例，这导致目标函数的增加较大。
+
+影响另一个最优指标：当我们将$\alpha_j$从$C$增加到$\Delta C$时，最优指标 $f_i$ 增加 $(\Delta C - C)K(\boldsymbol{x}_i, \boldsymbol{x}_j)$。
+
+
+#### 4.2.2 负例的调整
+当样本是负例的情况，$y_j = -1$，因此$\alpha_j y_j = -C$; 如果我们将$C$增加到$\Delta C$，则（6）式的变化是$\Delta C \frac{1}{2} (1 + f'_j) - C  \frac{1}{2} (1 + f_j) = \frac{1}{2}(\Delta C - C) + \frac{1}{2}(f'_j - f_j)$。 通过$f_j$的定义，我们有$f'_j - f_j = (\Delta C - C) K(\boldsymbol{x}_j, \boldsymbol{x}_j)$。 那么，（6）式的变化等于$\frac{1}{2}(\Delta C - C) + \frac{1}{2}(\Delta C - C) K(\boldsymbol{x}_j, \boldsymbol{x}_j) = \frac{1}{2}(\Delta C - C)(1 + K(\boldsymbol{x}_j, \boldsymbol{x}_j))$。
+
+当$C$增加到$\Delta C$时，（7）式的变化量是$\frac{1}{2}(\Delta C - C)(f_j - 1 + C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j))$。
+
+因此，目标函数的变化是$\frac{1}{2}(\Delta C - C)(1 + K(\boldsymbol{x}_j, \boldsymbol{x}_j)) + \frac{1}{2}(\Delta C - C)(f_j - 1 + C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j))\\ = \frac{1}{2}(\Delta C - C)(1 + K(\boldsymbol{x}_j, \boldsymbol{x}_j) + f_j - 1 + C \cdot K(\boldsymbol{x}_j, \boldsymbol{x}_j))\\ = \frac{1}{2}(\Delta C - C)((C + 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j) + f_j )$
+
+当我们想要最大化目标函数时，我们更新$f_j$满足以下约束条件的实例。
+
+$\frac{1}{2}(\Delta C - C)((C + 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j) + f_j ) > 0\\ \Leftrightarrow f_j > -(C + 1)K(\boldsymbol{x}_j, \boldsymbol{x}_j)$
+
+在满足上述约束的所有实例中，我们更喜欢选择具有较大$f_j$的实例，这导致目标函数的较大增加。
+
+对另一个最优性指标的影响：当我们将$\alpha_j$从$C$增加到$\Delta C$时，最优性指标$f_i$减少$(\Delta C - C)K(\boldsymbol{x}_i, \boldsymbol{x}_j)$。
+
+#### 4.2.3 成对更新样本
+为了考虑更有针对性，我们更新一对类别相对应的样本（即一个正实例和一个负实例）的$\alpha$值，会有两个好处。我们用$\boldsymbol{x}_u$和$\boldsymbol{x}_v$来表示这一对样本，给定$y_u = 1$和$y_v = -1$。 首先，对偶问题的线性约束条件（即$\sum_{i=0}^n y_i \alpha_i = 0$）始终保持不变，其原因如下：第二，最优指标的变化是摊销的，因为$\alpha_u$的更新导致所有最优指标的增加，而$\alpha_v$的更新导致所有最优指标的降低。
+
+
+### 4.3 基于 Warm Start 的参数选择加速过程。
+我们使用（3）式来训练SVM，并且我们获得所有训练实例。（1）式中描述的训练实例被分成五个组。如果我们将$C$增加到$C\prime$（$C\prime \gt C$），则$I_2$和$I_3$中的实例将移至$I_0$。 随着$C$增加到$C\prime$，最优条件将被违反。更具体地说，对于任何具有$i \in I_2 \cup I_3$的实例，最优性指标$f_i \neq b$。 接下来，我们尝试调整$I_2 \cup I_3$中的实例的$\alpha$值以获得更快的收敛。
+
+#### 4.3.1 调整$i$在$I_2 \cup I_3$中的$\alpha_i$
+我们知道，原始KKT最优条件非常复杂。 在收敛时，模型应该具有一些等式和不等式。 Keerthi等人 [3]用简单的方式表示原始KKT最优条件。
+
+定义：
+$b_{up}(\alpha)= min\{F_i: i \in I_0(\alpha)\cup I_1(\alpha)\cup I_2(\alpha)\}\\ b_{low}(\alpha)= max\{F_i: i \in I_0(\alpha)\cup I_3(\alpha)\cup I_4(\alpha)\}$
+
+最优值将会稳定在某个$\alpha$值当且仅当下面的式子成立
+
+$b_{low} \leq b_{up}$
+
+当参数$C$增加到$C\prime$时，I 2∪I 3中的实例移动到$I_0$。 我们定义$I_2 \cup I_3$，所以$b_{up}$ 和 $b_{low}$可以写成：
+
+$b_{up}(\alpha)= min\{F_i: i \in I_0^\prime(\alpha)\cup I_1(\alpha)\}\\b_{low}(\alpha)= max\{F_i: i \in I_0^\prime(\alpha)\cup I_4(\alpha)\}$
+
+$I_0^\prime = I_0 \cup I_{2} \cup I_{3}$中的实例在$b_{up}$和$b_{low}$中是共同的，因此当$C$增加到$C\prime$时，最优性条件$b_{up} \le b_{low}$可能不成立。 $I_{2} \cup I_{3}$中的实例违反了（1）中描述的最优条件$f_i = b$，所以我们调整$I_{2} \cup I_{3}$中的实例以获得更好的初始化。 回想（3）中的SVM的双重问题。 这个问题的目标是最大化目标函数。 因此，我们调整$I_{2} \cup I_{3}$中的实例，使目标函数增加最快的方向。
+
+
+## 5.3 参数选择的实验优化
 
 
 
 
+---
 
-## 参考文献
-
-一个时间发生的概率大的时间信息熵比较小。
-
-每个事件信息量的概率
-
-信息熵能达到理论上最小的编码。
-
-交叉熵
-用错误的概率分布去衡量正确的熵
-
-KL散度
-
-交叉熵做 Loss Function，与 Sigmoid 的相比。
-
-卷积特点
-
-* 局部连接
-* 共享权值
-    * filter 的参数
-
-Lenet
-
-filter 的个数要怎么确定？调节
-
-小 kernel size：
-1. 参数少
-2. 激活函数越多
-
-AlexNet
-层叠
-1. 数据增强
-2. dropout
-3. lr decay
-
-训练不起作用，测试再起作用。
-
-VGGNet
-小卷积
-**MultiScale**，训练和测试都可以。
-
-ResNet
-越深效果越差。
-
-恒等映射？
+向量是描述空间的对象。
+矩阵是描述空间中的线性变换。
+相似矩阵是针对同一种变换的描述。
 
 

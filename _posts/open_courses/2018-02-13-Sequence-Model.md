@@ -42,5 +42,13 @@ RNN 只能用到前面的信息，后面的信息用不上。
 ### 后向传播
 
 
+### Different types of RNNs
+![](/images/media/15218715230193.jpg)
 
+![](/images/media/15218719648653.jpg)
+
+
+### Language model and sequence generation
+- [ ] 这个word在RNN实现的时候是怎么表示的？
+- [ ] 怎么用loss function衡量缺失？
 

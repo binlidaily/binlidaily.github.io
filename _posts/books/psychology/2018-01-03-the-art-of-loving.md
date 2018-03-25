@@ -4,10 +4,6 @@ title: "爱的艺术"
 author: "Bin Li"
 tags: "Books"
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
 published: false
 ---
 
@@ -40,4 +36,7 @@ published: false
 
 
 爱是一门艺术。
+
+## 第四章 爱的实践
+几个关键的点：`纪律`，`集中`，`耐心`，`兴趣`。
 
