@@ -83,25 +83,9 @@ $$x^2+y^2=1$$
 
 [Lanyon Plus](https://github.com/dyndna/lanyon-plus.git)
 
-[](https://pages-themes.github.io/cayman/)
+[cayman](https://pages-themes.github.io/cayman/)
 
-[](https://jekyll.github.io/minima/)
+[minima](https://jekyll.github.io/minima/)
 
-[](http://themes.jekyllrc.org/julia/)
-
-
-$ R = \frac { \sum _ { i j } B _ { i j } \delta ( i ,j ) } { \sum _ { i j } B _ { i j } } $
-
-$ B _ { i j } = \left\{ \begin{array} { l l } { 1} & { \text{ if i and j connected } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
-
-$ \delta ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ both i and j in D } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
-
-$ M = \frac { \frac { 1} { 2} \sum _ { i j } A _ { j } \theta ( i ,j ) } { \sum _ { i j } \lambda ( i ,j ) } $
-
-$ A _ { i j } = \left\{ \begin{array} { l l } { 1} & { \text{ if i and j connected } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
-
-$ \theta ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ both i and j in D} } \\ { 0} & { \text{ otherwise } } \end{array} \right. $
-
-$ \lambda ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ only one vertex in D } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
-
+[julia](http://themes.jekyllrc.org/julia/)
 
