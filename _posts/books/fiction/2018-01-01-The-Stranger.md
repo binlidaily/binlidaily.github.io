@@ -2,8 +2,8 @@
 layout: post
 title: "局外人"
 author: "Bin Li"
-tags: Books
-meta: "Springfield"
+tags: Review
+category: Book
 comments: true
 style: |
   .container {
