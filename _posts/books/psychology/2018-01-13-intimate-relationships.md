@@ -9,7 +9,7 @@ style: |
   .container {
         max-width: 44rem;
     } 
-published: false
+published: true
 ---
 
 本文主要记录基本关于亲密关系的书，第一本是罗兰·米勒的《亲密关系》，第二本是知乎的自选集《假性亲密关系》。
