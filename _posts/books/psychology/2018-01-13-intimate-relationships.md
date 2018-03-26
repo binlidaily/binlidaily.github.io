@@ -2,7 +2,8 @@
 layout: post
 title: "亲密关系"
 author: "Bin Li"
-tags: "Psychology"
+tags: Psychology Notes
+category: Book
 comments: true
 style: |
   .container {

@@ -2,7 +2,8 @@
 layout: post
 title: "自控力：和压力做朋友"
 author: "Bin Li"
-tags: Books
+tags: Review
+category: Book
 comments: true
 meta: "Springfield"
 style: |

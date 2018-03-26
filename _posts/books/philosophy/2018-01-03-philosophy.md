@@ -2,7 +2,8 @@
 layout: post
 title: "哲学入门"
 author: "Bin Li"
-tags: "Books"
+tags: "Notes"
+category: Book
 comments: true
 published: false
 style: |
