@@ -14,10 +14,10 @@ layout: default
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}<!-- s -->
         <span class="post-meta">
             <!-- {{ post.date | date: date_format }} -->
-            {% if post.tags != empty %}
+            {% if page.tags != empty %}
             |
-            {% for tag in post.tags %}
-            • <a class="codinfox-tag-mark" href="/tag/#{{ tag | slugify }}">{{ tag }}</a>
+            {% for tag in page.tags %}
+            <a class="codinfox-tag-mark" href="/tag/#{{ tag | slugify }}">{{ tag }}</a>
             {% endfor %}
             {% endif %}
         </span>
