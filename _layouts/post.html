@@ -30,6 +30,8 @@ Here we generate all the tags.
 {% endfor %}
 
 
+
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -43,9 +45,9 @@ Here we generate all the tags.
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}<!-- s -->
         <span class="post-meta">
             <!-- {{ post.date | date: date_format }} -->
-            {% if tags != empty %}
+            {% if post.tags != empty %}
             |
-            {% for tag in tags %}
+            {% for tag in post.tags %}
             <a class="codinfox-tag-mark" href="/tag/#{{ tag | slugify }}">{{ tag }}</a>
             {% endfor %}
             {% endif %}
