@@ -2,7 +2,7 @@
 layout: post
 title: "TensorFlow 使用记录"
 author: "Bin Li"
-tags: "Deep_Learning TensorFlow"
+tags: "DL TensorFlow"
 comments: true
 style: |
   .container {

@@ -2,7 +2,7 @@
 layout: post
 title: "深度学习网络结构"
 author: "Bin Li"
-tags: "Deep_Learning"
+tags: "DL"
 comments: true
 style: |
   .container {

@@ -2,7 +2,7 @@
 layout: post
 title: "Structuring Machine Learning Projects"
 author: "Bin Li"
-tags: "Open_Courses Deep_Learning"
+tags: "Courses DL"
 comments: true
 style: |
   .container {
