@@ -75,6 +75,9 @@ $$x^2+y^2=1$$
 `@content`
 `@media`
 
+## 如何在 Github Pages 中加入 category 和 tags 功能
+在阅读了这篇[博客](https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/)后简单试了下。
+
 ## Jekyll Themes
 [Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
 
@@ -85,5 +88,20 @@ $$x^2+y^2=1$$
 [](https://jekyll.github.io/minima/)
 
 [](http://themes.jekyllrc.org/julia/)
+
+
+$ R = \frac { \sum _ { i j } B _ { i j } \delta ( i ,j ) } { \sum _ { i j } B _ { i j } } $
+
+$ B _ { i j } = \left\{ \begin{array} { l l } { 1} & { \text{ if i and j connected } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
+
+$ \delta ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ both i and j in D } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
+
+$ M = \frac { \frac { 1} { 2} \sum _ { i j } A _ { j } \theta ( i ,j ) } { \sum _ { i j } \lambda ( i ,j ) } $
+
+$ A _ { i j } = \left\{ \begin{array} { l l } { 1} & { \text{ if i and j connected } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
+
+$ \theta ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ both i and j in D} } \\ { 0} & { \text{ otherwise } } \end{array} \right. $
+
+$ \lambda ( i ,j ) = \left\{ \begin{array} { l l } { 1} & { \text{ only one vertex in D } } \\ { 0} & { \text{ othenwise } } \end{array} \right. $
 
 
