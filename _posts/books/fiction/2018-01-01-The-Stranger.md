@@ -3,7 +3,7 @@ layout: post
 title: "局外人"
 author: "Bin Li"
 tags: Review
-category: Book
+category: Books
 comments: true
 style: |
   .container {

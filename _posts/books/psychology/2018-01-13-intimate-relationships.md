@@ -3,7 +3,7 @@ layout: post
 title: "亲密关系"
 author: "Bin Li"
 tags: Psychology Notes
-category: Book
+category: Books
 comments: true
 style: |
   .container {

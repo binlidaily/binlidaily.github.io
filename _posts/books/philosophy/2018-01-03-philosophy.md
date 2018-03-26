@@ -3,7 +3,7 @@ layout: post
 title: "哲学入门"
 author: "Bin Li"
 tags: "Notes"
-category: Book
+category: Books
 comments: true
 published: false
 style: |
