@@ -52,20 +52,20 @@ gunzip file.gz
 gunzip -k file.gz
 ```
 
+### .bz2 后缀
+```
+bzip2 -d file.bz2
+```
 
+如果解压之后需要保留原压缩包，可用：
+
+```
+bzip2 -dk file.bz2
+```
 
 ## 参数
 ### Verbose Mode
 A verbose mode is an option available in many computer operating systems, including Microsoft Windows, macOS and Linux that provides additional details as to what the computer is doing and what drivers and software it is loading during startup.
 
 verbose 模式就是能够输出比较详细的运行信息。
-
-
-
-
----
-
-较长的文本，找到关键词句，用来分类
-
-Attention
 

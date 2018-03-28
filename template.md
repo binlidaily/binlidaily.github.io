@@ -4,7 +4,8 @@
 layout: post
 title: "topic"
 author: "Bin Li"
-tags: "tags"
+tags: ""
+category: ""
 comments: true
 published: true
 

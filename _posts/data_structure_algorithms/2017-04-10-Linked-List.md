@@ -8,10 +8,11 @@ style: |
   .container {
         max-width: 44rem;
     } 
+published: false
 ---
 
 
-链表作为算法中非常重要的
+链表作为算法中非常重要的数据结构，在面试中也是非常常用的
 
 <!--more-->
 
