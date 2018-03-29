@@ -33,19 +33,24 @@ NMT 利用能得到更高level的文本意义，翻译效果会更好；且实�
 但是像有的语言，比如日语，最后的单词能用来很好的预测首个单词，这样的情况下颠倒并非一个很好的措施，那么可以用 Attention Mechanism。
 
 用 Attention Mechanism 不用学习所有的原句子了，可以只关注原句的不同部分就可以了，而且还能让模型根据输入序列和到目前为止拥有的信息去学习具体要关注（attend）什么。
+
 ![](/images/media/15223344880250.png)
 
-- [ ] 什么是一个input state？
+- [x] 什么是一个input state？
 
 
 
 Attention 的一个好处是可以提供解释和可视化训练模型在干啥。
+
 ![库](/images/media/15223344797783.png)
 
 
 ![](/images/media/15223277862279.png)
 
+### Attention 的损失函数
+看计算公式，我们需要计算很多attention value。
 
+但是人类Attention机智是强调focus的部分，而弱化周边的部分。
 
 ## Attention-based LSTM for Text Classification
 
