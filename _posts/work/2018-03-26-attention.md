@@ -37,6 +37,7 @@ NMT 利用能得到更高level的文本意义，翻译效果会更好；且实�
 ![](/images/media/15223344880250.png)
 
 - [x] 什么是一个input state？
+[ ] 呵呵
 
 
 
