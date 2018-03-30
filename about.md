@@ -4,7 +4,7 @@ title: "About"
 permalink: /about/
 ---
 
-## Short Bio
+<!-- ## Short Bio -->
 
 <p align="center">
   <img width="200" height="" src="/images/media/4f33da32d6b5f.jpg">
