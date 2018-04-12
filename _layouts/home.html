@@ -54,7 +54,7 @@ layout: default
         {%- endif -%} -->
 
         {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
+          {{ post.excerpt | truncate: site.excerpt_length | default: 100 }}
         {%- endif -%}
       </li>
     {% endfor %}
