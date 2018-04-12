@@ -33,7 +33,7 @@ github_username:  binlidaily
 
 
 show_excerpts: true # set to true to show excerpts on the homepage
-excerpt_length: 50
+excerpt_length: 300
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
