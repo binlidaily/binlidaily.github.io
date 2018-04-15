@@ -61,7 +61,10 @@ gems:
 paginate: 10
 paginate_path: "/blog/page/:num/"
 
-
+header_pages:
+  - category.html
+  - tag.html
+  - about.md
 
 # Add disqus username for Disqus comment board:
 disqus:
