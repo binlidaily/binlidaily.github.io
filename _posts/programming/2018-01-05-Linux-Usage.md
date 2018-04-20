@@ -19,6 +19,15 @@ published: true
 find /dir/to/root/ -name "keywor*"
 ```
 
+## 找到某个库装在哪个地方
+例如我要找到cuda装在哪儿了
+
+```shell
+locate cuda | grep cuda$
+```
+
+这里的`$`表示结尾。
+
 ## 更改一个文件夹下所有文件的后缀
 替换对应的 oldextension 和 newextension 即可。
 
