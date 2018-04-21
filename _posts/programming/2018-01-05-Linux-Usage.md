@@ -4,7 +4,7 @@ title: "Linux 使用记录"
 author: "Bin Li"
 tags: "Linux Programming"
 comments: true
-style: |
+style: | 
   .container {
         max-width: 44rem;
     } 
@@ -26,7 +26,7 @@ find /dir/to/root/ -name "keywor*"
 locate cuda | grep cuda$
 ```
 
-这里的`$`表示结尾。
+这里的`$`表示结尾，是正则表达式的部分。
 
 ## 更改一个文件夹下所有文件的后缀
 替换对应的 oldextension 和 newextension 即可。
