@@ -44,6 +44,7 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 * `绝对误差`：当函数值变化接近于零，就停止迭代。
 * `相对误差`：当函数值变化小于一个阈值，就停止迭代。
 
+![](https://raw.githubusercontent.com/mattnedrich/GradientDescentExample/master/gradient_descent_example.gif)
 
 ## 注意点
 - [ ] 如何判断终止条件？
