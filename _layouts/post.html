@@ -48,7 +48,7 @@ Here we generate all the tags.
             {% if page.tags != empty %}
             |
             {% for tag in page.tags %}
-            <a class="codinfox-tag-mark" href="/tag/#{{ tag | slugify }}">{{ tag }}</a>
+            <a class="codinfox-tag-mark" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
             {% endfor %}
             {% endif %}
         </span>
