@@ -46,6 +46,7 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 
 ![](https://raw.githubusercontent.com/mattnedrich/GradientDescentExample/master/gradient_descent_example.gif)
 
+可以参考我实现的 [Gradient Descent]()。
 ## 注意点
 - [ ] 如何判断终止条件？
 - [ ] 如何选择学习率？
