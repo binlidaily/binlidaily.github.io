@@ -249,5 +249,11 @@ append, count, extend, index, ...
 * 前面两个下划线表示不能被继承，最好不要用
 * 前后各两个下划线表示这个不是用户来调用的，是python自己调用的
 
+### 导入其他文件夹中的py文件
 
+```python
+import sys
+sys.path.insert(0, '/Users/Bin/Dropbox/Codes/ml-algs/utils/')
+from plot import plot_data
+```
 
