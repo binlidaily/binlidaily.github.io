@@ -54,6 +54,8 @@ sudo -H pip install --ignore-installed six
 
 然后又报错：`ImportError: No module named dateutil.tz`，接着装：
 ```
+sudo pip install python-dateutil --upgrade
 
+sudo pip install pytz --upgrade
 ```
 
