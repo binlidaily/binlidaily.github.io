@@ -176,7 +176,7 @@
  * Page content
  */
 .page-content {
-  @include relative-font-size(1);
+  @include relative-font-size(1.125);
   padding: $spacing-unit 0;
 }
 
