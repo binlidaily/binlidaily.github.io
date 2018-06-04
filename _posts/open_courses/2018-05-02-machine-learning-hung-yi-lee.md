@@ -16,7 +16,6 @@ published: false
 
 ![](/images/media/15252473988428.jpg)
 
-
 Reiforcement Learning 是数据不够的情况下才开始用的，能用 Supervised Learning 的就用之。
 
 ## ML Lecture 1: Regression - Case Study
@@ -55,6 +54,7 @@ Reiforcement Learning 是数据不够的情况下才开始用的，能用 Superv
 
 ![](/images/media/15252507386892.jpg)
 
+
 那么，现在我们想还能不能继续优化模型呢？那么我们想，是不是CP值跟重量，HP等有关系。
 ![](/images/media/15252509031213.jpg)
 
@@ -74,5 +74,186 @@ Reiforcement Learning 是数据不够的情况下才开始用的，能用 Superv
 当然，函数太平滑也不好，那么，我们就需要自己手调步长。
 
 ![](/images/media/15252520793570.jpg)
+
+
+## ML Lecture 2: Where does the error come from?
+error的来源：
+
+* bias
+* variance
+
+![](/images/media/15272561637417.jpg)
+
+![](/images/media/15272563254066.jpg)
+
+
+![](/images/media/15272564742013.jpg)
+
+
+错误由两个部分组成：
+
+* bias
+* variance
+
+bias说的是我准不准，variance说的是我稳不稳？
+
+ ![](/images/media/15273485658415.jpg)
+
+比较简单的model受data的影响会比较小。
+
+![](/images/media/15273489653566.jpg)
+
+提高bias
+
+* 重新设计模型，更复杂能够学习更好特征
+
+提高variance
+
+* 提高更多数据
+* 正则化
+    * 曲线变平滑
+    * 有可能伤害 bias
+
+
+## ML Lecture 3-1: Gradient Descent
+Adaptive Learning Rates
+刚开始较大，然后降低
+
+![](/images/media/15273923279361.jpg)
+
+ 当gradient越大，step不一定越大，当有多个参数的时候就会出现这样的现象。
+
+![](/images/media/15273929673843.jpg)
+
+
+![](/images/media/15273932598941.jpg)
+
+![](/images/media/15273943260021.jpg)
+
+
+## ML Lecture 4: Classification
+![](/images/media/15277591843873.jpg)
+
+
+解释贝叶斯分类方法的想法：
+![](/images/media/15277594957550.jpg)
+
+
+![](/images/media/15277596081702.jpg)
+
+Generative model
+可以计算某一个x的出现概率，这样就可以用这个方式来generate x。
+
+### 最大似然估计
+我们可以假设我们现有的训练数据是从高斯分布采样的到的，但是我们不知道具体是哪一个参数下的高斯分布采样的到的这些样本，因为有的参数下采样出这些样本的概率比较小，但是也是有可能采样出来的，所以我们要找到有着最大概率采样出这些样本点的高斯分布。
+![](/images/media/15278416166883.jpg)
+
+![](/images/media/15278421734761.jpg)
+
+![](/images/media/15278438018566.jpg)
+
+
+参数比较多，可能会过拟合。
+
+![](/images/media/15278450875857.jpg)
+
+
+![](/images/media/15278569617339.jpg)
+
+![](/images/media/15278570950577.jpg)
+
+![](/images/media/15278574044738.jpg)
+
+![](/images/media/15278575208729.jpg)
+
+如果使得sigma取一样的话:
+![](/images/media/15278581170877.jpg)
+
+
+## ML Lecture 5: Logistic Regression
+![](/images/media/15279256232100.jpg)
+
+![](/images/media/15279260914273.jpg)
+
+![](/images/media/15279265737927.jpg)
+
+cross entropy 看这两个有多接近。
+
+![](/images/media/15279266972834.jpg)
+
+![](/images/media/15279268440387.jpg)
+
+![](/images/media/15279268883072.jpg)
+
+![](/images/media/15279270125693.jpg)
+
+![](/images/media/15279270654580.jpg)
+
+为什么LR中不用square error呢？
+
+![](/images/media/15279275497969.jpg)
+
+label是0和1时，结果都会是零。
+
+![](/images/media/15279277758660.jpg)
+
+在远处，cross entropy会陡，更新会很快。
+
+判定与生成
+![](/images/media/15279279989042.jpg)
+
+probability distribution在判定性没有假设，生成型中有假设。所以相同数据下，同种模型，有不同结果。
+
+![](/images/media/15279280795499.jpg)
+
+![](/images/media/15279283097050.jpg)
+
+![](/images/media/15279285801877.jpg)
+
+![](/images/media/15279295747375.jpg)
+
+![](/images/media/15279298201205.jpg)
+
+如果多类的话，最好用这种方式来记录，不然如果用类1，类2，类3分别用1，2，3来表示话，这样就会有一个问题，这样就好像在说1跟2比较近，1根3比较远。
+
+![](/images/media/15279299010439.jpg)
+
+
+![](/images/media/15279299253358.jpg)
+
+可以用Feature transformation来做。
+
+![](/images/media/15279301052621.jpg)
+
+如何自动找这种transformation
+
+![](/images/media/15279301849111.jpg)
+
+为什么有效？先看下例子：
+
+![](/images/media/15279302903846.jpg)
+
+![](/images/media/15279303117024.jpg)
+
+右下角坐标画反了。
+
+![](/images/media/15279304178218.jpg)
+
+## ML Lecture 6: Brief Introduction of Deep Learning
+
+![](/images/media/15279976766850.jpg)
+
+![](/images/media/15280071727954.jpg)
+
+![](/images/media/15280076137726.jpg)
+
+![](/images/media/15280076338087.jpg)
+
+
+![](/images/media/15280076636683.jpg)
+
+![](/images/media/15280077719733.jpg)
+
+![](/images/media/15280078580041.jpg)
 
 
