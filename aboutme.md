@@ -17,6 +17,6 @@ Machine Learning and Deep Learning.
 
 ## Publications
 
-* Wen, Zeyi, **Bin Li**, Kotagiri Ramamohanarao, Jian Chen, Yawen Chen, and Rui Zhang. "Improving Efficiency of SVM k-Fold Cross-Validation by Alpha Seeding." In AAAI, pp. 2768-2774. 2017.
-* Huang, Jin, **Bin Li**, Jia Zhu, and Jian Chen. "Age classification with deep learning face representation." Multimedia Tools and Applications 76, no. 19 (2017): 20231-20247.
-* Liao, Yongxin, Shenxi Yuan, Jian Chen, Qingyao Wu, and **Bin Li**. "Joint Classification with Heterogeneous Labels Using Random Walk with Dynamic Label Propagation." In Pacific-Asia Conference on Knowledge Discovery and Data Mining, pp. 3-13. Springer, Cham, 2016.
+* Wen Zeyi, **Bin Li**, Kotagiri Ramamohanarao, Jian Chen, Yawen Chen, and Rui Zhang. "Improving Efficiency of SVM k-Fold Cross-Validation by Alpha Seeding." In AAAI, pp. 2768-2774. 2017.
+* Huang Jin, **Bin Li**, Jia Zhu, and Jian Chen. "Age classification with deep learning face representation." Multimedia Tools and Applications 76, no. 19 (2017): 20231-20247.
+* Liao Yongxin, Shenxi Yuan, Jian Chen, Qingyao Wu, and **Bin Li**. "Joint Classification with Heterogeneous Labels Using Random Walk with Dynamic Label Propagation." In Pacific-Asia Conference on Knowledge Discovery and Data Mining, pp. 3-13. Springer, Cham, 2016.
