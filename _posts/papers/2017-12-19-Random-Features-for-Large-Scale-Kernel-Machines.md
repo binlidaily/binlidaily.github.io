@@ -2,7 +2,7 @@
 layout: post
 title: "Random Features for Large-Scale Kernel Machines"
 author: "Bin Li"
-tags: "ML"
+tags: [Machine Learning]
 comments: true
 style: |
   .container {
@@ -24,7 +24,7 @@ $$f(x) = \Sigma_{i=1}^N c_i k(X_i, X) \Longrightarrow O(N*d)$$
 ## Introduction
 在实践过程中我们知道，很多情况下，我们是没有办法保证所有的数据都是线性可分的，那么，于是我们就会使用核技巧，使得在原来空间不可分的数据，映射到高维的特征空间后变得线性可分。具体就不展开介绍，如下图所示：
 
-![](/images/media/15149048791755.jpg)
+![](/img/media/15149048791755.jpg)
 
 
 我们从核函数的特性出发，每个核函数都有如下的特性：
@@ -42,9 +42,9 @@ $$k(x,y) = ~ <\phi(x),\phi(y)>  ~ \approx z(x)^T z(y)$$
 > Let $x,y∈ℝ$ where $y=x−t$. Translation-invariant (or shift-invariant) kernel $κ(⋅,⋅)$ is defined as $κ(x,y)=κ(x,x−t)=κ(t)$.
 
 ## Random Fourier Features
-![](/images/media/15149073920888.jpg)
+![](/img/media/15149073920888.jpg)
 
-![](/images/media/15149074215505.jpg)
+![](/img/media/15149074215505.jpg)
 
 这里其实还没有完全从数学的角度推导细致，大家先看下，如有问题请在评论区指出。
 
