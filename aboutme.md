@@ -5,7 +5,7 @@ subtitle: Why you'd want to go on a date with me
 ---
 
 <p align="center">
-  <img width="200" height="" src="/images/media/4f33da32d6b5f.jpg">
+  <img width="200" height="" src="/img/media/4f33da32d6b5f.jpg">
 </p>
 
 My name is Bin Li (李斌), I completed my Master's degree at South China University of Technology in 2018, and received a bachelor's degree in Computer Science from Guangzhou University of Chinese Medicine in 2015.
