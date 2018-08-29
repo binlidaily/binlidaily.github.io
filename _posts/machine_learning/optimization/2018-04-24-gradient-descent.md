@@ -8,7 +8,6 @@ comments: true
 published: true
 ---
 
-## Gradient Descent
 Gradient Descent 算法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
 
 我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据$(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
@@ -51,9 +50,9 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 
 
 ### 注意点
-- [ ] 如何判断终止条件？
-- [ ] 如何选择学习率？
-- [ ] 与 Method of steepest descent 的区别
+- 如何判断终止条件？
+- 如何选择学习率？
+- 与 Method of steepest descent 的区别
 
 ## Stochastic Gradient Descent
 以上的 Gradient Descent 方法可以看成是用一部分数据来求解 gradient，为了提高计算速度，我们可以使用 Stochastic Gradient Descent，
