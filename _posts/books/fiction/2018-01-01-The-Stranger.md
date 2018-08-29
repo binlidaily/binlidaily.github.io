@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "局外人"
-author: "Bin Li"
+author: Bin Li
 tags: Review
 category: Books
 comments: true

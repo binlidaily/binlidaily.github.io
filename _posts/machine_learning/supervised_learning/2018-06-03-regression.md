@@ -2,7 +2,7 @@
 layout: post
 title: "线性回归算法整理"
 author: Bin
-tags: "Machine Learning"
+tags: [Machine Learning]
 comments: true
 published: false
 ---
@@ -65,7 +65,7 @@ Normal equations （最小二乘法）。
 无偏估计，也就是说只要你采用这种方法进行估算，估算的结果的期望值（你可以近似理解为很多次估算结果的平均数）既不会大于真实的平均数，也不会小于之。换句话说：你这种估算方法没有系统上的偏差，而产生误差的原因只有一个：随机因素（也就是你的手气好坏造成的）。
 
 [那么为什么有偏效果就更好？](https://www.matongxue.com/madocs/808.html)
-![](/images/media/15320525983645.jpg)
+![](/img/media/15320525983645.jpg)
 
 如上图所示，有时候会出现这种情况，那么在这种情况下有偏但有效性好（这种情况就是欠拟合的情况），还是可取的。一般情况下，无偏是比有偏好的。
 
@@ -75,11 +75,11 @@ Normal equations （最小二乘法）。
 * parameter solutions
 
 
-![](/images/media/15345930275439.jpg)
+![](/img/media/15345930275439.jpg)
 
 
 ## 局部加权线性回归（Locally Weighted Linear Regression, LWLR）
-![](/images/media/15346068354911.jpg)
+![](/img/media/15346068354911.jpg)
 
 局部加权线性回归相较于普通的线性回归，区别在于计算 cost function 时引入了权重。
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "亲密关系"
-author: "Bin Li"
-tags: Psychology Notes
+author: Bin Li
+tags: [Psychology, Notes]
 category: Books
 comments: true
 style: |
