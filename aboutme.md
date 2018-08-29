@@ -4,13 +4,19 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+<p align="center">
+  <img width="200" height="" src="/images/media/4f33da32d6b5f.jpg">
+</p>
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+My name is Bin Li (李斌), I completed my Master's degree at South China University of Technology in 2018, and received a bachelor's degree in Computer Science from Guangzhou University of Chinese Medicine in 2015.
 
-What else do you need?
+I really like `reading`, and I also like `Music`, `Drama`, `Badminton`, `Swimming`, `Skiiing`.
 
-### my history
+## Areas of Research
+Machine Learning and Deep Learning.
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+## Publications
+
+* Wen, Zeyi, **Bin Li**, Kotagiri Ramamohanarao, Jian Chen, Yawen Chen, and Rui Zhang. "Improving Efficiency of SVM k-Fold Cross-Validation by Alpha Seeding." In AAAI, pp. 2768-2774. 2017.
+* Huang, Jin, **Bin Li**, Jia Zhu, and Jian Chen. "Age classification with deep learning face representation." Multimedia Tools and Applications 76, no. 19 (2017): 20231-20247.
+* Liao, Yongxin, Shenxi Yuan, Jian Chen, Qingyao Wu, and **Bin Li**. "Joint Classification with Heterogeneous Labels Using Random Walk with Dynamic Label Propagation." In Pacific-Asia Conference on Knowledge Discovery and Data Mining, pp. 3-13. Springer, Cham, 2016.
