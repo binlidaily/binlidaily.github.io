@@ -2,7 +2,7 @@
 layout: post
 title: "我的天才女友"
 author: "Bin Li"
-tags: "Review"
+tags: [Reviews]
 category: Books
 comments: true
 style: |

@@ -2,7 +2,7 @@
 layout: post
 title: "局外人"
 author: Bin Li
-tags: Review
+tags: [Reviews, Fiction]
 category: Books
 comments: true
 style: |

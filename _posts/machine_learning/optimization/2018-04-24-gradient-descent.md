@@ -2,7 +2,7 @@
 layout: post
 title: "Gradient Descent"
 author: "Bin Li"
-tags: "ML"
+tags: [Machine Learning]
 category: "Major"
 comments: true
 published: true
@@ -14,7 +14,7 @@ Gradient Descent 算法一般是用来迭代求解最优值的，计算目标函
 我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据$(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
 
 <p align="center">
-  <img width="" height="" src="/images/media/15245586264489.jpg">
+  <img width="" height="" src="/img/media/15245586264489.jpg">
 </p>
 
 我们先假设用以下的数学形式表示线性回归模型：
