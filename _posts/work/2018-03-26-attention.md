@@ -12,13 +12,13 @@ published: false
 聚焦中心是“高像素的”，周边是“低像素的”。
 
 
-![](/images/media/15223269611625.jpg)
+![](/img/media/15223269611625.jpg)
 
 
 ## [History of Attention](http://www.cnblogs.com/robert-dlut/p/5952032.html)
 Image -> context.
 
-![](/images/media/15223438819617.jpg)
+![](/img/media/15223438819617.jpg)
 
 
 ## Recurrent Models of Visual Attention
@@ -26,7 +26,7 @@ Image -> context.
 
 
 
-![](/images/media/15223764790847.jpg)
+![](/img/media/15223764790847.jpg)
 
 * $l$: location
 * $f_g(*)$: glimpse network
@@ -34,9 +34,9 @@ Image -> context.
 * $f_l(*)$: location network
 * $g_t$: glimpse representation
 
-![](/images/media/15223781827819.jpg)
+![](/img/media/15223781827819.jpg)
 
-![](/images/media/15223783065834.jpg)
+![](/img/media/15223783065834.jpg)
 
 
 
@@ -44,7 +44,7 @@ Image -> context.
 最基础的Seq2Seq模型包含了三个部分，即Encoder、Decoder以及连接两者的中间状态向量。
 
 ### 第一种 [Seq2Seq](https://zhuanlan.zhihu.com/p/27766645)
-![](/images/media/15223793249780.jpg)
+![](/img/media/15223793249780.jpg)
 
 $$ h _ { < t > } = f \left( h _ { < t - 1} ,y _ { t - 1} ,c \right) $$
 
@@ -54,7 +54,7 @@ $$ P \left( y _ { t } | y _ { t - 1} ,y _ { t - 2} ,\dots ,y _ { 1} ,c \right) =
 Google 机器翻译团队使用了encoder-decoder模型的变体，其模型结构如下
 
 
-![](/images/media/15223799433781.jpg)
+![](/img/media/15223799433781.jpg)
 
 Tricks:
 
@@ -66,14 +66,14 @@ Tricks:
 1. 信息的有损压缩
 2. RNN的时间维度过大
 
-![](/images/media/15223800052716.jpg)
+![](/img/media/15223800052716.jpg)
 
 
 
 ### Neural Machine Translation (NMT)
 之前翻译系统的一个比较麻烦的问题，传统的翻译需要花很多功夫做特征工程，如n-gram等。而以前基于Seq2Seq的又必须要设定在一定长度向量上，在效果上没有那么好。
 
-![](/images/media/15223955747695.png)
+![](/img/media/15223955747695.png)
 
 思考：
 
@@ -94,9 +94,9 @@ Tricks:
 
 用 Attention Mechanism 不用学习所有的原句子了，可以只关注原句的不同部分就可以了，而且还能让模型根据输入序列和到目前为止拥有的信息去学习具体要关注（attend）什么。-->
 
-![](/images/media/15223959325227.jpg)
+![](/img/media/15223959325227.jpg)
 
-<!--![](/images/media/15223875094655.jpg)-->
+<!--![](/img/media/15223875094655.jpg)-->
 
 $$ p \left( y _ { i } | y _ { 1} ,\ldots ,y _ { i - 1} ,\mathbf { x } \right) = g \left( y _ { i - 1} ,s _ { i } ,c _ { i } \right) $$
 
