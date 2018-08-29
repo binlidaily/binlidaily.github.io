@@ -2,7 +2,7 @@
 layout: post
 title: "Machine Learning by Hung-yi Lee"
 author: "Bin Li"
-tags: ""
+tags: [Machine Learning]
 category: ""
 comments: true
 published: false
