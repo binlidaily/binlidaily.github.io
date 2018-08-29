@@ -2,7 +2,7 @@
 layout: post
 title: "线性回归算法整理"
 author: Bin
-tags: "ML"
+tags: "Machine Learning"
 comments: true
 published: false
 ---
