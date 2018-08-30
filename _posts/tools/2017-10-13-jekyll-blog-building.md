@@ -4,10 +4,6 @@ title: "Jekyll 搭建博客遇到的问题"
 author: "Bin Li"
 tags: [Tools]
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
 ---
 
 本文记录在用 Jekyll 搭建博客时遇到的一些问题。
@@ -78,14 +74,13 @@ $$x^2+y^2=1$$
 ## 如何在 Github Pages 中加入 category 和 tags 功能
 在阅读了这篇[博客](https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/)后简单试了下。
 
+## build 时出现的一些问题
+
+
 ## Jekyll Themes
-[Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
-
-[Lanyon Plus](https://github.com/dyndna/lanyon-plus.git)
-
-[cayman](https://pages-themes.github.io/cayman/)
-
-[minima](https://jekyll.github.io/minima/)
-
-[julia](http://themes.jekyllrc.org/julia/)
+1. [Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
+2. [Lanyon Plus](https://github.com/dyndna/lanyon-plus.git)
+3. [cayman](https://pages-themes.github.io/cayman/)
+4. [minima](https://jekyll.github.io/minima/)
+5. [julia](http://themes.jekyllrc.org/julia/)
 
