@@ -39,7 +39,7 @@ $$
 再求对应的梯度（gradient）：
 $$
 \begin{aligned}
-{{\partial f}\over {\partial w} } &=  -X^Tv \\
+{{\partial f}\over {\partial w}} &=  -X^Tv \\
 &= -X^T(y-Xw)
 \end{aligned}
 $$
