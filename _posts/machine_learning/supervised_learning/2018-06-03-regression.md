@@ -117,7 +117,7 @@ $$
 
 $$
 \begin{aligned}
-{{\partial f}\over {\partial w} } &=  -X^Tv \\
+{{\partial f}\over{\partial w}} &=  -X^Tv \\
 &= -X^TW(y-Xw)
 \end{aligned}
 $$
