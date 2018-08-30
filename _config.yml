@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: To Be A Better Me
+title: Be A Better Me
 
 # Short description of your site
 description: A virtual proof that name is awesome!
@@ -107,7 +107,7 @@ share-links-active:
 #gtag: ""
 
 # Fill in your Google Analytics ID to track your website using GA
-#google_analytics: ""
+google_analytics: "UA-111874196-1"
 
 # Google Tag Manager ID
 #gtm: ""
@@ -244,5 +244,3 @@ plugins:
 
 # Add disqus username for Disqus comment board:
 disqus: gitlinux
-# Analytics and webmaster tools stuff goes here
-google_analytics: "UA-111874196-1"
