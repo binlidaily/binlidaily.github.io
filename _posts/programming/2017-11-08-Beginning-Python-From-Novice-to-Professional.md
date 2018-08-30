@@ -2,7 +2,7 @@
 layout: post
 title: "Python 基础教程"
 author: "Bin Li"
-tags: "Programming Python"
+tags: [Programming, Python]
 comments: true
 style: |
   .container {

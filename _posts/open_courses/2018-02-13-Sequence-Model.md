@@ -2,7 +2,7 @@
 layout: post
 title: "Sequence Model"
 author: "Bin Li"
-tags: "Courses DL"
+tags: [Open Courses, Deep Learning]
 comments: true
 style: |
   .container {

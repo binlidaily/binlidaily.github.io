@@ -2,7 +2,7 @@
 layout: post
 title: Linked List
 author: Bin
-tags: Interview
+tags: [Machine Learning]
 comments: true
 style: |
   .container {

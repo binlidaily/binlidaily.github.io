@@ -2,7 +2,7 @@
 layout: post
 title: "Latex 使用记录"
 author: "Bin Li"
-tags: Tools
+tags: [Tools]
 comments: true
 style: |
   .container {

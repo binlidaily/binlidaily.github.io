@@ -2,7 +2,7 @@
 layout: post
 title: "剑指 Offer"
 author: "Bin Li"
-tags: "Python Programming"
+tags: [Python, Programming]
 comments: true
 style: |
   .container {

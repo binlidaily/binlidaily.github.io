@@ -2,7 +2,7 @@
 layout: post
 title: "自控力：斯坦福大学最受欢迎心理学课程"
 author: "Bin Li"
-tags: [Review]
+tags: [Reviews]
 category: Books
 comments: true
 style: |

@@ -2,7 +2,7 @@
 layout: post
 title: "曼德拉"
 author: "Bin Li"
-tags: "Health"
+tags: [Biography]
 comments: true
 style: |
   .container {

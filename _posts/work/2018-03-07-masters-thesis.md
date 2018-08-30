@@ -2,7 +2,7 @@
 layout: post
 title: "基于支持向量机的交叉验证与参数选择研究"
 author: "Bin Li"
-tags: "tags"
+tags: [Papers]
 comments: true
 published: false
 ---

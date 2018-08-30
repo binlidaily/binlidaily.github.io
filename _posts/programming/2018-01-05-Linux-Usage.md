@@ -2,7 +2,7 @@
 layout: post
 title: "Linux 使用记录"
 author: "Bin Li"
-tags: "Linux Programming"
+tags: [Linux, Programming]
 comments: true
 style: | 
   .container {

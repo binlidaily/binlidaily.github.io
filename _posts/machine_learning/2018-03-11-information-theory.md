@@ -2,7 +2,7 @@
 layout: post
 title: "topic"
 author: "Bin Li"
-tags: "tags"
+tags: [Machine Learning]
 comments: true
 published: false
 ---

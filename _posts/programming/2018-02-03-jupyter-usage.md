@@ -2,7 +2,7 @@
 layout: post
 title: "Jupyter 使用记录"
 author: "Bin Li"
-tags: "Python Programming"
+tags: [Python, Programming]
 comments: true
 style: |
   .container {

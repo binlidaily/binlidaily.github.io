@@ -2,7 +2,7 @@
 layout: post
 title: "算法与数据结构"
 author: "Bin Li"
-tags: "Python Programming"
+tags: [C++, Programming]
 comments: true
 style: |
   .container {

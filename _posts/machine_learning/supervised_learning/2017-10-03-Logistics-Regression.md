@@ -2,7 +2,7 @@
 layout: post
 title: "逻辑斯特回归"
 author: Bin
-tags: "ML"
+tags: [Machine Learning]
 comments: true
 published: false
 ---

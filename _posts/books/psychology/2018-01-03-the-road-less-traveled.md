@@ -2,7 +2,7 @@
 layout: post
 title: "少有人走的路"
 author: "Bin Li"
-tags: "Books"
+tags: [Psychology]
 comments: true
 style: |
   .container {

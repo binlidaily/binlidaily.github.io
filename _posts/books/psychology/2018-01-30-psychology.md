@@ -2,7 +2,7 @@
 layout: post
 title: "心理学入门"
 author: "Bin Li"
-tags: "Psychology"
+tags: [Psychology]
 comments: true
 style: |
   .container {

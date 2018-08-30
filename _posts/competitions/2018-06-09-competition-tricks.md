@@ -2,7 +2,7 @@
 layout: post
 title: "竞赛流程记录"
 author: "Bin Li"
-tags: ""
+tags: [Competitions]
 category: ""
 comments: true
 published: false

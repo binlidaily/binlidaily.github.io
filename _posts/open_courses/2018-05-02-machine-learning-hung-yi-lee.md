@@ -2,7 +2,7 @@
 layout: post
 title: "Machine Learning by Hung-yi Lee"
 author: "Bin Li"
-tags: [Machine Learning]
+tags: [Open Courses, Machine Learning]
 category: ""
 comments: true
 published: false

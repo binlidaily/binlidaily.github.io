@@ -2,7 +2,7 @@
 layout: post
 title: "Attention 入门"
 author: "Bin Li"
-tags: "DL"
+tags: [Deep Learning]
 category: "AI"
 comments: true
 published: false

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "topic"
+title: "C++ Primer"
 author: "Bin Li"
-tags: "tags"
+tags: [C++]
 comments: true
 style: |
   .container {

@@ -2,7 +2,7 @@
 layout: post
 title: "非暴力沟通"
 author: "Bin Li"
-tags: "Psychology"
+tags: [Psychology]
 comments: true
 style: |
   .container {

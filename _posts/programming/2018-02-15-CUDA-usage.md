@@ -2,7 +2,7 @@
 layout: post
 title: "CUDA编程的一些记录"
 author: "Bin Li"
-tags: ""
+tags: [CUDA, Programming]
 category: ""
 comments: true
 published: false

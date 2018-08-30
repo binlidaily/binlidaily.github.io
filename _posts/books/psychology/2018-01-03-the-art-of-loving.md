@@ -2,7 +2,7 @@
 layout: post
 title: "爱的艺术"
 author: "Bin Li"
-tags: "Books"
+tags: [Psychology]
 comments: true
 published: false
 ---
