@@ -11,7 +11,7 @@ style: |
 published: false
 ---
 
-![](/images/media/15187943905995.jpg)
+![](/img/media/15187943905995.jpg)
 
 
 
