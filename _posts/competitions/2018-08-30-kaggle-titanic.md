@@ -62,6 +62,13 @@ published: true
 
 分类的问题，分类的结果不能是浮点型，要用整型！
 
+#### 截取数据
+Name属性是类似的形式'Braund, Mr. Owen Harris'、'Futrelle, Mrs. Jacques Heath (Lily May Peel)'和'Heikkinen, Miss. Laina'，现在想在Name属性中截取出称呼，可以用如下的方式：
+```python
+combi['Title'] = combi['Name'].str.extract('([A-Za-z]+)\.', expand=True)
+```
+`expand=True`使得得到的结果是Dataframe，否则为Series。结果就变成了Mr, Mrs和Miss。
+
 ### Feature engineering
 Feature engineering is the process of creating new features from existing data.
 
@@ -72,6 +79,19 @@ How do we know if any of these features are helpful? One method is to calculate 
 除了皮尔森系数还可以用决策树跑一下特征，然后参考特征的权重值。
 
 因为特征工程而生成数量庞大的新的特征时，注意避免会有 multiple comparisons problem 的问题。
+
+### Auto Feature Engineering
+通过这篇[notebook](https://www.kaggle.com/liananapalkova/automated-feature-engineering-for-titanic-dataset)的方式，我们用featuretools的方式求到一个准确率只有72%的结果。
+
+### Manual/Handcrafted Feature Engineering
+#### 处理称呼生成新的特征
+首先用前面介绍的方式截取出类似Mr, Mrs和Miss等的称呼，然后将一些不太常用的称呼统一归类到常用的称呼上：
+```python
+#replacing the rare title with more common one.
+mapping = {'Mlle': 'Miss', 'Major': 'Mr', 'Col': 'Mr', 'Sir': 'Mr', 'Don': 'Mr', 'Mme': 'Miss',
+          'Jonkheer': 'Mr', 'Lady': 'Mrs', 'Capt': 'Mr', 'Countess': 'Mrs', 'Ms': 'Miss', 'Dona': 'Mrs'}
+data_df.replace({'Title': mapping}, inplace=True)
+```
 
 ### Feature Selection
 1. Removing collinear variables
@@ -98,7 +118,10 @@ After this, it is then possible to use the get_dummies and get three new columns
 
 pandas.map() is used to map values from two series having one column same. For mapping two series, the last column of the first series should be same as index column of the second series, also the values should be unique.
 
-走合同，走材料费，一单不能超过2五万。小额零星的规矩。
+#### 输出分割线
+```python
+print (''.center(20, "*"))
+```
 
 
 ## 问题总结
@@ -110,7 +133,7 @@ pandas.map() is used to map values from two series having one column same. For m
 * t-SNE 是个啥？？
 
 ## References
-1. [如何在 Kaggle 首战中进入前 10%](https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/)
+1. ✅ [如何在 Kaggle 首战中进入前 10%](https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/)
 2. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)
 3. [分分钟带你杀入Kaggle Top 1%](https://zhuanlan.zhihu.com/p/27424282)
 4. [Learn Machine Learning](https://www.kaggle.com/dansbecker/learn-machine-learning)
@@ -124,20 +147,29 @@ pandas.map() is used to map values from two series having one column same. For m
 12. [Data Preparation for Sberbank](https://www.kaggle.com/optidatascience/data-preparation-for-sberbank)
 13. ✅ [Titanic: score over 80% - part 1 data preparation](https://www.kaggle.com/ymlai87416/titanic-score-over-80-part-1-data-preparation)
 14. [Titanic: score over 80% - part 2 model selection](https://www.kaggle.com/ymlai87416/titanic-score-over-80-part-2-model-selection)
-15. [Titanic, a step-by-step intro to Machine Learning](https://www.kaggle.com/ydalat/titanic-a-step-by-step-intro-to-machine-learning)
-16. [Introduction to Ensembling/Stacking in Python](https://www.kaggle.com/arthurtok/introduction-to-ensembling-stacking-in-python)
-17. [Exploring Survival on the Titanic](https://www.kaggle.com/mrisdal/exploring-survival-on-the-titanic)
-18. [Machine Learning Kaggle Competition Part One: Getting Started](https://towardsdatascience.com/machine-learning-kaggle-competition-part-one-getting-started-32fb9ff47426)
-19. ✅ [Machine Learning Kaggle Competition Part Two: Improving](https://towardsdatascience.com/machine-learning-kaggle-competition-part-two-improving-e5b4d61ab4b8)
-20. ✅ [Automated Feature Engineering in Python](https://towardsdatascience.com/automated-feature-engineering-in-python-99baf11cc219)
-21. [Introduction to Manual Feature Engineering](https://www.kaggle.com/willkoehrsen/introduction-to-manual-feature-engineering)
-22. [Introduction to Feature Selection](https://www.kaggle.com/willkoehrsen/introduction-to-feature-selection)
-23. [chrisalbon blog](https://chrisalbon.com/)
-24. [Open Machine Learning Course. Topic 1. Exploratory Data Analysis with Pandas](https://medium.com/open-machine-learning-course/open-machine-learning-course-topic-1-exploratory-data-analysis-with-pandas-de57880f1a68)
-25. [Understand Your Problem and Get Better Results Using Exploratory Data Analysis](https://machinelearningmastery.com/understand-problem-get-better-results-using-exploratory-data-analysis/)
-26. [Kaggle Tutorial: EDA & Machine Learning](https://www.datacamp.com/community/tutorials/kaggle-machine-learning-eda)
-27. [Exploratory data analysis - Coursera](https://www.coursera.org/lecture/competitive-data-science/exploratory-data-analysis-zvOJc?authMode=login)
-28. ✅ [Feature Engineering](https://jakevdp.github.io/PythonDataScienceHandbook/05.04-feature-engineering.html)
-29. [Discover Feature Engineering, How to Engineer Features and How to Get Good at It](https://machinelearningmastery.com/discover-feature-engineering-how-to-engineer-features-and-how-to-get-good-at-it/)
-30. [Why Automated Feature Engineering Will Change the Way You Do Machine Learning](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96)
-31. [A Hands-On Guide to Automated Feature Engineering using Featuretools in Python](https://www.analyticsvidhya.com/blog/2018/08/guide-automated-feature-engineering-featuretools-python/)
+15. [Best Titanic Survival Prediction for Beginners.](https://www.kaggle.com/vin1234/best-titanic-survival-prediction-for-beginners)
+16. [Titanic, a step-by-step intro to Machine Learning](https://www.kaggle.com/ydalat/titanic-a-step-by-step-intro-to-machine-learning)
+17. [Introduction to Ensembling/Stacking in Python](https://www.kaggle.com/arthurtok/introduction-to-ensembling-stacking-in-python)
+18. [Exploring Survival on the Titanic](https://www.kaggle.com/mrisdal/exploring-survival-on-the-titanic)
+19. [Machine Learning Kaggle Competition Part One: Getting Started](https://towardsdatascience.com/machine-learning-kaggle-competition-part-one-getting-started-32fb9ff47426)
+20. [Machine Learning Kaggle Competition Part One: Getting Started](https://towardsdatascience.com/machine-learning-kaggle-competition-part-one-getting-started-32fb9ff47426)
+21. ✳️ [Machine Learning Kaggle Competition Part Two: Improving Feature engineering, feature selection, and model evaluation](https://towardsdatascience.com/machine-learning-kaggle-competition-part-two-improving-e5b4d61ab4b8)
+22. ✅ [Automated Feature Engineering in Python](https://towardsdatascience.com/automated-feature-engineering-in-python-99baf11cc219)
+23. [Introduction to Manual Feature Engineering](https://www.kaggle.com/willkoehrsen/introduction-to-manual-feature-engineering)
+24. [Introduction to Feature Selection](https://www.kaggle.com/willkoehrsen/introduction-to-feature-selection)
+25. [chrisalbon blog](https://chrisalbon.com/)
+26. [Open Machine Learning Course. Topic 1. Exploratory Data Analysis with Pandas](https://medium.com/open-machine-learning-course/open-machine-learning-course-topic-1-exploratory-data-analysis-with-pandas-de57880f1a68)
+27. [Understand Your Problem and Get Better Results Using Exploratory Data Analysis](https://machinelearningmastery.com/understand-problem-get-better-results-using-exploratory-data-analysis/)
+28. [Kaggle Tutorial: EDA & Machine Learning](https://www.datacamp.com/community/tutorials/kaggle-machine-learning-eda)
+29. [Exploratory data analysis - Coursera](https://www.coursera.org/lecture/competitive-data-science/exploratory-data-analysis-zvOJc?authMode=login)
+30. ✅ [Feature Engineering](https://jakevdp.github.io/PythonDataScienceHandbook/05.04-feature-engineering.html)
+31. [Discover Feature Engineering, How to Engineer Features and How to Get Good at It](https://machinelearningmastery.com/discover-feature-engineering-how-to-engineer-features-and-how-to-get-good-at-it/)
+32. [Why Automated Feature Engineering Will Change the Way You Do Machine Learning](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96)
+33. [A Hands-On Guide to Automated Feature Engineering using Featuretools in Python](https://www.analyticsvidhya.com/blog/2018/08/guide-automated-feature-engineering-featuretools-python/)
+34. ❇️ [Start Here: A Gentle Introduction](https://www.kaggle.com/willkoehrsen/start-here-a-gentle-introduction)
+35. [Introduction to Manual Feature Engineering](https://www.kaggle.com/willkoehrsen/introduction-to-manual-feature-engineering/notebook)
+36. [当你在应用机器学习时你应该想什么](https://zhuanlan.zhihu.com/p/27345831)
+37. [最具价值的50个机器学习应用[2017年]](https://zhuanlan.zhihu.com/p/33674059)
+38. [scikit-learn Machine Learning in Python](http://scikit-learn.org/stable/)
+39. [TOP AND BEST BLOG ABOUT ARTIFICIAL INTELLIGENCE MACHINE/DEEP LEARNING](https://www.favouriteblog.com/)
+40. [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)

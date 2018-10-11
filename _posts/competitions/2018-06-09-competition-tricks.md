@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "竞赛流程记录"
+title: "传统机器学习的应用流程总结"
 author: "Bin Li"
 tags: [Competitions]
 category: ""
@@ -22,16 +22,75 @@ published: false
 ### 管道
 当有了管道，做特征组合就好做很多。
 
-## 特征选择
-可以用 Lasso，Ridge，RandomForest 或者 GradientBoostingTree
+## 特征选择 
+可以用 Lasso，Ridge，RandomForest 或者 GradientBoostingTree计算出各个特征的权重，然后按照比例选择。
 
 ## 集成
 ### 权重平均
 通过普通的集成，能够提取一些特征，这些特征可以和原特征整合到一起。
 
 
+---
+
+## 机器学习应用模板
+### 数据导入
+
+### 数据处理
+
+### 线下验证
+
+### 结果整理
+#### 拆分数据
+```python
+train_X = features_positive[:train_df.shape[0]]
+test_X = features_positive[train_df.shape[0]:]
+```
+### 交叉验证
+```python
+x_score = []
+cv_pred = []
+
+skf = StratifiedKFold(n_splits=n_splits, random_state=seed, shuffle=True)
+
+for index, (train_index, test_index) in enumerate(skf.split(X_train, y_train)):
+    print('---------------->', index) # 0-4
+    
+    X_tra, X_val, y_tra, y_val = X_train[train_index], X_train[test_index], y_train[train_index], y_train[test_index]
+    
+    clf = KNeighborsClassifier(n_neighbors=15)
+    clf.fit(X_tra, y_tra)
+    
+    y_pred = clf.predict(X_val)
+    y_pred = [np.argmax(item) for item in y_pred]
+
+    x_score.append(f1_score(y_val, y_pred, average='weighted'))
+    
+    # for whole testing set
+    y_test = clf.predict(X_test)
+    y_test = [np.argmax(item) for item in y_test]
+    
+    if index == 0:
+        cv_pred = np.array(y_test).reshape(-1, 1)
+    else:
+        cv_pred = np.hstack((cv_pred, np.array(y_test).reshape(-1, 1)))
+```
+
+### 导出结果
+```python
+# vote for the results
+y_pred = []
+
+for line in cv_pred:
+    # bincount: Count number of occurrences of each value in array of non-negative ints.
+    y_pred(np.argmax(np.bincount(line)))
+
+# without cv just start from here
+my_submission = pd.DataFrame({'PassengerId': passenger_id, 'Survived': y_pred})
+my_submission.to_csv('auto_ft_submission.csv', index=False)
+```
 
 ## Reference
-[All You Need is PCA (LB: 0.11421, top 4%)](https://www.kaggle.com/massquantity/all-you-need-is-pca-lb-0-11421-top-4)
-[Kaggle 首战拿银总结 | 入门指导 (长文、干货）](https://zhuanlan.zhihu.com/p/26645088)
+1. [All You Need is PCA (LB: 0.11421, top 4%)](https://www.kaggle.com/massquantity/all-you-need-is-pca-lb-0-11421-top-4)
+2. [Kaggle 首战拿银总结 | 入门指导 (长文、干货）](https://zhuanlan.zhihu.com/p/26645088)
+3. [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
 
