@@ -22,8 +22,13 @@ sns.countplot(x='Survived', data=train_df)
 # explore the relationship between Survived and Pclass
 sns.factorplot(x='Survived', col='Pclass', kind='count', data=train_df)
 ```
-
 ![](/img/media/15393321990639.jpg)
+
+对数值特征进行绘图分析：
+```python
+sns.distplot(df_train.Fare, kde=False)
+```
+![](/img/media/15393350239731.jpg)
 
 
 

@@ -1,6 +1,7 @@
----
+
 <!--
 
+---
 layout: post
 title: 
 subtitle:
@@ -9,7 +10,7 @@ tags: []
 image: 
 comments: true
 published: false
-
+---
 
 layout: post
 title: "topic"
@@ -32,5 +33,4 @@ published: true
 
 -->
 
----
 
