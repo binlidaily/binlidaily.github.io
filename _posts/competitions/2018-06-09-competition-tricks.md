@@ -11,6 +11,22 @@ published: false
 ## 探索性的可视化
 一般可以用到 seaborn 库做可视化，找到一些异常点去除掉。
 
+对类别特征进行绘图分析：
+```python
+sns.countplot(x='Survived', data=train_df)
+```
+![](/img/media/15393321529801.jpg)
+
+拼接多个类别特征进行绘图分析：
+```python
+# explore the relationship between Survived and Pclass
+sns.factorplot(x='Survived', col='Pclass', kind='count', data=train_df)
+```
+
+![](/img/media/15393321990639.jpg)
+
+
+
 ## 数据清洗
 处理缺省值，可以用平均值，众数，计数等替换。
 
@@ -93,4 +109,5 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 1. [All You Need is PCA (LB: 0.11421, top 4%)](https://www.kaggle.com/massquantity/all-you-need-is-pca-lb-0-11421-top-4)
 2. [Kaggle 首战拿银总结 | 入门指导 (长文、干货）](https://zhuanlan.zhihu.com/p/26645088)
 3. [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
+4. [Automatic extraction of relevant features from time series](https://github.com/blue-yonder/tsfresh)
 
