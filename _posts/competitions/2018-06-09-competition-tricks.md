@@ -30,6 +30,43 @@ sns.distplot(df_train.Fare, kde=False)
 ```
 ![](/img/media/15393350239731.jpg)
 
+画散点图，其中一个是标签类型：
+```python
+sns.stripplot(x='Survived',
+             y='Fare',
+             data=train_df,
+             alpha=0.3,
+             jitter=True)
+```
+![](/img/media/15393364294278.jpg)
+
+Draw a categorical scatterplot with non-overlapping points:
+```python
+sns.swarmplot(x='Survived',
+             y='Fare',
+             data=train_df)
+```
+![](/img/media/15393365644325.jpg)
+
+颜色区分标签，X轴、Y轴是两类特征的绘图分析：
+```python
+sns.lmplot(x='Age',
+          y='Fare',
+          hue='Survived',
+          data=train_df,
+          fit_reg=False,
+          scatter_kws={'alpha':0.5})
+```
+![](/img/media/15393488202275.jpg)
+
+上面的操作中，将`fit_reg`设置为True就能绘制fit的直线。
+
+想要看类似每一对特征的数据绘制分析图：
+```python
+sns.pairplot(train_df_dropna, hue='Survived')
+```
+![](/img/media/15394198766858.jpg)
+
 
 
 ## 数据清洗
@@ -59,6 +96,45 @@ sns.distplot(df_train.Fare, kde=False)
 ### 数据处理
 
 ### 线下验证
+#### 计算训练数据上的准确率
+```python
+# Compute accuracy on the training set
+train_accuracy = clf.score(X, y)
+```
+
+#### 利用有标签的训练数据进行调参
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42, stratify=y)
+
+# ----------------------------------------
+# Setup arrays to store train and test accuracies
+dep = np.arange(1, 9)
+train_accuracy = np.empty(len(dep))
+test_accuracy = np.empty(len(dep))
+
+# Loop over different values of k
+for i, k in enumerate(dep):
+    # Setup a k-NN Classifier with k neighbors: knn
+    clf = tree.DecisionTreeClassifier(max_depth=k)
+
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
+
+    # Compute accuracy on the training set
+    train_accuracy[i] = clf.score(X_train, y_train)
+
+    # Compute accuracy on the testing set
+    test_accuracy[i] = clf.score(X_test, y_test)
+
+# Generate plot
+plt.title('clf: Varying depth of tree')
+plt.plot(dep, test_accuracy, label = 'Testing Accuracy')
+plt.plot(dep, train_accuracy, label = 'Training Accuracy')
+plt.legend()
+plt.xlabel('Depth of tree')
+plt.ylabel('Accuracy')
+plt.show()
+```
 
 ### 结果整理
 #### 拆分数据
