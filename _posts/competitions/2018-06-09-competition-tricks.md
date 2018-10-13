@@ -5,7 +5,7 @@ author: "Bin Li"
 tags: [Competitions]
 category: ""
 comments: true
-published: false
+published: ture
 ---
 
 ## 探索性的可视化
@@ -79,11 +79,86 @@ sns.pairplot(train_df_dropna, hue='Survived')
 
 我们可以尽量多的创造出特征，而且相信模型能够选出正确的特征。
 
+### Numerical Features
+
+### Categorical Features
+#### Encode categorical features into numerical ones
+直接离散化，从0开始以自然数增长的形式加以区别每个类：
+```python
+# Factorize the values 
+labels, uniques = pd.factorize(trian_df.Class)
+
+# Save the encoded variables in `iris.Class`
+trian_df.Class = labels
+
+# Print out the first rows
+trian_df.Class.head()
+```
+
+#### Scale Features
+将离散数据归一化到在零附近。
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler().fit(X)
+
+rescaledX = scaler.transform(X)
+```
+
+
 ### 管道
 当有了管道，做特征组合就好做很多。
 
 ## 特征选择 
 可以用 Lasso，Ridge，RandomForest 或者 GradientBoostingTree计算出各个特征的权重，然后按照比例选择。
+
+### 利用决策树计算每个特征的重要性
+
+```python
+# Import `RandomForestClassifier`
+from sklearn.ensemble import RandomForestClassifier
+
+# Isolate Data, class labels and column values
+X = train_df.iloc[:,0:4]
+Y = train_df.iloc[:,-1]
+names = iris.columns.values
+
+# Build the model
+rfc = RandomForestClassifier()
+
+# Fit the model
+rfc.fit(X, Y)
+
+# Print the results
+print("Features sorted by their score:")
+print(sorted(zip(map(lambda x: round(x, 4), rfc.feature_importances_), names), reverse=True))
+```
+
+可以通过绘图来直观地找出重要性较大的特征：
+```python
+# Isolate feature importances 
+importance = rfc.feature_importances_
+
+# Sort the feature importances 
+sorted_importances = np.argsort(importance)
+
+# Insert padding
+padding = np.arange(len(names)-1) + 0.5
+
+# Plot the data
+plt.barh(padding, importance[sorted_importances], align='center')
+
+# Customize the plot
+plt.yticks(padding, names[sorted_importances])
+plt.xlabel("Relative Importance")
+plt.title("Variable Importance")
+
+# Show the plot
+plt.show()
+```
+![](/img/media/15394280464000.jpg)
+
 
 ## 集成
 ### 权重平均
@@ -96,6 +171,7 @@ sns.pairplot(train_df_dropna, hue='Survived')
 ### 数据导入
 
 ### 数据处理
+
 
 ### 线下验证
 #### 计算训练数据上的准确率
