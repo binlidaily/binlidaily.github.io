@@ -106,6 +106,17 @@ scaler = StandardScaler().fit(X)
 rescaledX = scaler.transform(X)
 ```
 
+#### Bin continuous variables in groups
+```python
+# Define the bins
+mybins = range(0, df.age.max(), 10)
+
+# Cut the data from the DataFrame with the help of the bins
+df['age_bucket'] = pd.cut(df.age, bins=mybins)
+
+# Count the number of values per bucket
+df['age_bucket'].value_counts()
+```
 
 ### 管道
 当有了管道，做特征组合就好做很多。
