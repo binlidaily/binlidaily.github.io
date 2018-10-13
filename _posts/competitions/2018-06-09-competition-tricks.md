@@ -21,6 +21,8 @@ sns.countplot(x='Survived', data=train_df)
 ```python
 # explore the relationship between Survived and Pclass
 sns.factorplot(x='Survived', col='Pclass', kind='count', data=train_df)
+# this make the x-label rotate 45°
+# plt.xticks(rotation=45)
 ```
 ![](/img/media/15393321990639.jpg)
 
@@ -135,6 +137,41 @@ plt.xlabel('Depth of tree')
 plt.ylabel('Accuracy')
 plt.show()
 ```
+利用通过plot出来的准确率走势图看出参数取值多少时最好，很明显这里我们选择了`max_depth=3`。
+![](/img/media/15394209074718.jpg)
+
+进一步可以通过Grid Search和CV来找到更好的参数`max_depth`：
+```python
+# Setup the hyperparameter grid
+dep = np.arange(1,9)
+param_grid = {'max_depth' : dep}
+
+# Instantiate a decision tree classifier: clf
+clf = tree.DecisionTreeClassifier()
+
+# Instantiate the GridSearchCV object: clf_cv
+clf_cv = GridSearchCV(clf, param_grid=param_grid, cv=5)
+
+# Fit it to the data
+clf_cv.fit(X, y)
+
+# Print the tuned parameter and score
+print("Tuned Decision Tree Parameters: {}".format(clf_cv.best_params_))
+print("Best score is {}".format(clf_cv.best_score_))
+```
+输出如下：
+```python
+
+Tuned Decision Tree Parameters: {'max_depth': 3}
+Best score is 0.8294051627384961
+```
+
+接着我们可以基于此时找到的比较好的参数的模型`clf_cv`来进行预测：
+```python
+Y_pred = clf_cv.predict(test)
+df_test['Survived'] = Y_pred
+df_test[['PassengerId', 'Survived']].to_csv('results/dec_tree_feat_eng.csv', index=False)
+```
 
 ### 结果整理
 #### 拆分数据
@@ -189,6 +226,6 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 ## Reference
 1. [All You Need is PCA (LB: 0.11421, top 4%)](https://www.kaggle.com/massquantity/all-you-need-is-pca-lb-0-11421-top-4)
 2. [Kaggle 首战拿银总结 | 入门指导 (长文、干货）](https://zhuanlan.zhihu.com/p/26645088)
-3. [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
+3. ❇️ [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
 4. [Automatic extraction of relevant features from time series](https://github.com/blue-yonder/tsfresh)
 
