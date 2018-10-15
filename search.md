@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Search posts"
-css: "./css/search.css"
+css: "/css/search.css"
 ---
 
 # Search Posts
@@ -20,6 +20,5 @@ css: "./css/search.css"
     s.parentNode.insertBefore(gcse, s);
   })();
 </script>
-<gcse:searchbox></gcse:searchbox>
-<gcse:searchresults></gcse:searchresults>
+<gcse:search></gcse:search>
 </div>
