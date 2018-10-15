@@ -83,4 +83,5 @@ $$x^2+y^2=1$$
 3. [cayman](https://pages-themes.github.io/cayman/)
 4. [minima](https://jekyll.github.io/minima/)
 5. [julia](http://themes.jekyllrc.org/julia/)
+6. [Adding a Google Custom Search Engine to your beautiful-jekyll site](http://jasdumas.com/2016-05-07-adding-gcse-to-beautiful-jekyll/)
 
