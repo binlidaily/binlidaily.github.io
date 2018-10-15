@@ -135,6 +135,20 @@ var main = {
   }
 };
 
+ // get the GET parameters in the URL
+ getQueryParams : function() {
+    var qs = document.location.search.replace(/\?/g, "&").split("+").join(" ");
+
+    var params = {}, tokens, re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+      params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+ },
+ 
+
 // 2fc73a3a967e97599c9763d05e564189
 
 document.addEventListener('DOMContentLoaded', main.init);
