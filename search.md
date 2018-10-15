@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Search posts"
-css: "/css/search.css"
+css: "./css/search.css"
 ---
 
 # Search Posts
