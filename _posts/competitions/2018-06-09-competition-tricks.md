@@ -315,4 +315,5 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 2. [Kaggle 首战拿银总结 | 入门指导 (长文、干货）](https://zhuanlan.zhihu.com/p/26645088)
 3. ❇️ [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
 4. [Automatic extraction of relevant features from time series](https://github.com/blue-yonder/tsfresh)
+5. [A searchable compilation of Kaggle past solutions](https://github.com/EliotAndres/kaggle-past-solutions)
 

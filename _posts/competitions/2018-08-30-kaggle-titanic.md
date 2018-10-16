@@ -81,7 +81,7 @@ How do we know if any of these features are helpful? One method is to calculate 
 因为特征工程而生成数量庞大的新的特征时，注意避免会有 multiple comparisons problem 的问题。
 
 ### Auto Feature Engineering
-通过这篇[notebook](https://www.kaggle.com/liananapalkova/automated-feature-engineering-for-titanic-dataset)的方式，我们用featuretools的方式求到一个准确率只有72%的结果。
+通过这篇[notebook](https://www.kaggle.com/liananapalkova/automated-feature-engineering-for-titanic-dataset)的方式，如果数据只有一个 table 的话，我们可以利用`normalize_entity`函数来创造 dummy tables，我们用featuretools的方式求到一个准确率只有72%的结果。
 
 ### Manual/Handcrafted Feature Engineering
 #### 处理称呼生成新的特征
