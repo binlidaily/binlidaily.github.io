@@ -25,8 +25,8 @@ description: A virtual proof that name is awesome!
 # List of links in the navigation bar
 navbar-links:
   Blogs: "https://binlidaily.github.io"
-  Resources:
-    - Learn markdown: "http://www.markdowntutorial.com/"
+  Outlines:
+    - Algorithms: "https://binlidaily.github.io/2018-10-17-algorithm-outlines/"
     - GitHub Pages: "https://pages.github.com/"
   # Author's home: "http://deanattali.com"
   About Me: "aboutme"
