@@ -9,7 +9,7 @@ comments: true
 published: false
 ---
 
-题意理解：用户输入前缀词，然后有预测出来的用户完整需求查询词，那么就会有一篇文章出现（怎么出现的？应该是我们推荐给他的？），以及这篇文章相关的标题和标签内容，然后预测用户会不会点击该文章。
+[题意](https://tianchi.aliyun.com/competition/uploadResult.htm?spm=5176.11165261.5678.6.e53b2efcpMtq9U&raceId=231688)理解：用户输入前缀词，然后有预测出来的用户完整需求查询词，那么就会有一篇文章出现（怎么出现的？应该是我们推荐给他的？），以及这篇文章相关的标题和标签内容，然后预测用户会不会点击该文章。
 
 ## Load Data
 读取数据注意下数据的奇葩格式：
@@ -35,6 +35,8 @@ val_df = pd.read_csv('datalab/4608/OGeek算法挑战赛最新版本数据/oppo_r
 > 文本分类思想：主要是如何组织输入文本？另外query_prediction权重考虑？ 传统特征：tfidf，bow，ngram+tfidf，sent2vec，lsi，lda等特征 深度学习模型： 参考知乎看山杯(知乎)以及Kaggle Toxic比赛 https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/discussion/52557 https://www.kaggle.com/larryfreeman/toxic-comments-code-for-alexander-s-9872-model/comments https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/discussion/52702
 > Stacking无效(模型个数限制)，简单Blending，NN+LightGBM的方案比较靠谱？
 > PS1：词向量可使用word2vec训练或者使用公开词向量数据：https://github.com/Embedding/Chinese-Word-Vectors PS2：分词需要加上自定义词典，分词质量对模型训练很重要！
+
+
 
 
 
