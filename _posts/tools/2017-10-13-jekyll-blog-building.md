@@ -75,12 +75,13 @@ $$x^2+y^2=1$$
 在阅读了这篇[博客](https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/)后简单试了下。
 
 ### 折叠一部分内容
-<details><summary>Show Code here</summary><p>
+<details><summary>Show Code here</summary>
+  <p>
 
 ```python
 print("hello world!")
 ```
-</p>
+  </p>
 </details>
 
 
