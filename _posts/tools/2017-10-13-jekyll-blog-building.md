@@ -8,7 +8,7 @@ comments: true
 
 本文记录在用 Jekyll 搭建博客时遇到的一些问题。
 
-## jekyll-paginate 依赖问题
+### jekyll-paginate 依赖问题
 
 当在根目录下运行 `jekyll s` 时会报如下依赖错误的话：
 
@@ -20,7 +20,7 @@ Dependency Error: Yikes! It looks like you don't have jekyll-paginate or one of 
 
 <!--more-->
 
-## 公式显示问题
+### 公式显示问题
 
 在页面上显示数学公式，这里要在` head.html` 中加入如下代码：
 
@@ -53,7 +53,7 @@ $$x^2+y^2=1$$
 
 公式中如果有竖线的话可以用 `$\vert$`
 
-## 图片显示问题
+### 图片显示问题
 
 将所有的 `post` 图片放到根目录下新建的 `media` 文件夹中，然后在引入图片的时候要用`![](\media\name_of_pic.jpg)` 这样来引入，不能有名字，要有 `\media` 开头。
 
@@ -65,16 +65,25 @@ $$x^2+y^2=1$$
 </p>
 ```
 
-## sass
+### sass
 `@include`
 `@mixin`
 `@content`
 `@media`
 
-## 如何在 Github Pages 中加入 category 和 tags 功能
+### 如何在 Github Pages 中加入 category 和 tags 功能
 在阅读了这篇[博客](https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/)后简单试了下。
 
-## build 时出现的一些问题
+### 折叠一部分内容
+<details><summary>CLICK ME</summary>
+<p>
+**yes, even hidden code blocks!**
+
+```python
+print("hello world!")
+```
+</p>
+</details>
 
 
 ## Jekyll Themes
