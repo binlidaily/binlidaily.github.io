@@ -68,6 +68,13 @@ $$H(X)=-\Sigma_{i=1}^n p_i \log p_i$$
 TODO
 * 多类的处理方法，非二叉树类型
 
+算法流程：
+1. 生成一个结点
+2. 判断是否有划分必要
+    * 有必要：根据某个特征，对应这个特征下的所有取值分成对应的子节点，继续对子节点进行步骤1、2的过程。
+    * 无必要：返回
+3. 判断最终结束条件
+
 ### 划分子树
 
 判断叶节点的类型时如果仍有多个类型的数据在，那么就采用投票的方法。
@@ -81,8 +88,17 @@ TODO
 3. 除了属性为空，当前结点包含的样本结合为空时，无法进一步划分。
 
 
+### 代码实现
+```python
+# Check if expansion of y is needed
+        if len(np.shape(y)) == 1:
+            y = np.expand_dims(y, axis=1)
+```
+为什么要拓展y的维度？
 
+设定min_samples_split（最小的划分样本），即如果还剩下大于等于这个数字的样本数，那么继续划分。类似的，设定max_depth，防止决策树划分太深；还要设定min_impurity（最小的不纯度），要超过这个最小不纯度，就继续划分。
 
+#### 预测的做法
 
 ## 回归树
 
@@ -96,7 +112,10 @@ TODO
 
 ## 实际应用
 
-
+## 总结
+代码实现算法的时候，首先第一步需要将每一步要做什么细节的用伪代码的形式写下来才能比较好的进行Code。
+1. 模型的起点，如何更新，结束条件有哪些
+2. 如何预测
 
 ## References
 1. [Complete Guide to Parameter Tuning in XGBoost (with codes in Python)](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)

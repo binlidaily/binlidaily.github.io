@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Outlines of Algorithms in Machine Learning, Deep Learning
+title: Outlines of Algorithms
 subtitle:
 author: Bin Li
 tags: []
