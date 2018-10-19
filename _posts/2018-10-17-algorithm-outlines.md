@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Outlines of Algorithms
+title: Outline of Algorithms
 subtitle:
 author: Bin Li
 tags: []
