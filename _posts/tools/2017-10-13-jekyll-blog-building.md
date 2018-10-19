@@ -88,9 +88,9 @@ print("hello world!")
 ```
 The page build failed for the `master` branch with the following error:
 
-The variable `{{|D^v|}` on line 79
+The variable `{ {|D^v|}` on line 79
 ```
-`{{`中间加一个空格即可。
+`{ {`中间加一个空格即可。
 
 ## Jekyll Themes
 1. [Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
