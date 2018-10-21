@@ -87,21 +87,50 @@ $$Ent(D) = - \Sigma_{k=1}^{|y|} p_k \log p_k$$
 
 如果此时我们用有$v$个可能取值${a^1, a^2, \dots, a^V}$的离散属性$a$来划分当前样本集合$D$，能够得到$V$个分支子树，每个分支子树$D^v$都包含各自在属性$a$上的同一取值$a^v$（这里只是$X$方面的一致，label的取值是不一定一样的）。根据上面信息熵的定义，我们可以计算出划分之后的每一个子树的信息熵$Ent(D^v)$，然后通过对子树信息熵的加权求和得到划分后所有子树的整体信息熵（这个其实是条件熵）：
 
-$$Ent(a\_braches)=\Sigma_{v=1}^V { {|D^v|}\over {|D|}}Ent(D^v)$$
+$$Ent(D, a)=\Sigma_{v=1}^V { {|D^v|}\over {|D|}}Ent(D^v)$$
 
 然后我们比较划分前后的信息熵变化：
 
-$$Gain(D, a)=Ent(D)-Ent(a\_branches)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}Ent(D^v)$$
+$$Gain(D, a)=Ent(D)-Ent(D, a)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}Ent(D^v)$$
 
 我们将划分前后的信息熵变化定义为信息增益（Information Gain），信息增益越大，说明当前的划分越能够降低信息的不纯度，亦即越能够降低系统的不确定性，如此得到的决策树决策效果越好。于是我们就选择能够使得信息增益最大的属性进行划分，著名的ID3就是根据信息增益来进行划分属性的。
 
 **Drawbacks**
 信息增益有一个比较严重的缺点是会非常倾向取值多的那一类特征，因为属性取值越多，$Ent(a\_braches)$的结果明显就会越小。当特征中有类似ID的属性，这个问题就比较棘手！
 
-#### 增益率
+#### 增益率（Gain Ratio）
+为了克服信息增益的劣势，后人就开始想是不是有这样一种抑制朝着多离散值的属性方向划分呢？那么我们可以设计一种衡量标准，当我们选怎离散值较多的属性的时候信息增益虽然最多，我们设计的这个衡量标准的值也会相应较大，这两个在一定程度上抵消。我们衡量划分的子树的信息量（Split Information，也称 Intrinsic Value）：
 
+$$Split\_info(D, a)=-\Sigma_{v=1}^{V}{{|D^v|}\over{|D|}}\log_2{{|D^v|}\over{|D|}}$$
 
-#### 基尼系数
+划分信息量可以衡量划分后数据的广度和均匀程度，划分后每个子树的数目越均匀，那么划分信息量就越大。因为信息增益在划分时就有找寻这种类似ID型特征的趋势，所以此时我们取划分信息量的倒数，亦即将信息增益除以划分信息量就能起到抑制效果，这就是所谓的增益率（Gain Ratio）：
+
+$$Gain\_ratio(D, a)={Gain(D, a)\over{Split\_info(D, a)}}$$
+
+于是，现在划分属性的依据是最大化增益率了。
+
+**Drawbacks**
+要想增益率尽量大，那么划分信息量就得尽量小，亦即尽量选择分裂子树更少的方式。例如，划分方式A是将数据均匀划分成n分，可计算得到划分信息量为$\log_2 n$；划分方式B是将数据均匀分成两个部分，则划分信息量为$1$；那么划分信息量会倾向选择能得到较小值的方案B，即子树数目小的。我们也可以通过对照对数函数在(0,1)区间的趋势图，很明显距离1的部分（即平均子树样本数较多的部分，也就是说划分子树较少时）函数结果较小，也就是更倾向选划分子树数目较少的方式！所以，增益率的**弱点**是有一点过分强调了找取值数目较少的属性。
+
+为了避免仅仅因为划分信息量非常小就选择一个特征来进行划分，C4.5在根据增益率划分属性的时候一般采用一种启发式方法，即先计算每个属性的信息增益，然后仅对增益高过平均值的属性应用增益率进行测试。
+
+#### 基尼系数（Gini Index）
+之前两个衡量不纯度（不确定性）的标准是依赖信息熵，但是信息熵的计算有$\log$运算，那么有没有一个没有那么复杂计算的衡量不纯度的方式呢？这就促生了基尼系数（Gini Index）。我们说一个东西的纯度（purity）高，一般指的是其中只包含一种物质，例如纯金的纯度；相对的不纯度（impurity）高说明里面的杂质多，在类别中的说法就是不同类的数目越多。那么，我们同样假设当前样本集合$D$中第$k$类样本所占比例为$p_k$（$k=1, 2, \dots, |y|$），那么我们连续抽取两个样本，这两个样本不属同一个类的概率如下：
+
+$$Gini(D)=\Sigma_{k=1}^{|y|}p_k(1-p_k)=\Sigma_{k=1}^{|y|}p_k-\Sigma_{k=1}^{|y|}p_k^2=1-\Sigma_{k=1}^{|y|}p_k^2$$
+
+这就是所谓的基尼系数，比较好理解的是，连续选取的两个样本不属于同一个类的概率越大，那么此批样本的不纯度就越高。所以，我们在划分属性的时候，选择能够使得基尼系数最小的属性。
+
+如果样本结合$D$根据属性$a$是否取某一可能值$c$被划分成$D_1$和$D_2$两部分，即：
+
+$$D_1={(x,y)\in D|A(x)=a}, D_2=D-D_1$$
+
+则在特征$a$的条件下，集合$D$的基尼系数定义为：
+
+$$Gini(D,a)={|D_1|\over{|D|}}Gini(D_1)+{|D_2|\over{|D|}}Gini(D_2)$$
+
+**Advantages**
+基尼系数在计算上会快一些，因为没有求$\log$运算。
 
 ### 递归退出条件
 决策树采用递归方式生成，在递归时有如下几个递归结束的条件：
@@ -121,7 +150,7 @@ $$Gain(D, a)=Ent(D)-Ent(a\_branches)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}
 
 设定min_samples_split（最小的划分样本），即如果还剩下大于等于这个数字的样本数，那么继续划分。类似的，设定max_depth，防止决策树划分太深；还要设定min_impurity（最小的不纯度），要超过这个最小不纯度，就继续划分。
 
-#### 代码实现问题
+**代码实现问题**
 1、按照开源的代码实现的结果是，准确率一直不太稳定，偏差太大。
 
 #### 预测的做法
@@ -129,6 +158,15 @@ $$Gain(D, a)=Ent(D)-Ent(a\_branches)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}
 
 
 ## 决策树应用注意
+#### 剪枝处理（Pruning）
+决策树比较大的问题是容易过拟合，为了在一定程度上抑制这样的现象就提出了剪枝（Pruning）的操作，剪枝分为预剪枝和后剪枝两种。
+
+**预剪枝**
+在决策树的生成过程中，对每个结点在划分前先进行估计，若当前结点的划分不能带来*泛化性能*上的提升，则停止划分并将当前结点标记为叶节点。
+
+**后剪枝**
+先从训练集生成完整的决策树，然后自底向上地对每一个非叶子结点进行考察，如果将该结点的子树改成叶结点能够提高决策树的性能，那么就将当前结点的子树改成对应的叶结点。
+
 ### 连续值处理
 
 
@@ -139,7 +177,7 @@ $$Gain(D, a)=Ent(D)-Ent(a\_branches)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}
 ### ID3
 ### C4.5
 ### CART
-
+只是二分类能保证所有类别能在叶子结点上体现？
 
 ## 回归树
 
@@ -157,3 +195,5 @@ $$Gain(D, a)=Ent(D)-Ent(a\_branches)=Ent(D)-\Sigma_{v=1}^V { {|D^v|}\over {|D|}}
 1. [Complete Guide to Parameter Tuning in XGBoost (with codes in Python)](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)
 2. [Page 11 - BASIC CONCEPTS IN INFORMATION THEORY](http://www-public.imtbs-tsp.eu/~uro/cours-pdf/poly.pdf)
 3. [Intuitive explanation of entropy](https://math.stackexchange.com/questions/331103/intuitive-explanation-of-entropy)
+4. [决策树算法原理](http://www.cnblogs.com/pinard/p/6050306.html)
+5. [A Complete Tutorial on Tree Based Modeling from Scratch (in R & Python)](https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/)
