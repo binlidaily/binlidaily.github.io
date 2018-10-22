@@ -4,7 +4,7 @@ title: "逻辑斯特回归"
 author: Bin
 tags: [Machine Learning]
 comments: true
-published: True
+published: true
 ---
 
 逻辑斯特回归 (Logistic Regression) 是机器学习中的一种分类模型，由于算法的简单高效，在实际运用中非常的广泛。
