@@ -37,7 +37,12 @@ val_df = pd.read_csv('datalab/4608/OGeek算法挑战赛最新版本数据/oppo_r
 > PS1：词向量可使用word2vec训练或者使用公开词向量数据：https://github.com/Embedding/Chinese-Word-Vectors PS2：分词需要加上自定义词典，分词质量对模型训练很重要！
 
 
-
+### Command Line
+开启远程jupyter：
+```
+ssh -N -f -L localhost:8880:localhost:8889 binli@192.168.31.173
+scp ./data_preprocessing-Copy1.ipynb binli@192.168.31.173:/home/binli/competition
+```
 
 
 ### TODO
