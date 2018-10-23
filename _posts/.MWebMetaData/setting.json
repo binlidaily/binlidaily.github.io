@@ -1,9 +1,9 @@
 {
-  "name" : "Blog",
+  "name" : "_posts",
   "fileExtension" : ".md",
   "autoUploadInsertedImage" : false,
-  "folderType" : 11,
-  "mediaFloder" : "img\/media",
+  "folderType" : 10,
+  "mediaFloder" : "media",
   "orderBy" : 0,
   "newlinesToBR" : 0
 }

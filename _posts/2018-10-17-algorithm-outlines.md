@@ -4,7 +4,7 @@ title: Outline of Algorithms
 subtitle:
 author: Bin Li
 tags: []
-image: 
+image: /img/media/15402674665772.png
 comments: true
 published: true
 ---
@@ -12,11 +12,29 @@ published: true
 
 为了方便在博客中找到对应的算法，特例整理了本篇博文，将机器学习、深度学习、数学以及算法与数据结构都分类列举在此，希望自己能够多整理多输出，打牢这些方面的基本功！
 
-## 机器学习
-### 监督学习
-* [线性回归](https://binlidaily.github.io/2018-06-03-regression/)
-* [逻辑斯特回归](https://binlidaily.github.io/2017-10-03-Logistics-Regression/)
-* [决策树](https://binlidaily.github.io/2018-09-11-decision-tree/)
+## Machine Learning
+### Supervised Learning
+* [Linear Regression](https://binlidaily.github.io/2018-06-03-regression/)
+* [Logistic Regression](https://binlidaily.github.io/2017-10-03-Logistics-Regression/)
+* [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
+* Random Forest
+
+### Unsupervised Learning
+#### Clustering
+* K-Means
+* K-Medians
+* Latent Dirichlet Allocation (LDA)
+
+## Deep Learning
+### Image Classification
+* VGG
+### Object Detection
+* SSD
 
 
-## 深度学习
+## Mathematics
+### Information Theory
+* Intropy
+
+### Optimization
+* Gradient Descent
