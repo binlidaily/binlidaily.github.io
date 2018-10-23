@@ -3,7 +3,7 @@ layout: post
 title: Outline of Algorithms
 subtitle:
 author: Bin Li
-tags: []
+tags: [Outline]
 bigimg: /img/media/15402674665772.png
 comments: true
 published: true

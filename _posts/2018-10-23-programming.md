@@ -3,7 +3,7 @@ layout: post
 title: Outline Of Programming Skills
 subtitle:
 author: Bin Li
-tags: [Programming]
+tags: [Programming, Outline]
 bigimg: /img/media/15402653744155.jpg
 comments: true
 published: true
