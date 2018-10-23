@@ -32,7 +32,7 @@ $${g(x) }= {1\over{1+e^{-x}}}$$
 从式子上可以看出，当$x$接近与无穷大时，分母会接近于$1$，则整体结果接近与$1$；当$x$接近于无穷小时，分母接近于无穷大，则整体结果接近于0。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于0.5的认为是1，小于0.5的认为是0.
 
 <p align="center">
-    <img width="445" length="" src="/images/media/15068430849483.jpg">
+    <img width="445" length="" src="/img/media/15068430849483.jpg">
 </p>
 
 
@@ -76,7 +76,7 @@ OK，至此我们有了目标函数且是凸优化类型，接下来就要求解
 
 
 <p align="center">
-  <img width="" height="" src="/images/media/15068489255584.jpg">
+  <img width="" height="" src="/img/media/15068489255584.jpg">
 </p>
 
 
@@ -86,7 +86,7 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 求导过程如下：
 
-![](/images/media/1731507971179_.pic_hd.jpg)
+![](/img/media/1731507971179_.pic_hd.jpg)
 
 
 沿着梯度负方向选择一个较小的步长可以保证损失函数是减小的，另一方面，逻辑回归的损失函数凸函数（加入正则项后是严格凸函数？），可以保证我们找到的局部最优值同时是全局最优。此外，常用的凸优化的方法都可以用于求解该问题。例如共轭梯度下降，牛顿法，LBFGS等。这样就代码实现 Logistic Regression 了。
