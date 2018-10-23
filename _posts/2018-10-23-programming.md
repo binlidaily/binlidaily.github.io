@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-本博文作为一个索引博文，目的是方便找到对应的博文。
+This is an index page for quick search which post you wanna check.
 
 ## Programming Language
 ### Python
