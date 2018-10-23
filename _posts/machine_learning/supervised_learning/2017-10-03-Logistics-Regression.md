@@ -16,6 +16,7 @@ published: true
 2. 判断用户的性别
 3. 预测用户是否会购买给定的品类
 4. 判断一条评论是正面的还是负面的
+5. 同样在预测概率的时候，LR 也是将为常用的
 
 这些问题都可以看成分类问题，准确地说是二分类问题。我们可以拿到数据集的特征和标签，就得到一组训练数据：
 
@@ -25,11 +26,11 @@ $$D = (x^1, y^1),~(x^2, y^2),~...,~(x^N, y^N)$$
 
 ## 引入 Logistic Regression
 ### Sigmoid Function
-在此之前我们有线性回归这样的模型来做回归，但是在前面的那些实际场合下，我们需要分类。考虑到线性回归模型的简单高效，在处理大数据量问题上有其好处。我们看是否有可能在其基础上做一个拓展使之能够做分类问题，从简单的二分类开始。于是想到在线性回归的基础上我们再套上一个可以将实数映射到 $\{0，1\}$ 两种结果上，于是我们就想到了 Sigmoid 函数，形式如下：
+在此之前我们有线性回归这样的模型来做回归，但是在前面的那些实际场合下，我们需要分类结果而非连续的实数结果。考虑到线性回归模型的简单高效，在处理大数据量问题上有其好处。我们看是否有可能在其基础上做一个拓展使之能够做分类问题，从简单的二分类开始。于是想到在线性回归的基础上我们再套上一个可以将实数映射到 $\{0，1\}$ 两种结果上的函数，于是我们就想到了 Sigmoid 函数，形式如下：
 
 $${g(x) }= {1\over{1+e^{-x}}}$$
 
-从式子上可以看出，当$x$接近与无穷大时，分母会接近于$1$，则整体结果接近与$1$；当$x$接近于无穷小时，分母接近于无穷大，则整体结果接近于0。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于0.5的认为是1，小于0.5的认为是0.
+从式子上可以看出，当 $x$ 接近与无穷大时，分母会接近于 $1$，则整体结果接近与 $1$；当 $x$ 接近于无穷小时，分母接近于无穷大，则整体结果接近于 $0$。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于 $0.5$ 的认为是 $1$ ，小于 $0.5$ 的认为是 $0$.
 
 <p align="center">
     <img width="445" length="" src="/img/media/15068430849483.jpg">
@@ -43,14 +44,14 @@ $${P(y = 1| x; \Theta) = g(\Theta^Tx)}={1\over{1+e^{-{\Theta^Tx}}}}$$
 
 $${P(y = 0| x; \Theta) = 1- g(\Theta^Tx)}={e^{-{\Theta^Tx}}\over{1+e^{-{\Theta^Tx}}}}$$
 
-当 $P(y=1 \vert x)>0.5$，则预测的结果 $y^*=1$。当然这个选定的阈值也不一定就必须是0.5，可以看特定的情况选择不同的阈值。如果整理的判别准确性要求高一些，可以选择阈值大一些。对正例的召回率要求高，则可以选择阈值小一些。
+当 $P(y=1 \vert x)>0.5$，则预测的结果 $y^*=1$。当然这个选定的阈值也不一定就必须是 $0.5$，可以看特定的情况选择不同的阈值。如果对正例的判别准确性要求高一些，可以选择阈值大一些。对正例的召回率要求高，则可以选择阈值小一些。
 
 ### 求解 Logistic Regression 模型
-对于一般的机器学习模型，都有一个训练目标函数，可以是最小化损失函数。这里我们就想着怎么从已知的决策函数入手，构成对应的损失函数。从决策函数中可以看出，其实我们还有一个很重要的参数尚且不知道，那就是$\Theta$。如何去求得这个 $\Theta$ 呢？可以利用统计学里面常用的方法——最大似然估计法来估计参数，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大。那么 Logistic Regression 问题的似然度（概率）可以表示成如下形式，我们将结果是0/1的两种情况结合表达：
+对于一般的机器学习模型，都有一个训练目标函数，可以是最小化损失函数。这里我们就想着怎么从已知的决策函数入手，构成对应的损失函数。从决策函数中可以看出，其实我们还有一个很重要的参数尚且不知道，那就是 $\Theta$。如何去求得这个 $\Theta$ 呢？可以利用统计学里面常用的方法——最大似然估计法来估计参数，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大。那么 Logistic Regression 问题的似然度（概率）可以表示成如下形式，我们将结果以 $0/1$ 的两种情况结合表达：
 
 $$L(\Theta)=P(D|\Theta)=\prod{P(y|x,\Theta)}=\prod{g(\Theta^Tx)^y(1-g(\Theta^Tx))^{1-y}}$$
 
-注意最后的转换是将 $y \in \{0，1\}$ 的两种情况放到一起变成了一个式子，如果分情况来说的话就很麻烦了，这一转换从形式上来将应该是等价的。这两个部分在y取0或者1时，只会留下一个起作用的部分，另外的部分为1，对乘积没有影响，这种转换实在是很机智啊！🙃
+注意最后的转换是将 $y \in \{0，1\}$ 的两种情况放到一起变成了一个式子，如果分情况来说的话就很麻烦了，这一转换从形式上来将应该是等价的。这两个部分在 $y$ 取 $0$ 或者 $1$ 时，只会留下一个起作用的部分，另外的部分为 $1$ ，对乘积没有影响，这种转换实在是很机智啊！🙃
 
 然而这样有指数的式子不太好计算，我们可以将这个似然度取对数，这样的就变成了对数似然度：
 
@@ -130,15 +131,11 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 ## References
 
-[美团点评](https://tech.meituan.com/intro_to_logistic_regression.html)
-
-[Logistic Regression](http://ufldl.stanford.edu/tutorial/supervised/LogisticRegression/)
-
-[Softmax 回归](http://deeplearning.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92)
-
-[Code for Logistic Regression](https://github.com/perborgen/LogisticRegression.git)
-
-[How To Implement Logistic Regression With Stochastic Gradient Descent From Scratch With Python](https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python/)
+1. [美团点评](https://tech.meituan.com/intro_to_logistic_regression.html)
+2. [Logistic Regression](http://ufldl.stanford.edu/tutorial/supervised/LogisticRegression/)
+3. [Softmax 回归](http://deeplearning.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92)
+4. [Code for Logistic Regression](https://github.com/perborgen/LogisticRegression.git)
+5. [How To Implement Logistic Regression With Stochastic Gradient Descent From Scratch With Python](https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python/)
 
 
 
