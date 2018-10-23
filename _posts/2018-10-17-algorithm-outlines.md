@@ -34,7 +34,7 @@ published: true
 
 ## Mathematics
 ### Information Theory
-* Intropy
+* Entropy
 
 ### Optimization
 * Gradient Descent
