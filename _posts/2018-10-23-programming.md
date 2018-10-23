@@ -11,9 +11,14 @@ published: true
 
 本博文作为一个索引博文，目的是方便找到对应的博文。
 
-## Python
+## Programming Language
+### Python
 * Python
 * Numpy
 * Pandas
 * Matplotlib
 * Seaborn
+
+## Programming Environment
+### Python
+* Jupyter
