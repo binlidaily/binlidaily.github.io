@@ -4,7 +4,7 @@ title: Outline Of Programming Skills
 subtitle:
 author: Bin Li
 tags: [Programming]
-image: /img/media/15402653744155.jpg
+bigimg: /img/media/15402653744155.jpg
 comments: true
 published: true
 ---
