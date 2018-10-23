@@ -28,6 +28,8 @@ published: true
 ## Deep Learning
 ### Image Classification
 * VGG
+
+
 ### Object Detection
 * SSD
 
