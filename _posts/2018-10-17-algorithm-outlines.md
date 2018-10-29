@@ -4,7 +4,6 @@ title: Outline of Algorithms
 subtitle:
 author: Bin Li
 tags: [Outline]
-bigimg: /img/15402674665772.png
 comments: true
 published: true
 ---

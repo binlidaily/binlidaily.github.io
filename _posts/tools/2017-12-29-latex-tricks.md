@@ -81,6 +81,14 @@ style: |
 
 花体 ($\cal{T}$): `\cal{T}`
 
+#### 公式对齐
+$$
+\begin{align}
+a &= b + c \tag{3}\\
+  &= d + e + f\tag{4}
+\end{align}
+$$
+
 ## Presentation
 ### 一页ppt不会自动居中对齐
 ```

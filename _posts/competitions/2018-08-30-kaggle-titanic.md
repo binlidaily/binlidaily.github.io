@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kaggle 入门一步一步记录
-subtitle: 认真，坚持
+subtitle: 
 author: Bin Li
 tags: [Machine Learning, Competitions]
 image: 
@@ -67,9 +67,9 @@ Name属性是类似的形式'Braund, Mr. Owen Harris'、'Futrelle, Mrs. Jacques 
 ```python
 combi['Title'] = combi['Name'].str.extract('([A-Za-z]+)\.', expand=True)
 ```
-`expand=True`使得得到的结果是Dataframe，否则为Series。结果就变成了Mr, Mrs和Miss。
+`expand=True`使得得到的结果是 Dataframe，否则为 Series。结果就变成了Mr, Mrs和Miss。
 
-### Feature engineering
+### Feature Engineering
 Feature engineering is the process of creating new features from existing data.
 
 如果出现多个csv文件的数据的情况，首先我们要把所有数据集中到一起来，才好做特征工程。那么在整合的时候，对于连续数值型数据，一般会对`mean`, `max`, `min`, `sum`做一个group的统计。
@@ -81,11 +81,11 @@ How do we know if any of these features are helpful? One method is to calculate 
 因为特征工程而生成数量庞大的新的特征时，注意避免会有 multiple comparisons problem 的问题。
 
 ### Auto Feature Engineering
-通过这篇[notebook](https://www.kaggle.com/liananapalkova/automated-feature-engineering-for-titanic-dataset)的方式，如果数据只有一个 table 的话，我们可以利用`normalize_entity`函数来创造 dummy tables，我们用featuretools的方式求到一个准确率只有72%的结果。
+通过这篇[notebook](https://www.kaggle.com/liananapalkova/automated-feature-engineering-for-titanic-dataset)的方式，如果数据只有一个 table 的话，我们可以利用`normalize_entity`函数来创造 dummy tables，我们用featuretools的方式求到一个准确率只有 $72%$ 的结果。
 
 ### Manual/Handcrafted Feature Engineering
 #### 处理称呼生成新的特征
-首先用前面介绍的方式截取出类似Mr, Mrs和Miss等的称呼，然后将一些不太常用的称呼统一归类到常用的称呼上：
+首先用前面介绍的方式截取出类似 Mr, Mrs 和 Miss 等的称呼，然后将一些不太常用的称呼统一归类到常用的称呼上：
 ```python
 #replacing the rare title with more common one.
 mapping = {'Mlle': 'Miss', 'Major': 'Mr', 'Col': 'Mr', 'Sir': 'Mr', 'Don': 'Mr', 'Mme': 'Miss',
@@ -118,10 +118,7 @@ After this, it is then possible to use the get_dummies and get three new columns
 
 pandas.map() is used to map values from two series having one column same. For mapping two series, the last column of the first series should be same as index column of the second series, also the values should be unique.
 
-#### 输出分割线
-```python
-print (''.center(20, "*"))
-```
+
 
 
 ## 问题总结
@@ -169,7 +166,7 @@ print (''.center(20, "*"))
 34. ❇️ [Start Here: A Gentle Introduction](https://www.kaggle.com/willkoehrsen/start-here-a-gentle-introduction)
 35. [Introduction to Manual Feature Engineering](https://www.kaggle.com/willkoehrsen/introduction-to-manual-feature-engineering/notebook)
 36. [当你在应用机器学习时你应该想什么](https://zhuanlan.zhihu.com/p/27345831)
-37. [最具价值的50个机器学习应用[2017年]](https://zhuanlan.zhihu.com/p/33674059)
+37. [最具价值的50个机器学习应用 (2017年)](https://zhuanlan.zhihu.com/p/33674059)
 38. [scikit-learn Machine Learning in Python](http://scikit-learn.org/stable/)
 39. [TOP AND BEST BLOG ABOUT ARTIFICIAL INTELLIGENCE MACHINE/DEEP LEARNING](https://www.favouriteblog.com/)
 40. [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)

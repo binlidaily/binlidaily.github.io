@@ -10,6 +10,7 @@ published: true
 逻辑斯特回归 (Logistic Regression) 是机器学习中的一种分类模型，由于算法的简单高效，在实际运用中非常的广泛。
 
 
+
 ## 实际运用场景
 实际工作中，我们可能会遇到如下问题：
 1. 预测用户是否会点击特定的商品
@@ -94,12 +95,10 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 
 
-
-
 ## Logistic Regression 优缺点
 优点：
 
-* 分类时计算量小，速度很快，存储资源低
+* 分类时计算量小，速度很快，存储资源低，而且容易并行
 * 易于理解和实现
 * 直接对分类可能性进行建模，无需事先假设数据分布，避免了假设分布不准确所带来的问题
 * 不仅预测类别，而且是近似概率预测
@@ -107,8 +106,8 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 缺点：
 
-* 只能处理二分类问题，且必须线性可分
-* 容易欠拟合，一般准确率不太高
+* 只能处理二分类问题，且必须线性可分，当然为了能实现多分类，也有对应的多项逻辑斯特回归模型。
+* 模型表达能力弱，容易欠拟合，一般准确率不太高，所以需要大量的特征组合和离散的工作来增加特征的表达性
 
 在李宏毅视频当中还提到了一个LR的局限，我们参看下面的例子。
 
@@ -128,6 +127,14 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\Sigma(y_i-y_i^*)x_i+\lambda\The
 
 此外，由于LR模型的简单高效，易于实现，可以为后续模型优化提供一个不错的baseline，我们在排序等服务中也使用了LR模型。可以参考我实现的 [LR 模型](https://github.com/binlidaily/ml-analysis/blob/master/Logistic%20Regression/logistic_regression.py)。
 
+## 工具介绍
+业界对逻辑回归的研究热点主要是在`稀疏性`、`准确性`和`大规模计算`上。逻辑回归的优化版本有 BFGS，LBFGS，共轭梯度法，信赖域法；针对在线学习遇到的稀疏性和准确性问题，谷歌和伯克利分校提出了稀疏性比较好的 FOBOS 算法，微软提出了 RDA 算法。谷歌综合了精度比较好的 RDA 和稀疏性比较好的 FOBOS 提出了 FTRL，但在 $L_1$ 范数或者非光滑的正则项下，FTRL 效果会更好。
+
+LibLinear 是基于信赖域实现的，Spark MLlib 里的逻辑回归是基于 LBFGS 的。
+* LibLinear
+* Sklearn
+* Spark MLlib
+* **FTRL**
 
 ## References
 
