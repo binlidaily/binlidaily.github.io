@@ -6,7 +6,7 @@ author: Bin Li
 tags: []
 image: 
 comments: true
-published: true
+published: false
 ---
 
 ### 自由度
