@@ -27,7 +27,15 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ## Applied Machine Learning
 ### Feature Engineering
-* 
+Feature Engineering include Feature Extraction and Feature Selection.
+#### Feature Extraction
+* Exploratory Data Analysis (EDA)
+
+#### Feature Selection
+* Feature Selection Methods
+
+### Model Ensemble
+* Model Ensemble Methods
 
 ## Deep Learning
 ### Image Classification
@@ -40,7 +48,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ## Mathematics
 ### Information Theory
-* Entropy
+* [Entropy](https://binlidaily.github.io/2018-10-23-information-theory/)
 
 ### Optimization
 * Gradient Descent
