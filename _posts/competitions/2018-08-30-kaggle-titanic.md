@@ -128,6 +128,7 @@ pandas.map() is used to map values from two series having one column same. For m
     * 众数填充
 * heatmap 是起什么作用的？
 * t-SNE 是个啥？？
+* [bad case 分析](https://blog.csdn.net/login_sonata/article/details/54315273)。
 
 ## References
 1. ✅ [如何在 Kaggle 首战中进入前 10%](https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/)
