@@ -237,7 +237,7 @@ $$
 f ( x ) = \sum _ { m = 1 } ^ { M } c _ { m } I \left( x \in R _ { m } \right)
 $$
 
-其中 $I$ 为指示函数，$I = \left\{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} \right.$
+其中 $I$ 为指示函数，$I = \left \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} \right.$
 
 可以用李宏毅视频上的截图来介绍！⁉️
 
@@ -247,7 +247,7 @@ $$
 \hat { c } _ { m } = \operatorname { ave } \left( y _ { i } | x _ { i } \in R _ { m } \right)
 $$
 
-给定一个随机的数列 $\left\{ x _ { 1 } , x _ { 2 } , \dots , x _ { n } \right\}$，假设该空间中最优的输出值为 $a$，则根据最小平方误差准则，我们能得到有关 $a$ 的函数如下：
+给定一个随机的数列 $\{ x _ { 1 } , x _ { 2 } , \dots , x _ { n } \}$，假设该空间中最优的输出值为 $a$，则根据最小平方误差准则，我们能得到有关 $a$ 的函数如下：
 $$
 F ( a ) = \left( x _ { 1 } - a \right) ^ { 2 } + \left( x _ { 2 } - a \right) ^ { 2 } + \ldots + \left( x _ { n } - a \right) ^ { 2 }
 $$
@@ -324,3 +324,4 @@ $$
 3. [Intuitive explanation of entropy](https://math.stackexchange.com/questions/331103/intuitive-explanation-of-entropy)
 4. [决策树算法原理](http://www.cnblogs.com/pinard/p/6050306.html)
 5. [A Complete Tutorial on Tree Based Modeling from Scratch (in R & Python)](https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/)
+6. [决策树—回归](https://zhuanlan.zhihu.com/p/42505644)
