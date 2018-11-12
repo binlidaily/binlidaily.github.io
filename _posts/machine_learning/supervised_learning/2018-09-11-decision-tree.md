@@ -237,7 +237,7 @@ $$
 f ( x ) = \sum _ { m = 1 } ^ { M } c _ { m } I \left( x \in R _ { m } \right)
 $$
 
-其中 $I$ 为指示函数，$I = \left \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} \right.$
+其中 $I$ 为指示函数，$I =  \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} $
 
 可以用李宏毅视频上的截图来介绍！⁉️
 
@@ -267,7 +267,7 @@ $$
 
 那么接下来就是要讨论该如何划分了，选择第 $j$ 个变量 $x^{(j)}$ 和它的取值 $s$，作为切分变量（Splitting variable）和切分点（Splitting point），则由此划分的两个区域为：
 
-$$R _ { 1 } ( j , s ) = \{ x | x ^ { ( j ) } \leqslant s \} \text{ 和 } R _ { 2 } ( j , s ) = \{ x | x ^ { ( j ) } > s \}$$
+$$R _ { 1 } ( j , s ) = \{ x | x ^ { ( j ) } \leq s \} \text{ 和 } R _ { 2 } ( j , s ) = \{ x | x ^ { ( j ) } > s \}$$
 
 问题就转化成如何求解最优划分变量 $j$ 和 $s$，具体的有以下的方式：
 
