@@ -12,4 +12,5 @@ published: false
 ## Data Standardization
 
 ## Data Normalization
+z-score
 
