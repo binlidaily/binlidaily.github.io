@@ -316,4 +316,5 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 3. ❇️ [EDA, Machine Learning, Feature Engineering, and Kaggle](https://ugoproto.github.io/ugo_py_doc/EDA_Machine_Learning_Feature_Engineering_and_Kaggle/)
 4. [Automatic extraction of relevant features from time series](https://github.com/blue-yonder/tsfresh)
 5. [A searchable compilation of Kaggle past solutions](https://github.com/EliotAndres/kaggle-past-solutions)
+6. [Kaggle Grandmaster是怎样炼成的](https://www.jiqizhixin.com/articles/Kaggle-Grandmaster-AMA-Vladimir-Iglovikov)
 
