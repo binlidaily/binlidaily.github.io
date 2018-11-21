@@ -49,6 +49,8 @@ cd /dir/to/root
 du -sh */
 ```
 
+
+
 ## 解压文件
 ### .gz 后缀
 ```
@@ -72,9 +74,48 @@ bzip2 -d file.bz2
 bzip2 -dk file.bz2
 ```
 
+## 命令行
+### `uniq`去除重复行
+`uniq` 只能过滤掉相邻的重复行，所以要想搞定全部的重复行，就要先 `sort` 一下。
+```shell
+cat text.txt | sort | uniq
+```
+#### 列出第一列不重复的个数：
+ ```
+ awk -F ',' '{print $1}' test1.csv | sort | uniq | wc -l
+ ```
+
+### `>` 和 `>>` 重定向
+重定向的用一个 greater-than (>)，会替换掉之前的同名文件（如果有的话），两个 greater-than (>) 会在重定向指向的文件后面 append 对应的内容（如果存在同名文件的话）。
+
+```
+wc -l uid_stat_test.csv
+
+tail -n 2 uid_stat_test.csv > uid_only_test.csv
+
+head -n -4 uid_stat_test.csv >> uid_stat_test.csv
+```
+
+### `awk`
+
+
+## Shell Programming
+### list to dict：
+```
+dict((el,0) for el in a)
+```
+
 ## 参数
 ### Verbose Mode
 A verbose mode is an option available in many computer operating systems, including Microsoft Windows, macOS and Linux that provides additional details as to what the computer is doing and what drivers and software it is loading during startup.
 
 verbose 模式就是能够输出比较详细的运行信息。
 
+## 第三方库
+### tmux
+```
+tmux new -s session_name
+tmux ls
+tmux a -t session_name
+tmux kill-session -t myname
+```
