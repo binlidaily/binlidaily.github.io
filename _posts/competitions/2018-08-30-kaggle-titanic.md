@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-为了不让手生，纯复现机器学习算法也蛮无聊的，想抽空也看看Kaggle上的比赛，当然，刚开始还是拿已经结束的比较经典的比赛来试试看吧！
+为了不让手生，纯复现机器学习算法也蛮无聊的，想抽空也看看 Kaggle 上的比赛，当然，刚开始还是拿已经结束的比较经典的比赛来试试看吧！
 
 
 ## Titanic: Machine Learning from Disaster
