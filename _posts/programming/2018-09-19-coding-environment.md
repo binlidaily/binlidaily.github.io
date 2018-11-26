@@ -10,12 +10,33 @@ published: false
 ---
 
 ## Conda
+### Installation in Ubuntu
+```python
+# install curl first
+sudo apt-get install curl
+
+# get the anaconda package
+curl -O https://repo.anaconda.com/archive/Anaconda2-5.3.1-Linux-x86_64.sh
+# or use this link
+curl -O https://repo.continuum.io/archive/Anaconda2-5.3.1-Linux-x86_64.sh
+```
+
+After you download this package, just run it to install anaconda.
+
+```python
+bash Anaconda2-5.3.1-Linux-x86_64.sh
+```
+
+To make the changes take effect, close and then **re-open** your Terminal window. Then you can `conda` to test it.
+
+### Command Lines
+
 ```
 # if command not found: conda
 export PATH=~/anaconda2/bin:$PATH
 
 # create
-conda create -n env_name python=3 ipython numpy
+conda create -n env_name python=2 ipython numpy
 
 # add package
 conda install --name env_name scipy
@@ -47,8 +68,16 @@ tmux kill-session -t myname
 ```
 
 ## Jupyter
+### Installation
 ```
 sudo pip install jupyter
+```
+
+### Installation in Anaconda
+If we wanna create a jupyter environment with all dependent libraries, we can use this:
+
+```python
+conda create -n py2 python=2 ipython numpy scipy pandas jupyter matplotlib seaborn xgboost
 ```
 
 ### Start

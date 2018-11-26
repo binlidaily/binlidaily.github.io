@@ -96,6 +96,23 @@ tail -n 2 uid_stat_test.csv > uid_only_test.csv
 head -n -4 uid_stat_test.csv >> uid_stat_test.csv
 ```
 
+### `axel` vs `curl`
+`axel` 下载某链接的东西时如果出现 too many redirections，可以尝试用 `curl`。
+
+
+### 检查还剩多少内存
+```shell
+# Run "free" to see RAM information in KB.
+free
+# Run "free -m" to see RAM information in MB.
+free -m
+# Run "free -g" to see RAM information in GB.
+free -g
+```
+
+### 查看硬件设备
+If we are not super-user, we can use `lspci`, otherwise we can use `sudo lshw`.
+
 ### `awk`
 
 

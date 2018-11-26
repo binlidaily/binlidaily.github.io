@@ -22,11 +22,11 @@ published: true
 1. Data exploration and visualization
     * Explore dataset
     * Choose important features and visualize them according to survival/not-survival
-1. Data cleaning, Feature selection and Feature engineering
+2. Data cleaning, Feature selection and Feature engineering
     * Null values
     * Encode categorical data
     * Transform features
-1. Test different classifiers
+3. Test different classifiers
     * Logistic regression
     * KNN
     * Support Vector Machines (SVM)
@@ -34,9 +34,54 @@ published: true
     * Radom Forest
 
 
-### 数据预处理
-#### 认识数据
-* 看有什么类型的数据，每种数据应该用什么方式整理，数值型看最大最小值，众数，平均数等，标签型的看一共有多少类，分布是如何的，还有就是variable transformation, normalization and etc.
+## 数据预处理
+首先要认识数据，可以通过 pandas 方便的 `isnull` 来查看空值和异常值，通过 `describe` 来查看数据集的整体情况。
+```python
+print('Train columns with null values: \n')
+print( data1.isnull().sum())
+print('-'*10)
+
+print('Test/Validation columns with null values: \n')
+print(data_val.isnull().sum())
+print('-'*10)
+
+data_raw.describe(include='all')
+```
+
+### The 4C (Correcting, Completing, Creating and Converting)
+#### Correcting aberrant values and outliers
+
+
+#### Completing
+对于数据填充来说，定性数据（qualitative data）或称之为类别数据的，一般采用众数；而定量数据（quantitative data）或者称之为连续数据的，一般采用平均数，中位数，或者平均数加上随机标准差（randomized standard deviation）。
+
+填充并舍弃一些没有必要的数据后，就准备转换数据类型以符合模型的需要！
+
+#### Converting
+将处理空值和异常值搞定的数据中标称数据需要转化成 dummy variables 数值类型的数据，以下是常见的几种转换方式：
+* pandas.get_dummies
+* sklearn.preprocessing.LabelEncoder
+* sklearn.preprocessing.OneHotEncoder
+
+IMPORTANT: When it comes to data modeling, the beginner’s question is always, "what is the best machine learning algorithm?" To this the beginner must learn, the No Free Lunch Theorem (NFLT) of Machine Learning. In short, NFLT states, there is no super algorithm, that works best in all situations, for all datasets. So the best approach is to try multiple MLAs, tune them, and compare them for your specific scenario.
+
+
+### Python programming
+`pivot table` vs `crosstab`
+
+
+
+### plt.subplot(231) 中数字的区别
+表示要绘制出来的图表一共 $2*3$ 的格子
+
+
+### plt.barplot
+绘制出来的图像上面会有一个竖线，那个是误差棒。
+
+
+---
+
+首先要认识类型的数据，每种数据应该用什么方式整理，数值型看最大最小值，众数，平均数等，标签型的看一共有多少类，分布是如何的，还有就是variable transformation, normalization and etc.
 
 我们在处理数据的时候，最好将训练数据集和测试数据集放到一起来进行，然后再分开来训练和测试模型。
 
@@ -171,4 +216,4 @@ pandas.map() is used to map values from two series having one column same. For m
 38. [scikit-learn Machine Learning in Python](http://scikit-learn.org/stable/)
 39. [TOP AND BEST BLOG ABOUT ARTIFICIAL INTELLIGENCE MACHINE/DEEP LEARNING](https://www.favouriteblog.com/)
 40. [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
-41. [A Data Science Framework: To Achieve 99% Accuracy](https://www.kaggle.com/ldfreeman3/a-data-science-framework-to-achieve-99-accuracy)
+41. ✳️ [A Data Science Framework: To Achieve 99% Accuracy](https://www.kaggle.com/ldfreeman3/a-data-science-framework-to-achieve-99-accuracy)
