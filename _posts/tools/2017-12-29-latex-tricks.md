@@ -89,6 +89,11 @@ a &= b + c \tag{3}\\
 \end{align}
 $$
 
+#### 等式上加文字
+$$
+A \stackrel{\text{(1)(2)}}{=} B
+$$
+
 ## Presentation
 ### 一页ppt不会自动居中对齐
 ```
