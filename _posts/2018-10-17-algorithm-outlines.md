@@ -15,9 +15,10 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-regression/)
 * [Logistic Regression](https://binlidaily.github.io/2017-10-03-Logistics-Regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
-* Adaboost
+* [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
 * Xgboost
 * Random Forest
+* [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
 
 ### Unsupervised Learning
 #### Clustering
