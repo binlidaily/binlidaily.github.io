@@ -9,6 +9,10 @@ comments: true
 published: false
 ---
 
+## New Ubuntu Server
+## Conda Packages
+> ipython numpy scipy pandas jupyter matplotlib seaborn tensorflow keras pytorch mxnet
+
 ## Conda
 ### Installation in Ubuntu
 ```python
@@ -77,13 +81,25 @@ sudo pip install jupyter
 If we wanna create a jupyter environment with all dependent libraries, we can use this:
 
 ```python
-conda create -n py2 python=2 ipython numpy scipy pandas jupyter matplotlib seaborn xgboost
+conda create -n py2 python=2 ipython numpy scipy pandas jupyter matplotlib seaborn 
 ```
 
-### Start
+To install `xgboost`, we need certain channel：
+```shell
+conda install -c conda-forge xgboost 
+```
+
+To install `tmux` with conda run one of the following:
+```shell
+conda install -c conda-forge tmux 
+conda install -c conda-forge/label/gcc7 tmux 
+```
+
+### Run jupyter
 ```
 jupyter notebook
 ```
+
 ### Remote access jupyter
 
 首先在服务器端开启 jupyter，设定端口`8889`
@@ -98,7 +114,12 @@ ssh -N -f -L localhost:8888:localhost:8889 server_username@server_ip
 
 然后本地用 `localhost:8888` 访问即可，对应的 token 可以参看 Server 端启动 jupyter 时的链接后面部分。
 
+To access easily from remote client, we can set a password for server.
 
+```shell
+jupyter notebook --generate-config
+jupyter notebook password
+```
 ## Linux
 让命令行翻墙，可以直接从 Shadowsocks 软件那里复制具体的命令：
 ```shell

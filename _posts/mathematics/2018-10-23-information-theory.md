@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 信息论相关概念
+title: Information Theory
 subtitle:
 author: Bin Li
 tags: [Mathematics]
