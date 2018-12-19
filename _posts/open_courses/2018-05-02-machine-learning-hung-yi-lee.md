@@ -258,3 +258,9 @@ probability distribution在判定性没有假设，生成型中有假设。所�
 ![](/img/media/15280078580041.jpg)
 
 
+--
+
+## ML Lecture 12: Semi-supervised
+Semi-supervised learning
+* Transductive learning
+* Inductive learning

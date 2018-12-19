@@ -74,6 +74,9 @@ bzip2 -d file.bz2
 bzip2 -dk file.bz2
 ```
 
+### .tar 后缀
+
+
 ## 命令行
 ### `uniq`去除重复行
 `uniq` 只能过滤掉相邻的重复行，所以要想搞定全部的重复行，就要先 `sort` 一下。
@@ -115,6 +118,14 @@ If we are not super-user, we can use `lspci`, otherwise we can use `sudo lshw`.
 
 ### `awk`
 
+### 递归查找目录下特定后缀结尾的文件个数
+```shell
+find ./ -name "*.jpg" | wc -l
+```
+### 将某个文件夹下（包括子目录）特定后缀的所有文件都挪到另一个文件夹中
+```shell
+find ./ -iname '*.jpg' -exec mv '{}' ../JPEGImages/ \;
+```
 
 ## Shell Programming
 ### list to dict：
@@ -136,3 +147,8 @@ tmux ls
 tmux a -t session_name
 tmux kill-session -t myname
 ```
+
+
+
+
+

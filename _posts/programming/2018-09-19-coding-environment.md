@@ -11,7 +11,7 @@ published: false
 
 ## New Ubuntu Server
 ## Conda Packages
-> ipython numpy scipy pandas jupyter matplotlib seaborn tensorflow keras pytorch mxnet
+> ipython numpy scipy pandas jupyter matplotlib seaborn tensorflow keras pytorch mxnet gcc
 
 ## Conda
 ### Installation in Ubuntu
@@ -61,6 +61,18 @@ conda info --envs
 
 # remove
 conda env remove -n test_env_2
+```
+
+### Offline Operation
+You should use a combination of both answers.
+```shell
+conda install opencv --use-index-cache
+```
+to let conda check for dependencies and compatibility issues.
+
+But keep using conda (not pip) for the installation (if you don´t have serious reasons not to stay in the initial framework) [wasn´t the reason using conda as package manager because pip couldn't´t provide you those opportunities and flexibility?] You can download the `*.tar.bz2` [here](https://anaconda.org/anaconda/repo).
+```
+conda install opencv-3.3.0-py36_200.tar.bz2
 ```
 
 ## tmux
@@ -124,4 +136,9 @@ jupyter notebook password
 让命令行翻墙，可以直接从 Shadowsocks 软件那里复制具体的命令：
 ```shell
 export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;
+```
+
+离线的 server 装软件，可以先下载好 `*.deb` 包，然后利用
+```python
+sudo dpkg -i ./*.deb
 ```
