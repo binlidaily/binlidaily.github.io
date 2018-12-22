@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Boosting Tree
+title: Gradient Boosting
 subtitle:
 author: Bin Li
 tags: [Machine Learning]
