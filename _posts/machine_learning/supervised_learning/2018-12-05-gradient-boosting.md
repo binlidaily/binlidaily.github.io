@@ -125,6 +125,7 @@ $$
 其中 $x_i \in \mathcal{X} \subseteq \mathcal{R}^n$，$\mathcal{X}$ 为输入空间，$y_i \in \mathcal{Y} \subseteq \mathcal{R}$，$\mathcal{Y}$ 为输出空间，损失函数为 $L(y, f(x))$，我们的目标是得到最终的回归树 $\hat { f } ( x )$。
 
 1）首先初始化第一个弱学习器：
+
 $$
 f _ { 0 } ( x ) =  { \arg \min_ { c } }  \sum _ { i = 1 } ^ { m } L \left( y _ { i } , c \right)
 $$
@@ -137,18 +138,23 @@ r _ { m i } = - \left[ \frac { \partial L \left( y _ { i } , f \left( x _ { i } 
 $$
 
 以此作为残差的估计值！
+
 b）对 $r_{mi }$ 拟合一个回归树，得到第 $m$ 棵树的叶结点区域 $R_{mj}$，$j = 1,2 , \dots , J$。
+
 c）对 $j = 1,2 , \dots , J$，计算
 
 $$
 c _ { m j } = \arg \min _ { c } \sum _ { x _ { i } \in R _ { m j } } L \left( y _ { i } , f _ { m - 1 } \left( x _ { i } \right) + c \right)
 $$
+
 d）更新下一轮的学习器：
+
 $$
 f _ { m } ( x ) = f _ { m - 1 } ( x ) + \sum _ { j = 1 } ^ { J } c _ { m j } I \left( x \in R _ { m j } \right)
 $$
 
 3）最后得到回归树:
+
 $$
 \hat { f } ( x ) = f _ { M } ( x ) = \sum _ { m = 1 } ^ { M } \sum _ { j = 1 } ^ { J } c _ { m j } I \left( x \in R _ { m j } \right)
 $$
@@ -225,6 +231,9 @@ $$
 
 ## GBDT的正则化
 可参考博文。
+
+## Parameter Tuning
+[参考](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)。
 
 ## References
 1. [Gradient Boosting from scratch](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
