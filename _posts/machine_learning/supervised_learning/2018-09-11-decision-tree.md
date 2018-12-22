@@ -267,7 +267,7 @@ $$R _ { 1 } ( j , s ) = \{ x | x ^ { ( j ) } \leq s \} \text{ 和 } R _ { 2 } ( 
 问题就转化成如何求解最优划分变量 $j$ 和 $s$，具体的有以下的方式：
 
 $$
-\min _ { j , s } \left[ \min _ { c _ { 1 } } \sum _ { x _ { i } \in R _ { \perp } ( j , s ) } \left( y _ { i } - c _ { 1 } \right) ^ { 2 } + \min _ { c _ { 2 } } \sum _ { x _ { i } \in R _ { 2 } ( j , s ) } \left( y _ { i } - c _ { 2 } \right) ^ { 2 } \right]
+\min _ { j , s } \left[ \min _ { c _ { 1 } } \sum _ { x _ { i } \in R _ { 1 } ( j , s ) } \left( y _ { i } - c _ { 1 } \right) ^ { 2 } + \min _ { c _ { 2 } } \sum _ { x _ { i } \in R _ { 2 } ( j , s ) } \left( y _ { i } - c _ { 2 } \right) ^ { 2 } \right]
 $$
 
 对于固定输入变量 $j$，可以利用求均值的方式在内循环的 min 中找到这两个区域中的最优切分点 $s$：
