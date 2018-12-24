@@ -6,7 +6,7 @@ author: Bin Li
 tags: [Computer Vision]
 image: 
 comments: true
-published: false
+published: true
 ---
 
 

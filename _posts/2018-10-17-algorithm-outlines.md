@@ -53,4 +53,4 @@ Feature Engineering include Feature Extraction and Feature Selection.
 * [Entropy](https://binlidaily.github.io/2018-10-23-information-theory/)
 
 ### Optimization
-* Gradient Descent
+* [Gradient Descent](https://binlidaily.github.io/2018-04-24-gradient-descent/)
