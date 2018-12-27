@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Gradient Boosting
+title:  Boosting Tree and Gradient Boosting
 subtitle:
 author: Bin Li
 tags: [Machine Learning]
@@ -16,6 +16,8 @@ f_K(x) = \sum_{k=1}^K T(x;\Theta_k)
 $$
 
 其中 $T(x;\Theta_k)$ 表示二叉决策树，$\Theta_k$ 表示决策树的参数，$K$ 表示二叉决策树的个数。
+
+先捋清 Adaboost 和 Boosting Tree 的关系，Adaboost 是针对分类的监督算法， 当将 Adaboost 的基函数限定为二叉分类树，就得到了 Boosting Tree 的分类算法。在分类任务上可以说，Boosting Tree 算法是 Adaboost 的特例。然而 Adaboost 不处理回归问题，Boosting Tree 利用回归树能够处理回归问题。
 
 ## 提升树算法
 决策树采用前向分布算法，首先确定初始提升树 $f_0(x)=0$，第 $k$ 步的模型是：
