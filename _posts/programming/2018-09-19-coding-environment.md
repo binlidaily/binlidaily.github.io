@@ -6,12 +6,15 @@ author: Bin Li
 tags: [Programming]
 image: 
 comments: true
-published: false
+published: true
 ---
 
 ## New Ubuntu Server
-## Conda Packages
+### Conda Packages
 > ipython numpy scipy pandas jupyter matplotlib seaborn tensorflow keras pytorch mxnet gcc
+
+### Network
+有的 Ubuntu 服务器不能联网，导致装的环境问题非常多，除了购买外置的无线网卡外，还有一种解决方案，找一个支持 WDS 的无线路由器当做接收端就行了，在该无线路由器上设置一下桥接，连接到现有的无线网络上，然后从该充当无线网卡的无线路由器的一个 LAN 口引出一根网线接到服务器上就齐活了，网速很给力！😕
 
 ## Conda
 ### Installation in Ubuntu

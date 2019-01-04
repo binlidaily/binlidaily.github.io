@@ -103,20 +103,48 @@ head -n -4 uid_stat_test.csv >> uid_stat_test.csv
 `axel` 下载某链接的东西时如果出现 too many redirections，可以尝试用 `curl`。
 
 
+## 系统相关
 ### 检查还剩多少内存
 ```shell
 # Run "free" to see RAM information in KB.
 free
 # Run "free -m" to see RAM information in MB.
+# watch -n 1 free -m
 free -m
 # Run "free -g" to see RAM information in GB.
 free -g
+```
+或者采用如下的方式：
+```
+# watch -n 1
+cat /proc/meminfo
+```
+#### Free Up Unused Memory
+Command 1:
+```shell
+sudo sysctl -w vm.drop_caches=3
+```
+这命令不能加快系统运行速度或提高系统稳定性，只是清空 cache 就好。
+
+Command 2:
+```shell
+sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
 ```
 
 ### 查看硬件设备
 If we are not super-user, we can use `lspci`, otherwise we can use `sudo lshw`.
 
-### `awk`
+### 安装软件
+#### 离线安装
+平时用 apt-get install 装的软件，可以去 [ubuntu packages](https://packages.ubuntu.com) 上对应找到 deb 包下载下来，然后手动安装：
+```shell
+# -f, --fix-broken
+#           Fix; attempt to correct a system with broken dependencies in place.
+sudo apt-get install -f
+sudo dpkg -i /path/to/deb/file 
+```
+
+### awk
 
 ### 递归查找目录下特定后缀结尾的文件个数
 ```shell

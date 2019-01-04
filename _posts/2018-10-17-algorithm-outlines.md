@@ -45,7 +45,7 @@ Feature Engineering include Feature Extraction and Feature Selection.
 
 
 ### Object Detection
-* SSD
+* [Single Shot MultiBox Detector](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)
 
 
 ## Mathematics

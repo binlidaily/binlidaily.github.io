@@ -32,7 +32,19 @@ summary_writer = tf.summary.FileWriter('/tensorflow/logdir', sess.graph_def)
 然后要在命令行中开启 tensorboard :
 
 ```shell
-tensorboard --logdir=/tmp  --port=8008
+tensorboard --logdir=/tmp  --port=6006
+```
+
+如果想在远程访问：
+```shell
+ssh -NfL localhost:6006:crscd:6006 binli@192.168.31.127
+```
+
+若想在 Mac 上如何关掉这个端口可以用:
+```shell
+sudo lsof -nPi :yourPortNumber
+# then
+sudo kill -9 yourPIDnumber
 ```
 
 ## TensorFlow 代码相关

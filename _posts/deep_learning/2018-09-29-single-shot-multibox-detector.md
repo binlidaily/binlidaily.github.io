@@ -196,29 +196,87 @@ tensorflow.python.framework.errors_impl.InvalidArgumentError: Duplicate tag ssd_
 ```
 暂且先不管了吧，用自己的数据出问题了再说……😓
 
+### 模型训练
+#### Fine-tuning existing SSD checkpoints
+```shell
+DATASET_DIR=./tfrecords
+TRAIN_DIR=./logs/
+CHECKPOINT_PATH=./checkpoints/ssd_300_vgg.ckpt
+python train_ssd_network.py \
+    --train_dir=${TRAIN_DIR} \
+    --dataset_dir=${DATASET_DIR} \
+    --dataset_name=pascalvoc_2012 \
+    --dataset_split_name=train \
+    --model_name=ssd_300_vgg \
+    --checkpoint_path=${CHECKPOINT_PATH} \
+    --save_summaries_secs=60 \
+    --save_interval_secs=600 \
+    --weight_decay=0.0005 \
+    --optimizer=adam \
+    --learning_rate=0.001 \
+    --batch_size=32
+```
+
+
+DATASET_DIR=./tfrecords
+TRAIN_DIR=./logs/
+python train_ssd_network.py \
+    --train_dir=${TRAIN_DIR} \
+    --dataset_dir=${DATASET_DIR} \
+    --dataset_name=pascalvoc_2007 \
+    --dataset_split_name=train \
+    --model_name=ssd_300_vgg \
+    --save_summaries_secs=60 \
+    --save_interval_secs=600 \
+    --weight_decay=0.0005 \
+    --optimizer=adam \
+    --learning_rate=0.001 \
+    --batch_size=32
+    
+
+nvcc 和 nvdia-smi 都搞定后，跑 train 的命令行，又出现了错误：
+```shell
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Default MaxPoolingOp only supports NHWC on device type CPU
+```
+
+
+
 ---
 
 
-tensorboard 启动：
-```shell
-tensorboard --logdir=./log
-```
-如果远程看：
-```shell
-ssh -NfL 6006:localhost:6006 username@remote_server_address
-```
 
-如何关掉这个端口呢？
+
+在 Mac 上如何关掉这个端口呢？
 ```shell
 sudo lsof -nPi :yourPortNumber
 # then
 sudo kill -9 yourPIDnumber
 ```
 
-`nvidia-smi` 是由 cuda 和驱动提供的，于是就要对应的找资源安装了 cuda_10.0.130_410.48_linux.run 和 NVIDIA-Linux-x86_64-410.78.run。
+`nvidia-smi` 是由 cuda 和驱动提供的，于是就要对应的找资源尝试安装 cuda_10.0.130_410.48_linux.run 和 NVIDIA-Linux-x86_64-410.78.run。
+
+结果又报错了，提示没有装 gcc，于是下了 gcc-4.8.5-7.tar.bz2 用 conda 离线安装，报如下错误：
+
+```shell
+Can't install the gcc package unless your system has crtXXX.o.
+```
+
+因为服务器没联网总是用离线包装，老出问题，然后想办法连上了网，重装了系统的 gcc 就 OK 了。
+
+然后开始装 cuda 的驱动，后一个其实可以不用装，头一个上已经囊括了。装好了要手动配置下路径：
+
+```shell
+export PATH=$PATH:/usr/local/cuda-10.0/bin
+export CUDADIR=/usr/local/cuda-10.0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
+```
+
+然后就可以用 `nvcc` 和 `nvdia-smi` 来测试下环境和驱动有没有装好。
+
 
 ### 基于自己的数据训练模型
 #### 数据转化成 Pascal VOC 格式
+
 
 
 
