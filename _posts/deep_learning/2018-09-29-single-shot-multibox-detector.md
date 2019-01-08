@@ -217,6 +217,7 @@ python train_ssd_network.py \
     --batch_size=32
 ```
 
+如果想训练自己的模型，即从头开始训练的话，就取消 CHECKPOINT_PATH 的设置即可。
 
 DATASET_DIR=./tfrecords
 TRAIN_DIR=./logs/
@@ -239,14 +240,13 @@ nvcc 和 nvdia-smi 都搞定后，跑 train 的命令行，又出现了错误：
 tensorflow.python.framework.errors_impl.InvalidArgumentError: Default MaxPoolingOp only supports NHWC on device type CPU
 ```
 
+## 利用自己的数据进行训练
+### 转化数据
+数据放在了 DATASET数据放在了 DATASET_DIR=/mnt/archive/binli/oil_thermostat/ 中，首先将数据重命名，然后划分出训练集、验证集和测试集。
 
 
----
 
-
-
-
-在 Mac 上如何关掉这个端口呢？
+Mac 上如何关掉这个端口呢？
 ```shell
 sudo lsof -nPi :yourPortNumber
 # then
