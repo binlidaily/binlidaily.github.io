@@ -9,6 +9,13 @@ comments: true
 published: true
 ---
 
+回归问题：
+* MSE
+
+分类问题：
+* Hinge loss
+* Cross Entropy loss
+
 
 
 ## References
