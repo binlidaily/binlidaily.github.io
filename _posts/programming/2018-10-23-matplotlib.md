@@ -52,3 +52,24 @@ plt.legend()
 可以看到如果用了 stacked 之后能很明显的看到对比。
 
 ![-w260](/img/media/15430541096087.jpg)
+
+
+### 调参看效果 - 保存多个绘制的图像
+```python
+def save_plot_2in1(x1, y1, x2, y2, title1='', title2='', xlabel1='', xlabel2='', ylabel1='', ylabel2='', save_name='save_name'):
+	fig = plt.figure()
+	plt.subplot(2, 1, 1)
+	plt.plot(x1, y1)
+	plt.title(title1)
+	plt.xlabel(xlabel1)
+	plt.ylabel(ylabel1)
+
+	plt.subplot(2, 1, 2)
+	plt.plot(x2, y2)
+	plt.title(title2)
+	plt.xlabel(xlabel2)
+	plt.ylabel(ylabel2)
+	plt.draw()
+
+	fig.savefig(save_name + '.jpg')
+```

@@ -275,8 +275,91 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
 
 
 ### 基于自己的数据训练模型
-#### 数据转化成 Pascal VOC 格式
+#### 数据转化成 PasalVOC 数据格式
+首先第一步是建立好文件夹：
 
+> * Annotations  
+> * ImageSets  
+> * JPEGImages  
+> * SegmentationClass 
+> * SegmentationObject
+
+然后要对文件名进行重命名，xml 和 jpg 文件名字要对应上，图省事就直接用了现成的代码：
+```python
+import os  
+      
+class BatchRename():  
+      
+        def __init__(self):  
+
+            self.path = '../'  
+            self.type = '.jpg'
+      
+        def rename(self):  
+            filelist = os.listdir(self.path)  
+            total_num = len(filelist)  
+            i = 1  
+            n = 6  
+            for item in filelist:  
+                if item.endswith(self.type):  
+                    n = 6 - len(str(i))  
+                    src = os.path.join(os.path.abspath(self.path), item)  
+                    dst = os.path.join(os.path.abspath(self.path), str(0)*n + str(i) + self.type)  
+                    try:  
+                        os.rename(src, dst)  
+                        print 'converting %s to %s ...' % (src, dst)  
+                        i = i + 1  
+                  
+                    except:  
+                        continue  
+            print 'total %d to rename & converted %d jpgs' % (total_num, i)  
+      
+if __name__ == '__main__':  
+        demo = BatchRename()  
+        demo.rename()  
+```
+
+因为已经标记好了数据，接下来就是要生成对应的训练验证数据的文件，方便模型找到对应的文件：
+```python
+import os  
+import random   
+  
+xmlfilepath=r'/Users/Bin/Downloads/oil/Annotations'  
+ImageSetsPath=r"/Users/Bin/Downloads/oil/ImageSets/"  
+  
+trainval_percent=0.7 
+train_percent=0.7  
+total_xml = os.listdir(xmlfilepath)  
+num=len(total_xml)    
+list=range(num)    
+tv=int(num*trainval_percent)    
+tr=int(tv*train_percent)    
+trainval= random.sample(list,tv)    
+train=random.sample(trainval,tr)    
+  
+print("train and val size",tv)  
+print("train size",tr)  
+ftrainval = open(os.path.join(ImageSetsPath,'Main/trainval.txt'), 'w')    
+ftest = open(os.path.join(ImageSetsPath,'Main/test.txt'), 'w')    
+ftrain = open(os.path.join(ImageSetsPath,'Main/train.txt'), 'w')    
+fval = open(os.path.join(ImageSetsPath,'Main/val.txt'), 'w')    
+  
+for i  in list:    
+    name=total_xml[i][:-4]+'\n'    
+    if i in trainval:    
+        ftrainval.write(name)    
+        if i in train:    
+            ftrain.write(name)    
+        else:    
+            fval.write(name)    
+    else:    
+        ftest.write(name)    
+    
+ftrainval.close()    
+ftrain.close()    
+fval.close()    
+ftest .close() 
+```
 
 
 
