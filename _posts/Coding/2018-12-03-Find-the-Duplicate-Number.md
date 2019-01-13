@@ -117,3 +117,6 @@ From above equation, we can conclude below
 $$m + k = (x-2y)*n$$
 
 Which means m+k is a multiple of n. 
+
+## References
+1. [287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)

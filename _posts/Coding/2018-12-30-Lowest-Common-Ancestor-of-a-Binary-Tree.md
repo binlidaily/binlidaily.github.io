@@ -49,5 +49,30 @@ p and q are different and both values will exist in the BST.
 ### 3、(p < root < q) or (q < root < p)
 当出现这类大小关系时，根据 BST 的特性，我们能够判断此时 root 就是节点 p 和 q 的最近共同祖先。
 
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        while root:
+            if p.val < root.val > q.val:
+                root = root.left
+            elif p.val > root.val < q.val:
+                root = root.right
+            else:
+                return root
+```
+
 ## References
 1. [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)

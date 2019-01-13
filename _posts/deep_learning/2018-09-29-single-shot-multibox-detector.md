@@ -219,6 +219,7 @@ python train_ssd_network.py \
 
 如果想训练自己的模型，即从头开始训练的话，就取消 CHECKPOINT_PATH 的设置即可。
 
+```python
 DATASET_DIR=./tfrecords
 TRAIN_DIR=./logs/
 python train_ssd_network.py \
@@ -233,7 +234,7 @@ python train_ssd_network.py \
     --optimizer=adam \
     --learning_rate=0.001 \
     --batch_size=32
-    
+``` 
 
 nvcc 和 nvdia-smi 都搞定后，跑 train 的命令行，又出现了错误：
 ```shell
@@ -284,6 +285,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
 > * SegmentationClass 
 > * SegmentationObject
 
+**1、重命名**
+
 然后要对文件名进行重命名，xml 和 jpg 文件名字要对应上，图省事就直接用了现成的代码：
 ```python
 import os  
@@ -319,7 +322,12 @@ if __name__ == '__main__':
         demo.rename()  
 ```
 
+重命名需要注意的是，最好在所有的xml 和 jpg 都在同 一个文件夹里的时候进行重命名操作。
+
+**2、划分数据**
+
 因为已经标记好了数据，接下来就是要生成对应的训练验证数据的文件，方便模型找到对应的文件：
+
 ```python
 import os  
 import random   
@@ -361,7 +369,112 @@ fval.close()
 ftest .close() 
 ```
 
+3、修改文件
+**修改 pascalvoc_common.py 文件**
+修改类别，改成自己数据的类别：
 
+```python
+# before
+# VOC_LABELS = {
+#     'none': (0, 'Background'),
+#     'aeroplane': (1, 'Vehicle'),
+#     'bicycle': (2, 'Vehicle'),
+#     'bird': (3, 'Animal'),
+#     'boat': (4, 'Vehicle'),
+#     'bottle': (5, 'Indoor'),
+#     'bus': (6, 'Vehicle'),
+#     'car': (7, 'Vehicle'),
+#     'cat': (8, 'Animal'),
+#     'chair': (9, 'Indoor'),
+#     'cow': (10, 'Animal'),
+#     'diningtable': (11, 'Indoor'),
+#     'dog': (12, 'Animal'),
+#     'horse': (13, 'Animal'),
+#     'motorbike': (14, 'Vehicle'),
+#     'person': (15, 'Person'),
+#     'pottedplant': (16, 'Indoor'),
+#     'sheep': (17, 'Animal'),
+#     'sofa': (18, 'Indoor'),
+#     'train': (19, 'Vehicle'),
+#     'tvmonitor': (20, 'Indoor'),
+# }
+
+# after changing
+VOC_LABELS = {
+    'none': (0, 'Background'),
+    'oil_thermostat': (1, 'oil_thermostat'),
+    'white_indicator': (2, 'indicator'),
+    'red_indicator': (3, 'indicator')
+}
+```
+
+**修改 pascalvoc_to_tfrecords.py 文件**
+修改 83、84 行，图片类型以及文件格式。
+
+```python
+# Read the image file.
+    filename = directory + DIRECTORY_IMAGES + name + '.jpg'
+    image_data = tf.gfile.FastGFile(filename, 'rb').read()
+```
+
+然后在 67 行可以修改转换之后每一个 tfrecoard 文件对应多少张图片：
+```python
+# TFRecords convertion parameters.
+RANDOM_SEED = 4242
+SAMPLES_PER_FILES = 100
+```
+
+**修改 nets/ssd_vgg_300.py  文件**
+87 和 88 行的类别个数按照自己数据的情况来做修改，大小为类别＋1：
+```python
+# before
+# num_classes=21,
+# no_annotation_label=21,
+# change to 4
+```
+
+**修改 train_ssd_network.py
+ 文件**
+ 对应地修改训练配置，包括 batch 大小，GPU 用量等。
+ 
+**修改 eval_ssd_network.py 类别个数**
+
+**修改 datasets/pascalvoc_2007.py 配置**
+```python
+TRAIN_STATISTICS = {
+'none': (0, 0),
+'pantograph': (1000, 1000),
+}
+TEST_STATISTICS = {
+'none': (0, 0),
+'pantograph': (1000, 1000),
+}
+SPLITS_TO_SIZES = {
+'train': 500,
+'test': 500,
+}
+
+```
+
+4、训练
+
+5、测试
+```shell
+DataLossError: Unable to open table file ../checkpoints/model.ckpt-2938.ckpt: Failed precondition: ../checkpoints/model.ckpt-2938.ckpt: perhaps your file is in a different file format and you need to use a different restore operator?
+```
+
+这个问题的解决很傻……只要去掉文件夹结尾的`.ckpt`就可以了。
+
+然而继续运行的时候又出现了一个问题：
+```shell
+Cannot feed value of shape (1080, 1920, 4) for Tensor u'Placeholder_5:0', which has shape '(?, ?, 3)'
+```
+发现原来是读 png 图片有四个通道，除了 RGB 还有一个 alpha 通道，在 jupyter 上做下面的修改：
+```python
+if len(img.shape) > 2 and img.shape[2] == 4:
+    #convert the image from RGBA2RGB
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+```
 
 ## Reference
 1. [Understand Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
