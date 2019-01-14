@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Regression
+title: Linear, Ridge, and Lasso Regression
 tags: [Machine Learning]
 comments: true
 published: true

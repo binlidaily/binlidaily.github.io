@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "逻辑斯特回归"
+title: Logistic Regression
+subtitle: 逻辑斯特回归
 author: Bin
 tags: [Machine Learning]
 comments: true

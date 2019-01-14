@@ -435,7 +435,7 @@ SAMPLES_PER_FILES = 100
 
 **修改 train_ssd_network.py
  文件**
- 对应地修改训练配置，包括 batch 大小，GPU 用量等。
+ 对应地修改训练配置，包括迭代次数，batch 大小，GPU 用量等。
  
 **修改 eval_ssd_network.py 类别个数**
 
@@ -475,9 +475,12 @@ if len(img.shape) > 2 and img.shape[2] == 4:
     #convert the image from RGBA2RGB
 img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 ```
+此时虽然没有报错了，但是跑出来的结果是根本没有结果，丫根本没有检测🤷‍♀️！猜想可能是因为训练的程度不够，毕竟只用了5000轮迭代，于是想改成五万试一下，结果准备试的时候就报了 OOM 的错误，原来是因为开了一个 jupyter 测试训练好的模型就内存告急了，一张卡真是可怜，当然也可以减少一点 batch size 的量，耗时点。
 
-## Reference
-1. [Understand Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
+一遍测试不到结果可以增加迭代次数同时降低 learning rate 试一下，昨晚试了下迭代次数调到五万，震荡得比较厉害，结果仍然检测不到，早上来又试了下降低 lr 试下。
+
+## References
+1. [Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
 2. [A guide to receptive field arithmetic for Convolutional Neural Networks](https://medium.com/mlreview/a-guide-to-receptive-field-arithmetic-for-convolutional-neural-networks-e0f514068807)
 3. [Faster R-CNN Explained](https://medium.com/@smallfishbigsea/faster-r-cnn-explained-864d4fb7e3f8)
 4. [Preparing Inputs](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md)

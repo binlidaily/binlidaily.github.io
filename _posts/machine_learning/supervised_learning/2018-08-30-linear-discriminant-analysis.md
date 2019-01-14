@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 线性判别分析
-subtitle: Linear Discriminant Analysis
+title: Linear Discriminant Analysis
+subtitle: 线性判别分析
 author: Bin Li
 tags: [Machine Learning]
 image: 
