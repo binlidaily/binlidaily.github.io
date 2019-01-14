@@ -477,7 +477,12 @@ img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 ```
 此时虽然没有报错了，但是跑出来的结果是根本没有结果，丫根本没有检测🤷‍♀️！猜想可能是因为训练的程度不够，毕竟只用了5000轮迭代，于是想改成五万试一下，结果准备试的时候就报了 OOM 的错误，原来是因为开了一个 jupyter 测试训练好的模型就内存告急了，一张卡真是可怜，当然也可以减少一点 batch size 的量，耗时点。
 
-一遍测试不到结果可以增加迭代次数同时降低 learning rate 试一下，昨晚试了下迭代次数调到五万，震荡得比较厉害，结果仍然检测不到，早上来又试了下降低 lr 试下。
+一遍测试不到结果可以增加迭代次数同时降低 learning rate 试一下，昨晚试了下迭代次数调到五万，震荡得比较厉害，结果仍然检测不到，早上来又试了下降低 lr 试下，依然不行，后来终于找到问题之所在了……
+
+```python
+rclasses, rscores, rbboxes = process_image(img, select_threshold=0.2)
+```
+
 
 ## References
 1. [Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
