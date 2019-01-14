@@ -13,6 +13,8 @@ published: true
 * Iterative
 * Recursive
 
+在 Programming 那个子菜单下也有一个整理 LeetCode 问题的地方，那里做有甄选的陈列吧。
+
 ## LeetCode
 * [1. Two Sum](https://binlidaily.github.io/2018-11-25-two-sum/)
 * [3. Longest Substring Without Repeating Characters](https://binlidaily.github.io/2018-12-10-Longest-Substring-Without-Repeating-Characters/)
