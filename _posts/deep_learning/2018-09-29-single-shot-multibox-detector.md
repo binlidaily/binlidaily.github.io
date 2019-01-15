@@ -370,7 +370,7 @@ ftest .close()
 ```
 
 3、修改文件
-**修改 pascalvoc_common.py 文件**
+**修改 /datasets/pascalvoc_common.py 文件**
 修改类别，改成自己数据的类别：
 
 ```python
@@ -408,7 +408,7 @@ VOC_LABELS = {
 }
 ```
 
-**修改 pascalvoc_to_tfrecords.py 文件**
+**修改 datasets/pascalvoc_to_tfrecords.py 文件**
 修改 83、84 行，图片类型以及文件格式。
 
 ```python
@@ -433,8 +433,7 @@ SAMPLES_PER_FILES = 100
 # change to 4
 ```
 
-**修改 train_ssd_network.py
- 文件**
+**修改 train_ssd_network.py 文件**
  对应地修改训练配置，包括迭代次数，batch 大小，GPU 用量等。
  
 **修改 eval_ssd_network.py 类别个数**
@@ -453,7 +452,6 @@ SPLITS_TO_SIZES = {
 'train': 500,
 'test': 500,
 }
-
 ```
 
 4、训练

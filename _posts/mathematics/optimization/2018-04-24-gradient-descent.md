@@ -10,7 +10,7 @@ published: true
 
 Gradient Descent 算法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
 
-我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据$(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
+我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据 $(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
 
 <p align="center">
   <img width="" height="" src="/img/media/15245586264489.jpg">
@@ -20,23 +20,25 @@ Gradient Descent 算法一般是用来迭代求解最优值的，计算目标函
 
 $$h(\boldsymbol{x}) = \boldsymbol{w}\boldsymbol{x}+b$$
 
-OK，我们现在知道了模型的形式是这样，那么现在的问题是要如何找到这里的两个参数$\boldsymbol{w}$和$b$了。当然要求解最优的参数，我们可以利用的只有已知的数据了，于是，我们想到要模型能够最大限度地拟合现有数据，于是我们可以用简单的平方误差（Sum of Squared Errors）来衡量我们模型的好坏。
+OK，我们现在知道了模型的形式是这样，那么现在的问题是要如何找到这里的两个参数 $\boldsymbol{w}$ 和 $b$ 了。当然要求解最优的参数，我们可以利用的只有已知的数据了，于是，我们想到要模型能够最大限度地拟合现有数据，于是我们可以用简单的平方误差（Sum of Squared Errors）来衡量我们模型的好坏。
 
 $$J(w,b)={1\over2}\Sigma_{i=1}^m((wx_i+b)-y_i)^2$$
 
-通过上面式子可以看出，接下来只要找到能够使得这个SSE最小的模型$(w,b)$就好了。然而，我们一开始是不知道$(w,b)$的值的，于是Gradien Decent的想法就是，我们先随便初始化一个$(w_0,b_0)$，然后通过找到一定的更新策略，一步一步在最小化SSE的目标下，更新$(w,b)$。我们可以对这两个变量求导：
+通过上面式子可以看出，接下来只要找到能够使得这个 SSE 最小的模型 $(w, b)$ 就好了。然而，我们一开始是不知道 $(w, b)$ 的值的，于是 Gradien Decent 的想法就是，我们先随便初始化一个 $(w_0,b_0)$，然后通过找到一定的更新策略，一步一步在最小化SSE的目标下，更新 $(w,b)$。我们可以对这两个变量求导：
 
 $$\begin{aligned}{\partial \over{\partial w}}J(w,b)& =\Sigma_{i=1}^m((wx_i+b)-y_i)\cdot {\partial \over{\partial w}}((wx_i+b)-y_i) \\ &= \Sigma_{i=1}^m((wx_i+b)-y_i)  x_i\end{aligned}$$
 
 $$\begin{aligned}{\partial \over{\partial b}}J(w,b)& =\Sigma_{i=1}^m((wx_i+b)-y_i)\cdot {\partial \over{\partial b}}((wx_i+b)-y_i) \\ &= \Sigma_{i=1}^m((wx_i+b)-y_i) \end{aligned}$$
 
-于是我们可以用下面的式子更新$(w,b)$：
+于是我们可以用下面的式子更新 $(w,b)$：
 
 $$w=w-\alpha {\partial \over{\partial w}}J(w,b) $$
 
 $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 
-其中的$\alpha$是学习率，不能太大也不能太小，太大会导致不能收敛，太小会导致收敛太慢。**所以如何调整这个$\alpha$？**我在实验的时候发现，$\alpha$设置的稍微大一些，计算出来的$(w,b)$就会非常大，很明显是有问题的。要设到0.0001的时候才能正常跑，那么在实际使用的时候我们的到底要注意哪些调参技巧呢？回头再做补充了。
+其中的 $\alpha$ 是学习率，不能太大也不能太小，太大会导致不能收敛，太小会导致收敛太慢。**所以如何调整这个$\alpha$？**我在实验的时候发现，$\alpha$ 设置的稍微大一些，计算出来的 $(w,b)$ 就会非常大，很明显是有问题的。要设到 0.0001 的时候才能正常跑，那么在实际使用的时候我们的到底要注意哪些调参技巧呢？回头再做补充了。
+
+通过上面两个更新的式子，我们可以看到，在每一次迭代更新过程中，训练数据集中的
 
 直到满足终止条件，Gradient Descent 的终止条件一般有这样几种：
 
@@ -53,6 +55,8 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 - 如何判断终止条件？
 - 如何选择学习率？
 - 与 Method of steepest descent 的区别
+- 容易在具体些伪代码的时候弄不清楚对于一个具体的样本 i 来说该怎么安排
+
 
 ## Stochastic Gradient Descent
 以上的 Gradient Descent 方法可以看成是用一部分数据来求解 gradient，为了提高计算速度，我们可以使用 Stochastic Gradient Descent，
