@@ -73,3 +73,19 @@ def save_plot_2in1(x1, y1, x2, y2, title1='', title2='', xlabel1='', xlabel2='',
 
 	fig.savefig(save_name + '.jpg')
 ```
+
+### 编码问题
+出现这样的问题：
+```shell
+matplotlib display text must have all code points < 128 or use Unicode strings
+```
+
+加入这些以显示中文：
+```python
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['AR PL KaitiM GB']})
+```
