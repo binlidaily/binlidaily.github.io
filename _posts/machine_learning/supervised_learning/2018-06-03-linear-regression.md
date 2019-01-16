@@ -80,6 +80,8 @@ $$
 \hat { w }^* = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
+至此，我们就
+
 该类问题分为三种情况： 
 1.m=n且X为非奇异矩阵，这时Xw=yXw=y有唯一解：w=X−1yw=X−1y 
 2.m>n，即约束个数大于方程个数，此时Xw=yXw=y无解，该类问题称为超定问题。 
