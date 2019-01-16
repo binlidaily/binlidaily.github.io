@@ -141,6 +141,7 @@ class LinearRegression(Regression):
 1. [Matrix calculus in multiple linear regression OLS estimate derivation](https://math.stackexchange.com/questions/1968478/matrix-calculus-in-multiple-linear-regression-ols-estimate-derivation)
 2. [How to Solve Linear Regression Using Linear Algebra](https://machinelearningmastery.com/solve-linear-regression-using-linear-algebra/)
 3. [Why is SVD applied on Linear Regression](https://stackoverflow.com/questions/37072067/why-is-svd-applied-on-linear-regression)
+4. [奇异值分解与最小二乘问题](https://blog.csdn.net/qsczse943062710/article/details/76037309)
 
 
 
