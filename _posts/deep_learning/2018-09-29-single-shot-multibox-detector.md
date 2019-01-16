@@ -48,9 +48,8 @@ python tf_convert_data.py \
 > * SegmentationClass 
 > * SegmentationObject
 
-
-
 train 和 val 共5012 张图片，看了下其中的图片，发现大小是不一样的，而且是已经标注好的。可以看到通过转换，将所有 jpg 格式的图片都转换成 TensorFlow 中的 tf-records 类型的数据：
+
 ![-w603](/img/media/15451909983753.jpg)
 
 想用一下命令来测试下 Pascal VOC 2007 的模型：
