@@ -52,7 +52,7 @@ $${1\over{2}}\Sigma_{i=1}^m (y_i-x_iw)^2+\lambda \Sigma_{j=1}^p |w_j|$$
 
 Lasso regression在训练之前要对数据进行标准化，这个是什么原因？
 
-[ ] 注意中心化和去中心化的思路和目的。
+* [ ] 注意中心化和去中心化的思路和目的。
 
 
 ## References
