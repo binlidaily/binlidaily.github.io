@@ -80,7 +80,8 @@ $$
 \hat { w }^* = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
-至此，我们就
+当然对于推导还有一种[全展开的形式](https://towardsdatascience.com/analytical-solution-of-linear-regression-a0e870b038d5)，这里就不再细究了。然而其中还有一个现没有搞清楚的问题，即如果引入了正则化参数之后，直接求闭试解是否一定能得到闭试解？目前的理解是，毕竟 $X^TX$ 此时已经满秩了，那么此时需要考虑的就是矩阵相乘计算的问题了？
+
 
 该类问题分为三种情况： 
 1.m=n且X为非奇异矩阵，这时Xw=yXw=y有唯一解：w=X−1yw=X−1y 
@@ -99,7 +100,7 @@ $$
 3. 没有达到最大迭代次数或者 SSE 变化很小时则继续迭代，否则退出
 ```
 
-参考了 Github 的实现自己[手写了一遍](https://github.com/binlidaily/machine-learning-from-scratch/blob/master/supervised_learning/regression.py)，其中用 SVD 的部分还需要重新整理理解下！除了通过 SVD 的方式，还可以用 QR 分解来计算。
+参考了 Github 的实现自己[手写了一遍](https://github.com/binlidaily/machine-learning-from-scratch/blob/master/supervised_learning/regression.py)，其中用 SVD 的部分还需要重新整理理解下！除了通过 SVD 的方式，还可以用 QR 分解来计算，而且在小规模的数据量下更建议用这两种分解方式来求。🤔
 
 ```python
 class LinearRegression(Regression):
@@ -141,9 +142,11 @@ class LinearRegression(Regression):
             super(LinearRegression, self).fit(X, y)
 ```
 
+
 ### 注意点
 * 注意在矩阵形式下和在展开写的形势下如何求偏导（外层是迭代，内层是所有样本的循环）
 * 迭代更新参数时，具体如何在所所有样本进行每一轮更新（i 针对的是更新轮数，不是第 i 个样本）
+
 
 ## References
 1. [Matrix calculus in multiple linear regression OLS estimate derivation](https://math.stackexchange.com/questions/1968478/matrix-calculus-in-multiple-linear-regression-ols-estimate-derivation)
