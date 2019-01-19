@@ -37,7 +37,7 @@ y-Xw: (m, 1)$$
 
 $$v=y-Xw$$
 
-然后我们利用 [Frobenius inner product](https://en.wikipedia.org/wiki/Frobenius_inner_product) （即公式中的 “:”）表示上面的式子：
+然后我们利用 [Frobenius inner product](https://en.wikipedia.org/wiki/Frobenius_inner_product)（即公式中的 “:”）表示上面的式子：
 
 $$f={1\over2}||v||_F^2={1\over 2}v:v$$
 
@@ -80,13 +80,7 @@ $$
 \hat { w }^* = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
-当然对于推导还有一种[全展开的形式](https://towardsdatascience.com/analytical-solution-of-linear-regression-a0e870b038d5)，这里就不再细究了。然而其中还有一个现没有搞清楚的问题，即如果引入了正则化参数之后，直接求闭试解是否一定能得到闭试解？目前的理解是，毕竟 $X^TX$ 此时已经满秩了，那么此时需要考虑的就是矩阵相乘计算的问题了？
-
-
-该类问题分为三种情况： 
-1.m=n且X为非奇异矩阵，这时Xw=yXw=y有唯一解：w=X−1yw=X−1y 
-2.m>n，即约束个数大于方程个数，此时Xw=yXw=y无解，该类问题称为超定问题。 
-3.m<n，即约束个数小于方程个数，此时Xw=yXw=y有无穷解该类问题称为欠定问题
+当然对于推导还有一种[全展开的形式](https://towardsdatascience.com/analytical-solution-of-linear-regression-a0e870b038d5)，这里就不再细究了。然而其中还有一个现没有搞清楚的问题，即如果引入了正则化参数之后，直接求闭试解是否一定能得到闭试解？目前的理解是，毕竟 $X^TX$ 此时已经满秩了，那么此时需要考虑的就是矩阵相乘计算的问题了。
 
 
 ## Implementation
@@ -147,12 +141,13 @@ class LinearRegression(Regression):
 * 注意在矩阵形式下和在展开写的形势下如何求偏导（外层是迭代，内层是所有样本的循环）
 * 迭代更新参数时，具体如何在所所有样本进行每一轮更新（i 针对的是更新轮数，不是第 i 个样本）
 
+当数据量不太大而且闭试解存在时可以使用公式直接计算（如果是稀疏的会更好，可以减少存储量），但是当数据量比较大而且是 Dense 的，在存储上都会成问题，更不用说快速计算了。所以可以 Gradient Descent 来实现，不需要非常大的存储量。当时更建议使用 QR 和 SVD 的方式来计算。
 
 ## References
 1. [Matrix calculus in multiple linear regression OLS estimate derivation](https://math.stackexchange.com/questions/1968478/matrix-calculus-in-multiple-linear-regression-ols-estimate-derivation)
 2. [How to Solve Linear Regression Using Linear Algebra](https://machinelearningmastery.com/solve-linear-regression-using-linear-algebra/)
 3. [Why is SVD applied on Linear Regression](https://stackoverflow.com/questions/37072067/why-is-svd-applied-on-linear-regression)
-4. [奇异值分解与最小二乘问题](https://blog.csdn.net/qsczse943062710/article/details/76037309)
+4. [Do we need gradient descent to find the coefficients of a linear regression model?](https://stats.stackexchange.com/questions/160179/do-we-need-gradient-descent-to-find-the-coefficients-of-a-linear-regression-mode/164164#164164)
 
 
 

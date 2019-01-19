@@ -25,6 +25,7 @@ One-Hot编码的另一个特点就是导致特征空间大。例如，商品品�
 * parameter solutions
 
 比如用线性回归的时候主要关注的几个点如下：
+
 $$
 h ( x ) = x ^ { T } \hat { \beta }
 $$
