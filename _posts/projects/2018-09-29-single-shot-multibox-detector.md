@@ -73,6 +73,7 @@ ValueError: No data files found in ./tfrecords/voc_2007_test_*.tfrecord
 ```
 
 得去 [Pascal VOC 官网](http://host.robots.ox.ac.uk/pascal/VOC/voc2007/)再下载测试的数据，按上述流程将测试数据也转换成 tf-records 格式：
+
 ```shell
 DATASET_DIR=./VOC2007/test/
 OUTPUT_DIR=./tfrecords
@@ -84,6 +85,7 @@ python tf_convert_data.py \
 ```
 
 接着又报了一个错误：
+
 ```shell
 Traceback (most recent call last):
   File "eval_ssd_network.py", line 346, in <module>
@@ -321,7 +323,7 @@ if __name__ == '__main__':
         demo.rename()  
 ```
 
-重命名需要注意的是，最好在所有的xml 和 jpg 都在同 一个文件夹里的时候进行重命名操作。
+重命名需要注意的是，最好在所有的 xml 和 jpg 都在同 一个文件夹里的时候进行重命名操作。
 
 **2、划分数据**
 
@@ -369,7 +371,9 @@ ftest .close()
 ```
 
 3、修改文件
+
 **修改 /datasets/pascalvoc_common.py 文件**
+
 修改类别，改成自己数据的类别：
 
 ```python
@@ -408,8 +412,8 @@ VOC_LABELS = {
 ```
 
 **修改 datasets/pascalvoc_to_tfrecords.py 文件**
-修改 83、84 行，图片类型以及文件格式。
 
+修改 83、84 行，图片类型以及文件格式。
 ```python
 # Read the image file.
     filename = directory + DIRECTORY_IMAGES + name + '.jpg'
@@ -424,7 +428,8 @@ SAMPLES_PER_FILES = 100
 ```
 
 **修改 nets/ssd_vgg_300.py  文件**
-87 和 88 行的类别个数按照自己数据的情况来做修改，大小为类别＋1：
+
+95 和 96 行的类别个数按照自己数据的情况来做修改，大小为类别＋1：
 ```python
 # before
 # num_classes=21,
@@ -432,12 +437,16 @@ SAMPLES_PER_FILES = 100
 # change to 4
 ```
 
-**修改 train_ssd_network.py 文件**
- 对应地修改训练配置，包括迭代次数，batch 大小，GPU 用量等。
+**修改 ./train_ssd_network.py 文件**
+
+ 对应地修改训练配置，包括迭代次数(154行)，batch 大小，GPU 用量等。
  
-**修改 eval_ssd_network.py 类别个数**
+**修改 ./eval_ssd_network.py 类别个数**
+
+
 
 **修改 datasets/pascalvoc_2007.py 配置**
+
 ```python
 TRAIN_STATISTICS = {
 'none': (0, 0),

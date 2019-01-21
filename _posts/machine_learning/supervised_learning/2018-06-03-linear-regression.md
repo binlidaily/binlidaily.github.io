@@ -148,6 +148,7 @@ class LinearRegression(Regression):
 2. [How to Solve Linear Regression Using Linear Algebra](https://machinelearningmastery.com/solve-linear-regression-using-linear-algebra/)
 3. [Why is SVD applied on Linear Regression](https://stackoverflow.com/questions/37072067/why-is-svd-applied-on-linear-regression)
 4. [Do we need gradient descent to find the coefficients of a linear regression model?](https://stats.stackexchange.com/questions/160179/do-we-need-gradient-descent-to-find-the-coefficients-of-a-linear-regression-mode/164164#164164)
+5. [Lecture 9. Linear Least Squares. Using SVD Decomposition.](https://www2.math.uconn.edu/~leykekhman/courses/MATH3795/Lectures/Lecture_9_Linear_least_squares_SVD.pdf)
 
 
 
