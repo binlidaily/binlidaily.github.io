@@ -89,3 +89,13 @@ sys.setdefaultencoding('utf-8')
 from matplotlib import rc
 rc('font',**{'family':'sans-serif','sans-serif':['AR PL KaitiM GB']})
 ```
+
+### 查看和修改绘图的大小
+```python
+# check the size of figure
+print(plt.rcParams.get('figure.figsize'))
+
+# change the size of figure
+# at the top of python script
+plt.rcParams["figure.figsize"] = (10, 6)
+```

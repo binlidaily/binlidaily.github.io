@@ -10,6 +10,7 @@ published: true
 ---
 
 ## Shrinking coefficients to understanding our data 缩减系数
+
 **为什么会提出lasso或者ridge回归？**
 
 当数据的特征比样本点还多的时候，X矩阵就可能不满秩了，那么在计算矩阵的逆的时候就会出错。为了解决这个问题，统计学家就引入了岭回归（ridge regression），即我们要介绍的第一种缩减方法。接着我们会介绍效果更好但是计算也更复杂的lasso regression。最后我们会介绍一种叫做向前逐步回归（forward stagewise regression），效果跟lasso相当，但是其计算相对较少。

@@ -70,6 +70,7 @@ $$D_1={(x, y)\in D|A(x)=a}, D_2=D-D_1$$
 $$Gini(D,a)={|D_1|\over{|D|}}Gini(D_1)+{|D_2|\over{|D|}}Gini(D_2)$$
 
 **Advantages**
+
 基尼系数在计算上会快一些，因为没有求 $\log$ 运算。
 
 ### 递归退出条件
@@ -104,9 +105,11 @@ $$Gini(D,a)={|D_1|\over{|D|}}Gini(D_1)+{|D_2|\over{|D|}}Gini(D_2)$$
 ⁉️ 如果在损失函数那儿加上正则化呢？
 
 **预剪枝**
+
 在决策树的生成过程中，对每个结点在划分前先进行估计，若当前结点的划分不能带来*泛化性能*上的提升，则停止划分并将当前结点标记为叶节点。
 
 **后剪枝**
+
 先从训练集生成完整的决策树，然后自底向上地对每一个非叶子结点进行考察，如果将该结点的子树改成叶结点能够提高决策树的性能，那么就将当前结点的子树改成对应的叶结点。
 
 ### 连续值处理
@@ -368,3 +371,4 @@ $g(t)$ 表示剪枝剪枝的阈值。我们可以这样想，当 $\alpha$ 逐渐
 4. [决策树算法原理](http://www.cnblogs.com/pinard/p/6050306.html)
 5. [A Complete Tutorial on Tree Based Modeling from Scratch (in R & Python)](https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/)
 6. [决策树—回归](https://zhuanlan.zhihu.com/p/42505644)
+7. [SKlearn Decision Tree](https://scikit-learn.org/stable/modules/tree.html#classification)

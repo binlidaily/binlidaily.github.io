@@ -163,7 +163,28 @@ After this, it is then possible to use the get_dummies and get three new columns
 
 pandas.map() is used to map values from two series having one column same. For mapping two series, the last column of the first series should be same as index column of the second series, also the values should be unique.
 
-
+### Feature Importance
+```python
+f,ax=plt.subplots(2,2,figsize=(15,12))
+model=RandomForestClassifier(n_estimators=500,random_state=0)
+model.fit(X,Y)
+pd.Series(model.feature_importances_,X.columns).sort_values(ascending=True).plot.barh(width=0.8,ax=ax[0,0])
+ax[0,0].set_title('Feature Importance in Random Forests')
+model=AdaBoostClassifier(n_estimators=200,learning_rate=0.05,random_state=0)
+model.fit(X,Y)
+pd.Series(model.feature_importances_,X.columns).sort_values(ascending=True).plot.barh(width=0.8,ax=ax[0,1],color='#ddff11')
+ax[0,1].set_title('Feature Importance in AdaBoost')
+model=GradientBoostingClassifier(n_estimators=500,learning_rate=0.1,random_state=0)
+model.fit(X,Y)
+pd.Series(model.feature_importances_,X.columns).sort_values(ascending=True).plot.barh(width=0.8,ax=ax[1,0],cmap='RdYlGn_r')
+ax[1,0].set_title('Feature Importance in Gradient Boosting')
+model=xg.XGBClassifier(n_estimators=900,learning_rate=0.1)
+model.fit(X,Y)
+pd.Series(model.feature_importances_,X.columns).sort_values(ascending=True).plot.barh(width=0.8,ax=ax[1,1],color='#FD0F00')
+ax[1,1].set_title('Feature Importance in XgBoost')
+plt.show()
+```
+![](/img/media/15496327661144.jpg)
 
 
 ## 问题总结
@@ -216,4 +237,9 @@ pandas.map() is used to map values from two series having one column same. For m
 38. [scikit-learn Machine Learning in Python](http://scikit-learn.org/stable/)
 39. [TOP AND BEST BLOG ABOUT ARTIFICIAL INTELLIGENCE MACHINE/DEEP LEARNING](https://www.favouriteblog.com/)
 40. [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
-41. ✳️ [A Data Science Framework: To Achieve 99% Accuracy](https://www.kaggle.com/ldfreeman3/a-data-science-framework-to-achieve-99-accuracy)
+41. ✅ [Titanic Data Science Solutions](https://www.kaggle.com/startupsci/titanic-data-science-solutions)
+
+
+--- 
+1. [EDA To Prediction (DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
+2. ✳️ 对于调参和选择模型可以重点参考：[A Data Science Framework: To Achieve 99% Accuracy](https://www.kaggle.com/ldfreeman3/a-data-science-framework-to-achieve-99-accuracy)

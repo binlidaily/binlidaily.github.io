@@ -6,7 +6,7 @@ author: Bin Li
 tags: [Machine Learning]
 image: 
 comments: true
-published: false
+published: true
 ---
 
 * Structured data
@@ -38,3 +38,11 @@ $$
 \hat { \beta } = \left( X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
+
+非参数 vs. 参数方法
+![-w929](/img/media/15482224500896.jpg)
+
+连续型数据很难在机器学习模型中使用，可以用分桶或者归一化的方式。
+
+## References
+1. [Sklearn User Guide](https://scikit-learn.org/stable/user_guide.html)

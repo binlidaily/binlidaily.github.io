@@ -6,5 +6,7 @@ author: Bin Li
 tags: [Machine Learning]
 image: 
 comments: true
-published: false
+published: true
 ---
+
+![](/img/media/15497138754028.jpg)

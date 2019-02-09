@@ -13,6 +13,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 ## Theoretical Machine Learning
 ### Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-regression/)
+    * Locally Weighted Linear Regression
+    * Bayesian Linear Regression
 * [Logistic Regression](https://binlidaily.github.io/2017-10-03-Logistics-Regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
 * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
@@ -20,6 +22,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * [Xgboost](https://binlidaily.github.io/2018-10-29-xgboost/)
 * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
+* Bay
 
 ### Unsupervised Learning
 #### Clustering
