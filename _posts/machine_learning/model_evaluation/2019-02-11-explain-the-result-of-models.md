@@ -42,6 +42,26 @@ plt.title('ROC for Titanic survivors', fontsize= 18)
 plt.show()
 # 0.8348061229417161
 ```
+![](/img/media/15498561330134.jpg)
+
+```python
+from sklearn.metrics import precision_recall_curve
+
+y_score = logreg.decision_function(test_x)
+
+precision, recall, _ = precision_recall_curve(test_y, y_score)
+PR_AUC = auc(recall, precision)
+
+plt.figure(figsize=[11,9])
+plt.plot(recall, precision, label='PR curve (area = %0.2f)' % PR_AUC, linewidth=4)
+plt.xlabel('Recall', fontsize=18)
+plt.ylabel('Precision', fontsize=18)
+plt.title('Precision Recall Curve for Titanic survivors', fontsize=18)
+plt.legend(loc="lower right")
+plt.show()
+```
+![](/img/media/15498561757427.jpg)
+
 
 ## What are the most important features
 
