@@ -144,10 +144,9 @@ sns.pairplot(df_train, hue="Sex");
 ![](/img/media/15497166516619.jpg)
 
 ### kdeplot
-代替直方图的显示：
+查看 kernel density estimate 的时候可以用：
 ```python
-sns.FacetGrid(df_train, hue="Survived", size=5).map(sns.kdeplot, "Fare").add_legend()
-plt.show();
+sns.kdeplot(train_df['score'], train_df['age'], shade=True, cbar=True)
 ```
 
 ### joinplot
@@ -232,9 +231,21 @@ plt.show()
 
 ![](/img/media/15497186954700.jpg)
 
+想一口气看一个特征不同取值下的分布：
+```python
+g = sns.FacetGrid(df, col="origin") 
+g.map(sns.distplot, "mpg")
+```
+![](/img/media/15506669821279.jpg)
 
+```python
+g = sns.FacetGrid(df, col="origin") 
+g.map(sns.distplot, "mpg")
+```
+![](/img/media/15506679946357.jpg)
 
 ## References
 1. [Steering Wheel of Fortune - Porto Seguro EDA](https://www.kaggle.com/headsortails/steering-wheel-of-fortune-porto-seguro-eda)
 2. [EDA To Prediction(DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
 3. [A Comprehensive ML Workflow with Python](https://www.kaggle.com/mjbahmani/a-comprehensive-ml-workflow-with-python)
+4. [Data Visualization in Python: Advanced Functionality in Seaborn](https://blog.insightdatascience.com/data-visualization-in-python-advanced-functionality-in-seaborn-20d217f1a9a6)
