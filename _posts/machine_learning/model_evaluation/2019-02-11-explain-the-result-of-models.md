@@ -66,5 +66,9 @@ plt.show()
 ## What are the most important features
 
 
-## References
+## A/B testing
 
+## References
+1. [如何评估机器学习模型（How to Evaluate Machine Learning Models）](http://www.voidcn.com/article/p-zjnhsudm-ru.html)
+2. [怎样学习 A/B Testing（AB测试）？](https://www.douban.com/note/698028685/)
+3. [A/B测试与假设检验（一）](https://zhuanlan.zhihu.com/p/40826279)

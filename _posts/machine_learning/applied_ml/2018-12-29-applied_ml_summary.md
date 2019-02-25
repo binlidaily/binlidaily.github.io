@@ -53,7 +53,7 @@ Bad-Case 分析
 * 哪些特征促使模型做出此判断（权值高）
 * 这些 bad-case 存在那些共性
 * 是否有可以继续挖掘的特性
-* 那些样本预测结果与真实结果差距非常大，以及为什么。
+* 哪些样本预测结果与真实结果差距非常大，以及为什么。
 
 ## References
 1. [Error Analysis](http://mlwiki.org/index.php/Error_Analysis)

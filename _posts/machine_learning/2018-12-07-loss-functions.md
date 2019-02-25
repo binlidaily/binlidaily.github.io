@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Loss Functions
+title: Loss Functions & Metrics
 subtitle:
 author: Bin Li
 tags: [Machine Learning]
