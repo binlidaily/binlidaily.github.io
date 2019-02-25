@@ -239,6 +239,8 @@ plt.show()
 40. [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
 41. ✅ [Titanic Data Science Solutions](https://www.kaggle.com/startupsci/titanic-data-science-solutions)
 
+* [Kaggle案例泰坦尼克号问题](https://www.cnblogs.com/nxf-rabbit75/p/9680878.html)
+* [Kaggle赛题解析：逻辑回归预测模型实现-bad case](https://cloud.tencent.com/developer/article/1060891)
 
 --- 
 1. [EDA To Prediction (DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)

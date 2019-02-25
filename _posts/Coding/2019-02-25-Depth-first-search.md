@@ -1,14 +1,13 @@
 ---
 layout: post
-title: Single Shot Multibox Detector
+title: Depth-First Search
 subtitle:
 author: Bin Li
-tags: [Machine Learning]
+tags: [Data Structures]
 image: 
 comments: true
 published: true
 ---
 
-理论总结部分。
 
 ## References
