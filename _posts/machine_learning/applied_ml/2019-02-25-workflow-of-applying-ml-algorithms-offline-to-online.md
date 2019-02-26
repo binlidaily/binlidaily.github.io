@@ -129,8 +129,10 @@ Label 的定义和问题的界定直接相关，所以 Label 我们尽量选择�
 
 5、 尽量用成本小的简化实验来做初步问题可行性论证。因为线上的开发成本大以及复杂性高，避免在论证思路的可行性阶段，就引入较大的产品开发工作。
 
+![](/img/media/15511690549229.jpg)
 
 ## References
 1. [机器学习模型应用以及模型优化的一些思路](https://blog.csdn.net/mozhizun/article/details/60966354)
 2. [策略类服务的设计实践](https://blog.csdn.net/mozhizun/article/details/56682834)
 3. [模型优化中常见问题和解决思路](https://blog.csdn.net/mozhizun/article/details/71438821)
+4. [机器学习在工业应用中的新思考](http://www.sohu.com/a/122281697_465975)
