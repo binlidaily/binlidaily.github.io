@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Machine Learning Concepts
+title: Outline of Machine Learning
 subtitle:
 author: Bin Li
 tags: [Machine Learning]
@@ -9,6 +9,7 @@ comments: true
 published: true
 ---
 
+## Concepts of Machine Learning
 * Structured data
 
 The objective of any supervised learning algorithm is to define a loss function and minimize it. 
