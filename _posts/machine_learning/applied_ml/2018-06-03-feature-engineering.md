@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "特征工程总结"
+title: 特征工程
 author: "Bin Li"
 tags: [Machine Learning]
 category: ""
 comments: true
-published: false
+published: true
 ---
 
 ![](/img/media/15427027069088.jpg)
