@@ -51,7 +51,7 @@ Feature Engineering include Feature Extraction and Feature Selection.
     * [Data Preprocessing](https://binlidaily.github.io/2018-11-13-data-preprocessing/)
     * [Exploratory Data Analysis (EDA)](https://binlidaily.github.io/2019-01-10-exploratory-data-analysis/)
 * Feature Selection
-    * Feature Selection Methods
+    * [Feature Selection Methods](https://binlidaily.github.io/2018-06-03-feature-engineering/)
 
 ### Model Ensemble
 * [Model Ensemble Methods](https://binlidaily.github.io/2019-02-08-ensembling/)
