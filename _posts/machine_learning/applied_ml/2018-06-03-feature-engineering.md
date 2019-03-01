@@ -8,6 +8,8 @@ comments: true
 published: true
 ---
 
+特征工程（Feature Engineering）是利用领域知识和现有数据，创造出新的特征，用在机器学习算法上的过程。
+
 ![](/img/media/15427027069088.jpg)
 
 Features:

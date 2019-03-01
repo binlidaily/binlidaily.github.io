@@ -87,11 +87,12 @@ plt.scatter(range(train_df.shape[0]), np.sort(train_df['score'].values))
 ### 2.2 sns.stripplot
 当一个是标称类型绘制的散点图:
 ```python
-sns.stripplot(x="day", y="total_bill", data=tips_df, jitter=0.05)
+sns.stripplot(x="score_qcut", y="connect_num", data=train_df, jitter=0.05)
 ```
 
+
 <p align="center">
-  <img width="400" height="" src="/img/media/15512524816477.jpg">
+  <img width="400" height="" src="/img/media/15513352105843.jpg">
 </p>
 
 
