@@ -1,0 +1,67 @@
+---
+layout: post
+title: 从头到尾打印链表
+subtitle:
+author: Bin Li
+tags: [Coding]
+image: 
+comments: true
+published: true
+---
+
+## Description
+输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
+
+## Solutions
+```python
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        reverse_list = []
+        res_list = []
+        while listNode:
+            reverse_list.append(listNode.val)
+            listNode = listNode.next
+        
+        for i in range(len(reverse_list)-1, -1, -1):
+            res_list.append(reverse_list[i])
+        
+        return res_list
+```
+
+这里实际的考点是用栈，因为从头遍历到尾的话，需要存储，如果单独在多设立一个 list 存倒序的结果岂不是很浪费空间？于是就用栈的方式来存。
+
+运行时间：33ms
+占用内存：5624k
+
+```
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        reverse_list = []
+        res_list = []
+        while listNode:
+            reverse_list.append(listNode.val)
+            listNode = listNode.next
+        
+        for i in range(len(reverse_list)):
+            res_list.append(reverse_list.pop())
+        return res_list
+```
+
+运行时间：22ms
+占用内存：5752k
+## References
+1. [从头到尾打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)

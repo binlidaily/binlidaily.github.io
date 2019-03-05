@@ -85,6 +85,13 @@ title_names = (data1['Title'].value_counts() < stat_min) #this will create a tru
 data1['Title'] = data1['Title'].apply(lambda x: 'Misc' if title_names.loc[x] == True else x)
 ```
 
+## 降维
+通常就是指 dimensionality reduction。
+
+Principal Component Analysis (PCA)
+Latent Dirichlet Allocation (LDA)
+Latent Semantic Analysis (LSA)
 
 ## References
 1. [机器学习特征工程实用技巧大全](https://zhuanlan.zhihu.com/p/26444240)
+2. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)

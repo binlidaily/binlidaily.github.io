@@ -15,4 +15,5 @@ published: false
 
 ### References
 1. [基于深度学习的目标检测算法综述（一）](https://zhuanlan.zhihu.com/p/40047760)
+2. [详解计算机视觉五大技术：图像分类、对象检测、目标跟踪、语义分割和实例分割](https://cloud.tencent.com/developer/article/1109237)
 
