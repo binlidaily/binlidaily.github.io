@@ -149,6 +149,7 @@ class LinearRegression(Regression):
 3. [Why is SVD applied on Linear Regression](https://stackoverflow.com/questions/37072067/why-is-svd-applied-on-linear-regression)
 4. [Do we need gradient descent to find the coefficients of a linear regression model?](https://stats.stackexchange.com/questions/160179/do-we-need-gradient-descent-to-find-the-coefficients-of-a-linear-regression-mode/164164#164164)
 5. [Lecture 9. Linear Least Squares. Using SVD Decomposition.](https://www2.math.uconn.edu/~leykekhman/courses/MATH3795/Lectures/Lecture_9_Linear_least_squares_SVD.pdf)
+6. [你应该掌握的 7 种回归模型](https://zhuanlan.zhihu.com/p/40141010)
 
 
 

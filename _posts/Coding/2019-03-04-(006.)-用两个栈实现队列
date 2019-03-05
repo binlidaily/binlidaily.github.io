@@ -12,5 +12,72 @@ published: true
 ## Description
 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
 
+
+## Solutions
+画图弄清楚思想其实就可以实现了。
+
+```python
+# -*- coding:utf-8 -*-
+class Queue:
+    def __init__(self):
+        self.stack_in = []
+        self.stack_out = []
+    
+    
+    def push(self, node):
+        # write code here
+        self.stack_in.append(node)
+        
+    def pop(self):
+        if self.stack_out == []:
+            while self.stack_in != []:
+                self.stack_out.append(self.stack_in.pop())
+        return self.stack_out.pop()
+        # return xx
+
+
+class Stack:
+    def __init__(self):
+        self.queue_in = []
+        self.queue_out = []
+    
+    
+    def push(self, node):
+        # write code here
+        if len(self.queue_out) > 0:
+            self.queue_out.insert(0, node)
+        elif len(self.queue_in) >= 0:
+            self.queue_in.insert(0, node)
+
+        
+    def pop(self):
+        if len(self.queue_in) >= 1:
+            while len(self.queue_in) > 1:
+                 self.queue_out.insert(0, self.queue_in.pop())
+            if len(self.queue_in) == 1:
+                return self.queue_in.pop()
+        else:
+            while len(self.queue_out) > 1:
+                 self.queue_in.insert(0, self.queue_out.pop())
+            if len(self.queue_out) == 1:
+                return self.queue_out.pop()
+        return None
+
+if __name__ == '__main__':
+    q = Queue()
+    q.push(1)
+    q.push(2)
+    q.push(3)
+    print q.pop(), q.pop(), q.pop()
+
+    s = Stack()
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+
+    print s.pop(), s.pop(), s.pop(), s.pop(), s.pop()
+```
 ## References
 1. [用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)

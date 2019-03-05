@@ -99,3 +99,5 @@ submit_df.to_csv('./submission/baseline_0.06357.csv', index=False)
 ## References
 1. [【持续更新】机器学习特征工程实用技巧大全](https://zhuanlan.zhihu.com/p/26444240)
 2. [Understanding Feature Engineering (Part 1) — Continuous Numeric Data](https://towardsdatascience.com/understanding-feature-engineering-part-1-continuous-numeric-data-da4e47099a7b)
+3. [AI圈-人工智能竞赛Top解决方案](https://github.com/AI-Sphere/Awesome-AI-Competitions)
+4. [Data Science Challenge / Competition](https://iphysresearch.github.io/DataSciComp/?sub=PF%2CAC%2CDM%2CCV%2CNLP%2CRL%2CSP%2CIT)

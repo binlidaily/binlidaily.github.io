@@ -50,6 +50,10 @@ $$
 
 连续型数据很难在机器学习模型中使用，可以用分桶或者归一化的方式。
 
+* lightgbm
+* xgboost
+* catboost
+
 ## 工具汇总
 * [Sklearn](https://scikit-learn.org/stable/modules/classes.html)
 
