@@ -54,3 +54,5 @@ print('The cross validated score for bagged Decision Tree is:',result.mean())
 
 ## References
 1. [EDA To Prediction(DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
+2. [Kaggle机器学习之模型融合（stacking）心得](https://zhuanlan.zhihu.com/p/26890738)
+3. [Stacking 代码](https://blog.csdn.net/qq1483661204/article/details/80157365)

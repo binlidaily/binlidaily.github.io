@@ -55,7 +55,9 @@ published: true
 
 1） 评估模型效果对应当前的机制或策略应用是否初步足够，如足够可以将更多精力放到机制等应用层面。因为这个时候模型进一步提升的难度较大，而可能机制优化更快速提升整体应用效果，投入和回报性价比更高。
 
-2） 进行具体化的 bad case 分析，对于那些预测和实际偏差很多的具体 case，具体分析原因。
+2） 进行具体化的 bad case 分析，对于那些预测和实际偏差很多的具体 case，具体分析原因。具体可以看这里的[总结]()。
+
+
 
 3） 定位已有样本以及特征中的偏差问题。
 
@@ -82,3 +84,6 @@ published: true
 ## References
 1. [机器学习模型优化中常见问题和解决思路](https://blog.csdn.net/mozhizun/article/details/71438821)
 2. [机器学习中防止过拟合的处理方法](https://blog.csdn.net/heyongluoyao8/article/details/49429629)
+3. [Error Analysis](http://mlwiki.org/index.php/Error_Analysis)
+4. [机器学习模型应用以及模型优化的一些思路](https://blog.csdn.net/mozhizun/article/details/60966354)
+5. [工作流程与模型调优](https://blog.csdn.net/JoyceWYJ/article/details/51659747)

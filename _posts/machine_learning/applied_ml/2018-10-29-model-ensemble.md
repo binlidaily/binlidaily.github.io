@@ -19,7 +19,7 @@ published: true
 ## Blending / Averaging
 
 ## Stacking
-
+[这篇](https://zhuanlan.zhihu.com/p/26890738)讲的还蛮清楚的，
 
 ## References
 1. [Ensemble Learning to Improve Machine Learning Results](https://blog.statsbot.co/ensemble-learning-d1dcd548e936)

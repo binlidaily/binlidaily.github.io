@@ -9,6 +9,54 @@ comments: true
 published: true
 ---
 
+ * 异常值处理
+ * 平滑处理
+ * 标准化处理
+
+
+## 异常数据处理
+### 缺失值
+1. 当缺失值很多时，这个特征可以不要
+2. 给缺失值补一个：
+    * 当缺失值比较少可以选择**众数**或者**平均值**。
+    * 还可以通过机器学习的方法来填充缺失值，比如根据相似性进行填充 K 邻近。
+3. 当缺失值较多时，也可以把是否缺失做一个特征，树形算法可以直接处理缺失值。
+
+### 异常点
+判断异常点是采集的错误，还是不具有普适性数据。简单的尝试是将分布在最小值和最大值附近的离散点做一个截断：
+
+```python
+up_limit = np.percentile(train_df[col].values, 99.9) # 99.9%分位数
+low_limit = np.percentile(train_df[col].values, 0.1) # 0.1%分位数
+train_df[col][train_df[col] > up_limit] = up_limit
+train_df[col][train_df[col] < low_limit] = low_limit
+# train_df.loc[train_df[col] > up_limit, col] = up_limit
+# train_df.loc[train_df[col] < low_limit, col] = low_limit
+```
+
+### 有偏度的特征
+1. 常见于数值类型的变量，最简单的方法是用`log(x+1)`或者`倒数`或者`指数exp`处理，使数据呈现正态分布
+
+```python
+train_df[col] = train_df[col].map(lambda x : p.log1p(x))
+```
+2. 应用Box-Cox转换
+
+### 长尾型并不是偏度正太的数据特征
+* 离散化数据，分区间处理，即分桶。
+
+
+### 一般 bool 类型的组合
+![](/img/media/15519285885784.jpg)
+
+
+### 暴力特征
+采用各种批量的组合特征。
+
+
+----
+
+
 通过数据预处理，我们需要将训练集表示为矩阵X（大小：n_samples * n_features）和矢量y（长度：n_samples）。矢量y可以被转换为矩阵Y（大小：n_samples * n_classes）。
 
 Convert Format
@@ -33,9 +81,7 @@ Data Preprocessing is a technique that is used to convert the raw data into a cl
 8. PCA analysis
 9. Feature selection (filter, embedded, wrapper)
  
- * 异常值处理
- * 平滑处理
- * 标准化处理
+
  
  数据预处理的主要任务如下：
 
@@ -276,3 +322,4 @@ Latent Semantic Analysis (LSA)
 ## References
 1. [机器学习特征工程实用技巧大全](https://zhuanlan.zhihu.com/p/26444240)
 2. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)
+3. [经典比较篇之八：数据不正态怎么办？](https://zhuanlan.zhihu.com/p/26784184)

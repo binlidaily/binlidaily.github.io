@@ -293,6 +293,10 @@ pointplot() (with kind="point")
 barplot() (with kind="bar")
 countplot() (with kind="count")
 
+在 jupyter 上按照标准流程整理出一个文档来，以后以此为模板。
+
+
+
 ## References
 1. [Steering Wheel of Fortune - Porto Seguro EDA](https://www.kaggle.com/headsortails/steering-wheel-of-fortune-porto-seguro-eda)
 2. [EDA To Prediction(DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)

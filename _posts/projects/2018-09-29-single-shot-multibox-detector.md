@@ -464,6 +464,26 @@ SPLITS_TO_SIZES = {
 
 4、训练
 
+不要用 checkpoint 就可以从头开始训练了。
+
+```
+DATASET_DIR=./tfrecords
+TRAIN_DIR=./logs/
+python train_ssd_network.py \
+    --train_dir=${TRAIN_DIR} \
+    --dataset_dir=${DATASET_DIR} \
+    --dataset_name=pascalvoc_2007 \
+    --dataset_split_name=train \
+    --model_name=ssd_300_vgg \
+    --save_summaries_secs=60 \
+    --save_interval_secs=600 \
+    --weight_decay=0.0005 \
+    --optimizer=adam \
+    --learning_rate=0.001 \
+    --batch_size=32
+```
+
+
 5、测试
 ```shell
 DataLossError: Unable to open table file ../checkpoints/model.ckpt-2938.ckpt: Failed precondition: ../checkpoints/model.ckpt-2938.ckpt: perhaps your file is in a different file format and you need to use a different restore operator?
