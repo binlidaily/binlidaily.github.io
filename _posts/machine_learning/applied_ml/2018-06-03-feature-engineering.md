@@ -17,7 +17,7 @@ typora-root-url: ../../../../binlidaily.github.io
 
 特征工程一般分成特征提取 (Feature Extraction) 和特征选择 (Feature Selection) 两个方面，接下来分别更细致地介绍:
 
-## 特征提取 (Feature Extraction) 
+## 一.  特征提取 (Feature Extraction) 
 特征的挖掘一般跟专业领域知识强相关，特征工程可以说是业务逻辑的一种数据层面的表示。
 
 ### 1. 探索性数据分析 (Exploratory Data Analysis, EDA)
@@ -291,29 +291,18 @@ items_popularity
 
 可以得到不同粒度下的近似结果。当然，舍入近似结果不一定都是乘以某个数，我们在下面讲分桶的时候可以看到，可以用舍入近似的方式来做，效果可以分桶。
 
+### 2.4 缺失值处理
 
-### 2. 归一化（Normalization）
-使用 [sklearn.preprocessing.Normalizer](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html) 来归一化，把每一行数据归一化，使之有 unit norm，norm 的种类可以选l1、l2或max。不免疫outlier。
-
-$$
-\vec{x^{\prime}}=\frac{\vec{x}}{l(\vec{x})}
-$$
-
-其中 $l$ 表示 $norm$ 函数。
-
-### 3. 区间缩放（scaling）
-使用 [sklearn.preprocessing.MaxAbsScaler](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MaxAbsScaler.html)，将一列的数值，除以这一列的最大绝对值。不免疫outlier。
-
-$$
-x^{\prime}=\frac{x}{\max (|X|)}
-$$
-
-
-
-
+- 补值
+  - 简单的可以是补一个平均值、或者众数
+  - 对于含异常值的变量，更健壮的做法是补中位数
+  - 还可以通过模型预测缺失值
+- 直接忽略
+  - 将缺失作为一种信息编码喂给模型进行学习
 
 ### 2.5 缩放
-缩放是将数值变量缩放到一个确定的范围，把有量纲表达式变为无量纲表达式。
+
+这里的缩放囊括了标准化和归一化等，要弄清楚这两者之间的关系。
 
 ### 2.5.1 标准化缩放 (又称 Z 缩放)
 标准化（无量钢化/中心化）把特征转化为服从标准正太分布的形式，其实是计算标准分数 (Standard Score, Z-score)，经过处理的数据符合标准正态分布，使得数值特征的算术平均数为零，标准差为 1。
@@ -380,13 +369,40 @@ array([[-2.44...,  1.22..., -0.26...]])
 
 如果数值特征列中存在数值极大或极小的 outlier（通过EDA发现），可以使用 [sklearn.preprocessing.RobustScaler](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html) ，应该使用更稳健（robust）的统计数据：用中位数而不是算术平均数，用分位数（quantile）而不是方差。这种标准化方法有一个重要的参数：（分位数下限，分位数上限），最好通过EDA的数据可视化确定。免疫 outlier。
 
-### 2.5.2 最大最小值缩放
+### 2.5.2 区间缩放 (Scaling)
+
+最大最小值缩放和最大绝对值缩放两种缩放属于**区间缩放**，使用这种缩放的目的包括实现特征极小方差的鲁棒性以及在稀疏矩阵中保留零元素。
+
+### 2.5.2.1 最大最小值缩放
 
 最大最小缩放是将特征缩放到给定的最小值和最大值之间，通常在零和一之间。
 $$
 {x}^\prime=\frac{x-x_{Min}}{x_{Max}-x_{Min}}
 $$
-使用 [sklearn.preprocessing.MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) 实现：
+1、使用 [sklearn.preprocessing.minmax_scale](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.minmax_scale.html) 函数实现：
+
+```python
+>>> from sklearn import preprocessing
+>>> import numpy as np
+>>> X = np.array([[ 1., -1.,  2.],
+...               [ 2.,  0.,  0.],
+...               [ 0.,  1., -1.]])
+>>> X_scaled = preprocessing.minmax_scale(X)
+
+>>> X_scaled                                          
+array([[0.5       , 0.        , 1.        ],
+       [1.        , 0.5       , 0.33333333],
+       [0.        , 1.        , 0.        ]])
+
+>>> #处理后数据的均值和方差
+>>> X_scaled.mean(axis=0)
+array([0.5       , 0.5       , 0.44444444])
+
+>>> X_scaled.std(axis=0)
+array([0.40824829, 0.40824829, 0.41573971])
+```
+
+2、使用 [sklearn.preprocessing.MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) 实现：
 
 ```python
 >>> X_train = np.array([[ 1., -1.,  2.],
@@ -428,13 +444,36 @@ X_scaled=X_std/(max-min)+min
   * 当有新数据加入时，可能导致 max 和 min 发生变化，需要重新定义。
   * 如果 max 和 min 不稳定，很容易使得归一化结果不稳定，使得后续使用效果也不稳定。实际使用中可以用经验常量值来替代 max 和 min。
 
-### 2.5. 最大绝对值缩放
+### 2.5.2.2 最大绝对值缩放
 
 在实际情况中,我们经常忽略特征的分布形状，直接经过去均值来对某个特征进行中心化，再通过除以非常量特征(non-constant features)的标准差进行缩放。而对稀疏数据进行中心化会破坏稀疏数据的结构，这样做没什么意义。但如果稀疏数据的特征跨越不同数量级的情况下也最好进行标准化，最大绝对值缩放就可以派上用场了。
 
 最大绝对值缩放按照每个特征的最大绝对值进行缩放（除以最大绝对值），使得每个特征的范围变成了 $[-1, 1]$，该操作不会移动或者居中数据，所以不会破坏稀疏性。
 
-使用 [sklearn.preprocessing.MaxAbsScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MaxAbsScaler.html#sklearn.preprocessing.MaxAbsScaler) 实现：
+1、使用 [sklearn.preprocessing.maxabs_scale](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.maxabs_scale.html) 函数实现：
+
+```python
+>>> from sklearn import preprocessing
+>>> import numpy as np
+>>> X = np.array([[ 1., -1.,  2.],
+...               [ 2.,  0.,  0.],
+...               [ 0.,  1., -1.]])
+>>> X_scaled = preprocessing.maxabs_scale(X)
+
+>>> X_scaled                                          
+array([[ 0.5, -1. ,  1. ],
+       [ 1. ,  0. ,  0. ],
+       [ 0. ,  1. , -0.5]])
+
+>>> #处理后数据的均值和方差
+>>> X_scaled.mean(axis=0)
+array([0.5       , 0.        , 0.16666667])
+
+>>> X_scaled.std(axis=0)
+array([0.40824829, 0.81649658, 0.62360956])
+```
+
+2、使用 [sklearn.preprocessing.MaxAbsScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MaxAbsScaler.html#sklearn.preprocessing.MaxAbsScaler) 类实现：
 
 ```python
 >>> X_train = np.array([[ 1., -1.,  2.],
@@ -460,33 +499,121 @@ array([ 2.,  1.,  2.])
 * 使用最大绝对值缩放之前应该确认，训练数据应该是已经零中心化或者是稀疏数据。
 * 该操作不会移动或者居中数据，所以不会破坏稀疏性。
 
-最大最小值缩放和最大绝对值缩放两种缩放属于**区间缩放**，使用这种缩放的目的包括实现特征极小方差的鲁棒性以及在稀疏矩阵中保留零元素。
+### 2.5.3 归一化（Normalization）
 
-### 2.5.3 基于某种范数的缩放
+归一化是**缩放单个样本以具有单位范数**的过程，即变换后的单行数据样本的范数等于1（好处？🤔）。如果你计划使用二次形式(如点积或任何其他核函数)来量化任何样本间的相似度，则此过程将非常有用。这是文本分类或聚类的常用操作，例如，对于两个 TF-IDF 向量的 l2-norm 进行点积，就可以得到这两个向量的余弦相似性。
 
-### 2.5.4 平方根缩放或者对数缩放
+数据归一化就是将训练集中某一列数值特征的值缩放到0和1之间。
 
-### 2.5.5 Box-Cox 转换
+**注意归一化和标准化的区别**：标准化作用于每个特征列，通过去均值和缩放以方差值的方式将样本的所有特征列转化到同一量纲下；归一化作用于每一数据行，通过缩放以原样本的某个范数使得计算样本间相似度的时候有统一的标准。
+
+1、[sklearn.preprocessing.normalize](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html) 函数提供了一个快速简单的方法在类似数组的数据集上执行操作，使用 `l1` 或 `l2`范式:
+
+```python
+>>> X = [[ 1., -1.,  2.],
+...      [ 2.,  0.,  0.],
+...      [ 0.,  1., -1.]]
+>>> X_normalized = preprocessing.normalize(X, norm='l2')
+
+>>> X_normalized                                      
+array([[ 0.40..., -0.40...,  0.81...],
+ [ 1\.  ...,  0\.  ...,  0\.  ...],
+ [ 0\.  ...,  0.70..., -0.70...]])
+```
+
+2、使用 [sklearn.preprocessing.Normalizer](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html) 类来归一化，把每一行数据归一化，使之有单位范数（Unit Norm），norm 的种类可以选l1、l2或max。不免疫outlier。
+$$
+\vec{x^{\prime}}=\frac{\vec{x}}{l(\vec{x})}
+$$
+其中 $l$ 表示 $norm$ 函数。
+
+在这种情况下， `fit` 方法是无用的：该类是无状态的，因为该操作独立对待样本。
+
+```python
+>>> normalizer = preprocessing.Normalizer().fit(X)  # fit does nothing
+>>> normalizer
+Normalizer(copy=True, norm='l2')
+>>> normalizer.transform(X)                            
+array([[ 0.40..., -0.40...,  0.81...],
+ [ 1\.  ...,  0\.  ...,  0\.  ...],
+ [ 0\.  ...,  0.70..., -0.70...]])
+
+>>> normalizer.transform([[-1.,  1., 0.]])             
+array([[-0.70...,  0.70...,  0\.  ...]])
+```
+
+### 2.5.4 带有异常值的缩放
+
+如果你的数据包含许多异常值，使用均值和方差缩放可能并不是一个很好的选择。这种情况下，你可以使用 robust_scale 以及 RobustScaler 作为替代品。它们对你的数据的中心和范围使用更有鲁棒性的估计。
+
+1、使用 [sklearn.preprocessing.robust_scale](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.robust_scale.html) 函数：
+
+```python
+>>> from sklearn import preprocessing
+>>> import numpy as np
+>>> X = np.array([[ 1., -2.,  2.],
+...               [ -2.,  1.,  3.],
+...               [ 4.,  1., -2.]])
+>>> X_scaled = preprocessing.robust_scale(X)
+
+>>> X_scaled                                          
+array([[ 0. , -2. ,  0. ],
+       [-1. ,  0. ,  0.4],
+       [ 1. ,  0. , -1.6]])
+
+>>> #处理后数据的均值和方差
+>>> X_scaled.mean(axis=0)
+array([ 0.        , -0.66666667, -0.4       ])
+
+>>> X_scaled.std(axis=0)
+array([0.81649658, 0.94280904, 0.86409876])
+```
+
+2、使用 [sklearn.preprocessing.RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler) 类：
+
+```python
+>>> from sklearn.preprocessing import RobustScaler
+>>> X = [[ 1., -2.,  2.],
+...      [ -2.,  1.,  3.],
+...      [ 4.,  1., -2.]]
+>>> transformer = RobustScaler().fit(X)
+>>> transformer
+RobustScaler(copy=True, quantile_range=(25.0, 75.0), with_centering=True,
+       with_scaling=True)
+>>> transformer.transform(X)
+array([[ 0. , -2. ,  0. ],
+       [-1. ,  0. ,  0.4],
+       [ 1. ,  0. , -1.6]])
+```
+
+### 2.5.5 稀疏数据的缩放
+
+中心化稀疏（矩阵）数据会破坏数据的稀疏结构，因此很少有一个比较明智的实现方式。但是缩放稀疏输入是有意义的，尤其是当几个特征在不同的量级范围时，最推荐的缩放方式是采用最大绝对值缩放，具体操作方式参考上述对应章节。
+
+### 2.5.6 对数缩放（有偏度的正态分布）
+
+如果数据不是正态分布的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。
+
+1、对 Numpy Array 类型的数据处理：
+
+```python
+log_data = np.log(data)
+```
+
+2、对 Pandas DataFrame 数据的处理：
+
+```python
+data_df[col] = data_df[col].map(lambda x : np.log1p(x))
+```
+
+### 2.5.7 其他缩放待整理
+
+* 平方根缩放
+* 反余切函数缩放
 
 
-### 带有异常值的缩放
 
-### 稀疏数据的缩放
-
-
-
-
-
-
-### 缺失值处理
-* 补值
-    * 简单的可以是补一个平均值、或者众数
-    * 对于含异常值的变量，更健壮的做法是补中位数
-    * 还可以通过模型预测缺失值
-* 直接忽略
-    * 将缺失作为一种信息编码喂给模型进行学习
-
-### 特征交叉
+### 2.6 特征交叉
 * 表示数值特征之间的相互作用
 * 可以对两个数值变量进行加、减、乘、除等操作
 
@@ -494,6 +621,20 @@ array([ 2.,  1.,  2.])
 * 多项式核、高斯核等编码
 * 将随机森林模型的叶节点进行编码喂给线性模型
 * 基因算法以及局部线性嵌入、谱嵌入、t-SNE 等
+
+### 非线性转换（修正分布）
+
+### X.1 映射到均分分布 (Uniform distribution) 上的转换
+
+
+
+### X.2 映射到正态分布 (Gaussian distribution) 上的转换
+
+如果数据不是正态分布的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。
+
+1、对数
+
+一种实现这个缩放的方法是：使用Box-Cox 变换，这个方法能够计算出能够最佳减小数据倾斜的指数变换方法。
 
 ### 行统计量
 * 对行向量进行统计作为一类特征
@@ -506,7 +647,7 @@ array([ 2.,  1.,  2.])
 
 
 
-## 特征选择 (Feature Selection) 
+## 二.  特征选择 (Feature Selection) 
 
 
 
