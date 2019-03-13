@@ -116,7 +116,8 @@ Age Range: Bin
   ... and so on
 ```
 
-如果采用数据舍入的方式，我们可以对浮点型的年龄特征除以10：
+1、如果采用数据舍入的方式，我们可以对浮点型的年龄特征除以10：
+
 ```python
 fcc_survey_df['Age_bin_round'] = np.array(np.floor(
                               np.array(fcc_survey_df['Age']) / 10.))
@@ -125,7 +126,8 @@ fcc_survey_df[['ID.x', 'Age', 'Age_bin_round']].iloc[1071:1076]
 
 ![](/img/media/15523898042213.jpg)
 
-那如果我们需要想要更灵活的方式（按照自己的意愿）来操作要怎么做呢？比如这样分桶：
+2、那如果我们需要想要更灵活的方式（按照自己的意愿）来操作要怎么做呢？比如这样分桶：
+
 ```python
 Age Range : Bin
 ---------------
@@ -158,11 +160,40 @@ fcc_survey_df[['ID.x', 'Age', 'Age_bin_round',
 
 ![](/img/media/15523901338278.jpg)
 
+3、可以采用 [sklearn.preprocessing.KBinsDiscretizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.KBinsDiscretizer.html#sklearn.preprocessing.KBinsDiscretizer) 的方式：
+
+```python
+>>> X = [[-2, 1, -4,   -1],
+...      [-1, 2, -3, -0.5],
+...      [ 0, 3, -2,  0.5],
+...      [ 1, 4, -1,    2]]
+>>> est = KBinsDiscretizer(n_bins=3, encode='ordinal', strategy='uniform')
+>>> est.fit(X)  
+KBinsDiscretizer(...)
+>>> Xt = est.transform(X)
+>>> Xt  
+array([[ 0., 0., 0., 0.],
+       [ 1., 1., 1., 0.],
+       [ 2., 2., 2., 1.],
+       [ 2., 2., 2., 2.]])
+# 看下分桶边界
+>>> est.bin_edges_[0]
+array([-2., -1.,  0.,  1.])
+>>> est.inverse_transform(Xt)
+array([[-1.5,  1.5, -3.5, -0.5],
+       [-0.5,  2.5, -2.5, -0.5],
+       [ 0.5,  3.5, -1.5,  0.5],
+       [ 0.5,  3.5, -1.5,  1.5]])
+```
+
+
+
 ### 2.2.2.2 自定义分桶
 
 1、自定义分桶可以利用上面固定宽度分桶的最后一种方式，修改成自己想要的分桶间隔就好。
 
 2、也可以采用 Pandas 的 map 方式：
+
 ```python
 def map_age(age_x):
     if age_x <= 18:
@@ -262,7 +293,7 @@ items_popularity
 
 
 ### 2. 归一化（Normalization）
-使用 [sklearn.preprocessing.Normalizer](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html) 来归一化，把每一行数据归一化，使之有unit norm，norm的种类可以选l1、l2或max。不免疫outlier。
+使用 [sklearn.preprocessing.Normalizer](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html) 来归一化，把每一行数据归一化，使之有 unit norm，norm 的种类可以选l1、l2或max。不免疫outlier。
 
 $$
 \vec{x^{\prime}}=\frac{\vec{x}}{l(\vec{x})}
