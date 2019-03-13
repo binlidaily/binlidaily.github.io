@@ -58,7 +58,11 @@ fcc_survey_df[['ID.x', 'Age','Age_bin_round']].iloc[1071:1076]
 
 这样连续数值就没有那么精细了，也能反映出相互之间的差别。
 
-### 2.2 二值化 (Binarization)
+### 2.2 离散化（Discretization）
+
+离散化又被称为量化或者叫做分桶（二值化也是一种分桶），是一种将连续型特征转换到离散特征上的一种方式，而离散特征可以被用做类别特征，这对大多数模型来说比较友好。通过离散化甚至可以将非线性特性引入到线性模型中，从而使得线性模型更具泛化性。
+
+### 2.2.1 二值化 (Binarization)
 计数特征可以考虑转换为是否的二值化形式，基于要解决的问题构建模型时，通常原始频数或总数可能与此不相关。比如如果我要建立一个推荐系统用来推荐歌曲，我只希望知道一个人是否感兴趣或是否听过某歌曲。我不需要知道一首歌被听过的次数，因为我更关心的是一个人所听过的各种各样的歌曲。
 
 ```python
@@ -82,27 +86,8 @@ popsong_df.head(11)
 ![](/img/media/15523797913264.jpg)
 
 
-### 2.3 数据舍入(Rounding)
-处理连续性数据特征如比例或者百分比类型的特征时，我们不需要高精度的原始数值，通常我们将其舍入近似到数值整型就够用了，这些整型数值可以被视作类别特征或者原始数值（即离散特征）都可以。
 
-举个例子：
-
-```python
-items_popularity = pd.read_csv('datasets/item_popularity.csv',  
-                               encoding='utf-8')
-items_popularity['popularity_scale_10'] = np.array(
-                               np.round((items_popularity['pop_percent'] * 10)),  
-                               dtype='int')
-items_popularity['popularity_scale_100'] = np.array(
-                               np.round((items_popularity['pop_percent'] * 100)),    
-                               dtype='int')
-items_popularity
-```
-![](/img/media/15523893068452.jpg)
-
-可以得到不同粒度下的近似结果。当然，舍入近似结果不一定都是乘以某个数，我们在下面讲分桶的时候可以看到，可以用舍入近似的方式来做，效果可以分桶。
-
-### 2.4 分桶 (Binning)
+### 2.2.2 分桶 (Binning) 
 如果直接利用原始的连续数值型特征有一个问题，那就是这些特征的数值**分布**通常是有偏向的，也就是说有些数据特别多而一些值就相对很少出现。另外，这些特征的**大小**变化范围也是需要注意的。如果直接利用这些特征，模型的效果一般不好，于是需要处理这些特征，有分桶和变换的方式。
 
 对需要分桶的情况做一个经验性的总结：
@@ -111,9 +96,9 @@ items_popularity
 
 分桶可以将连续性数值特征转换为离散型特征（类别），每一个桶代表了某一个范围的连续性数值特征的密度。
 
-### 2.4.1 固定宽度分桶 (Fixed-Width Binning)
+### 2.2.2.1 固定宽度分桶 (Fixed-Width Binning)
 
-固定每个分桶的宽度，即每个通的值域是固定的，如果每个桶的大小一样，也称为均匀分桶。这里用年龄作为例子进行说明，如下所示年龄有一点右偏的数据分布：
+固定每个分桶的宽度，即每个桶的值域是固定的，如果每个桶的大小一样，也称为均匀分桶。这里用年龄作为例子进行说明，如下所示年龄有一点右偏的数据分布：
 
 ![](/img/media/15523887500985.jpg)
 
@@ -173,11 +158,11 @@ fcc_survey_df[['ID.x', 'Age', 'Age_bin_round',
 
 ![](/img/media/15523901338278.jpg)
 
-### 2.4.2 自定义分桶
+### 2.2.2.2 自定义分桶
 
-自定义分桶可以利用上面固定宽度分桶的最后一种方式，修改成自己想要的分桶间隔就好。
+1、自定义分桶可以利用上面固定宽度分桶的最后一种方式，修改成自己想要的分桶间隔就好。
 
-也可以采用 Pandas 的 map 方式：
+2、也可以采用 Pandas 的 map 方式：
 ```python
 def map_age(age_x):
     if age_x <= 18:
@@ -194,7 +179,7 @@ def map_age(age_x):
 data_df['age'] = data_df['age'].map(lambda x : map_age(x))
 ```
 
-### 2.4.3 自适应分桶 / 分位数分桶 (Adaptive Binning)
+### 2.2.2.3 自适应分桶 / 分位数分桶 (Adaptive Binning)
 
 不管是固定宽度分桶还是自定义分桶，分桶的效果都很难使得结果能够呈现均匀分布，有的桶多，有的桶很少甚至为空。于是，我们可以采用分位数分桶来自适应地做划分，使得结果更加均匀一些。一般常用的有2分位点，4分位点和10分位点用以分桶。
 
@@ -251,11 +236,29 @@ fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_quantile_range',
 ```
 ![](/img/media/15523938726097.jpg)
 
-
-
 当然，分桶之后得到了离散型的数值型特征，或者可以看成类别特征，还需要一定的处理才能更好地服务于模型。
 
+### 2.3 数据舍入(Rounding)
 
+处理连续性数据特征如比例或者百分比类型的特征时，我们不需要高精度的原始数值，通常我们将其舍入近似到数值整型就够用了，这些整型数值可以被视作类别特征或者原始数值（即离散特征）都可以。
+
+举个例子：
+
+```python
+items_popularity = pd.read_csv('datasets/item_popularity.csv',  
+                               encoding='utf-8')
+items_popularity['popularity_scale_10'] = np.array(
+                               np.round((items_popularity['pop_percent'] * 10)),  
+                               dtype='int')
+items_popularity['popularity_scale_100'] = np.array(
+                               np.round((items_popularity['pop_percent'] * 100)),    
+                               dtype='int')
+items_popularity
+```
+
+![](/img/media/15523893068452.jpg)
+
+可以得到不同粒度下的近似结果。当然，舍入近似结果不一定都是乘以某个数，我们在下面讲分桶的时候可以看到，可以用舍入近似的方式来做，效果可以分桶。
 
 
 ### 2. 归一化（Normalization）
@@ -398,11 +401,35 @@ X_scaled=X_std/(max-min)+min
 
 在实际情况中,我们经常忽略特征的分布形状，直接经过去均值来对某个特征进行中心化，再通过除以非常量特征(non-constant features)的标准差进行缩放。而对稀疏数据进行中心化会破坏稀疏数据的结构，这样做没什么意义。但如果稀疏数据的特征跨越不同数量级的情况下也最好进行标准化，最大绝对值缩放就可以派上用场了。
 
-最大绝对值缩放按照每个特征的最大绝对值进行缩放（除以最大绝对值），使得每个特征的范围变成了 $(-1, 1)$，该操作不会移动或者居中数据，所以不会破坏稀疏性。
+最大绝对值缩放按照每个特征的最大绝对值进行缩放（除以最大绝对值），使得每个特征的范围变成了 $[-1, 1]$，该操作不会移动或者居中数据，所以不会破坏稀疏性。
 
 使用 [sklearn.preprocessing.MaxAbsScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MaxAbsScaler.html#sklearn.preprocessing.MaxAbsScaler) 实现：
 
+```python
+>>> X_train = np.array([[ 1., -1.,  2.],
+...                     [ 2.,  0.,  0.],
+...                     [ 0.,  1., -1.]])
+...
+>>> max_abs_scaler = preprocessing.MaxAbsScaler()
+>>> X_train_maxabs = max_abs_scaler.fit_transform(X_train)
+>>> X_train_maxabs                # doctest +NORMALIZE_WHITESPACE^
+array([[ 0.5, -1\. ,  1\. ],
+ [ 1\. ,  0\. ,  0\. ],
+ [ 0\. ,  1\. , -0.5]])
+# 测试集
+>>> X_test = np.array([[ -3., -1.,  4.]])
+>>> X_test_maxabs = max_abs_scaler.transform(X_test)
+>>> X_test_maxabs                 
+array([[-1.5, -1\. ,  2\. ]])
+>>> max_abs_scaler.scale_         
+array([ 2.,  1.,  2.])
+```
 
+🐽注意：
+* 使用最大绝对值缩放之前应该确认，训练数据应该是已经零中心化或者是稀疏数据。
+* 该操作不会移动或者居中数据，所以不会破坏稀疏性。
+
+最大最小值缩放和最大绝对值缩放两种缩放属于**区间缩放**，使用这种缩放的目的包括实现特征极小方差的鲁棒性以及在稀疏矩阵中保留零元素。
 
 ### 2.5.3 基于某种范数的缩放
 
@@ -411,8 +438,14 @@ X_scaled=X_std/(max-min)+min
 ### 2.5.5 Box-Cox 转换
 
 
-
 ### 带有异常值的缩放
+
+### 稀疏数据的缩放
+
+
+
+
+
 
 ### 缺失值处理
 * 补值
@@ -435,6 +468,12 @@ X_scaled=X_std/(max-min)+min
 * 对行向量进行统计作为一类特征
 * 例如统计行向量中的空值个数、零值个数、正负值个数
 * 以及均值、方差、最小值、最大值、偏度、峰度等
+
+
+
+
+
+
 
 ## 特征选择 (Feature Selection) 
 
@@ -462,7 +501,7 @@ Features:
 具体特征都是业务相关的，宏观上讲一些可能的方向供参考，例如用户使用上下文中可以感知的因素的属性、用户历史的业务数据因素、时间因素、地域因素、用户的个性化因素（年龄、爱好等）、用户使用场景中各种历史沉淀的评分因素（好评、差评等数量）、场景各种对象的属性特征（例如长度、颜色、形状等）。
 
 ### 2)  特征可视化
-将特征数据通过散点图、分布图等方式观察下特征数据的特点，一方面可以观察特征对于分类等数据区分度，更重要的是可以根据数据分布，确认特征是否存在异常情况，例如由于线上 bug 导致部分数据是错误的。这一块建议重视关注，可能比较费时，但是可以避免后面模型优化或 bad case 排查的工作量。
+将特征数据通过散点图、分布图等方式观察下特征数据的特点，一方面可以观察特征对于分类等数据区分度，更重要的是可以根据数据分布，确认特征是否存在异常情况，例如由于线上 bug 导致部分数据是错误的。这一块建议重点关注，可能比较费时，但是可以避免后面模型优化或 bad case 排查的工作量。
 
 ### 3)  统计特征
 有了原始的特征因素后，可以让这个特征具备更强的表达性。统计化是一个常用的方式，主要有最大值、最小值、平均值、标准差、方差、中位数、分布区间统计数等。例如周一的平均订单数、最大订单数等。可以查看下节中类别特征与数值特征的组合。
@@ -669,3 +708,4 @@ deep auto encoders
 13. [Normalization(标准化)的原理和实现详解](http://www.dongdongbai.com/index.php/2017/12/11/97/)
 14. [数据挖掘的流程和方法、技巧总结](https://zhuanlan.zhihu.com/p/33429338)
 15. [4.3. 预处理数据](http://doc.codingdict.com/sklearn/59/)
+16. [scikit-learn preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html)
