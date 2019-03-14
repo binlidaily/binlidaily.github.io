@@ -880,6 +880,218 @@ print(s.kurt())
 
 类别特征取值可以是数值类型，但是数值没有任何数学意义，不能做数学运算。类别特征不仅可以从原始数据中直接获得，还可以通过数值特征离散化得到。
 
+### 3.1 自然数编码
+
+- 类别特征要变成数值才能喂给模型
+- 采用自然数编码给每一个类别分配一个编号
+- 除非类别特征本身有顺序特征外，类别特征的数值大小没有意义，所以自然数编码效果一般不是很好，可以对类别编号进行洗牌，训练多个模型进行融合进一步提升模型效果
+- 但是一般来说操作消耗内存小，训练时间快
+
+1、使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $n\_samples$ 大小的 $[0, n\_classes-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 (n_samples, n_features) 的数组：
+
+```python
+>>> from sklearn.preprocessing import OrdinalEncoder
+>>> enc = OrdinalEncoder()
+>>> X = [['Male', 1], ['Female', 3], ['Female', 2]]
+>>> enc.fit(X)
+... 
+OrdinalEncoder(categories='auto', dtype=<... 'numpy.float64'>)
+>>> enc.categories_
+[array(['Female', 'Male'], dtype=object), array([1, 2, 3], dtype=object)]
+>>> enc.transform([['Female', 3], ['Male', 1]])
+array([[0., 2.],
+       [1., 0.]])
+>>> enc.inverse_transform([[1, 0], [0, 1]])
+array([['Male', 1],
+       ['Female', 2]], dtype=object)
+```
+
+fit_transform() 函数就是先 fit() 完直接 transform()。
+
+2、使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签（Target labels）编码到 $[0, n\_classes-1]​$ 内取值的结果，输入大小为(n_samples,) 的数组：
+
+```python
+>>> from sklearn import preprocessing
+>>> le = preprocessing.LabelEncoder()
+>>> le.fit([1, 2, 2, 6])
+LabelEncoder()
+>>> le.classes_
+array([1, 2, 6])
+>>> le.transform([1, 1, 2, 6]) 
+array([0, 0, 1, 2]...)
+>>> le.inverse_transform([0, 0, 1, 2])
+array([1, 1, 2, 6])
+```
+
+### 3.2 独热编码 (One-Hot Encoding)
+
+除非类别特征本身有顺序特征，那么可以用自然编码，除此之外类别特征大小没有意义，一般采用独热编码得到稀疏矩阵。将一个类别特征编码成 $n\_classes$ 维度的 $0/1$ 向量，取对应类别的地方取 1，其他全为了 0，所以很稀疏。
+
+1、使用 [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 类针对无顺序性类别特征进行独热编码，输入大小为 (n_samples, n_features) 的数组：
+
+```python
+>>> from sklearn.preprocessing import OneHotEncoder
+>>> enc = OneHotEncoder(handle_unknown='ignore')
+>>> X = [['Male', 1], ['Female', 3], ['Female', 2]]
+>>> enc.fit(X)
+... 
+OneHotEncoder(categorical_features=None, categories=None,
+       dtype=<... 'numpy.float64'>, handle_unknown='ignore',
+       n_values=None, sparse=True)
+>>> enc.categories_
+[array(['Female', 'Male'], dtype=object), array([1, 2, 3], dtype=object)]
+>>> enc.transform([['Female', 1], ['Male', 4]]).toarray()
+array([[1., 0., 1., 0., 0.],
+       [0., 1., 0., 0., 0.]])
+>>> enc.inverse_transform([[0, 1, 1, 0, 0], [0, 0, 0, 1, 0]])
+array([['Male', 1],
+       [None, 2]], dtype=object)
+>>> enc.get_feature_names()
+array(['x0_Female', 'x0_Male', 'x1_1', 'x1_2', 'x1_3'], dtype=object)
+```
+
+得到的结果大小是 $特征个数 \times 每个特征的类别个数$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
+
+2、使用 [LabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html) 类针对类别标签（Target labels）独热编码，输入大小为(n_samples,) 的数组：
+
+```python
+>>> from sklearn import preprocessing
+>>> lb = preprocessing.LabelBinarizer()
+>>> lb.fit([1, 2, 6, 4, 2])
+LabelBinarizer(neg_label=0, pos_label=1, sparse_output=False)
+>>> lb.classes_
+array([1, 2, 4, 6])
+>>> lb.transform([1, 6])
+array([[1, 0, 0, 0],
+       [0, 0, 0, 1]])
+```
+
+3、使用 [pandas.get_dummies](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html) :
+
+```python
+>>> df = pd.DataFrame({'A': ['a', 'b', 'a'], 'B': ['b', 'a', 'c'],
+...                    'C': [1, 2, 3]})
+>>> pd.get_dummies(df, prefix=['col1', 'col2'])
+   C  col1_a  col1_b  col2_a  col2_b  col2_c
+0  1       1       0       0       1       0
+1  2       0       1       1       0       0
+2  3       1       0       0       0       1
+```
+
+当然这里的 get_dummies 是做 One-Hot Encoding，与 Dummy Encoding（哑编码）还是有些区别的，真正的Dummy Encoding 是将一个类别特征编码成 $n\_classes- 1 $ 维度的 $0/1$ 向量，编码时这 $n\_classes- 1 $ 个类的对应在其位置上取值为 1，其他取 0，剩下的那个类用这 $n\_classes- 1 $ 全部去 0 的状态表示。
+
+🐽注意：
+
+* 使用独热编码将离散特征的取值拓展到了欧式空间，离散特征的某个取值就对应欧式空间的某个点。
+* 离散特征独热编码后，会让特征之间的距离计算更加合理，没有没有顺序性，$x_1 = (1)$, $x_2 = (2)$, $x_3 = (3)$ 之间的距离就没有意义，而 $x_1 = (1, 0, 0)$, $x_2 = (0, 1, 0)$, $x_3 = (0, 0, 1)$ 之间的距离就更 make sense。
+* 用：独热编码用来解决类别型数据的离散值问题，不用：将离散型特征进行one-hot编码的作用，是为了让距离计算更合理，但如果特征是离散的，并且不用 One-Hot 编码就可以很合理的计算出距离，那么就没必要进行 One-Hot 编码。
+* One-Hot 编码可能引起 dummy variable trap，即截取（或叫 bias）会引起[共线问题](http://www.jiehuozhe.com/article/3)，所以这个时候用 Dummy Encoding 比较好。
+
+### 3.3 分层编码
+
+这种编码就是业务相关的了，需要专业领域知识。例如对于邮政编码或者身份证号的类别特征，可以取不同数位进行分层，然后按照层次进行自然数编码。
+
+- [ ] 求具体实例。🙄
+
+### 3.4 散列编码
+
+* 对于有些取值特别多的类别特征，利用 One-Hot Encoding 得到的特征矩阵就非常得稀疏，为减少稀疏程度可以在独热编码之前利用散列编码。
+* 实际应用中可以重复选取不同的散列函数，利用融合的方式来提升模型效果。
+* 散列方法可能会导致特征取值冲突，这些冲突会削弱模型的效果。🤔
+* 自然数编码和分层编码可以看做散列编码的特例
+
+* [ ] 求具体实例。🙄
+
+### 3.5 计数编码 (Count encoding)
+
+* 计数编码是将类别特征用其对应的技术代替，这对线性和非线性模型都有效。
+* 计数编码对异常值比较敏感，特征取值也可能冲突。[参考](https://wrosinski.github.io/fe_categorical_encoding/)🤔
+
+```python
+def count_encode(X, categorical_features, normalize=False):
+    print('Count encoding: {}'.format(categorical_features))
+    X_ = pd.DataFrame()
+    for cat_feature in categorical_features:
+        X_[cat_feature] = X[cat_feature].astype(
+            'object').map(X[cat_feature].value_counts())
+        if normalize:
+            X_[cat_feature] = X_[cat_feature] / np.max(X_[cat_feature])
+    X_ = X_.add_suffix('_count_encoded')
+    if normalize:
+        X_ = X_.astype(np.float32)
+        X_ = X_.add_suffix('_normalized')
+    else:
+        X_ = X_.astype(np.uint32)
+    return X_
+# run
+train_count_subreddit = count_encode(X_train, ['subreddit'])
+# not normalized
+221941    221941
+98233      98233
+33559      33559
+32010      32010
+25567      25567
+Name: subreddit_count_encoded, dtype: int64
+# normalized
+1.000000    221941
+0.442609     98233
+0.151207     33559
+0.144228     32010
+0.115197     25567
+Name: subreddit_count_encoded_normalized, dtype: int64
+```
+
+### 3.6 计数排名编码 (LabelCount encoding)
+
+* 计数排名编码利用计数的排名对类别特征进行编码，对线性和非线性模型都有效。
+* 对异常点不敏感，且类别特征取值不会冲突。
+
+```python
+def labelcount_encode(X, categorical_features, ascending=False):
+    print('LabelCount encoding: {}'.format(categorical_features))
+    X_ = pd.DataFrame()
+    for cat_feature in categorical_features:
+        cat_feature_value_counts = X[cat_feature].value_counts()
+        value_counts_list = cat_feature_value_counts.index.tolist()
+        if ascending:
+            # for ascending ordering
+            value_counts_range = list(
+                reversed(range(len(cat_feature_value_counts))))
+        else:
+            # for descending ordering
+            value_counts_range = list(range(len(cat_feature_value_counts)))
+        labelcount_dict = dict(zip(value_counts_list, value_counts_range))
+        X_[cat_feature] = X[cat_feature].map(
+            labelcount_dict)
+    X_ = X_.add_suffix('_labelcount_encoded')
+    if ascending:
+        X_ = X_.add_suffix('_ascending')
+    else:
+        X_ = X_.add_suffix('_descending')
+    X_ = X_.astype(np.uint32)
+    return X_
+# run
+train_lc_subreddit = labelcount_encode(X_train, ['subreddit'])
+# descending
+0    221941
+1     98233
+2     33559
+3     32010
+4     25567
+Name: subreddit_labelcount_encoded_descending, dtype: int64
+# ascendign
+40    221941
+39     98233
+38     33559
+37     32010
+36     25567
+Name: subreddit_labelcount_encoded_ascending, dtype: int64
+```
+
+### 3.7 目标编码 (Target encoding)
+
+
+
 ### 特征聚合 (feature aggregation)
 
 选择重要的类别特征，利用 pandas 的 groupby 功能生成 min/max/std/mean/median 等特征。
@@ -1081,3 +1293,8 @@ deep auto encoders
 15. [4.3. 预处理数据](http://doc.codingdict.com/sklearn/59/)
 16. [scikit-learn preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html)
 17. [A Comprehensive Guide to Data Exploration](https://www.analyticsvidhya.com/blog/2016/01/guide-data-exploration/)
+18. [**What are good ways to handle discrete and continuous inputs together?**](https://www.quora.com/What-are-good-ways-to-handle-discrete-and-continuous-inputs-together)
+19. [One-hot vs dummy encoding in Scikit-learn](https://stats.stackexchange.com/questions/224051/one-hot-vs-dummy-encoding-in-scikit-learn)
+20. [如何理解统计学中「自由度」这个概念？](https://www.zhihu.com/question/20983193)
+21. [One-Hot 编码与哑变量](http://www.jiehuozhe.com/article/3)
+22. [Smarter Ways to Encode Categorical Data for Machine Learning (Part 1 of 3)](https://towardsdatascience.com/smarter-ways-to-encode-categorical-data-for-machine-learning-part-1-of-3-6dca2f71b159)
