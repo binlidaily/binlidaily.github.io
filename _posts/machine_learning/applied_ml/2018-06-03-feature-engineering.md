@@ -657,7 +657,7 @@ data_df[col] = data_df[col].map(lambda x : np.log1p(x))
 
 ### 2.6.1 组合特征
 
-* 可以对两个数值变量进行加 ($X_1 + X_2$)、减 ($X_1 - X_2$)、乘 ($X_1 \times X_2$)、除 ($X_1/X_2$)、绝对值 ($|X_1 - X_2|$)等操作。
+* 可以对两个数值变量进行加 ($X_1 + X_2$)、减 ($X_1 - X_2$)、乘 ($X_1 \times X_2$)、除 ($X_1/X_2$)、绝对值 ($\vert X_1 - X_2|$)等操作。
 
 * 求斜率、变化比率、增长倍数、$max(X_1, X_2)​$，$min(X_1, X_2)​$，$X_1 xor X_2​$等。
 
@@ -966,7 +966,7 @@ array([[1, 0, 0, 0],
        [0, 0, 0, 1]])
 ```
 
-3、使用 [pandas.get_dummies](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html) :
+3、使用 [pandas.get_dummies](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_dummies.html)：
 
 ```python
 >>> df = pd.DataFrame({'A': ['a', 'b', 'a'], 'B': ['b', 'a', 'c'],
@@ -1089,6 +1089,14 @@ Name: subreddit_labelcount_encoded_ascending, dtype: int64
 ```
 
 ### 3.7 目标编码 (Target encoding)
+
+* 对于基数（类别变量所有可能不同取值的个数）很大的离散特征，例如 IP 地址、网站域名、城市名、家庭地址、街道、产品编号等，之前介绍的编码方式效果往往不好，比如：
+  * 对于自然数编码，简单模型容易欠拟合，而复杂模型容易过拟合。
+  * 对于独热编码，
+
+
+
+
 
 
 
