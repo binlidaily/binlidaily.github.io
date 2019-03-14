@@ -787,13 +787,14 @@ array([[ 0.49...,  0.17..., -0.15...],
 上面代码显示地设定了standardize=False，默认的情况下转换结果会进行零均值、单位方差的归一化操作，即符合正态分布。
 
 3、另一种方式是[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 类的 Yeo-Johnson 转换操作，这也是 Sklearn 的默认选项：
+
+
 $$
 \begin{split}x_i^{(\lambda)} =
 \begin{cases}
  [(x_i + 1)^\lambda - 1] / \lambda & \text{if } \lambda \neq 0, x_i \geq 0, \\[8pt]
 \ln{(x_i) + 1} & \text{if } \lambda = 0, x_i \geq 0 \\[8pt]
--[(-x_i + 1)^{2 - \lambda} - 1] / (2 - \lambda) & \text{if } \lambda \neq 2, x_i < 0, \\[8pt]
- - \ln (- x_i + 1) & \text{if } \lambda = 2, x_i < 0
+-[(-x_i + 1)^{2 - \lambda} - 1] / (2 - \lambda) & \text{if } \lambda \neq 2, x_i < 0, \\[8pt]- \ln (- x_i + 1) & \text{if } \lambda = 2, x_i < 0
 \end{cases}\end{split}
 $$
 
