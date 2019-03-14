@@ -53,7 +53,6 @@ train_df[col] = train_df[col].map(lambda x : p.log1p(x))
 ### 暴力特征
 采用各种批量的组合特征。
 
-
 ----
 
 
@@ -80,9 +79,9 @@ Data Preprocessing is a technique that is used to convert the raw data into a cl
 7. Normalization and standardization
 8. PCA analysis
 9. Feature selection (filter, embedded, wrapper)
- 
 
- 
+
+
  数据预处理的主要任务如下：
 
 （1）数据清理：填写空缺值，平滑噪声数据，识别，删除孤立点，解决不一致性
@@ -259,7 +258,7 @@ B.分类数据的离散化：
 
 对只说明部分属性集的情况，则可根据数据库模式中的数据语义定义对属性的捆绑信息，来恢复相关属性。在定义数据库的同时定义一个捆绑信息，将存在偏序关系的几个属性捆绑在一起。
 
- 
+
 ## 特征工程中处理已有的特征
 ### 类别特征
 类别特征，表示某个数据点属于某一个类别，或具有某一种类的特性。类别特征在能用到模型训练时，默认用自然数表示，如果不是一般需要用 LabelEncoder 或者 OrdinalEncoder 方式将字符串转换成自然数。如果某一列特征具有 $K$ 种不同类别，那么其取值就是 $\{ 0, 1, 2, \dots, K-1\}$
@@ -319,7 +318,44 @@ Principal Component Analysis (PCA)
 Latent Dirichlet Allocation (LDA)
 Latent Semantic Analysis (LSA)
 
+## Python 代码操作集合
+
+### 1. 数据处理
+
+``` python
+# 数据预处理
+# 1. 读取数据：
+data_macro = pd.read_csv("macro.csv", parse_dates=['timestamp'], usecols=['timestamp'] + macro_cols)
+
+# 2. 显示为object的属性：
+data_train.dtypes[data_train.dtypes=='object']
+
+# 3. 改变数据类型
+data_train['material'] = data_train['material'].astype('object')
+
+# 4. 概览数据
+data_train.describe(include=['object'])
+
+# 5. 合并两个表（上下）
+data_all = pd.concat([data_train, data_test], ignore_index=True)
+
+# 6. 合并两个表（左右）
+data_all = pd.merge(data_all, data_macro, on='timestamp', how='left')
+
+# 7. 提取Number， Object特征：
+object_columns =  data_all.columns[data_all.dtypes == 'object']
+number_columns = data_all.columns[data_all.dtypes != 'object']
+
+# 8. 计算两个特征平均
+sa_price = train_df.groupby('sub_area')[['work_share', 'price_doc']].mean()
+```
+
+
+
+
+
 ## References
 1. [机器学习特征工程实用技巧大全](https://zhuanlan.zhihu.com/p/26444240)
 2. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)
 3. [经典比较篇之八：数据不正态怎么办？](https://zhuanlan.zhihu.com/p/26784184)
+4. [Python 特征工程](https://coladrill.github.io/2018/03/08/Python%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E7%AF%87/)

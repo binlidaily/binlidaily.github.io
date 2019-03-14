@@ -190,6 +190,8 @@ array([[-1.5,  1.5, -3.5, -0.5],
 
 ### 2.2.2.2 自定义分桶
 
+将一个数字型或统计性特征，映射为多个范围区间，然后为每个区间为一个类别，接着借助于 onehot encoding 就变为一系列是否的解释型特征。例如历史月订单 0~5 为低频、6~15 为中频、 大于16为高频， 订单量10数字就可以变为 [0,1,0] 这三维特征。
+
 1、自定义分桶可以利用上面固定宽度分桶的最后一种方式，修改成自己想要的分桶间隔就好。
 
 2、也可以采用 Pandas 的 map 方式：
@@ -657,7 +659,7 @@ data_df[col] = data_df[col].map(lambda x : np.log1p(x))
 
 ### 2.6.1 组合特征
 
-* 可以对两个数值变量进行加 ($X_1 + X_2$)、减 ($X_1 - X_2$)、乘 ($X_1 \times X_2$)、除 ($X_1/X_2$)、绝对值 ($\vert X_1 - X_2|$)等操作。
+* 可以对两个数值变量进行加 ($X_1 + X_2$)、减 ($X_1 - X_2$)、乘 ($X_1 \times X_2$)、除 ($X_1/X_2$)、绝对值 ($\vert X_1 - X_2\vert$)等操作。
 
 * 求斜率、变化比率、增长倍数、$max(X_1, X_2)​$，$min(X_1, X_2)​$，$X_1 xor X_2​$等。
 
@@ -926,7 +928,7 @@ array([1, 1, 2, 6])
 
 ### 3.2 独热编码 (One-Hot Encoding)
 
-除非类别特征本身有顺序特征，那么可以用自然编码，除此之外类别特征大小没有意义，一般采用独热编码得到稀疏矩阵。将一个类别特征编码成 $n\_classes$ 维度的 $0/1$ 向量，取对应类别的地方取 1，其他全为了 0，所以很稀疏。
+除非类别特征本身有顺序特征，那么可以用自然编码，除此之外类别特征大小没有意义，一般采用独热编码得到稀疏矩阵。将一个类别特征编码成 $n\_classes​$ 维度的 $0/1​$ 向量，取对应类别的地方取 1，其他全为了 0，所以很稀疏。
 
 1、使用 [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 类针对无顺序性类别特征进行独热编码，输入大小为 (n_samples, n_features) 的数组：
 
@@ -951,7 +953,7 @@ array([['Male', 1],
 array(['x0_Female', 'x0_Male', 'x1_1', 'x1_2', 'x1_3'], dtype=object)
 ```
 
-得到的结果大小是 $特征个数 \times 每个特征的类别个数$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
+得到的结果大小是 $(特征个数 \times 每个特征的类别个数)$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
 
 2、使用 [LabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html) 类针对类别标签（Target labels）独热编码，输入大小为(n_samples,) 的数组：
 
@@ -1001,7 +1003,7 @@ array([[1, 0, 0, 0],
 * 散列方法可能会导致特征取值冲突，这些冲突会削弱模型的效果。🤔
 * 自然数编码和分层编码可以看做散列编码的特例
 
-* [ ] 求具体实例。🙄
+* [ ] 求具体实例。Hash 编码词向量？🙄
 
 ### 3.5 计数编码 (Count encoding)
 
@@ -1093,51 +1095,79 @@ Name: subreddit_labelcount_encoded_ascending, dtype: int64
 
 * 对于基数（类别变量所有可能不同取值的个数）很大的离散特征，例如 IP 地址、网站域名、城市名、家庭地址、街道、产品编号等，之前介绍的编码方式效果往往不好，比如：
   * 对于自然数编码，简单模型容易欠拟合，而复杂模型容易过拟合。
-  * 对于独热编码，
+  * 对于独热编码，得到的特征矩阵太稀疏。
+* 对于高基数类别变量的一种解决办法是基于目标变量对类别特征进行编码，即有监督的编码方式，该方法适用于分类和回归问题。
+* 对于分类问题的高基数类别特征：
+  * 采用交叉验证的方式，将样本划分为5份，针对其中每一份数据，计算离散特征每个取值在另外4份数据中每个类别的比例。
+  * 为了避免过拟合，也可以采用嵌套的交叉验证划分方法。
+* 对于回归问题的高基数类别特征：
+  * 采用交叉验证的方式，计算目标变量均值对类别变量编码。[参考](https://wrosinski.github.io/fe_categorical_encoding/) 🤔
 
+- [ ] 求实例🙄
 
+```python
+def target_encode(X, X_valid, categorical_features, X_test=None,
+                  target_feature='target'):
+    print('Target Encoding: {}'.format(categorical_features))
+    X_ = pd.DataFrame()
+    X_valid_ = pd.DataFrame()
+    if X_test is not None:
+        X_test_ = pd.DataFrame()
+    for cat_feature in categorical_features:
+        group_target_mean = X.groupby([cat_feature])[target_feature].mean()
+        X_[cat_feature] = X[cat_feature].map(group_target_mean)
+        X_valid_[cat_feature] = X_valid[cat_feature].map(group_target_mean)
+    X_ = X_.astype(np.float32)
+    X_ = X_.add_suffix('_target_encoded')
+    X_valid_ = X_valid_.astype(np.float32)
+    X_valid_ = X_valid_.add_suffix('_target_encoded')
+    if X_test is not None:
+        X_test_[cat_feature] = X_test[cat_feature].map(group_target_mean)
+        X_test_ = X_test_.astype(np.float32)
+        X_test_ = X_test_.add_suffix('_target_encoded')
+        return X_, X_valid_, X_test_
+    return X_, X_valid_
+```
 
+### 3.8 类别特征之间交叉组合
 
+* 类别特征的笛卡尔积操作可以产生新的类别特征，但是注意这是在类别特征基数不大的前提下。
+* 还有一种交叉组合的思路是基于分组统计的组合。求实例 🙄
+* 其他的思路就是利用专业领域知识自己试了。
 
+1、对于笛卡尔积操作也就是暴力特征组合时可以用 [itertools.combinations](https://docs.python.org/2/library/itertools.html#itertools.combinations)：
 
+```python
+from itertools import combinations
+ralate_var = ['是否经常逛商场的人', '是否去过高档商场', '当月是否看电影', 
+              '当月是否景点游览', '当月是否体育场馆消费']
+print('waiting for group pair features...')
+for rv in combinations(ralate_var, 2):
+    rv2 = '_'.join(rv) 
+    data['relate_' + rv2] = data[rv[0]] * data[rv[1]]
+    print(rv2 + 'finished!')
+    
+for rv in combinations(ralate_var, 3):
+    rv2 = '_'.join(rv) 
+    data['relate_' + rv2] = data[rv[0]] * data[rv[1]] * data[rv[2]]
+    print(rv2 + 'finished!')
+    
+for rv in combinations(ralate_var, 4):
+    rv2 = '_'.join(rv) 
+    data['relate_' + rv2] = data[rv[0]] * data[rv[1]] * data[rv[2]] * data[rv[3]]
+    print(rv2 + 'finished!')
+    
+print('All finished!!!')
+```
 
-### 特征聚合 (feature aggregation)
+### 3.9 类别特征和数值特征之间交叉组合
 
-选择重要的类别特征，利用 pandas 的 groupby 功能生成 min/max/std/mean/median 等特征。
+### 3.9.1 特征聚合 (feature aggregation)
 
+* 通常基于类别特征的某个类别计算数值特征的一些统计量，一般在多个表好操作一些。
 
+1、用 N1 和 N2 表示数值特征，用 C1 和 C2 表示类别特征，利用 Pandas 的 groupby 操作，可以创造出以下几种有意义的新特征（其中，C2 还可以是离散化了的 N1）：
 
-## 二.  特征选择 (Feature Selection) 
-
-
-
-Features:
-1. numeric
-2. categorical
-3. ordinal
-4. datetime
-5. coordinates
-
-层次化特征，微观特征，宏观特征。
-
-## 特征工程-创造特征
-
-### 1)  好的特征
-好的特征以及数据样本决定我们模型优化的上限，所以找到好的特征非常重要。好的特征来源于对业务的深入理解。首先自己要深入理解业务的运作方式，了解影响模型 label 目标的主要业务因素；其次多和业务的专家沟通，获取到从他们角度认为重要的因素；拉入更多人员进行头脑风暴，找到尽可能多的影响因素。
-
-不同特征当前可用性也不一样。 初期我们要更多关注那些已有数据、线上易获取的特征；然后对于一些我们排序出来重要因素，如果当前没有数据以及线上无法获取，我们要尽快准备；
-
-具体特征都是业务相关的，宏观上讲一些可能的方向供参考，例如用户使用上下文中可以感知的因素的属性、用户历史的业务数据因素、时间因素、地域因素、用户的个性化因素（年龄、爱好等）、用户使用场景中各种历史沉淀的评分因素（好评、差评等数量）、场景各种对象的属性特征（例如长度、颜色、形状等）。
-
-### 2)  特征可视化
-将特征数据通过散点图、分布图等方式观察下特征数据的特点，一方面可以观察特征对于分类等数据区分度，更重要的是可以根据数据分布，确认特征是否存在异常情况，例如由于线上 bug 导致部分数据是错误的。这一块建议重点关注，可能比较费时，但是可以避免后面模型优化或 bad case 排查的工作量。
-
-### 3)  统计特征
-有了原始的特征因素后，可以让这个特征具备更强的表达性。统计化是一个常用的方式，主要有最大值、最小值、平均值、标准差、方差、中位数、分布区间统计数等。例如周一的平均订单数、最大订单数等。可以查看下节中类别特征与数值特征的组合。
-
-**类别特征与数值特征的组合**
-
-用 N1 和 N2 表示数值特征，用 C1 和 C2 表示类别特征，利用 Pandas 的 groupby 操作，可以创造出以下几种有意义的新特征（其中，C2 还可以是离散化了的 N1）：
 ```
 median(N1)_by(C1)  \\ 中位数
 mean(N1)_by(C1)  \\ 算术平均数
@@ -1154,47 +1184,63 @@ freq(C1) \\这个不需要groupby也有意义
 仅仅将已有的类别和数值特征进行以上的有效组合，就能够大量增加优秀的可用特征。
 
 将这种方法和线性组合等基础特征工程方法结合（仅用于决策树），可以得到更多有意义的特征，如：
+
 ```
 N1 - median(N1)_by(C1)
 N1 - mean(N1)_by(C1)
 ```
 
-
 将多个维度特征相互交叉，产生更多具体场景化的特征，例如和不同时段段、和不同的地理位置范围组合。
 
+```python
+import pandas as pd
 
-### 5)  特征拆解
-将一个特征拆为多个**更易理解**的特征。 例如日期，可以拆为年、月、日、小时、分、秒、星期几、是否为周末。
+# 根据客户 id （client id）进行贷款分组，并计算贷款平均值、最大值、最小值
+stats = loans.groupby('client_id')['loan_amount'].agg(['mean', 'max', 'min'])
+stats.columns = ['mean_loan_amount', 'max_loan_amount', 'min_loan_amount']
 
+# 和客户的 dataframe 进行合并
+stats = clients.merge(stats, left_on = 'client_id', right_index=True, how = 'left')
 
+stats.head(10)
+```
 
-### 7)  One-Hot encoding
-将类型特征映射多个是否特征，例如颜色可映射是否为为红色、是否为绿色、是否为蓝色。
+![img](/img/media/1652824cd936d8b8imageslim.png)
 
-### 8) 统计性特征映射为解释型特征
-将一个数字型或统计性特征，映射为多个范围区间，然后为每个区间为一个类别，接着借助于 onehot encoding 就变为一系列是否的解释型特征。例如历史月订单 0~5 为低频、6~15 为中频、 大于16为高频， 订单量10数字就可以变为 [0,1,0] 这三维特征。
-
-
-
-
-
-### 9) 挖掘特征
-对于有些特征我们的数据没有明确的标注，但是我们认为也很重要。这是可以用机器学习以及部分样本标注或人工标注的方式挖掘一些特征。 例如假设大部分用户的性别我们不知道，但是部分用户可以通过各种其他途径知道。那可以基于这个样本训练出一个性别分类预测的模型，然后预测出所有用户的性别，将这个预测结果做为特征。
-
-### 10) 特征自学习
-在深度学习中，在构造出得到好的原始特征和适用于特征的网络结构后，特征组合和抽象会交给深度学习自行学习。 典型可以参考 CNN 算法，通过网络的卷积、池化等操作将原始图片特征，通过网络层学习抽象出了高层次的边缘、轮廓等特征。
-
-### 11) 特征筛选
-当有很多特征时，有部分特征是强相关的，属于冗余特征；有部分特征可能贡献小甚至负面贡献。 这时候需要做一些特征筛选。例如特征两两组合确认特征之间的相关性系数，对于相关性非常高的特征只保留一个；**特征和 Label 标注做相关性判断，去掉一些相关性差的特征；**当然也可以通过控制特征增长的过程，从基础特征集合开始，逐渐加入新特征或新特征集实验，如果新特征效果不好，则丢弃。
-
-有些模型自带特征筛选的能力，例如gbdt（ xgboost）、回归中正则化等。通过这些模型一定程度也能达到特征筛选的目标。不过如果特征量特别多，建议在上线前，去掉无效特征，这样既可以避免特征维护的工作量，同时也能提高线上性能。
-
-### x) 特征平滑处理
-1. 长尾数据：进行取对数。这里可以参考数据预处理的博文。
+2、人工操作：
 
 ```python
-train_df[col] = train_df[col].map(lambda x : p.log1p(x))
+start_time = time.time()
+
+for cat_feat in categorical_cols:
+    for num_feat in numerical_cols:
+        cat_num_mean = train_df.groupby(cat_feat)[num_feat].mean()
+        train_df[cat_feat+'_'+num_feat+'_'+'mean'] = train_df[cat_feat].map(cat_num_mean)
+        test_df[cat_feat+'_'+num_feat+'_'+'mean'] = test_df[cat_feat].map(cat_num_mean)
+print 'elapsed time: ', time.time() - start_time
 ```
+
+
+
+### 4. 时间特征
+
+### 4.2 特征拆解
+
+将一个特征拆为多个**更易理解**的特征。 例如日期，可以拆为年、月、日、小时、分、秒、星期几、是否为周末。
+
+### 5. 空间特征
+
+### 6. 文本特征
+
+## 二.  特征选择 (Feature Selection) 
+
+
+
+
+
+
+
+
 
 
 
