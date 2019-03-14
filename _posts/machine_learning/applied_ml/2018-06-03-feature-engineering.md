@@ -293,12 +293,44 @@ items_popularity
 
 ### 2.4 缺失值处理
 
+因为各种各样的原因，真实世界中的许多数据集都包含缺失数据，这类数据经常被编码成空格、NaNs，或者是其他的占位符（有的时候是 0，需要具体分析）。对于缺失值一般有两大类处理方式：
+
 - 补值
-  - 简单的可以是补一个平均值、或者众数
-  - 对于含异常值的变量，更健壮的做法是补中位数
+  - 简单的可以是补一个平均值 (mean)、或者众数 (mode)
+  - 对于含异常值的变量，更健壮的做法是补中位数 (median)
   - 还可以通过模型预测缺失值
 - 直接忽略
   - 将缺失作为一种信息编码喂给模型进行学习
+
+对于统计量的补值有两种操作方式：
+
+1、针对 Pandas 方式：
+
+```python
+# combi.isnull().sum()
+# combi.isna().sum()
+# isnull is an alias for isna
+# imputing missing data
+# numerical data
+combi['Item_Weight'].fillna(combi['Item_Weight'].mean(), inplace = True)
+# categorical data
+combi['Outlet_Size'].fillna("missing", inplace = True)
+```
+
+2、使用 [Imputer](https://sklearn.org/modules/generated/sklearn.preprocessing.Imputer.html) 类，可以更方便的来统计到行列不同维度的信息：
+
+```python
+>>> import numpy as np
+>>> from sklearn.preprocessing import Imputer
+>>> imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+>>> imp.fit([[1, 2], [np.nan, 3], [7, 6]])
+Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
+>>> X = [[np.nan, 2], [6, np.nan], [7, 6]]
+>>> print(imp.transform(X))                           
+[[ 4\.          2\.        ]
+ [ 6\.          3.666...]
+ [ 7\.          6\.        ]]
+```
 
 ### 2.5 缩放
 
@@ -376,9 +408,13 @@ array([[-2.44...,  1.22..., -0.26...]])
 ### 2.5.2.1 最大最小值缩放
 
 最大最小缩放是将特征缩放到给定的最小值和最大值之间，通常在零和一之间。
+
+
 $$
 {x}^\prime=\frac{x-x_{Min}}{x_{Max}-x_{Min}}
 $$
+
+
 1、使用 [sklearn.preprocessing.minmax_scale](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.minmax_scale.html) 函数实现：
 
 ```python
@@ -522,9 +558,13 @@ array([[ 0.40..., -0.40...,  0.81...],
 ```
 
 2、使用 [sklearn.preprocessing.Normalizer](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Normalizer.html) 类来归一化，把每一行数据归一化，使之有单位范数（Unit Norm），norm 的种类可以选l1、l2或max。不免疫outlier。
+
+
 $$
 \vec{x^{\prime}}=\frac{\vec{x}}{l(\vec{x})}
 $$
+
+
 其中 $l$ 表示 $norm$ 函数。
 
 在这种情况下， `fit` 方法是无用的：该类是无状态的，因为该操作独立对待样本。
@@ -598,6 +638,7 @@ array([[ 0. , -2. ,  0. ],
 
 ```python
 log_data = np.log(data)
+# fcc_survey_df['Income_log'] = np.log((1+ fcc_survey_df['Income']))
 ```
 
 2、对 Pandas DataFrame 数据的处理：
@@ -611,48 +652,243 @@ data_df[col] = data_df[col].map(lambda x : np.log1p(x))
 * 平方根缩放
 * 反余切函数缩放
 
+### 2.6 特征交叉 (Feature Interaction) / 特征组合 (Feature Crosses)
+通过特征组合多个相关特征提取出其相关的规律。
+
+### 2.6.1 组合特征
+
+* 可以对两个数值变量进行加 ($X_1 + X_2$)、减 ($X_1 - X_2$)、乘 ($X_1 \times X_2$)、除 ($X_1/X_2$)、绝对值 ($|X_1 - X_2|$)等操作。
+
+* 求斜率、变化比率、增长倍数、$max(X_1, X_2)​$，$min(X_1, X_2)​$，$X_1 xor X_2​$等。
+
+### 2.6.2 生成多项式特征
+
+在机器学习中，通过增加一些输入数据的非线性特征来增加模型的复杂度通常是有效的。一个简单通用的办法是使用多项式特征，这可以获得特征的更高维度和互相间关系的项。
+
+1、使用 [PolynomialFeatures](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html) 类实现：
+
+```python
+>>> import numpy as np
+>>> from sklearn.preprocessing import PolynomialFeatures
+>>> X = np.arange(6).reshape(3, 2)
+>>> X                                                 
+array([[0, 1],
+ [2, 3],
+ [4, 5]])
+>>> poly = PolynomialFeatures(2)
+>>> poly.fit_transform(X)                             
+array([[  1.,   0.,   1.,   0.,   0.,   1.],
+ [  1.,   2.,   3.,   4.,   6.,   9.],
+ [  1.,   4.,   5.,  16.,  20.,  25.]])
+```
+
+$X$ 的特征已经从 $(X_1, X_2)$  转换为 $(1, X_1, X_2, X_1^2, X_1X_2, X_2^2)$。
+
+在一些情况下，只需要特征间的交互项，这可以通过设置 `interaction_only=True` 来得到:
+
+```python
+>>> X = np.arange(9).reshape(3, 3)
+>>> X                                                 
+array([[0, 1, 2],
+ [3, 4, 5],
+ [6, 7, 8]])
+>>> poly = PolynomialFeatures(degree=3, interaction_only=True)
+>>> poly.fit_transform(X)                             
+array([[   1.,    0.,    1.,    2.,    0.,    0.,    2.,    0.],
+ [   1.,    3.,    4.,    5.,   12.,   15.,   20.,   60.],
+ [   1.,    6.,    7.,    8.,   42.,   48.,   56.,  336.]])
+```
+
+$X$ 的特征已经从 $(X_1, X_2, X_3)$ 转换为 $(1, X_1, X_2, X_3, X_1X_2, X_1X_3, X_2X_3, X_1X_2X_3)$。
+
+### 2.7 非线性转换（修正分布）
+
+### 2.7.1 映射到均分分布 (Uniform distribution) 上的转换（分位点转换）
+
+利用分位点信息来转换特征使之符合均匀分布，这种转换倾向于将最常见的数值打散，如此能减少（边际）异常值的影响 (在这方面比缩放方法好)。 然而，该转换确实扭曲了特征内部和特征之间的相关性和距离。可以采用以下两种方式，基于分位数函数提供非参数变换，将数据映射到具有 0 和 1 之间的值的均匀分布。
+
+1、[`quantile_transform`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.quantile_transform.html#sklearn.preprocessing.quantile_transform) 函数：
+
+```python
+>>> import numpy as np
+>>> from sklearn.preprocessing import quantile_transform
+>>> rng = np.random.RandomState(0)
+>>> X = np.sort(rng.normal(loc=0.5, scale=0.25, size=(25, 1)), axis=0)
+>>> quantile_transform(X, n_quantiles=10, random_state=0)
+array([...])
+```
+
+2、[`QuantileTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html#sklearn.preprocessing.QuantileTransformer) 类：
+
+```python
+>>> from sklearn.datasets import load_iris
+>>> from sklearn.model_selection import train_test_split
+>>> iris = load_iris()
+>>> X, y = iris.data, iris.target
+>>> X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+>>> quantile_transformer = preprocessing.QuantileTransformer(random_state=0)
+>>> X_train_trans = quantile_transformer.fit_transform(X_train)
+>>> X_test_trans = quantile_transformer.transform(X_test)
+>>> np.percentile(X_train[:, 0], [0, 25, 50, 75, 100]) 
+array([ 4.3,  5.1,  5.8,  6.5,  7.9])
+```
+
+这个结果对应于以 cm 为单位的萼片长度。 应用分位数变换后，这些标志接近先前定义的百分位数：
+
+```python
+>>> np.percentile(X_train_trans[:, 0], [0, 25, 50, 75, 100])
+... 
+array([ 0.00... ,  0.24...,  0.49...,  0.73...,  0.99... ])
+# 测试
+>>> np.percentile(X_test[:, 0], [0, 25, 50, 75, 100])
+... 
+array([ 4.4  ,  5.125,  5.75 ,  6.175,  7.3  ])
+>>> np.percentile(X_test_trans[:, 0], [0, 25, 50, 75, 100])
+... 
+array([ 0.01...,  0.25...,  0.46...,  0.60... ,  0.94...])
+```
+
+### 2.7.2 映射到正态分布 (Gaussian distribution) 上的转换
+
+如果数据不是正态分布的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。这里主要采用一种叫做 [Power Transformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 的方法，这种转换通过一些列参数单调变换使得数据更符合正太分布。[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 现在支持两种转换，两者都有一个参数 $\lambda$ 需要设定：
+
+* Box-Cox 转换：要求输入数据严格为正数。
+* Yeo-Johnson 变换：则正数或负数都。
+
+实践方法有四种：
+
+1、比较粗糙的版本可以直接查看对数缩放的实现。
+
+2、另一种方式是[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 类的 Box-Cox 转换操作，这个方法能够计算出能够最佳减小数据倾斜的指数变换方法。
 
 
-### 2.6 特征交叉
-* 表示数值特征之间的相互作用
-* 可以对两个数值变量进行加、减、乘、除等操作
-
-### 非线性编码
-* 多项式核、高斯核等编码
-* 将随机森林模型的叶节点进行编码喂给线性模型
-* 基因算法以及局部线性嵌入、谱嵌入、t-SNE 等
-
-### 非线性转换（修正分布）
-
-### X.1 映射到均分分布 (Uniform distribution) 上的转换
+$$
+\begin{split}x_i^{(\lambda)} =
+\begin{cases}
+\dfrac{x_i^\lambda - 1}{\lambda} & \text{if } \lambda \neq 0, \\[8pt]
+\ln{(x_i)} & \text{if } \lambda = 0,
+\end{cases}\end{split}
+$$
 
 
+```python
+>>> pt = preprocessing.PowerTransformer(method='box-cox', standardize=False)
+>>> X_lognormal = np.random.RandomState(616).lognormal(size=(3, 3))
+>>> X_lognormal                                         
+array([[1.28..., 1.18..., 0.84...],
+       [0.94..., 1.60..., 0.38...],
+       [1.35..., 0.21..., 1.09...]])
+>>> pt.fit_transform(X_lognormal)                   
+array([[ 0.49...,  0.17..., -0.15...],
+       [-0.05...,  0.58..., -0.57...],
+       [ 0.69..., -0.84...,  0.10...]])
+```
 
-### X.2 映射到正态分布 (Gaussian distribution) 上的转换
+上面代码显示地设定了standardize=False，默认的情况下转换结果会进行零均值、单位方差的归一化操作，即符合正态分布。
 
-如果数据不是正态分布的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。
+3、另一种方式是[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 类的 Yeo-Johnson 转换操作，这也是 Sklearn 的默认选项：
+$$
+\begin{split}x_i^{(\lambda)} =
+\begin{cases}
+ [(x_i + 1)^\lambda - 1] / \lambda & \text{if } \lambda \neq 0, x_i \geq 0, \\[8pt]
+\ln{(x_i) + 1} & \text{if } \lambda = 0, x_i \geq 0 \\[8pt]
+-[(-x_i + 1)^{2 - \lambda} - 1] / (2 - \lambda) & \text{if } \lambda \neq 2, x_i < 0, \\[8pt]
+ - \ln (- x_i + 1) & \text{if } \lambda = 2, x_i < 0
+\end{cases}\end{split}
+$$
 
-1、对数
 
-一种实现这个缩放的方法是：使用Box-Cox 变换，这个方法能够计算出能够最佳减小数据倾斜的指数变换方法。
+```python
+>>> import numpy as np
+>>> from sklearn.preprocessing import PowerTransformer
+>>> pt = PowerTransformer()
+>>> data = [[1, 2], [3, 2], [4, 5]]
+>>> print(pt.fit(data))
+PowerTransformer(copy=True, method='yeo-johnson', standardize=True)
+>>> print(pt.lambdas_)
+[ 1.386... -3.100...]
+>>> print(pt.transform(data))
+[[-1.316... -0.707...]
+ [ 0.209... -0.707...]
+ [ 1.106...  1.414...]]
+```
 
-### 行统计量
-* 对行向量进行统计作为一类特征
+4、还可以使用上面提到的分位点转换：
+
+```python
+>>> quantile_transformer = preprocessing.QuantileTransformer(
+...     output_distribution='normal', random_state=0)
+>>> X_trans = quantile_transformer.fit_transform(X)
+>>> quantile_transformer.quantiles_ 
+array([[4.3...,   2...,     1...,     0.1...],
+       [4.31...,  2.02...,  1.01...,  0.1...],
+       [4.32...,  2.05...,  1.02...,  0.1...],
+       ...,
+       [7.84...,  4.34...,  6.84...,  2.5...],
+       [7.87...,  4.37...,  6.87...,  2.5...],
+       [7.9...,   4.4...,   6.9...,   2.5...]])
+```
+
+### 2.8 非线性编码
+
+- 多项式核、高斯核等编码
+- 将随机森林模型的叶节点进行编码喂给线性模型
+- 基因算法以及局部线性嵌入、谱嵌入、t-SNE 等
+
+### 2.8.1 用基因编程创造新特征
+
+基于genetic programming的symbolic regression，具体的原理和实现参见文档。目前，python环境下最好用的基因编程库为gplearn。基因编程的两大用法：
+
+- 转换（transformation）：把已有的特征进行组合转换，组合的方式（一元、二元、多元算子）可以由用户自行定义，也可以使用库中自带的函数（如加减乘除、min、max、三角函数、指数、对数）。组合的目的，是创造出和目标y值最“相关”的新特征。这种相关程度可以用spearman或者pearson的相关系数进行测量。spearman多用于决策树（免疫单特征单调变换），pearson多用于线性回归等其他算法。
+- 回归（regression）：原理同上，只不过直接用于回归而已。
+
+### 2.8.2 用决策树创造新特征
+
+在决策树系列的算法中（单棵决策树、GBDT、随机森林），每一个样本都会被映射到决策树的一片叶子上。因此，我们可以把样本经过每一棵决策树映射后的index（自然数）或one-hot-vector（哑编码得到的稀疏矢量）作为一项新的特征，加入到模型中。
+
+具体实现：apply() 以及 decision_path() 方法，在 scikit-learn 和 xgboost 里都可以用。
+
+- 决策树、基于决策树的 ensemble
+  - spearman correlation coefficient
+
+- 线性模型、SVM、神经网络
+  - 对数（log）
+  - pearson correlation coefficient
+
+### 2.9 行统计量
+
+除了对原始数值变量进行处理外，直接对行向量进行统计也作为一类特征。
+
 * 例如统计行向量中的空值个数、零值个数、正负值个数
-* 以及均值、方差、最小值、最大值、偏度、峰度等
+* 以及均值、方差、最小值、最大值、[偏度、峰度](https://support.minitab.com/zh-cn/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/data-concepts/how-skewness-and-kurtosis-affect-your-distribution/)等
 
+1、偏度、峰度计算：
 
+```python
+import pandas as pd
+x = [53, 61, 49, 66, 78, 47]
+s = pd.Series(x)
+print(s.skew())
+print(s.kurt())
+```
 
+### 2.10 数字型特征重构
 
+通过调整数字单位等方式，可以调整数字大小。 例如 6500 克 可以表达6.5千克； 也可以进一步拆解表达为6千克、0.5千克等。似乎是没啥道理，但是确有时有用。比如这个[比赛](https://www.datafountain.cn/competitions/337/details/rule?id=84982)，其中一个充值金额的特征，判断看是否数值为整数可以构成一个强特征。
+
+### 3. 类别特征 / 标称特征 / 定性特征 (Categorical Features)
+
+类别特征取值可以是数值类型，但是数值没有任何数学意义，不能做数学运算。类别特征不仅可以从原始数据中直接获得，还可以通过数值特征离散化得到。
+
+### 特征聚合 (feature aggregation)
+
+选择重要的类别特征，利用 pandas 的 groupby 功能生成 min/max/std/mean/median 等特征。
 
 
 
 ## 二.  特征选择 (Feature Selection) 
 
 
-
-
-![](/img/media/15427027069088.jpg)
 
 Features:
 1. numeric
@@ -677,21 +913,6 @@ Features:
 
 ### 3)  统计特征
 有了原始的特征因素后，可以让这个特征具备更强的表达性。统计化是一个常用的方式，主要有最大值、最小值、平均值、标准差、方差、中位数、分布区间统计数等。例如周一的平均订单数、最大订单数等。可以查看下节中类别特征与数值特征的组合。
-
-### 4)  特征组合
-组合多个相关特征提取出其相关的规律，例如多个特征加和、求差、乘除、求斜率、变化比率、增长倍数等。
-
-
-**数值特征的简单变换**
-
-1. 单独特征列乘以一个常数（constant multiplication）或者加减一个常数：对于创造新的有用特征毫无用处；只能作为对已有特征的处理，也就是说数据预处理中特征归一化等操作是不能产生新的特征的。
-2. 任何针对单独特征列的单调变换（如对数）：不适用于决策树类算法。对于决策树而言，$X$、$X^3$、$X^5$ 之间没有差异， $|X|$、 $X^2$、 $X^4$ 之间没有差异，除非发生了舍入误差。
-3. **线性组合**（linear combination）：**仅适用于决策树**以及基于决策树的ensemble（如gradient boosting, random forest），因为常见的axis-aligned split function不擅长捕获不同特征之间的相关性；**不适用于SVM、线性回归、神经网络等**。
-4. 多项式特征（polynomial feature）：[sklearn.preprocessing.PolynomialFeatures](http://link.zhihu.com/?target=http%3A//scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html)。
-5. 比例特征（ratio feature）：$X_1 / X_2$。
-6. 绝对值（absolute value）：$|X_1 - X_2|$
-7. 其他一些操作的特征：
-$max(X_1, X_2)$，$min(X_1, X_2)$，$X_1 xor X_2$。
 
 **类别特征与数值特征的组合**
 
@@ -724,8 +945,7 @@ N1 - mean(N1)_by(C1)
 ### 5)  特征拆解
 将一个特征拆为多个**更易理解**的特征。 例如日期，可以拆为年、月、日、小时、分、秒、星期几、是否为周末。
 
-### 6)  数字型特征重构
-通过调整数字单位等方式，可以调整数字大小。 例如6500 克 可以表达6.5千克； 也可以进一步拆解表达为6千克、0.5千克等。这不是没啥道理嘛……
+
 
 ### 7)  One-Hot encoding
 将类型特征映射多个是否特征，例如颜色可映射是否为为红色、是否为绿色、是否为蓝色。
@@ -733,28 +953,7 @@ N1 - mean(N1)_by(C1)
 ### 8) 统计性特征映射为解释型特征
 将一个数字型或统计性特征，映射为多个范围区间，然后为每个区间为一个类别，接着借助于 onehot encoding 就变为一系列是否的解释型特征。例如历史月订单 0~5 为低频、6~15 为中频、 大于16为高频， 订单量10数字就可以变为 [0,1,0] 这三维特征。
 
-### x) 用基因编程创造新特征
-Welcome to gplearn’s documentation!
 
-基于genetic programming的symbolic regression，具体的原理和实现参见文档。目前，python环境下最好用的基因编程库为gplearn。基因编程的两大用法：
-
-* 转换（transformation）：把已有的特征进行组合转换，组合的方式（一元、二元、多元算子）可以由用户自行定义，也可以使用库中自带的函数（如加减乘除、min、max、三角函数、指数、对数）。组合的目的，是创造出和目标y值最“相关”的新特征。这种相关程度可以用spearman或者pearson的相关系数进行测量。spearman多用于决策树（免疫单特征单调变换），pearson多用于线性回归等其他算法。
-* 回归（regression）：原理同上，只不过直接用于回归而已。
-
-### x) 用决策树创造新特征
-在决策树系列的算法中（单棵决策树、GBDT、随机森林），每一个样本都会被映射到决策树的一片叶子上。因此，我们可以把样本经过每一棵决策树映射后的index（自然数）或one-hot-vector（哑编码得到的稀疏矢量）作为一项新的特征，加入到模型中。
-
-具体实现：apply() 以及 decision_path() 方法，在 scikit-learn 和 xgboost 里都可以用。
-
-
-
-* 决策树、基于决策树的 ensemble
-    * spearman correlation coefficient
-
-
-* 线性模型、SVM、神经网络
-    * 对数（log）
-    * pearson correlation coefficient
 
 
 
@@ -881,3 +1080,4 @@ deep auto encoders
 14. [数据挖掘的流程和方法、技巧总结](https://zhuanlan.zhihu.com/p/33429338)
 15. [4.3. 预处理数据](http://doc.codingdict.com/sklearn/59/)
 16. [scikit-learn preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html)
+17. [A Comprehensive Guide to Data Exploration](https://www.analyticsvidhya.com/blog/2016/01/guide-data-exploration/)

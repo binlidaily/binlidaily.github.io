@@ -46,7 +46,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * [Workflow of Machine Learning](https://binlidaily.github.io/2019-02-25-workflow-of-applying-ml-algorithms-offline-to-online/) 
 
 ### Feature Engineering
-Feature Engineering include Feature Extraction and Feature Selection.
+[Feature Engineering](https://binlidaily.github.io/2018-06-03-feature-engineering/) include Feature Extraction and Feature Selection.
+
 * Feature Extraction
     * [Data Preprocessing](https://binlidaily.github.io/2018-11-13-data-preprocessing/)
     * [Exploratory Data Analysis (EDA)](https://binlidaily.github.io/2019-01-10-exploratory-data-analysis/)
