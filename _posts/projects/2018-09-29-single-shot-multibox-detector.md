@@ -7,6 +7,8 @@ tags: [Computer Vision]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../binlidaily.github.io
+typora-copy-images-to: ../../img/media
 ---
 
 
@@ -235,7 +237,7 @@ python train_ssd_network.py \
     --optimizer=adam \
     --learning_rate=0.001 \
     --batch_size=32
-``` 
+```
 
 nvcc 和 nvdia-smi 都搞定后，跑 train 的命令行，又出现了错误：
 ```shell
@@ -440,7 +442,7 @@ SAMPLES_PER_FILES = 100
 **修改 ./train_ssd_network.py 文件**
 
  对应地修改训练配置，包括迭代次数(154行)，batch 大小，GPU 用量等。
- 
+
 **修改 ./eval_ssd_network.py 类别个数**
 
 
@@ -489,7 +491,7 @@ python train_ssd_network.py \
 DataLossError: Unable to open table file ../checkpoints/model.ckpt-2938.ckpt: Failed precondition: ../checkpoints/model.ckpt-2938.ckpt: perhaps your file is in a different file format and you need to use a different restore operator?
 ```
 
-这个问题的解决很傻……只要去掉文件夹结尾的`.ckpt`就可以了。
+这个问题的解决很傻……只要去掉文件夹结尾的`.ckpt`就可以了，不需要新建一个文件夹。
 
 然而继续运行的时候又出现了一个问题：
 ```shell
@@ -499,7 +501,7 @@ Cannot feed value of shape (1080, 1920, 4) for Tensor u'Placeholder_5:0', which 
 ```python
 if len(img.shape) > 2 and img.shape[2] == 4:
     #convert the image from RGBA2RGB
-img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+    img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 ```
 此时虽然没有报错了，但是跑出来的结果是根本没有结果，丫根本没有检测🤷‍♀️！猜想可能是因为训练的程度不够，毕竟只用了5000轮迭代，于是想改成五万试一下，结果准备试的时候就报了 OOM 的错误，原来是因为开了一个 jupyter 测试训练好的模型就内存告急了，一张卡真是可怜，当然也可以减少一点 batch size 的量，耗时点。
 
@@ -509,11 +511,44 @@ img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 rclasses, rscores, rbboxes = process_image(img, select_threshold=0.2)
 ```
 
+这里可以在 tensorboard 上查看 loss 的变化：
+```python
+tensorboard --logdir=./logs --port=9998
+```
+
+重新尝试训练表盘类的识别时，在测试训练好的模型时又有报错：
+
+```python
+InvalidArgumentError (see above for traceback): Assign requires shapes of both tensors to match. lhs shape= [8] rhs shape= [12]
+```
+
+这个解决办法居然是在训练模型时设定参数要加上 num_classes，怀疑是在某处修改时没有改全：
+
+```python
+--train_dir=./logs/
+--dataset_dir=./tfrecords
+--dataset_name=pascalvoc_2007
+--dataset_split_name=train
+--model_name=ssd_300_vgg
+--save_summaries_secs=60
+--save_interval_secs=600
+--weight_decay=0.0005
+--optimizer=adam
+--learning_rate=0.001
+--batch_size=32
+--ignore_missing_vars=True
+--num_classes=2
+--checkpoint_exclude_scopes=ssd_300_vgg/conv6,ssd_300_vgg/conv7,ssd_300_vgg/block8,ssd_300_vgg/block9,ssd_300_vgg/block10,ssd_300_vgg/block11,ssd_300_vgg/block4_box,ssd_300_vgg/block7_box,ssd_300_vgg/block8_box,ssd_300_vgg/block9_box,ssd_300_vgg/block10_box,ssd_300_vgg/block11_box
+```
+
+
 
 ## References
+
 1. [Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
 2. [A guide to receptive field arithmetic for Convolutional Neural Networks](https://medium.com/mlreview/a-guide-to-receptive-field-arithmetic-for-convolutional-neural-networks-e0f514068807)
 3. [Faster R-CNN Explained](https://medium.com/@smallfishbigsea/faster-r-cnn-explained-864d4fb7e3f8)
 4. [Preparing Inputs](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md)
 5. [Face Detection for CCTV surveillance](https://blog.usejournal.com/face-detection-for-cctv-surveillance-6b8851ca3751)
 6. [Tensorflow-SSD测试及训练自己的数据集](https://blog.csdn.net/ei1990/article/details/75282855)
+7. [SSD Tensorflow 训练测试自己的数据集 Jupiter notebook 显示训练结果](https://blog.csdn.net/Echo_Harrington/article/details/81131441)

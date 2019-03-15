@@ -297,12 +297,21 @@ items_popularity
 
 因为各种各样的原因，真实世界中的许多数据集都包含缺失数据，这类数据经常被编码成空格、NaNs，或者是其他的占位符（有的时候是 0，需要具体分析）。对于缺失值一般有两大类处理方式：
 
-- 补值
+- 1. 补值
+
   - 简单的可以是补一个平均值 (mean)、或者众数 (mode)
   - 对于含异常值的变量，更健壮的做法是补中位数 (median)
   - 还可以通过模型预测缺失值
-- 直接忽略
+
+- 2. 直接忽略
+
   - 将缺失作为一种信息编码喂给模型进行学习
+
+- 对于竞赛而言最好不要直接删除，最好另作`特殊编码`，或者想办法最大程度保留缺失值所带来的`信息`。：
+
+  - `统计`样本的缺失值数量，作为新的特征。
+  - 将缺失数量做一个`排序`，如果发现3份数据（train、test、unlabeled）都呈阶梯状，于是就可以根据缺失数量将数据划分为若干部分，作为新的特征。
+  - 使用`随机森林`中的临近矩阵对缺失值进行`插值`，但要求数据的因变量没有缺失值。
 
 对于统计量的补值有两种操作方式：
 
@@ -333,6 +342,17 @@ Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
  [ 6\.          3.666...]
  [ 7\.          6\.        ]]
 ```
+
+代码模板：
+
+```python
+df = df.drop(['PassengerId','Name','Ticket','Cabin'], axis=1)  #对于大量缺失数据的列可直接删除
+df = df.dropna()                                               #删除含有NaN数据的行
+df = df.fillna('-1')                                           #全部直接人工赋值
+
+```
+
+
 
 ### 2.5 缩放
 
@@ -1224,6 +1244,10 @@ print 'elapsed time: ', time.time() - start_time
 
 ### 4. 时间特征
 
+* 时间类特征既可以看做连续值，也可以看做离散值
+* 对于连续值来说，有持续时间，如用户浏览一家商户的时间；有间隔时间，如用户上次登录（购买、点击等行为）距现在的时间
+* 对于离散值来说，有如下特征：一天中的哪个时间段、一周中的第几天、一年中的第几周、一年中的第几个月、一年中的第几个季度、工作日or周末、节假日or促销节
+
 ### 4.2 特征拆解
 
 将一个特征拆为多个**更易理解**的特征。 例如日期，可以拆为年、月、日、小时、分、秒、星期几、是否为周末。
@@ -1231,6 +1255,13 @@ print 'elapsed time: ', time.time() - start_time
 ### 5. 空间特征
 
 ### 6. 文本特征
+
+* 词袋（word bag）:指对于文本数据预处理后，去掉停用词，剩下的词组成的list，在词库中映射的稀疏向量
+* n元词袋：将词袋中的词扩展到n-gram，分词后相邻的n个词也进入词袋
+* TF-idf特征：一种用来评估一个字词对于一个文件集或一个语料库中的一份文件的重要程度的统计方法。字词的重要性与它在文件中出现的次数成正比，与它在语料库中出现的频率成反比。TF(Term freqiency)，TF(t)=词t在当前文中出现的次数/词t在全部文档中出现的次数，IDF(t)=ln(总文档数/含t的文档数)，TF-IDF权重=TF(t)*IDF(t)
+* word2vec：现有的工具有Google word2vec、gensim
+
+
 
 ## 二.  特征选择 (Feature Selection) 
 
@@ -1353,3 +1384,5 @@ deep auto encoders
 20. [如何理解统计学中「自由度」这个概念？](https://www.zhihu.com/question/20983193)
 21. [One-Hot 编码与哑变量](http://www.jiehuozhe.com/article/3)
 22. [Smarter Ways to Encode Categorical Data for Machine Learning (Part 1 of 3)](https://towardsdatascience.com/smarter-ways-to-encode-categorical-data-for-machine-learning-part-1-of-3-6dca2f71b159)
+23. [python数据处理，特征工程，比赛等一定会用到的方法](https://www.twblogs.net/a/5b8364342b71776c51e2d0b2/zh-cn)
+24. [Feature Engineering: Data scientist's Secret Sauce !](https://www.linkedin.com/pulse/feature-engineering-data-scientists-secret-sauce-ashish-kumar)
