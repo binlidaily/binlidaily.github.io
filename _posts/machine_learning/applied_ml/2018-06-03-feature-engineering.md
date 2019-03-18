@@ -349,7 +349,6 @@ Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
 df = df.drop(['PassengerId','Name','Ticket','Cabin'], axis=1)  #对于大量缺失数据的列可直接删除
 df = df.dropna()                                               #删除含有NaN数据的行
 df = df.fillna('-1')                                           #全部直接人工赋值
-
 ```
 
 
@@ -1027,7 +1026,7 @@ array([[1, 0, 0, 0],
 
 ### 3.5 计数编码 (Count encoding)
 
-* 计数编码是将类别特征用其对应的技术代替，这对线性和非线性模型都有效。
+* 计数编码是将类别特征用其对应的计数代替，这对线性和非线性模型都有效。
 * 计数编码对异常值比较敏感，特征取值也可能冲突。[参考](https://wrosinski.github.io/fe_categorical_encoding/)🤔
 
 ```python
@@ -1247,6 +1246,7 @@ print 'elapsed time: ', time.time() - start_time
 * 时间类特征既可以看做连续值，也可以看做离散值
 * 对于连续值来说，有持续时间，如用户浏览一家商户的时间；有间隔时间，如用户上次登录（购买、点击等行为）距现在的时间
 * 对于离散值来说，有如下特征：一天中的哪个时间段、一周中的第几天、一年中的第几周、一年中的第几个月、一年中的第几个季度、工作日or周末、节假日or促销节
+* 窗体压缩化 (Windowing)：如果所有的点都分布在时间轴上，那么在同一个窗口里的先前的点往往包含丰富的信息。
 
 ### 4.2 特征拆解
 
@@ -1260,6 +1260,13 @@ print 'elapsed time: ', time.time() - start_time
 * n元词袋：将词袋中的词扩展到n-gram，分词后相邻的n个词也进入词袋
 * TF-idf特征：一种用来评估一个字词对于一个文件集或一个语料库中的一份文件的重要程度的统计方法。字词的重要性与它在文件中出现的次数成正比，与它在语料库中出现的频率成反比。TF(Term freqiency)，TF(t)=词t在当前文中出现的次数/词t在全部文档中出现的次数，IDF(t)=ln(总文档数/含t的文档数)，TF-IDF权重=TF(t)*IDF(t)
 * word2vec：现有的工具有Google word2vec、gensim
+
+### 7. 特征工程 Tricks
+
+* 选出最重要的两个变量，并计算他们相互之间、以及与其它变量之间的二阶交叉作用并放入模型中，比较由此产生的模型结果与最初的线性模型的结果。
+* 白化数据 (Whitening the Data)
+* S型/正切/对数转换 (Sigmoid / Tanh / Log Transformations)
+* 去相关性/转换变量 (decorrelation)
 
 
 

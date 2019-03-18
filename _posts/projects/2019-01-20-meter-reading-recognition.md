@@ -16,7 +16,7 @@ published: true
 
 ## 计算机视觉-目标检测的方法
 ### SSD
-TensorFlow 版本在 Github 上有[实现版本](https://github.com/balancap/SSD-Tensorflow)，具体的实践记录[在此](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)。
+TensorFlow 版本在 Github 上有[实现版本](https://github.com/balancap/SSD-Tensorflow)，具体的实践记录[在此](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)，理论学习记录。
 
 ### RCNN
 因为 SSD 的效果不是很好，尝试使用一下 RCNN，github 上也有 TensorFlow [版本](https://github.com/endernewton/tf-faster-rcnn)。
@@ -25,3 +25,5 @@ TensorFlow 版本在 Github 上有[实现版本](https://github.com/balancap/SSD
 1. [Analog Gauge Reader](https://github.com/intel-iot-devkit/python-cv-samples/tree/master/examples/analog-gauge-reader)
 2. [Deep Gauge](https://github.com/oci-labs/deep-gauge)
 3. [SSD TensorFlow](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)
+4. [A water meter reader](https://github.com/yamaton/water-meter-reading)
+5. [Water meter reader - Convert analog dials into a digital value](https://github.com/zagor/watermeter)
