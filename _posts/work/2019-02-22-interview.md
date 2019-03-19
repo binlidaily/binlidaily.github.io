@@ -44,3 +44,4 @@ published: true
 7. [什么是 A/B 测试？](https://www.zhihu.com/question/20045543)
 8. [41 Essential Machine Learning Interview Questions (with answers)](https://www.springboard.com/blog/machine-learning-interview-questions/)
 9. [【技术类】2019校招技术类岗位面经汇总](https://www.nowcoder.com/discuss/146655)
+10. [深度学习500问](https://github.com/scutan90/DeepLearning-500-questions)

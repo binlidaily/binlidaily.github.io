@@ -24,4 +24,13 @@ published: true
 * [287. Find the Duplicate Number](https://binlidaily.github.io/2018-12-03-Find-the-Duplicate-Number/)
 
 **1.14~1.20**
+
 * [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+
+## Coding Templates
+
+
+
+## References
+
+1. [My Python Examples](https://github.com/geekcomputers/Python)
