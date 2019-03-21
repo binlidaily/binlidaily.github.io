@@ -12,7 +12,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ## Theoretical Machine Learning
 ### Supervised Learning
-* [Linear Regression](https://binlidaily.github.io/2018-06-03-regression/)
+* [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
     * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-locally-weighted-linear-regression/)
     * Bayesian Linear Regression
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)

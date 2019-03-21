@@ -4,6 +4,8 @@ title: Linear Regression
 tags: [Machine Learning]
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
 线性回归作为一种非常常见的离散值预测模型，却是非常基础且重要的算法，后续的很多机器学习的算法都是在此基础上做的，例如逻辑回归。本文会梳理多个版本的回归算法，从最基本的回归算法，到线性回归算法，再到岭回归。
