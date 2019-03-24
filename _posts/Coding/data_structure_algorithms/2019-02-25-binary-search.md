@@ -7,6 +7,7 @@ tags: [Coding]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
 ---
 
 值得注意的是加减1缺少了，在做这种较简单的算法时可以画出图来：

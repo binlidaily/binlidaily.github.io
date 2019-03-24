@@ -351,7 +351,9 @@ df = df.dropna()                                               #删除含有NaN�
 df = df.fillna('-1')                                           #全部直接人工赋值
 ```
 
+注意：
 
+* 看填充时要不要加上 values，不然结果是一个 Series！
 
 ### 2.5 缩放
 

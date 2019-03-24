@@ -7,6 +7,7 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
 ---
 
 动规（Dynamic Programming，DP）有点儿像分而治之（divide and conquer）算法那样把问题分成若干的子问题来解决，区别是动规不像分而治之算法那那样子问题都是独立解决的，而是子问题的结果要被记录下来用在类似的或者有重复部分的子问题处理上。
