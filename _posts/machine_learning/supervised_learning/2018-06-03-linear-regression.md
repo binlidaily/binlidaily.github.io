@@ -39,12 +39,14 @@ y-Xw: (m, 1)
 $$
 
 
-对应的我们开始求偏导，首先我们新定义一个向量 $v​$ 作为中间变量：
+对应的我们开始求偏导，首先我们新定义一个向量 $v$ 作为中间变量：
+
 
 $$
 v=y-Xw
 $$
 然后我们利用 [Frobenius inner product](https://en.wikipedia.org/wiki/Frobenius_inner_product)（即公式中的 “:”）表示上面的式子：
+
 
 $$
 f={1\over2}||v||_F^2={1\over 2}v:v
@@ -69,10 +71,13 @@ $$
 $$
 
 于是，我们对 $w$ 求导有 $-X^T(y-Xw)$，令其为零，解出 $w$ 的最优解：
+
+
 $$
 -X^T(y-Xw) = -X^Ty+X^TXw = 0
 $$
-则有当 $X^TX​$ 满秩状态下的解析解：
+则有当 $X^TX$ 满秩状态下的解析解：
+
 
 $$
 \hat{w} = (X^TX)^{-1}X^Ty
