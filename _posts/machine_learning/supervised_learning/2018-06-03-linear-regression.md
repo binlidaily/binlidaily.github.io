@@ -24,8 +24,9 @@ typora-copy-images-to: ../../../img/media
 $$
 {1\over{2}}\sum _{i=1}^m (y_i-x_iw)^2
 $$
-前面的 $1\over2​$ 是为了求导时能够与系数消掉，我们用矩阵的形式表示能够得到：
 
+
+前面的 $1\over2$ 是为了求导时能够与系数消掉，我们用矩阵的形式表示能够得到：
 $$
 {1\over 2}(y-Xw)^T(y-Xw)
 $$
@@ -47,14 +48,17 @@ $$
 $$
 v=y-Xw
 $$
+
+
 然后我们利用 [Frobenius inner product](https://en.wikipedia.org/wiki/Frobenius_inner_product)（即公式中的 “:”）表示上面的式子：
 
 
 $$
 f={1\over2}||v||_F^2={1\over 2}v:v
 $$
-接着求解函数 $f​$ 的微分（differential）$df​$：
 
+
+接着求解函数 $f$ 的微分（differential）$df$：
 $$
 \begin{aligned}
 df &= {1\over2}\times2v:dv \\
@@ -78,14 +82,17 @@ $$
 $$
 -X^T(y-Xw) = -X^Ty+X^TXw = 0
 $$
+
+
 则有当 $X^TX$ 满秩状态下的解析解：
 
 
 $$
 \hat{w} = (X^TX)^{-1}X^Ty
 $$
-当然还会出现 $X^TX$ **不满秩**的情况，此时可以解出多个 $\hat{w}$ 都能是得均方误差最小化，那具体选择哪一个作为输出，可能就依赖学习算法的偏好决定了。对于 $X^TX$ 不满秩的情况，比较常见的做法是引入正则化（regularization）项，比如在损失函数中加入对参数的 L2-norm：
 
+
+当然还会出现 $X^TX$ **不满秩**的情况，此时可以解出多个 $\hat{w}$ 都能是得均方误差最小化，那具体选择哪一个作为输出，可能就依赖学习算法的偏好决定了。对于 $X^TX$ 不满秩的情况，比较常见的做法是引入正则化（regularization）项，比如在损失函数中加入对参数的 L2-norm：
 $$
 E = \frac { 1 } { 2 } \sum _ { i = 1 } ^ { m } (y_i-x_iw)^2 + \frac { \gamma } { 2 } \| \mathbf { w } \| ^ { 2 }
 $$
