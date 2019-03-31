@@ -106,7 +106,7 @@ with open('./featurescore/feature_score_{0}.csv'.format(iteration),'w') as f:
 
 #### 实践代码
 
-实际需要随机设置不同参数，跑若干次xgb模型
+实际需要随机设置不同参数，跑若干次xgb模型：
 
 ```python
 import pandas as pd
