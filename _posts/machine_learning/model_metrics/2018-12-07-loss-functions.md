@@ -16,6 +16,11 @@ published: true
 * Hinge loss
 * Cross Entropy loss
 
+目标检测：
+* mAP
+
+深度学习
+* [Softmax](https://www.zhihu.com/question/23765351)
 
 
 ## References

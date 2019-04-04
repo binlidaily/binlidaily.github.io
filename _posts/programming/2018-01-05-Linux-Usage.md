@@ -176,7 +176,18 @@ tmux a -t session_name
 tmux kill-session -t myname
 ```
 
+修改 root 用户访问权限到某个用户下：
+```shell
+sudo chown -R user_name your_directory
+```
 
+找文件夹下文件中特定的字符串：
+```
+grep -iRl "your-text-to-find" ./
+```
+Here are the switches:
+-i - ignore text case
+-R - recursively search files in subdirectories.
+-l - show file names instead of file contents portions.
 
-
-
+./ - the last parameter is the path to the folder containing files you need to search for your text. In our case, it is the current folder with the file mask. You can change it to the full path of the folder. For example, here is my command
