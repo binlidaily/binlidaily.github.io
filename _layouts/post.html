@@ -6,9 +6,11 @@ layout: base
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1">
+    <div class="col-lg-9 col-lg-offset-0 col-md-9 col-md-offset-0">
 <!-- col-lg-9: smaller, right part smaller -->
 <!-- col-lg-offset-2: bigger, left part smaller -->
+      <!-- col-lg-x: width -->
+      <!-- col-lg-offset-x: margin-left -->
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
         {% assign gh_user =  gh_split[0]  %}
