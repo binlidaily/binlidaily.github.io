@@ -2223,8 +2223,8 @@ pre code {
     margin-left: 16.66666667%;
   }
   .col-lg-offset-1 {
-    margin-left: 8.33333333%;
-    /*margin-left: 10%;*/
+    /*margin-left: 8.33333333%;*/
+    margin-left: 5%;
   }
   .col-lg-offset-0 {
     margin-left: 0;
