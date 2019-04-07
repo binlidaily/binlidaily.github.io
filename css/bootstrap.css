@@ -86,7 +86,7 @@ sub {
 }
 img {
   border: 0;
-  position: center;
+  /*position: center;*/
 }
 svg:not(:root) {
   overflow: hidden;
@@ -229,6 +229,7 @@ th {
   }
   img {
     max-width: 100% !important;
+    position: center;
   }
   p,
   h2,
