@@ -388,6 +388,7 @@ footer .theme-by {
   width: 100%;
 }
 .post-image {
+  position: center;
   float: right;
   height: 192px;
   width: 192px;
@@ -448,6 +449,8 @@ footer .theme-by {
   .post-image, .post-image img {
     height: 100px;
     width: 100px;
+    float: center;
+    position: center;
   }
 
   .post-image {
@@ -455,6 +458,7 @@ footer .theme-by {
     text-align: center;
     margin-top: 0;
     float: center;
+    position: center;
   }
 }
 /* --- Post and page headers --- */
