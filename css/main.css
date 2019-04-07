@@ -454,7 +454,7 @@ footer .theme-by {
     width: 100%;
     text-align: center;
     margin-top: 0;
-    float: left;
+    float: center;
   }
 }
 /* --- Post and page headers --- */
