@@ -87,6 +87,8 @@ sub {
 img {
   border: 0;
   /*position: center;*/
+  display:block;
+  text-align:center;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -1116,6 +1118,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
+  text-align: center;
   max-width: 100%;
   height: auto;
 }
