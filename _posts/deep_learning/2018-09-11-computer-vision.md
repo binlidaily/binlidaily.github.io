@@ -9,9 +9,15 @@ comments: true
 published: false
 ---
 
-
 ## Object Detection
 物体检测的任务是找出图像或视频中的感兴趣物体，同时检测出它们的位置和大小，是机器视觉领域的核心问题之一。
+
+## Image Segmentation
+### Semantic Segmentation (语义分割)
+将同一语义的放在一起。
+
+### Instance Segmentation (实例分割)
+* tensorflow [实现](https://github.com/matterport/Mask_RCNN)
 
 ### References
 1. [基于深度学习的目标检测算法综述（一）](https://zhuanlan.zhihu.com/p/40047760)

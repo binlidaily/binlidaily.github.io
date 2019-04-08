@@ -11,7 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
     
-SSD，全称 Single Shot MultiBox Detector，是 Wei Liu 在 ECCV 2016 上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比 Faster RCNN 有明显的速度优势，相比 YOLO 又有明显的 mAP 优势（不过已经被CVPR 2017 的 YOLO9000 超越）。
+SSD，全称 Single Shot MultiBox Detector，是 Wei Liu 在 ECCV 2016 上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比 Faster RCNN 有明显的速度优势，相比 YOLO 又有明显的 mAP 优势（不过已经被 CVPR 2017 的 YOLO9000 超越）。
 
 ![总结](/img/media/15541000730952.jpg)
 
@@ -28,6 +28,24 @@ SSD 具有以下特点：
 ![](/img/media/15541023500828.jpg)
 
 
+### 1. 不同尺度的特征图来检测
+SSD 提取了不同尺度的特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体（如上图所示，因为粒度比较小，先验框框到的范围比较小），而小尺度特征图（较靠后的特征图）用来检测大物体；
+
+### 2. 采用卷积进行检测
+![](/img/media/15547121194752.jpg)
+
+SSD 直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 $m\times n \times p$ 的特征图，只需要采用 $3\times 3 \times p$ 这样比较小的卷积核得到检测值。
+
+### 3. 设置先验框
+![](/img/media/15547129370535.jpg)
+
+- [ ] 单元框总不能是一个像素吧？
+
+SSD 对背景也做了处理，所以在设定类别数时要加 1。
+
+## Q&A
+* 为什么要有图片大小限制？300x300？那么对于图片超过这个规格的怎么处理？
+* 每一个 feature map 需要同时做分类和回归？
 
 ## References
 1. [SSD: Single Shot MultiBox Detector](https://arxiv.org/abs/1512.02325)
