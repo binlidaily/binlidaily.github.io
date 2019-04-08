@@ -150,6 +150,9 @@ writer.close()
 # The calculation result is::: 6.0
 ```
 
+## Q&A
+* with tf.variable_scope(scope)？
+
 ## References
 1. [Awesome TensorFlow ](https://github.com/jtoy/awesome-tensorflow#tutorials)
 2. [基本概念: Tensor, Operation, Graph](https://blog.csdn.net/shenxiaolu1984/article/details/52813962)
