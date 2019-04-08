@@ -15,8 +15,8 @@ typora-copy-images-to: ../../img/media
 
 ![image-20190318212853845](/img/media/image-20190318212853845.png)
 
-* 黄色框 T 表示真实框(Ground Truth)
-* 白色框 P 表示边界框(Bounding Box)
+* 黄色框 T 表示真实框 (Ground Truth)
+* 白色框 P 表示边界框 (Bounding Box)
 * 红色框 G 表示 P 经过边框回归后得到的预测框
 
 所谓边框回归就是指边界框 P 经过调整成为预测框的过程。
