@@ -30,6 +30,17 @@ published: true
 
 然后本地用 `localhost:8888` 访问即可。
 
+## Jupyter Kernel
+### 查看现有 Kernels
+```python
+jupyter kernelspec list
+```
+
+### 删除 Kernel
+```python
+jupyter kernelspec uninstall unwanted-kernel
+```
+
 ## Mac 端报错
 之前还总是报`ssl`的错误，于是一阵乱装之后卸掉了pip，然后一直装不上了，用了下面的方法解决：
 
@@ -59,3 +70,5 @@ sudo pip install python-dateutil --upgrade
 sudo pip install pytz --upgrade
 ```
 
+## References
+1. [jupyter安装及配置scala、spark、pyspark内核](https://blog.csdn.net/moledyzhang/article/details/78850820)
