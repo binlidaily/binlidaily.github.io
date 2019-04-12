@@ -1,6 +1,6 @@
 ---
 layout: post
-title: VGG 理解与复现
+title: Very Deep Convolutional Networks
 author: Bin Li
 tags: [Deep Learning]
 image: 
@@ -103,3 +103,4 @@ with tf.name_scope('conv1_2') as scope:
 9. ✳️ [Implementing VGG13 for MNIST dataset in TensorFlow](https://medium.com/@amir_hf8/implementing-vgg13-for-mnist-dataset-in-tensorflow-abc1460e2b93)
 10. [利用卷积神经网络(VGG19)实现火灾分类(附tensorflow代码及训练集)](http://www.cnblogs.com/vipyoumay/p/7884472.html)
 11. [A TensorFlow implementation of VGG networks for image classification](https://github.com/conan7882/VGG-cifar-tf)
+12. [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)

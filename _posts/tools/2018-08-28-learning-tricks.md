@@ -14,3 +14,6 @@ published: true
 
 ## 学习
 多结合 Kaggle 的 kernel 走几遍！
+
+## 善用佳器
+* 画网络结构图，[参考](https://zhuanlan.zhihu.com/p/60146525)。
