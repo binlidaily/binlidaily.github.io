@@ -19,12 +19,20 @@ This is an index page for quick search which post you wanna check.
 * [Matplotlib](https://binlidaily.github.io/2018-10-23-matplotlib/)
 * [Seaborn](https://binlidaily.github.io/2018-10-12-seaborn/)
 
+### C++
+* [C++](https://binlidaily.github.io/2018-01-05-c-plus-plus)
+
 ### Linux
-* [Linux](https://binlidaily.github.io/2018-01-05-Linux-Usage/)
+* [Linux](https://binlidaily.github.io/2018-01-05-Linux/)
 
 ## Programming Environment
-### Python
-* [Jupyter](https://binlidaily.github.io/2018-02-03-jupyter-usage/)
+### Python & Scala & Spark
+* [Jupyter](https://binlidaily.github.io/2018-02-03-jupyter/)
+
+### Deep Learning
+* [CUDA](https://binlidaily.github.io/2018-02-15-cuda)
+* [TensorFlow](https://binlidaily.github.io/2018-01-07-tensorflow/)
+* [PyTorch](https://binlidaily.github.io/2019-04-01-pytorch/)
 
 ## Programming OJ
 ### Theoretical Methods (Data Structure)

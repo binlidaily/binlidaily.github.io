@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Layers in Deep Learning
+title: Activate Function and Loss Function
 subtitle:
 author: Bin Li
 tags: [Deep Learning]
@@ -21,4 +21,4 @@ typora-copy-images-to: ../../img/media
 
 
 ## References
-
+1. [深度学习笔记(三)：激活函数和损失函数](https://blog.csdn.net/u014595019/article/details/52562159)

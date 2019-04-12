@@ -12,6 +12,7 @@ published: true
 导入的方式：
 ```python
 import matplotlib.pyplot as plt
+%matplotlib inline 
 ```
 
 ### 一张大图中绘制很多小图
