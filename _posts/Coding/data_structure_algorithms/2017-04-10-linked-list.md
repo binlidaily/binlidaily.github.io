@@ -1,20 +1,17 @@
 ---
 layout: post
 title: Linked List
-author: Bin
+subtitle: 链表
+author: Bin Li
 tags: [Machine Learning]
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
-published: false
+published: true
 ---
 
 
-链表作为算法中非常重要的数据结构，在面试中也是非常常用的
+链表作为算法中非常重要的数据结构，在面试中也是非常常用的。
 
-<!--more-->
+
 
 ## 链表相关面试题
 
