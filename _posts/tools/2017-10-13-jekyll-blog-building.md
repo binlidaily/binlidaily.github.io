@@ -92,6 +92,10 @@ The variable `{ {|D^v|}` on line 79
 ```
 `{ {`中间加一个空格即可。
 
+### 修改博文宽度
+bootstrap.min.css
+
+
 ## Jekyll Themes
 1. [Simple Texture](http://jekyllthemes.org/themes/simple-texture/)
 2. [Lanyon Plus](https://github.com/dyndna/lanyon-plus.git)
