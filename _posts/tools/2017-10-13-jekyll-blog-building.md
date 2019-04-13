@@ -93,7 +93,7 @@ The variable `{ {|D^v|}` on line 79
 `{ {`中间加一个空格即可。
 
 ### 修改博文宽度
-bootstrap.min.css
+beautiful-jekyll 主题 中可以在 bootstrap.min.css 文件中修改 col-lg-9 宽度，改 col-lg-offset-1 即左侧空白距离，关联是在 layout 中的 post 配置。
 
 
 ## Jekyll Themes
