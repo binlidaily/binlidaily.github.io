@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Locally Weighted Linear Regression
-subtitle:
+subtitle: 局部加权线性回归
 author: Bin Li
 tags: [Machine Learning]
 image: 
@@ -11,10 +11,10 @@ published: true
 
 实践过程中纯直线的数据关系比较少，所以线性回归有一定的局限性，标准的线性回归是一种无偏差估计，在计算所有点的时候都是无偏差的计算误差并通过优化方法优化误差，如果针对不同的点能够对误差进行调整便可以一定程度上避免标准线性回归带来的欠拟合现象，也就是引入偏差来降低预测的均方误差，本部分总结下局部加权线性回归的方法。
 
-## 局部加权线性回归（Locally Weighted Linear Regression, LWLR）
+## 局部加权线性回归
 ![](/img/media/15346068354911.jpg)
 
-局部加权线回归是非参数（non-parametric）回归方法，基于数据的一种模型，在我们做预测的时候需要所有的样本来进行计算。而针对局部加权，可以想象成是很多个简单的普通线性回归在特定小数据集上的组合，如图：
+局部加权线回归（Locally Weighted Linear Regression, LWLR）是非参数（non-parametric）回归方法，基于数据的一种模型，在我们做预测的时候需要所有的样本来进行计算。而针对局部加权，可以想象成是很多个简单的普通线性回归在特定小数据集上的组合，如图：
 
 <p align="center">
   <img width="" height="300" src="/img/media/15481642982152.jpg">

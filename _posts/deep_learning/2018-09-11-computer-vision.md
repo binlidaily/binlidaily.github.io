@@ -17,7 +17,7 @@ published: false
 将同一语义的放在一起。
 
 ### Instance Segmentation (实例分割)
-* tensorflow [实现](https://github.com/matterport/Mask_RCNN)
+* TensorFlow [实现](https://github.com/matterport/Mask_RCNN)
 
 ### References
 1. [基于深度学习的目标检测算法综述（一）](https://zhuanlan.zhihu.com/p/40047760)

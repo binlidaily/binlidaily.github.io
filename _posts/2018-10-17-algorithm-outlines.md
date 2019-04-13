@@ -13,7 +13,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 ## 1. Theoretical Machine Learning
 ### 1.1 Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
-    * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-locally-weighted-linear-regression/)
+    * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)
     * Bayesian Linear Regression
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
     * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
@@ -25,7 +25,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
-* [Field-aware Factorization Machines](https://binlidaily.github.io/2018-10-29-field-aware-factorization-machines/)
+* [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
 
 ### 1.2 Unsupervised Learning
 ### 1.2.1 Clustering
