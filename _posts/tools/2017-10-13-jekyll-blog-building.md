@@ -8,6 +8,9 @@ comments: true
 
 本文记录在用 Jekyll 搭建博客时遇到的一些问题。
 
+### TOC 操作
+github 上有对应的[操作](https://github.com/toshimaru/jekyll-toc)。
+
 ### jekyll-paginate 依赖问题
 
 当在根目录下运行 `jekyll s` 时会报如下依赖错误的话：
