@@ -6,6 +6,7 @@ layout: post
 title: 
 subtitle:
 author: Bin Li
+toc: true
 tags: []
 image: 
 comments: true
