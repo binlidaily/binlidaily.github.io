@@ -20,13 +20,13 @@ common-js:
   {% include head.html %}
 
   <body>
-    {% include toc.html html=content %}
 
     {% include gtm_body.html %}
     
     {% include nav.html %}
 
-    {{ content }}
+    <!-- {{ content }} -->
+    {{ content | toc }}
 
     {% include footer.html %}
   
