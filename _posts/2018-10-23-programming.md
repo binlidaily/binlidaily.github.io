@@ -13,7 +13,7 @@ This is an index page for quick search which post you wanna check.
 
 ## Programming Language
 ### Python
-* [Python](https://binlidaily.github.io/2017-11-08-Beginning-Python-From-Novice-to-Professional/)
+* [Python](https://binlidaily.github.io/2018-10-16-python/)
 * [Numpy](https://binlidaily.github.io/2018-10-16-numpy/)
 * [Pandas](https://binlidaily.github.io/2018-10-08-pandas/)
 * [Matplotlib](https://binlidaily.github.io/2018-10-23-matplotlib/)
