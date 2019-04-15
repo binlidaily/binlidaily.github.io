@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Model Traning Using Python
+title: Model Training Using Python
 subtitle: For Machine Learning and Data Mining
 author: Bin Li
 tags: [Feature Engineering, Python]

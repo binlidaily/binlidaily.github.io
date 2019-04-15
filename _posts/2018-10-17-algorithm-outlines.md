@@ -60,6 +60,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 ### 2.3 Model Optimization
 * [Model Optimization Methods](https://binlidaily.github.io/2019-02-25-model-optimization/)
 * [Result Analysis](https://binlidaily.github.io/2019-02-11-explain-the-result-of-models/)
+* [Bad Case Analysis](https://binlidaily.github.io/2019-03-11-bad-case-analysis/)
 
 
 ### 2.4 Applied Models

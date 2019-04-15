@@ -190,7 +190,7 @@ y = tf.placeholder(tf.float32,[None, 5],name='input')
 如上图所示我们如果要实现这样一个模型的训练，那么我们先利用抽象的概念元素构建出模型，使用官方tutorial中的mnist数据集的分类代码，公式可以写作：
 
 $$
-\begin{array}{l}{z=W x+b} \\ {a=\operatorname{softmax}(z)}\end{array}
+\begin{array}{l}{z=W x+b} \\ {a=\text{softmax}(z)}\end{array}
 $$
 
 ```python

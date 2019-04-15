@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Competitions Workflow
-subtitle:
+title: Competitions Workflow Of Classification And Regression
+subtitle: 分类和回归类型比赛的流程整理
 author: Bin Li
 tags: [Machine Learning]
 image: 
@@ -9,21 +9,28 @@ comments: true
 published: true
 ---
 
-## 数据处理
+为了方便以后快速上手，整理下流程，这里只针对分类和回归问题。
+
+## 1. 数据观察与处理
 看数据的整体情况：
 ```python
-train_df.describe()
+# 数据基本情况（缺失值、个字段数据类型）
 train_df.info()
+# 数值型字段的统计分布
+train_df.describe()
 ```
 
-特征列比较多，可以查看所有的列：
+如果用的是 Jupyter 而特征列比较多时，可以查看所有的列：
 ```python
-
+import matplotlib.pyplot as plt
+# show more columns with trian_df.describe()
+pd.set_option('display.max_columns', 50)
 ```
 
-### 1、空值处理
+### 1.1 空值处理
 ```python
 train_df.isnull().sum()
+# 二者等价
 train_df.isna().sum()
 ```
 
@@ -38,13 +45,62 @@ combi['Item_Weight'].fillna(combi['Item_Weight'].mean(), inplace = True)
 combi['Outlet_Size'].fillna("missing", inplace = True)
 ```
 
-看每个特征的类型：
-1. Categorical Data（标称型）
-2. Numerical/Continual Data（数值型）
-3. Ordinal Data（序数型）
-4. Time Data（时间型）
 
-## 特征转化
+
+### 1.2 EDA
+观察变量的密度曲线（找寻浮点型特征规律）：
+```python
+# 将认为有问题的可以看下密度曲线
+plt.figure(figsize=(8, 6))
+# train_df['用户近6个月平均消费值（元）'].plot(kind='kde')
+sns.kdeplot(train_df['用户近6个月平均消费值（元）'])
+```
+
+在类别特征中不同取值下，观察目标变量的分布：
+```python
+check_feat = '当月是否看电影'
+train_df[check_feat].value_counts()
+
+for val in train_df[check_feat].unique():
+    plt.figure(figsize=(8, 6))
+    sns.distplot(train_df.loc[train_df[check_feat] == val, '信用分'].values, bins=50, kde=False)
+```
+
+观察顺序性的数值型字段（有大小关系的）和目标变量的相关关系（单变量）：
+
+```python
+x_cols = [col for col in train_df.columns if col not in ['信用分'] if train_df[col].dtype != 'object']
+
+labels = []
+values = []
+for col in x_cols:
+    labels.append(col)
+    values.append(np.corrcoef(train_df[col].values, train_df['信用分'].values)[0, 1])
+corr_df = pd.DataFrame({'cols_labels': labels, 'corr_values': values})
+corr_df = corr_df.sort_values(by='corr_values')
+
+idx = np.arange(len(labels))
+width = 0.5
+
+fig, ax = plt.subplots(figsize=(12, 40))
+rects = ax.barh(idx, np.array(corr_df['corr_values'].values), color='y')
+ax.set_yticks(idx)
+ax.set_yticklabels(corr_df['cols_labels'].values, rotation='horizontal')
+ax.set_xlabel('Correlation coefficient')
+ax.set_title('Correlation coefficient of the variables')
+```
+
+观察所有连续变量之间的两两相关关系：
+
+```python
+corr_mat = train_df.corr(method='spearman')
+f, ax = plt.subplots(figsize=(12, 12))
+
+sns.heatmap(corr_mat, vmax=1., square=True)
+plt.title('Important variables correlation map', fontsize=15)
+```
+
+## 2. 特征工程
 标称型数据要用独热编码（One-Hot Encoding），有好多种的编码实现方式，整理下这几个之间的区别：
 * Categorical Encoding
 * Sklearn LabelEncoder (将数据处理成 0 到 n_class-1 的结果)
@@ -95,6 +151,12 @@ submit_df.columns = ['id', 'score']
 submit_df['score'] = submit_df['score'].apply(lambda x: int(np.round(x)))
 submit_df.to_csv('./submission/baseline_0.06357.csv', index=False)
 ```
+
+看每个特征的类型：
+1. Categorical Data（标称型）
+2. Numerical/Continual Data（数值型）
+3. Ordinal Data（序数型）
+4. Time Data（时间型）
 
 ## References
 1. [【持续更新】机器学习特征工程实用技巧大全](https://zhuanlan.zhihu.com/p/26444240)
