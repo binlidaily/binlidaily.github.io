@@ -21,7 +21,7 @@ published: True
 TensorFlow 三大核心：Tensor, Graph, Operation。
 
 ### 1.1 Tensor
-Tensor 可以看做一种符号化的句柄，指向操作的运算结果。在执行后返回：基本类型、numpy.ndarray或者其组成的 list，tuple 等。
+Tensor 可以看做一种符号化的句柄，指向操作的运算结果。在执行后返回：基本类型、numpy.ndarray 或者其组成的 list，tuple 等。
 
 Tensor 和 NumPy array 的区别是，Tensor 是函数或者说是容器，需要我们去定义，当数据被喂给 Tensor，它就会发生计算最终得到一个值。而 NumPy array 则是一个数据结构，在坐标系中可以表示 Tensor。
 
@@ -190,7 +190,7 @@ y = tf.placeholder(tf.float32,[None, 5],name='input')
 如上图所示我们如果要实现这样一个模型的训练，那么我们先利用抽象的概念元素构建出模型，使用官方tutorial中的mnist数据集的分类代码，公式可以写作：
 
 $$
-\begin{array}{l}{z=W x+b} \\ {a=\text{softmax}(z)}\end{array}
+\begin{array}{l}{z=W x+b} \\ {pred=\text{softmax}(z)}\end{array}
 $$
 
 ```python
