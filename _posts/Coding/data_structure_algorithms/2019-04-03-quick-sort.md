@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 快速排序
-subtitle:
+title: Quick Sort
+subtitle: 快速排序
 author: Bin Li
-tags: [Coding]
+tags: [Coding, Sorting]
 image: 
 comments: true
 published: true
@@ -53,3 +53,10 @@ def quick_sort(arr, low=0, high=None):
         _quicksort(arr, pivot+1, high)
     return _quicksort(arr, low, high)
 ```
+
+## 复杂度
+平均情况下快速排序的时间复杂度是 $O(n\log_2n)$，最坏情况是 $O(n^2)$。
+
+## References
+1. [Quicksort with Python](https://stackoverflow.com/questions/18262306/quicksort-with-python)
+2. [Know Thy Complexities](http://bigocheatsheet.com/)

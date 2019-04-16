@@ -317,4 +317,5 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 4. [Automatic extraction of relevant features from time series](https://github.com/blue-yonder/tsfresh)
 5. [A searchable compilation of Kaggle past solutions](https://github.com/EliotAndres/kaggle-past-solutions)
 6. [Kaggle Grandmaster是怎样炼成的](https://www.jiqizhixin.com/articles/Kaggle-Grandmaster-AMA-Vladimir-Iglovikov)
+7. [GitHub 干货 | 各大数据竞赛 Top 解决方案开源汇总](https://www.leiphone.com/news/201811/yb90nCORW2JK0L26.html)
 

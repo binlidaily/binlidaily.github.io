@@ -348,6 +348,7 @@ tensorboard --logdir=/tmp  --port=6006
 ```
 
 如果想在远程访问：
+
 ```shell
 ssh -NfL localhost:6006:crscd:6006 binli@192.168.31.127
 ```
