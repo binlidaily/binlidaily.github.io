@@ -263,6 +263,29 @@ def max_pool(value, ksize, strides, padding, data_format="NHWC", name=None):
 * **strides**: 池化窗口的滑动值，与 conv2d 中的一样。
 * **padding**: 与 conv2d 中用法一样。
 
+### 2.2.3 tf.Variable() 和 tf.get_variable
+tf.Variable() 用于生成一个初始值为initial-value的变量，**必须指定初始化值**。
+```python
+W = tf.Variable(<initial-value>, name=<optional-name>)
+```
+tf.get_variable() 获取已存在的变量（要求不仅名字，而且初始化方法等各个参数都一样），如果不存在，就新建一个。可以用各种初始化方法，不用明确指定值。
+```python
+W = tf.get_variable(name, shape=None, dtype=tf.float32, initializer=None,
+       regularizer=None, trainable=True, collections=None)
+```
+* name 就是变量的名称
+* shape 是变量的维度
+* initializer 是变量初始化的方式，初始化的方式有以下几种：
+    * tf.constant_initializer：常量初始化函数
+    * tf.random_normal_initializer：正态分布
+    * tf.truncated_normal_initializer：截取的正态分布
+    * tf.random_uniform_initializer：均匀分布
+    * tf.zeros_initializer：全部是 0
+    * tf.ones_initializer：全是 1
+    * tf.uniform_unit_scaling_initializer：满足均匀分布，但不影响输出数量级的随机值
+
+### 2.2.4 tf.variable_scope 和 tf.name_scope 的用法
+设定命名空间，tf.variable_scope 可以让变量有相同的命名，包括 tf.get_variable 得到的变量，还有 tf.Variable 的变量；tf.name_scope 可以让变量有相同的命名，只是限于 tf.Variable 的变量，代码可[参考](https://blog.csdn.net/UESTC_C2_403/article/details/72328815)。
 
 
 ### 2.3 TensorFlow 代码相关
