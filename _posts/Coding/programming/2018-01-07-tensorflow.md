@@ -244,7 +244,7 @@ def conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None,
 参数：
 * **input**：待卷积的数据。格式要求为一个张量，[batch, in_height, in_width, in_channels]，分别表示为：批次数，图像高度，宽度，输入通道数。 
 * **filter**：卷积核。格式要求为 [filter_height, filter_width, in_channels, out_channels]，分别表示：卷积核的高度，宽度，输入通道数，输出通道数。
-* **strides**：一个长为 4 的 list. 表示每次卷积以后卷积窗口在 input 中滑动的距离。这四个维度对应到 filter 上的四个值。
+* **strides**：一个长为 4 的 list. 表示每次卷积以后卷积窗口在 input 中滑动的距离。这四个维度对应到 input 上的四个值 [batch, height, width, channels]。
     * strides[0] = 1，也即在 batch 维度上的移动为 1，也就是不跳过任何一个样本，否则当初也不该把它们作为输入（input）
     * strides[3] = 1，也即在 channels 维度上的移动为 1，也就是不跳过任何一个颜色通道；
 * **padding**：有 SAME 和 VALID 两种选项，表示是否要保留图像边上那一圈不完全卷积的部分。如果是SAME，则保留。
