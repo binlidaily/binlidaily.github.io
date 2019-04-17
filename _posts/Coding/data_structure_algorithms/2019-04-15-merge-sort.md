@@ -9,11 +9,8 @@ comments: true
 published: true
 ---
 
-<p align=center>
-<img src="https://en.wikipedia.org/wiki/File:Merge-sort-example-300px.gif">
-</p>
 
-<p align=center>
+<p align=“center”>
 <img src="/img/media/15553176949661.jpg">
 </p>
 

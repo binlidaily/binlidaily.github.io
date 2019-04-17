@@ -6,5 +6,7 @@ author: Bin Li
 tags: [Machine Learning]
 image: 
 comments: true
-published: false
+published: true
 ---
+
+神经网络（Neural Network）是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所作出的交互反应。
