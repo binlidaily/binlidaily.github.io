@@ -114,9 +114,34 @@ $$
 \delta_{j}^{L}=\frac{\partial C}{\partial a_{j}^{L}} \sigma^{\prime}\left(z_{j}^{L}\right)  \tag{BP1}
 $$
 
-其中右式第一项 $\partial C / \partial a_{j}^{L}$ 表示代价随着 $j^{t h}$ 输出激活值的变化而变化的速度，假如 $C$ 不太依赖⼀个特定的输出神经元 $j$，那么 $\delta_{j}^{L}$ 就会很⼩，这也是我们想要的效果。右式第二项 $\sigma^{\prime}\left(z_{j}^{L}\right)$ 刻画了在 $z_{j}^{L}$ 处激活函数 $\sigma$ 变化的速度。
+其中右式第一项 $\partial C / \partial a_{j}^{L}$ 表示代价随着 $j^{t h}$ 输出激活值的变化而变化的速度，假如 $C$ 不太依赖⼀个特定的输出神经元 $j$，那么 $\delta_{j}^{L}$ 就会很⼩，这也是我们想要的效果。右式第二项 $\sigma^{\prime}\left(z_{j}^{L}\right)$ 刻画了在 $z_{j}^{L}$ 处激活函数 $\sigma$ 变化的速度。如果用矩阵形式表示方程（BP1）：
+
+$$
+\delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right) \tag{BP1a}
+$$
+
+第二个方程，使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 \delta^{l}：
+
+$$
+\delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right) \tag{BP2}
+$$
+
+第三个方程，代价函数关于网络中任意偏置的改变率：
+
+$$
+\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l} \tag{BP3}
+$$
+
+第四个方程，代价函数关于任何一个权重的改变率：
+
+$$
+\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}  \tag{BP4}
+$$
 
 
+<details><summary markdown="span">四个基本方程的证明</summary>
+
+</details>
 
 
 <details><summary markdown="span">Appendix</summary>
