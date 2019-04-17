@@ -35,7 +35,8 @@ $$
 
 由于历史的原因，尽管是由 S 型神经元⽽不是感知器构成，这种多层⽹络有时被称为多层感知器或者 MLP。此类神经网络都是以上一层的输出作为下一层的输入，被称为前馈神经网络（埋头向前，没有回路），而多层结构（两层或更多隐藏层）的网络被称为深度神经网络。
 
-
+## 2. 反向传播算法
+一般的模型训练都会使用梯度下降来学习权重和 bias，经过发展神经网络采用了反向传播（BackPropagation，BP）算法来快速计算梯度。
 
 ## References
 1. [CHAPTER 1 Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)

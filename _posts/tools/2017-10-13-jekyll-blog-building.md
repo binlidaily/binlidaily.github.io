@@ -21,7 +21,6 @@ Dependency Error: Yikes! It looks like you don't have jekyll-paginate or one of 
 
 直接把 `gem` 那个设置去掉就行。
 
-<!--more-->
 
 ### 公式显示问题
 
