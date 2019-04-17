@@ -87,6 +87,14 @@ print("hello world!")
 
 </details>
 
+<details><summary markdown="span"><code>init(title:level:style:close:)</code></summary>
+
+```swift
+public init(title: String, level: MarkdownHeaderLevel = .h1, style: MarkdownHeaderStyle = .atx,
+                close: Bool = false)
+```
+</details>
+
 ### 两个花括号连在一起时报错
 ```
 The page build failed for the `master` branch with the following error:
