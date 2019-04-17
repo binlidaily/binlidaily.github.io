@@ -79,12 +79,36 @@ $$x^2+y^2=1$$
 
 ### 折叠一部分内容
 <details><summary markdown="span">Show Code here</summary>
- <p>
+<p>
+
+### 试试看 Markdown
+在隐藏部分做些不可告人的事情 😜
+> 听说引用是斜体，看起来不是很舒服？
+
+`你绝对是强迫症`
+
+好咯，我来平方以下咯，$x^2=y$
+
+$${nb}^2 = you$$
+
+[Click here to enjoy life](https://binlidaily.github.io/)
+
+<p align="center">
+  <img width="" height="" src="/img/media/15554888013982.jpg">
+</p>
+
+![](/img/media/15554888013982.jpg)
+
+</p>
+</details>
+
+<details><summary markdown="span">Show Code here</summary>
+<p>
 
 ```python
 print("hello world!")
 ```
- </p>
+</p>
 </details>
 
 <details><summary markdown="span">Click to show the Code</summary>
