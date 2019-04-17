@@ -19,6 +19,7 @@ published: true
 </p>
 
 类似于生物神经网络中刺激度到达一个阈值时神经元就被激活，感知机代数形式如下：
+
 $$
 \text { output }=\left\{\begin{array}{ll}{0} & {\text { if } \sum_{j} w_{j} x_{j} \leq \text { threshold }} \\ {1} & {\text { if } \sum_{j} w_{j} x_{j}>\text { threshold }}\end{array}\right.
 $$
@@ -56,6 +57,13 @@ $$
 a_{j}^{l}=\sigma\left(\sum_{k} w_{j k}^{l} a_{k}^{l-1}+b_{j}^{l}\right)
 $$
 
+其中求和是在 $(l-1)^{\mathrm{th}}$ 层的所有 $k$ 个神经元上进⾏的。以向量形式改写得到：
+
+$$
+a^{l}=\sigma\left(w^{l} a^{l-1}+b^{l}\right)
+$$
+
+
 
 ## References
-1. [CHAPTER 1 Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)
+1. [CHAPTER 1: Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)
