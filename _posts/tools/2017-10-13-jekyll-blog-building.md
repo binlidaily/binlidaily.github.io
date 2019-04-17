@@ -87,7 +87,7 @@ print("hello world!")
  </p>
 </details>
 
-<details><summary markdown="span"><code>init(title:level:style:close:)</code></summary>
+<details><summary markdown="span">Click to show the Code</summary>
 
 ```swift
 public init(title: String, level: MarkdownHeaderLevel = .h1, style: MarkdownHeaderStyle = .atx,
