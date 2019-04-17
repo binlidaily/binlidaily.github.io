@@ -10,7 +10,7 @@ published: true
 ---
 
 
-<p align=“center”>
+<p align="center">
 <img src="/img/media/15553176949661.jpg">
 </p>
 
