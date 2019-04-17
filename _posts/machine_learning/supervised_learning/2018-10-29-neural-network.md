@@ -38,6 +38,24 @@ $$
 ## 2. 反向传播算法
 一般的模型训练都会使用梯度下降来学习权重和偏置，经过发展神经网络采用了反向传播（BackPropagation，BP）算法来快速计算梯度。反向传播的核心是一个对代价函数 $C$ 关于任何权重 $w$（或者偏置 $b$）的偏导 $\partial C / \partial w$ 的表达式。这个表达式告诉我们在改变权重和偏置时，代价函数变化的快慢。
 
+首先定义权重的符号，使用 $w_{j k}^{l}$ 表示从 $(l-1)^{\mathrm{th}}$ 层的 $k^{\mathrm{th}}$ 个神经元到 $l^{\mathrm{th}}$ 层的 $j^{\mathrm{th}}$ 个神经元的链接上的权重。
+
+<p align="center">
+  <img width="600" height="" src="/img/media/15554908584367.jpg">
+</p>
+
+接着定义偏置和激活值的符号，我们使⽤ $b_{j}^{l}$ 表⽰在 $l^{\mathrm{th}}$ 层第 $j^{\mathrm{th}}$ 个神经元的偏置，使⽤ $a_{j}^{l}$ 表⽰ $l^{\mathrm{th}}$ 层第 $j^{\mathrm{th}}$ 个神经元的激活值。
+
+<p align="center">
+  <img width="330" height="" src="/img/media/15554914280189.jpg">
+</p>
+
+有了以上的符号基础，就能将 $l^{\mathrm{th}}$ 层第 $j^{\mathrm{th}}$ 个神经元的激活值 $a_{j}^{l}$ 就和 $(l-1)^{\mathrm{th}}$ 层的激活值通过⽅程关联起来：
+
+$$
+a_{j}^{l}=\sigma\left(\sum_{k} w_{j k}^{l} a_{k}^{l-1}+b_{j}^{l}\right)
+$$
+
 
 ## References
 1. [CHAPTER 1 Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)
