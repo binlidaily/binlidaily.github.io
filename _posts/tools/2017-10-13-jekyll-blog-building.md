@@ -79,12 +79,12 @@ $$x^2+y^2=1$$
 
 ### 折叠一部分内容
 <details><summary>Show Code here</summary>
-
+ <p>
 
 ```python
 print("hello world!")
 ```
-
+ </p>
 </details>
 
 <details><summary markdown="span"><code>init(title:level:style:close:)</code></summary>
