@@ -79,7 +79,7 @@ $$x^2+y^2=1$$
 
 ### 折叠一部分内容
 <details><summary markdown="span">Show Code here</summary>
-<p>
+
 
 ### 试试看 Markdown
 在隐藏部分做些不可告人的事情 😜
@@ -99,7 +99,7 @@ $${nb}^2 = you$$
 
 ![](/img/media/15554888013982.jpg)
 
-</p>
+
 </details>
 
 <details><summary markdown="span">Show Code here</summary>
