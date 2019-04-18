@@ -66,6 +66,7 @@ var main = {
 
     // show the big header image
     main.initImgs();
+    alert($("#header-big-imgs"))
   },
 
   initImgs : function() {
