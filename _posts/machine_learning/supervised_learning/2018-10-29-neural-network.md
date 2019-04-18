@@ -102,7 +102,7 @@ $$
 ### 2.3 反向传播的四个基本方程
 　　反向传播其实是对权重和偏置变化影响代价函数过程的理解，最终极的含义其实就是计算偏导 $\partial C / \partial w_{j k}^{l}$ 和 $\partial C / \partial b_{j}^{l}$。在计算这些值前，我们先引入一个中间量，$\delta_{j}^{l}$，其被称为 $l^{t h}$ 层第 $j^{t h}$ 个神经元上的**误差**。反向传播将给出计算误差 $\delta_{j}^{l}$ 的流程，然后将其关联到计算 $\partial C / \partial w_{j k}^{l}$ 和 $\partial C / \partial b_{j}^{l}$ 上。
 
-　　我们定义 $l$ 层的第 $j^{t h}$ 个神经元上的误差 $\delta_{j}^{l}$ 为：
+　　偏差的绝对值较大说明还有进一步优化，而接近于零时我们就假定其收敛了，据此我们定义 $l$ 层的第 $j^{t h}$ 个神经元上的误差 $\delta_{j}^{l}$ 为：
 
 $$
 \delta_{j}^{l} \equiv \frac{\partial C}{\partial z_{j}^{l}}
@@ -120,7 +120,7 @@ $$
 \delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right) \tag{BP1a}
 $$
 
-　　第二个方程，使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 \delta^{l}：
+　　第二个方程，使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 $\delta^{l}$：
 
 $$
 \delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right) \tag{BP2}
@@ -140,13 +140,29 @@ $$
 
 
 <details><summary markdown="span">四个基本方程的证明</summary>
+![-w1018](/img/media/15555772493944.jpg)
+![-w1020](/img/media/15555772660492.jpg)
+
+![-w1002](/img/media/15555772754499.jpg)
+
+![-w438](/img/media/15555772258096.jpg)
 
 </details>
 
 
+**反向传播算法描述**
+1. **输入 $x$**：为输入层设置对应的激活值 $a^1$。
+2. **前向传播**：对每个 $l=2, 3, \dots, L$ 计算相应的 $z^{l}=w^{l} a^{l-1}+b^{l}$ 和 $a^{l}=\sigma\left(z^{l}\right)$。
+3. **输出层误差 $\delta^{L}$**：计算向量 $\delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right)$。
+4. **反向误差传播**：对每个 $l=L-1, L-2, \dots, 2$，计算 $\delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right)$。
+5. **输出**：代价函数的梯度由 $\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}$ 和 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$ 得出，然后通过权重更新的公式更新 $w^l$ 和 $b^l$。
+
+![-w1015](/img/media/15555770079332.jpg)
+
+
 <details><summary markdown="span">Appendix</summary>
 ### Hadmard
-　　反向传播算法基于常规的线性代数运算 —— 诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 $(s \odot t)_{j}=s_{j} t_{j}$。给个例⼦，
+　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 $(s \odot t)_{j}=s_{j} t_{j}$。给个例⼦，
 
 $$
 \left[ \begin{array}{l}{1} \\ {2}\end{array}\right] \odot \left[ \begin{array}{l}{3} \\ {4}\end{array}\right]=\left[ \begin{array}{l}{1 * 3} \\ {2 * 4}\end{array}\right]=\left[ \begin{array}{l}{3} \\ {8}\end{array}\right]
