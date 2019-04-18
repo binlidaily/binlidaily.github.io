@@ -242,7 +242,7 @@ $$
 
 
 ## GBDT的正则化
-可参考博文。
+可参考博文。GBDT 模型常用的库有 XGBoost，LightGBM和 CatBoost 等。
 
 ## Parameter Tuning
 [参考](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)。

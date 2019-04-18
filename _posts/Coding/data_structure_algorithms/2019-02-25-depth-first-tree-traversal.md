@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Depth-First Search
+title: Depth-First Tree Traversal
 subtitle:
 author: Bin Li
 tags: [Data Structures]

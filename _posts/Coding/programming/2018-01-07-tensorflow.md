@@ -1,14 +1,11 @@
 ---
 layout: post
-title: "TensorFlow 使用记录"
+title: "TensorFlow"
+subtitle: 使用记录
 author: "Bin Li"
 tags: [Deep Learning, TensorFlow]
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
-published: True
+published: true
 ---
 
 最近在使用 TensorFlow 跑一些模型，由于刚接触 TensorFlow，做一些笔记方便翻看。

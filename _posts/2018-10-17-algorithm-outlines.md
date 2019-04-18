@@ -23,6 +23,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [Xgboost](https://binlidaily.github.io/2018-10-29-xgboost/)
     * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
+* [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
