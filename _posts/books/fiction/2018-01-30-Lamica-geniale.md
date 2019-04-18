@@ -3,6 +3,7 @@ layout: post
 title: "我的天才女友"
 author: "Bin Li"
 tags: [Reviews, Books]
+bigimg: /img/media/15555701839403.jpg
 category: Books
 comments: true
 published: true
