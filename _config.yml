@@ -27,9 +27,9 @@ navbar-links:
   Blogs: "https://binlidaily.github.io"
   Outlines:
     - Algorithms: "https://binlidaily.github.io/2018-10-17-algorithm-outlines/"
-    - Open Sources: "https://binlidaily.github.io/2018-10-19-open-sources/"
-    - Coding: "https://binlidaily.github.io/2018-10-23-coding/"
     - Projects: "https://binlidaily.github.io/2019-01-14-projects/"
+    - Coding: "https://binlidaily.github.io/2018-10-23-coding/"
+    - Open Sources: "https://binlidaily.github.io/2018-10-19-open-sources/"
   # Author's home: "http://deanattali.com"
   About Me: "aboutme"
   # search: "search"

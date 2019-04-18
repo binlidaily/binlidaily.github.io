@@ -8,7 +8,7 @@ subtitle:
 author: Bin Li
 toc: true
 tags: []
-image: 
+bigimg: 
 comments: true
 published: true
 ---
