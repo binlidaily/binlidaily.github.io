@@ -71,6 +71,7 @@ var main = {
   initImgs : function() {
     // If the page was large images to randomly select from, choose an image
     if ($("#header-big-imgs").length > 0) {
+      alert($("#header-big-imgs"))
       main.bigImgEl = $("#header-big-imgs");
       main.numImgs = main.bigImgEl.attr("data-num-img");
 
@@ -94,7 +95,7 @@ var main = {
   		setTimeout(function(){
                   var img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
   		  $(".intro-header.big-img").prepend(img);
-  		  setTimeout(function(){ img.css("opacity", "1"); }, 100);
+  		  setTimeout(function(){ img.css("opacity", "1"); }, 50);
 
 		  // after the animation of fading in the new image is done, prefetch the next one
   		  //img.one("transitioned webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
