@@ -70,8 +70,8 @@ var main = {
 
   initImgs : function() {
     // If the page was large images to randomly select from, choose an image
+    alert($("#header-big-imgs"))
     if ($("#header-big-imgs").length > 0) {
-      alert($("#header-big-imgs"))
       main.bigImgEl = $("#header-big-imgs");
       main.numImgs = main.bigImgEl.attr("data-num-img");
 
