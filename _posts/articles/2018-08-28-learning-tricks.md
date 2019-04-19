@@ -3,7 +3,7 @@ layout: post
 title: 学习方法
 subtitle: 关于学习的零星火花
 author: Bin Li
-tags: [Learning]
+tags: [Articles]
 image: 
 comments: true
 published: true

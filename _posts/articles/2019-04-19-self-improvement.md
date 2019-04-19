@@ -3,7 +3,7 @@ layout: post
 title: Self-Improvement
 subtitle: 自我提升
 author: Bin Li
-tags: [Self-Improvement]
+tags: [Articles]
 image: 
 comments: true
 published: true
