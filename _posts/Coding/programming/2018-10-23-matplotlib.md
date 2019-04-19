@@ -129,3 +129,27 @@ print(plt.rcParams.get('figure.figsize'))
 # at the top of python script
 plt.rcParams["figure.figsize"] = (10, 6)
 ```
+
+### 散点图——渐变
+```python
+
+plt.scatter(data_projected[:, 0], data_projected[:, 1], c=digits.target, s=20,
+            edgecolor='none', alpha=0.5,
+            cmap=plt.cm.get_cmap('Spectral', 10))
+plt.colorbar(label='digit label', ticks=range(10))
+plt.clim(-0.5, 9.5);
+```
+![](/img/media/15556738147636.jpg)
+
+
+### 热力图
+```python
+from sklearn.metrics import confusion_matrix
+mat = confusion_matrix(ytest, y_model)
+
+sns.heatmap(mat, square=True, annot=True, cbar=False)
+plt.xlabel('predicted value')
+plt.ylabel('true value');
+```
+
+![](/img/media/15556739167767.jpg)
