@@ -4,17 +4,13 @@ title: "深度学习网络结构"
 author: "Bin Li"
 tags: [Deep Learning]
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
 published: false
 ---
 
 ## LeNet
 利用 TensorFlow 实现的 LeNet 可以参考这个 [repo](https://github.com/ganyc717/LeNet)。而细致的实现每一步的话，可以参考[这个](https://www.kaggle.com/malekbadreddine/tensorflow-convnet-lenet-5)。
 
-![](/images/media/15177311265892.jpg)
+![](/img/media/15177311265892.jpg)
 
 
 为什么 convolutional layer 有多个，这里用 6@28x28 的意思是什么？每一个 28x28 其实是有三维的嘛？
