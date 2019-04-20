@@ -80,3 +80,5 @@ published: true
 > Experience is what you get when you didn’t get what you wanted
 
 > Brick walls are there for a reason: they let us prove how badly we want things
+
+> 只有中文是斜体？！！
