@@ -1273,7 +1273,7 @@ print 'elapsed time: ', time.time() - start_time
 
 
 ## 二.  特征选择 (Feature Selection) 
-
+　　本文已经篇幅过长，特征工程中的特征选择部分在另一篇[文章](https://binlidaily.github.io/2018-10-25-feature-selection/)整理。
 
 
 
