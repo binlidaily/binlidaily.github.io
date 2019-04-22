@@ -153,3 +153,11 @@ plt.ylabel('true value');
 ```
 
 ![](/img/media/15556739167767.jpg)
+
+
+## 拟合曲线
+![](/img/media/15557719511330.jpg)
+
+
+## References
+1. [拟合曲线图](https://mp.weixin.qq.com/s/r9DYiYvyx5QUqe40n6H2KA)

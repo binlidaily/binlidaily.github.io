@@ -81,4 +81,4 @@ published: true
 
 > Brick walls are there for a reason: they let us prove how badly we want things
 
-> 只有中文是斜体？！！
+> 厉害的人在遇到问题的时候善于给自己良好的心理暗示，心态都很稳定。
