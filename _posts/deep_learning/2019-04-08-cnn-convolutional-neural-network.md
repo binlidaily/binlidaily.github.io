@@ -13,10 +13,10 @@ typora-copy-images-to: ../../img/media
 
 　　卷积神经网络（Convolutional Neural Network, CNN）采用三种基本概念：局部感受野（Local Receptive Fields），共享权重（Shared Weights）和混合（Pooling）。
 
-<figure align="center">
+<p align="center">
 <img src="/img/media/15547073032659.jpg" width="">
 <figcaption>卷积操作过程</figcaption>
-</figure>
+</p>
 
 　　局部感受野就是利用卷积框提取特征的局部。每一个局部位置对应同一隐层的一个神经元（计算操作）。
 
