@@ -145,7 +145,7 @@ TensorFlow 版本在 Github 上有[实现版本](https://github.com/balancap/SSD
 因为 SSD 的效果不是很好，尝试使用一下 RCNN，github 上也有 TensorFlow [版本](https://github.com/endernewton/tf-faster-rcnn)。
 
 ## References
-1. [Analog Gauge Reader](https://github.com/intel-iot-devkit/python-cv-samples/tree/master/examples/analog-gauge-reader)
+1. [Analog Gauge Reader - Intel](https://github.com/intel-iot-devkit/python-cv-samples/tree/master/examples/analog-gauge-reader)
 2. [Deep Gauge](https://github.com/oci-labs/deep-gauge)
 3. [SSD TensorFlow](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)
 4. [A water meter reader](https://github.com/yamaton/water-meter-reading)
