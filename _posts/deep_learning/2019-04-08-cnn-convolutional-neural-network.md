@@ -116,6 +116,13 @@ CNN特征提取的误差主要来自两个方面：
 * 将特征图映射到新的特征空间从而有利于训练
 * 加速模型收敛等
 
+什么情況下使用**微调**？
+
+* 你要使用的数据集和预训练模型的数据集相似，如果不太相似，比如你用的预训练的参数是自然景物的图片，你却要做人脸的识别，效果可能就没有那么好了，因为人脸的特征和自然景物的特征提取是不同的，所以相应的参数训练后也是不同的。
+* 自己搭建成者使用的 CNN 模型正确率太低。
+* 数据集相似，但数据集数量太少。
+* 计算资源太少。
+
 ## References
 1. [5.3. 多输入通道和多输出通道](https://zh.d2l.ai/chapter_convolutional-neural-networks/channels.html)
 2. [Convolutional Neural Networks (CNNs / ConvNets)](http://cs231n.github.io/convolutional-networks/)
