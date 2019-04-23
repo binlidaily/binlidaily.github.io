@@ -17,7 +17,7 @@ typora-copy-images-to: ../../img/media
 <img src="/img/media/15547073032659.jpg" width="">
 </p>
 <p align="center">
-    <em>image_caption</em>
+    <em>卷积计算过程</em>
 </p>
 
 　　局部感受野就是利用卷积框提取特征的局部。每一个局部位置对应同一隐层的一个神经元（计算操作）。
@@ -72,16 +72,17 @@ typora-copy-images-to: ../../img/media
 
 　　从图中可以看到，红色的神经元被激活了，也就是对应的特诊刚被找到了，而同一层中的其他没有被激活的神经元说明要么喵喵的特征不明显，要么没找到。当在输出层把这些特征组合到一起时，就能判断是喵喵了。至此，我们如果再继续往前看一层全连接层，我们看如何得到在当前全连接层被激活的喵喵的头部特征。
 
-![](/img/media/15559917593770.jpg)
-
-![](/img/media/15559918008969.jpg)
-
 <p align="center">
-<img src="/img/media/15559915410132.jpg" width="">
+<img src="/img/media/15559917593770.jpg" width="">
 </p>
 
+　　通过前面的卷积层、下采样层，可以得到喵喵头部的局部特征：
 
+<p align="center">
+<img src="/img/media/15559918008969.jpg" width="">
+</p>
 
+　　虽然不是很严谨的一个例子，但是也可以说明这样的问题，有的时候单层全连接层效果并不是很好，如果这里只拿一层全连接层直接连到输出层效果可能就不好。但是在实际操作中似乎也只好用尝试的办法来选择到底要用几层全连接层。
 
 ## References
 1. [5.3. 多输入通道和多输出通道](https://zh.d2l.ai/chapter_convolutional-neural-networks/channels.html)
