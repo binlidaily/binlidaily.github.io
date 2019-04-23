@@ -84,6 +84,12 @@ typora-copy-images-to: ../../img/media
 
 　　虽然不是很严谨的一个例子，但是也可以说明这样的问题，有的时候单层全连接层效果并不是很好，如果这里只拿一层全连接层直接连到输出层效果可能就不好。但是在实际操作中似乎也只好用尝试的办法来选择到底要用几层全连接层。
 
+　　激活函数的优势：
+* 提高模型鲁棒性，非线性表达能力
+* 缓解梯度消失问题
+* 将特征图映射到新的特征空间从而有利于训练
+* 加速模型收敛等
+
 ## References
 1. [5.3. 多输入通道和多输出通道](https://zh.d2l.ai/chapter_convolutional-neural-networks/channels.html)
 2. [Convolutional Neural Networks (CNNs / ConvNets)](http://cs231n.github.io/convolutional-networks/)

@@ -34,7 +34,8 @@ a:focus {
 }
 blockquote {
   color: #808080;
-  font-style: italic;
+  /*font-style: italic;*/
+  font-style: normal;
 }
 blockquote p:first-child {
   margin-top: 0;
@@ -601,7 +602,8 @@ footer .theme-by {
   text-align: center;
   font-size: 14px;
   padding: 10px;
-  font-style: italic;
+  /*font-style: italic;*/
+  font-style: normal;
   margin: 0;
   display: block;
   border-bottom-right-radius: 5px;
