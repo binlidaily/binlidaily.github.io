@@ -17,7 +17,7 @@ typora-copy-images-to: ../../img/media
 <img src="/img/media/15547073032659.jpg" width="">
 </p>
 <p align="center">
-    <em style="font-style:normal;font-size:80%;">卷积计算过程</em>
+    <em style="color:#808080;font-style:normal;font-size:80%;">卷积计算过程</em>
 </p>
 
 　　局部感受野就是利用卷积框提取特征的局部。每一个局部位置对应同一隐层的一个神经元（计算操作）。
