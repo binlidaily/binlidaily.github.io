@@ -16,6 +16,9 @@ typora-copy-images-to: ../../img/media
 <p align="center">
 <img src="/img/media/15547073032659.jpg" width="">
 </p>
+<p align="center">
+    <em>image_caption</em>
+</p>
 
 　　局部感受野就是利用卷积框提取特征的局部。每一个局部位置对应同一隐层的一个神经元（计算操作）。
 
@@ -68,6 +71,10 @@ typora-copy-images-to: ../../img/media
 </p>
 
 　　从图中可以看到，红色的神经元被激活了，也就是对应的特诊刚被找到了，而同一层中的其他没有被激活的神经元说明要么喵喵的特征不明显，要么没找到。当在输出层把这些特征组合到一起时，就能判断是喵喵了。至此，我们如果再继续往前看一层全连接层，我们看如何得到在当前全连接层被激活的喵喵的头部特征。
+
+![](/img/media/15559917593770.jpg)
+
+![](/img/media/15559918008969.jpg)
 
 <p align="center">
 <img src="/img/media/15559915410132.jpg" width="">
