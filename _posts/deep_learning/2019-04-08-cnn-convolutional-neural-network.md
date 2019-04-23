@@ -16,7 +16,7 @@ typora-copy-images-to: ../../img/media
 <p align="center">
 <img src="/img/media/15547073032659.jpg" width="">
 </p>
-<p style="margin-top:-3%" align="center">
+<p style="margin-top:-2.5%" align="center">
     <em style="color:#808080;font-style:normal;font-size:80%;">卷积计算过程</em>
 </p>
 
