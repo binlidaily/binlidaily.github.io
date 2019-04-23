@@ -71,7 +71,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ## 3. Deep Learning
 ### 3.1 Image Classification
-* [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
+* [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
+* [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
 
 ### 3.2 Object Detection
 * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-single-shot-multibox-detector/)
