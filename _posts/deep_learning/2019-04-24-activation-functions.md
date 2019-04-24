@@ -24,6 +24,7 @@ typora-root-url: ../../../../binlidaily.github.io
 
 
 
+
 <div><div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
 <div>感谢打赏，您的支持将鼓励我继续创作！</div>
 <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
@@ -34,10 +35,13 @@ typora-root-url: ../../../../binlidaily.github.io
   <a href="/img/media/wechat_pay.jpg" class="fancybox" rel="group"><img id="wechat_qr" src="/img/media/wechat_pay.jpg" alt=""></a>
   <p>微信打赏</p>
 </div>
+<img id="wechat_qr" src="/img/media/wechat_pay.jpg" alt="">
+<img id="alipay_qr" src="/img/media/ali_pay.jpg">
 <div id="alipay" style="display: inline-block">
   <a href="/img/media/ali_pay.jpg" class="fancybox" rel="group"><img id="alipay_qr" src="/img/media/ali_pay.jpg" alt="狗皮膏药 Alipay"></a>
   <p>支付宝打赏</p>
-</div></div></div>
+</div>
+</div>
 </div>
 
 ## References
