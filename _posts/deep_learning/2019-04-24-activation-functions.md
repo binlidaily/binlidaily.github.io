@@ -111,7 +111,19 @@ $$
 * **tf.nn.relu6**(features, name=None) 定义为：`min(max(features, 0), 6)`
 * **CReLU**，即 **tf.nn.crelu**(features, name=None) ，可[参考](https://arxiv.org/pdf/1603.05201v2.pdf)。
 
+**优点**：
+1. 相比 Sigmoid 和 tanh，ReLU 在 SGD 中能够更快速的收敛，有说法是因为其有线性、非饱和的特点。
+2. Sigmoid 和 tanh 涉及较多费时的操作，如指数操作，而 ReLU 可以更加简单的实现。
+3. ReLU 能够有效缓解梯度消失的问题。
+4. 在没有无监督预训练的时候也能有较好的效果。🤔
+<p align="center">
+<img src="/img/media/15561085558892.jpg" width="400">
+</p>
+1. 为神经网络提供了**稀疏表达的能力**。
 
+**缺点**：
+1. 随着逐步的训练，可能出现神经元死亡，即无法更新的情况。
+    * 如果发生这种情况，那么从这一刻开始途径该神经元的梯度都变为零，即 ReLU 神经元在训练中不可逆的死亡了。
 
 ## References
 1. [神经网络激活函数汇总（Sigmoid、tanh、ReLU、LeakyReLU、pReLU、ELU、maxout）](https://blog.csdn.net/edogawachia/article/details/80043673)
