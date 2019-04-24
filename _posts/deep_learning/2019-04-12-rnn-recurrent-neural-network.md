@@ -104,7 +104,6 @@ $$
 
 　　这样我们可以像 DNN 一样从 $\delta^{(t+1)}$ 递推 $\delta^{(t)}$。
 
-
 $$
 \begin{aligned} \delta^{(t)} &=\frac{\partial L}{\partial o^{(t)}} \frac{\partial o^{(t)}}{\partial h^{(t)}}+\frac{\partial L}{\partial h^{(t+1)}} \frac{\partial h^{(t+1)}}{\partial h^{(t)}} \\ &=V^{T}\left(\hat{y}^{(t)}-y^{(t)}\right)+W^{T} \delta^{(t+1)} \text{diag}\left(1-\left(h^{(t+1)}\right)^{2}\right) \end{aligned}
 $$
