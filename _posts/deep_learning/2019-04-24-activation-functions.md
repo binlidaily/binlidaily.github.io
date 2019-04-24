@@ -43,8 +43,12 @@ f^{\prime}(x)=0, \text{当} |x|>c, c \text{为常数}
 $$
 
 
-## Sigmoid
+## 2. Sigmoid
 　　Sigmoid 是一个 $S$ 型的激活函数，缺点是可能会导致不饱和。
+
+$$
+f(x)=\frac{1}{1+e^{-x}}
+$$
 
 <p align="center">
 <img src="/img/media/15560939318918.jpg" width="520">
@@ -53,12 +57,63 @@ $$
 <em style="color:#808080;font-style:normal;font-size:80%;">Sigmoid 函数和求导结果</em>
 </p>
 
+**优点**：
+1. Sigmoid 函数输出映射在 $(0, 1)$ 之间，范围有限，且单调连续，可以做输出层。
+2. 求导容易：$f^{\prime}(x)=f(x) \cdot(1-f(x))$，求导过程可[参看](https://www.jianshu.com/p/d4301dc529d9)。
+
+**缺点**：
+1. 由于其软饱和性，容易产生梯度消失，导致训练出现问题。
+2. 其输出不是以 $0$ 为中心的。
 
 
+## 3. tanh 函数
+　　比起 Sigmoid 函数，更常用的是 tanh 函数：
 
+$$
+\tanh (x)=\frac{1-e^{-2 x}}{1+e^{-2 x}}
+$$
+
+　　函数值位于 $[-1, 1]$ 区间上，对应的图像如下：
+
+<p align="center">
+<img src="/img/media/15561072848754.jpg" width="350">
+</p>
+<p style="margin-top:-2.5%" align="center">
+<em style="color:#808080;font-style:normal;font-size:80%;">tanh 函数图像</em>
+</p>
+
+**优点**：
+1. 比 Sigmoid 函数收敛速度更快。
+2. 相比 Sigmoid，tanh 是以 $0$ 为中心。
+
+**缺点**：
+1. 没有改变 Sigmoid 的最大问题——由于软饱和性产生梯度消失问题。
+
+## 4. ReLU
+　　近期非常受欢迎的激活函数，其定义为：
+
+$$
+y=
+\begin{cases}
+0& x \leq 0\\
+1& x>0
+\end{cases}
+$$
+
+<p align="center">
+<img src="/img/media/15561079877580.jpg" width="350">
+</p>
+<p style="margin-top:-2.5%" align="center">
+<em style="color:#808080;font-style:normal;font-size:80%;">ReLUctant 函数图像</em>
+</p>
+
+　　值得注意的是，在 TensorFlow 中除了 ReLU 自身外，还定义了与之有关的激活函数，像：
+* **tf.nn.relu6**(features, name=None) 定义为：`min(max(features, 0), 6)`
+* **CReLU**，即 **tf.nn.crelu**(features, name=None) ，可[参考](https://arxiv.org/pdf/1603.05201v2.pdf)。
 
 
 
 ## References
 1. [神经网络激活函数汇总（Sigmoid、tanh、ReLU、LeakyReLU、pReLU、ELU、maxout）](https://blog.csdn.net/edogawachia/article/details/80043673)
 2. [深度学习系列（8）：激活函数](https://plushunter.github.io/2017/05/12/深度学习系列（8）：激活函数/)
+3. [The Activation Function in Deep Learning 浅谈深度学习中的激活函数](https://www.cnblogs.com/rgvb178/p/6055213.html)

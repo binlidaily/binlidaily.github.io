@@ -1,0 +1,3301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/u013989576/article/details/70185145"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+        <meta name="csdn-baidu-search"  content='{"autorun":true,"install":true,"keyword":"深度学习中激活函数 - 竹馨shine的专栏"}'>
+    
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>深度学习中激活函数 - 竹馨shine的专栏 - CSDN博客</title>
+
+        
+                    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-05c723a908.min.css">
+            
+            <script type="application/ld+json">{"@context":"https:\/\/ziyuan.baidu.com\/contexts\/cambrian.jsonld","@id":"https:\/\/blog.csdn.net\/u013989576\/article\/details\/70185145","appid":"1563894916825412","title":"\u6df1\u5ea6\u5b66\u4e60\u4e2d\u6fc0\u6d3b\u51fd\u6570 - \u7af9\u99a8shine\u7684\u4e13\u680f","images":["https:\/\/img-blog.csdn.net\/20160917153242569","https:\/\/img-blog.csdn.net\/20170415165408690","https:\/\/img-blog.csdn.net\/20170415165440175"],"pubDate":"2019-04-24T17:57:46"}</script>
+        
+          <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-b379d80735.min.css">
+        <script type="text/javascript">
+        var username = "u013989576";
+        var userPermission = false;
+        var blog_address = "https://blog.csdn.net/u013989576";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "libin957895408";
+        var currentUserPermission = false;
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "http://passport.csdn.net/account/login?from=https://blog.csdn.net/u013989576/article/details/70185145"
+        var blogUrl = "https://blog.csdn.net/";
+        //页面皮肤样式
+        var curSkin = "skin3-template";
+        // 第四范式所需数据
+        var articleTitles = "深度学习中激活函数 - 竹馨shine的专栏";
+        var articleID = "70185145";
+        
+        var nickName = "迷上微笑";
+        var isCorporate = false;
+        var subDomainBlogUrl = "https://blog.csdn.net/"
+        var digg_base_url = "https://blog.csdn.net/u013989576/phoenix/comment";
+        var articleDetailUrl = "https://blog.csdn.net/u013989576/article/details/70185145";
+    </script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <script src="//g.csdnimg.cn/fixed-sidebar/1.1.3/fixed-sidebar.js" type="text/javascript"></script>
+    <!-- 新版上报 -->
+      <script src="//g.csdnimg.cn/track/1.2.4/track.js" type="text/javascript"></script>
+    <!-- 新版上报end -->
+
+    <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<!-- nodata 第三栏接口无数据时样式不变 -->
+<body class="nodata " > 
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<div id="kp_box_476" data-pid="476" data-track-view='{"mod":"kp_popu_476-923","con":",,"}' data-track-click='{"mod":"kp_popu_476-923","con":",,"}'><script src="//csdnimg.cn/public/common/indexSuperise/1.0.3/indexSuperise.js?20190103190825"></script>
+<script>
+ window.csdn.indexSuperise({
+      smallMoveImg: '//img-ads.csdn.net/2019/201904191712004256.png',
+      bigMoveImg: '//img-ads.csdn.net/2019/201904191711482933.png',
+     link:'//edu.csdn.net/topic/ai30?utm_source=blogpopup',
+boxStyle:140,
+trackSuperId:476,
+smallMove:'notMove',  
+trackSId:923
+    });
+</script></div><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript">
+	// 容错处理
+	var NEWS_FEED = function(){}
+</script>
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<script type="text/javascript" src="//g.csdnimg.cn/copyright/1.0.3/copyright.js"></script>
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+<script src="https://dup.baidustatic.com/js/ds.js"></script>
+<div class="container clearfix" id="mainBox">
+			<div class="recommend-right">
+  <ul class="recommend-fixed-box">
+    
+  </ul>
+</div>	
+    <main>
+        <div class="blog-content-box">
+	<div class="article-header-box">
+		<div class="article-header">
+			<div class="article-title-box">
+				<span class="article-type type-1 float-left">原</span>				<h1 class="title-article">深度学习中激活函数</h1>
+			</div>
+			<div class="article-info-box">
+				<div class="article-bar-top">
+																									<span class="time">2017年04月15日 17:38:11</span>
+					<a class="follow-nickName" href="https://me.csdn.net/u013989576" target="_blank">迷上微笑</a>
+						<span class="read-count">阅读数：6675</span>
+						
+																															</div>
+				<div class="operating">
+									</div>
+			</div>
+		</div>
+	</div>
+	<article class="baidu_pl">
+		<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+								<div class="article-copyright">
+                  					<svg class="icon" title="CSDN认证原创" aria-hidden="true" style="width:53px; height: 18px; vertical-align: -4px;">
+							<use xlink:href="#CSDN_Cert"></use>
+					</svg>
+                  					
+					版权声明：本文为博主原创文章，未经博主允许不得转载。					https://blog.csdn.net/u013989576/article/details/70185145				</div>
+								<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-f57960eb32.css" />
+								            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-f57960eb32.css" />
+						<div class="htmledit_views" id="content_views">
+                
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">本文主要参考博文：</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">1. http://blog.csdn.net/u014595019/article/details/52562159<br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">2. https://zhuanlan.zhihu.com/p/22142013</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:18px;color:#ff0000;">激活函数的作用</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">       神经网络中激活函数的主要作用是提供网络的非线性建模能力。假设一个神</span><span style="font-family:'FangSong_GB2312';font-size:14px;">经网络中仅包含线性卷积和全连接运算，那么该网络仅能够表达线性映射，即便增加网络的深度也依旧还是线性映射，难以有效建模</span><span style="font-family:'FangSong_GB2312';font-size:14px;">实际环境中非线性分布的数据。加入（非线性）激活函数之后，深度神经网络才具备了分层的非线性映射学习能力。因此，激活函</span><span style="font-family:'FangSong_GB2312';font-size:14px;">数</span><span style="font-family:'FangSong_GB2312';font-size:14px;">是深度神经网络中不可或缺的部分。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><span style="color:rgb(255,0,0);font-family:'FangSong_GB2312';font-size:18px;">激活函数的性质</span></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">可微性： 当优化方法是基于梯度的时候，这个性质是必须的。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">单调性： 当激活函数是单调的时候，单层网络能够保证是凸函数。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">输出值的范围： 当激活函数的输出是有限的时候，基于梯度的优化方法会更加稳定，因为特征的表示受有限权值的影响更显著;</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">                         当激活函数的输出是无限的时候，模型的训练会更加高效，不过在这种情况下，一般需要更小的learning rate<br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:18px;color:#ff0000;">sigmod函数</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:18px;color:#ff0000;"></span></p>
+<div class="MathJax_Display" style="text-align:center;min-width:0px;min-height:0px;color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;">
+<span class="MathJax" id="MathJax-Element-24-Frame" style="display:inline;line-height:normal;text-align:left;word-spacing:normal;min-width:0px;min-height:0px;border:0px;"><span class="math" id="MathJax-Span-1" style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;font-size:17.5px;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-2" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-3" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mo" id="MathJax-Span-4" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mi" id="MathJax-Span-5" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-6" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-7" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">=</span><span class="mfrac" id="MathJax-Span-8" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mn" id="MathJax-Span-9" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">1</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-10" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mn" id="MathJax-Span-11" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">1</span><span class="mo" id="MathJax-Span-12" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">+</span><span class="msubsup" id="MathJax-Span-13" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-14" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">e</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="texatom" id="MathJax-Span-15" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-16" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mo" id="MathJax-Span-17" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Main';">−</span><span class="mi" id="MathJax-Span-18" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Math-italic';">x</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border-width:0px 0px 0px 3.317em;border-left-style:solid;vertical-align:.003em;line-height:normal;overflow:hidden;width:0px;"></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border-width:0px 0px 0px .004em;border-left-style:solid;vertical-align:-.996em;line-height:normal;overflow:hidden;width:0px;color:rgb(255,255,255);"></span></span></span></div>
+<p style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;">
+</p>
+<center style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;">
+<img src="https://img-blog.csdn.net/20160917153242569" alt="这里写图片描述" title="" style="border:none;" /></center>
+<br style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;" /><p><span style="font-family:'FangSong_GB2312';font-size:14px;">        sigmoid 是使用范围最广的一类激活函数，具有指数函数形状，它在物理意义上最接近生物神经元。但是，</span><span style="font-family:'FangSong_GB2312';font-size:14px;">从上图可以看</span><span style="font-family:'FangSong_GB2312';font-size:14px;">出，</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">该</span><span style="font-family:'FangSong_GB2312';font-size:14px;">函数有两方面的缺陷：饱和性、非0均值。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">        饱和性可以分为软饱和、硬饱和。其中，软饱和是指函数的导数趋近于0，硬饱和是指函数的导数等于0，软饱和的公式如1所</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">示，</span><span style="font-family:'FangSong_GB2312';font-size:14px;">硬</span><span style="font-family:'FangSong_GB2312';font-size:14px;">饱和的公式如2所示。</span></p>
+<p></p>
+<p style="text-align:center;font-family:'FangSong_GB2312';font-size:14px;"><img src="https://img-blog.csdn.net/20170415165408690" alt="" />                              （1）</p>
+<p style="text-align:center;font-family:'FangSong_GB2312';font-size:14px;"> <img src="https://img-blog.csdn.net/20170415165440175" alt="" /> （2）</p>
+<p style="font-family:'FangSong_GB2312';font-size:14px;">       sigmoid 的软饱和性，使得深度神经网络在二三十年里一直难以有效的训练，是阻碍神经网络发展的重要原因。具体来说，由</p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">于在</span><span style="font-family:'FangSong_GB2312';font-size:14px;">反向传递中，sigmoid函数向下传递的梯度包含了一个<span>f'(x)</span><span class="MathJax_Preview"></span></span><span style="font-family:'FangSong_GB2312';font-size:14px;">因子（sigmoid关于输入的导数），因此一旦输入落入饱和区，<span>f'(x)</span></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">就</span><span style="font-family:'FangSong_GB2312';font-size:14px;">变得接近于0，从而导致向底层传递的梯度也变得非常小，此时，网络参数很难得到有效训练。这种现象被称为梯度消失。一般来</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">说， sigmoid 网络在 5 层之内就会产生梯度消失现象。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">        sigmoid的输出均大于0，使得输出不是0均值，称为偏移现象，这将导致后一层的神经元将上一层输出的非0均值的信</span><span style="font-family:'FangSong_GB2312';font-size:14px;">号作为</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">输入。<span style="font-family:'FangSong_GB2312';font-size:14px;">关于原点对称的输入和中心对称的输出，网络会收敛地更好。</span></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">        exp()函数耗费计算资源。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">        </span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><span style="color:rgb(255,0,0);font-family:'FangSong_GB2312';font-size:18px;">tanH函数</span><br /></span></p>
+<p></p>
+<div class="MathJax_Display" style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;text-align:center;min-width:0px;min-height:0px;">
+<span class="MathJax" id="MathJax-Element-29-Frame" style="display:inline;line-height:normal;text-align:left;word-spacing:normal;min-width:0px;min-height:0px;border:0px;"><span class="math" id="MathJax-Span-100" style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;font-size:17.5px;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-101" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-102" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mo" id="MathJax-Span-103" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mi" id="MathJax-Span-104" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-105" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-106" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">=</span><span class="mfrac" id="MathJax-Span-107" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-108" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mn" id="MathJax-Span-109" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">1</span><span class="mo" id="MathJax-Span-110" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">−</span><span class="msubsup" id="MathJax-Span-111" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-112" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">e</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="texatom" id="MathJax-Span-113" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-114" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mo" id="MathJax-Span-115" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Main';">−</span><span class="mn" id="MathJax-Span-116" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Main';">2</span><span class="mi" id="MathJax-Span-117" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Math-italic';">x</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-118" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mn" id="MathJax-Span-119" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">1</span><span class="mo" id="MathJax-Span-120" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">+</span><span class="msubsup" id="MathJax-Span-121" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-122" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">e</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="texatom" id="MathJax-Span-123" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-124" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mo" id="MathJax-Span-125" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Main';">−</span><span class="mn" id="MathJax-Span-126" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Main';">2</span><span class="mi" id="MathJax-Span-127" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Math-italic';">x</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border-width:0px 0px 0px 3.66em;border-left-style:solid;vertical-align:.003em;line-height:normal;overflow:hidden;width:0px;"></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border-width:0px 0px 0px .004em;border-left-style:solid;vertical-align:-1.068em;line-height:normal;overflow:hidden;width:0px;color:rgb(255,255,255);"></span></span></span></div>
+<center style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;">
+<img src="https://img-blog.csdn.net/20160917150431945" alt="这里写图片描述" title="" style="border:none;" /></center>
+<br style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;" /><span style="font-family:'FangSong_GB2312';font-size:14px;">        tanh也是一种常见的激活函数。与sigmoid相比，它的输出均值是0，使得其收敛速度要比sigmoid快，减少迭代次数。然而，</span>
+<p></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">从图中可以看出，tanh同样具有软饱和性，从而造成梯度消失。</span><br /></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /><span style="color:rgb(255,0,0);font-family:'FangSong_GB2312';font-size:18px;">ReLU函数</span></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><span style="color:rgb(255,0,0);font-family:'FangSong_GB2312';font-size:18px;">                                                                         <span class="mspace" id="MathJax-Span-158" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);font-family:'microsoft yahei';display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;">  </span><span class="mi" id="MathJax-Span-159" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mo" id="MathJax-Span-160" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mi" id="MathJax-Span-161" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-162" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-163" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">=</span><span class="mi" id="MathJax-Span-164" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">m</span><span class="mi" id="MathJax-Span-165" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">a</span><span class="mi" id="MathJax-Span-166" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-167" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mn" id="MathJax-Span-168" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">0</span><span class="mo" id="MathJax-Span-169" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">,</span><span class="mi" id="MathJax-Span-170" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-171" style="word-spacing:normal;font-size:17.5px;color:rgb(85,85,85);display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span></span></span></p>
+<p></p>
+<center><img src="https://img-blog.csdn.net/20160917151806843" alt="这里写图片描述" title="" style="border:none;" /></center>
+<span style="font-family:'FangSong_GB2312';font-size:14px;">        </span><span style="font-family:'FangSong_GB2312';font-size:14px;">ReLU是一种后来才出现的激活函数。从图中 可以看到，当x&lt;0时，出现硬饱和，当x&gt;0时，不存在饱和问题。因此，ReLU 能</span>
+<p></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">够在x&gt;0时保持梯度不衰减，从而缓解梯度消失问题。然而，随着训练的推进，部分输入会落入硬饱和区，导致对应权重无法更</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">新，这种现象被称为“神经元死亡”。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">       与sigmoid类似，ReLU的输出均值也大于0。偏移现象和神经元死亡会共同影响网络的收敛性。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">       如果激活函数大面积没有被激活，可能是以下原因造成的： （具体讲解参考http://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003809144&amp;courseId=1003223001）</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">       1） 初始化时，参数的设置使得ReLU没有被激活，如图所示：</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">                                             <img src="http://upload-images.jianshu.io/upload_images/4790449-e5f9f93b9cd98b27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500" alt="" /><br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">            2）学习速率太高了，神经元在一定范围内波动，可能会发生数据多样性的丢失，这种情况下神经元不会被激活，数据多样性的丢失不可逆转。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:18px;color:#ff0000;">Leaky-ReLU与P-ReLU函数</span><br /></p>
+<p><span style="font-family:'FangSong_GB2312';"></span></p>
+<div class="MathJax_Display" style="color:rgb(85,85,85);font-size:14px;text-align:center;min-width:0px;min-height:0px;font-family:'microsoft yahei';">
+<span class="MathJax" id="MathJax-Element-31-Frame" style="display:inline;line-height:normal;text-align:left;word-spacing:normal;min-width:0px;min-height:0px;border:0px;"><span class="math" id="MathJax-Span-172" style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;font-size:17.5px;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-173" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-174" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mo" id="MathJax-Span-175" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mi" id="MathJax-Span-176" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-177" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-178" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">=</span><span class="mrow" id="MathJax-Span-179" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mo" id="MathJax-Span-180" style="display:inline;border:0px;vertical-align:.003em;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Size3';">{</span></span><span class="mtable" id="MathJax-Span-181" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mtd" id="MathJax-Span-182" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-183" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-184" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-185" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">,</span><span class="mspace" id="MathJax-Span-186" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-187" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-188" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mi" id="MathJax-Span-189" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">i</span><span class="mi" id="MathJax-Span-190" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mi" id="MathJax-Span-191" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-192" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">≥</span><span class="mn" id="MathJax-Span-193" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">0</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mtd" id="MathJax-Span-194" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-195" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-196" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">α</span><span class="mi" id="MathJax-Span-197" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-198" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">,</span><span class="mspace" id="MathJax-Span-199" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mi" id="MathJax-Span-200" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">i</span><span class="mi" id="MathJax-Span-201" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mi" id="MathJax-Span-202" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-203" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">&lt;</span><span class="mn" id="MathJax-Span-204" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">0</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border-width:0px 0px 0px .004em;border-left-style:solid;vertical-align:-1.282em;line-height:normal;overflow:hidden;width:0px;color:rgb(255,255,255);"></span></span></span></div>
+<p></p>
+<p style="color:rgb(85,85,85);font-size:14px;font-family:'microsoft yahei';">
+</p>
+<center style="color:rgb(85,85,85);font-size:14px;font-family:'microsoft yahei';">
+<img src="https://img-blog.csdn.net/20160917154751042" alt="这里写图片描述" title="" style="border:none;" /></center>
+<p><span style="font-family:'FangSong_GB2312';"><span style="font-size:14px;"><br /></span></span></p>
+<p><span style="font-family:'FangSong_GB2312';"><span style="font-size:14px;">       针对ReLU函数中的硬饱和，出现了Leaky-ReLU与P-ReLU，它们在形式上相似，不同的是在Leaky-ReLU<span style="font-family:'FangSong_GB2312';"><span style="font-size:14px;">中，</span></span><span style="font-family:'FangSong_GB2312';font-size:14px;">α是一个常数，</span></span></span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;">在P-ReLU中，a也可以作为一个参数来学习。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /></span></p>
+<p><span style="font-family:'FangSong_GB2312';"><span style="font-size:18px;color:#ff0000;">ELU函数</span></span></p>
+<p><span></span></p>
+<div class="MathJax_Display" style="font-size:14px;font-family:'microsoft yahei';text-align:center;min-width:0px;min-height:0px;color:rgb(85,85,85);">
+<span class="MathJax" id="MathJax-Element-33-Frame" style="display:inline;line-height:normal;text-align:left;word-spacing:normal;min-width:0px;min-height:0px;border:0px;"><span class="math" id="MathJax-Span-208" style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;font-size:17.5px;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-209" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-210" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mo" id="MathJax-Span-211" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="mi" id="MathJax-Span-212" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-213" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-214" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">=</span><span class="mrow" id="MathJax-Span-215" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mo" id="MathJax-Span-216" style="display:inline;border:0px;vertical-align:.003em;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Size3';">{</span></span><span class="mtable" id="MathJax-Span-217" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mtd" id="MathJax-Span-218" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-219" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-220" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">x</span><span class="mo" id="MathJax-Span-221" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">,</span><span class="mspace" id="MathJax-Span-222" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-223" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-224" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-225" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-226" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-227" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-228" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-229" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-230" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-231" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mspace" id="MathJax-Span-232" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mi" id="MathJax-Span-233" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';"> 
+ i</span><span class="mi" id="MathJax-Span-234" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f <span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mi" id="MathJax-Span-235" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';"> x</span><span class="mo" id="MathJax-Span-236" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">≥</span><span class="mn" id="MathJax-Span-237" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">0</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mtd" id="MathJax-Span-238" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mrow" id="MathJax-Span-239" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-240" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">α</span><span class="mo" id="MathJax-Span-241" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">(</span><span class="msubsup" id="MathJax-Span-242" style="display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-243" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">e</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span><span style="border:0px;vertical-align:0px;line-height:normal;"><span class="mi" id="MathJax-Span-244" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-size:12.3725px;font-family:'MathJax_Math-italic';">x</span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span><span class="mo" id="MathJax-Span-245" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">−</span><span class="mn" id="MathJax-Span-246" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">1</span><span class="mo" id="MathJax-Span-247" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">)</span><span class="mo" id="MathJax-Span-248" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">,</span><span class="mspace" id="MathJax-Span-249" style="display:inline-block;border:0px;vertical-align:.003em;line-height:normal;overflow:hidden;"></span><span class="mi" id="MathJax-Span-250" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">i</span><span class="mi" id="MathJax-Span-251" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';">f<span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;overflow:hidden;"></span></span><span class="mi" id="MathJax-Span-252" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Math-italic';"> 
+ x</span><span class="mo" id="MathJax-Span-253" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">&lt;</span><span class="mn" id="MathJax-Span-254" style="display:inline;border:0px;vertical-align:0px;line-height:normal;font-family:'MathJax_Main';">0</span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span></span></span></span><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;width:0px;"></span></span></span><span style="display:inline-block;border-width:0px 0px 0px .004em;border-left-style:solid;vertical-align:-1.282em;line-height:normal;overflow:hidden;width:0px;color:rgb(255,255,255);"></span></span></span></div>
+<center style="font-size:14px;font-family:'microsoft yahei';color:rgb(85,85,85);">
+<img src="https://img-blog.csdn.net/20160917160040231" alt="这里写图片描述" title="" style="border:none;" /></center>
+<br style="color:rgb(85,85,85);font-family:'microsoft yahei';font-size:14px;" /><span style="font-family:'FangSong_GB2312';font-size:14px;">        该函数融合了sigmoid和ReLU，左侧具有软饱和性，右侧无饱和性。右侧线性部分使得ELU函数能够缓解梯度消失，而左侧软</span>
+<p></p>
+<p><span><span style="font-family:'FangSong_GB2312';font-size:14px;">饱能够</span></span><span><span style="font-family:'FangSong_GB2312';font-size:14px;">让ELU</span></span><span style="font-family:'FangSong_GB2312';font-size:14px;">函数对输入变化或噪声更鲁棒。此外，ELU函数的输出均值接近于零，所以收敛速度更快。</span></p>
+<p><span style="font-family:'FangSong_GB2312';font-size:14px;"><br /></span></p>
+<p><span><span style="font-family:'FangSong_GB2312';font-size:18px;color:#ff0000;">Maxout函数</span></span></p>
+<p><span></span></p>
+<p style="border:0px;list-style:none;">
+<span style="line-height:24px;"><span style="font-family:'FangSong_GB2312';font-size:14px;">该函数的形式如下:</span></span></p>
+<br style="color:rgb(51,51,51);font-family:Arial;font-size:14px;" /><div style="color:rgb(51,51,51);font-size:14px;font-family:Arial;text-align:center;">
+<img src="http://images.cnitblog.com/blog/381513/201311/18100510-a14ba98a40a543c099f00d1aa104d2ff.png" alt="" style="border:none;line-height:21px;" /></div>
+<p style="color:rgb(70,70,70);font-size:14px;font-family:simsun;border:0px;list-style:none;">
+<span style="line-height:21px;"></span></p>
+<p style="color:rgb(70,70,70);font-size:14px;font-family:simsun;text-align:center;border:0px;list-style:none;line-height:21px;">
+<img src="http://images.cnitblog.com/blog/381513/201311/18100518-7c567fbd32f64745979203a4785e1ab3.png" alt="" style="border:none;" /></p>
+<p style="line-height:1.5;"><span style="font-size:14px;">        这里的W是3维的，尺寸为d*m*k，其中，d表示输入层节点的个数，m表示隐含层节点的个数，k表示每个隐含层节点对应了k</span></p>
+<p style="line-height:1.5;"><span style="font-size:14px;">个"隐</span><span style="font-size:14px;">隐含层"节点，且这k个"隐隐含层"节点都是线性输出的。maxout的基本原理是每个隐含节点取这k个"隐隐含层"节点输出值中</span></p>
+<p style="line-height:1.5;"><span style="font-size:14px;">最大的</span><span style="font-size:14px;">那个值。其工作原理如下图所示，其中，中间一排小的神经节点就是"隐隐含层"的神经节点。</span></p>
+<p style="line-height:1.5;"><span style="font-size:14px;"><img src="https://img-blog.csdn.net/20170415173422827" alt="" /><br /></span></p>
+<p style="line-height:1.5;"><span style="font-size:14px;"><br /></span></p>
+<p style="line-height:1.5;"><span style="font-family:'FangSong_GB2312';font-size:14px;color:#ff0000;"><strong>结论：</strong></span></p>
+<p style="line-height:1.5;"><span style="font-size:14px;"></span></p>
+<ul style="margin-left:22px;color:rgb(47,47,47);font-size:16px;"><li style="line-height:30px;">Use ReLU. Be careful with your learning rates</li><li style="line-height:30px;">Try out Leaky ReLU / Maxout / ELU</li><li style="line-height:30px;">Try out tanh but don’t expect much</li><li style="line-height:30px;">Don’t use sigmoid</li></ul><br /><p></p>
+<div><span class="msup" id="MathJax-Span-39" style="font-family:'FangSong_GB2312';font-size:14px;display:inline;border:0px;vertical-align:0px;line-height:normal;"><span style="display:inline-block;border:0px;vertical-align:0px;line-height:normal;"><span style="border:0px;vertical-align:0px;line-height:normal;"><br /></span></span></span></div>
+            </div>
+                      </div>
+	</article>
+</div>
+
+  <div class="hide-article-box hide-article-pos text-center">
+    <div class="border"></div>
+          <a class="btn article-footer-btn" id="btn-readmore" data-track-view='{"mod":"popu_772","con":",https://blog.csdn.net/u013989576/article/details/70185145,"}' data-track-click='{"mod":"popu_772","con":",https://blog.csdn.net/u013989576/article/details/70185145,"}'>
+        展开阅读全文
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#csdnc-chevrondown"></use>
+        </svg>
+      </a>
+      </div>
+  
+  <script>
+  (function(){
+    function collection(){
+      if (currentUserName) {
+        var markObj = {};
+            markObj.imgUrl ='https://csdnimg.cn/release/phoenix/static_blog/images/appqr.png';
+        var markPrompt = (new window.csdn.publicPrompt).init(markObj);
+        var maeked = '您已经收藏过';
+        if (!$(this).hasClass("liked")) {
+          $.ajax({
+            url: 'https://my.csdn.net/my/favorite/do_add/2',
+            dataType: 'json',
+            type: 'POST',
+            xhrFields: {
+              withCredentials: true
+            },
+            data: {
+              title: articleTit,
+              url: 'https://blog.csdn.net/u013989576/article/details/70185145',
+              share: 1,
+              map_name: ''
+            },
+            success: function(data) {
+              
+              if (data.succ == 1) {
+                $('.btn-bookmark').addClass("liked");
+                $('.article-footer-bookmark-btn').addClass("liked").children('span').text('已收藏');
+                markPrompt.show({})
+                // alert('收藏成功,可以在个人中心查看我的收藏');
+              } else {
+                if (data.msg === "您已经收藏过") {
+                  $('.btn-bookmark').addClass("liked");
+                  $('.article-footer-bookmark-btn').addClass("liked").children('span').text('已收藏');
+                  markPrompt.show({
+                    titleStr: maeked
+                  })
+                }else{
+                  alert(data.msg);
+                  
+                }
+              }
+            }
+          });
+        } else {
+          markPrompt.show({
+            titleStr: maeked
+          })
+        }
+      } else {
+        window.csdn.loginBox.show();
+      }
+    }
+    function permissionCheck(dom){
+      var returnData = false;
+      switch (true) {
+        case currentUserPermission && userPermission:
+          clearReadMoreBtn(dom)
+          returnData = true;
+          break;
+        case userPermission:
+          dom.text('VIP阅读');
+          returnData = false;
+          break;
+        default:
+          
+      }
+      return returnData;
+    }
+    window.csdn = window.csdn ? window.csdn : {};
+    window.csdn.articleCollection = collection;
+    function clearReadMoreBtn(dom) {
+      if(userPermission && !(dom instanceof jQuery)) {
+        window.open('https://mall.csdn.net/vip?utm_source=brv')
+        return false;
+      }
+      dom = dom instanceof jQuery ? dom : $(this);
+      $("div.article_content").removeAttr("style");
+      dom.parent().remove();
+    }
+    function setArticleH(btnReadmore,posi){
+      var winH = $(window).height();
+      var articleBox = $("div.article_content");
+      var artH = articleBox.height();
+      if(artH > winH*posi){
+        articleBox.css({
+          'height':winH*posi+'px',
+          'overflow':'hidden'
+        })
+        btnReadmore.click(clearReadMoreBtn)
+      }else{
+        btnReadmore.parent().remove()
+      }
+    }
+    var btnReadmore = $("#btn-readmore");
+    $('.article-footer-bookmark-btn').click(window.csdn.articleCollection)
+    if(btnReadmore.length>0){
+      if (permissionCheck(btnReadmore)) {
+        return false;
+      }
+      if(currentUserName){
+        setArticleH(btnReadmore,3);
+      }else{
+        setArticleH(btnReadmore,0.5);
+      }
+    }else{
+      $('.hide-article-box').addClass('hide-article-style');
+    }
+  })()
+</script>
+<script>
+		$(".MathJax").remove();
+		if($('div.markdown_views pre.prettyprint code.hljs').length > 0 ){
+				$('div.markdown_views')[0].className = 'markdown_views';
+		}
+</script>
+<div class="tool-box" data-track-view='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,"}' >
+	<ul class="meau-list">
+		<li class="btn-like-box btn-like "  data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,liked"}'>
+			<a class="btn-like-a">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg>
+				<p>0</p>
+			</a>
+		</li>
+		<li class="">
+						<a class="btn-comments hover-box"  href="#commentBox" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,comments"}'>
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<p class="tool-comment-count">
+						添加评论				</p>
+        <p class="tool-comment-text"></p>
+			</a>
+		</li>
+		<li class="btn-bookmark-box">
+			<a class="btn-bookmark low-height hover-box" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,bookmark"}'>
+				<svg class="icon active" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<div class="weixin-qr btn-comments low-height" >
+        <a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,weixinshare"}'></a>
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-share"></use>
+				</svg>
+				<span class="text">
+					分享
+				</span>
+			</div>
+		</li>
+    <li class="open-app" data-url="https://csdnimg.cn/release/phoenix/production/qrcode-7c90a92189.min.js" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,toolopenapp"}'> 
+      <div class="">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#csdnc-usephone"></use>
+        </svg>
+        <span class="text">
+          CSDN APP 程序员必备
+        </span>
+      </div>
+    </li>
+	    	    	    <li class="nextPage">
+	      <a class="btn-comments hover-box low-height" href="https://blog.csdn.net/u013989576/article/details/70241121" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,nextPage"}'>
+	        <span class="hover-show text text3">下一篇</span>
+	      </a>
+	    </li>
+	    
+    <li class="toc-container-box" id="liTocBox">
+      <button class="btn-toc low-height hover-box" data-track-click='{"mod":"popu_773","con":",https://blog.csdn.net/u013989576/article/details/70185145,toc"}'>
+        <span class="text">目录</span>
+      </button>
+      <div class="toc-container">
+        <div class="pos-box">
+          <div class="scroll-box">
+            <div class="toc-box"></div>
+          </div>
+        </div>
+        <div class="opt-box clearfix">
+          <button class="btn-opt prev nomore" title="向上">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#csdnc-chevronup"></use>
+            </svg>
+          </button>
+          <div class="icon-arrow"></div>
+          <button class="btn-opt next">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#csdnc-chevrondown"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </li>
+	</ul>
+</div>
+<div class="tool-Placeholder">
+  
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+        <div id="dmp_ad_58"><div id="kp_box_58" data-pid="58" data-track-view='{"mod":"kp_popu_58-731","con":",,"}' data-track-click='{"mod":"kp_popu_58-731","con":",,"}'><div style="width:100%;padding:1%;background:#fff;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-hp-14-2i-8t+w5"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="2593991139"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div></div></div>        <a id="commentBox"></a>
+<div class="comment-box">
+	
+	<div class="comment-edit-box d-flex">
+		<a id="commentsedit"></a>
+		<div class="user-img">
+			<a href="//me.csdn.net/libin957895408" target="_blank">
+				<img class="" src="https://avatar.csdn.net/8/2/E/3_libin957895408.jpg">
+			</a>
+		</div>
+		<form id="commentform">
+			<input type="hidden" id="comment_replyId">
+			<textarea class="comment-content" name="comment_content" id="comment_content" placeholder="想对作者说点什么"></textarea>
+			<div class="opt-box"> <!-- d-flex -->
+				<div id="ubbtools" class="add_code">
+					<a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+				</div>
+				<input type="hidden" id="comment_replyId" name="comment_replyId">
+				<input type="hidden" id="article_id" name="article_id" value="70185145">
+				<input type="hidden" id="comment_userId" name="comment_userId" value="">
+				<input type="hidden" id="commentId" name="commentId" value="">
+				<div style="display: none;" class="csdn-tracking-statistics tracking-click" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+				<div class="dropdown" id="myDrap">
+					<a class="dropdown-face d-flex align-items-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="txt-selected text-truncate">添加代码片</div>
+					<svg class="icon d-block" aria-hidden="true">
+						<use xlink:href="#csdnc-triangledown"></use>
+					</svg>
+					</a>
+					<ul class="dropdown-menu" id="commentCode" aria-labelledby="drop4">
+						<li><a data-code="html">HTML/XML</a></li>
+						<li><a data-code="objc">objective-c</a></li>
+						<li><a data-code="ruby">Ruby</a></li>
+						<li><a data-code="php">PHP</a></li>
+						<li><a data-code="csharp">C</a></li>
+						<li><a data-code="cpp">C++</a></li>
+						<li><a data-code="javascript">JavaScript</a></li>
+						<li><a data-code="python">Python</a></li>
+						<li><a data-code="java">Java</a></li>
+						<li><a data-code="css">CSS</a></li>
+						<li><a data-code="sql">SQL</a></li>
+						<li><a data-code="plain">其它</a></li>
+					</ul>
+				</div>  
+				<div class="right-box">
+					<span id="tip_comment" class="tip">还能输入<em>1000</em>个字符</span>
+					<input type="submit" class="btn btn-sm btn-red btn-comment" value="发表评论">
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<button class="btn btn-sm btn-link-blue" id="btnMoreComment"></button>
+		</div>
+	</div>
+</div>
+        <div class="recommend-box">
+            		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/loveliuzz/article/details/82379428,BlogCommendFromBaidu_0"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/loveliuzz/article/details/82379428" target="_blank" title="深度学习——激活函数总结">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>——<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-04</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							599</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/loveliuzz/article/details/82379428" target="_blank" title="深度学习——激活函数总结">
+							<span class="desc oneline">    激活函数主要作用是：加入非线性的因素，以解决线性模型表达能力不足的缺陷，在整个神经网络里面起到至关重要的作用。因为神经网络的数学基础是处处可微的，所以选取的激活函数要能保证数据输入与输出也是可...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/loveliuzz">来自：	<span class="blog_title"> loveliuzz的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014595019/article/details/52562159,BlogCommendFromBaidu_1"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u014595019/article/details/52562159" target="_blank" title="深度学习笔记(三)：激活函数和损失函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>笔记(三)：<em>激活函数</em>和损失函数				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-17</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							9万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u014595019/article/details/52562159" target="_blank" title="深度学习笔记(三)：激活函数和损失函数">
+							<span class="desc oneline">这一部分来探讨下激活函数和损失函数。在之前的logistic和神经网络中，激活函数是sigmoid,损失函数是平方函数。但是这并不是固定的。事实上，这两部分都有很多其他不错的选项，下面来一一讨论3.激...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u014595019">来自：	<span class="blog_title"> Multiangle's Notepad</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/siyue0211/article/details/80480396,BlogCommendFromBaidu_2"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/siyue0211/article/details/80480396" target="_blank" title="[深度学习] 激活函数">
+				<h4 class="text-truncate oneline">
+						[<em>深度学习</em>] <em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">05-28</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1189</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/siyue0211/article/details/80480396" target="_blank" title="[深度学习] 激活函数">
+							<span class="desc oneline">激活函数激活函数又称“非线性映射函数”，是深度卷积神经网络中不可或缺的模块。可以说，深度网络模型强大的表示能力大部分便是由激活函数的非线性单元带来的。这部分共介绍7个激活函数：Sigmoid函数，ta...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/siyue0211">来自：	<span class="blog_title"> 四月晴</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_59" data-pid="59" data-track-view='{"mod":"kp_popu_59-944","con":",,"}' data-track-click='{"mod":"kp_popu_59-944","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-gw-3+1f-3d+2z"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="2356783728"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/hai008007/article/details/79749557,BlogCommendFromBaidu_3"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/hai008007/article/details/79749557" target="_blank" title="深度学习中激活函数的作用">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中<em>激活函数</em>的作用				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-29</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2443</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/hai008007/article/details/79749557" target="_blank" title="深度学习中激活函数的作用">
+							<span class="desc oneline">0、从深度学习开始说起今天检索多标签分本分类的文献时，遇到一个关于激活函数的疑惑：如果有大牛看到，知道如何更好的理解这句话的含义，希望在评论里解惑！由惑而生，所以我打算总结一下深度学习模型中常用的激活...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/hai008007">来自：	<span class="blog_title"> hai008007的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Scythe666/article/details/75264011,BlogCommendFromBaidu_4"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Scythe666/article/details/75264011" target="_blank" title="深度学习中的激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中的<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-17</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1133</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Scythe666/article/details/75264011" target="_blank" title="深度学习中的激活函数">
+							<span class="desc oneline">深度学习大讲堂致力于推送人工智能，深度学习方面的最新技术，产品以及活动。请关注我们的知乎专栏！摘要近年来，深度学习在计算机视觉领域取得了引人注目的成果，其中一个重要因素是激活函数的发展。新型激活函数R...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Scythe666">来自：	<span class="blog_title"> This is bill的专属博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Leo_Xu06/article/details/53708647,BlogCommendFromBaidu_5"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Leo_Xu06/article/details/53708647" target="_blank" title="深度学习常用激活函数之— Sigmoid &amp; ReLU &amp; Softmax">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>常用<em>激活函数</em>之— Sigmoid &amp; ReLU &amp; Softmax				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">12-19</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Leo_Xu06/article/details/53708647" target="_blank" title="深度学习常用激活函数之— Sigmoid &amp; ReLU &amp; Softmax">
+							<span class="desc oneline">深度学习常用激活函数-ReLU</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Leo_Xu06">来自：	<span class="blog_title"> Leo_Xu06的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/AMDS123/article/details/65938339,BlogCommendFromBaidu_6"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/AMDS123/article/details/65938339" target="_blank" title="深度学习中的激活函数导引">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中的<em>激活函数</em>导引				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-25</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							9526</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/AMDS123/article/details/65938339" target="_blank" title="深度学习中的激活函数导引">
+							<span class="desc oneline">深度学习大讲堂致力于推送人工智能，深度学习方面的最新技术，产品以及活动。请关注我们的知乎专栏！摘要近年来，深度学习在计算机视觉领域取得了引人注目的成果，其中一个重要因素是激活函数的发展。新型激活函数R...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/AMDS123">来自：	<span class="blog_title"> 人工智能</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yangdashi888/article/details/78015448,BlogCommendFromBaidu_7"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/yangdashi888/article/details/78015448" target="_blank" title="深度学习使用到的激活函数种类和优缺点解释！">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>使用到的<em>激活函数</em>种类和优缺点解释！				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-18</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5342</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/yangdashi888/article/details/78015448" target="_blank" title="深度学习使用到的激活函数种类和优缺点解释！">
+							<span class="desc oneline">用于</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/yangdashi888">来自：	<span class="blog_title"> yangdashi888的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_60" data-pid="60" data-track-view='{"mod":"kp_popu_60-909","con":",,"}' data-track-click='{"mod":"kp_popu_60-909","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-h5-e+23-3z+3s"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="1551928978"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/liuy9803/article/details/81545664,BlogCommendFromBaidu_8"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/liuy9803/article/details/81545664" target="_blank" title="深度学习之常用激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>之常用<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-10</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							580</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/liuy9803/article/details/81545664" target="_blank" title="深度学习之常用激活函数">
+							<span class="desc oneline"> 激活函数（ActivationFunction）一般用于神经网络的层与层之间，将上一层的输出转换之后输入到下一层。如果没有激活函数引入的非线性特性，那么神经网络就只相当于原始感知机的矩阵相乘。 一、...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/liuy9803">来自：	<span class="blog_title"> liuy9803的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yz930618/article/details/79165186,BlogCommendFromBaidu_9"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/yz930618/article/details/79165186" target="_blank" title="深度学习之激活函数总结">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>之<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-25</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							878</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/yz930618/article/details/79165186" target="_blank" title="深度学习之激活函数总结">
+							<span class="desc oneline">深度学习中激活函数的作用是能够给神经网络加入一些非线性因素，使得神经网络可以更好地解决较为复杂的问题。没有激活函数，即便有再多的隐藏层，其整个网络跟单层神经网络也是等价的，可见激活函数的重要性如此之大...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/yz930618">来自：	<span class="blog_title"> Yummy</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+          <div class="recommend-item-box blog-expert-recommend-box">
+				<div class="d-flex">
+					<div class="blog-expert-recommend">
+						<div class="blog-expert">
+							<div class="blog-expert-flexbox"></div>
+						</div>
+					</div>
+				</div>
+      </div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_29557137/article/details/79649781,BlogCommendFromBaidu_10"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq_29557137/article/details/79649781" target="_blank" title="深度学习的四种激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>的四种<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-22</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							711</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq_29557137/article/details/79649781" target="_blank" title="深度学习的四种激活函数">
+							<span class="desc oneline">深度学习的激活函数一般使用四种：分别为sigmoid、tanh、ReLu、LeakyRelu。ReLu（Z）=max（0，Z）LeakyRelu（Z）=max（Z*0.01，Z）sigmoid激活函数...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq_29557137">来自：	<span class="blog_title"> 沁馨缘</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/AI_BigData_wh/article/details/77926032,BlogCommendFromBaidu_11"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/AI_BigData_wh/article/details/77926032" target="_blank" title="深度学习常用激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>常用<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-10</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2486</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/AI_BigData_wh/article/details/77926032" target="_blank" title="深度学习常用激活函数">
+							<span class="desc oneline">在感知器模型、神经网络模型、深度学习模型中均会看见激活函数的声影。激活函数又被称为转移函数、激励函数、传输函数或限幅函数，其作用就是将可能的无限域变换到一指定的有限范围内输出，这类似于生物神经元具有的...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/AI_BigData_wh">来自：	<span class="blog_title"> AI_BigData_WH的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    			<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_29133371/9998064,BlogCommendFromBaidu_12"}'>
+			<a href="https://download.csdn.net/download/qq_29133371/9998064" target="_blank">
+				<div class="content clearfix">
+					<div class="">
+						<h4 class="text-truncate oneline clearfix">
+							<em>深度学习</em> <em>激活函数</em>概念						</h4>
+						<span class="data float-right">09-27</span>
+					</div>
+					<div class="desc oneline">
+							深度学习激活函数总结， 深度学习激活函数总结 深度学习激活函数总结 深度学习激活函数总结 深度学习激活函数总结					</div>
+          <span class="type-show type-show-download">下载</span>
+				</div>
+			</a>
+		</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_61" data-pid="61" data-track-view='{"mod":"kp_popu_61-903","con":",,"}' data-track-click='{"mod":"kp_popu_61-903","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-gw-3+1f-3d+2z"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="7373664509"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/csvdvg/article/details/70183625,BlogCommendFromBaidu_13"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/csvdvg/article/details/70183625" target="_blank" title="深度学习中的激活函数对比">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中的<em>激活函数</em>对比				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-15</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1664</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/csvdvg/article/details/70183625" target="_blank" title="深度学习中的激活函数对比">
+							<span class="desc oneline">激活函数对比</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/csvdvg">来自：	<span class="blog_title"> csvdvg的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/xierhacker/article/details/71524713,BlogCommendFromBaidu_14"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/xierhacker/article/details/71524713" target="_blank" title="深度学习笔记六：常见激活函数总结">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>笔记六：常见<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">05-10</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5655</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/xierhacker/article/details/71524713" target="_blank" title="深度学习笔记六：常见激活函数总结">
+							<span class="desc oneline">深度学习常见激活函数总结</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/xierhacker">来自：	<span class="blog_title"> 谢小小XH</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/shwan_ma/article/details/76252355,BlogCommendFromBaidu_15"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/shwan_ma/article/details/76252355" target="_blank" title="【深度学习】深度学习中常用的激活函数">
+				<h4 class="text-truncate oneline">
+						【<em>深度学习</em>】<em>深度学习</em>中常用的<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-28</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1222</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/shwan_ma/article/details/76252355" target="_blank" title="【深度学习】深度学习中常用的激活函数">
+							<span class="desc oneline">近来研究深度学习，发现里面的trick很多，特地用blog记录下，以免以后忘掉本文主要介绍常用的的激活函数，Sigmoid,tanh,Relu,LeakyreluSigmoid激活函数sigmoid函...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/shwan_ma">来自：	<span class="blog_title"> Shwan_ma的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012678352/article/details/80748186,BlogCommendFromBaidu_16"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u012678352/article/details/80748186" target="_blank" title="深度学习 - 激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em> - <em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">06-20</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1458</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u012678352/article/details/80748186" target="_blank" title="深度学习 - 激活函数">
+							<span class="desc oneline">激活函数（Activationfunctions）sigmoid常用于二分类,一般用于二分类的输出层是softmax的一种特殊形式结果介于[0,1]除了二分类的输出层，一般不使用sigmoid作为激活...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u012678352">来自：	<span class="blog_title"> hpuhjl的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/NOT_GUY/article/details/78749509,BlogCommendFromBaidu_17"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/NOT_GUY/article/details/78749509" target="_blank" title="深度学习中激活函数的优缺点">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中<em>激活函数</em>的优缺点				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">12-08</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							8645</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/NOT_GUY/article/details/78749509" target="_blank" title="深度学习中激活函数的优缺点">
+							<span class="desc oneline">在深度学习中，信号从一个神经元传入到下一层神经元之前是通过线性叠加来计算的，而进入下一层神经元需要经过非线性的激活函数，继续往下传递，如此循环下去。由于这些非线性函数的反复叠加，才使得神经网络有足够的...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/NOT_GUY">来自：	<span class="blog_title"> NOT_GUY的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_62" data-pid="62" data-track-view='{"mod":"kp_popu_62-902","con":",,"}' data-track-click='{"mod":"kp_popu_62-902","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-gw-3+1f-3d+2z"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="6440814649"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/cymy001/article/details/78649132,BlogCommendFromBaidu_18"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/cymy001/article/details/78649132" target="_blank" title="深度学习里常用激活函数，目标函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>里常用<em>激活函数</em>，目标函数				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-27</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2846</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/cymy001/article/details/78649132" target="_blank" title="深度学习里常用激活函数，目标函数">
+							<span class="desc oneline">激活函数线性变换的复合还是线性变换，但很多时候只做线性变换，并不能很好得解决分类问题，需要引入非线性激活函数（0）阶跃激活函数（1）sigmoid激活函数，tanh激活函数（2）ReLU激活函数，Le...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/cymy001">来自：	<span class="blog_title"> Young_618</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Kevin_cc98/article/details/78764308,BlogCommendFromBaidu_19"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Kevin_cc98/article/details/78764308" target="_blank" title="深度学习(1)-深度学习中的核函数（激活函数）">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>(1)-<em>深度学习</em>中的核函数（<em>激活函数</em>）				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">12-10</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3593</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Kevin_cc98/article/details/78764308" target="_blank" title="深度学习(1)-深度学习中的核函数（激活函数）">
+							<span class="desc oneline">1.核函数的作用与损失函数的设计核函数（kernelmethod,kerneltrick）是机器学习中一种重要的方法。一般定义是将原始表达转换到一个隐式特征空间去，该空间具有更好的特征可分性质。在机器...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Kevin_cc98">来自：	<span class="blog_title"> 一只飞鱼的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/App_12062011/article/details/56277622,BlogCommendFromBaidu_20"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/App_12062011/article/details/56277622" target="_blank" title="系统学习深度学习（九）--激活函数总结">
+				<h4 class="text-truncate oneline">
+						系统学习<em>深度学习</em>（九）--<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">02-21</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/App_12062011/article/details/56277622" target="_blank" title="系统学习深度学习（九）--激活函数总结">
+							<span class="desc oneline">https://zhuanlan.zhihu.com/p/22142013这个文章，写的接地气，强烈推荐。http://www.cnblogs.com/rgvb178/p/6055213.html类似...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/App_12062011">来自：	<span class="blog_title"> 工作笔记</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/DaVinciL/article/details/75313391,BlogCommendFromBaidu_21"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/DaVinciL/article/details/75313391" target="_blank" title="Tensorflow深度学习之五：激活函数">
+				<h4 class="text-truncate oneline">
+						Tensorflow<em>深度学习</em>之五：<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-18</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5858</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/DaVinciL/article/details/75313391" target="_blank" title="Tensorflow深度学习之五：激活函数">
+							<span class="desc oneline">激活函数的作用在神经网络中，激活函数的作用是能够给神经网络加入一些非线性因素，使得神经网络可以更好地解决较为复杂的问题。我们尝试引入非线性的因素，对样本进行分类。在神经网络中也类似，我们需要引入一些非...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/DaVinciL">来自：	<span class="blog_title"> DaVinciL的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u012151283/article/details/78149243,BlogCommendFromBaidu_22"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u012151283/article/details/78149243" target="_blank" title="深度学习中激活函数的选择">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中<em>激活函数</em>的选择				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">10-01</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1803</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u012151283/article/details/78149243" target="_blank" title="深度学习中激活函数的选择">
+							<span class="desc oneline">本文介绍了深度学习引入非线性激活函数的原因，和几种常用的激活函数，sigmoid,tanh,relu,leakyrelu,prelu,maxout....</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u012151283">来自：	<span class="blog_title"> 浅梦的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_63" data-pid="63" data-track-view='{"mod":"kp_popu_63-908","con":",,"}' data-track-click='{"mod":"kp_popu_63-908","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-h5-e+23-3z+3s"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="2670758893"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Yaphat/article/details/53202894,BlogCommendFromBaidu_23"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Yaphat/article/details/53202894" target="_blank" title="深度学习激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em><em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-17</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1686</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Yaphat/article/details/53202894" target="_blank" title="深度学习激活函数">
+							<span class="desc oneline">在神经网络中，常用的激活函数（activationfunction）有以下几种：1、sigmoid函数2、双曲正切函数tanh()3、修正线性函数rectifiedlinearfunctionf(x)...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Yaphat">来自：	<span class="blog_title"> Yaphat的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/liujiandu101/article/details/55102996,BlogCommendFromBaidu_24"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/liujiandu101/article/details/55102996" target="_blank" title="深度学习caffe:激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>caffe:<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">02-14</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							842</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/liujiandu101/article/details/55102996" target="_blank" title="深度学习caffe:激活函数">
+							<span class="desc oneline">在激活层中，对输入数据进行激活操作（实际上就是一种函数变换），是逐元素进行运算的。从bottom得到一个blob数据输入，运算后，从top输入一个blob数据。在运算过程中，没有改变数据的大小，即输入...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/liujiandu101">来自：	<span class="blog_title"> liujiandu101的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zchang81/article/details/70224688,BlogCommendFromBaidu_25"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/zchang81/article/details/70224688" target="_blank" title="深度学习——激活函数Sigmoid/Tanh/ReLU">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>——<em>激活函数</em>Sigmoid/Tanh/ReLU				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-18</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							6万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/zchang81/article/details/70224688" target="_blank" title="深度学习——激活函数Sigmoid/Tanh/ReLU">
+							<span class="desc oneline">一般情况下，使用ReLU会比较好1、使用ReLU，就要注意设置learningrate，不要让网络训练过程中出现很多“dead”神经元；2、如果“dead”无法解决，可以尝试LeakyReLU、PRe...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/zchang81">来自：	<span class="blog_title"> zchang81的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013829973/article/details/80955795,BlogCommendFromBaidu_26"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u013829973/article/details/80955795" target="_blank" title="深度学习中常见的激活函数总结">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中常见的<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-07</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							821</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u013829973/article/details/80955795" target="_blank" title="深度学习中常见的激活函数总结">
+							<span class="desc oneline">深度学习中常见的激活函数总结本文这里介绍了深度学习中常见的激活函数，因为深度学习在训练时利用反向传播的思想，需要计算激活函数的导数。针对以下四种激活，介绍其特点：1.sigmoidactivation...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u013829973">来自：	<span class="blog_title"> weepon的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    			<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix"  data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/qq_40416145/10489599,BlogCommendFromBaidu_27"}'>
+			<a href="https://download.csdn.net/download/qq_40416145/10489599" target="_blank">
+				<div class="content clearfix">
+					<div class="">
+						<h4 class="text-truncate oneline clearfix">
+							<em>深度学习</em>不同<em>激活函数</em>之间的比较						</h4>
+						<span class="data float-right">06-21</span>
+					</div>
+					<div class="desc oneline">
+							本文对深度学习算法中，不同激活函数之间进行了比较。					</div>
+          <span class="type-show type-show-download">下载</span>
+				</div>
+			</a>
+		</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_64" data-pid="64" data-track-view='{"mod":"kp_popu_64-901","con":",,"}' data-track-click='{"mod":"kp_popu_64-901","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-gc+3r+68-9q-29"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="4012648776"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lovelyaiq/article/details/79352526,BlogCommendFromBaidu_28"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/lovelyaiq/article/details/79352526" target="_blank" title="深度学习---激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>---<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">02-23</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							163</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/lovelyaiq/article/details/79352526" target="_blank" title="深度学习---激活函数">
+							<span class="desc oneline">　　在说常用的激活函数之前，先看一下生物神经元与人工神经元之间的激活函数的区别。　　在生物神经元中，激活函数的作用为：是否相应上一个神经元，如果响应比较大，则激活下一个神经元，往下以此传递。而人工神经...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/lovelyaiq">来自：	<span class="blog_title"> TiRan_Yang</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pandav5/article/details/50970903,BlogCommendFromBaidu_29"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/pandav5/article/details/50970903" target="_blank" title="关于深度学习中激活函数的思考总结（转载+原创）">
+				<h4 class="text-truncate oneline">
+						关于<em>深度学习</em>中<em>激活函数</em>的思考总结（转载+原创）				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-24</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2008</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/pandav5/article/details/50970903" target="_blank" title="关于深度学习中激活函数的思考总结（转载+原创）">
+							<span class="desc oneline">先记录，回头详细写一份http://www.cnblogs.com/neopenx/p/4453161.htmlhttp://blog.csdn.net/liulina603/article/deta...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/pandav5">来自：	<span class="blog_title"> pandav5的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/R1uNW1W/article/details/78431884,BlogCommendFromBaidu_30"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/R1uNW1W/article/details/78431884" target="_blank" title="干货丨 一文概览深度学习中的激活函数">
+				<h4 class="text-truncate oneline">
+						干货丨 一文概览<em>深度学习</em>中的<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-03</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							264</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/R1uNW1W/article/details/78431884" target="_blank" title="干货丨 一文概览深度学习中的激活函数">
+							<span class="desc oneline">文章来源：机器之心本文从激活函数的背景知识开始介绍，重点讲解了不同类型的非线性激活函数：Sigmoid、Tanh、ReLU、LReLU、PReLU、Swish，并详细介绍了这些函数的优缺点。本文介绍了...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/R1uNW1W">来自：	<span class="blog_title"> 人工智能爱好者俱乐部</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Ddreaming/article/details/53224124,BlogCommendFromBaidu_31"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Ddreaming/article/details/53224124" target="_blank" title="激活函数">
+				<h4 class="text-truncate oneline">
+						<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-18</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							8530</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Ddreaming/article/details/53224124" target="_blank" title="激活函数">
+							<span class="desc oneline">深度学习中的激活函数导引我爱机器学习(52ml.net)2016年8月29日0作者：程程链接：https://zhuanlan.zhihu.com/p/22142013来源：知乎著作权归作者所有，已联...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Ddreaming">来自：	<span class="blog_title"> Ddreaming的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gdh756462786/article/details/79108780,BlogCommendFromBaidu_32"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/gdh756462786/article/details/79108780" target="_blank" title="深度学习中三个重要对象（1）------激活函数">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>中三个重要对象（1）------<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-19</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							155</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/gdh756462786/article/details/79108780" target="_blank" title="深度学习中三个重要对象（1）------激活函数">
+							<span class="desc oneline">1.激活对象    我们在定义网络层时，使用什么激活函数是很重要，通常有两种方法来使用激活函数：一是单独定义一个激活层              model.add(Dense(64,input_sh...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/gdh756462786">来自：	<span class="blog_title"> 入坑AI</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_65" data-pid="65" data-track-view='{"mod":"kp_popu_65-900","con":",,"}' data-track-click='{"mod":"kp_popu_65-900","con":",,"}'><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-h5-e+23-3z+3s"
+     data-ad-client="ca-pub-1076724771190722"
+     data-ad-slot="4012648776"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/bojackhosreman/article/details/69372087,BlogCommendFromBaidu_33"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/bojackhosreman/article/details/69372087" target="_blank" title="激活函数的作用">
+				<h4 class="text-truncate oneline">
+						<em>激活函数</em>的作用				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-06</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/bojackhosreman/article/details/69372087" target="_blank" title="激活函数的作用">
+							<span class="desc oneline">首先摆结论，因为线性模型的表达能力不够，引入激活函数是为了添加非线性因素。接下来展开来说。为什么要引入激活函数？在神经网络中，每一层输出的都是上一层输入的线性函数，所以无论网络结构怎么搭，输出都是输...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/bojackhosreman">来自：	<span class="blog_title"> bojackhosreman的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013250416/article/details/81392161,BlogCommendFromBaidu_34"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u013250416/article/details/81392161" target="_blank" title="[深度学习] 激活函数、损失函数、优化函数的作用">
+				<h4 class="text-truncate oneline">
+						[<em>深度学习</em>] <em>激活函数</em>、损失函数、优化函数的作用				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-03</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2331</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u013250416/article/details/81392161" target="_blank" title="[深度学习] 激活函数、损失函数、优化函数的作用">
+							<span class="desc oneline">激活函数、损失函数、优化函数都分别是什么？有什么作用？下面，就以激活函数、损失函数、优化函数在神经网络中的作用，浅析一二。利用神经网络进行分类、检测、分割等任务的关键，就是利用反向传播算法，求解神经网...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u013250416">来自：	<span class="blog_title"> 北望花村</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/donkey_1993/article/details/81662065,BlogCommendFromBaidu_35"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/donkey_1993/article/details/81662065" target="_blank" title="激活函数中的硬饱和，软饱和，左饱和和右饱和。">
+				<h4 class="text-truncate oneline">
+						<em>激活函数</em>中的硬饱和，软饱和，左饱和和右饱和。				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-14</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1470</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/donkey_1993/article/details/81662065" target="_blank" title="激活函数中的硬饱和，软饱和，左饱和和右饱和。">
+							<span class="desc oneline">假设h（x）是一个激活函数。1.当我们的n趋近于正无穷，激活函数的导数趋近于0，那么我们称之为右饱和。2.当我们的n趋近于负无穷，激活函数的导数趋近于0，那么我们称之为左饱和。 当一个函数既满足左饱和...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/donkey_1993">来自：	<span class="blog_title"> donkey_1993的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36330643/article/details/74503401,BlogCommendFromBaidu_36"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq_36330643/article/details/74503401" target="_blank" title="人工神经网络之激活函数 -Sigmoid函数">
+				<h4 class="text-truncate oneline">
+						人工神经网络之<em>激活函数</em> -Sigmoid函数				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-05</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5572</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq_36330643/article/details/74503401" target="_blank" title="人工神经网络之激活函数 -Sigmoid函数">
+							<span class="desc oneline">Sigmoid函数   Sigmoid是使用范围最广的一类激活函数，具有指数函数形状。正式定义为：代码：x=-10:0.001:10; %sigmoid和它的导数sigmoid=1./(1+exp(-...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq_36330643">来自：	<span class="blog_title"> 春华秋实</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/piaodexin/article/details/77162766,BlogCommendFromBaidu_37"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/piaodexin/article/details/77162766" target="_blank" title="各种激活函数的比较">
+				<h4 class="text-truncate oneline">
+						各种<em>激活函数</em>的比较				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-14</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							4170</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/piaodexin/article/details/77162766" target="_blank" title="各种激活函数的比较">
+							<span class="desc oneline">激活函数的作用首先，激活函数不是真的要去激活什么。在神经网络中，激活函数的作用是能够给神经网络加入一些非线性因素，使得神经网络可以更好地解决较为复杂的问题。比如在下面的这个问题中：如上图(图片来源)，...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/piaodexin">来自：	<span class="blog_title"> piaodexin的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_66" data-pid="66" data-track-view='{"mod":"kp_popu_66-881","con":",,"}' data-track-click='{"mod":"kp_popu_66-881","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T38_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T38  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T38_render", "T38");
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/hduxiejun/article/details/70815620,BlogCommendFromBaidu_38"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/hduxiejun/article/details/70815620" target="_blank" title="【深度学习技术】卷积神经网络常用激活函数总结">
+				<h4 class="text-truncate oneline">
+						【<em>深度学习</em>技术】卷积神经网络常用<em>激活函数</em>总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-26</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/hduxiejun/article/details/70815620" target="_blank" title="【深度学习技术】卷积神经网络常用激活函数总结">
+							<span class="desc oneline">本文记录了神经网络中激活函数的学习过程，欢迎学习交流。神经网络中如果不加入激活函数，其一定程度可以看成线性表达，最后的表达能力不好，如果加入一些非线性的激活函数，整个网络中就引入了非线性部分，增加了网...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/hduxiejun">来自：	<span class="blog_title"> 谢军的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_33039859/article/details/79520092,BlogCommendFromBaidu_39"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq_33039859/article/details/79520092" target="_blank" title="180311 四种常见的激活函数的Python绘制">
+				<h4 class="text-truncate oneline">
+						180311 四种常见的<em>激活函数</em>的Python绘制				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-11</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2680</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq_33039859/article/details/79520092" target="_blank" title="180311 四种常见的激活函数的Python绘制">
+							<span class="desc oneline">#-*-coding:utf-8-*-&amp;quot;&amp;quot;&amp;quot;CreatedonSunMar1120:41:572018@author:brucelau&amp;quot;&amp;quot;&amp;quot;...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq_33039859">来自：	<span class="blog_title"> 专注机器学习之路</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/guorongronghe/article/details/70174476,BlogCommendFromBaidu_40"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/guorongronghe/article/details/70174476" target="_blank" title="几种激活函数的比较">
+				<h4 class="text-truncate oneline">
+						几种<em>激活函数</em>的比较				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-14</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							8406</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/guorongronghe/article/details/70174476" target="_blank" title="几种激活函数的比较">
+							<span class="desc oneline">激活函数：用来加入非线性因素的，因为线性模型的表达能力不够比如下图的数据比较简单是线性可分的，一条直线就可以对样本进行分类了：但是如果碰到下面这个情况，数据变成线性不可分的时候，一条直线根本无法很好的...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/guorongronghe">来自：	<span class="blog_title"> guorongronghe的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/weixin_37226516/article/details/60478981,BlogCommendFromBaidu_41"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/weixin_37226516/article/details/60478981" target="_blank" title="四种激活函数(Relu Linear Sigmoid Tanh)">
+				<h4 class="text-truncate oneline">
+						四种<em>激活函数</em>(Relu Linear Sigmoid Tanh)				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-05</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5860</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/weixin_37226516/article/details/60478981" target="_blank" title="四种激活函数(Relu Linear Sigmoid Tanh)">
+							<span class="desc oneline">整流器（神经网络）https://en.wikipedia.org/wiki/Rectifier_(neural_networks)Rectifier(neuralnetworks)维基百科，自由的百...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/weixin_37226516">来自：	<span class="blog_title"> 乘风破浪会有时</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/kangyi411/article/details/78969642,BlogCommendFromBaidu_42"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/kangyi411/article/details/78969642" target="_blank" title="几种常用激活函数的简介">
+				<h4 class="text-truncate oneline">
+						几种常用<em>激活函数</em>的简介				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-04</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/kangyi411/article/details/78969642" target="_blank" title="几种常用激活函数的简介">
+							<span class="desc oneline">sigmod，tanh，relu，elu，prelu，leakyrelu</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/kangyi411">来自：	<span class="blog_title"> kangyi411的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_67" data-pid="67" data-track-view='{"mod":"kp_popu_67-882","con":",,"}' data-track-click='{"mod":"kp_popu_67-882","con":",,"}'><script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T43_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T43  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T43_render", "T43");
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u014365862/article/details/52710698,BlogCommendFromBaidu_43"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/u014365862/article/details/52710698" target="_blank" title="几种常见的激活函数">
+				<h4 class="text-truncate oneline">
+						几种常见的<em>激活函数</em>				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-30</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							6万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/u014365862/article/details/52710698" target="_blank" title="几种常见的激活函数">
+							<span class="desc oneline">你要的答案或许都在这里：小鹏的博客目录本课程笔记是基于今年斯坦福大学FeifeiLi,AndrejKarpathy&amp;JustinJohnson联合开设的ConvolutionalNeuralNetwo...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/u014365862">来自：	<span class="blog_title"> MachineLP的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Scythe666/article/details/75333208,BlogCommendFromBaidu_44"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Scythe666/article/details/75333208" target="_blank" title="浅谈深度学习中的激活函数 - The Activation Function in Deep Learning">
+				<h4 class="text-truncate oneline">
+						浅谈<em>深度学习</em>中的<em>激活函数</em> - The Activation Function in Deep Learning				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-19</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1277</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Scythe666/article/details/75333208" target="_blank" title="浅谈深度学习中的激活函数 - The Activation Function in Deep Learning">
+							<span class="desc oneline">原文地址：http://www.cnblogs.com/rgvb178/p/6055213.html版权声明：本文为博主原创文章，未经博主允许不得转载。激活函数的作用首先，激活函数不是真的要去激活什么...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Scythe666">来自：	<span class="blog_title"> This is bill的专属博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/tyhj_sf/article/details/79932893,BlogCommendFromBaidu_45"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/tyhj_sf/article/details/79932893" target="_blank" title="常用激活函数（激励函数）理解与总结">
+				<h4 class="text-truncate oneline">
+						常用<em>激活函数</em>（激励函数）理解与总结				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">05-13</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/tyhj_sf/article/details/79932893" target="_blank" title="常用激活函数（激励函数）理解与总结">
+							<span class="desc oneline">引言学习神经网络的时候我们总是听到激活函数这个词，而且很多资料都会提到常用的激活函数，比如Sigmoid函数、tanh函数、Relu函数。那么我们就来详细了解下激活函数方方面面的知识。本文的内容包括几...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/tyhj_sf">来自：	<span class="blog_title"> StevenSun的博客空间</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/cyh24/article/details/50593400,BlogCommendFromBaidu_46"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/cyh24/article/details/50593400" target="_blank" title="【机器学习】神经网络-激活函数-面面观(Activation Function)">
+				<h4 class="text-truncate oneline">
+						【机器学习】神经网络-<em>激活函数</em>-面面观(Activation Function)				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-27</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							6万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/cyh24/article/details/50593400" target="_blank" title="【机器学习】神经网络-激活函数-面面观(Activation Function)">
+							<span class="desc oneline">日常coding中，我们会很自然的使用一些激活函数，比如：sigmoid、ReLU等等。不过好像忘了问自己：1.为什么需要激活函数？2.激活函数都有哪些？都长什么样？有哪些优缺点？3.怎么选用激活函数...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/cyh24">来自：	<span class="blog_title"> AutoVision (by 仙道菜)</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/a6333230/article/details/80887062,BlogCommendFromBaidu_47"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/a6333230/article/details/80887062" target="_blank" title="神经网络，深度学习，为什么要用激活函数？？？？？">
+				<h4 class="text-truncate oneline">
+						神经网络，<em>深度学习</em>，为什么要用<em>激活函数</em>？？？？？				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-03</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2192</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/a6333230/article/details/80887062" target="_blank" title="神经网络，深度学习，为什么要用激活函数？？？？？">
+							<span class="desc oneline">1.先抛开什么神经，深度之类的不好理解的东西。回想一下，我们是要用这个东西干什么？答案很简单，有两种问题————对应两种模型模型分类：回归模型和分类模型回归模型：预测连续值，是多少的问题。北京房价是多...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/a6333230">来自：	<span class="blog_title"> 三眼二郎</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    <div class="recommend-item-box recommend-ad-box"><div id="kp_box_68" data-pid="68" data-track-view='{"mod":"kp_popu_68-883","con":",,"}' data-track-click='{"mod":"kp_popu_68-883","con":",,"}'><!-- T48 位置 -->
+<script src="https://nbrecsys.4paradigm.com/resource/cus/csdn/sdk-csdn-render.js"></script>
+<div
+  id="_4paradigm_T48_render"
+  class="_paradigm_T_ads_render _4paradigm_box recommend-item-box clearfix"
+></div>
+<script>
+  //  渲染T48  传入 渲染位置的id和渲染位置的标记
+  p4CSDNRender_T("_4paradigm_T48_render", "T48");
+</script></div></div>
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_37100442/article/details/81667954,BlogCommendFromBaidu_48"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq_37100442/article/details/81667954" target="_blank" title="深度学习（三）——激活函数（active function）的作用和类别详解">
+				<h4 class="text-truncate oneline">
+						<em>深度学习</em>（三）——<em>激活函数</em>（active function）的作用和类别详解				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-14</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							501</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq_37100442/article/details/81667954" target="_blank" title="深度学习（三）——激活函数（active function）的作用和类别详解">
+							<span class="desc oneline">   基础知识掌握情况决定研究的高度，我们刚开始接触深度学习时，一般都是看到别人的概括，这个方法很好能让我们快速上手，但是也有一个很大的缺点，知识理解的不透彻，导致我们对算法优化时一头雾水。我也是抱着...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq_37100442">来自：	<span class="blog_title"> qq_37100442的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/willduan1/article/details/53070777,BlogCommendFromBaidu_49"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/willduan1/article/details/53070777" target="_blank" title="欠拟合、过拟合及其解决方法">
+				<h4 class="text-truncate oneline">
+						欠拟合、过拟合及其解决方法				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-08</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							7万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/willduan1/article/details/53070777" target="_blank" title="欠拟合、过拟合及其解决方法">
+							<span class="desc oneline">在我们机器学习或者训练深度神经网络的时候经常会出现欠拟合和过拟合这两个问题，但是，一开始我们的模型往往是欠拟合的，也正是因为如此才有了优化的空间，我们需要不断的调整算法来使得模型的表达能拿更强。但是优...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/willduan1">来自：	<span class="blog_title"> willduan的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lk_blog/article/details/8007777,BlogCommendHotData_0"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/lk_blog/article/details/8007777" target="_blank" title="配置简单功能强大的excel工具类搞定excel导入导出工具类(一)">
+				<h4 class="text-truncate oneline">
+						配置简单功能强大的excel工具类搞定excel导入导出工具类(一)				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-22</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							4万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/lk_blog/article/details/8007777" target="_blank" title="配置简单功能强大的excel工具类搞定excel导入导出工具类(一)">
+							<span class="desc oneline">对于J2EE项目导入导出Excel是最普通和实用功能,本工具类使用步骤简单,功能强大,只需要对实体类进行简单的注解就能实现导入导出功能,导入导出操作的都是实体对象.
+请看一下这个类都有哪些功能:
+  ...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/lk_blog">来自：	<span class="blog_title"> 李坤 大米时代 第五期</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/roguesir/article/details/77104246,BlogCommendHotData_1"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/roguesir/article/details/77104246" target="_blank" title="人脸检测工具face_recognition的安装与应用">
+				<h4 class="text-truncate oneline">
+						人脸检测工具face_recognition的安装与应用				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-11</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							6万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/roguesir/article/details/77104246" target="_blank" title="人脸检测工具face_recognition的安装与应用">
+							<span class="desc oneline">人脸检测工具face_recognition的安装与应用</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/roguesir">来自：	<span class="blog_title"> roguesir的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/jinshengtao/article/details/18037525,BlogCommendHotData_2"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/jinshengtao/article/details/18037525" target="_blank" title="车牌识别，移植到android系统">
+				<h4 class="text-truncate oneline">
+						车牌识别，移植到android系统				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-09</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/jinshengtao/article/details/18037525" target="_blank" title="车牌识别，移植到android系统">
+							<span class="desc oneline">首先吐槽，搞了1天半，终于弄好了。自己android开发是小白，之前一门心思想在jni目录下读取xml文件，事实证明无论如何都不行的。好吧，后来发现资源文件应该都放在assets目录下，可是文件会被压...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/jinshengtao">来自：	<span class="blog_title"> Where there is life, there is hope</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Love_wanling/article/details/69390047,BlogCommendHotData_3"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/Love_wanling/article/details/69390047" target="_blank" title="机器学习----支持向量机（核函数）">
+				<h4 class="text-truncate oneline">
+						机器学习----支持向量机（核函数）				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-06</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2022</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/Love_wanling/article/details/69390047" target="_blank" title="机器学习----支持向量机（核函数）">
+							<span class="desc oneline">讲SVM扩展到非线性可分领域</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/Love_wanling">来自：	<span class="blog_title"> 欢迎来到我的酒馆</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/shallcheek/article/details/46998643,BlogCommendHotData_4"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/shallcheek/article/details/46998643" target="_blank" title="Android 合并生成分享图片（View截图）">
+				<h4 class="text-truncate oneline">
+						Android 合并生成分享图片（View截图）				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-22</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/shallcheek/article/details/46998643" target="_blank" title="Android 合并生成分享图片（View截图）">
+							<span class="desc oneline">用以前以前写过的自定义课表软件 ,Android 自定义View课程表表格 
+原生View截图合成分享的图片 
+ 
+ 
+  
+   
+  
+  
+  
+  
+ 看到的是图片只显示到11节处，下面的没有...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/shallcheek">来自：	<span class="blog_title"> ShallCheek</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/ACdreamers/article/details/44656847,BlogCommendHotData_5"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/ACdreamers/article/details/44656847" target="_blank" title="Cholesky分解法">
+				<h4 class="text-truncate oneline">
+						Cholesky分解法				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">03-26</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/ACdreamers/article/details/44656847" target="_blank" title="Cholesky分解法">
+							<span class="desc oneline">Cholesky分解法又叫平方根法，是求解对称正定线性方程组最常用的方法之一。对于一般矩阵，为了消除LU分
+解的局限性和误差的过分积累，采用了选主元的方法，但对于对称正定矩阵而言，选主元是不必要的。
+...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/ACdreamers">来自：	<span class="blog_title"> ACdreamer</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/lqzixi/article/details/24816735,BlogCommendHotData_6"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/lqzixi/article/details/24816735" target="_blank" title="CentOS SSH安装和配置">
+				<h4 class="text-truncate oneline">
+						CentOS SSH安装和配置				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">04-30</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							7743</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/lqzixi/article/details/24816735" target="_blank" title="CentOS SSH安装和配置">
+							<span class="desc oneline">CentOS SSH安装和配置
+
+
+
+
+赞0
+
+
+
+CentOS SSH 安装 配置 OpenSSH
+
+
+
+SSH 为 Secure Shell 的缩写，由 IETF 的网络...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/lqzixi">来自：	<span class="blog_title"> 耕耘——从菜鸟到高手的蜕变</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/hnust_xiehonghao/article/details/7951173,BlogCommendHotData_7"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/hnust_xiehonghao/article/details/7951173" target="_blank" title="判断N 数码是否有解  牛人总结 归并排序">
+				<h4 class="text-truncate oneline">
+						判断N 数码是否有解  牛人总结 归并排序				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-06</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3940</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/hnust_xiehonghao/article/details/7951173" target="_blank" title="判断N 数码是否有解  牛人总结 归并排序">
+							<span class="desc oneline">作者:力的博客
+ 
+先介绍八数码问题：
+我们首先从经典的八数码问题入手，即对于八数码问题的任意一个排列是否有解？有解的条件是什么？
+我在网上搜了半天，找到一个十分简洁的结论。八数码问题原始状态...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/hnust_xiehonghao">来自：	<span class="blog_title"> hnust_xiehonghao的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/hwhsong/article/details/78294965,BlogCommendHotData_8"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/hwhsong/article/details/78294965" target="_blank" title="EasyUI - 一个简单的后台管理系统入门实例">
+				<h4 class="text-truncate oneline">
+						EasyUI - 一个简单的后台管理系统入门实例				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">10-20</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/hwhsong/article/details/78294965" target="_blank" title="EasyUI - 一个简单的后台管理系统入门实例">
+							<span class="desc oneline">采用EasyUI 1.4.x 版本，默认default风格，异步加载页面，多Tab页展示，使用JSON文件模拟从后台动态获取数据。...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/hwhsong">来自：	<span class="blog_title"> 般若</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/pvpishard/article/details/7912511,BlogCommendHotData_9"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/pvpishard/article/details/7912511" target="_blank" title="三维凸包+点到平面距离+已知3点求平面方程">
+				<h4 class="text-truncate oneline">
+						三维凸包+点到平面距离+已知3点求平面方程				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">08-27</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3375</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/pvpishard/article/details/7912511" target="_blank" title="三维凸包+点到平面距离+已知3点求平面方程">
+							<span class="desc oneline">/*==================================================*\  
+| 3D凸包    
+| CALL: 构建凸包 = construct();     ...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/pvpishard">来自：	<span class="blog_title"> 南方公园</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/silentpebble/article/details/41279285,BlogCommendHotData_10"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/silentpebble/article/details/41279285" target="_blank" title="centos 查看命令源码">
+				<h4 class="text-truncate oneline">
+						centos 查看命令源码				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-19</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							9万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/silentpebble/article/details/41279285" target="_blank" title="centos 查看命令源码">
+							<span class="desc oneline"># yum install yum-utils
+
+
+设置源:
+[base-src]
+name=CentOS-5.4 - Base src -
+baseurl=http://vault.ce...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/silentpebble">来自：	<span class="blog_title"> linux/unix</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/liaokailin/article/details/48864737,BlogCommendHotData_11"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/liaokailin/article/details/48864737" target="_blank" title="spring boot实战(第五篇)配置源码解析">
+				<h4 class="text-truncate oneline">
+						spring boot实战(第五篇)配置源码解析				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">10-02</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/liaokailin/article/details/48864737" target="_blank" title="spring boot实战(第五篇)配置源码解析">
+							<span class="desc oneline">前言
+前面的文章都采用markdown编写的，但编辑图片上极其不方便，以后还是采用网页的形式。
+上一篇中讲述了spring boot配置文件的使用，本篇开始从源码的角度来看看配置文件。
+
+
+环境(En...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/liaokailin">来自：	<span class="blog_title"> liaokailin的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/opensure/article/details/46453681,BlogCommendHotData_12"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/opensure/article/details/46453681" target="_blank" title="Hbase 布隆过滤器BloomFilter介绍">
+				<h4 class="text-truncate oneline">
+						Hbase 布隆过滤器BloomFilter介绍				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">06-11</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/opensure/article/details/46453681" target="_blank" title="Hbase 布隆过滤器BloomFilter介绍">
+							<span class="desc oneline">1、主要功能
+
+提高随机读的性能
+
+
+
+
+2、存储开销
+
+bloom filter的数据存在StoreFile的meta中，一旦写入无法更新，因为StoreFile是不可变的。Bloomfilter是...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/opensure">来自：	<span class="blog_title"> opensure的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/abcjennifer/article/details/17610705,BlogCommendHotData_13"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/abcjennifer/article/details/17610705" target="_blank" title="Matlab并行编程方法">
+				<h4 class="text-truncate oneline">
+						Matlab并行编程方法				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-03</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							9万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/abcjennifer/article/details/17610705" target="_blank" title="Matlab并行编程方法">
+							<span class="desc oneline">本文讲一下matlab中的并行方法与技巧。分为以下几个板块：
+1. 什么东西好并行？
+2. 怎么并行？
+3. parfor vs. SPMD
+4. 注意事项及经验总结...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/abcjennifer">来自：	<span class="blog_title"> Rachel Zhang的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/meng564764406/article/details/52444644,BlogCommendHotData_14"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+				<h4 class="text-truncate oneline">
+						将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-05</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/meng564764406/article/details/52444644" target="_blank" title="将Excel文件导入数据库（POI+Excel+MySQL+jsp页面导入）第一次优化">
+							<span class="desc oneline">本篇文章是根据我的上篇博客，给出的改进版，由于时间有限，仅做了一个简单的优化。相关文章：将excel导入数据库2018年4月1日，新增下载地址链接：点击打开源码下载地址十分抱歉，这个链接地址没有在这篇...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/meng564764406">来自：	<span class="blog_title"> Lynn_Blog</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/maoyuanming0806/article/details/78067446,BlogCommendHotData_15"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/maoyuanming0806/article/details/78067446" target="_blank" title="搭建图片服务器《二》-linux安装nginx">
+				<h4 class="text-truncate oneline">
+						搭建图片服务器《二》-linux安装nginx				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">09-22</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							4万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/maoyuanming0806/article/details/78067446" target="_blank" title="搭建图片服务器《二》-linux安装nginx">
+							<span class="desc oneline">nginx是个好东西，Nginx (engine x) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambl...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/maoyuanming0806">来自：	<span class="blog_title"> maoyuanming0806的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_36892341/article/details/73918672,BlogCommendHotData_16"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+				<h4 class="text-truncate oneline">
+						linux上安装Docker(非常简单的安装方法)				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">06-29</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							22万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq_36892341/article/details/73918672" target="_blank" title="linux上安装Docker(非常简单的安装方法)">
+							<span class="desc oneline">最近比较有空，大四出来实习几个月了，作为实习狗的我，被叫去研究Docker了，汗汗！
+
+Docker的三大核心概念：镜像、容器、仓库
+镜像：类似虚拟机的镜像、用俗话说就是安装文件。
+容器：类似一个轻量...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq_36892341">来自：	<span class="blog_title"> 我走小路的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/wuchengzeng/article/details/50037611,BlogCommendHotData_17"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+				<h4 class="text-truncate oneline">
+						jquery/js实现一个网页同时调用多个倒计时(最新的)				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-25</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							46万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/wuchengzeng/article/details/50037611" target="_blank" title="jquery/js实现一个网页同时调用多个倒计时(最新的)">
+							<span class="desc oneline">jquery/js实现一个网页同时调用多个倒计时(最新的)
+
+最近需要网页添加多个倒计时. 查阅网络,基本上都是千遍一律的不好用. 自己按需写了个.希望对大家有用. 有用请赞一个哦!
+
+
+
+//js
+...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/wuchengzeng">来自：	<span class="blog_title"> Websites</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zhoumingp/article/details/50457203,BlogCommendHotData_18"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/zhoumingp/article/details/50457203" target="_blank" title="003.聊聊系统设计：有状态、无状态">
+				<h4 class="text-truncate oneline">
+						003.聊聊系统设计：有状态、无状态				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-04</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							1万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/zhoumingp/article/details/50457203" target="_blank" title="003.聊聊系统设计：有状态、无状态">
+							<span class="desc oneline">上一期从线程安全的角度聊了聊系统设计要注意的事情，这次换个角度继续聊聊系统设计 
+这次主题围绕系统设计：有状态、无状态惯例，先看栗子网站登录校验，很普通的一个功能 
+对于这个功能我们要如何实现？先分析...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/zhoumingp">来自：	<span class="blog_title"> Runtime.class</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/gefangshuai/article/details/50328451,BlogCommendHotData_19"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+				<h4 class="text-truncate oneline">
+						关于SpringBoot bean无法注入的问题（与文件包位置有关）				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">12-16</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							19万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/gefangshuai/article/details/50328451" target="_blank" title="关于SpringBoot bean无法注入的问题（与文件包位置有关）">
+							<span class="desc oneline">问题场景描述整个项目通过Maven构建，大致结构如下：
+核心Spring框架一个module spring-boot-base
+service和dao一个module server-core
+提供系统...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/gefangshuai">来自：	<span class="blog_title"> 开发随笔</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq574857122/article/details/16361033,BlogCommendHotData_20"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+				<h4 class="text-truncate oneline">
+						强连通分量及缩点tarjan算法解析				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">11-16</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							59万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/qq574857122/article/details/16361033" target="_blank" title="强连通分量及缩点tarjan算法解析">
+							<span class="desc oneline">强连通分量：
+简言之 就是找环（每条边只走一次，两两可达）
+孤立的一个点也是一个连通分量 
+ 
+使用tarjan算法 在嵌套的多个环中优先得到最大环( 最小环就是每个孤立点）
+ 
+定义：
+int Ti...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/qq574857122">来自：	<span class="blog_title"> 九野的博客</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/mmc_maodun/article/details/17965867,BlogCommendHotData_21"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/mmc_maodun/article/details/17965867" target="_blank" title="【深入Java虚拟机】之五：多态性实现机制——静态分派与动态分派">
+				<h4 class="text-truncate oneline">
+						【深入Java虚拟机】之五：多态性实现机制——静态分派与动态分派				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">01-10</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							3万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/mmc_maodun/article/details/17965867" target="_blank" title="【深入Java虚拟机】之五：多态性实现机制——静态分派与动态分派">
+							<span class="desc oneline">Class文件的编译过程中不包含传统编译中的连接步骤，一切方法调用在Class文件里面存储的都只是符号引用，而不是方法在实际运行时内存布局中的入口地址。这个特性给Java带来了更强大的动态扩展能力，使...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/mmc_maodun">来自：	<span class="blog_title"> 兰亭风雨的专栏</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/zd0303/article/details/7058457,BlogCommendHotData_22"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+				<h4 class="text-truncate oneline">
+						MATLAB中注释一段程序				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">12-09</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							2万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/zd0303/article/details/7058457" target="_blank" title="MATLAB中注释一段程序">
+							<span class="desc oneline">在MATLAB中，可以注释一段程序。
+使用“%{”和“%}”。
+例如
+%{
+。。。
+%}
+即可。
+经典方法是用 if 0，但缺点是不够直观，注释掉的内容仍然保持代码的颜色。现在可以用
+...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/zd0303">来自：	<span class="blog_title"> 知识小屋</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+    		<div class="recommend-item-box recommend-box-ident type_blog clearfix"  data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/bob601450868/article/details/52073805,BlogCommendHotData_23"}'>
+			<div class="content">
+				<a href="https://blog.csdn.net/bob601450868/article/details/52073805" target="_blank" title="Spark2学习1之基本环境搭建（win）问题">
+				<h4 class="text-truncate oneline">
+						Spark2学习1之基本环境搭建（win）问题				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="date-and-readNum oneline">
+						<span class="date hover-show">07-30</span>
+						<span class="read-num hover-hide">
+              阅读数 
+							5万+</span>
+						</p>
+					</div>
+				</a>
+					<p class="content">
+						<a href="https://blog.csdn.net/bob601450868/article/details/52073805" target="_blank" title="Spark2学习1之基本环境搭建（win）问题">
+							<span class="desc oneline">更多代码请见：https://github.com/xubo245/SparkLearning  版本：Spark-2.0.01解释 
+从【2】中下载release版，idea打开mvn packag...</span>
+						</a>
+						  <span class="blog_title_box oneline ">
+							                <span class="type-show type-show-blog type-show-after">博文</span>
+                                  <a target="_blank" href="https://blog.csdn.net/bob601450868">来自：	<span class="blog_title"> Keep Learning</span></a>
+                							              </span>
+					</p>
+			</div>
+					</div>
+	
+    
+    
+        <div class="recommend-item-box type_hot_word">
+            <div class="content clearfix">
+        <div class="word float-left">
+                          <span>
+            <a href="https://edu.csdn.net/combos/o363_l0_t " target="_blank">
+            设计制作学习          </a></span>
+                                  <span>
+            <a href="https://edu.csdn.net/courses/o5329_s5330_k " target="_blank">
+            机器学习教程          </a></span>
+                                  <span>
+            <a href="https://edu.csdn.net/courses/o280_s351_k " target="_blank">
+            Objective-C培训          </a></span>
+                                  <span>
+            <a href="https://edu.csdn.net/combos/o7115_s388_l0_t " target="_blank">
+            交互设计视频教程          </a></span>
+                                  <span>
+            <a href="https://edu.csdn.net/course/play/5599/104252 " target="_blank">
+            颜色模型          </a></span>
+                        </div>
+      </div>
+                  <div class="content clearfix">
+        <div class="float-left">
+                  <span>
+            <a href="https://www.csdn.net/gather_1a/MtjaEg4sMDU2My1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+            ios获取idfa</a>
+          </span>
+                  <span>
+            <a href="https://www.csdn.net/gather_10/MtTaYgwsNzkyMS1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+            server的安全控制模型是什么 sql</a>
+          </span>
+                  <span>
+            <a href="https://www.csdn.net/gather_12/MtTakgxsODg1Ni1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+            android title搜索</a>
+          </span>
+                  <span>
+            <a href="https://www.csdn.net/gather_11/MtjaIgwsNzk3Ni1kb3dubG9hZAO0O0OO0O0O.html" target="_blank">
+            ios 动态修改约束</a>
+          </span>
+                  <span>
+            <a href="https://www.csdn.net/gather_4a/NtDaYg4sNjUtZWR1.html" target="_blank">
+            深度学习中的大数据</a>
+          </span>
+                  <span>
+            <a href="https://www.csdn.net/gather_4a/NtjaMg1sNzAtZWR1.html" target="_blank">
+            java学习深度学习</a>
+          </span>
+                </div>
+      </div>
+          </div>
+
+
+            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+
+    <aside>
+		    <div id="asideProfile" class="aside-box">
+    <!-- <h3 class="aside-title">个人资料</h3> -->
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/u013989576">
+                <img src="https://avatar.csdn.net/3/D/C/3_u013989576.jpg" class="avatar_pic">
+            </a>
+            
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/u013989576" target="_blank" class="" id="uid">迷上微笑</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a class="btn btn-sm btn-red-hollow attention" id="btnAttent">关注</a>
+            </span>
+        </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="81">
+                        <dt><a href="https://blog.csdn.net/u013989576?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/u013989576?t=1"><span class="count">81</span></a></dd>
+                    </dl>
+        <dl class="text-center" id="fanBox" title="71">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">71</span></dd>
+        </dl>
+        <dl class="text-center" title="33">
+            <dt>喜欢</dt>
+            <dd><span class="count">33</span></dd>
+        </dl>
+        <dl class="text-center" title="8">
+            <dt>评论</dt>
+            <dd><span class="count">8</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="5级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-5"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="242455">
+                24万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="2412">
+                2412            </dd>
+        </dl>
+        <dl title="25364">
+            <dt>排名：</dt>
+            <dd>2万+</dd>
+        </dl>
+    </div>
+        <div class="badge-box d-flex">
+        <span>勋章：</span>
+        <div class="badge d-flex">
+                              <div class="icon-badge" title="持之以恒">
+              <div class="mouse-box">
+                  <svg class="icon" aria-hidden="true">
+                      <use xlink:href="#csdnc-m-lasting"></use>
+                  </svg>
+                  <div class="icon-arrow"></div>
+              </div>
+              <div class="grade-detail-box">
+                  <div class="pos-box">
+                      <div class="left-box d-flex justify-content-center align-items-center flex-column">
+                          <svg class="icon" aria-hidden="true">
+                              <use xlink:href="#csdnc-m-lasting"></use>
+                          </svg>
+                          <p>持之以恒</p>
+                      </div>
+                      <div class="right-box d-flex justify-content-center align-items-center">
+                          授予每个自然月内发布4篇或4篇以上原创或翻译IT博文的用户。不积跬步无以至千里，不积小流无以成江海，程序人生的精彩需要坚持不懈地积累！
+                      </div>
+                  </div>
+              </div>
+          </div>
+                                                                                          </div>
+        <script>
+            (function ($) {
+                setTimeout(function(){
+                    $('div.icon-badge.show-moment').removeClass('show-moment');
+                }, 5000);
+            })(window.jQuery)
+        </script>
+    </div>
+    </div>
+		    <div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <div id="kp_box_56" data-pid="56" data-track-view='{"mod":"kp_popu_56-887","con":",,"}' data-track-click='{"mod":"kp_popu_56-887","con":",,"}'><a href="https://intel.csdn.net/" target="_blank">
+<div style="width:300px;height:250px;overflow:hidden;">
+
+
+<img src="http://img-ads.csdn.net/2019/201903221346192702.jpg">
+
+
+
+<div style=" margin: -25px 5px 5px 0px;float:right;z-index: 9999;position: relative;font-size: 7.5px;color: #eee;">广告</div>
+
+
+</div>
+
+</a></div>    </div>
+</div>
+		    <div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/u013989576/article/details/76215989" target="_blank">神经网络中权值初始化的方法</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/u013989576/article/details/75092400" target="_blank">Perfect Squares</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/u013989576/article/details/74905879" target="_blank">First Bad Version</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/u013989576/article/details/74767167" target="_blank">Single Number III</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/u013989576/article/details/74762591" target="_blank">Single Number II</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+		    		    <div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/2849685">
+                    <span class="title oneline">环境配置</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/5872935">
+                    <span class="title oneline">图像处理</span>
+                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/6163877">
+                    <span class="title oneline">ccf</span>
+                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/6602743">
+                    <span class="title oneline">leetcode</span>
+                    <span class="count float-right">44篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/6625975">
+                    <span class="title oneline">python</span>
+                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/6765512">
+                    <span class="title oneline">算法与数据结构</span>
+                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a class="clearfix" href="https://blog.csdn.net/u013989576/article/category/6746192">
+                    <span class="title oneline">机器学习与深度学习</span>
+                    <span class="count float-right">25篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideArchive" class="aside-box flexible-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/07">
+                    2017年7月                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/06">
+                    2017年6月                    <span class="count float-right">11篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/05">
+                    2017年5月                    <span class="count float-right">14篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/04">
+                    2017年4月                    <span class="count float-right">13篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/03">
+                    2017年3月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/02">
+                    2017年2月                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2017/01">
+                    2017年1月                    <span class="count float-right">14篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2016/12">
+                    2016年12月                    <span class="count float-right">16篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2016/04">
+                    2016年4月                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2016/03">
+                    2016年3月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2015/10">
+                    2015年10月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/u013989576/article/month/2015/01">
+                    2015年1月                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/u013989576/article/details/73439202">基于深度学习的目标检测算法：SSD</a>
+					<p class="read">阅读数 <span>78285</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/u013989576/article/details/70154421">卷积神经网络与caffe的卷积层、池化层</a>
+					<p class="read">阅读数 <span>30555</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/u013989576/article/details/71600795">Lenet、Alexnet 、VGG、 GoogleNet、ResNet模型</a>
+					<p class="read">阅读数 <span>12149</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/u013989576/article/details/72781018">基于深度学习的目标检测算法：YOLO</a>
+					<p class="read">阅读数 <span>11053</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/u013989576/article/details/70241121">深度学习中momentum的作用</a>
+					<p class="read">阅读数 <span>9949</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+		    <div id="asideNewComments" class="aside-box">
+    <h3 class="aside-title">最新评论</h3>
+    <div class="aside-content">
+        <ul class="newcomment-list">
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/u013989576/article/details/72781018#comments">基于深度学习的目标检测算法：YOLO</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/qq_34734098" class="user-name" target="_blank">qq_34734098：</a>博主您好，我想请问一下，如果训练图片中只有一个物体，那么最后输出的是不是就只有对应的那个1*1*30有数据，其他地方都是0？还有就是边界框的尺寸是随机的吗，对于网格来说，一个网格预测两个边界框，那么边界框是面积是不是一定要比网格小呢？                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/u013989576/article/details/61618454#comments">caffe之绘制网络模型</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/u012800425" class="user-name" target="_blank">u012800425：</a>可以用，但是把prototxt文件粘进去后，记得按Shift + Enter键！                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/u013989576/article/details/72190134#comments">caffe提取特征</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/m0_37581603" class="user-name" target="_blank">m0_37581603：</a>[reply]wenju1279[/reply]
+你好，请问你这个疑问解决了吗？我也想确定顺序是否一样                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/u013989576/article/details/72190134#comments">caffe提取特征</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/wenju1279" class="user-name" target="_blank">wenju1279：</a>博主您好，我想知道提取的特征与examples/_temp/file_list.txt里图片顺序是一致的么？悉听解答～                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/u013989576/article/details/70154421#comments">卷积神经网络与caffe的卷积层、...</a>
+                <p class="comment ellipsis">
+                    <a href="https://my.csdn.net/lkj345" class="user-name" target="_blank">lkj345：</a>讲的很赞                </p>
+            </li>
+                    </ul>
+    </div>
+</div>
+		<div id="asideFooter">
+			
+		<div class="aside-box">
+			<div id="kp_box_57" data-pid="57" data-track-view='{"mod":"kp_popu_57-77","con":",,"}' data-track-click='{"mod":"kp_popu_57-77","con":",,"}'><script type="text/javascript">
+    (function() {
+        var s = "_" + Math.random().toString(36).slice(2);
+        document.write('<div style="" id="' + s + '"></div>');
+        (window.slotbydup = window.slotbydup || []).push({
+            id: "u3163270",
+            container:  s
+        });
+    })();
+</script>
+<!-- 多条广告如下脚本只需引入一次 -->
+<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js" async="async" defer="defer" ></script></div>		</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<script>
+    var recommendCount = 74;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var articleTit = articleTitles;
+    var ChannelId = 0;
+    var articleId = "70185145";
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/u013989576/article/details/70185145";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "深度学习中激活函数 - 竹馨shine的专栏";
+    var needInsertBaidu = true;
+    // 代码段样式
+    var codeStyle = '';
+		var highlight = ["\u6df1\u5ea6\u5b66\u4e60","\u6fc0\u6d3b\u51fd\u6570"];//高亮数组
+		// 相关推荐博主数据
+    var RecommendBlogExpertList = [];
+	var articleType = 1;
+	var CopyrightContent = '本文为博主原创文章，未经博主允许不得转载。';
+    var current_user_name = 'libin957895408';
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.4/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201811201455'></script>
+<script>
+    GoTop({
+        right: 8,
+        hasReport: true,
+        reportFun: function() {
+            showReport(false,articleTit);
+        }
+    })
+</script>
+</body>
+
+<!-- 高亮未与 markdown兼容  -->
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/chart/chart.css" />
+	<script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/chart/lib/chart.min.js"></script>
+	<script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/chart/widget2chart.js"></script>
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.9/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-light.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-3bc59f8f2b.js" /></script>
+
+	<script type="text/javascript">
+	$(function(){
+		var allEscRegex = /&(lt|gt|amp|quot|nbsp|shy|#\d{1,5});/g,
+		    namedEntities = {
+					lt: '<',
+					gt: '>',
+					amp: '&',
+					quot: '"',
+					nbsp: '\u00a0',
+					shy: '\u00ad'
+				}
+		var allEscDecode = function( match, code ) {
+				return namedEntities[ code ];
+		};
+		htmlDecodeAttr = function( text ) {
+				return text.replace( allEscRegex, allEscDecode );
+		}
+	  hljs.initHighlighting();
+	  hljs.initCopyButtonOnLoad();
+	  hljs.initLineNumbersOnLoad();
+		if($('pre .language-plain').length>0){
+			$('pre .language-plain').each(function(i,e){
+				var highlightRe = hljs.highlightAuto(htmlDecodeAttr(e.innerHTML))
+				e.innerHTML = highlightRe.value;
+				e.className = 'language-'+highlightRe.language;
+			});
+		}
+	})
+	</script>
+
+<script src="//g.csdnimg.cn/??login-box/1.0.5/login-box.js,login-box/1.0.5/login-auto.js?t=20190307095522"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-e6b3fe420a.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-fffae84d53.min.js"></script>
+
+	<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-f532d61321.min.js"></script>
+
+<script src="//g.csdnimg.cn/baidu-search/1.0.0/baidu-search.js"  type="text/javascript"></script>
+
+
+<!-- <script type="text/javascript" src="//g.csdnimg.cn/check-adb/1.0.2/check-adb.js"></script> -->
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+<script type="text/javascript">
+    </script>
+<script src="https://gh.bdstatic.com/static/gh/js/sdk/bword.min.js"></script>
+</html>
