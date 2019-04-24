@@ -14,7 +14,7 @@ typora-copy-images-to: ../../img/media
 　　循环神经网络（Recurrent Neural Network, RNN）作为深度学习的一个重要网络，主要解决的是样本数据为序列的建模问题，如语音序列，语言序列。
 
 ## RNN 原理
-　　给定一个长度为 $T$ 输入序列 $\left \{ x_{0}, x_{1},..., x_{t},...,x_{T}\right \}$，这里 $x_{t}$ 表示的是序列在 $t$ 时刻的输入特征向量，这里的 $t$ 时刻并不一定真的指的是时间，只是用来表明这是一个序列输入问题。现在要得到每个时刻的隐含特征 $\left \{ h_{0}, h_{1},..., h_{t},...,h_{T}\right \} $，这些隐含特征用于后面层的特征输入。如果采用传统的神经网络模型，只需要计算：
+　　给定一个长度为 $T$ 输入序列 $\left \{ x_{0}, x_{1},..., x_{t},...,x_{T}\right \}$，这里 $x_{t}$ 表示的是序列在 $t$ 时刻的输入特征向量，这里的 $t$ 时刻并不一定真的指的是时间，只是用来表明这是一个序列输入问题。现在要得到每个时刻的隐含特征 $ \{ h_{0}, h_{1},..., h_{t},...,h_{T}\} $，这些隐含特征用于后面层的特征输入。如果采用传统的神经网络模型，只需要计算：
 
 $$h_{t}=f(Ux_{t}+b)$$
 
@@ -105,7 +105,7 @@ $$
 　　这样我们可以像 DNN 一样从 $\delta^{(t+1)}$ 递推 $\delta^{(t)}$。
 
 $$
-\delta^{(t)}=\frac{\partial L}{\partial o^{(t)}} \frac{\partial o^{(t)}}{\partial h^{(t)}}+\frac{\partial L}{\partial h^{(t+1)}} \frac{\partial h^{(t+1)}}{\partial h^{(t)}}=V^{T}\left(\hat{y}^{(t)}-y^{(t)}\right)+W^{T} \delta^{(t+1)} \operatorname{diag}\left(1-\left(h^{(t+1)}\right)^{2}\right)
+\delta^{(t)}=\frac{\partial L}{\partial o^{(t)}} \frac{\partial o^{(t)}}{\partial h^{(t)}}+\frac{\partial L}{\partial h^{(t+1)}} \frac{\partial h^{(t+1)}}{\partial h^{(t)}}=V^{T}\left(\hat{y}^{(t)}-y^{(t)}\right)+W^{T} \delta^{(t+1)} \text{diag}\left(1-\left(h^{(t+1)}\right)^{2}\right)
 $$
 
 　　对于 $\delta^{(t)}$，由于它的后面没有其他时刻状态了，因此有：
@@ -117,7 +117,7 @@ $$
 　　有了 $\delta^{(t)}$，计算 $W,U,b$ 就容易了，这里给出 $W,U,b$ 的梯度计算表达式：
 
 $$
-\begin{array}{c}{\frac{\partial L}{\partial W}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial W}=\sum_{t=1}^{\tau} \operatorname{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}\left(h^{(t-1)}\right)^{T}} \\ {\frac{\partial L}{\partial b}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial b}=\sum_{t=1}^{\tau} \operatorname{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}} \\ {\frac{\partial L}{\partial U}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial U}=\sum_{t=1}^{\tau} \operatorname{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}\left(x^{(t)}\right)^{T}}\end{array}
+\begin{array}{c}{\frac{\partial L}{\partial W}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial W}=\sum_{t=1}^{\tau} \text{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}\left(h^{(t-1)}\right)^{T}} \\ {\frac{\partial L}{\partial b}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial b}=\sum_{t=1}^{\tau} \text{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}} \\ {\frac{\partial L}{\partial U}=\sum_{t=1}^{\tau} \frac{\partial L}{\partial h^{(t)}} \frac{\partial h^{(t)}}{\partial U}=\sum_{t=1}^{\tau} \text{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \delta^{(t)}\left(x^{(t)}\right)^{T}}\end{array}
 $$
 
 > **RNN 反向传播算法描述 待整理**
