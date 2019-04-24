@@ -14,21 +14,21 @@ typora-copy-images-to: ../../img/media
 　　因为传统的 RNN [很难](http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf)学到离着当前时刻较远的状态信息，于是提出了长短期记忆网络（Long Short Term Memory networks, LSTMs），其是一种 [RNN](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/) 的变种，传统的 RNN 结构如下：
 
 <p align="center">
-<img src="/img/media/15560880253740.jpg" width="">
+<img src="/img/media/15560880253740.jpg" width="520">
 </p>
 <p style="margin-top:-2.5%" align="center">
 <em style="color:#808080;font-style:normal;font-size:80%;"> 传统 RNN 结构</em>
 </p>
 
 <p align="center">
-<img src="/img/media/15560881084865.jpg" width="">
+<img src="/img/media/15560881084865.jpg" width="520">
 </p>
 <p style="margin-top:-2.5%" align="center">
 <em style="color:#808080;font-style:normal;font-size:80%;"> LSTM 单元结构</em>
 </p>
 
 <p align="center">
-<img src="/img/media/15560881125115.jpg" width="">
+<img src="/img/media/15560881125115.jpg" width="520">
 </p>
 <p style="margin-top:-2.5%" align="center">
 <em style="color:#808080;font-style:normal;font-size:80%;">符号解释</em>
@@ -47,7 +47,7 @@ typora-copy-images-to: ../../img/media
 　　LSTM 能够移除或增加信息到单元结构，其由所谓的门（Gates）来精心调控，门由 Sigmoid 单元层和一个逐元素乘法操作组成。LSTM 的有三种门：遗忘门（Forget Gate Layer），输入门（Input Gate Layer）和。
 
 <p align="center">
-<img src="/img/media/15560886697329.jpg" width="">
+<img src="/img/media/15560886697329.jpg" width="100">
 </p>
 <p style="margin-top:-2.5%" align="center">
 <em style="color:#808080;font-style:normal;font-size:80%;">LSTM  门结构</em>
