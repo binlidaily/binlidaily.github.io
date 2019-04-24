@@ -4,7 +4,7 @@ title: "深度学习网络结构"
 author: "Bin Li"
 tags: [Deep Learning]
 comments: true
-published: false
+published: true
 ---
 
 ## LeNet
