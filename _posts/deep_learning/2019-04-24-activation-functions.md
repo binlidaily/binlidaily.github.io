@@ -27,14 +27,6 @@ typora-root-url: ../../../../binlidaily.github.io
 
 
 
-<div><div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-<div>感谢打赏，您的支持将鼓励我继续创作！</div>
-<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-  <span>赞</span>
-</button>
-<div id="QR" style="display: none;">
-<img id="wechat_qr" src="/img/media/wechat_pay.jpg" width="300"><img id="alipay_qr" src="/img/media/ali_pay.jpg" width="300"></div>
-</div>
 
 ## References
 1. [神经网络激活函数汇总（Sigmoid、tanh、ReLU、LeakyReLU、pReLU、ELU、maxout）](https://blog.csdn.net/edogawachia/article/details/80043673)
