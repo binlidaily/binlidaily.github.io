@@ -14,7 +14,7 @@ typora-copy-images-to: ../../img/media
 　　循环神经网络（Recurrent Neural Network, RNN）作为深度学习的一个重要网络，主要解决的是样本数据为序列的建模问题，如语音序列，语言序列。
 
 ## RNN 原理
-　　给定一个长度为 $T$ 输入序列 $\left \{ x_{0}, x_{1},..., x_{t},...,x_{T}\right \}$，这里 $x_{t}$ 表示的是序列在 $t$ 时刻的输入特征向量，这里的 $t$ 时刻并不一定真的指的是时间，只是用来表明这是一个序列输入问题。现在要得到每个时刻的隐含特征 $ \{ h_{0}, h_{1},..., h_{t},...,h_{T}\} $，这些隐含特征用于后面层的特征输入。如果采用传统的神经网络模型，只需要计算：
+　　给定一个长度为 $T$ 输入序列 $ \{ x_{0}, x_{1},..., x_{t},...,x_{T} \}$，这里 $x_{t}$ 表示的是序列在 $t$ 时刻的输入特征向量，这里的 $t$ 时刻并不一定真的指的是时间，只是用来表明这是一个序列输入问题。现在要得到每个时刻的隐含特征 $ \{ h_{0}, h_{1},..., h_{t},...,h_{T}\} $，这些隐含特征用于后面层的特征输入。如果采用传统的神经网络模型，只需要计算：
 
 $$h_{t}=f(Ux_{t}+b)$$
 
@@ -31,7 +31,7 @@ $$h_{t}=f(Ux_{t}+Wh_{t-1}+b)$$
 <em style="color:#808080;font-style:normal;font-size:80%;"> RNN 模型及展开简图</em>
 </p>
 
-　　还有一点，RNN 可以提取一组特征 $\left\{ h_{0}, h_{1},..., h_{t},...,h_{T}\right\} $，但是并不是所有的特征都会送入后面的层，如果你只是需要根据输入序列进行分类，可能你仅需要最后时刻的特征 $h_{T}$。也就是说 RNN 结果可以是序列，这当然和具体的应用场景相关。
+　　还有一点，RNN 可以提取一组特征 $\{ h_{0}, h_{1},..., h_{t},...,h_{T}\} $，但是并不是所有的特征都会送入后面的层，如果你只是需要根据输入序列进行分类，可能你仅需要最后时刻的特征 $h_{T}$。也就是说 RNN 结果可以是序列，这当然和具体的应用场景相关。
 
 <p align="center">
 <img src="/img/media/15560255518749.jpg" width="">
@@ -104,8 +104,9 @@ $$
 
 　　这样我们可以像 DNN 一样从 $\delta^{(t+1)}$ 递推 $\delta^{(t)}$。
 
+
 $$
-\delta^{(t)}=\frac{\partial L}{\partial o^{(t)}} \frac{\partial o^{(t)}}{\partial h^{(t)}}+\frac{\partial L}{\partial h^{(t+1)}} \frac{\partial h^{(t+1)}}{\partial h^{(t)}}=V^{T}\left(\hat{y}^{(t)}-y^{(t)}\right)+W^{T} \delta^{(t+1)} \text{diag}\left(1-\left(h^{(t+1)}\right)^{2}\right)
+\begin{aligned} \delta^{(t)} &=\frac{\partial L}{\partial o^{(t)}} \frac{\partial o^{(t)}}{\partial h^{(t)}}+\frac{\partial L}{\partial h^{(t+1)}} \frac{\partial h^{(t+1)}}{\partial h^{(t)}} \\ &=V^{T}\left(\hat{y}^{(t)}-y^{(t)}\right)+W^{T} \delta^{(t+1)} \text{diag}\left(1-\left(h^{(t+1)}\right)^{2}\right) \end{aligned}
 $$
 
 　　对于 $\delta^{(t)}$，由于它的后面没有其他时刻状态了，因此有：
