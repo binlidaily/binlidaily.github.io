@@ -77,6 +77,10 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 ### 3.2 Object Detection
 * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-single-shot-multibox-detector/)
 
+### 3.3 Sequential Model
+* [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)
+* [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
+
 ## 4. Competitions
 ### 4.1 Learning Tricks
 * [Competitions Workflow](https://binlidaily.github.io/2019-02-11-competitions-workflow/)
