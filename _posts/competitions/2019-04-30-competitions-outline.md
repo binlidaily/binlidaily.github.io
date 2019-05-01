@@ -18,6 +18,7 @@ published: true
 * 知识图谱
     * [ ] [CCKS 2019 中文知识图谱问答](https://www.biendata.com/competition/ccks_2019_6/)
     * [ ] [CCKS 2019 中文短文本的实体链指](https://www.biendata.com/competition/ccks_2019_el/)
+
 ## 2018 年
 ### Joined
 * CTR 预测
