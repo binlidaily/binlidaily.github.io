@@ -163,6 +163,24 @@ LibLinear 是基于信赖域实现的，Spark MLlib 里的逻辑回归是基于 
 * Spark MLlib
 * **FTRL**
 
+SKlearn 中 [LR](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)：
+
+> **solver** : str, {‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’}, default: ‘liblinear’.
+> Algorithm to use in the optimization problem.
+
+> * For small datasets, ‘liblinear’ is a good choice, whereas ‘sag’ and ‘saga’ are faster for large ones.
+* For multiclass problems, only ‘newton-cg’, ‘sag’, ‘saga’ and ‘lbfgs’ handle multinomial loss; ‘liblinear’ is limited to one-versus-rest schemes.
+* ‘newton-cg’, ‘lbfgs’ and ‘sag’ only handle L2 penalty, whereas ‘liblinear’ and ‘saga’ handle L1 penalty.
+
+> Note that ‘sag’ and ‘saga’ fast convergence is only guaranteed on features with approximately the same scale. You can preprocess the data with a scaler from sklearn.preprocessing.
+
+> **multi_class** : str, {‘ovr’, ‘multinomial’, ‘auto’}, default: ‘ovr’
+
+> If the option chosen is ‘ovr’, then a binary problem is fit for each label. For ‘multinomial’ the loss minimised is the multinomial loss fit across the entire probability distribution, even when the data is binary. ‘multinomial’ is unavailable when solver=’liblinear’. ‘auto’ selects ‘ovr’ if the data is binary, or if solver=’liblinear’, and otherwise selects ‘multinomial’.
+
+
+
+
 ## References
 
 1. [美团点评](https://tech.meituan.com/intro_to_logistic_regression.html)
