@@ -265,6 +265,7 @@ plt.show()
 * [Titanic Model with 90% accuracy](https://www.kaggle.com/vinothan/titanic-model-with-90-accuracy)
 * [Kaggle项目Titanic挑战最高分，特征工程](http://www.mashangxue123.com/TensorFlow/2743066386.html)
 * [Github **kaggle-titanic**](https://github.com/agconti/kaggle-titanic)
+* [Titanic Random Forest: 82.78%](https://www.kaggle.com/viczyf/titanic-random-forest-82-78)
 
 ---
 1. [EDA To Prediction (DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
@@ -273,3 +274,4 @@ plt.show()
 4. [Kaggle泰坦尼克号船难--逻辑回归预测生存率](https://www.jianshu.com/p/bbfbdedc3c1c)
 5. [参考文献4的代码](https://www.kaggle.com/beleev/titanic)
 6. ✳️ [Machine Learning Kaggle Competition Part Two: Improving Feature engineering, feature selection, and model evaluation](https://towardsdatascience.com/machine-learning-kaggle-competition-part-two-improving-e5b4d61ab4b8)
+7. [泰坦尼克比赛入门](https://www.kesci.com/home/project/5af18c294b7639369e6c289c)
