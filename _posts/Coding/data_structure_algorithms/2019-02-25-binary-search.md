@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Binary Search
-subtitle:
+subtitle: 二分查找
 author: Bin Li
 tags: [Coding]
 image: 
@@ -10,7 +10,9 @@ published: true
 typora-root-url: ../../../../binlidaily.github.io
 ---
 
-算法流程
+　　二分查找
+算法流程：
+
 
 　　值得注意的是加减 1 缺少了，在做这种较简单的算法时可以画出图来：
 
