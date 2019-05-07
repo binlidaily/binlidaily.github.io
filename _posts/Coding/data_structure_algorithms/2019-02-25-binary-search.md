@@ -10,11 +10,15 @@ published: true
 typora-root-url: ../../../../binlidaily.github.io
 ---
 
-值得注意的是加减1缺少了，在做这种较简单的算法时可以画出图来：
+算法流程
 
-![](/img/media/15510652001271.jpg)
+　　值得注意的是加减 1 缺少了，在做这种较简单的算法时可以画出图来：
 
-Python 实现时可以分用不用左右边界坐标的方式，如利用递归的方式如下：
+<p align="center">
+    <img src="/img/media/15510652001271.jpg" width="450">
+</p>
+
+　　Python 实现时可以分用不用左右边界坐标的方式，如利用递归的方式如下：
 ```python
 def binary_tree_margins(self, array, l, r, target):
     if l == r:
@@ -41,7 +45,7 @@ def binary_tree_no_margins(self, array, target):
         return self.binary_tree_no_margins(array[mid_idx + 1:], target)
 ```
 
-迭代的方式如下：
+　　迭代的方式如下：
 ```python
 def binarySearch(arr, l, r, x): 
   
