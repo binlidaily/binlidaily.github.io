@@ -382,6 +382,7 @@ sudo kill -9 yourPIDnumber
 
 ## Q&A
 * with tf.variable_scope(scope)？
+tf.variable_scope() 的作用是为了实现变量共享，它和 tf.get_variable() 来完成变量共享的功能。
 
 ## References
 1. [Awesome TensorFlow ](https://github.com/jtoy/awesome-tensorflow#tutorials)
@@ -393,3 +394,4 @@ sudo kill -9 yourPIDnumber
 7. [TensorFlow-Book](https://github.com/BinRoot/TensorFlow-Book)
 8. [TensorFlow-Tutorials](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
 9. [handson-ml](https://github.com/ageron/handson-ml)
+10. [tensorflow里面name_scope, variable_scope等如何理解？](https://www.zhihu.com/question/54513728)

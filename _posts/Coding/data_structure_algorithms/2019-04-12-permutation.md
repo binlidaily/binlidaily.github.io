@@ -9,9 +9,9 @@ comments: true
 published: true
 ---
 
-之前其实在看[字符串排列](https://binlidaily.github.io/2019-04-02-(028)-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/)时有接触到一点全排列，这里做一个整理。
+　　之前其实在看[字符串排列](https://binlidaily.github.io/2019-04-02-(028)-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/)时有接触到一点全排列，这里做一个整理。
 
-这里也用 DFS 方法列举出一种解法：
+　　这里也用 DFS 方法列举出一种解法：
 ```python
 def permutations(iterable, r=None):
     # permutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC
@@ -39,7 +39,7 @@ def permutations(iterable, r=None):
             return
 ```
 
-较为简单的递归方法如下：
+　　较为简单的递归方法如下：
 ```python
 # Python function to print permutations of a given list 
 def permutation(lst): 
@@ -80,7 +80,7 @@ for p in permutation(data):
 ```
 
 
-当然在实践中可以直接使用现成的包：
+　　当然在实践中可以直接使用现成的包：
 ```python
 from itertools import permutations 
 l = list(permutations(range(1, 4))) 
