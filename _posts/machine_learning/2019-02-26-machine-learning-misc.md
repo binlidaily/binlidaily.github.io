@@ -59,3 +59,4 @@ $$
 * [Sklearn tools 使用 github](https://github.com/renxingkai/Sklearn_MachineLearining)
 
 ## References
+1. [List of techniques in regression, classification, clustering, and deep learning](https://www.linkedin.com/pulse/list-techniques-regression-classification-clustering-deep-weili-zhang/)
