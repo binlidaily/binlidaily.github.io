@@ -60,3 +60,4 @@ $$
 
 ## References
 1. [List of techniques in regression, classification, clustering, and deep learning](https://www.linkedin.com/pulse/list-techniques-regression-classification-clustering-deep-weili-zhang/)
+2. [机器学习算法集锦：从贝叶斯到深度学习及各自优缺点](https://zhuanlan.zhihu.com/p/25327755)

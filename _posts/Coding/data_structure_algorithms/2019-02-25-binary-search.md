@@ -77,3 +77,7 @@ def binarySearch(arr, l, r, x):
 ## References
 1. [Binary Search - geeksforgeeks](https://www.geeksforgeeks.org/binary-search/)
 2. [二维数组中的查找](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+3. [【数据结构】折半查找（二分查找）](https://blog.csdn.net/coolingcoding/article/details/7983070)
+
+
+

@@ -40,7 +40,7 @@ $${g(x) }= {1\over{1+e^{-x}}}​$$
 
 
 ### Logistic Regression 决策函数
-线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的 Logistic Regression，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。
+线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。
 
 $$
 y = {1\over {1+e^{-\Theta^Tx}}}
@@ -60,9 +60,9 @@ $$\ln {y\over{1-y}} = \Theta^Tx$$
 
 就是用线性回归模型的预测结果去逼近真是类标的对数几率，故称该模型为对数几率回归 (logistic regression / logit regression)。
 
-接下来我们进一步转换上面的式子，我们将上式的 $y$ 看成类的后验概率估计 $p(y=1|x)$，则可以改写成下式：
+接下来我们进一步转换上面的式子，我们将上式的 $y$ 看成类的后验概率估计 $p(y=1\vert x)$，则可以改写成下式：
 
-$$\ln {p(y=1|x)\over{p(y=0|x)}} = \Theta^Tx$$
+$$\ln {p(y=1 \vert x)\over{p(y=0 \vert x)}} = \Theta^Tx$$
 
 由此显然可以得到：
 

@@ -9,7 +9,7 @@ typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
 
-　　线性回归作为一种非常常见的离散值预测模型，却是非常基础且重要的算法，后续的很多机器学习的算法都是在此基础上做的，例如逻辑回归。当数据中特征个数超过1个时，线性回归又被称为多远线性回归(Multivariate linear regression)。
+　　线性回归作为一种非常常见的离散值预测模型，却是非常基础且重要的算法，后续的很多机器学习的算法都是在此基础上做的，例如逻辑回归。当数据中特征个数超过 1 个时，线性回归又被称为多元线性回归（Multivariate linear regression）。
 
 ## 线性回归算法
 　　最基本的线性回归算法想法比较简单，就是拟合一个函数，预测对应的值。我们将样本 plot 出来发现，数据可能呈现正相关的分布，那么我们可以通过一个最简单的线性模型来拟合。
@@ -205,6 +205,7 @@ class LinearRegression(Regression):
 4. [Do we need gradient descent to find the coefficients of a linear regression model?](https://stats.stackexchange.com/questions/160179/do-we-need-gradient-descent-to-find-the-coefficients-of-a-linear-regression-mode/164164#164164)
 5. [Lecture 9. Linear Least Squares. Using SVD Decomposition.](https://www2.math.uconn.edu/~leykekhman/courses/MATH3795/Lectures/Lecture_9_Linear_least_squares_SVD.pdf)
 6. [你应该掌握的 7 种回归模型](https://zhuanlan.zhihu.com/p/40141010)
+7. [最小二乘回归和线性回归](http://sofasofa.io/forum_main_post.php?postid=1000997)
 
 
 
