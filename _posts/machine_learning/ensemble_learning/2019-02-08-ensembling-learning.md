@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Ensembling
-subtitle:
+title: Ensembling Learning
+subtitle: 集成学习
 author: Bin Li
 tags: [Machine Learning]
 image: 
