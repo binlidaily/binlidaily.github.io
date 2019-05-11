@@ -9,7 +9,8 @@ comments: true
 published: true
 ---
 
-在实践中有三种 Ensembling 的方式 Voting Classifier、Bagging 和 Boosting。
+　　在监督学习中，机器学习的目标是学习出一个效果稳定、在各方面表现都好的模型，然而实际情况往往不理想。
+　　在实践中有三种 Ensembling 的方式 Voting Classifier、Bagging 和 Boosting。
 
 ### Voting Classifier
 投票方式看选择选用 soft 还是 hard 投票模式，可以用 SKlearn 中现成的工具：
