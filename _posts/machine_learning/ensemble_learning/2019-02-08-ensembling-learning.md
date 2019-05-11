@@ -55,7 +55,9 @@ published: true
 <img width="" src="/img/media/15575681447743.jpg">
 </p>
 
-
+**Bagging 优缺点**
+* 优点
+    1. Bagging 是一个高效的集成学习算法。
 
 ### Voting Classifier
 投票方式看选择选用 soft 还是 hard 投票模式，可以用 Sklearn 中现成的工具：
