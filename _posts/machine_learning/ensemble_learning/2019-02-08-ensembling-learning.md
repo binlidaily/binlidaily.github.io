@@ -9,11 +9,31 @@ comments: true
 published: true
 ---
 
-　　在监督学习中，机器学习的目标是学习出一个效果稳定、在各方面表现都好的模型，然而实际情况往往不理想。
-　　在实践中有三种 Ensembling 的方式 Voting Classifier、Bagging 和 Boosting。
+　　在监督学习中，机器学习的目标是学习出一个效果稳定、在各方面表现都好的模型，然而实际情况往往不理想。集成学习采用了“三个臭皮匠顶个诸葛亮”的想法，采用多个弱学习器组合的方式达到一个强学习器的效果。弱学习器各有其优势，组合在一起后可能达到高准确率、高泛化能力的效果。
+
+　　当然这里的强弱学习器的说法是为了说明方便，基学习器的说法比弱学习器（分类的话准确率在 50% 左右的分类器）更准确一些，因为有时候为了能用较少的基学习器组合出好结果，基学习器不一定选用弱学习器而是较强的学习器。值得注意的是若干个基学习器应当具有一定的准确性，同时也需要有一定的多样性，即好而不同，当然准确性和多样性其实是相互矛盾的，需要找到平衡。
+
+<p align="center">
+<img width="" src="/img/media/15575546857251.jpg">
+</p>
+
+　　根据个体生成器的生成方法，目前的集成学习方法可以分为两大类：
+* 个体学习器间存在强依赖关系、必须串行生成的序列化方法，如 Boosting。
+* 个体学习器间不存在强依赖关系、可同时生成的并行化方法，如 Bagging。
+
+## Boosting
+　　Boosting 是一类可以将弱学习器提升为强学习器的算法，工作机制是：
+1. 先从初始训练集训练出一个基学习器
+2. 根据基学习器的表现对训练样本的分布进行调整，使得错误预测的样本在后续得到更多关注
+3. 基于调整后的样本分布训练下一个基学习器
+4. 重复进行训练、调整的步骤知道基学习器数目达到预设值 T
+5. 将 T 个基学习器的结果加权结合
+
+　　Boosting 算法最出名的是 Adaboost，具体可以参考之前[博文](https://binlidaily.github.io/2018-10-29-adaboost/)。对于 Boosting 的过程，我们可以看到
+
 
 ### Voting Classifier
-投票方式看选择选用 soft 还是 hard 投票模式，可以用 SKlearn 中现成的工具：
+投票方式看选择选用 soft 还是 hard 投票模式，可以用 Sklearn 中现成的工具：
 ```python
 from sklearn.ensemble import VotingClassifier
 ensemble_lin_rbf=VotingClassifier(estimators=[('KNN',KNeighborsClassifier(n_neighbors=10)),
@@ -57,3 +77,4 @@ print('The cross validated score for bagged Decision Tree is:',result.mean())
 1. [EDA To Prediction(DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
 2. [Kaggle机器学习之模型融合（stacking）心得](https://zhuanlan.zhihu.com/p/26890738)
 3. [Stacking 代码](https://blog.csdn.net/qq1483661204/article/details/80157365)
+4. [从基础到实现：集成学习综合教程（附Python代码）](https://www.jiqizhixin.com/articles/2018-07-28-3)
