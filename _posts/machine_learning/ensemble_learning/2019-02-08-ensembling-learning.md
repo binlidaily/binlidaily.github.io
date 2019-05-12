@@ -38,6 +38,7 @@ published: true
 **Boosting 优缺点**
 * 优点
     1. 能够提高模型的泛化能力。
+    2. Boosting 主要关注降低偏差（bias）。
 * 缺点
     1. 训练较慢。
 
@@ -48,8 +49,6 @@ published: true
 1. 在给定含 m 个样本的数据集中随机**有放回地**抽取 m 个样本（大约有 63.2% 不重复的样本），训练一个基学习器。
 2. 重复上述过程训练出 $T$ 个基学习器。
 3. 将 $T$ 个基学习器的结果加权结合
-    * 对于分类可以用简单的投票法
-    * 对于回归可以用简单的平均法
 
 <p align="center">
 <img width="" src="/img/media/15575681447743.jpg">
@@ -58,6 +57,49 @@ published: true
 **Bagging 优缺点**
 * 优点
     1. Bagging 是一个高效的集成学习算法。
+    2. Bagging 主要关注降低方差（variance）。
+
+
+## 结合策略
+　　训练好 $T$ 个基学习器 $\{h_1, h_2, \dots, h_T \}$ 后就要进行结合了，针对回归与分类的不同任务，常见的组合策略如下。
+
+### 平均法
+　　对于数值型输出 $h_{i}(\boldsymbol{x}) \in \mathbb{R}$，最常见的是平均法（averaging）：
+
+* **简单平均法（simple averaging）**
+
+$$
+H(\boldsymbol{x})=\frac{1}{T} \sum_{i=1}^{T} h_{i}(\boldsymbol{x})
+$$
+
+* **加权平均法（weighted averaging）**
+
+$$
+H(\boldsymbol{x})=\sum_{i=1}^{T} w_{i} h_{i}(\boldsymbol{x})
+$$
+
+　　一般来说，在个体学习器的性能相差较大时宜采用加权平均法，而个体学习器性能相近时宜采用简单平均法。通常要求 $ w_{i} \ge 0$，$\sum_{i=1}^T = 1$。
+
+### 投票法
+　　对于分类任务来说，学习器 $h_i$ 从类别集 $\{c_1, c_2, \dots, c_N \}$ 中预测出一个标记，比较常见的组合策略是用投票法（voting），为了方便讨论，记 $h_i^j(x)$ 是 $h_i$ 在类别 $c_j$ 上的输出。
+
+* **绝对多数投票法（majority voting）**
+
+![-w603](/img/media/15575736687128.jpg)
+　　表示某类别超过半数才标记，否则拒绝预测。
+
+* **相对多数投票法（plurality voting）**
+
+![-w279](/img/media/15575737855405.jpg)
+
+　　预测为类别的票最多的，如果有多个的票最多的类别，随机选择。
+* **加权投票法（weighted voting）**
+
+![-w302](/img/media/15575739497566.jpg)
+
+　　通常要求 $ w_{i} \ge 0$，$\sum_{i=1}^T = 1$。
+
+![-w841](/img/media/15575740363426.jpg)
 
 ### Voting Classifier
 投票方式看选择选用 soft 还是 hard 投票模式，可以用 Sklearn 中现成的工具：

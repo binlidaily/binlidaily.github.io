@@ -57,6 +57,12 @@ $$
 <em style="color:#808080;font-style:normal;font-size:80%;">Sigmoid 函数和求导结果</em>
 </p>
 
+　　Sigmoid 求导过程：
+
+$$
+\begin{aligned} \sigma^{\prime}(z) &=\left(\frac{1}{1+e^{-z}}\right)^{\prime} \\ &=(-1)\left(1+e^{-z}\right)^{(-1)-1} \cdot\left(e^{-z}\right)^{\prime} \\ &=\frac{1}{\left(1+e^{-z}\right)^{2}} \cdot\left(e^{-z}\right) \\ &=\frac{1}{1+e^{-z}} \cdot \frac{e^{-z}}{1+e^{-z}} \\ &=\frac{1}{1+e^{-z}} \cdot\left(1-\frac{1}{1+e^{-z}}\right) \\ &=\sigma(z)(1-\sigma(z)) \end{aligned}
+$$
+
 **优点**：
 1. Sigmoid 函数输出映射在 $(0, 1)$ 之间，范围有限，且单调连续，可以做输出层。
 2. 求导容易：$f^{\prime}(x)=f(x) \cdot(1-f(x))$，求导过程可[参看](https://www.jianshu.com/p/d4301dc529d9)。
@@ -64,6 +70,9 @@ $$
 **缺点**：
 1. 由于其软饱和性，容易产生梯度消失，导致训练出现问题。
 2. 其输出不是以 $0$ 为中心的。
+
+　　那么为什么会出现梯度消失的现象呢？因为通常神经网络所用的激活函数是sigmoid函数，这个函数有个特点，就是能将负无穷到正无穷的数映射到0和1之间，并且对这个函数求导的结果是f′(x)=f(x)(1−f(x))f′(x)=f(x)(1−f(x))。因此两个0到1之间的数相乘，得到的结果就会变得很小了。神经网络的反向传播是逐层对函数偏导相乘，因此当神经网络层数非常深的时候，最后一层产生的偏差就因为乘了很多的小于1的数而越来越小，最终就会变为0，从而导致层数比较浅的权重没有更新，这就是梯度消失。
+
 
 
 ## 3. tanh 函数
@@ -114,7 +123,7 @@ $$
 **优点**：
 1. 相比 Sigmoid 和 tanh，ReLU 在 SGD 中能够更快速的收敛，有说法是因为其有线性、非饱和的特点。
 2. Sigmoid 和 tanh 涉及较多费时的操作，如指数操作，而 ReLU 可以更加简单的实现。
-3. ReLU 能够有效缓解梯度消失的问题。
+3. ReLU 导数为 1，能够有效缓解梯度消失的问题。
 4. 在没有无监督预训练的时候也能有较好的效果。🤔
 <p align="center">
 <img src="/img/media/15561085558892.jpg" width="400">
@@ -122,11 +131,23 @@ $$
 1. 为神经网络提供了**稀疏表达的能力**。
 
 **缺点**：
-1. 随着逐步的训练，可能出现神经元死亡，即无法更新的情况。
+1. 由于负数部分恒为 0，会导致一些神经元无法激活，随着逐步的训练，可能出现神经元死亡，即无法更新的情况（可通过设置小学习率部分解决）。
     * 如果发生这种情况，那么从这一刻开始途径该神经元的梯度都变为零，即 ReLU 神经元在训练中不可逆的死亡了。
+
+
+### 梯度爆炸
+解决办法:
+- 预训练加微调
+- 梯度剪切、权重正则（针对梯度爆炸）
+- 使用不同的激活函数
+- 使用batchnorm
+- 使用残差结构
+- 使用LSTM网络
+
 
 ## References
 1. [神经网络激活函数汇总（Sigmoid、tanh、ReLU、LeakyReLU、pReLU、ELU、maxout）](https://blog.csdn.net/edogawachia/article/details/80043673)
 2. [深度学习系列（8）：激活函数](https://plushunter.github.io/2017/05/12/深度学习系列（8）：激活函数/)
 3. [The Activation Function in Deep Learning 浅谈深度学习中的激活函数](https://www.cnblogs.com/rgvb178/p/6055213.html)
 4. [深度学习中的激活函数导引](https://zhuanlan.zhihu.com/p/22142013)
+5. [详解机器学习中的梯度消失、爆炸原因及其解决方法](https://blog.csdn.net/qq_25737169/article/details/78847691)

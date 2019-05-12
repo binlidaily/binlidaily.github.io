@@ -58,11 +58,90 @@ $$
 L(Y, P(Y | X))=-\log P(Y | X)
 $$
 
-　　一组参数在一堆数据下的似然值，等于每一条数据再这组参数下的条件概率之积。
+　　其中 $P(Y | X)$ 是极大似然函数，一组参数在一堆数据下的似然值，等于每一条数据再这组参数下的条件概率之积。
 
 而损失函数一般是每条数据的损失之和，为了把积变为和，就取了对数。
 
 再加一个负号是为了让最大似然值和最小损失对应起来。
+
+### 交叉熵损失
+　　对于二分类问题，交叉熵损失有两种形式。第一种形式是基于输出标签为 $\{0,1\}$ 的表达方式，也是最常见的形式：
+
+$$
+L=-[y \log \hat{y}+(1-y) \log (1-\hat{y})]
+$$
+
+　　可以由下面公式转化得到：
+
+$$
+P(y | x)=\hat{y}^{y} \cdot(1-\hat{y})^{(1-y)}
+$$
+
+　　当 $y = 1$ 时可以画出如下的 loss [曲线](https://redstonewill.com/1584/):
+
+<p align="center">
+  <img width="" height="" src="/img/media/15576436379526.jpg">
+</p>
+
+　　第二种形式是基于输出标签为 $\{-1, +1\}$ 的表达方式：
+
+$$
+L=\log \left(1+e^{-y s}\right)
+$$
+　　$s$ 表示线性输出结果，下面用 $g(x)$ 表示非线性输出结果（如 Sigmoid）来说明如何得到上式。从概率角度，预测类别的概率可以写成：
+
+$$
+P(y | x)=g(y s)
+$$
+
+　　引入 log 以及加上负号使其求最小化：
+
+$$
+L=-\log g(y s)=-\log \frac{1}{1+e^{-y s}}=\log \left(1+e^{-y s}\right)
+$$
+　　我们以 $ys$ 为横坐标，可以绘制 Loss 的曲线如下图所示:
+
+<p align="center">
+  <img width="" height="" src="/img/media/15576452477293.jpg">
+</p>
+
+　　对于多分类交叉熵损失:
+
+$$
+L=\frac{1}{n} \sum_{X} \sum_{i=1}^{C} y_i \log (\hat{y}_i)
+$$
+
+
+
+### Softmax loss
+
+### Sigmoid loss
+
+
+
+
+## 2. 分类问题
+### 0-1 Loss
+　　对于二分类问题，如果预测值和真实值不同，则结果为 1，相同为 0。
+$$
+L(y, \hat{y})=\{\begin{array}{ll}{0,} & {y \hat{y} \geq 0} \\ {1,} & {y \hat{y}<0}\end{array}
+$$
+
+　　0-1 Loss 的曲线如下:
+
+<p align="center">
+  <img width="" height="" src="/img/media/15576324030915.jpg">
+</p>
+
+0-1 loss **优点**
+1. 非常直观，容易理解。
+
+**缺点**：
+1. 0-1 loss 对所有错分的样本都赋予同样的惩罚（损失为 1），这样对于那些犯错较大的点没有进行有效的惩罚，在一定程度上不太合理。
+2. 0-1 loss 不连续、非凸、不可导，难以用类似梯度下降的方法优化。故而 0-1 loss 很少被用到。
+
+
+
 
 
 ---
@@ -77,9 +156,13 @@ $$
 深度学习
 * [Softmax](https://www.zhihu.com/question/23765351)
 
+在激活函数是sigmoid之类的函数的时候，用平方损失的话会导致误差比较小的时候梯度很小，这样就没法继续训练了，这时使用交叉熵损失就可以避免这种衰退。如果是线性输出或别的激活函数神经元的话完全可以用平方损失。
 
 ## References
 1. [5 Regression Loss Functions All Machine Learners Should Know](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0)
 2. [回归问题中如何更好地利用MAE和MSE提高模型性能？](https://www.chzzz.club/post/227.html)
 3. [迴歸評價指標MSE、RMSE、MAE、R-Squared](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/404042/)
 4. [Log Loss](http://wiki.fast.ai/index.php/Log_Loss)
+5. [Hinge Loss、交叉熵损失、平方损失、指数损失、对数损失、0-1损失、绝对值损失](https://www.cnblogs.com/nxf-rabbit75/p/10440805.html)
+6. [机器学习中的各种“熵”](https://lumingdong.cn/various-entropies-in-machine-learning.html#%E4%BA%A4%E5%8F%89%E7%86%B5%EF%BC%88cross_entropy%EF%BC%89)
+7. [确定不收藏？机器学习必备的分类损失函数速查手册](https://redstonewill.com/1584/)
