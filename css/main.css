@@ -8,7 +8,7 @@ layout: null
 
 body {
   font-family: 'Lora', 'Times New Roman', serif;
-  font-size: 18px;
+  font-size: 21px;
   color: #404040;
   position: relative;
   background-color: {{ site.page-col }};
@@ -34,7 +34,8 @@ a:focus {
 }
 blockquote {
   color: #808080;
-  font-style: italic;
+  /*font-style: italic;*/
+  font-style: normal;
 }
 blockquote p:first-child {
   margin-top: 0;
@@ -119,7 +120,7 @@ img {
 
 .navbar-custom .nav li a {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 17px;
   letter-spacing: 1px;
 }
 
@@ -215,6 +216,26 @@ img {
   padding-left: max(15px, env(safe-area-inset-left));
   padding-right: max(15px, env(safe-area-inset-right));
 }
+
+/*--search--*/
+
+.nav-search-link .nav-search-icon {
+  display: none;
+}
+.nav-search-link .nav-search-text {
+  display: inline;
+}
+@media only screen and (min-width: 768px) {
+  .nav-search-link .nav-search-icon {
+    display: inline;
+  }
+  .nav-search-link .nav-search-text {
+    display: none;
+  }
+  
+}
+
+/*--search--*/
 
 /* Multi-level navigation links */
 .navbar-custom .nav .navlinks-container {
@@ -368,6 +389,7 @@ footer .theme-by {
   width: 100%;
 }
 .post-image {
+  position: center;
   float: right;
   height: 192px;
   width: 192px;
@@ -428,13 +450,16 @@ footer .theme-by {
   .post-image, .post-image img {
     height: 100px;
     width: 100px;
+    float: center;
+    position: center;
   }
 
   .post-image {
     width: 100%;
     text-align: center;
     margin-top: 0;
-    float: left;
+    float: center;
+    position: center;
   }
 }
 /* --- Post and page headers --- */
@@ -577,7 +602,8 @@ footer .theme-by {
   text-align: center;
   font-size: 14px;
   padding: 10px;
-  font-style: italic;
+  /*font-style: italic;*/
+  font-style: normal;
   margin: 0;
   display: block;
   border-bottom-right-radius: 5px;
@@ -715,7 +741,7 @@ td.gutter {
 }
 
 /* --- Notification boxes --- */
-.box-note, .box-warning, .box-error, .box-success {
+.box-note, .box-warning, .box-error {
   padding: 15px 15px 15px 10px;
   margin: 20px 20px 20px 5px;
   border: 1px solid #eee;
@@ -736,11 +762,6 @@ td.gutter {
 .box-error {
   background-color: #f4dddb;
   border-left-color: #c0392b;
-}
-
-.box-success {
-  background-color: #98FB98;
-  border-left-color: #3CB371;
 }
 
 /* Fix table border github gist snippets */
