@@ -86,6 +86,9 @@ sub {
 }
 img {
   border: 0;
+  /*position: center;*/
+  display:block;
+  text-align:center;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -228,6 +231,7 @@ th {
   }
   img {
     max-width: 100% !important;
+    position: center;
   }
   p,
   h2,
@@ -1114,6 +1118,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
+  text-align: center;
   max-width: 100%;
   height: auto;
 }
@@ -1926,7 +1931,7 @@ pre code {
     width: 83.33333333%;
   }
   .col-md-9 {
-    width: 75%;
+    width: 70%;
   }
   .col-md-8 {
     width: 66.66666667%;
@@ -2065,6 +2070,7 @@ pre code {
   }
   .col-md-offset-1 {
     margin-left: 8.33333333%;
+    /*margin-left: 15%;*/
   }
   .col-md-offset-0 {
     margin-left: 0;
@@ -2084,10 +2090,10 @@ pre code {
     width: 83.33333333%;
   }
   .col-lg-9 {
-    width: 75%;
+    width: 70%;
   }
   .col-lg-8 {
-    width: 66.66666667%;
+    width: 80%;
   }
   .col-lg-7 {
     width: 58.33333333%;
@@ -2222,7 +2228,8 @@ pre code {
     margin-left: 16.66666667%;
   }
   .col-lg-offset-1 {
-    margin-left: 8.33333333%;
+    /*margin-left: 8.33333333%;*/
+    margin-left: 15%;
   }
   .col-lg-offset-0 {
     margin-left: 0;
