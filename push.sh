@@ -1,9 +1,9 @@
 #!/bin/sh
-COMMENT=$1
-if [ -z "$COMMENT" ];
-then
-	name1='commit'
-fi 
+# COMMENT=$1
+# if [ -z "$COMMENT" ];
+# then
+# 	name1='commit'
+# fi 
 
 
 # name1="$1"
@@ -35,5 +35,5 @@ fi
 
 
 git add -A
-git commit -m $COMMENT
+git commit -m 'commit'
 git push
