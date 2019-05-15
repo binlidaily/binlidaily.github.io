@@ -3,6 +3,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 
+  <!-- add mathjax scrrpt -->
+  <!--MathJax的配置脚本，用于临时简单的配置 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      <!--输入Latex公式，以HTML和CSS的形式显示输出 -->
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        <!--$表示行内元素，$$表示块状元素 -->
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+  <!--加载MathJax的最新文件， async表示异步加载进来 -->
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  </script>
+
+
+
   <title>{% if page.use-site-title %}{{ site.title }} {{ site.title-separator }} {{ site.description }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
 
   <meta name="author" content="{{ site.author.name }}" />
@@ -15,7 +37,6 @@
 
   {% include gtag.html %}
   {% include gtm_head.html %}
-  {% include google_analytics.html %}
 
   {% if layout.common-ext-css %}
     {% for css in layout.common-ext-css %}
@@ -121,11 +142,6 @@
 
   {% if site.matomo %}
   {% include matomo.html %}
-  {% endif %}
-
-  {% if page.comments and site.staticman.repository and site.staticman.branch %}
-  <!-- Staticman -->
-  <link rel="stylesheet" href="{{ "/css/staticman.css" | prepend: site.baseurl }}" />
   {% endif %}
 
 </head>
