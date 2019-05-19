@@ -11,7 +11,12 @@ published: true
 
 链表作为算法中非常重要的数据结构，在面试中也是非常常用的。
 
-
+```python
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+```
 
 ## 链表相关面试题
 
