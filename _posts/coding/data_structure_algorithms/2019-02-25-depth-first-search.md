@@ -56,7 +56,6 @@ def pre_order_stack(self, root):
 def in_order_stack(self, root):
 	stack = []
 	node = root
-	# save results
 	res = []
 	while node is not None or len(stack) > 0:
 		if node is not None:
@@ -67,6 +66,21 @@ def in_order_stack(self, root):
 			res.append(node.val)
 			node = node.right
 	return res
+
+def in_order_func(self, root):
+    if pRoot is None:
+            return None
+        res = []
+
+        def inorder(pRoot):
+            if pRoot is None:
+                return
+            inorder(pRoot.left)
+            res.append(pRoot)
+            inorder(pRoot.right)
+        
+        inorder(root)
+        return res
 
 def post_order_stack(self, root):
 	stack = []
