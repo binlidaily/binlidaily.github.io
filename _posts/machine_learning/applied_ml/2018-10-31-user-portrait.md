@@ -9,4 +9,8 @@ comments: true
 published: false
 ---
 
-为了
+
+## References
+1. [用户画像练手](https://github.com/LSC-priscilla/user_profiling_competition)
+2. [用户画像技术](https://coladrill.github.io/2019/02/25/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E6%8A%80%E6%9C%AF/)
+3. [用户画像](https://gist.github.com/baymaxium/d2063c3104f5adb41d61f995c0338bdb)
