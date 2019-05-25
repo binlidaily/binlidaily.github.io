@@ -11,6 +11,9 @@ published: true
 
 这里记录待整理的一些概念或者问题！
 
+![](/img/media/15586905041983.jpg)
+
+
 ## Concepts of Machine Learning
 * Structured data
 

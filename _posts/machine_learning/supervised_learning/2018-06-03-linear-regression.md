@@ -16,7 +16,7 @@ typora-copy-images-to: ../../../img/media
 
 　　一般的线性模型（linear model）都是试图学习一个通过属性的线性组合来进行预测的函数，即：
 
-$$f(x) = w^T + b$$
+$$f(x) = w^T x + b$$
 
 　　由于 $w$ 直观地表达了各属性在预测中的重要性，因此线性模型有很好的可解释性。
 
@@ -28,11 +28,33 @@ $$f(x) = w^T + b$$
 
 　　我们就需要通过一种迭代训练的方式，从一组随机的系数开始，慢慢找到最优的系数。这里说的最优的系数，就从能够是我们预测出来的值与真实值的差距最小的系数；这种误差我们为了避免简单的加减误差会因为正误差和负误差会相互抵消，我们用平方误差来衡量。
 
+$$
+\begin{aligned}\left(w^{*}, b^{*}\right) &=\underset{(w, b)}{\arg \min } \sum_{i=1}^{m}\left(f\left(x_{i}\right)-y_{i}\right)^{2} \\ &=\underset{(w, b)}{\arg \min } \sum_{i=1}^{m}\left(y_{i}-w x_{i}-b\right)^{2} \end{aligned}
+$$
 
+　　我们先从单个样本的角度来求解模型，记 $E_{(w, b)}=\sum_{i=1}^{m}\left(y_{i}-w x_{i}-b\right)^{2}$，求导：
+
+$$
+\begin{aligned} \frac{\partial E_{(w, b)}}{\partial w} &=2\left(w \sum_{i=1}^{m} x_{i}^{2}-\sum_{i=1}^{m}\left(y_{i}-b\right) x_{i}\right) \\ \frac{\partial E_{(w, b)}}{\partial b} &=2\left(m b-\sum_{i=1}^{m}\left(y_{i}-w x_{i}\right)\right) \end{aligned}
+$$
+
+　　零导数为零，能得到最优解的闭试解：
+
+$$
+w=\frac{\sum_{i=1}^{m} y_{i}\left(x_{i}-\overline{x}\right)}{\sum_{i=1}^{m} x_{i}^{2}-\frac{1}{m}\left(\sum_{i=1}^{m} x_{i}\right)^{2}}
+$$
+
+$$
+b=\frac{1}{m} \sum_{i=1}^{m}\left(y_{i}-w x_{i}\right)
+$$
+
+　　其中 $\overline{x}=\frac{1}{m} \sum_{i=1}^{m} x_{i}$ 为 $x_i$ 的均值。
+
+　　接下来我们尝试向量化表示，然后用最小二乘来对参数进行估计。为了计算的方便，我们将 $b$ 融合到 $w$ 中，$w=(w;b)$，则损失函数变为：
+　　
 $$
 {1\over{2}}\sum _{i=1}^m (y_i-x_iw)^2
 $$
-
 
 　　前面的 $1\over2$ 是为了求导时能够与系数消掉，我们用矩阵的形式表示能够得到：
 
@@ -80,7 +102,6 @@ df &= {1\over2}\times2v:dv \\
 $$
 
 
-
 　　具体判断加不加转置或者位置问题，都可以通过标识出矩阵大小的方式清晰地分辨出来。接着再求对应的梯度（gradient）：
 
 
@@ -92,37 +113,30 @@ $$
 $$
 
 
-
 　　于是，我们对 $w$ 求导有 $-X^T(y-Xw)$，令其为零，解出 $w$ 的最优解：
-
 
 $$
 -X^T(y-Xw) = -X^Ty+X^TXw = 0
 $$
 
-
 　　有当 $X^TX$ 满秩状态下的解析解：
-
 
 $$
 \hat{w} = (X^TX)^{-1}X^Ty
 $$
 
-
 　　当然还会出现 $X^TX$ **不满秩**的情况，此时可以解出多个 $\hat{w}$ 都能是得均方误差最小化，那具体选择哪一个作为输出，可能就依赖学习算法的偏好决定了。对于 $X^TX$ 不满秩的情况，比较常见的做法是引入正则化（regularization）项，比如在损失函数中加入对参数的 L2-norm：
-
 
 $$
 E = \frac { 1 } { 2 } \sum _ { i = 1 } ^ { m } (y_i-x_iw)^2 + \frac { \gamma } { 2 } \| \mathbf { w } \| ^ { 2 }
 $$
 
 
-
 　　引入正则化项后求解的参数公式就变成了：
 
 
 $$
-\hat { w }^* = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
+\hat { w }^ = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
 　　对于求解办法，除了上面这种[最小二乘法求解](https://mp.weixin.qq.com/s?__biz=MzAwNjM1ODkxNQ==&mid=2650889909&idx=1&sn=e71820b81c167c5039b91a7a6f9083f7&chksm=80fb6c59b78ce54f946f9611fd08bbcef7154b0c7480684121780374f4056be4b83522963ed1&scene=21#wechat_redirect)的，还可以用梯度下降的方式求解。
@@ -212,6 +226,7 @@ class LinearRegression(Regression):
 5. [Lecture 9. Linear Least Squares. Using SVD Decomposition.](https://www2.math.uconn.edu/~leykekhman/courses/MATH3795/Lectures/Lecture_9_Linear_least_squares_SVD.pdf)
 6. [你应该掌握的 7 种回归模型](https://zhuanlan.zhihu.com/p/40141010)
 7. [最小二乘回归和线性回归](http://sofasofa.io/forum_main_post.php?postid=1000997)
+8. [Linear Regression: Implementation, Hyperparameters and their Optimizations](http://pavelbazin.com/post/linear-regression-hyperparameters/)
 
 
 

@@ -372,3 +372,4 @@ $g(t)$ 表示剪枝剪枝的阈值。我们可以这样想，当 $\alpha$ 逐渐
 5. [A Complete Tutorial on Tree Based Modeling from Scratch (in R & Python)](https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/)
 6. [决策树—回归](https://zhuanlan.zhihu.com/p/42505644)
 7. [SKlearn Decision Tree](https://scikit-learn.org/stable/modules/tree.html#classification)
+8. [efficient-decision-tree-notes](https://github.com/wepe/efficient-decision-tree-notes)
