@@ -51,7 +51,7 @@ $$
 　　其中 $\overline{x}=\frac{1}{m} \sum_{i=1}^{m} x_{i}$ 为 $x_i$ 的均值。
 
 　　接下来我们尝试向量化表示，然后用最小二乘来对参数进行估计。为了计算的方便，我们将 $b$ 融合到 $w$ 中，$w=(w;b)$，则损失函数变为：
-　　
+
 $$
 {1\over{2}}\sum _{i=1}^m (y_i-x_iw)^2
 $$
@@ -218,6 +218,15 @@ class LinearRegression(Regression):
 
 　　当数据量不太大而且闭试解存在时可以使用公式直接计算（如果是稀疏的会更好，可以减少存储量），但是当数据量比较大而且是 Dense 的，在存储上都会成问题，更不用说快速计算了。所以可以 Gradient Descent 来实现，不需要非常大的存储量。当时更建议使用 QR 和 SVD 的方式来计算。
 
+### 实践示例
+　　可以用 Sklearn 集成的接口来操作:
+```python
+import sklearn.linear_model as lm          # 线性模型模块
+model_ln = lm.LinearRegression()               # 构建线性回归器
+model_ln.fit(train_x, train_y)                 # 训练数据  不返回k和b model中存储
+pred_y_ln = model_ln.predict(train_x)
+```
+
 ## References
 1. [Matrix calculus in multiple linear regression OLS estimate derivation](https://math.stackexchange.com/questions/1968478/matrix-calculus-in-multiple-linear-regression-ols-estimate-derivation)
 2. [How to Solve Linear Regression Using Linear Algebra](https://machinelearningmastery.com/solve-linear-regression-using-linear-algebra/)
@@ -227,6 +236,7 @@ class LinearRegression(Regression):
 6. [你应该掌握的 7 种回归模型](https://zhuanlan.zhihu.com/p/40141010)
 7. [最小二乘回归和线性回归](http://sofasofa.io/forum_main_post.php?postid=1000997)
 8. [Linear Regression: Implementation, Hyperparameters and their Optimizations](http://pavelbazin.com/post/linear-regression-hyperparameters/)
+9. [scikit-learn : 线性回归，多元回归，多项式回归](https://blog.csdn.net/SA14023053/article/details/51703204)
 
 
 
