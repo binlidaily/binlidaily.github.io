@@ -211,6 +211,14 @@ class LinearRegression(Regression):
             super(LinearRegression, self).fit(X, y)
 ```
 
+**优点**：
+* 思路直观，解释性强。
+* 实现简单，计算简单。
+
+**缺点**：
+* 不能拟合非线性数据。
+* 对复杂数据拟合效果不好，欠拟合。
+* 对异常值比较敏感。
 
 ### 注意点：
 * 注意在矩阵形式下和在展开写的形势下如何求偏导（外层是迭代，内层是所有样本的循环）
@@ -237,6 +245,8 @@ pred_y_ln = model_ln.predict(train_x)
 7. [最小二乘回归和线性回归](http://sofasofa.io/forum_main_post.php?postid=1000997)
 8. [Linear Regression: Implementation, Hyperparameters and their Optimizations](http://pavelbazin.com/post/linear-regression-hyperparameters/)
 9. [scikit-learn : 线性回归，多元回归，多项式回归](https://blog.csdn.net/SA14023053/article/details/51703204)
+10. [盘点｜最实用的机器学习算法优缺点分析，没有比这篇说得更好了](https://juejin.im/post/5930cc4c2f301e006bd4b2a9)
+11. [機器學習經典算法優缺點總結](https://bigdatafinance.tw/index.php/392-2017-06-01-13-30-40)
 
 
 
