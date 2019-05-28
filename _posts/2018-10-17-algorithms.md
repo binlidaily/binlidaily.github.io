@@ -18,13 +18,36 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Bayesian Linear Regression
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
     * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
+    * ElasticNet
 * [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
     * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
+    * Classification and Regression Tree (CART)
+    - Iterative Dichotomiser 3 (ID3)
+    - C4.5 and C5.0 (different versions of a powerful approach
+    - Chi-squared Automatic Interaction Detection (CHAID)
+    - Decision Stump
+    - M5
+    - Random Forests
+    - Conditional Decision Trees
 * [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
+* Instance Based
+    - K-Nearest Neighbor (KNN)
+    - Learning Vector Quantization (LVQ)
+    - Self-Organizing Map (SOM)
+    - Locally Weighted Learning (LWL)
+* Bayesian
+    * [Naive Bayes](https://binlidaily.github.io/2019-05-09-naive-bayes/)
+    - Gaussian Naive Bayes
+    - Multinomial Naive Bayes
+    - Averaged One-Dependence Estimators (AODE)
+    - Bayesian Belief Network (BBN)
+    - Bayesian Network (BN)
+    - Hidden Markov Models
+    - Conditional Random Fields (CRFs)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
@@ -34,6 +57,24 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * K-Means
 * K-Medians
 * Latent Dirichlet Allocation (LDA)
+* Single-linkage Clustering
+* Expectation Maximisation (EM)
+* Hierachical Clustering
+* Fuzzy Clustering
+* DBSCAN
+* OPTICS algorithm
+* Non-Negative Matrix Factorization
+
+
+## Ensemble
+- Logit Boost (Boosting)
+- Bootstrapped Aggregation (Bagging)
+- AdaBoost
+- Stacked Generalization (blending)
+- Gradient Boosting Machines (GBM)
+- Gradient Boosted Regression Trees (GBRT)
+- Radom Forest
+
 
 ### 1.3 Model Evaluation
 * [Bias and Variance](https://binlidaily.github.io/2019-01-16-bias-variance/)
