@@ -235,7 +235,7 @@ $$
 f ( x ) = \sum _ { m = 1 } ^ { M } c _ { m } I \left( x \in R _ { m } \right)
 $$
 
-其中 $I$ 为指示函数，$I = \left \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} \right.$
+其中 $I$ 为指示函数，$I =  \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} $
 
 可以用李宏毅视频上的截图来介绍！⁉️
 

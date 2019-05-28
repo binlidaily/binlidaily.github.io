@@ -18,7 +18,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Bayesian Linear Regression
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
     * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
-* [Logistic Regression](https://binlidaily.github.io/2017-10-03-Logistics-Regression/)
+* [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
