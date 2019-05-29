@@ -167,3 +167,4 @@ $$
 5. [Hinge Loss、交叉熵损失、平方损失、指数损失、对数损失、0-1损失、绝对值损失](https://www.cnblogs.com/nxf-rabbit75/p/10440805.html)
 6. [机器学习中的各种“熵”](https://lumingdong.cn/various-entropies-in-machine-learning.html#%E4%BA%A4%E5%8F%89%E7%86%B5%EF%BC%88cross_entropy%EF%BC%89)
 7. [确定不收藏？机器学习必备的分类损失函数速查手册](https://redstonewill.com/1584/)
+8. [机器学习中常见的损失函数](https://blog.csdn.net/colourful_sky/article/details/80057445)

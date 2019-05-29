@@ -15,7 +15,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 ### 1.1 Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
     * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)
-    * Bayesian Linear Regression
+    * [Bayesian Linear Regression](https://binlidaily.github.io/2019-05-29-bayesian-linear-regression/)
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
     * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
     * ElasticNet
@@ -31,7 +31,6 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Chi-squared Automatic Interaction Detection (CHAID)
     - Decision Stump
     - M5
-    - Random Forests
     - Conditional Decision Trees
 * [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
 * Instance Based

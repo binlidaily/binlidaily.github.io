@@ -16,6 +16,7 @@ typora-copy-images-to: ../../../img/media
 
 ## 实际运用场景
 　　实际工作中，我们可能需要一些分类任务或者预测概率的任务，例如会遇到如下问题：
+
 1. 预测用户是否会点击特定的商品
 2. 判断用户的性别
 3. 预测用户是否会购买给定的品类
@@ -42,7 +43,7 @@ $${g(x) }= {1\over{1+e^{-x}}}​$$
 
 
 ### Logistic Regression 决策函数
-　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。
+　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。至于为什么要用 Sigmoid 函数，可以参考广义线性模型的[推导](http://cs229.stanford.edu/notes/cs229-notes1.pdf)。
 
 $$
 y = {1\over {1+e^{-\Theta^Tx}}}
@@ -66,11 +67,9 @@ $$\ln {y\over{1-y}} = \Theta^Tx$$
 
 　　接下来我们进一步转换上面的式子，我们将上式的 $y$ 看成类的后验概率估计 $p(y=1\vert x)$，则可以改写成下式：
 
-
-
 $$\ln {p(y=1 \vert x)\over{p(y=0 \vert x)}} = \Theta^Tx$$
 
-　　由此显然可以得到：
+　　由此显然可以得到（除了以上推导，也可以直接如此假设，因为这里是二分类，非此即彼）：
 
 $${P(y = 1| x; \Theta) = g(\Theta^Tx)}={1\over{1+e^{-{\Theta^Tx}}}}=p$$
 
@@ -82,7 +81,7 @@ $${P(y = 0| x; \Theta) = 1- g(\Theta^Tx)}={e^{-{\Theta^Tx}}\over{1+e^{-{\Theta^T
 
 $$P(y|{x};\Theta)=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.$$
 
-　　在进一步可以合并到一个式子中:
+　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合伯努利分布，于是有下式:
 
 $$P(y_i|{x}_i;\Theta) = p^{y_i}(1-p)^{1-{y_i}}$$
 
@@ -101,7 +100,7 @@ $$l(\Theta)=\sum{y\ln{p}+(1-y)\ln{(1-p)}}$$
 
 $$J(\Theta)=-{1\over{N}}l(\Theta)=-{1\over{N}}\sum{y\ln{p}+(1-y)\ln{(1-p)}}$$
 
-　　那么模型训练的目标，最大化对数似然度和最小化平均 log 损失是等价的。
+　　那么模型训练的目标，最大化对数似然度和最小化平均 log 损失是等价的。这最后的损失函数仍是凸函数，但是没有解析解。
 
 　　OK，至此我们有了目标函数且是凸优化类型，接下来就要求解优化问题了，一般迭代地采用梯度下降法。如下的基本步骤：
 
@@ -125,6 +124,8 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\sum(y_i-y_i^*)x_i+\lambda\Theta
 
 　　这里值得注意的是有的习惯在参数 $\Theta$ 上加一个下标 $j$，这是因为加和的部分结果是一个实数，而 $x_i$ 是一个向量，所以需要区分，加上下标 $j$ 表示是分量。
 
+　　那么这里其实是有一个问题的，既然这里是凸函数，我不能直接领偏导为 0 计算解析解嘛？
+
 　　沿着梯度负方向选择一个较小的步长可以保证损失函数是减小的，另一方面，逻辑回归的损失函数凸函数（加入正则项后是严格凸函数？），可以保证我们找到的局部最优值同时是全局最优。此外，常用的凸优化的方法都可以用于求解该问题。例如共轭梯度下降，牛顿法，LBFGS等。这样就代码实现逻辑斯特回归了。
 
 
@@ -142,7 +143,7 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\sum(y_i-y_i^*)x_i+\lambda\Theta
 
 在李宏毅视频当中还提到了一个LR的局限，我们参看下面的例子。
 
-## 应用
+## 工业界应用实例
 　　本文开始部分提到了几个在实际中遇到的问题，这里以预测用户对品类的购买偏好为例，介绍一下美团是如何用逻辑回归解决工作中问题的。该问题可以转换为预测用户在未来某个时间段是否会购买某个品类，如果把会购买标记为1，不会购买标记为0，就转换为一个二分类问题。我们用到的特征包括用户在美团的浏览，购买等历史信息，见下表：
 
 | 类别 | 特征 |
@@ -152,11 +153,11 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\sum(y_i-y_i^*)x_i+\lambda\Theta
 | 交叉 | 购买频次，浏览频次，购买间隔 ... |
 
 
-　　其中提取的特征的时间跨度为30天，标签为2天。生成的训练数据大约在7000万量级（美团一个月有过行为的用户），我们人工把相似的小品类聚合起来，最后有18个较为典型的品类集合。如果用户在给定的时间内购买某一品类集合，就作为正例。有了训练数据后，使用Spark版的LR算法对每个品类训练一个二分类模型，迭代次数设为100次的话模型训练需要40分钟左右，平均每个模型2分钟，测试集上的AUC也大多在0.8以上。训练好的模型会保存下来，用于预测在各个品类上的购买概率。预测的结果则会用于推荐等场景。
+　　其中提取的特征的时间跨度为30天，标签为2天。生成的训练数据大约在7000万量级（美团一个月有过行为的用户），我们人工把相似的小品类聚合起来，最后有18个较为典型的品类集合。如果用户在给定的时间内购买某一品类集合，就作为正例。有了训练数据后，使用 Spark 版的 LR 算法对每个品类训练一个二分类模型，迭代次数设为100次的话模型训练需要40分钟左右，平均每个模型2分钟，测试集上的AUC也大多在0.8以上。训练好的模型会保存下来，用于预测在各个品类上的购买概率。预测的结果则会用于推荐等场景。
 
 　　由于不同品类之间正负例分布不同，有些品类正负例分布很不均衡，我们还尝试了不同的采样方法，最终目标是提高下单率等线上指标。经过一些参数调优，品类偏好特征为推荐和排序带来了超过1%的下单率提升。
 
-　　此外，由于LR模型的简单高效，易于实现，可以为后续模型优化提供一个不错的baseline，我们在排序等服务中也使用了LR模型。可以参考我实现的 [LR 模型](https://github.com/binlidaily/ml-analysis/blob/master/Logistic%20Regression/logistic_regression.py)。
+　　此外，由于LR模型的简单高效，易于实现，可以为后续模型优化提供一个不错的baseline，我们在排序等服务中也使用了LR模型。
 
 ## 工具介绍
 　　业界对逻辑回归的研究热点主要是在`稀疏性`、`准确性`和`大规模计算`上。逻辑回归的优化版本有 BFGS，LBFGS，共轭梯度法，信赖域法；针对在线学习遇到的稀疏性和准确性问题，谷歌和伯克利分校提出了稀疏性比较好的 FOBOS 算法，微软提出了 RDA 算法。谷歌综合了精度比较好的 RDA 和稀疏性比较好的 FOBOS 提出了 FTRL，但在 $L_1$ 范数或者非光滑的正则项下，FTRL 效果会更好。
@@ -182,7 +183,31 @@ SKlearn 中 [LR](https://scikit-learn.org/stable/modules/generated/sklearn.linea
 
 > If the option chosen is ‘ovr’, then a binary problem is fit for each label. For ‘multinomial’ the loss minimised is the multinomial loss fit across the entire probability distribution, even when the data is binary. ‘multinomial’ is unavailable when solver=’liblinear’. ‘auto’ selects ‘ovr’ if the data is binary, or if solver=’liblinear’, and otherwise selects ‘multinomial’.
 
+### 对特征的要求和处理
+　　需要先将特征离散化为一些列的 0, 1 后再交给 LR，对此总结这样离散化的好处：
+1. 系数向量内积乘法运算速度快，计算结果方便存储，容易扩展。
+2. 离散化后的特征对异常数据有很强的鲁棒性。
+    * 比如一个特征是年龄>30是1，否则0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰。
+3. LR 属于广义线性模型，表达能力有限。单变量 One-Hot 后离散化为多个特征列，而每个特征列（变量）都有单独的权重，这相当于模型引入了非线性，提高了表达能力。
+4. 离散化后可以进行特征交叉，由 $M+N$ 个变量变为 $M*N$ 个变量，进一步引入非线性，提升表达能力。
+5. 特征离散化后，模型会更稳定。
+    * 比如如果对用户年龄离散化，20-30作为一个区间，不会因为一个用户年龄长了一岁就变成一个完全不同的人。当然处于区间相邻处的样本会刚好相反，所以怎么划分区间是门学问。
+6. 特征离散化以后，起到了简化了逻辑回归模型的作用，降低了模型过拟合的风险。
 
+
+  总结一下就是三个方面的优势：
+* 使计算简单
+* 简化了模型
+* 增强了模型泛化能力，不易受噪声影响
+
+　　李沐指出，模型是使用离散特征还是连续特征，其实是一个“海量离散特征+简单模型” 同 “少量连续特征+复杂模型”的权衡。既可以离散化用线性模型，也可以用连续特征加深度学习。就看是喜欢折腾特征还是折腾模型了。通常来说，前者容易，而且可以n个人一起并行做，有成功经验；后者目前看很赞，能走多远还须拭目以待。
+
+### 拓展
+　　LR 其实还可以引入核函数称为核逻辑回归（Kernel Logistic Regression）:
+
+$$
+\min _{\boldsymbol{\beta}} \frac{\lambda}{N} \sum_{n=1}^{N} \sum_{m=1}^{N} \beta_{n} \beta_{m} K\left(\mathbf{x}_{n}, \mathbf{x}_{m}\right)+\frac{1}{N} \sum_{n=1}^{N} \log \left(1+\exp \left(-y_{n} \sum_{m=1}^{N} \beta_{m} K\left(\mathbf{x}_{m}, \mathbf{x}_{n}\right)\right)\right)
+$$
 
 
 ## References
@@ -194,6 +219,8 @@ SKlearn 中 [LR](https://scikit-learn.org/stable/modules/generated/sklearn.linea
 5. [How To Implement Logistic Regression With Stochastic Gradient Descent From Scratch With Python](https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python/)
 6. [Logistic Regression](https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/pdfs/40%20LogisticRegression.pdf)
 7. [Logistic Regression CMU Slides](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf)
+8. [机器学习技法笔记(7)-Kernel LR(核逻辑回归)](https://shomy.top/2017/03/07/kernel-lr/)
+9. [Why is the error function minimized in logistic regression convex?](http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html)
 
 
 

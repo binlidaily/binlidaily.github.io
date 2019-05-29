@@ -9,6 +9,7 @@ comments: true
 published: true
 ---
 
+对于特征的离散化，在 CTR 预估中通常还会使用 GBDT+LR 的方法，用 GBDT 产生稀疏特征后在放入 LR 中进行训练，效果还不错。
 
 ## References
 1. [点击模型：提升算法精度的利器](https://www.infoq.cn/article/tool-to-improve-the-accuracy-of-algorithm)

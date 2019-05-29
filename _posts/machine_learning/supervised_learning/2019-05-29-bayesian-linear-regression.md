@@ -39,3 +39,5 @@ $$
 ## References
 1. [贝叶斯线性回归方法的解释和优点](https://www.jiqizhixin.com/articles/2018-04-25-3)
 2. [Basic Bayesian Linear Regression Implementation](https://github.com/WillKoehrsen/Data-Analysis/blob/master/bayesian_lr/Bayesian%20Linear%20Regression%20Demonstration.ipynb)
+3. [如何通俗地解释贝叶斯线性回归的基本原理？](https://www.zhihu.com/question/22007264)
+4. [机器学习中的MLE、MAP、贝叶斯估计](https://zhuanlan.zhihu.com/p/37215276)
