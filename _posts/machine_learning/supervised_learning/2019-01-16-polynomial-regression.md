@@ -32,9 +32,7 @@ $$
 
 $$y=\alpha_1x+\alpha_2x^2+\alpha_3x^3$$
 
-**需要弄清楚的几个概念**：
-* [ ] 随机变量
-* [ ] non-parametric algorithm vs parametric learning algorithm
+
 
 ### Parametric algorithms 参数方法
 　　参数方法指的是那些有固定且有限的参数的模型，只需要存储这些参数即可不需要存储数据，因为我们在预测是不需要利用训练数据。

@@ -11,6 +11,11 @@ published: true
 
 这里记录待整理的一些概念或者问题！
 
+**需要弄清楚的几个概念**：
+* [ ] 随机变量
+* [ ] non-parametric algorithm vs parametric learning algorithm
+
+
 ![](/img/media/15586905041983.jpg)
 
 
