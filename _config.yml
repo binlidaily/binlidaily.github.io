@@ -155,9 +155,9 @@ highlighter: rouge
 permalink: /:year-:month-:day-:title/
 paginate: 6
 
-kramdown:
-  # input: GFM
-  parse_block_html: true
+# kramdown:
+#   # input: GFM
+#   parse_block_html: true
   
 # Default YAML values (more information on Jekyll's site)
 defaults:
