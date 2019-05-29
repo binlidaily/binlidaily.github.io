@@ -24,7 +24,11 @@ $$
 　　可以得到模型参数的后验概率分布是以样本输入输出作为条件的：
 
 $$
-P(w | y, X)=\frac{P(y | w, X) * P(w | X)}{P(y | X)}
+P(w \vert  y, X)=\frac{P(y \vert  w, X) * P(w \vert  X)}{P(y \vert  X)}
 $$
 
-　　其中，$P(w|y, X)$ 是给定输入和输出时的模型参数的后验概率分布。它等于输出的似然 $P(y|w, X)$ 乘以给定输入的参数 $w$ 的先验概率 $P(w|X)$ 并且除以归一化常数。
+　　其中，$P(w\vert y, X)$ 是给定输入和输出时的模型参数的后验概率分布。它等于输出的似然 $P(y\vert w, X)$ 乘以给定输入的参数 $w$ 的先验概率 $P(w\vert X)$ 并且除以归一化常数。
+
+
+## References
+1. [贝叶斯线性回归方法的解释和优点](https://www.jiqizhixin.com/articles/2018-04-25-3)
