@@ -10,6 +10,8 @@ typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
 
+{% include toc.html %}
+
 　　逻辑斯特回归（或对数几率回归，Logistic Regression, LR）是机器学习中的一种**分类**模型，由于算法的简单高效，在实际运用中非常的广泛。
 
 ## 实际运用场景
