@@ -50,7 +50,6 @@ hr.small {
 
 .main-content {
   padding-top: 80px;
-  text-align:justify;
 }
 @media only screen and (min-width: 768px) {
   .main-content {
