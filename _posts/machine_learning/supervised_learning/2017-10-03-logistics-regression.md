@@ -187,7 +187,7 @@ SKlearn 中 [LR](https://scikit-learn.org/stable/modules/generated/sklearn.linea
 　　需要先将特征离散化为一些列的 0, 1 后再交给 LR，对此总结这样离散化的好处：
 1. 系数向量内积乘法运算速度快，计算结果方便存储，容易扩展。
 2. 离散化后的特征对异常数据有很强的鲁棒性。
-    * 比如一个特征是年龄>30是1，否则0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰。
+    * 比如一个特征是年龄 >30 是 1，否则 0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰。
 3. LR 属于广义线性模型，表达能力有限。单变量 One-Hot 后离散化为多个特征列，而每个特征列（变量）都有单独的权重，这相当于模型引入了非线性，提高了表达能力。
 4. 离散化后可以进行特征交叉，由 $M+N$ 个变量变为 $M*N$ 个变量，进一步引入非线性，提升表达能力。
 5. 特征离散化后，模型会更稳定。
@@ -221,6 +221,7 @@ $$
 7. [Logistic Regression CMU Slides](https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf)
 8. [机器学习技法笔记(7)-Kernel LR(核逻辑回归)](https://shomy.top/2017/03/07/kernel-lr/)
 9. [Why is the error function minimized in logistic regression convex?](http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html)
+
 
 
 
