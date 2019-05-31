@@ -33,7 +33,7 @@ $$
 P(A B)=P(B) \cdot P(A \vert B)=P(A) \cdot P(B \vert A)
 $$
 
-　　推广一下乘法公式，对于任何正整数 $n\ge 2$，当 $ {P}\left({A}_{1} {A}_{2} \ldots {A}_{{n}-1}\right) > 0 $ 时有：
+　　推广一下乘法公式，对于任何正整数 $n\ge 2$，当 $ {P}\left({A}_{1} {A}_{2} \ldots {A}_{n-1}\right) > 0 $ 时有：
 
 $$
 \mathrm{P}\left(\mathrm{A}_{1} \mathrm{A}_{2} \ldots \mathrm{A}_{\mathrm{n}-1} \mathrm{A}_{\mathrm{n}}\right)=\mathrm{P}\left(\mathrm{A}_{1}\right) \mathrm{P}\left(\mathrm{A}_{2} \vert \mathrm{A}_{1}\right) \mathrm{P}\left(\mathrm{A}_{3} \vert \mathrm{A}_{1} \mathrm{A}_{2}\right) \ldots \mathrm{P}\left(\mathrm{A}_{\mathrm{n}} \vert \mathrm{A}_{1} \mathrm{A}_{2} \ldots \mathrm{A}_{\mathrm{n}-1}\right)
