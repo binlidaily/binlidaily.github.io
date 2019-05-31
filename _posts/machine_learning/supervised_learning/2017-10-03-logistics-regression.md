@@ -150,6 +150,10 @@ $$
 $$
 \theta_{j} :=\theta_{j}-\alpha \left( \left( \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)} \right) + \frac{\lambda}{m}\text{sgn}(w)\right)
 $$
+
+$$
+\operatorname{sgn}(x) :=\left\{\begin{array}{ll}{-1} & {\text { if } x<0} \\ {0} & {\text { if } x=0} \\ {1} & {\text { if } x>0}\end{array}\right.
+$$
 ### 伪代码实现
 通过梯度下降的方式求解过程：
 $1.~ 输入$ $X$, $y$, $初始化权重$ $w_0$
@@ -228,6 +232,8 @@ SKlearn 中 [LR](https://scikit-learn.org/stable/modules/generated/sklearn.linea
 
 　　李沐指出，模型是使用离散特征还是连续特征，其实是一个“海量离散特征+简单模型” 同 “少量连续特征+复杂模型”的权衡。既可以离散化用线性模型，也可以用连续特征加深度学习。就看是喜欢折腾特征还是折腾模型了。通常来说，前者容易，而且可以n个人一起并行做，有成功经验；后者目前看很赞，能走多远还须拭目以待。
 
+* 为什么LR需要归一化或者取对数？
+    * 归一化：可以提高收敛速度，提高收敛的精度；
 ### 拓展
 　　LR 其实还可以引入核函数称为核逻辑回归（Kernel Logistic Regression）:
 
