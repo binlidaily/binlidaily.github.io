@@ -14,13 +14,20 @@ published: true
 ## 机器学习算法
 ### LR
 1. LR 推导（伯努利过程，极大似然，损失函数，梯度下降）有没有最优解？
+   
+* 假设 LR 符合伯努利分布。
+   
    * 逻辑斯特回归是凸优化问题，凸函数+无约束条件。有最优解是因为存在一阶导数为零的点。
+   
+2. LR 可以用核么？可以怎么用？l1和 l2 正则项是啥？lr加l1还是 l2 好？加哪个可以用核？
 
-2. LR 可以用核么？可以怎么用？l1和l2正则项是啥？lr加l1还是l2好？加哪个可以用核（加l2正则项，和svm类似，加l2正则项可以用核方便处理）
+   * 有核逻辑斯特回归。
+   * 加 l2 正则项，和 svm 类似，加 l2 正则项可以用核方便处理
 
-LR 可以用来处理非线性问题么？（还是lr啊 只不过是加了核的lr 这里加核是显式地把特征映射到高维 然后再做lr）怎么做？可以像SVM那样么？为什么？
+3. LR 可以用来处理非线性问题么？（还是lr啊 只不过是加了核的lr 这里加核是显式地把特征映射到高维 然后再做lr）怎么做？可以像SVM那样么？为什么？
+   * 使用核逻辑斯特回归
 
-为什么LR需要归一化或者取对数，为什么LR把特征离散化后效果更好，为什么把特征组合之后还能提升，反正这些基本都是增强了特征的表达能力，或者说更容易线性可分吧
+4. 为什么LR需要归一化或者取对数，为什么LR把特征离散化后效果更好，为什么把特征组合之后还能提升，反正这些基本都是增强了特征的表达能力，或者说更容易线性可分吧
 
 美团技术团队《Logistic Regression 模型简介》https://tech.meituan.com/intro_to_logistic_regression.html
 
@@ -319,3 +326,5 @@ PageRank原理，怎么用模型来查找异常用户，我讲了一大堆我的
 ## References
 1. [面试中的CV --- classification to detection](https://zhuanlan.zhihu.com/p/36290556)
 2. [机器学习面试](http://www.aomanhao.top/2018/09/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%B2%BE%E5%8D%8E/)
+3. [Algorithm_Interview_Notes-Chinese Github](https://github.com/imhuay/Algorithm_Interview_Notes-Chinese)
+4. [DeepLearning-500-questions](https://github.com/scutan90/DeepLearning-500-questions)

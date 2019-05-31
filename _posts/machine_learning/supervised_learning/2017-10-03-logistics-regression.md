@@ -128,7 +128,33 @@ $${\partial J\over{\partial \Theta}}=-{1\over n}\sum(y_i-y_i^*)x_i+\lambda\Theta
 
 　　沿着梯度负方向选择一个较小的步长可以保证损失函数是减小的，另一方面，逻辑回归的损失函数凸函数（加入正则项后是严格凸函数？），可以保证我们找到的局部最优值同时是全局最优。此外，常用的凸优化的方法都可以用于求解该问题。例如共轭梯度下降，牛顿法，LBFGS等。这样就代码实现逻辑斯特回归了。
 
+## 正则化
+　　正则化主要用来避免模型的参数 $w$ 过大，导致模型过拟合。
 
+$$
+\hat{w} = \text{argmin}_{w} ~ - {1\over{m}}\sum_{i=1}^m\left( y \ln p + \left(1 - y \right)\ln \left(1 - p \right) \right) + \lambda \Phi (w)
+$$
+
+
+### $L^2$ 正则化
+　　$L^2$ 正则采用平方 $L^2$ 范数，$\Phi (w) = \frac{1}{2} w^Tw$。$L^2$ 正则可以防止过拟合，且要实现核逻辑斯特回归需要 $L^2$ 正则。$L^2$ 正则化会有权重衰减的现象。
+
+　　$L^2$ 正则化的逻辑回归参数更新：
+$$
+\theta_{j} :=\theta_{j}\left(1-\alpha \frac{\lambda}{m}\right)-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)}
+$$
+### **$L^1$ 正则化**
+　　$L^1$ 正则采用 $L^1$ 范数，$\Phi (w) = \frac{1}{m}\vert w \vert$，即权值的绝对值之和。
+
+　　$L^1$ 正则化的逻辑回归参数更新：
+$$
+\theta_{j} :=\theta_{j}-\alpha \left( \left( \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)} \right) + \frac{\lambda}{m}\text{sgn}(w)\right)
+$$
+### 伪代码实现
+通过梯度下降的方式求解过程：
+$1.~ 输入$ $X$, $y$, $初始化权重$ $w_0$
+$2.~ 计算损失函数对参数$ $w$ $的偏导并迭代更新$
+$3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 ## Logistic Regression 优缺点
 **优点**：

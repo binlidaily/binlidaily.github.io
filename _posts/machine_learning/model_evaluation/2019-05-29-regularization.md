@@ -18,5 +18,8 @@ published: true
 
 注意正则化项求导的时候怎么操作？
 
+L1 正则化可以产生稀疏权重矩阵，即产生一个稀疏模型，也可以用于特征选择。
+
+L2 正则化可以防止模型过拟合。
 ## References
 1. [机器学习中正则化项L1和L2的直观理解](https://blog.csdn.net/jinping_shi/article/details/52433975)
