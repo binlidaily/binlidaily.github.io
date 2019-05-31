@@ -33,14 +33,14 @@ $$
 P(A B)=P(B) \cdot P(A \vert B)=P(A) \cdot P(B \vert A)
 $$
 
-　　推广一下乘法公式，对于任何正整数 $n\ge 2$，当 $\mathrm{P}(\mathrm{A}_{1} \mathrm{A}_{2} \ldots \mathrm{A}_{\mathrm{n}-1}) > 0$ 时有：
+　　推广一下乘法公式，对于任何正整数 $n\ge 2$，当 ${P}({A}_{1} {A}_{2} \ldots {A}_{ {n}-1}) > 0$ 时有：
 
 $$
 \mathrm{P}\left(\mathrm{A}_{1} \mathrm{A}_{2} \ldots \mathrm{A}_{\mathrm{n}-1} \mathrm{A}_{\mathrm{n}}\right)=\mathrm{P}\left(\mathrm{A}_{1}\right) \mathrm{P}\left(\mathrm{A}_{2} \vert \mathrm{A}_{1}\right) \mathrm{P}\left(\mathrm{A}_{3} \vert \mathrm{A}_{1} \mathrm{A}_{2}\right) \ldots \mathrm{P}\left(\mathrm{A}_{\mathrm{n}} \vert \mathrm{A}_{1} \mathrm{A}_{2} \ldots \mathrm{A}_{\mathrm{n}-1}\right)
 $$
 
 ### 贝叶斯公式
-　　贝叶斯公式是建立在条件概率的基础上寻找事件发生的原因（即大事件 $A$ 已经发生的条件下，分割中的小事件 $B_i$ 在 $A$ 发生的条件下的概率），设$B_1, B_2,\dots, B_n $ 是样本空间 $S$ 的一个划分，则对任一事件 $A$（$P(A)>0$）有：
+　　贝叶斯公式是建立在条件概率的基础上寻找事件发生的原因（即大事件 $A$ 已经发生的条件下，分割中的小事件 $B_i$ 在 $A$ 发生的条件下的概率），设 $B_1, B_2,\dots, B_n $ 是样本空间 $S$ 的一个划分，则对任一事件 $A$（$P(A)>0$）有：
 
 $$
 P\left(B_{i} | A\right)=\frac{P\left(B_{i}\right) P\left(A | B_{i}\right)}{\sum_{j=1}^{n} P\left(B_{j}\right) P\left(A | B_{j}\right)}
