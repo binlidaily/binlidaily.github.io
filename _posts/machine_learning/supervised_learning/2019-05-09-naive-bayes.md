@@ -91,6 +91,20 @@ $$
 
 　　至此就可以用贝叶斯分类器的表达式进行分类了。
 
+
+　　值得注意的是，在利用朴素贝叶斯进行分类的时候，如果某个离散特征的属性值从来没有出现过，那么其对应的条件概率为 ０，这样会使得连乘的结果也为 0，那么可以通过拉普拉斯平滑（Laplace Smoothing）来优化:
+
+$$
+\hat{P}(c)=\frac{\left|D_{c}\right|+1}{|D|+N}
+$$
+
+$$
+\hat{P}\left(x_{i} | c\right)=\frac{\left|D_{c, x_{i}}\right|+1}{\left|D_{c}\right|+N_{i}}
+$$
+
+　　其中 $N$ 是总的类别数，$N_i$ 是第 $i$ 个属性可能的取值，这样结果使得各个部分的概率累加和还是 1。
+### 优缺点
+
 ## References
 1. [贝叶斯公式](http://www.cnblogs.com/elaron/archive/2012/10/25/2739236.html)
 2. [【概率论与数理统计】全概率公式和贝叶斯公式](https://www.cnblogs.com/Belter/p/5923828.html)
