@@ -202,6 +202,39 @@ Oranges | A spherical, orange-colored sweet ...
 
 <div class="datatable-end" align="center"></div>
 
+<table align="center">
+  <tr><th align="center">Header A</th><th align="center">Header B</th><th align="center">Header C</th></tr>
+  <tr><td>Content a1</td><td>Content b1</td><td>Content c1</td></tr>
+  <tr><td>Content a2</td><td>Content b2</td><td>Content c2</td></tr>
+  <tr><td>Content a3</td><td>Content b3</td><td>Content c3</td></tr>
+</table>
+
+<table align="center">
+<div class="datatable-begin" align="center"></div>
+
+Food    | Description                           
+------- | -----------
+Apples  | A small, somewhat round ...           
+Bananas | A long and curved, often-yellow ...   
+Kiwis   | A small, hairy-skinned sweet ...     
+Oranges | A spherical, orange-colored sweet ... 
+
+<div class="datatable-end" align="center"></div>
+</table>
+
+<div align="center">
+<div class="datatable-begin" align="center"></div>
+
+Food    | Description                           
+------- | -----------
+Apples  | A small, somewhat round ...           
+Bananas | A long and curved, often-yellow ...   
+Kiwis   | A small, hairy-skinned sweet ...     
+Oranges | A spherical, orange-colored sweet ... 
+
+<div class="datatable-end" align="center"></div>
+</div>
+
 　　其中提取的特征的时间跨度为30天，标签为2天。生成的训练数据大约在7000万量级（美团一个月有过行为的用户），我们人工把相似的小品类聚合起来，最后有18个较为典型的品类集合。如果用户在给定的时间内购买某一品类集合，就作为正例。有了训练数据后，使用 Spark 版的 LR 算法对每个品类训练一个二分类模型，迭代次数设为100次的话模型训练需要40分钟左右，平均每个模型2分钟，测试集上的AUC也大多在0.8以上。训练好的模型会保存下来，用于预测在各个品类上的购买概率。预测的结果则会用于推荐等场景。
 
 　　由于不同品类之间正负例分布不同，有些品类正负例分布很不均衡，我们还尝试了不同的采样方法，最终目标是提高下单率等线上指标。经过一些参数调优，品类偏好特征为推荐和排序带来了超过1%的下单率提升。
