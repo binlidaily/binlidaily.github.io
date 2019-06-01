@@ -39,7 +39,7 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 
 　　其中的 $\alpha$ 是学习率，不能太大也不能太小，太大会导致不能收敛，太小会导致收敛太慢。**所以如何调整这个$\alpha$？**我在实验的时候发现，$\alpha$ 设置的稍微大一些，计算出来的 $(w,b)$ 就会非常大，很明显是有问题的。要设到 0.0001 的时候才能正常跑，那么在实际使用的时候我们的到底要注意哪些调参技巧呢？回头再做补充了。
 
-直到满足终止条件，Gradient Descent 的终止条件一般有这样几种：
+直到满足终止条件，梯度下降的终止条件一般有这样几种：
 
 * `最大迭代次数`：设定一个最大迭代次数，超过就终止迭代。
 * `绝对误差`：当函数值变化接近于零，就停止迭代。
@@ -50,8 +50,58 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 </p>
 
 ### 梯度下降原理
-　　考虑无约束优化问题 $\text{min}_x f(x)$，其中 $f(x)$ 为连续可微函数。
+　　考虑无约束优化问题 $\text{min}_x f(x)$，其中 $f(x)$ 为连续可微函数。如果能构造一个序列 $x^0, x^1, x^2, \dots$ 满足如下不等式：
+
+$$
+f\left(\boldsymbol{x}^{t+1}\right) \leq f\left(\boldsymbol{x}^{t}\right), \quad t=0,1,2, \ldots
+$$
+
+　　那么不断执行梯度下降的更新过程就能收敛到局部极小值。首先回顾一下泰勒展开式：
+
+$$
+f(x)=f\left(x_{0}\right)+\frac{f^{\prime}\left(x_{0}\right)}{1 !}\left(x-x_{0}\right)+\frac{f^{\prime \prime}\left(x_{0}\right)}{2 !}\left(x-x_{0}\right)^{2}+\frac{f^{\prime \prime \prime}\left(x_{0}\right)}{3 !}\left(x-x_{0}\right)^{3}+\ldots
+$$
+
+　　我们换元 $x=x+\Delta x$，$x_0=x$ 代入上面的式子：
+
+$$
+f(x+\Delta x)=f\left( x \right)+\frac{f^{\prime}\left( x \right)}{1 !}\left(x+\Delta x- x \right)+\frac{f^{\prime \prime}\left( x \right)}{2 !}\left(x+\Delta x- x \right)^{2}+\frac{f^{\prime \prime \prime}\left( x \right)}{3 !}\left(x+\Delta x- x \right)^{3}+\ldots
+$$
+
+　　这里采用泰勒一阶展开，即只取右式的前两项：
+
+$$
+f(\boldsymbol{x}+\Delta \boldsymbol{x}) \simeq f(\boldsymbol{x})+\Delta \boldsymbol{x}^{\mathrm{T}} \nabla \boldsymbol{f}(\boldsymbol{x})
+$$
+
+　　记住要满足 $f(\boldsymbol{x}+\Delta \boldsymbol{x})\leq f(\boldsymbol{x})$，那么只要保证 $\Delta \boldsymbol{x}^{\mathrm{T}} \nabla \boldsymbol{f}(\boldsymbol{x})$ 横小于等于零不就👌了，拍一下脑袋，令 $\Delta \boldsymbol{x} = - \nabla \boldsymbol{f}(\boldsymbol{x})$，这下就肯定横小于等于零了吧！🐂🍺
+
+$$
+\Delta \boldsymbol{x}=-\gamma \nabla f(\boldsymbol{x})
+$$
+
+　　一般还设一个步长 $\gamma$ 来控制 $\Delta \boldsymbol{x}$ 不要太激动步子快太大劈到叉，或者步子太小扯到蛋。那么如何从一个初始的 $\boldsymbol{x_0}$ 走到局部最小值的点 $\boldsymbol{x^*}$ 呢？这就是梯度下降的每次更新公式了，从 $\boldsymbol{x_0}$ 每次挪动 $\Delta \boldsymbol{x}$ 直到收敛。
+
+$$
+\boldsymbol{x_{i+1}}=\boldsymbol{x_{i}}-\gamma \nabla f(\boldsymbol{x_i})
+$$
+
 ### 批量梯度下降
+　　在日常使用时绝大多数情况下都是利用梯度下降找寻最优参数，于是这里改写成求参数 $\theta$ 的形式，假设样本个数为 $m$，样本 $x^{(i)}_j$ 的特征个数为 $n$，即 $j\in [1, n]$，损失函数为 $J(\theta)$。梯度下降求解参数的过程可写成（为了统一，这里步长用 $\alpha$ 代替）：
+
+> Repeat until convergence{
+> 　　$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$
+> }
+
+　　在求 $n$ 个特征分量 $j$ 对应的参数时可以同步进行，亦即在实现时可以用向量代替。因为每次更新都要用到所有的样本，所以被称为批量梯度下降 (Batch Gradient Descent)。
+
+**优点**:
+* 全量数据确定优化方向更加准确
+* 由于不同权重的梯度值差距很大，因此选择一个全局的学习率很难。利用全量数据的优势就在于能够使用 Rprop 只基于梯度符号并且针对性单独更新各权值。
+
+**缺点**:
+* 用全量数据势必存在速度比较慢的问题
+* 没有办法保证优化到全局最优解，除非损失函数是凸函数
 
 ### 随机梯度下降法
 
@@ -67,3 +117,6 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 ## Stochastic Gradient Descent
 以上的 Gradient Descent 方法可以看成是用一部分数据来求解 gradient，为了提高计算速度，我们可以使用 Stochastic Gradient Descent，
 
+## References
+1. [关于梯度下降法和牛顿法的数学推导](https://imlogm.github.io/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/gradientDescent/)
+2. [梯度下降、随机梯度下降与批梯度下降算法之间的比较](https://zhuanlan.zhihu.com/p/37714263)
