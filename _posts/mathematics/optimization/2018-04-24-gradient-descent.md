@@ -1,14 +1,15 @@
 ---
 layout: post
-title: "Gradient Descent"
+title: Gradient Descent
+subtitle: 梯度下降法
 author: "Bin Li"
 tags: [Machine Learning]
-category: "Major"
+category: "Optimization"
 comments: true
 published: true
 ---
 
-Gradient Descent 算法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
+　　梯度下降法法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
 
 我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据 $(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
 
