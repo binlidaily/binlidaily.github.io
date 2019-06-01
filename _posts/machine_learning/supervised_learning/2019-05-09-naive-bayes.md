@@ -40,10 +40,15 @@ $$
 $$
 
 ### 贝叶斯公式
+<p align="center">
+  <img width="500" height="" src="/img/media/15593028139966.jpg">
+</p>
+
+
 　　贝叶斯公式是建立在条件概率的基础上寻找事件发生的原因（即大事件 $A$ 已经发生的条件下，分割中的小事件 $B_i$ 在 $A$ 发生的条件下的概率），设 $B_1, B_2,\dots, B_n $ 是样本空间 $S$ 的一个划分，则对任一事件 $A$（$P(A)>0$）有：
 
 $$
-P\left(B_{i} | A\right)=\frac{P\left(B_{i}\right) P\left(A | B_{i}\right)}{\sum_{j=1}^{n} P\left(B_{j}\right) P\left(A | B_{j}\right)}
+P\left(B_{i} | A\right)=\frac{P\left(AB_{i}\right)}{\sum_{j=1}^{n} P\left(AB_{j}\right)} =\frac{P\left(B_{i}\right) P\left(A | B_{i}\right)}{\sum_{j=1}^{n} P\left(B_{j}\right) P\left(A | B_{j}\right)}
 $$
 
 　　这就是贝叶斯公式（Bayes formula），$B_i$ 常被视为导致试验结果 $A$ 发生的“原因”，$P(B_i)$（$i=1,2,\dots, n$）表示各种原因发生的可能性大小，故称先验概率（权重）；$P(B_i\vert A)$（$i=1,2,\dots, n$）则反映当试验产生了结果 $A$ 之后，再对各种原因概率的新认识，故称后验概率。
@@ -119,3 +124,4 @@ $$
 1. [贝叶斯公式](http://www.cnblogs.com/elaron/archive/2012/10/25/2739236.html)
 2. [【概率论与数理统计】全概率公式和贝叶斯公式](https://www.cnblogs.com/Belter/p/5923828.html)
 3. [朴素贝叶斯算法原理小结](https://www.cnblogs.com/pinard/p/6069267.html)
+4. [Naive-Bayes-Classifier](https://github.com/lining0806/Naive-Bayes-Classifier)

@@ -125,3 +125,4 @@ published: true
 3. [Error Analysis](http://mlwiki.org/index.php/Error_Analysis)
 4. [机器学习模型应用以及模型优化的一些思路](https://blog.csdn.net/mozhizun/article/details/60966354)
 5. [工作流程与模型调优](https://blog.csdn.net/JoyceWYJ/article/details/51659747)
+6. [**机器学习系列(20)_机器学习性能改善备忘单**](https://blog.csdn.net/han_xiaoyang/article/details/53453145)
