@@ -9,12 +9,12 @@ comments: true
 published: true
 ---
 
-　　梯度下降法法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
+　　梯度下降法一般是用来迭代求解最优值的，计算目标函数的偏导，取偏导为零，即当前位置的切线方向去更新对应的变量，形成新的目标函数形式，迭代进行此过程，直到满足终止条件。
 
 我们这里以求线性回归的最优值为例，下图是有关房间的面积大小与其售价的关系数据 $(x_i,y_i)$，我们利用这些数据来训练出一个线性回归模型，以此来预测房价。
 
 <p align="center">
-  <img width="" height="" src="/img/media/15245586264489.jpg">
+  <img width="500" height="" src="/img/media/15245586264489.jpg">
 </p>
 
 我们先假设用以下的数学形式表示线性回归模型：
@@ -47,10 +47,17 @@ $$b=b-\alpha {\partial \over{\partial b}}J(w,b) $$
 * `绝对误差`：当函数值变化接近于零，就停止迭代。
 * `相对误差`：当函数值变化小于一个阈值，就停止迭代。
 
-![](https://raw.githubusercontent.com/mattnedrich/GradientDescentExample/master/gradient_descent_example.gif)
+<p align="center">
+  <img width="" height="" src="/img/media/gradient_descent_example.gif">
+</p>
 
 可以参考我实现的 [Gradient Descent](https://github.com/binlidaily/ml-algs/blob/master/optimization/gradient_descent.py)。
 
+### 批量梯度下降
+
+### 随机梯度下降法
+
+### mini 梯度下降法
 
 ### 注意点
 - 如何判断终止条件？

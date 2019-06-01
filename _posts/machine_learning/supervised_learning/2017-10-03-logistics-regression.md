@@ -177,7 +177,7 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 　　本文开始部分提到了几个在实际中遇到的问题，这里以预测用户对品类的购买偏好为例，介绍一下美团是如何用逻辑回归解决工作中问题的。该问题可以转换为预测用户在未来某个时间段是否会购买某个品类，如果把会购买标记为1，不会购买标记为0，就转换为一个二分类问题。我们用到的特征包括用户在美团的浏览，购买等历史信息，见下表：
 
 
-<div algin="center">
+
 <div class="datatable-begin" align="center"></div>
 
 类别 | 特征 
@@ -186,11 +186,10 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 品类 | 销量，购买用户，浏览用户 ... 
 交叉 | 购买频次，浏览频次，购买间隔 ... 
 <div class="datatable-end"></div>
-</div>
+
 
 <div align="center">
 <div class="datatable-begin" align="center"></div>
-
 Food    | Description                           
 ------- | -----------
 Apples  | A small, somewhat round ...           
