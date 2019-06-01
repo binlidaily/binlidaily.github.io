@@ -100,6 +100,7 @@ $$
 **优点**:
 * 全量数据确定优化方向更加准确
 * 由于不同权重的梯度值差距很大，因此选择一个全局的学习率很难。利用全量数据的优势就在于能够使用 Rprop 只基于梯度符号并且针对性单独更新各权值。
+* 容易并行实现
 
 **缺点**:
 * 用全量数据势必存在速度比较慢的问题
@@ -118,7 +119,32 @@ $$
 > 
 > }
 
-### mini 梯度下降法
+**优点**：
+* 速度较批梯度下降更新速度大大提高
+* 能够在线学习，有了新数据，直接加进来即可。
+
+**缺点**：
+* 在某个随机数据集上损失最小，不一定在全量也是。所以随机梯度下降的问题是可能无法达到全局最优。
+
+### mini-batch 梯度下降法
+　　综合考虑 BGD 和 SGD 的优缺点，有一个这种的方案那就是 mini-batch 梯度下降。MBGD 将全量的数据分成 $k$ 个 batch，每次训练一个 batch 的数据，循环 $k$ 训练这个 batch 大小为 $m$ 的数据。
+
+> Repeat until convergence{
+> 
+> 　　for i=1 to k, {
+> 
+> $$\theta_j := \theta_j - \alpha \frac{1}{m} \sum_{l=1}^{m} \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
+> 　　}
+> 
+> }
+
+**优点**：
+* 效果更接近 BGD，速度较之快。
+
+**缺点**：
+* 无法达到全局最优
+* 新加入一个问题：batch size 要怎么选到合适的
 
 ### 注意点
 - 如何判断终止条件？
@@ -127,8 +153,6 @@ $$
 - 容易在具体些伪代码的时候弄不清楚对于一个具体的样本 i 来说该怎么安排
 
 
-## Stochastic Gradient Descent
-以上的 Gradient Descent 方法可以看成是用一部分数据来求解 gradient，为了提高计算速度，我们可以使用 Stochastic Gradient Descent，
 
 ## References
 1. [关于梯度下降法和牛顿法的数学推导](https://imlogm.github.io/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/gradientDescent/)
