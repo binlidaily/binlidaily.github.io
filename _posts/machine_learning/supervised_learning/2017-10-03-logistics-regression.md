@@ -160,12 +160,13 @@ $$
 \operatorname{sgn}(x) :=\left\{\begin{array}{ll}{-1} & {\text { if } x<0} \\ {0} & {\text { if } x=0} \\ {1} & {\text { if } x>0}\end{array}\right.
 $$
 
-
 ### 伪代码实现
 通过梯度下降的方式求解过程：
 
 $1.~ 输入$ $X$, $y$, $初始化权重$ $w_0$
+
 $2.~ 计算损失函数对参数$ $w$ $的偏导并迭代更新$
+
 $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 ## Logistic Regression 优缺点
