@@ -87,7 +87,7 @@ $$
 $$
 
 ### 批量梯度下降
-　　在日常使用时绝大多数情况下都是利用梯度下降找寻最优参数，于是这里改写成求参数 $\theta$ 的形式，假设样本个数为 $m$，样本 $x^{(i)}_j$ 的特征个数为 $n$，即 $j\in [1, n]$，损失函数为 $J(\theta)$。梯度下降求解参数的过程可写成（为了统一，这里步长用 $\alpha$ 代替）：
+　　在日常使用时绝大多数情况下都是利用梯度下降找寻最优参数，于是这里改写成求参数 $\theta$ 的形式，假设样本个数为 $M$，样本 $x^{(i)}_j$ 的特征个数为 $n$，即 $j\in [1, n]$，损失函数为 $J(\theta)$。梯度下降求解参数的过程可写成（为了统一，这里步长用 $\alpha$ 代替）：
 
 > Repeat until convergence{
 > 　　$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$
@@ -104,6 +104,11 @@ $$
 * 没有办法保证优化到全局最优解，除非损失函数是凸函数
 
 ### 随机梯度下降法
+　　当像利用深度学习算法训练模型，需要的数据量已经大到利用全量数据进行优化不太可行了。为了提高训练速度，随机梯度下降法（stochastic gradient descent, also incremental gradient descent）就被提了出来。SGD 每一轮优化的时候只对随机采样的特定大小 $m$ 的数据集合进行优化：
+
+> Repeat until convergence{
+> 　　$$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> }
 
 ### mini 梯度下降法
 
