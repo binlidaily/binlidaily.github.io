@@ -107,7 +107,9 @@ $$
 　　当像利用深度学习算法训练模型，需要的数据量已经大到利用全量数据进行优化不太可行了。为了提高训练速度，随机梯度下降法（stochastic gradient descent, also incremental gradient descent）就被提了出来。SGD 每一轮优化的时候只对随机采样的特定大小 $m$ 的数据集合进行优化：
 
 > Repeat until convergence{
-> 　　$$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
+> $$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
 > }
 
 ### mini 梯度下降法
