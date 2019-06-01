@@ -90,7 +90,9 @@ $$
 　　在日常使用时绝大多数情况下都是利用梯度下降找寻最优参数，于是这里改写成求参数 $\theta$ 的形式，假设样本个数为 $M$，样本 $x^{(i)}_j$ 的特征个数为 $n$，即 $j\in [1, n]$，损失函数为 $J(\theta)$。梯度下降求解参数的过程可写成（为了统一，这里步长用 $\alpha$ 代替）：
 
 > Repeat until convergence{
-> 　　$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$
+> 
+> $$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
 > }
 
 　　在求 $n$ 个特征分量 $j$ 对应的参数时可以同步进行，亦即在实现时可以用向量代替。因为每次更新都要用到所有的样本，所以被称为批量梯度下降 (Batch Gradient Descent)。
@@ -108,7 +110,11 @@ $$
 
 > Repeat until convergence{
 > 
+> 　　for i=1 to m, {
+> 
 > $$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
+> 　　}
 > 
 > }
 
