@@ -178,7 +178,7 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 
 
-<div class="datatable-begin" align="center"></div>
+<div class="datatable-begin"></div>
 
 类别 | 特征 
 ------- | -------- 
@@ -190,6 +190,7 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 <div align="center">
 <div class="datatable-begin" align="center"></div>
+
 Food    | Description                           
 ------- | -----------
 Apples  | A small, somewhat round ...           
