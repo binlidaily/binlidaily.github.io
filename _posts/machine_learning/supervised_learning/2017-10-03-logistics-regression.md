@@ -140,22 +140,29 @@ $$
 　　$L^2$ 正则采用平方 $L^2$ 范数，$\Phi (w) = \frac{1}{2} w^Tw$。$L^2$ 正则可以防止过拟合，且要实现核逻辑斯特回归需要 $L^2$ 正则。$L^2$ 正则化会有权重衰减的现象。
 
 　　$L^2$ 正则化的逻辑回归参数更新：
+
 $$
 \theta_{j} :=\theta_{j}\left(1-\alpha \frac{\lambda}{m}\right)-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)}
 $$
+
 ### $L^1$ 正则化
 　　$L^1$ 正则采用 $L^1$ 范数，$\Phi (w) = \frac{1}{m}\vert w \vert$，即权值的绝对值之和。
 
 　　$L^1$ 正则化的逻辑回归参数更新：
+
 $$
 \theta_{j} :=\theta_{j}-\alpha \left( \left( \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)} \right) + \frac{\lambda}{m}\text{sgn}(w)\right)
 $$
 
+　　其中
+
 $$
 \operatorname{sgn}(x) :=\left\{\begin{array}{ll}{-1} & {\text { if } x<0} \\ {0} & {\text { if } x=0} \\ {1} & {\text { if } x>0}\end{array}\right.
 $$
+
 ### 伪代码实现
 通过梯度下降的方式求解过程：
+
 $1.~ 输入$ $X$, $y$, $初始化权重$ $w_0$
 $2.~ 计算损失函数对参数$ $w$ $的偏导并迭代更新$
 $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
