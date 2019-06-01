@@ -178,6 +178,7 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 
 <div class="datatable-begin" align="center"></div>
+
 类别 | 特征 
 ------- | -------- 
 用户 | 购买频次，浏览频次，时间，地理位置 ... 
@@ -185,55 +186,6 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 交叉 | 购买频次，浏览频次，购买间隔 ... 
 <div class="datatable-end"></div>
 
-| 类别 | 特征 |
-| --- | --- |
-| 用户 | 购买频次，浏览频次，时间，地理位置 ... |
-| 品类 | 销量，购买用户，浏览用户 ... |
-| 交叉 | 购买频次，浏览频次，购买间隔 ... |
-
-<div class="datatable-begin" align="center"></div>
-
-Food    | Description                           
-------- | -----------
-Apples  | A small, somewhat round ...           
-Bananas | A long and curved, often-yellow ...   
-Kiwis   | A small, hairy-skinned sweet ...     
-Oranges | A spherical, orange-colored sweet ... 
-
-<div class="datatable-end" align="center"></div>
-
-<table align="center">
-  <tr><th align="center">Header A</th><th align="center">Header B</th><th align="center">Header C</th></tr>
-  <tr><td>Content a1</td><td>Content b1</td><td>Content c1</td></tr>
-  <tr><td>Content a2</td><td>Content b2</td><td>Content c2</td></tr>
-  <tr><td>Content a3</td><td>Content b3</td><td>Content c3</td></tr>
-</table>
-
-<table align="center">
-<div class="datatable-begin" align="center"></div>
-
-Food    | Description                           
-------- | -----------
-Apples  | A small, somewhat round ...           
-Bananas | A long and curved, often-yellow ...   
-Kiwis   | A small, hairy-skinned sweet ...     
-Oranges | A spherical, orange-colored sweet ... 
-
-<div class="datatable-end" align="center"></div>
-</table>
-
-<div align="center">
-<div class="datatable-begin" align="center"></div>
-
-Food    | Description                           
-------- | -----------
-Apples  | A small, somewhat round ...           
-Bananas | A long and curved, often-yellow ...   
-Kiwis   | A small, hairy-skinned sweet ...     
-Oranges | A spherical, orange-colored sweet ... 
-
-<div class="datatable-end" align="center"></div>
-</div>
 
 　　其中提取的特征的时间跨度为30天，标签为2天。生成的训练数据大约在7000万量级（美团一个月有过行为的用户），我们人工把相似的小品类聚合起来，最后有18个较为典型的品类集合。如果用户在给定的时间内购买某一品类集合，就作为正例。有了训练数据后，使用 Spark 版的 LR 算法对每个品类训练一个二分类模型，迭代次数设为100次的话模型训练需要40分钟左右，平均每个模型2分钟，测试集上的AUC也大多在0.8以上。训练好的模型会保存下来，用于预测在各个品类上的购买概率。预测的结果则会用于推荐等场景。
 
