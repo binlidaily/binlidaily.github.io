@@ -9,6 +9,8 @@ comments: true
 published: true
 ---
 
+{% include toc.html %}
+
 ## 1. 回归问题
 　　回归问题的评价指标有 MSE，RMSE，MAE 等。
 ### 1.1 Mean Squared Error
