@@ -14,7 +14,7 @@ typora-root-url: ../../../../binlidaily.github.io
 
 ## 1. 神经元模型
 ### 1.1 感知机
-　　最早的神经元模型是由感知机来构建的，感知机工作原理：一个感知机接受几个二进制输入（$x_1, x_2, \dots, x_n​$），并产生一个二进制输出。
+　　最早的神经元模型是由感知机来构建的，感知机工作原理：一个感知机接受几个二进制输入（$x_1, x_2, \dots, x_n$），并产生一个二进制输出。
 <p align="center">
   <img width="400" height="" src="/img/media/15554869148437.jpg">
 </p>
@@ -44,7 +44,7 @@ $$
 
 ## 2. 反向传播算法
 ### 2.1 前向传播
-　　一般的模型训练都会使用梯度下降来学习权重和偏置，经过发展神经网络采用了反向传播（BackPropagation，BP）算法来快速计算梯度。反向传播的核心是一个对损失函数 $C$ 关于任何权重 $w$（或者偏置 $b$）的偏导 $\partial C / \partial w​$ 的表达式。这个表达式告诉我们在改变权重和偏置时，损失函数变化的快慢。反向传播就是⼀种巧妙地追踪权重（和偏置）微⼩变化的传播，抵达输出层影响损失函数的技术。在介绍后向传播算法之前，我们先搞清楚前向传播的过程，即从输入 $x$ 到输出是怎么得到的。
+　　一般的模型训练都会使用梯度下降来学习权重和偏置，经过发展神经网络采用了反向传播（BackPropagation，BP）算法来快速计算梯度。反向传播的核心是一个对损失函数 $C$ 关于任何权重 $w$（或者偏置 $b$）的偏导 $\partial C / \partial w$ 的表达式。这个表达式告诉我们在改变权重和偏置时，损失函数变化的快慢。反向传播就是⼀种巧妙地追踪权重（和偏置）微⼩变化的传播，抵达输出层影响损失函数的技术。在介绍后向传播算法之前，我们先搞清楚前向传播的过程，即从输入 $x$ 到输出是怎么得到的。
 
 　　首先定义权重的符号，使用 $w_{j k}^{l}$ 表示从 $(l-1)^{\mathrm{th}}$ 层的 $k^{\mathrm{th}}$ 个神经元到 $l^{\mathrm{th}}$ 层的 $j^{\mathrm{th}}$ 个神经元的链接上的权重。
 
@@ -60,7 +60,7 @@ $$
 </p>
 
 
-　　有了以上的符号基础，就能将 $l^{\mathrm{th}}$ 层第 $j^{\mathrm{th}}$ 个神经元的激活值 $a_{j}^{l}$ 就和 $(l-1)^{\mathrm{th}}​$ 层的激活值通过⽅程关联起来：
+　　有了以上的符号基础，就能将 $l^{\mathrm{th}}$ 层第 $j^{\mathrm{th}}$ 个神经元的激活值 $a_{j}^{l}$ 就和 $(l-1)^{\mathrm{th}}$ 层的激活值通过⽅程关联起来：
 
 $$
 a_{j}^{l}=\sigma\left(\sum_{k} w_{j k}^{l} a_{k}^{l-1}+b_{j}^{l}\right)
@@ -118,7 +118,21 @@ $$
 \delta_{j}^{l} \equiv \frac{\partial C}{\partial z_{j}^{l}}
 $$
 
-　　基于以上的定义，我们定义第一个方程，输出层误差的方程 $\delta^{L}$：每个元素定义如下：
+　　单独定义这一项是为了后面计算方便，这一项就是我们从前往后尝试计算参数对损失的偏导时，这一项总是未知，需要后面层偏导的计算。
+
+　　基于以上的定义，又根据链式法则将激活函数加进来，我们考虑**输出层**误差的方程 $\delta^{L}$ 中，其中每个神经元误差（假设多类问题）定义如下：
+
+$$
+\delta_{j}^{L}=\sum_{k} \frac{\partial C}{\partial a_{k}^{L}} \frac{\partial a_{k}^{L}}{\partial z_{j}^{L}}
+$$
+
+　　这里表现出求和主要是为了体现求导是在输出层所有神经元上计算的（其实可以省掉这步，直接通过链式法则得到就好），但是输出层神经元的输出激活值只跟当前神经元有关，所以上式简化成：
+
+$$
+\delta_{j}^{L}= \frac{\partial C}{\partial a_{j}^{L}} \frac{\partial a_{j}^{L}}{\partial z_{j}^{L}}
+$$
+
+　　用回激活函数的表达 $a_j^L = \sigma(z_j^L)$，那么输出层第 $j$ 个神经元的误差计算公式：
 
 $$
 \delta_{j}^{L}=\frac{\partial C}{\partial a_{j}^{L}} \sigma^{\prime}\left(z_{j}^{L}\right)  \tag{BP1}
@@ -130,34 +144,70 @@ $$
 \delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right) \tag{BP1a}
 $$
 
-　　第二个方程，使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 $\delta^{l}$：
+![-w790](/img/media/15594743927626.jpg)
+
+　　我们利用链式法则分析可以看到计算当前层某个神经元的参数对损失函数的偏导时需要依赖下一层，依据链式法则，我们可以将某一层的某个神经元的误差改写一下。
+
+![-w680](/img/media/15594752205276.jpg)
+
+
+　　使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 $\delta^{l}$：
+
+$$
+\begin{aligned}
+\delta_{j}^{l}&=\frac{\partial C}{\partial z_{j}^{l}} \\
+&=\sum_{k} \frac{\partial C}{\partial z_{k} ^{l+1}} \frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}} \\
+&=\sum_{k} \frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}}\delta_{j}^{l+1}
+\end{aligned} 
+$$
+
+　　公式中第一项很好计算，我们知道下一层的带权输入是上一层所有连接神经元的计算结果之和：
+
+$$
+z_k^{l+1} = \sum_j w_{kj} ^ {l+1} a_j^l + b_k ^ {l+1} =  \sum_j w_{kj} ^ {l+1} \sigma(z_j^l)+ b_k ^ {l+1}
+$$
+
+　　计算微分：
+
+$$
+\frac{\partial z_{k}^{l+1}}{\partial z_{j}^{l}}=w_{k j}^{l+1} \sigma^{\prime}\left(z_{j}^{l}\right)
+$$
+
+　　再代入刚才改写的 $\delta^{l}$ 公式：
 
 $$
 \delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right) \tag{BP2}
 $$
 
-　　第三个方程，损失函数关于网络中任意偏置的改变率：
+　　有了上面的式子，我们就可以从输出层开始，从后向前计算任意层任意神经元对应参数对损失函数偏导了，对于权重：
 
 $$
-\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l} \tag{BP3}
+\begin{aligned}
+\frac{\partial C}{\partial w_{j k}^{l}}&=\frac{\partial C}{\partial z_{j}^{l}} \frac{\partial z_{j}^{l}}{\partial w_{j k}^{l}} \\
+&= \frac{\partial z_{j}^{l}}{\partial w_{j k}^{l}} \delta^{l}
+\end{aligned}
 $$
 
-　　第四个方程，损失函数关于任何一个权重的改变率：
+　　第一项对 $z_j^{l} = \sum_k w_{jk} ^ {l} a_k^{l-1} + b_j ^ {l}$ 求 $w_{j k}^{l}$ 的偏导可得：
+
+$$
+\frac{\partial z_{j}^{l}}{\partial w_{j k}^{l}} = a_k^{l-1}
+$$
+
+　　代入方才的式子可以得到权重的偏导(改变率)：
 
 $$
 \frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}  \tag{BP4}
 $$
 
-<details><summary markdown="span">四个基本方程的证明</summary>
-![-w1018](/img/media/15555772493944.jpg) 
-![-w1020](/img/media/15555772660492.jpg) 
+
+　　类似的，很容易求出损失函数关于网络中任意偏置的改变率：
+
+$$
+\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l} \tag{BP3}
+$$
 
 
-![-w1002](/img/media/15555772754499.jpg) 
-
-![-w438](/img/media/15555772258096.jpg) 
-
-</details>
 
 
 **反向传播算法描述**
@@ -173,7 +223,7 @@ $$
 * 如果在输出神经元是 $S$ 型 神经元时，交叉熵⼀般都是更好的选择。
 * 在输出层使用线性神经元时使用二次损失函数。
 
-　　softmax（柔性最大值）的输出可以被看做是⼀个概率分布，即下面的式子中 $a_{j}^{L}$ 解释成⽹络估计正确数字分类为 $j​$ 的概率。
+　　softmax（柔性最大值）的输出可以被看做是⼀个概率分布，即下面的式子中 $a_{j}^{L}$ 解释成⽹络估计正确数字分类为 $j$ 的概率。
 
 $$
 a_{j}^{L}=\frac{e^{z_{j}^{L}}}{\sum_{k} e^{z_{k}^{L}}}
