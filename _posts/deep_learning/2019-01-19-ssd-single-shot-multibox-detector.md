@@ -11,7 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
     
-SSD，全称 Single Shot MultiBox Detector，是 Wei Liu 在 ECCV 2016 上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比 Faster RCNN 有明显的速度优势，相比 YOLO 又有明显的 mAP 优势（不过已经被 CVPR 2017 的 YOLO9000 超越）。
+　　Single Shot MultiBox Detector (SSD)，是 Wei Liu 在 ECCV 2016 上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比 Faster RCNN 有明显的速度优势，相比 YOLO 又有明显的 mAP 优势（不过已经被 CVPR 2017 的 YOLO9000 超越）。
 
 ![总结](/img/media/15541000730952.jpg)
 
@@ -53,3 +53,5 @@ SSD 对背景也做了处理，所以在设定类别数时要加 1。
 3. [目标检测|SSD原理与实现](https://zhuanlan.zhihu.com/p/33544892)
 4. [SSD 目标检测](https://zhuanlan.zhihu.com/p/31427288)
 5. [目标检测：SSD](https://zhuanlan.zhihu.com/p/42159963)
+6. [Object Detection](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
+7. [论文阅读：SSD: Single Shot MultiBox Detector](https://blog.csdn.net/u010167269/article/details/52563573)
