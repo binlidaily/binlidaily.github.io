@@ -19,6 +19,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
     * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
     * ElasticNet
+
 * [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
@@ -32,6 +33,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Decision Stump
     - M5
     - Conditional Decision Trees
+
 * Perceptron
 * [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
 * Instance Based
@@ -39,6 +41,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Learning Vector Quantization (LVQ)
     - Self-Organizing Map (SOM)
     - Locally Weighted Learning (LWL)
+
 * Bayesian
     * [Naive Bayes](https://binlidaily.github.io/2019-05-09-naive-bayes/)
     - Gaussian Naive Bayes
@@ -48,6 +51,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Bayesian Network (BN)
     - Hidden Markov Models
     - Conditional Random Fields (CRFs)
+
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
@@ -92,6 +96,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Feature Extraction
         * [Data Preprocessing](https://binlidaily.github.io/2018-11-13-data-preprocessing/)
         * [Exploratory Data Analysis (EDA)](https://binlidaily.github.io/2019-01-10-exploratory-data-analysis/)
+
     * Feature Selection
         * [Feature Selection Methods](https://binlidaily.github.io/2018-06-03-feature-engineering/)
 
@@ -110,16 +115,17 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Ranking Algorithms](https://binlidaily.github.io/2019-01-23-ranking-algorithms/)
 
 ## 3. Deep Learning
-* Image Classification
-    * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
-    * [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
+* Computer Vision
+    * Image Classification
+        * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
+        * [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
 
-* Object Detection
-    * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-single-shot-multibox-detector/)
-
-* Sequential Model
-    * [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)
-    * [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
+    * Object Detection
+        * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-single-shot-multibox-detector/)
+    
+    * Sequential Model
+        * [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)
+        * [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
 
 
 ## 4. Mathematics
