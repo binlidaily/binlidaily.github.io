@@ -49,3 +49,4 @@ $$
 
 ## References
 1. [如何理解K-L散度（相对熵）](https://www.jianshu.com/p/43318a3dc715)
+2. [熵、交叉熵、相对熵（KL 散度）意义及其关系](https://blog.csdn.net/lanchunhui/article/details/53365438)

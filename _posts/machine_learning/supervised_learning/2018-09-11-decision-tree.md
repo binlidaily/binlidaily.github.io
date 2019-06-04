@@ -70,7 +70,7 @@ $$\text{Gain_ratio}(D, a)={\text{Gain}(D, a)\over{\text{Split_info}(D, a)}}$$
 
 $$Gini(D)=\sum_{k=1}^{|\mathcal { Y }|}p_k(1-p_k)=\sum_{k=1}^{|\mathcal { Y }|}p_k-\sum_{k=1}^{|\mathcal { Y }|}p_k^2=1-\sum_{k=1}^{|\mathcal { Y }|}p_k^2$$
 
-　　这就是基尼系数 (Gini Index, Gini Impurity)，比较好理解的是，连续选取的两个样本不属于同一个类的概率越大，那么此批样本的不纯度就越高。所以，我们在划分属性的时候，选择能够使得基尼系数**最小**的属性。
+　　这就是基尼系数 (Gini Index, Gini Impurity)，比较好理解的是，连续选取的两个样本不属于同一个类的概率越大，那么此批样本的不纯度就越高。所以，我们在划分属性的时候，选择能够使得基尼系数**最小**的属性。[这里](https://blog.csdn.net/lanchunhui/article/details/65441891)用数学推导说明了基尼系数和熵的关系。
 
 　　如果样本集合 $D$ 根据属性 $a$ 是否取某一可能值 $c$ 被划分成 $D_1$ 和 $D_2$ 两部分，即：
 
@@ -79,6 +79,7 @@ $$D_1={(x, y)\in D|A(x)=a}, D_2=D-D_1$$
 　　则在特征 $a$ 的条件下，集合 $D$ 的基尼系数定义为：
 
 $$\text{Gini}(D,a)={|D_1|\over{|D|}}\text{Gini}(D_1)+{|D_2|\over{|D|}}\text{Gini}(D_2)$$
+
 
 基尼系数优缺点:
 * 优点

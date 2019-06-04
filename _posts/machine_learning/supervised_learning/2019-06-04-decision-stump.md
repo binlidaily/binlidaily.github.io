@@ -8,3 +8,6 @@ image:
 comments: true
 published: true
 ---
+
+## References
+1. [机器学习基础（十八） —— decision stump](https://blog.csdn.net/lanchunhui/article/details/50980635)

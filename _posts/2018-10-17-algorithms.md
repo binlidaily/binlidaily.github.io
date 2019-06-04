@@ -26,11 +26,11 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
     * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
-    * Classification and Regression Tree (CART)
+    - Decision Stump
     - Iterative Dichotomiser 3 (ID3)
     - C4.5 and C5.0 (different versions of a powerful approach)
+    * Classification and Regression Tree (CART)
     - Chi-squared Automatic Interaction Detection (CHAID)
-    - Decision Stump
     - M5
     - Conditional Decision Trees
 
@@ -127,7 +127,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         * [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)
         * [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
 
-
+* Speech Recognition
+* 	Natural language processing
 ## 4. Mathematics
 * Information Theory
     * [Entropy](https://binlidaily.github.io/2018-10-23-information-theory/)
