@@ -107,7 +107,7 @@ $$
 C=\frac{1}{2}\left\|y-a^{L}\right\|^{2}=\frac{1}{2} \sum_{j}\left(y_{j}-a_{j}^{L}\right)^{2}
 $$
 
-　　这是输出的激活值函数。
+　　值得注意的是这是一个关于输出激活值的函数，而不是以往的 $\hat{y}$。
 
 ### 2.3 反向传播的四个基本方程
 　　反向传播其实是对权重和偏置变化影响损失函数过程的理解，最终极的含义其实就是计算偏导 $\partial C / \partial w_{j k}^{l}$ 和 $\partial C / \partial b_{j}^{l}$。在计算这些值前，我们先引入一个中间量，$\delta_{j}^{l}$，其被称为 $l^{t h}$ 层第 $j^{t h}$ 个神经元上的**误差**。反向传播将给出计算误差 $\delta_{j}^{l}$ 的流程，然后将其关联到计算 $\partial C / \partial w_{j k}^{l}$ 和 $\partial C / \partial b_{j}^{l}$ 上。
@@ -144,11 +144,16 @@ $$
 \delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right) \tag{BP1a}
 $$
 
-![-w790](/img/media/15594743927626.jpg)
+<p align="center">
+  <img width="500" height="" src="/img/media/15594743927626.jpg"> 
+</p>
+
 
 　　我们利用链式法则分析可以看到计算当前层某个神经元的参数对损失函数的偏导时需要依赖下一层，依据链式法则，我们可以将某一层的某个神经元的误差改写一下。
 
-![-w680](/img/media/15594752205276.jpg)
+<p align="center">
+  <img width="500" height="" src="/img/media/15594752205276.jpg"> 
+</p>
 
 
 　　使用下一层的误差 $\delta^{l+1}$ 来表示当前层的误差 $\delta^{l}$：
@@ -211,16 +216,21 @@ $$
 
 
 **反向传播算法描述**
-1. **输入 $x$**：为输入层设置对应的激活值 $a^1$。
+1. **输入一个 $x$**：为输入层设置对应的激活值 $a^1$。
 2. **前向传播**：对每个 $l=2, 3, \dots, L$ 计算相应的 $z^{l}=w^{l} a^{l-1}+b^{l}$ 和 $a^{l}=\sigma\left(z^{l}\right)$。
 3. **输出层误差 $\delta^{L}$**：计算向量 $\delta^{L}=\nabla_{a} C \odot \sigma^{\prime}\left(z^{L}\right)$。
 4. **反向误差传播**：对每个 $l=L-1, L-2, \dots, 2$，计算 $\delta^{l}=\left(\left(w^{l+1}\right)^{T} \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^{l}\right)$。
-5. **输出**：损失函数的梯度由 $\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}$ 和 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$ 得出，然后通过权重更新的公式更新 $w^l$ 和 $b^l$。
+5. **输出权重和偏置**：损失函数的梯度由 $\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}$ 和 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$ 得出，然后通过权重更新的公式更新 $w^l$ 和 $b^l$。
+
+　　这里值得注意的是每次计算偏导只是针对一个样本 $x$，每次计算出来的偏导是 $\frac{\partial C_x}{\partial w}$ 和 $\frac{\partial C_x}{\partial b}$，需要计算出所有样本 $x$ 的偏导，平均之后得到最终的 $\frac{\partial C}{\partial w}$ 和 $\frac{\partial C}{\partial b}$，这是基于之前提到的关于损失函数的假设 $C=\frac{1}{n} \sum_{x} C_{x}$。
+
+
+
 
 ![-w1015](/img/media/15555770079332.jpg)
 
 
-* 如果在输出神经元是 $S$ 型 神经元时，交叉熵⼀般都是更好的选择。
+* 如果在输出神经元是 $S$ 型神经元时，交叉熵⼀般都是更好的选择。
 * 在输出层使用线性神经元时使用二次损失函数。
 
 　　softmax（柔性最大值）的输出可以被看做是⼀个概率分布，即下面的式子中 $a_{j}^{L}$ 解释成⽹络估计正确数字分类为 $j$ 的概率。
@@ -242,14 +252,38 @@ $$
 
 　　这种类型的按元素乘法有时候被称为 Hadamard 乘积，或者 Schur 乘积。
 
-
-### 微积分中的链式法则
-
-
 </details>
 
 
 ## 梯度消失和梯度爆炸
+　　我们考虑这样的简单网络结构：
+
+<p align="center">
+  <img width="500" height="" src="/img/media/15596137514693.jpg"> 
+</p>
+
+　　计算 $C$ 对 $w_1$ 和 $b_1$ 的偏导：
+
+$$
+\begin{aligned}
+\frac{\partial C}{\partial w_{1}}&=\frac{\partial C}{\partial a_{4}} \frac{\partial a_{4}}{\partial z_{4}} \frac{\partial z_{4}}{\partial x_{4}} \frac{\partial x_{4}}{\partial z_{3}} \frac{\partial z_{3}}{\partial x_{3}} \frac{\partial x_{3}}{\partial z_{2}} \frac{\partial z_{2}}{\partial x_{2}} \frac{\partial x_{2}}{\partial z_{1}} \frac{\partial z_{1}}{\partial w_{1}} \\ &=\frac{\partial C}{\partial a_{4}} \sigma^{\prime}\left(z_{4}\right) w_{4} \sigma^{\prime}\left(z_{3}\right) w_{3} \sigma^{\prime}\left(z_{2}\right) w_{2} \sigma^{\prime}\left(z_{1}\right)x
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\frac{\partial C}{\partial b_{1}}&=\frac{\partial C}{\partial a_{4}} \frac{\partial a_{4}}{\partial z_{4}} \frac{\partial z_{4}}{\partial x_{4}} \frac{\partial x_{4}}{\partial z_{3}} \frac{\partial z_{3}}{\partial x_{3}} \frac{\partial x_{3}}{\partial z_{2}} \frac{\partial z_{2}}{\partial x_{2}} \frac{\partial x_{2}}{\partial z_{1}} \frac{\partial z_{1}}{\partial b_{1}} \\ &=\frac{\partial C}{\partial a_{4}} \sigma^{\prime}\left(z_{4}\right) w_{4} \sigma^{\prime}\left(z_{3}\right) w_{3} \sigma^{\prime}\left(z_{2}\right) w_{2} \sigma^{\prime}\left(z_{1}\right)
+\end{aligned}
+$$
+
+　　我们知道 Sigmoid 函数的导数 $\sigma\prime(x)$ 如下图:
+
+<p align="center">
+  <img width="400" height="" src="/img/media/15596143632756.jpg"> 
+</p>
+
+　　即  $\sigma\prime(x)$  的最大值为 $\frac{1}{4}$，而一般来说初始化的权重会满足 $\left \vert w_j \right \vert<1$，那么 $\vert\sigma^{\prime}\left(z\right)w_j\vert\leq\frac{1}{4}$，如此连乘之后，梯度的结果很容易就越来越小，这就是导致**梯度消失**的原因。同样的，如果选择不同的权重初始化方法以及不同的激活函数，我们也有可能得到 $\vert\sigma^{\prime}\left(z\right)w_j\vert\gt1$ 的结果，那么经过累乘之后，梯度会迅速增长，造成**梯度爆炸**。
+
 　　梯度消失和梯度爆炸是一类情况，都是后向传播算法的先天不足，因为在求偏导时会有一系列的偏导连乘，导致如果偏导都比较小的话，越往前的层偏导结果越小；相对的如果偏导都大于 1，那么梯度的结果就会很大，有可能导致结果溢出。
 
 　　梯度消失容易出现的情况：
@@ -274,7 +308,7 @@ $$
 * 训练过程中，每个节点和层的误差梯度值持续超过 1.0；
 
 ### 梯度消失和梯度爆炸的解决方案
-
+　　细节描述可[参见](https://zhuanlan.zhihu.com/p/51490163)：
 1. 预训练加微调 (pre-training & fine-tunning)
 2. 梯度剪切（Gradient Clipping）
 3. 损失函数加入正则项

@@ -101,7 +101,11 @@ $$
 
 　　这就是原始的牛顿迭代法，其中搜索方向 $d_k = -H_{k}^{-1} g_{k}$ 叫做牛顿方向。
 
-![](/img/media/15594530743307.jpg)
+<p align="center">
+  <img width="500" height="" src="/img/media/15594530743307.jpg">
+</p>
+
+
 
 
 为什么牛顿法比较快？
@@ -123,6 +127,11 @@ $$
 
 ## 拟牛顿法 (Quasi-Newton method)
 　　牛顿法每次得带都需要求解复杂的 Hessian 矩阵的逆矩阵导致速度很慢甚至当海森矩阵奇异时可能导致数值计算失败或产生的数值不稳定，于是拟牛顿法被提了出来，它使用**正定矩阵**来近似海森矩阵的逆。
+
+<p align="center">
+  <img width="330" height="" src="/img/media/1280px-Newton_optimization_vs_grad_descent.svg.png"> 
+</p>
+
 
 
 ## References
