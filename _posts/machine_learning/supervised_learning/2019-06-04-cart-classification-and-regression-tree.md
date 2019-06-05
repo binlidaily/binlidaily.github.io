@@ -43,9 +43,11 @@ $$
 f ( x ) = \sum _ { m = 1 } ^ { M } c _ { m } I \left( x \in R _ { m } \right)
 $$
 
-其中 $I$ 为指示函数，$I =  \{ \begin{array} { l l } { 1 } & { i f \left( x \in R _ { m  } \right) } \\ { 0 } & { i f \left( x \notin R _ { m } \right) } \end{array} $
+其中 $I$ 为指示函数，$I=\left\{\begin{array}{ll}{1} & {\text { if }\left(x \in R_{m}\right)} \\ {0} & {\text { if }\left(x \notin R_{m}\right)}\end{array}\right.$
 
 可以用李宏毅视频上的截图来介绍！⁉️
+
+
 
 当输入空间的划分确定时，我们用平方误差 $\sum _ { x _ { i } \in R _ { m } } \left( y _ { i } - f \left( x _ { i } \right) \right) ^ { 2 }$ 来表示回归树对于训练数据的预测误差，用平方误差最小化原则来求解每个单元上的最优输出值。通过以下的证明，我们可以知道单元 $R_m$ 上的 $c_m$ 的最优值是 $R_m$ 上所有输入实例 $x_i$ 对应的输出的 $y_i$ 的均值：
 
