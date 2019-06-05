@@ -307,7 +307,7 @@ $$
 6. 引入残差结构
 7. LSTM
 
-<details><summary markdown="span">附录-Hadmard</summary>
+<details><summary markdown="span">### 附录</summary>
 ### Hadmard
 　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 $(s \odot t)_j=s_j t_j$。给个例⼦，
 
