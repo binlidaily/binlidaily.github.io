@@ -206,11 +206,6 @@ $$
 这时候，就不能按比例分配了，因为你必须给该样本一个确定的label，而不是薛定谔的label。这时候根据投票来确定，或者填充缺失值。
 
 
-
-
-
-
-
 ## 总结
 代码实现算法的时候，首先第一步需要将每一步要做什么细节的用伪代码的形式写下来才能比较好的进行 Code。
 1. 模型的起点，如何更新，结束条件有哪些
@@ -267,7 +262,9 @@ $$
 
 ---
 
-待解决问题:
+<!-- start detail -->
+<details><summary markdown="span">待解决问题</summary>
+
 * 代码实现
 
 ```python
@@ -288,6 +285,8 @@ $$
 
 ⁉️ 预测样本出现了，有的类在训练数据集的特征中不存在的情况要怎么处理?
 * 那就预测不出来啊
+</details>
+<!-- end detail -->
 
 ## References
 1. [Complete Guide to Parameter Tuning in XGBoost (with codes in Python)](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)
