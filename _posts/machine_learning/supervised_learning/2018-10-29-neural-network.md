@@ -242,17 +242,7 @@ $$
 　　使⽤均值为 0 标准差为 1 的⾼斯分布来对偏置进⾏初始化。这其实是可⾏的，因为这样并不会让我们的神经⽹络更容易饱和。
 
 
-<details><summary markdown="span">Appendix</summary>
-### Hadmard
-　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 $(s \odot t)_{j}=s_{j} t_{j}$。给个例⼦，
 
-$$
-\left[ \begin{array}{l}{1} \\ {2}\end{array}\right] \odot \left[ \begin{array}{l}{3} \\ {4}\end{array}\right]=\left[ \begin{array}{l}{1 * 3} \\ {2 * 4}\end{array}\right]=\left[ \begin{array}{l}{3} \\ {8}\end{array}\right]
-$$
-
-　　这种类型的按元素乘法有时候被称为 Hadamard 乘积，或者 Schur 乘积。
-
-</details>
 
 
 ## 梯度消失和梯度爆炸
@@ -317,7 +307,17 @@ $$
 6. 引入残差结构
 7. LSTM
 
+<details><summary markdown="span">附录-Hadmard</summary>
+### Hadmard
+　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 ${(s \odot t)}_{j}=s_{j} t_{j}$。给个例⼦，
 
+$$
+\left[ \begin{array}{l}{1} \\ {2}\end{array}\right] \odot \left[ \begin{array}{l}{3} \\ {4}\end{array}\right]=\left[ \begin{array}{l}{1 * 3} \\ {2 * 4}\end{array}\right]=\left[ \begin{array}{l}{3} \\ {8}\end{array}\right]
+$$
+
+　　这种类型的按元素乘法有时候被称为 Hadamard 乘积，或者 Schur 乘积。
+
+</details>
 ## References
 1. [CHAPTER 1: Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)
 2. [详解机器学习中的梯度消失、爆炸原因及其解决方法](https://blog.csdn.net/qq_25737169/article/details/78847691)
