@@ -112,7 +112,16 @@ $$\text{Gini}(D,a)={|D_1|\over{|D|}}\text{Gini}(D_1)+{|D_2|\over{|D|}}\text{Gini
 
 　　后剪枝决策树通常比预剪枝决策树保留了更多的分支，一般情形下，后剪枝决策树的欠拟合风险小，泛化性能往往也要优于预剪枝决策树。但后剪枝过程是在构建完全决策树之后进行的，并且要自底向上的对树中的所有非叶结点进行逐一考察，因此其训练时间开销要比未剪枝决策树和预剪枝决策树都大得多。
 
-## 决策树实践
+后剪枝算法有很多种：
+* Reduced-Error Pruning (REP,错误率降低剪枝）
+* Pessimistic Error Pruning (PEP，悲观剪枝）
+* Cost-Complexity Pruning(CCP，代价复杂度剪枝)
+* Minimum Error Pruning(MEP)
+* Critical Value Pruning(CVP)
+* Optimal Pruning(OPP)
+* Cost-Sensitive Decision Tree Pruning(CSDTP)
+
+## 2. 决策树实践
 ### 连续值处理
 对于离散的标称型数据来说，特征值是离散有限的，但是对于连续特征来说，其连续值就不一定是有限的了，于是我们需要进行连续属性离散化。最简单的而且也正是C4.5中采用的方法叫做二分法（bi-partition）。
 
