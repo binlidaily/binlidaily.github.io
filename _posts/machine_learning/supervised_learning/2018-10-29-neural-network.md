@@ -309,7 +309,7 @@ $$
 
 <details><summary markdown="span">附录-Hadmard</summary>
 ### Hadmard
-　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 ${(s \odot t)}_{j}=s_{j} t_{j}$。给个例⼦，
+　　反向传播算法基于常规的线性代数运算——诸如向量加法，向量矩阵乘法等。但是有⼀个运算不⼤常⻅。特别地，假设 $s$ 和 $t$ 是两个同样维度的向量。那么我们使⽤ $s \odot t$ 来表⽰按元素的乘积。所以 $s \odot t$ 的元素就是 ${(s \odot t)} _{j}=s_{j} t_{j}$。给个例⼦，
 
 $$
 \left[ \begin{array}{l}{1} \\ {2}\end{array}\right] \odot \left[ \begin{array}{l}{3} \\ {4}\end{array}\right]=\left[ \begin{array}{l}{1 * 3} \\ {2 * 4}\end{array}\right]=\left[ \begin{array}{l}{3} \\ {8}\end{array}\right]
