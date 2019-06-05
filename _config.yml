@@ -128,7 +128,8 @@ google_analytics: "UA-111874196-1"
 # --- Comments --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-disqus: "gitlinux"
+# disqus: "gitlinux"
+livere: "gitlinux"
 
 # To use Facebook Comments, fill in a Facebook App ID
 # fb_comment_id: ""
