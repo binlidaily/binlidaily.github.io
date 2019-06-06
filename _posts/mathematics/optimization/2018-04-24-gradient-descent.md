@@ -154,7 +154,6 @@ $$
 - 与 Method of steepest descent 的区别
 - 容易在具体些伪代码的时候弄不清楚对于一个具体的样本 i 来说该怎么安排
 
-整理图书看到《编程珠玑》便翻了翻，看到 5 年前本科时候的笔记，简直惊呆了。如此郑重其事地写上阅读起止时间，满屏的弹幕，难怪编程没学好了！🤣
 
 ## References
 1. [关于梯度下降法和牛顿法的数学推导](https://imlogm.github.io/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/gradientDescent/)
