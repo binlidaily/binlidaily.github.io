@@ -22,14 +22,14 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 * [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
 * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
+    - Decision Stump
+    - [Iterative Dichotomiser 3 (ID3)](https://binlidaily.github.io/2019-06-04-id3-iterative-dichotomiser-3/)
+    - [C4.5 and C5.0 (different versions of a powerful approach)](https://binlidaily.github.io/2019-06-04-C45/)
+    * [Classification and Regression Tree (CART)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
     * [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
-    - Decision Stump
-    - Iterative Dichotomiser 3 (ID3)
-    - C4.5 and C5.0 (different versions of a powerful approach)
-    * Classification and Regression Tree (CART)
     - Chi-squared Automatic Interaction Detection (CHAID)
     - M5
     - Conditional Decision Trees
