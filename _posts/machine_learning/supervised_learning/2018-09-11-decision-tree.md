@@ -113,17 +113,17 @@ $$\text{Gini}(D,a)={|D_1|\over{|D|}}\text{Gini}(D_1)+{|D_2|\over{|D|}}\text{Gini
 
 　　后剪枝决策树通常比预剪枝决策树保留了更多的分支，一般情形下，后剪枝决策树的欠拟合风险小，泛化性能往往也要优于预剪枝决策树。但后剪枝过程是在构建完全决策树之后进行的，并且要自底向上的对树中的所有非叶结点进行逐一考察，因此其训练时间开销要比未剪枝决策树和预剪枝决策树都大得多。
 
-后剪枝算法有很多种：
+　　后剪枝方法又分为两种，一类是把训练数据集分成树的生长集和剪枝集；另一类算法则是使用同一数据集进行决策树生长和剪枝。后剪枝算法有很多种：
 * Reduced-Error Pruning (REP,错误率降低剪枝）
-* Pessimistic Error Pruning (PEP，悲观剪枝）
-* Cost-Complexity Pruning(CCP，代价复杂度剪枝)
-* Minimum Error Pruning(MEP)
-* Critical Value Pruning(CVP)
-* Optimal Pruning(OPP)
-* Cost-Sensitive Decision Tree Pruning(CSDTP)
+* [Pessimistic Error Pruning (PEP，悲观剪枝）](http://gitlinux.net/2019-06-04-C45/)
+* Cost-Complexity Pruning (CCP，代价复杂度剪枝)
+* Minimum Error Pruning (MEP)
+* Critical Value Pruning (CVP)
+* Optimal Pruning (OPP)
+* Cost-Sensitive Decision Tree Pruning (CSDTP)
 
 前剪枝和后剪枝的比较：
-1. 前阈值的设定很敏感，一点点的变动，会引起整颗树非常大的变动，不好设定。 
+1. 前剪枝阈值的设定很敏感，一点点的变动，会引起整颗树非常大的变动，不好设定。 
 2. 前剪枝生成比后剪枝简洁的树 
 3. 一般用后剪得到的结果比较好
 
