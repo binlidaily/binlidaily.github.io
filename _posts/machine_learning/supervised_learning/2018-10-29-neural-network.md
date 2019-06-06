@@ -228,11 +228,20 @@ $$
 
 1. 输入训练样本的集合
 
-2. 对每个训练样本 $x$：
+2. 对每个训练样本 $x$：计算对应的输入激活 $a^{x, 1}$，执行下述步骤：
+    * **前向传播**：对每个 $l=2,3, \dots, L$ 从前往后计算每层带权输入和激活
+        * 带权输入：$z^{x, l}=w^{l} a^{x, l-1}+b^{l}$
+        * 激活：$a^{x, l}=\sigma\left(z^{x, l}\right)$
+    * **输出误差** $\delta^{x, L}$：计算输出层的误差 $\delta^{x, L}=\nabla_{a} C_{x} \odot \sigma^{\prime}\left(z^{x, L}\right)$
+    * **反向传播误差**：对每个 $l=L-1, L-2, \ldots, 2$，从后往前计算每层的误差
+        * $l$ 层误差：$\delta^{x, l}=\left(\left(w^{l+1}\right)^{T} \delta^{x, l+1}\right) \odot \sigma^{\prime}\left(z^{x, l}\right)$
 
+3. **梯度下降**：对每个 $l=L-1, L-2, \ldots, 2$ 更新每层的权重和偏置
+    * 权重更新：$w^{l} \rightarrow w^{l}-\frac{\eta}{m} \sum_{x} \delta^{x, l}\left(a^{x, l-1}\right)^{T}$
+    * 偏置更新：$b^{l} \rightarrow b^{l}-\frac{\eta}{m} \sum_{x} \delta^{x, l}$
 
+　　在实践过程中，会一次取 $\text{batch_size}$ 个样本的 batch 进行训练，这一次训练叫做一个 iteration，迭代更新了一次网络的参数。完整训练一次所有的样本叫做一个 epoch，一个 epoch 一共有 $\frac{\text{数据总样本数}}{\text{batch_size}}$ 个 batch。
 
-![-w1015](/img/media/15555770079332.jpg)
 
 
 * 如果在输出神经元是 $S$ 型神经元时，交叉熵⼀般都是更好的选择。
