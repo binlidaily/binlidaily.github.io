@@ -2,7 +2,6 @@
 layout: page
 title: About me
 subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
-subtitle: Why you'd want to go on a date with me
 ---
 
 <p align="center">
