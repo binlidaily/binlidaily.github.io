@@ -8,7 +8,7 @@ subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-
   <img width="200" height="" src="/img/media/4f33da32d6b5f.jpg">
 </p>
 
-My name is Bin Li (李斌 [<i class="fa fa-question-circle-o"></i>](https://en.wikipedia.org/wiki/Chinese_characters)), I completed my Master's degree at South China University of Technology in 2018, and received a bachelor's degree in Computer Science from Guangzhou University of Chinese Medicine in 2015.
+My name is Bin Li (李斌<sup>[<i class="fa fa-question-circle-o"></i>](https://en.wikipedia.org/wiki/Chinese_characters)</sup>), I completed my Master's degree at South China University of Technology in 2018, and received a bachelor's degree in Computer Science from Guangzhou University of Chinese Medicine in 2015.
 
 I really like `reading`, and I also like `Music`, `Drama`, `Badminton`, `Swimming`, `Skiiing`.
 
