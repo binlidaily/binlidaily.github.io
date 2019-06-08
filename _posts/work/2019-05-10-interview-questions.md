@@ -374,3 +374,4 @@ PageRank原理，怎么用模型来查找异常用户，我讲了一大堆我的
 3. [Algorithm_Interview_Notes-Chinese Github](https://github.com/imhuay/Algorithm_Interview_Notes-Chinese)
 4. [DeepLearning-500-questions](https://github.com/scutan90/DeepLearning-500-questions)
 5. [面试经验（机器学习）](http://www.icode9.com/content-4-117524.html)
+6. [机器学习岗面试总结](https://blog.csdn.net/zhihua_oba/article/details/78333650)
