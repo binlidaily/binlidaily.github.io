@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 我的天才女友
+subtitle: 「意」埃莱娜·费兰特
 author: "Bin Li"
 tags: [Reviews, Books]
 bigimg: /img/media/15555701839403.jpg
