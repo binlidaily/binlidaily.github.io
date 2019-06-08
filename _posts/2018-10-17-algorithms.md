@@ -11,7 +11,7 @@ published: true
 
 In order to facilitate the search, I wrote this blog. I've collected all algorithms that I learned or want to learn in `Machine Learning`, `Deep Learning`, `Mathematics` and `Data Structure and Algorithms`. I hope I can improve my skills and knowledge in these area with writing the interpretation about these algorithms. 
 
-## Theoretical Machine Learning
+## 1. Theoretical Machine Learning
 ### 1.1 Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
     * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)
@@ -71,6 +71,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 
 ### 1.3 Ensemble Learning
+- [Ensemble Learning](https://binlidaily.github.io/2019-02-08-ensembling-learning)
 - Logit Boost (Boosting)
 - Bootstrapped Aggregation (Bagging)
 - AdaBoost
