@@ -85,7 +85,7 @@ $$
 
 $$\hat{w} = (X^TWX)^{-1}X^TWy$$
 
-
+　　通过这样的式子就能计算出最优的模型参数。
 ## References
 1. [机器学习算法实践-标准与局部加权线性回归](http://pytlab.org/2017/10/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5-%E6%A0%87%E5%87%86%E4%B8%8E%E5%B1%80%E9%83%A8%E5%8A%A0%E6%9D%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/)
 2. [Day 97: Locally weighted regression](https://medium.com/100-days-of-algorithms/day-97-locally-weighted-regression-c9cfaff087fb)

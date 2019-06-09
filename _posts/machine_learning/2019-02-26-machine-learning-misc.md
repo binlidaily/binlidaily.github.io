@@ -13,6 +13,10 @@ published: true
 
 统计学习方法的三大要素：模型，策略和算法。
 
+1. Bagging + 决策树 = 随机森林
+2. AdaBoost + 决策树 = 提升树
+3. Gradient Boosting + 决策树 = GBDT
+
 ### Parametric algorithms VS Non-parametric Algorithms
 　　参数方法指的是那些有固定且有限的参数的模型，只需要存储这些参数即可不需要存储数据，因为我们在预测是不需要利用训练数据。参数化模型（Parametric Model）假设模型参数的维度固定，模型可以由有限维参数完全刻画。
 
