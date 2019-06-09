@@ -56,7 +56,7 @@ Boosting **缺点**：
 3. 将 $T$ 个基学习器的结果加权结合
 
 <p align="center">
-<img width="500" src="/img/media/15575681447743.jpg">
+<img width="600" src="/img/media/15575681447743.jpg">
 </p>
 
 Bagging **优点**：
@@ -64,11 +64,12 @@ Bagging **优点**：
 2. Bagging 主要关注降低方差（variance）。
 
 
-
-
 ### 2.1 Bagging 与 Boosting的区别
 
-　　二者的主要区别是**取样方式不同**。Bagging 采用均匀取样，而Boosting 根据错误率来取样，因此 Boosting 的分类精度要优于 Bagging。Bagging 的训练集的选择是随机的，各轮训练集之间相互独立，而 Boosting 的各轮训练集的选择与前面各轮的学习结果有关；Bagging 的各个预测函数没有权重，而 Boosting 是有权重的；Bagging 的各个预测函数可以并行生成，而Boosting 的各个预测函数只能顺序生成。对于象神经网络这样极为耗时的学习方法。Bagging 可通过并行训练节省大量时间开销。
+1. 样本选择上：Bagging 采用的是 Bootstrap 随机有放回抽样；而Boosting 每一轮的训练集是不变的，改变的只是每一个样本的权重。
+2. 样本权重：Bagging 使用的是均匀取样，每个样本权重相等；Boosting 根据错误率调整样本权重，错误率越大的样本权重越大。
+3. 预测函数：Bagging 所有的预测函数的权重相等；Boosting 中误差越小的预测函数其权重越大。
+4. 并行计算：Bagging 各个预测函数可以并行生成；Boosting 各个预测函数必须按顺序迭代生成。
 　　
 
 ## 3. 结合策略
@@ -147,7 +148,7 @@ print('The cross validated score is',cross.mean())
 　　值得注意的是，Voting Classifier 的集成方式用的都是不同类型的及分类器。
 
 
-### Bagging
+### 4.2 Bagging
 　　Bagging 是利用不同的数据子集对相似基模型进行集成，所以能够在一定程度上减少 Variance。
 ```python
 model=BaggingClassifier(base_estimator=DecisionTreeClassifier(),random_state=0,n_estimators=100)
@@ -161,7 +162,7 @@ print('The cross validated score for bagged Decision Tree is:',result.mean())
 # The cross validated score for bagged Decision Tree is: 0.820482635342
 ```
 
-### Boosting
+### 4.3 Boosting
 　　可以用 Adaboost, XGBoost 尝试提高模型效果。
 
 ## References
