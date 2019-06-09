@@ -29,7 +29,11 @@ published: true
 4. 重复进行训练和调整，直到基学习器数目达到预设值 $T$
 5. 将 $T$ 个基学习器的结果加权结合
 
-　　Boosting 算法最出名的是 Adaboost，具体可以参考之前[博文](https://binlidaily.github.io/2018-10-29-adaboost/)。对于 Boosting 的过程，值得注意的是如何对训练样本的分布进行调整，使得验证错误的样本能够得到纠正，一般来说有两种方式:
+　　Boosting 算法的应用:
+* 最出名的是 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
+* XGBoost
+
+　　对于 Boosting 的过程，值得注意的是如何对训练样本的分布进行调整，使得验证错误的样本能够得到纠正，一般来说有两种方式:
 * **重赋权值法**（re-weighting）：在每一轮训练过程中，根据样本分布为每个训练样本重新赋予一个权重。
 * **重采样法**（re-weighting）：对于无法接收带权重样本的基学习算法，根据样本分布对训练集重新进行采样，用重采样得到的样本集对基学习器进行训练。
     * 如何保证验证错误的样本得到更多关注？多复制一些分错样本的拷贝？
@@ -56,20 +60,22 @@ Boosting **缺点**：
 </p>
 
 Bagging **优点**：
-1. Bagging 是一个高效的集成学习算法。
+1. Bagging 是一个高效的集成学习算法，可以并行。
 2. Bagging 主要关注降低方差（variance）。
 
-为什么说bagging是减少variance，而boosting是减少bias? 
 
-Bagging与Boosting的区别：二者的主要区别是取样方式不同。Bagging采用均匀取样，而Boosting根据错误率来取样，因此Boosting的分类精度要优于Bagging。Bagging的训练集的选择是随机的，各轮训练集之间相互独立，而Boostlng的各轮训练集的选择与前面各轮的学习结果有关；Bagging的各个预测函数没有权重，而Boosting是有权重的；Bagging的各个预测函数可以并行生成，而Boosting的各个预测函数只能顺序生成。对于象神经网络这样极为耗时的学习方法。Bagging可通过并行训练节省大量时间开销。
-bagging和boosting都可以有效地提高分类的准确性。在大多数数据集中，boosting的准确性比bagging高。在有些数据集中，boosting会引起退化--- Overfit。
-Boosting思想的一种改进型AdaBoost方法在邮件过滤、文本分类方面都有很好的性能。
 
-## 结合策略
+
+### 2.1 Bagging 与 Boosting的区别
+
+　　二者的主要区别是**取样方式不同**。Bagging 采用均匀取样，而Boosting 根据错误率来取样，因此 Boosting 的分类精度要优于 Bagging。Bagging 的训练集的选择是随机的，各轮训练集之间相互独立，而 Boosting 的各轮训练集的选择与前面各轮的学习结果有关；Bagging 的各个预测函数没有权重，而 Boosting 是有权重的；Bagging 的各个预测函数可以并行生成，而Boosting 的各个预测函数只能顺序生成。对于象神经网络这样极为耗时的学习方法。Bagging 可通过并行训练节省大量时间开销。
+　　
+
+## 3. 结合策略
 　　训练好 $T$ 个基学习器 $\{h_1, h_2, \dots, h_T \}$ 后就要进行结合了，针对回归与分类的不同任务，常见的组合策略如下。
 
-### 平均法
-　　对于数值型输出 $h_{i}(\boldsymbol{x}) \in \mathbb{R}$，最常见的是平均法（averaging）：
+### 3.1 平均法
+　　对于数值型 (回归) 输出 $h_{i}(\boldsymbol{x}) \in \mathbb{R}$，最常见的是平均法（averaging）：
 
 * **简单平均法（simple averaging）**
 
@@ -83,31 +89,42 @@ $$
 H(\boldsymbol{x})=\sum_{i=1}^{T} w_{i} h_{i}(\boldsymbol{x})
 $$
 
-　　一般来说，在个体学习器的性能相差较大时宜采用加权平均法，而个体学习器性能相近时宜采用简单平均法。通常要求 $ w_{i} \ge 0$，$\sum_{i=1}^T = 1$。
+　　一般来说，在个体学习器的性能相差较大时宜采用加权平均法，而个体学习器性能相近时宜采用简单平均法。通常要求 $ w_{i} \ge 0$，$\sum_{i=1}^T w_i= 1$。
 
-### 投票法
+### 3.2 投票法
 　　对于分类任务来说，学习器 $h_i$ 从类别集 $\{c_1, c_2, \dots, c_N \}$ 中预测出一个标记，比较常见的组合策略是用投票法（voting），为了方便讨论，记 $h_i^j(x)$ 是 $h_i$ 在类别 $c_j$ 上的输出。
 
 * **绝对多数投票法（majority voting）**
 
-![-w603](/img/media/15575736687128.jpg)
+$$
+H(\boldsymbol{x})=\left\{\begin{array}{ll}{c_{j},} & {\text { if } \sum_{i=1}^{T} h_{i}^{j}(\boldsymbol{x})>0.5 \sum_{k=1}^{N} \sum_{i=1}^{T} h_{i}^{k}(\boldsymbol{x})}, \\ {\text {reject, }} & {\text { otherwise. }}\end{array}\right.
+$$
+
 　　表示某类别超过半数才标记，否则拒绝预测。
 
 * **相对多数投票法（plurality voting）**
 
-![-w279](/img/media/15575737855405.jpg)
+$$
+H(\boldsymbol{x})=c_{\arg \max\limits_{j} } \sum_{i=1}^{T} h_{i}^{j}(\boldsymbol{x})
+$$
 
 　　预测为类别的票最多的，如果有多个的票最多的类别，随机选择。
 * **加权投票法（weighted voting）**
 
-![-w302](/img/media/15575739497566.jpg)
+$$
+H(\boldsymbol{x})=c_{\mathrm{arg} \max\limits_{j} } \sum_{i=1}^{T} w_{i} h_{i}^{j}(\boldsymbol{x})
+$$
+
 
 　　通常要求 $ w_{i} \ge 0$，$\sum_{i=1}^T = 1$。
 
-![-w841](/img/media/15575740363426.jpg)
+<p align="center">
+<img width="" src="/img/media/15575740363426.jpg">
+</p>
 
-### Voting Classifier
-投票方式看选择选用 soft 还是 hard 投票模式，可以用 Sklearn 中现成的工具：
+## 4. 代码实践
+### 4.1 Voting Classifier
+　　投票方式看选择选用 soft 还是 hard 投票模式，可以用 Sklearn 中现成的工具：
 ```python
 from sklearn.ensemble import VotingClassifier
 ensemble_lin_rbf=VotingClassifier(estimators=[('KNN',KNeighborsClassifier(n_neighbors=10)),
@@ -127,11 +144,11 @@ print('The cross validated score is',cross.mean())
 # >>> The cross validated score is 0.823766031097
 ```
 
-值得注意的是，Voting Classifier 的集成方式用的都是不同类型的及分类器。
+　　值得注意的是，Voting Classifier 的集成方式用的都是不同类型的及分类器。
 
 
 ### Bagging
-Bagging 是利用不同的数据子集对相似基模型进行集成，所以能够在一定程度上减少 Variance。
+　　Bagging 是利用不同的数据子集对相似基模型进行集成，所以能够在一定程度上减少 Variance。
 ```python
 model=BaggingClassifier(base_estimator=DecisionTreeClassifier(),random_state=0,n_estimators=100)
 model.fit(train_X,train_Y)
@@ -145,10 +162,11 @@ print('The cross validated score for bagged Decision Tree is:',result.mean())
 ```
 
 ### Boosting
-可以用 Adaboost, XGBoost 尝试提高模型效果。
+　　可以用 Adaboost, XGBoost 尝试提高模型效果。
 
 ## References
 1. [EDA To Prediction(DieTanic)](https://www.kaggle.com/ash316/eda-to-prediction-dietanic)
 2. [Kaggle机器学习之模型融合（stacking）心得](https://zhuanlan.zhihu.com/p/26890738)
 3. [Stacking 代码](https://blog.csdn.net/qq1483661204/article/details/80157365)
 4. [从基础到实现：集成学习综合教程（附Python代码）](https://www.jiqizhixin.com/articles/2018-07-28-3)
+5. [为什么说bagging是减少variance，而boosting是减少bias? - 过拟合的回答 - 知乎](https://www.zhihu.com/question/26760839/answer/40337791)
