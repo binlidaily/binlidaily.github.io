@@ -9,6 +9,12 @@ comments: true
 published: true
 ---
 
+1）Bagging + 决策树 = 随机森林
+
+2）AdaBoost + 决策树 = 提升树
+
+3）Gradient Boosting + 决策树 = GBDT
+
 随机森林（Random Forest，RF）基于 Bagging 的想法，做了一定的改进，其基学习器是 CART，然而在选择划分特征的时候，RF 采用了随机的策略。不像之前的决策树在当前结点上遍历所有 $n$ 个样本特征中找到最优的划分属性，RF 会固定一个特征子集大小 $n_{sub}$，在当前结点样本的所有特征中随机选择 $n_{sub}$ 个特征，从其中选出最优的一个划分特征来进行特征划分。如此能够提高模型的泛化能力。显然，当 $n_{sub}=n$ 时，RF 的 CART 跟传统的保持一致。
 
 一般来说，$n_{sub}=n$ 越小，模型就越健壮，当然此时对数据的拟合程度就会变差。即 $n_{sub}=n$ 越小，variance 越小，bias 越大。
