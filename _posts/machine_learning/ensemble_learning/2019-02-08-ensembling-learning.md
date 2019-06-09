@@ -52,7 +52,7 @@ Boosting **缺点**：
 3. 将 $T$ 个基学习器的结果加权结合
 
 <p align="center">
-<img width="" src="/img/media/15575681447743.jpg">
+<img width="500" src="/img/media/15575681447743.jpg">
 </p>
 
 Bagging **优点**：
