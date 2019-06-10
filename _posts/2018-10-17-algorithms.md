@@ -28,6 +28,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Classification and Regression Tree (CART)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/)
     * [Random Forest = Bagging + Decision Tree](https://binlidaily.github.io/2018-12-11-random-forest/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
+    * [Boosting Tree](https://binlidaily.github.io/2019-06-10-boosting-tree)
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
     - Chi-squared Automatic Interaction Detection (CHAID)
