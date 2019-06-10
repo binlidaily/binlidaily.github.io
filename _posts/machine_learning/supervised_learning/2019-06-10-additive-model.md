@@ -72,7 +72,7 @@ $$
 
 
 
-
+## Generalized Additive Model
 
 ![-w798](/img/media/15440883649982.jpg)
 
