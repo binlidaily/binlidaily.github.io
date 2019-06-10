@@ -17,6 +17,7 @@ typora-root-url: ../../../../binlidaily.github.io
 ## 1. 神经元模型
 ### 1.1 感知机
 　　最早的神经元模型是由感知机来构建的，感知机工作原理：一个感知机接受几个二进制输入（$x_1, x_2, \dots, x_n$），并产生一个二进制输出。
+
 <p align="center">
   <img width="400" height="" src="/img/media/15554869148437.jpg">
 </p>

@@ -19,3 +19,5 @@ published: false
 
 ![-w1432](/img/media/15390089793697.jpg)
 
+## References
+1. [deeplearning-models](https://github.com/rasbt/deeplearning-models)
