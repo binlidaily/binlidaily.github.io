@@ -13,17 +13,19 @@ published: true
 
 $$- \left[ \frac { \partial L \left( y _ { i } , f \left( x _ { i } \right) \right) } { \partial f \left( x _ { i } \right) } \right] _ { f ( x ) = f _ { m - 1 } ( x ) }$$
 
-wiki 上有伪代码的总结：
-![-w732](/img/media/15443555046407.jpg)
 
-另一个伪代码介绍:
+![-w798](/img/media/15602347070035.jpg)
 
-![-w969](/img/media/15443556126300.jpg)
+　　我们从均方差损失中可以看到损失函数负梯度正好就是残差值，这也是利用损失函数负梯度拟合残差的一个灵感来源？
 
+　　那么梯度提升算法的思路如下：
 
-　　详细的部分可以参考[原论文](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)，或者另一个[总结](http://www.cse.chalmers.se/~richajo/dit865/files/gb_explainer.pdf)。
+![-w1098](/img/media/15602352595888.jpg)
+
+　　详细的部分可以参考[原论文](/assets/trebst.pdf)，如果我们用决策树作为基函数来实现梯度提升算法的话就得到了闻名遐迩的 [GBDT](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree/)。
 
 
 ## References
 1. [Gradient Boosting from scratch](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
 2. [梯度提升树(GBDT)原理小结](https://www.cnblogs.com/pinard/p/6140514.html)
+3. [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
