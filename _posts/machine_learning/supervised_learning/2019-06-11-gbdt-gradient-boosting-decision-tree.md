@@ -195,7 +195,27 @@ $$
 
 
 ## GBDT的正则化
-可参考博文。GBDT 模型常用的库有 XGBoost，LightGBM和 CatBoost 等。
+　　和 Adaboost 一样，我们也需要对 GBDT 进行正则化，防止过拟合。GBDT 的正则化主要有三种方式。
+
+　　1) 第一种是和 Adaboost 类似的正则化项，即步长(learning rate)。定义为 $\nu$,对于前面的弱学习器的迭代
+
+$$
+f_{k}(x)=f_{k-1}(x)+h_{k}(x)
+$$
+
+　　　　如果我们加上了正则化项，则有
+
+$$
+f_{k}(x)=f_{k-1}(x)+\nu h_{k}(x)
+$$
+
+　　$\nu$　的取值范围为 $0<\nu \leq 1$。对于同样的训练集学习效果，较小的 $\nu$ 意味着我们需要更多的弱学习器的迭代次数。通常我们用步长和迭代最大次数一起来决定算法的拟合效果。
+
+　　2）第二种正则化的方式是通过子采样比例（subsample），取值为 (0,1]。注意这里的子采样和随机森林不一样，随机森林使用的是放回抽样，而这里是不放回抽样。如果取值为 1，则全部样本都使用，等于没有使用子采样。如果取值小于 1，则只有一部分样本会去做 GBDT 的决策树拟合。选择小于 1 的比例可以减少方差，即防止过拟合，但是会增加样本拟合的偏差，因此取值不能太低。推荐在 [0.5, 0.8]之间。
+
+　　使用了子采样的 GBDT 有时也称作随机梯度提升树 (Stochastic Gradient Boosting Tree, SGBT)。由于使用了子采样，程序可以通过采样分发到不同的任务去做 boosting 的迭代过程，最后形成新树，从而减少弱学习器难以并行学习的弱点。
+
+　　第三种是对于弱学习器即 CART 回归树进行正则化剪枝，可以参考之前对决策剪枝的[介绍](https://binlidaily.github.io/2018-09-11-decision-tree/#13-剪枝处理pruning)。
 
 ## Parameter Tuning
 [参考](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 调参的过程。
