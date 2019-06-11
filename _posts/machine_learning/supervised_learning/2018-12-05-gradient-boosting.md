@@ -13,14 +13,18 @@ published: true
 
 $$- \left[ \frac { \partial L \left( y _ { i } , f \left( x _ { i } \right) \right) } { \partial f \left( x _ { i } \right) } \right] _ { f ( x ) = f _ { m - 1 } ( x ) }$$
 
-
-![-w798](/img/media/15602347070035.jpg)
+<p align="center">
+  <img width="550" height="" src="/img/media/15602347070035.jpg">
+</p>
 
 　　我们从均方差损失中可以看到损失函数负梯度正好就是残差值，这也是利用损失函数负梯度拟合残差的一个灵感来源？
 
 　　那么梯度提升算法的思路如下：
 
-![-w1098](/img/media/15602352595888.jpg)
+<p align="center">
+  <img width="500" height="" src="/img/media/15602352595888.jpg">
+</p>
+
 
 　　详细的部分可以参考[原论文](/assets/trebst.pdf)，如果我们用决策树作为基函数来实现梯度提升算法的话就得到了闻名遐迩的 [GBDT](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree/)。
 
