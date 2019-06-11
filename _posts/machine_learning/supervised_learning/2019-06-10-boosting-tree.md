@@ -101,5 +101,18 @@ $$
 
 $$f_M(x)=\sum_{m=1}^M T(x; \Theta_m)$$
 
+　　以此作为残差的估计值，这个估计值作为训练当前学习器的训练样本的 label！并且从第一个弱学习器训练的时候，这个残差估计值是样本 label 的平均值！
+
+⁉️ 为什么要用残差做 label？
+
+At each stage ${\displaystyle m}$ , ${\displaystyle 1\leq m\leq M}$, of gradient boosting, it may be assumed that there is some imperfect model ${\displaystyle F_{m}}$ (at the outset, a very weak model that just predicts the mean y in the training set could be used). The gradient boosting algorithm improves on ${\displaystyle F_{m}}$ by constructing a new model that adds an estimator h to provide a better model: ${\displaystyle F_{m+1}(x)=F_{m}(x)+h(x)} $. To find ${\displaystyle h}$, the gradient boosting solution starts with the observation that a perfect h would imply
+
+${\displaystyle F_{m+1}(x)=F_{m}(x)+h(x)=y}$ or, equivalently,
+
+$${\displaystyle h(x)=y-F_{m}(x)} $$
+
+Therefore, gradient boosting will fit h to the residual ${\displaystyle y-F_{m}(x)}$. 
+
+
 ## References
 1. 统计学习方法
