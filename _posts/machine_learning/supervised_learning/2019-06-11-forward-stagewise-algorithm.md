@@ -41,7 +41,7 @@ $$
 \min _{\beta, \gamma} \sum_{i=1}^{N} L\left(y_{i}, \beta b\left(x_{i} ; \gamma\right)\right)
 $$
 
-**前向分布算法**
+**前向分布算法流程**
 * 输入：
     * 训练数据集：$T=\\{\left(x_{1}, y_{1}\right),\left\langle x_{2}, y_{2}\right), \cdots,\left(x_{N}, y_{N}\right)\\}$
     * 损失函数：$L(y, f(x))$
