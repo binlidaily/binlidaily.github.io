@@ -11,6 +11,8 @@ published: true
 
 In order to facilitate the search, I wrote this blog. I've collected all algorithms that I learned or want to learn in `Machine Learning`, `Deep Learning`, `Mathematics` and `Data Structure and Algorithms`. I hope I can improve my skills and knowledge in these area with writing the interpretation about these algorithms. 
 
+{% include toc.html %}
+
 ## 1. Theoretical Machine Learning
 ### 1.1 Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
@@ -132,6 +134,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 * Speech Recognition
 * 	Natural language processing
+
+
 ## 4. Mathematics
 * Information Theory
     * [Entropy](https://binlidaily.github.io/2018-10-23-information-theory/)
