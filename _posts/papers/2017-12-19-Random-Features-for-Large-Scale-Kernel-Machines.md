@@ -10,34 +10,34 @@ style: |
     } 
 ---
 
-最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf) 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将简要做一介绍。这篇文章的作者在 2017 年获奖时做报告的时候还提出了一个富有争议性的观点，[“Machine Learning is Alchemy.”](http://www.argmin.net/2017/12/05/kitchen-sinks/)，这个论点被 Yann Lecun 抨击了，各有己见吧。
+　　最近要在组会上汇报一篇这篇文章，于是就做了更多了解。 [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf) 是 2007 年的 NIPS 文章，在 2017 年的时候这篇文章获得的 Test-of-time Award，作为解决大规模 Kernel Machines 的算法，可见其有效性，我们将简要做一介绍。这篇文章的作者在 2017 年获奖时做报告的时候还提出了一个富有争议性的观点，[“Machine Learning is Alchemy.”](http://www.argmin.net/2017/12/05/kitchen-sinks/)，这个论点被 Yann Lecun 抨击了，各有己见吧。
 
 <!--more-->
 
 ## Motivation
-现在的数据集普遍非常大，能用 kernel machines 处理的数据量比较小，因为有 kernel matrix 的存在，需要相对较大的存储和计算资源。而且一般的 kernel machines 都有如下的形式：
+　　现在的数据集普遍非常大，能用 kernel machines 处理的数据量比较小，因为有 kernel matrix 的存在，需要相对较大的存储和计算资源。而且一般的 kernel machines 都有如下的形式：
 
 $$f(x) = \Sigma_{i=1}^N c_i k(X_i, X) \Longrightarrow O(N*d)$$
 
 及时是在测试或者预测的时候，计算复杂度依然是很高。于是，这篇文章想针对 large scale 的 kernel machines 做一个优化，提高其训练和测试（预测）的速度。
 
 ## Introduction
-在实践过程中我们知道，很多情况下，我们是没有办法保证所有的数据都是线性可分的，那么，于是我们就会使用核技巧，使得在原来空间不可分的数据，映射到高维的特征空间后变得线性可分。具体就不展开介绍，如下图所示：
+　　在实践过程中我们知道，很多情况下，我们是没有办法保证所有的数据都是线性可分的，那么，于是我们就会使用核技巧，使得在原来空间不可分的数据，映射到高维的特征空间后变得线性可分。具体就不展开介绍，如下图所示：
 
 ![](/img/media/15149048791755.jpg)
 
 
-我们从核函数的特性出发，每个核函数都有如下的特性：
+　　我们从核函数的特性出发，每个核函数都有如下的特性：
 
 $$k(x,y) = <\phi(x),\phi(y)>$$
 
-但是问题是我们将原来的数据空间映射到**高维**的特征空间后，往往是使得我们的模型变得复杂了。那么我们能不能找到一种映射或者转换，使得在保证结果和向高维映射的结果接近但其本身是很低维的转换呢？这篇论文就是朝着这个目标出发，想办法设计这样的**低维转换**。
+　　但是问题是我们将原来的数据空间映射到**高维**的特征空间后，往往是使得我们的模型变得复杂了。那么我们能不能找到一种映射或者转换，使得在保证结果和向高维映射的结果接近但其本身是很低维的转换呢？这篇论文就是朝着这个目标出发，想办法设计这样的**低维转换**。
 
 $$k(x,y) = ~ <\phi(x),\phi(y)>  ~ \approx z(x)^T z(y)$$
 
-即我们想要找到这样的转换 $z(x)$，使得输入数据空间转换之后的结果与往高维映射后的结果接近。那么接下来的问题就是我们怎么去找这个 $z(x)$ 了。
+　　即我们想要找到这样的转换 $z(x)$，使得输入数据空间转换之后的结果与往高维映射后的结果接近。那么接下来的问题就是我们怎么去找这个 $z(x)$ 了。
 
-但是文中对于怎么找 $z(x)$ 的思考过程没有给出详细的阐释，就直接给出了结果说我们针对 shift-invariant kernels 有了基于傅里叶变换和基于平移网格变换的两种方法 Random Fourier Features 和 Random Binning Features。
+　　但是文中对于怎么找 $z(x)$ 的思考过程没有给出详细的阐释，就直接给出了结果说我们针对 shift-invariant kernels 有了基于傅里叶变换和基于平移网格变换的两种方法 Random Fourier Features 和 Random Binning Features。
 
 > Let $x,y∈ℝ$ where $y=x−t$. Translation-invariant (or shift-invariant) kernel $κ(⋅,⋅)$ is defined as $κ(x,y)=κ(x,x−t)=κ(t)$.
 
@@ -46,14 +46,14 @@ $$k(x,y) = ~ <\phi(x),\phi(y)>  ~ \approx z(x)^T z(y)$$
 
 ![](/img/media/15149074215505.jpg)
 
-这里其实还没有完全从数学的角度推导细致，大家先看下，如有问题请在评论区指出。
+　　这里其实还没有完全从数学的角度推导细致，大家先看下，如有问题请在评论区指出。
 
-该算法有两个条件：
+　　该算法有两个条件：
 
 1. 核函数是平移不变核（shift-invariant kernels），$k(x,y) = k(z)$, 其中 $x-y=z$。
 2. k(z) 必须在 $R^d$ 上正定
 
-Random Fourier Features 算法步骤如下：
+　　Random Fourier Features 算法步骤如下：
 
 1. Compute the Fourier transform of $k$: 
     $$\mathcal{F}_k(w) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{\mathbb{R}^d} k(\textbf{z}) e^{i\langle w,z \rangle} d\textbf{z} $$
