@@ -909,7 +909,7 @@ print(s.kurt())
 
 　　序号编码通常用于处理类别间具有大小关系的数据，例如成绩，可以分为低、中、高档，存在大小排序关系。序号编码会按大小关系对类别特征赋予一个数值 ID，转换后保留了大小关系。
 
-1、使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $\text{n_samples}$ 大小的 $[0, \text{n_classes}-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
+1. 使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $\text{n_samples}$ 大小的 $[0, \text{n_classes}-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
 
 ```python
 >>> from sklearn.preprocessing import OrdinalEncoder
@@ -930,7 +930,7 @@ array([['Male', 1],
 
 　　fit_transform() 函数就是先 fit() 完直接 transform()。
 
-2、使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签（Target labels）编码到 $[0, n\_classes-1]$ 内取值的结果，输入大小为(n_samples,) 的数组：
+2. 使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签 (Target labels) 编码到 $[0, \text{n_classes}-1]$ 内取值的结果，输入大小为$(\text{n_samples}, )$ 的数组：
 
 ```python
 >>> from sklearn import preprocessing
