@@ -909,7 +909,7 @@ print(s.kurt())
 
 　　序号编码通常用于处理类别间具有大小关系的数据，例如成绩，可以分为低、中、高档，存在大小排序关系。序号编码会按大小关系对类别特征赋予一个数值 ID，转换后保留了大小关系。
 
-1. 使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $\text{n_samples}$ 大小的 $[0, \text{n_classes}-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
+1、使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $\text{n_samples}$ 大小的 $[0, \text{n_classes}-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
 
 ```python
 >>> from sklearn.preprocessing import OrdinalEncoder
@@ -930,7 +930,7 @@ array([['Male', 1],
 
 　　fit_transform() 函数就是先 fit() 完直接 transform()。
 
-2. 使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签 (Target labels) 编码到 $[0, \text{n_classes}-1]$ 内取值的结果，输入大小为$(\text{n_samples}, )$ 的数组：
+2、使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签 (Target labels) 编码到 $[0, \text{n_classes}-1]$ 内取值的结果，输入大小为$(\text{n_samples}, )$ 的数组：
 
 ```python
 >>> from sklearn import preprocessing
@@ -945,12 +945,12 @@ array([0, 0, 1, 2]...)
 array([1, 1, 2, 6])
 ```
 
-
+值得注意的几个点：
 
 - 类别特征要变成数值才能喂给模型
-- 采用自然数编码给每一个类别分配一个编号
-- 除非类别特征本身有顺序特征外，类别特征的数值大小没有意义，所以自然数编码效果一般不是很好，可以对类别编号进行洗牌，训练多个模型进行融合进一步提升模型效果
-- 一般来说操作消耗内存小，训练时间快
+- 采用自然数编码给每一个类别分配一个从 0 开始的编号
+- 除非类别特征本身有顺序特征外，类别特征的数值大小没有意义，所以自然数编码效果一般不是很好，可以对类别编号进行洗牌，训练多个模型进行融合进一步提升模型效果 (实例？)
+- 一般来说该操作消耗内存小，训练时间快
 
 ### 3.2 独热编码 (One-Hot Encoding)
 
@@ -965,7 +965,7 @@ array([1, 1, 2, 6])
     * 二是在逻辑回归模型中，参数的数量会随着维度的增高而增加，容易引起过拟合问题
     * 三是通常只有部分维度是对分类、预测有帮助，因此可以考虑配合特征选择来降低维度
 
-1、使用 [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 类针对无顺序性类别特征进行独热编码，输入大小为 (n_samples, n_features) 的数组：
+1、使用 [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 类针对无顺序性类别特征进行独热编码，输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
 
 ```python
 >>> from sklearn.preprocessing import OneHotEncoder
@@ -1016,7 +1016,7 @@ array([[1, 0, 0, 0],
 2  3       1       0       0       0       1
 ```
 
-当然这里的 get_dummies 是做 One-Hot Encoding，与 Dummy Encoding（哑编码）还是有些区别的，真正的Dummy Encoding 是将一个类别特征编码成 $n\_classes- 1 $ 维度的 $0/1$ 向量，编码时这 $n\_classes- 1 $ 个类的对应在其位置上取值为 1，其他取 0，剩下的那个类用这 $n\_classes- 1 $ 全部去 0 的状态表示。
+　　当然这里的 get_dummies 是做 One-Hot Encoding，与 Dummy Encoding (哑编码) 还是有些区别的，真正的 Dummy Encoding 是将一个类别特征编码成 $\text{n_classes} - 1$ 维度的 $0/1$ 向量，编码时这 $\text{n_classes} - 1$ 个类的对应在其位置上取值为 1，其他取 0，剩下的那个类用这 $\text{n_classes}- 1 $ 全部去 0 的状态表示。
 
 🐽注意：
 
