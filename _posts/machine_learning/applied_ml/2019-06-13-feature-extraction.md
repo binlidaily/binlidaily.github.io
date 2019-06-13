@@ -9,10 +9,11 @@ published: true
 typora-root-url: ../../../../binlidaily.github.io
 ---
 
+　　特征提取 (Feature Extraction) 是特征工程两大部分中的第一个部分，特征的挖掘和提取一般跟专业领域知识强相关，特征工程可以说是业务逻辑的一种数据层面的表示。本文从常用的几个方面展开介绍特征提取的方法。
+
 {% include toc.html %}
 
-## 一.  特征提取 (Feature Extraction) 
-特征的挖掘一般跟专业领域知识强相关，特征工程可以说是业务逻辑的一种数据层面的表示。
+
 
 ### 1. 探索性数据分析 (Exploratory Data Analysis, EDA)
 EDA 的目的是尽可能地洞察数据集、发现数据的内部结构、提取重要的特征、检查异常值、检验基本假设、建立初步的模型。EDA 技术一般分为两类：
@@ -301,7 +302,7 @@ items_popularity
 
   - 将缺失作为一种信息编码喂给模型进行学习
 
-- 对于竞赛而言最好不要直接删除，最好另作`特殊编码`，或者想办法最大程度保留缺失值所带来的`信息`。：
+- 3. 对于竞赛而言最好不要直接删除，最好另作`特殊编码`，或者想办法最大程度保留缺失值所带来的`信息`。：
 
   - `统计`样本的缺失值数量，作为新的特征。
   - 将缺失数量做一个`排序`，如果发现3份数据（train、test、unlabeled）都呈阶梯状，于是就可以根据缺失数量将数据划分为若干部分，作为新的特征。
@@ -908,12 +909,7 @@ print(s.kurt())
 
 　　序号编码通常用于处理类别间具有大小关系的数据，例如成绩，可以分为低、中、高档，存在大小排序关系。序号编码会按大小关系对类别特征赋予一个数值 ID，转换后保留了大小关系。
 
-- 类别特征要变成数值才能喂给模型
-- 采用自然数编码给每一个类别分配一个编号
-- 除非类别特征本身有顺序特征外，类别特征的数值大小没有意义，所以自然数编码效果一般不是很好，可以对类别编号进行洗牌，训练多个模型进行融合进一步提升模型效果
-- 但是一般来说操作消耗内存小，训练时间快
-
-1、使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $n\_samples$ 大小的 $[0, n\_classes-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 (n_samples, n_features) 的数组：
+1、使用 [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#sklearn.preprocessing.OrdinalEncoder) 类将类别特征编码到一个 $\text{n_samples}$ 大小的 $[0, \text{n_classes}-1]$ 内取值的矢量，每个样本仅对应一个 label，即输入大小为 $(\text{n_samples}, \text{n_features})$ 的数组：
 
 ```python
 >>> from sklearn.preprocessing import OrdinalEncoder
@@ -932,7 +928,7 @@ array([['Male', 1],
        ['Female', 2]], dtype=object)
 ```
 
-fit_transform() 函数就是先 fit() 完直接 transform()。
+　　fit_transform() 函数就是先 fit() 完直接 transform()。
 
 2、使用 [LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) 类将类别标签（Target labels）编码到 $[0, n\_classes-1]$ 内取值的结果，输入大小为(n_samples,) 的数组：
 
@@ -948,6 +944,13 @@ array([0, 0, 1, 2]...)
 >>> le.inverse_transform([0, 0, 1, 2])
 array([1, 1, 2, 6])
 ```
+
+
+
+- 类别特征要变成数值才能喂给模型
+- 采用自然数编码给每一个类别分配一个编号
+- 除非类别特征本身有顺序特征外，类别特征的数值大小没有意义，所以自然数编码效果一般不是很好，可以对类别编号进行洗牌，训练多个模型进行融合进一步提升模型效果
+- 一般来说操作消耗内存小，训练时间快
 
 ### 3.2 独热编码 (One-Hot Encoding)
 
@@ -985,9 +988,9 @@ array([['Male', 1],
 array(['x0_Female', 'x0_Male', 'x1_1', 'x1_2', 'x1_3'], dtype=object)
 ```
 
-得到的结果大小是 $(特征个数 \times 每个特征的类别个数)$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
+　　得到的结果大小是 $(特征个数 \times 每个特征的类别个数)$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
 
-2、使用 [LabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html) 类针对类别标签（Target labels）独热编码，输入大小为(n_samples,) 的数组：
+2、使用 [LabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html) 类针对类别标签 (Target labels) 独热编码，输入大小为 $(\text{n_samples}, )$ 的数组：
 
 ```python
 >>> from sklearn import preprocessing
