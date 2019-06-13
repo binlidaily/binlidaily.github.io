@@ -1030,17 +1030,29 @@ array([[1, 0, 0, 0],
 　　哑编码与 One-Hot 编码很类似，区别在于哑编码对于一个具有 $\text{n_classes} $ 个类别的特征，哑编码会将类别特征编码成 $\text{n_classes} - 1$ 个维度的 $0/1$ 向量，编码时这 $\text{n_classes} - 1$ 个类的对应在其位置上取值为 1，其他取 0，剩下的那个类用这 $\text{n_classes}- 1 $ 全部去 0 的状态表示。所以对于编码结果来说，哑编码比独热编码少一位表示。
 
 　　都有独热编码了为什么还提出一个拗口的哑编码？原来独热编码有其缺点，可能会引起虚拟陷阱问题，亦即共线问题。这里用线性回归举个例子，考虑这样一种样本，只有一个三种类别的离散特征，那么独热编码后样本特征维度拓展到了三维，可以表示成如下的形式：
+
+
 $$
 \theta^{T} x=x_{0}+\theta_{1} x_{1}+\theta_{2} x_{2}+\theta_{3} x_{3}
 $$
+
+
 　　其中有：
+
+
 $$
 x_{1}+x_{2}+x_{3}=1
 $$
+
+
 　　于是有：
+
+
 $$
 \begin{aligned} \theta^{T} x &=\theta_{0}+\theta_{1} x_{1}+\theta_{2} x_{2}+\theta_{3} x_{3} \\ &=\theta_{0}+\theta_{1} x_{1}+\theta_{2} x_{2}+\alpha \theta_{3} x_{3}+(1-\alpha) \theta_{3} x_{3} \\ &=\theta_{0}+\theta_{1} x_{1}+\theta_{2} x_{2}+\alpha \theta_{3}\left(1-x_{1}-x_{2}\right)+(1-\alpha) \theta_{3} x_{3} \\ &=\left(\theta_{0}+\alpha \theta_{3}\right)+\left(\theta_{1}-\alpha \theta_{3}\right) x_{1}+\left(\theta_{2}-\alpha \theta_{3}\right) x_{2}+(1-\alpha) \theta_{3} x_{3} \end{aligned}
 $$
+
+
 　　由此可以看出，参数 $\left(\theta_{0}, \theta_{1}, \theta_{2}, \theta_{3}\right)$ 与 $\left(\theta_{0}+a \theta_{3}, \theta_{1}-a \theta_{3}, \theta_{2}-\alpha \theta_{3},(1-a) \theta_{3}\right)$ 等价，而 $\alpha$ 可以取任何值，那么这种情况下模型很难学到很靠谱的参数，这个问题就被称为虚拟陷阱。产生这种问题的原因是偏置 $\theta_0$ 跟其他变量之间有线性关系，可以从下面三个方面解决这个问题：
 
 1. 去掉偏置项 $\theta_0$，此时模型就只有唯一解了。可以将几个实例带进去检测，比如说 $(0, 0, 1)$，没有偏置项后，只有 $\alpha = 0$ 才符合上面的变换。
