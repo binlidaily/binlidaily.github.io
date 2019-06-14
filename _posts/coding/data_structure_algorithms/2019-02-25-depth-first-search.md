@@ -97,3 +97,5 @@ def post_order_stack(self, root):
 			
 	return res[::-1]
 ```
+
+　　当然，不一定非要用到树，可以只用到其迭代的思想。
