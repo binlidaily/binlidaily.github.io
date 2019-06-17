@@ -46,7 +46,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Self-Organizing Map (SOM)
     - Locally Weighted Learning (LWL)
 
-* Bayesian
+* Probabilistic Graphical Models
     * [Naive Bayes](https://binlidaily.github.io/2019-05-09-naive-bayes/)
     - Gaussian Naive Bayes
     - Multinomial Naive Bayes
