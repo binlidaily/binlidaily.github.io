@@ -45,7 +45,66 @@ class Solution(object):
         return max(dp) if dp else 0
 ```
 
-　　对应的可以做一个优化，
+　　按照前人的思考，我们可以维护一个数组 ends，这个数组用来记录遍历时得到的单调递增的数据序列，该序列大小即为想要的结果，而其对应的序列不一定为要对应的递增序列。
+1. 如果遍历到的数比 ends 首个数小，直接替换。
+2. 如果遍历到的数比 ends 末尾数大，那么就补充到 ends 末尾。
+3. 如果遍历到的数位于 ends 中间，就用二分法找到对应的位置替换。
+
+```python
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if nums is None or len(nums) <= 0:
+            return 0
+        ends = [nums[0]]
+        for num in nums:
+            if num < ends[0]:
+                ends[0] = num
+            elif num > ends[-1]:
+                ends.append(num)
+            else:
+                left, right = 0, len(ends)
+                while left < right:
+                    mid = (left+ right) / 2
+                    if ends[mid] < num:
+                        left = mid + 1
+                    else:
+                        right = mid
+                ends[left] = num
+        return len(ends)
+# Runtime: 28 ms, faster than 91.63% of Python online submissions for Longest Increasing Subsequence.
+# Memory Usage: 12.1 MB, less than 12.60% of Python online submissions for Longest Increasing Subsequence.
+```
+
+　　可以将上述解法修改成对应比较好理解的方式：
+```python
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = []
+        n = len(nums)
+        for i in range(n):
+            left, right = 0, len(dp)
+            while left < right:
+                mid = (left + right) / 2
+                if dp[mid] < nums[i]:
+                    left = mid + 1
+                else:
+                    right = mid
+            if right >= len(dp):
+                dp.append(nums[i])
+            else:
+                dp[left] = nums[i]
+        return len(dp)
+# Runtime: 28 ms, faster than 91.63% of Python online submissions for Longest Increasing Subsequence.
+# Memory Usage: 11.9 MB, less than 54.04% of Python online submissions for Longest Increasing Subsequence.
+```
 
 ## References
 1. [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)

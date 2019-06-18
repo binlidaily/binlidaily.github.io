@@ -10,6 +10,16 @@ published: true
 ---
 
 ## 生成模型和判别模型
+![](/img/media/15607792534960.jpg)
+
+其实机器学习的任务是从属性X预测标记Y，即求概率P(Y|X)；
+
+对于判别式模型来说求得P(Y|X)，对未见示例X，根据P(Y|X)可以求得标记Y，即可以直接判别出来，如上图的左边所示，实际是就是直接得到了判别边界，所以传统的、耳熟能详的机器学习算法如线性回归模型、支持向量机SVM等都是判别式模型，这些模型的特点都是输入属性X可以直接得到Y（对于二分类任务来说，实际得到一个score，当score大于threshold时则为正类，否则为反类）~（根本原因个人认为是对于某示例X_1，对正例和反例的标记的条件概率之和等于1，即P(Y_1|X_1)+P(Y_2|X_1)=1）
+
+而生成式模型求得P(Y,X)，对于未见示例X，你要求出X与不同标记之间的联合概率分布，然后大的获胜，如上图右边所示，并没有什么边界存在，对于未见示例（红三角），求两个联合概率分布（有两个类），比较一下，取那个大的。机器学习中朴素贝叶斯模型、隐马尔可夫模型HMM等都是生成式模型，熟悉Naive Bayes的都知道，对于输入X，需要求出好几个联合概率，然后较大的那个就是预测结果~根本原因个人认为是对于某示例X_1，对正例和反例的标记的联合概率不等于1，即P(Y_1,X_1)+P(Y_2,X_1)<1，要遍历所有的X和Y的联合概率求和，即sum(P(X,Y))=1，具体可参见楼上woodyhui提到的维基百科Generative model里的例子）
+
+
+
 无论是生成式模型还是判别式模型，都可作为分类器使用，分类器的数学表达即为：给定输入 $X$ 以及分类变量 $Y$，求 $P(Y\vert X)$。
 
 判别式模型直接估算 $P(Y\vert X)$，或者也可像 SVM 那样，估算出输入和输出之间的映射，与概率无关；
@@ -33,4 +43,5 @@ Nearest-Neighbor：比如一个二分类问题，新来一个测试点，当要�
 
 ## References
 1. [生成式模型（generative） vs 判别式模型（discriminative）](https://blog.csdn.net/lanchunhui/article/details/60321358)
-2. [参数方法（parameter）与非参数方法（nonparameter）](https://blog.csdn.net/lanchunhui/article/details/53574727)
+2. [机器学习“判定模型”和“生成模型”有什么区别？](https://www.zhihu.com/question/20446337/answer/256466823)
+3. [参数方法（parameter）与非参数方法（nonparameter）](https://blog.csdn.net/lanchunhui/article/details/53574727)
