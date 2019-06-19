@@ -23,6 +23,8 @@ published: true
 
 [Jigsaw Unintended Bias in Toxicity Classification](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/overview)
 
+[主题二：遥感图像目标检测](http://rscup.bjxintong.com.cn/#/theme/2)
+
 ## 2018 年
 ### Joined
 * CTR 预测
