@@ -19,6 +19,9 @@ published: true
     * [ ] [CCKS 2019 中文知识图谱问答](https://www.biendata.com/competition/ccks_2019_6/)
     * [ ] [CCKS 2019 中文短文本的实体链指](https://www.biendata.com/competition/ccks_2019_el/)
 
+* 天池
+    * [ ] [2019 年县域农业大脑AI挑战赛](https://tianchi.aliyun.com/competition/entrance/231717/introduction)
+
 [【预选赛】2019中国高校计算机大赛——大数据挑战赛](https://www.kesci.com/home/competition/5cb80fd312c371002b12355f/content/4)
 
 [Jigsaw Unintended Bias in Toxicity Classification](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/overview)
@@ -29,6 +32,8 @@ published: true
 ### Joined
 * CTR 预测
     * [ ] [OGeek算法挑战赛](https://tianchi.aliyun.com/competition/entrance/231688/forum)
+    * [ ] [安泰杯 —— 跨境电商智能算法大赛](https://tianchi.aliyun.com/competition/entrance/231718/introduction?spm=5176.12281957.1004.1.38b02448AFePuc)
+    * [ ] [首届中文NL2SQL挑战赛](https://tianchi.aliyun.com/competition/entrance/231716/introduction?spm=5176.12281957.1004.3.38b02448AFePuc)
 
 ## References
 1. [GitHub 干货 | 各大数据竞赛 Top 解决方案开源汇总](http://tech.ifeng.com/a/20181116/45226492_0.shtml)
