@@ -44,7 +44,7 @@ $$
 R M S E=\sqrt{\frac{\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}}{n}}
 $$
 
-　　相比 RMSE，MAPE 相当于吧每个点的误差都进行了归一化，降低了离群点带来的绝对误差的影响。
+　　相比 RMSE，MAPE 相当于把每个点的误差都进行了归一化，降低了离群点带来的绝对误差的影响。
 
 
 ### 1.4 Mean Absolute Error

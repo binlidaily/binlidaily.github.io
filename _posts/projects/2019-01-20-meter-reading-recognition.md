@@ -150,3 +150,6 @@ TensorFlow 版本在 Github 上有[实现版本](https://github.com/balancap/SSD
 3. [SSD TensorFlow](https://binlidaily.github.io/2018-09-29-single-shot-multibox-detector/)
 4. [A water meter reader](https://github.com/yamaton/water-meter-reading)
 5. [Water meter reader - Convert analog dials into a digital value](https://github.com/zagor/watermeter)
+6. [Deep time (using Tensorflow to read clocks)](https://felixduvallet.github.io/blog/deep.time/)
+7. [64位仪表读数程序](https://github.com/ZJU-lishuang/biaoji-Unify-version_64)
+8. [WowSign](https://github.com/shark526/WowSign)

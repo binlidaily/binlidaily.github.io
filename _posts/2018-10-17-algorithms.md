@@ -55,23 +55,41 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Bayesian Network (BN)
     - Hidden Markov Models
     - Conditional Random Fields (CRFs)
+    - Expectation Maximization (EM)
 
-* [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-linear-discriminant-analysis/)
+
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
 
 ### 1.2 Unsupervised Learning
-* Clustering
+### 1.2.1 Clustering
+* Prototype-based Clustering
     * [K-Means](https://binlidaily.github.io/2019-05-29-kmeans/)
-    * K-Medians
-    * Latent Dirichlet Allocation (LDA)
-    * Single-linkage Clustering
-    * Expectation Maximisation (EM)
-    * Hierachical Clustering
-    * Fuzzy Clustering
+    * Learning Vector Quantization (LVQ)
+    * Gaussian Mixed Model (GMM)
+* Density-based Clustering
     * DBSCAN
-    * OPTICS algorithm
-    * Non-Negative Matrix Factorization
+* Hierachical Clustering
+    * AGNES
+        * Single-linkage Clustering
+        * Complete-linkage Clustering
+        * Average-linkage Clustering
+* K-Medians
+* Latent Dirichlet Allocation (LDA)
+* Expectation Maximization (EM)
+* Fuzzy Clustering
+* OPTICS algorithm
+* Non-Negative Matrix Factorization
+* Self-Organizing Map (SOM)
+
+### 1.2.2 Dimension Reduction
+* Principal Component Analysis (PCA)
+* [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-lda-linear-discriminant-analysis/)
+* Manifold Learning
+    * Isometric Mapping (Isomap)
+    * Locally Linear Embedding (LLE)
+* Locality Preserving Projection (LPP)
+* Laplacian Eigenmaps
 
 
 ### 1.3 Ensemble Learning

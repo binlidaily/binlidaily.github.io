@@ -3,7 +3,7 @@ layout: post
 title: Principal Components Analysis
 subtitle: 主成分分析
 author: Bin Li
-tags: [Machine Learning]
+tags: [Machine Learning, Dimension Reduction, Unsupervised Learning]
 image: 
 comments: true
 published: true
