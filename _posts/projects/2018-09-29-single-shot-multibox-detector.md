@@ -558,6 +558,51 @@ python train_ssd_network.py \
 import matplotlib.image as mpimg
 用 mpimg.imsave 比用 cv2.imwrite 存的图片效果好很多！。
 
+### 对 xml 文件进行处理
+修改 xml
+```python
+# coding: utf8
+# import lxml.etree as etree
+import xml.etree.ElementTree as ET
+import os
+
+class ChangeXML(object):
+	"""docstring for ChangeXML"""
+	def __init__(self):
+		super(ChangeXML, self).__init__()
+		self.path = '../Annotations/'
+		self.type = '.xml'
+
+	def drop(self, except_item=''):
+		file_list = os.listdir(self.path)
+
+		for file in file_list:
+			if not file.endswith(self.type):
+				continue
+
+			with open(self.path + file, 'r') as xml_file:
+
+				tree = ET.parse(xml_file)
+				# print_tree = etree.parse(self.path + file)
+				# print(tree.getroot().tag)
+				root = tree.getroot()
+				# print(etree.tostring(print_tree))
+
+				for obj in root.iter('object'):
+					if obj.find('name').text == 'oil_thermostat':
+					# if obj.find('name').text == '变压器用油面温控器'.decode('utf-8'):
+						continue
+					root.remove(obj)
+
+				tree.write(self.path + file, encoding='UTF-8')
+
+if __name__ == '__main__':
+	cXML = ChangeXML()
+	cXML.drop()
+```
+
+
+rename 's/\.jpeg/.jpg/' *.jpeg
 ## References
 
 1. [Single Shot MultiBox Detector (SSD) and Implement It in Pytorch](https://medium.com/@smallfishbigsea/understand-ssd-and-implement-your-own-caa3232cd6ad)
