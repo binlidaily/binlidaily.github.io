@@ -74,6 +74,6 @@ $$
 ## PCA 最小平方误差理论
 
 ## 核化 PCA
-
+　　传统的 PCA 只能做线性降维，对于非线性的情况效果就不尽人意。那么是不是可以像 SVM 那样，我们先把数据映射到高维空间，在高维空间就能用 PCA 线性降维了！
 ## References
 1. [Linear Discriminant Analysis – Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)

@@ -85,13 +85,14 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ### 1.2.2 Dimension Reduction / Distributed Representation
 * Feature Selection
-* Principal Component Analysis (PCA)
+* [Principal Component Analysis (PCA)](https://binlidaily.github.io/2019-04-01-pca-principal-components-analysis)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-lda-linear-discriminant-analysis/)
 * Manifold Learning
     * Isometric Mapping (Isomap)
     * Locally Linear Embedding (LLE)
 * Locality Preserving Projection (LPP)
 * Laplacian Eigenmaps
+* Independent Component Analysis
 
 ### 1.2.3 Generation
 
