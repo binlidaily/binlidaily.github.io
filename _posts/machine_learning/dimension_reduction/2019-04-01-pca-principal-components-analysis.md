@@ -16,13 +16,13 @@ published: true
 
 ![-w447](/img/media/15611834879719.jpg)
 
-　　对于给定的一组数据点 $\left\{v_1, v_2, \ldots, v_n\right\}$，其中所有向量均为列向量，中心化后的表示为
+　　对于给定的一组数据点 $\\{v_1, v_2, \ldots, v_n \\}$，其中所有向量均为列向量，中心化后的表示为
 
 $$
 \left\{x_{1}, x_{2}, \ldots, x_{n}\right\}=\left\{v_{1}-\mu, v_{2}-\mu, \ldots, v_{n}-\mu\right\}
 $$
 
-　　其中 $\mu=\frac{1}{n} \sum_{i=1}^{n} v_{i}$。我们知道，向量内积在几何上表示为第一个向量投影到第二个向量上的长度，因此向量 $x_i$ 在单位方向向量 $w$ 上的投影坐标可以表示为 $\left(\boldsymbol{x}_{i}, \boldsymbol{\omega}\right)=\boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{\omega}$。所以我们的目标是找到一个投影方向 $w$，使得在 $w$ 上的投影方差尽可能大。
+　　其中 $\mu=\frac{1}{n} \sum_{i=1}^{n} v_{i}$。我们知道，向量内积在几何上表示为第一个向量投影到第二个向量上的长度，因此向量 $x_i$ 在单位方向向量 $w$ 上的投影坐标可以表示为 $\left(\boldsymbol{x}_i, \boldsymbol{\omega}\right)=\boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{\omega}$。所以我们的目标是找到一个投影方向 $w$，使得在 $w$ 上的投影方差尽可能大。
 
 　　计算方差之前，我们先计算投影后的均值：
 
@@ -41,19 +41,23 @@ D(\boldsymbol{x})&=\frac{1}{n} \sum_{i=1}^{n}\left(\boldsymbol{x}_{i}^{\mathrm{T
 \end{aligned}
 $$
 
-　　仔细一看，其实 $\left(\frac{1}{n} \sum_{i=1}^{n} \omega^{\mathrm{T}} \boldsymbol{x}_{i} \boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{\omega}\right)$ 就是样本协方差矩阵，我们将其写作 $\Sigma$。另外，由于 $w$ 是单位方向向量，即有 $\omega^{T} \omega=1$。因此我们要求解一个最大化问题，可表示为
+　　仔细一看，其实 $\left(\frac{1}{n} \sum_{i=1}^{n} \omega^{\mathrm{T}} \boldsymbol{x}_i \boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{\omega}\right)$ 就是样本协方差矩阵，我们将其写作 $\Sigma$。另外，由于 $w$ 是单位方向向量，即有 $\omega^{T} \omega=1$。因此我们要求解一个最大化问题，可表示为
 
 $$
 \begin{array}{l}{\max \left\{\boldsymbol{\omega}^{\mathrm{T}} \Sigma \boldsymbol{\omega}\right\}} \\ {\text {s.t. } \boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{\omega}=1}\end{array}
 $$
 
-　　引入拉格朗日乘子，并对 $w$ 求导令其等于 0，便可以推出 $\Sigma \omega=\lambda \omega$，此时
+　　引入拉格朗日乘子，并对 $w$ 求导令其等于 0，便可以推出：
+
+$$\Sigma \omega=\lambda \omega$$
+
+　　此时方差可以写成:
 
 $$
 D(\boldsymbol{x})=\boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{\Sigma} \boldsymbol{\omega}=\lambda \boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{\omega}=\lambda
 $$
 
-　　熟悉线性代数的读者马上就会发现，原来，x投影后的方差就是协方差矩阵的特征值。我们要找到最大的方差也就是协方差矩阵最大的特征值，最佳投影方向就是最大特征值所对应的特征向量。次佳投影方向位于最佳投影方向的正交空间中，是第二大特征值对应的特征向量，以此类推。
+　　熟悉线性代数的读者马上就会发现，原来，$x$ 投影后的方差就是协方差矩阵的特征值。我们要找到最大的方差也就是协方差矩阵最大的特征值，最佳投影方向就是最大特征值所对应的特征向量。次佳投影方向位于最佳投影方向的正交空间中，是第二大特征值对应的特征向量，以此类推。
 
 总结一下 PCA 求解步骤：
 1. 对样本数据进行中心化处理。
@@ -65,7 +69,7 @@ $$
 \boldsymbol{x}_{i}^{\prime}=\left[\begin{array}{c}{\boldsymbol{\omega}_{1}^{\mathrm{T}} \boldsymbol{x}_{i}} \\ {\boldsymbol{\omega}_{2}^{\mathrm{T}} \boldsymbol{x}_{i}} \\ {\vdots} \\ {\boldsymbol{\omega}_{d}^{\mathrm{T}} \boldsymbol{x}_{i}}\end{array}\right]
 $$
 
-　　新的 $x_i^\prime$ 的第 $d$ 维就是 $x_i$ 在第 $d$ 个主成分 $w_d$ 方向上的投影，通过选取最大的 $d$ 个特征值对应的特征向量，我们将方差较小的特征（噪声）抛弃，使得每个 $n$ 维列向量 $x_i$ 被映射为d维列向量 $x_i^\prime$，定义降维后的信息占比为
+　　新的 $x_i^\prime$ 的第 $d$ 维就是 $x_i$ 在第 $d$ 个主成分 $w_d$ 方向上的投影，通过选取最大的 $d$ 个特征值对应的特征向量，我们将方差较小的特征（噪声）抛弃，使得每个 $n$ 维列向量 $x_i$ 被映射为 $d$ 维列向量 $x_i^\prime$，定义降维后的信息占比为
 
 $$
 \eta=\sqrt{\frac{\sum_{i=1}^{d} \lambda_{i}^{2}}{\sum_{i=1}^{n} \lambda_{i}^{2}}}
