@@ -49,7 +49,9 @@ $$
 
 　　引入拉格朗日乘子，并对 $w$ 求导令其等于 0，便可以推出：
 
-$$\Sigma \omega=\lambda \omega$$
+$$
+\Sigma \omega=\lambda \omega
+$$
 
 　　此时方差可以写成:
 
