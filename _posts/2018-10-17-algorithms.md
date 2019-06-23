@@ -47,16 +47,16 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     - Locally Weighted Learning (LWL)
 
 * Probabilistic Graphical Models
-    * [Naive Bayes](https://binlidaily.github.io/2019-05-09-naive-bayes/)
-    - Gaussian Naive Bayes
-    - Multinomial Naive Bayes
-    - Averaged One-Dependence Estimators (AODE)
-    - Bayesian Belief Network (BBN)
-    - Bayesian Network (BN)
-    - Hidden Markov Models
-    - Conditional Random Fields (CRFs)
-    - Expectation Maximization (EM)
-
+    * Bayesian Network (BN)
+        * [Naive Bayes](https://binlidaily.github.io/2019-05-09-naive-bayes/)
+        - Gaussian Naive Bayes
+        - Multinomial Naive Bayes
+        - Bayesian Belief Network (BBN)
+        - Expectation Maximization (EM)
+    - Markov Network
+        - Averaged One-Dependence Estimators (AODE)
+        - Hidden Markov Models
+        - Conditional Random Fields (CRFs)
 
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
@@ -74,19 +74,20 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         * Single-linkage Clustering
         * Complete-linkage Clustering
         * Average-linkage Clustering
+* Expectation Maximization (EM)
+* Self-Organizing Map (SOM)
 * K-Medians
 * Latent Dirichlet Allocation (LDA)
-* Expectation Maximization (EM)
 * Fuzzy Clustering
 * OPTICS algorithm
 * Non-Negative Matrix Factorization
-* Self-Organizing Map (SOM)
 * Hierarchical Agglomerative Clustering (HAC)
 
 ### 1.2.2 Dimension Reduction / Distributed Representation
 * Feature Selection
 * [Principal Component Analysis (PCA)](https://binlidaily.github.io/2019-04-01-pca-principal-components-analysis)
 * [Linear Discriminant Analysis (LDA)](https://binlidaily.github.io/2018-08-30-lda-linear-discriminant-analysis/)
+* Independent Component Analysis (ICA)
 * Manifold Learning
     * Isometric Mapping (Isomap)
     * Locally Linear Embedding (LLE)
