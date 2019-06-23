@@ -158,7 +158,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         * [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
 
 * Speech Recognition
-* 	Natural language processing
+* 	Natural Language Processing
 
 
 ## 4. Mathematics
