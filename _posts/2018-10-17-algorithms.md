@@ -121,7 +121,6 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ## 2. Applied Machine Learning
 * [Workflow of Machine Learning](https://binlidaily.github.io/2019-02-25-workflow-of-applying-ml-algorithms-offline-to-online/) 
-
 * [Feature Engineering](https://binlidaily.github.io/2018-06-03-feature-engineering/)
     * Feature Extraction
         * [Data Preprocessing](https://binlidaily.github.io/2018-11-13-data-preprocessing/)
@@ -129,20 +128,20 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
     * Feature Selection
         * [Feature Selection Methods](https://binlidaily.github.io/2018-06-03-feature-engineering/)
-
 * Model Ensemble
     * [Model Ensemble Methods](https://binlidaily.github.io/2019-02-08-ensembling/)
-
-
 * Model Optimization
     * [Model Optimization Methods](https://binlidaily.github.io/2019-02-25-model-optimization/)
     * [Result Analysis](https://binlidaily.github.io/2019-02-11-explain-the-result-of-models/)
     * [Bad Case Analysis](https://binlidaily.github.io/2019-03-11-bad-case-analysis/)
-
-
 * Applied Models
     * [Click Models](https://binlidaily.github.io/2019-02-25-click-models/)
     * [Ranking Algorithms](https://binlidaily.github.io/2019-01-23-ranking-algorithms/)
+* Coding
+    * [Exploratory Data Analysis (EDA)](https://binlidaily.github.io/2019-06-24-eda-exploratory-data-analysis)
+    * [Feature Engineering](https://binlidaily.github.io/2019-03-15-feature-engineering)
+    * [Feature Selection](https://binlidaily.github.io/2019-03-16-feature-selection)
+    * [Model Training](https://binlidaily.github.io/2019-03-15-model-training)
 
 ## 3. Deep Learning
 * Computer Vision

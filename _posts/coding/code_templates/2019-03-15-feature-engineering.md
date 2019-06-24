@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Model Training Using Python
+title: Feature Engineering Using Python
 subtitle: For Machine Learning and Data Mining
 author: Bin Li
 tags: [Feature Engineering, Python]
@@ -10,7 +10,7 @@ published: true
 typora-root-url: ../../../../binlidaily.github.io
 ---
 
-在整理特征工程的思路时，看到参考 1 中有些同行做了代码的整理，我觉得也挺不错的，以后方便很快上手，于是也开始整理了对于特征工程的代码模板整理操作，在整理时要有一个原则，要尽量将事情说清楚明白，不要嫌麻烦。
+　　在整理特征工程的思路时，看到参考 1 中有些同行做了代码的整理，我觉得也挺不错的，以后方便很快上手，于是也开始整理了对于特征工程的代码模板整理操作，在整理时要有一个原则，要尽量将事情说清楚明白，不要嫌麻烦。
 
 ## 1. Import 即常见基本操作
 
@@ -33,8 +33,6 @@ sys.stdout = stdout
 # 如果需要绘制图像，且要显示中文的话
 plt.rcParams['font.sans-serif'] = ['SimHei'] # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False # 用来正常显示负号
-
-
 ```
 
 ## 2. 文件格式数据读取
@@ -71,8 +69,8 @@ for key in dict_:
 ```python
 # 读取 CSV 文件
 train_df = pd.read_csv(data_dir + 'train_dataset.csv', sep=',', header=0)
-train_df.info() 					# 查看总体的情况，找出一些数据猫腻，有无 null 值
-train_df.describe()				# 看总数及数值类型，以及是否有长尾分布(分位点)
+train_df.info() 	 # 查看总体的情况，找出一些数据猫腻，有无 null 值
+train_df.describe()	 # 看总数及数值类型，以及是否有长尾分布(分位点)
 
 train_df.columns					# 获取列名
 train_df.isnull().sum()		# 获取空值
@@ -80,13 +78,17 @@ train_df.isnull().sum()		# 获取空值
 data_df['用户年龄', '用户话费敏感度']   						# 选择特定列特征
 data_df.loc[data_df['用户年龄'] == 0, '用户年龄'] = data_df['用户年龄'].mode() # 按照条件选择特征
 
-data_df['当月网购类应用使用次数'].value_counts()   # 统计次数，默认降序，升序为 ascending=True
-data_df['当月网购类应用使用次数'].value_counts(normalize=True) # 统计频率，默认降序
+# 统计次数，默认降序，升序为 ascending=True
+data_df['当月网购类应用使用次数'].value_counts()   
+# 统计频率，默认降序
+data_df['当月网购类应用使用次数'].value_counts(normalize=True) 
 
-df2 = df.groupby(by=['region'])['eventid'].count()      #分地区记录发生的事件数
-count = pd.DataFrame({"region":df2.index,"counts":df2})  #第一列地区，第二列该地区发生的事件数
-
-df2 = df.groupby(by=['weapontype'])['nkill'].sum() #返回武器-该武器杀人总数
+#分地区记录发生的事件数
+df2 = df.groupby(by=['region'])['eventid'].count()
+#第一列地区，第二列该地区发生的事件数    
+count = pd.DataFrame({"region":df2.index,"counts":df2})  
+#返回武器-该武器杀人总数
+df2 = df.groupby(by=['weapontype'])['nkill'].sum() 
 
 data = pd.concat([train,predict])  #上下拼接
 data = pd.merge(data,ad_feature,on='aid',how='left') #键值左连接
@@ -95,13 +97,16 @@ data = pd.merge(data,ad_feature,on='aid',how='left') #键值左连接
 ### 3.2 缺失值处理
 
 ```python
-df = df.drop(['PassengerId','Name','Ticket','Cabin'], axis=1)  #对于大量缺失数据的列可直接删除
-df = df.dropna()                                               #删除含有NaN数据的行
-df = df.fillna('-1')                                           #全部直接人工赋值
+#对于大量缺失数据的列可直接删除
+df = df.drop(['PassengerId','Name','Ticket','Cabin'], axis=1) 
+#删除含有NaN数据的行 
+df = df.dropna()   
+#全部直接人工赋值                                            
+df = df.fillna('-1')                                           
 
-df['nkill'].fillna(0, inplace = True)                          #单列直接人工赋值
-df['Embarked'] = df['Embarked'].fillna('S')                    #离散值填充众数  
-median_age = train['Age'].median()                             #连续值填充中位数（或者平均值）
+df['nkill'].fillna(0, inplace = True)   #单列直接人工赋值
+df['Embarked'] = df['Embarked'].fillna('S')  #离散值填充众数  
+median_age = train['Age'].median()  #连续值填充中位数（或者平均值）
 df['Age'] = df['Age'].fillna(median_age)
 ```
 
