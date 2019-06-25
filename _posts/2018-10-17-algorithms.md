@@ -52,7 +52,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         - Gaussian Naive Bayes
         - Multinomial Naive Bayes
         - Bayesian Belief Network (BBN)
-        - Expectation Maximization (EM)
+        - [Expectation Maximization (EM)](https://binlidaily.github.io/2019-06-23-expectation-maximization)
     - Markov Network
         - Averaged One-Dependence Estimators (AODE)
         - Hidden Markov Models
@@ -66,7 +66,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * Prototype-based Clustering
     * [K-Means](https://binlidaily.github.io/2019-05-29-kmeans/)
     * Learning Vector Quantization (LVQ)
-    * Gaussian Mixed Model (GMM)
+    * [Gaussian Mixed Model (GMM)](https://binlidaily.github.io/2019-06-23-gmm-gaussian-mixed-model)
 * Density-based Clustering
     * DBSCAN
 * Hierachical Clustering
@@ -74,8 +74,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         * Single-linkage Clustering
         * Complete-linkage Clustering
         * Average-linkage Clustering
-* Expectation Maximization (EM)
-* Self-Organizing Map (SOM)
+* [Expectation Maximization (EM)](https://binlidaily.github.io/2019-06-23-expectation-maximization)
+* [Self-Organizing Map (SOM)](2019-06-23-som-self-organizing-map)
 * K-Medians
 * Latent Dirichlet Allocation (LDA)
 * Fuzzy Clustering
@@ -93,20 +93,19 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Locally Linear Embedding (LLE)
 * Locality Preserving Projection (LPP)
 * Laplacian Eigenmaps
-* Independent Component Analysis
 
 ### 1.2.3 Generation
 
 
 ### 1.3 Ensemble Learning
 - [Ensemble Learning](https://binlidaily.github.io/2019-02-08-ensembling-learning)
-- Logit Boost (Boosting)
-- Bootstrapped Aggregation (Bagging)
-- AdaBoost
+- [Logit Boost (Boosting)](https://binlidaily.github.io/2019-02-08-ensembling-learning)
+- [Bootstrapped Aggregation (Bagging)](https://binlidaily.github.io/2019-02-08-ensembling-learning)
+- [AdaBoost](https://binlidaily.github.io/2018-10-29-adaboost/)
 - Stacked Generalization (blending)
-- Gradient Boosting Machines (GBM)
+- [Gradient Boosting Machines (GBM)](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
 - Gradient Boosted Regression Trees (GBRT)
-- Radom Forest
+- [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
 
 
 ### 1.4 Models
