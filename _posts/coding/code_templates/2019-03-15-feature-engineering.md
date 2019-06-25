@@ -41,19 +41,20 @@ plt.rcParams['axes.unicode_minus'] = False # 用来正常显示负号
 # CSV 文件
 train_df = pd.read_csv(data_dir + 'train_dataset.csv', sep=',', header=0)
 
-#读取 json（理解为字典格式的封装）
+# 读取 json（理解为字典格式的封装）
 import json
 for line in sys.stdin:
   line = ln.decode('gbk').strip().strip('\n')
-  #line = line.replace("\\","")
+  # line = line.replace("\\","")
   json_data = json.loads(line)  #loads()json数据:->python数据
   
-  #对于单值数据
+  # 对于单值数据
   cat = json_data['animal']['cat']
   
-  #对于多值数据（{"xx1":"1","xx2":"2"}）
+  # 对于多值数据（{"xx1":"1","xx2":"2"}）
   Husky = json_data['animal']['dog'].get('Husky', {})
-  Husky = json.dumps(Husky, ensure_ascii=False, encoding="gbk")  #dumps():python数据->json数据
+  # dumps():python数据->json数据
+  Husky = json.dumps(Husky, ensure_ascii=False, encoding="gbk")  
   Husky = json.loads(Husky)
 
 #输出
