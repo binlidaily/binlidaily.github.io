@@ -149,7 +149,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         * [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
 
     * Object Detection
-        * [Bounding Box Regression](2019-03-17-bounding-box-regression)
+        * [Bounding Box Regression](https://binlidaily.github.io/2019-03-17-bounding-box-regression)
         * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-ssd-single-shot-multibox-detector/)
     
     * Sequential Model
