@@ -59,6 +59,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         - Conditional Random Fields (CRFs)
 
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
+
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
 
 ### 1.2 Unsupervised Learning
@@ -147,6 +148,9 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Image Classification
         * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
         * [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
+
+    * Object Location
+        * [Non-Max Suppression](https://binlidaily.github.io/2019-06-26-non-max-suppression)
 
     * Object Detection
         * [Bounding Box Regression](https://binlidaily.github.io/2019-03-17-bounding-box-regression)

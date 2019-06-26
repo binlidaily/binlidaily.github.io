@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-
+FM->FFM->DeepFM, DCN, xDeepFM
 
 
 ## References
