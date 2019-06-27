@@ -26,10 +26,16 @@ dfoff.isnull().sum()
 # 查看不空值
 dfoff.notna().sum()
 dfoff.notnull().sum()
+# 看一共有多少个取值
+dfoff['Discount_rate'].count()
 # 看一共有多少哪些不同值
 dfoff['Discount_rate'].unique()
 # count 不同值的个数
 dfoff['Discount_rate'].nunique()
 # 查看正负样本
 dfoff['label'].value_counts()
+# 排序
+data.sort_values(['ApplicantIncome','CoapplicantIncome'], ascending=False)
 ```
+
+## Pandas 操作
