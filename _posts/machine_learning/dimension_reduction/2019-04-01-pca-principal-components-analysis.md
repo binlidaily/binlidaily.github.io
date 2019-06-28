@@ -142,3 +142,4 @@ $$
 1. [Linear Discriminant Analysis – Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)
 2. 《机器学习》周志华
 3. [Kernel Principal Components Analysis](/assets/Kernel-PCA.pdf)
+4. [Feature-Engineering中文版第6章：降维：用 PCA 压缩数据集](https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.12281897.0.0.698639a9P5jdJr&postId=62468)

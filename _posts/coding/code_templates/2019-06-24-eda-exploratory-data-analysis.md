@@ -30,12 +30,17 @@ dfoff.notnull().sum()
 dfoff['Discount_rate'].count()
 # 看一共有多少哪些不同值
 dfoff['Discount_rate'].unique()
+# 看每个列的取值个数
+dfoff.nunique()
 # count 不同值的个数
 dfoff['Discount_rate'].nunique()
 # 查看正负样本
 dfoff['label'].value_counts()
 # 排序
-data.sort_values(['ApplicantIncome','CoapplicantIncome'], ascending=False)
+data(['a', 'b'], ascending=[True, False])
 ```
 
 ## Pandas 操作
+```python
+
+```

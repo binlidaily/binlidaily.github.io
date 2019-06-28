@@ -11,6 +11,7 @@ published: true
 
 FM->FFM->DeepFM, DCN, xDeepFM
 
+![](/img/media/15616207830383.jpg)
 
 ## References
 1. [Best Practices on Recommendation Systems](https://github.com/Microsoft/Recommenders)
