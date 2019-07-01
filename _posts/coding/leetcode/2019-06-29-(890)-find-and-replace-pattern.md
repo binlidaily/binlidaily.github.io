@@ -35,6 +35,37 @@ Note:
 ```
 
 ## Solutions
+　　理解题意就可以了，不是很难，但是写出来的代码就不够优雅，一堆 if。
 
+```python
+class Solution(object):
+    def findAndReplacePattern(self, words, pattern):
+        """
+        :type words: List[str]
+        :type pattern: str
+        :rtype: List[str]
+        """
+        res = []
+        n = len(pattern)
+        for item in words:
+            dic = {}
+            Flag = True
+            for i in range(n):
+                if pattern[i] in dic:
+                    if item[i] != dic[pattern[i]]:
+                        Flag = False
+                        break
+                else:
+                    if item[i] in dic.values():
+                        Flag = False
+                        break
+                    dic[pattern[i]] = item[i]
+            if Flag:
+                res.append(item)
+        return res
+# Runtime: 12 ms, faster than 98.90% of Python online submissions for Find and Replace Pattern.
+# Memory Usage: 11.6 MB, less than 96.80% of Python online submissions for Find and Replace Pattern.
+```
 ## References
 1. [890. Find and Replace Pattern](https://leetcode.com/problems/find-and-replace-pattern/)
+2. [890. Find And Replace Pattern](https://leetcode.com/articles/find-and-replace-pattern/)

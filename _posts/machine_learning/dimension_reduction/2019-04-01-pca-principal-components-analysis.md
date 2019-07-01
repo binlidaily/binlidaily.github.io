@@ -114,13 +114,13 @@ $$
 &=\sum_{i=1}^{m} \phi\left(\boldsymbol{x}_{i}\right) \boldsymbol{\alpha}_{i}\end{aligned} 
 $$
 
-　　其中 $\boldsymbol{\alpha}_{i}=\frac{1}{\lambda} \boldsymbol{z}_{i}^{\mathrm{T}} \boldsymbol{\omega}$，一般情况下我们不知道 $\phi$ 的具体形式，于是引入核函数：
+　　其中 $\boldsymbol{\alpha}_i=\frac{1}{\lambda} \boldsymbol{z}_i^{\mathrm{T}} \boldsymbol{\omega}$，一般情况下我们不知道 $\phi$ 的具体形式，于是引入核函数：
 
 $$
 \kappa\left(\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right)=\phi\left(\boldsymbol{x}_{i}\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_{j}\right)
 $$
 
-　　如果我们记 $\mathbf{K}$ 为 $\kappa$ 对应的核矩阵，$(\mathbf{K})_{i j}=\kappa\left(\boldsymbol{x}_{i}, \boldsymbol{x}_{\boldsymbol{j}}\right)$，$\mathbf{A}=\left(\boldsymbol{\alpha}_{1} ; \boldsymbol{\alpha}_{2} ; \ldots ; \boldsymbol{\alpha}_{m}\right)$，则上面式子可以化简为：
+　　如果我们记 $\mathbf{K}$ 为 $\kappa$ 对应的核矩阵，$(\mathbf{K})_{i j}=\kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_\boldsymbol{j}\right)$，$\mathbf{A}=\left(\boldsymbol{\alpha}_1 ; \boldsymbol{\alpha}_2 ; \ldots ; \boldsymbol{\alpha}_m\right)$，则上面式子可以化简为：
 
 $$
 \mathbf{K} \mathbf{A}=\lambda \mathbf{A}
@@ -135,7 +135,7 @@ $$
 &=\sum_{i=1}^{m} \alpha_{i}^{j} \phi\left(\boldsymbol{x}_{i}\right)^{\mathrm{T}} \phi(\boldsymbol{x}) \\ &=\sum_{i=1}^{m} \alpha_{i}^{j} \kappa\left(\boldsymbol{x}_{i}, \boldsymbol{x}\right) \end{aligned}
 $$
 
-　　其中 $\boldsymbol{\alpha}_{i}$ 已经规范化，$\boldsymbol{\alpha}_{i}^j$ 是 $\boldsymbol{\alpha}_{i}$ 的第 $j$ 个分量。我们可以看到为获得投影后的坐标，KPCA 需要做所有样本的加和，计算开销比较大。
+　　其中 $\boldsymbol{\alpha}_i$ 已经规范化，$\boldsymbol{\alpha}_i^j$ 是 $\boldsymbol{\alpha}_i$ 的第 $j$ 个分量。我们可以看到为获得投影后的坐标，KPCA 需要做所有样本的加和，计算开销比较大。
 
 
 ## References
