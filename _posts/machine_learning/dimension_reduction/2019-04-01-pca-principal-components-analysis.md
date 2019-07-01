@@ -120,7 +120,7 @@ $$
 \kappa\left(\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right)=\phi\left(\boldsymbol{x}_{i}\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_{j}\right)
 $$
 
-　　如果我们记 $\mathbf{K}$ 为 $\kappa$ 对应的核矩阵，$(\mathbf{K})_{i j}=\kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_\boldsymbol{j}\right)$，$\mathbf{A}=\left(\boldsymbol{\alpha}_1 ; \boldsymbol{\alpha}_2 ; \ldots ; \boldsymbol{\alpha}_m\right)$，则上面式子可以化简为：
+　　如果我们记 $\mathbf{K}$ 为 $\kappa$ 对应的核矩阵，$\mathbf{K}_{ij}=\kappa\left(\boldsymbol{x}_i, \boldsymbol{x}_\boldsymbol{j}\right)$，$\mathbf{A}=\left(\boldsymbol{\alpha}_1 ; \boldsymbol{\alpha}_2 ; \ldots ; \boldsymbol{\alpha}_m\right)$，则上面式子可以化简为：
 
 $$
 \mathbf{K} \mathbf{A}=\lambda \mathbf{A}
