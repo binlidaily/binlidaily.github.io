@@ -43,33 +43,54 @@ $${g(x) }= {1\over{1+e^{-x}}}​$$
 
 
 ### Logistic Regression 决策函数
-　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。至于为什么要用 Sigmoid 函数，可以参考广义线性模型的[推导](/assets/GenDiscr_LR_9-20-2012.pdf)。
+　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。那为什么要用 Sigmoid 函数？我们可以从广义线性模型的角度去[推导](http://cs229.stanford.edu/notes/cs229-notes1.pdf)，也可以从朴素贝叶斯的方向去理解。
+
+先做一些假设：
+1. 假设所有的 $x_i$ 和 $y$ 条件独立；
+2. 模型 $P\left(x_i \vert y=y_k\right)$ 符合高斯分布 $\mathrm{N}\left(\mu_{\mathrm{ik}}, \sigma_{\mathrm{i}}\right)$，注意这里两个类别服从均值不同，方差相同的高斯分布；
+3. 模型 $P(y)$ 符合伯努利分布 $\text{Bernoulli}(\pi)$。
 
 $$
-y = {1\over {1+e^{-\Theta^Tx}}}
+\begin{aligned} P(y=0 | x) &=\frac{P(y=0) P(x | y=0)}{P(y=0) P(x | y=0)+P(y=1) P(x | y=1)} \\ &=\frac{1}{1+\frac{P(y=1) P(x | y=1)}{P(y=0) P(x | y=0)}} \\ &=\frac{1}{1+\exp \left(\ln \frac{P(y=1) P(x | y=1)}{P(y=0) P(x | y=0)}\right)} \\ &=\frac{1}{1+\exp \left(\left(\ln \frac{1-\pi}{\pi}\right)+\sum_{i} \ln \frac{P\left(x_{i} | y=1\right)}{P\left(x_{i} | y=0\right)}\right)} \end{aligned}
 $$
 
-<p align="center">
-    <img width="245" length="" src="/img/media/IMG_4618.jpg">
-</p>
+　　通过假设我们知道：
 
-　　如果将 $y$ 视为样本 x 作为正例的可能性，那么 1-y 就是其相反的可能性，两者的比值 $1\over{1-y}$ 称为几率 (odds)，反映了 x 作为正例的相对可能性。对几率取对数就得到了对数几率 (log odds, 亦称 logit)，即：
+$$
+P\left(x | y_{k}\right)=\frac{1}{\sigma_{i k} \sqrt{2 \pi}} e^{\frac{-\left(x-\mu_{i k}\right)^{2}}{2 \sigma_{i k}^{2}}}
+$$
 
-$$\ln {y\over{1-y}}$$
+　　而上式：
 
-　　那么上面变换得到的公式：
+$$
+\sum_{i} \ln \frac{P\left(X_{i} | Y=1\right)}{P\left(X_{i} | Y=0\right)} = \sum_{i}\left(\frac{\mu_{i 1}-\mu_{i 0}}{\sigma_{i}^{2}} X_{i}+\frac{\mu_{i 0}^{2}-\mu_{i 1}^{2} )}{2 \sigma_{i}^{2}}\right)
+$$
 
-$$\ln {y\over{1-y}} = \Theta^Tx$$
+　　其中令 $w_i = \frac{\mu_{i 1}-\mu_{i 0}}{\sigma_{i}^{2}}$，其他的常数项为 $w_0$，那么就能得到逻辑回归的决策函数：
 
-　　就是用线性回归模型的预测结果去逼近真是类标的对数几率，故称该模型为对数几率回归 (logistic regression / logit regression)。
+$$
+P(y=0 | x)=\frac{1}{1+\exp \left(w_{0}+\sum_{i=1}^{n} w_{i} x_{i}\right)} 
+$$
 
-　　两个类别都服从均值不同，方差相同(方便推导)的高斯分布！
+　　对应**预测正类的决策函数**为：
 
-![](/img/media/15573644907231.jpg)
+$$
+P(y=1 | x)=\frac{\exp \left(w_{0}+\sum_{i} w_{i} x_{i}\right)}{1+\exp \left(w_{0}+\sum_{i} w_{i} x_{i}\right)} = \frac{1}{1+\exp \left(-\left(w_{0}+\sum_{i} w_{i} x_{i}\right)\right)}
+$$
 
-　　接下来我们进一步转换上面的式子，我们将上式的 $y$ 看成类的后验概率估计 $p(y=1\vert x)$，则可以改写成下式：
+　　那么
 
-$$\ln {p(y=1 \vert x)\over{p(y=0 \vert x)}} = \Theta^Tx$$
+$$
+\frac{P(y=1 | x)}{P(y=0 | x)}=\exp \left(w_{0}+\sum_{i} w_{i} x_{i}\right) 
+$$
+
+　　两边加上对数：
+
+$$
+\ln \frac{P(y=1 | x)}{P(y=0 | x)}=w_{0}+\sum_{i} w_{i} x_{i} = \Theta^Tx
+$$
+
+　　这里就是用线性回归模型的预测结果去逼近真实类标的对数几率，故称该模型为对数几率回归 (logistic regression / logit regression)。
 
 　　由此显然可以得到（除了以上推导，也可以直接如此假设，因为这里是二分类，非此即彼）：
 
@@ -83,14 +104,16 @@ $${P(y = 0| x; \Theta) = 1- g(\Theta^Tx)}={e^{-{\Theta^Tx}}\over{1+e^{-{\Theta^T
 
 $$P(y|{x};\Theta)=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.$$
 
-　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合伯努利分布，于是有下式:
+　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合**伯努利分布**，于是有下式:
 
 $$P(y_i|{x}_i;\Theta) = p^{y_i}(1-p)^{1-{y_i}}$$
 
 　　注意最后的转换是将 $y \in \{0，1\}​$ 的两种情况放到一起变成了一个式子，如果分情况来说的话就很麻烦了，这一转换从形式上来将应该是等价的。这两个部分在 $y​$ 取 $0​$ 或者 $1​$ 时，只会留下一个起作用的部分，另外的部分为 $1​$ ，对乘积没有影响，这种转换实在是很机智啊！🙃 如果是 $y \in \{1，-1\}​$ 就要注意下指数的写法。
 
 ### 求解 Logistic Regression 模型
-　　对于一般的机器学习模型，都有一个训练目标函数，可以是最小化损失函数。这里我们就想着怎么从已知的决策函数入手，构成对应的损失函数。从决策函数中可以看出，其实我们还有一个很重要的参数尚且不知道，那就是 $\Theta$。如何去求得这个 $\Theta$ 呢？可以利用统计学里面常用的方法——最大似然估计法来估计参数，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大（解释是在给定独立同分布的数据时，能够是得似然度或者说似然函数值最大的参数就是最有可能出现的参数）。那么逻辑回归问题的似然度（概率）可以表示成如下形式，我们将结果以 $0/1$ 的两种情况结合表达：
+　　对于一般的机器学习模型，都有一个训练目标函数，可以是最小化损失函数。这里我们就想着怎么从已知的决策函数入手，构成对应的损失函数。从决策函数中可以看出，其实我们还有一个很重要的参数尚且不知道，那就是 $\Theta$。如何去求得这个 $\Theta$ 呢？
+
+　　可以利用统计学里面常用的方法——**最大似然估计**法来估计参数，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大（解释是在给定独立同分布的数据时，能够是得似然度或者说似然函数值最大的参数就是最有可能出现的参数）。那么逻辑回归问题的似然度（概率）可以表示成如下形式，我们将结果以 $0/1$ 的两种情况结合表达：
 
 $$L(\Theta)=P(D|\Theta)=\prod{P(y|x,\Theta)}=\prod{p^{y_i}(1-p)^{1-{y_i}}}$$
 
@@ -271,7 +294,7 @@ $$
 8. [机器学习技法笔记(7)-Kernel LR(核逻辑回归)](https://shomy.top/2017/03/07/kernel-lr/)
 9. [Why is the error function minimized in logistic regression convex?](http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html)
 10. [从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
-11. [公式推导](http://www.cs.cmu.edu/~tom/10601_fall2012/slides/GenDiscr_LR_9-20-2012.pdf)
+11. [公式推导](/assets/GenDiscr_LR_9-20-2012.pdf)
 
 
 
