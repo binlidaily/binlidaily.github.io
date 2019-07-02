@@ -43,7 +43,7 @@ $${g(x) }= {1\over{1+e^{-x}}}​$$
 
 
 ### Logistic Regression 决策函数
-　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。至于为什么要用 Sigmoid 函数，可以参考广义线性模型的[推导](http://cs229.stanford.edu/notes/cs229-notes1.pdf)。
+　　线性回归模型 ($f(x) = \Theta^Tx$) 不能做分类任务，那么在其上面套一个单调可微的的 Sigmoid function，我们得到了可以做分类任务的逻辑回归，使得线性回归的预测值对应到了分类任务的类标 $y$ 上。至于为什么要用 Sigmoid 函数，可以参考广义线性模型的[推导](/assets/GenDiscr_LR_9-20-2012.pdf)。
 
 $$
 y = {1\over {1+e^{-\Theta^Tx}}}
@@ -62,6 +62,8 @@ $$\ln {y\over{1-y}}$$
 $$\ln {y\over{1-y}} = \Theta^Tx$$
 
 　　就是用线性回归模型的预测结果去逼近真是类标的对数几率，故称该模型为对数几率回归 (logistic regression / logit regression)。
+
+　　两个类别都服从均值不同，方差相同(方便推导)的高斯分布！
 
 ![](/img/media/15573644907231.jpg)
 
@@ -269,6 +271,7 @@ $$
 8. [机器学习技法笔记(7)-Kernel LR(核逻辑回归)](https://shomy.top/2017/03/07/kernel-lr/)
 9. [Why is the error function minimized in logistic regression convex?](http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html)
 10. [从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
+11. [公式推导](http://www.cs.cmu.edu/~tom/10601_fall2012/slides/GenDiscr_LR_9-20-2012.pdf)
 
 
 
