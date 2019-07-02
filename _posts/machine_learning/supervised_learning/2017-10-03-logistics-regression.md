@@ -295,7 +295,7 @@ $$
 9. [Why is the error function minimized in logistic regression convex?](http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html)
 10. [从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
 11. [公式推导](/assets/GenDiscr_LR_9-20-2012.pdf)
-
+12. [Regularization for Logistic Regression: L1, L2, Gauss or Laplace?](https://www.knime.com/blog/regularization-for-logistic-regression-l1-l2-gauss-or-laplace)
 
 
 
