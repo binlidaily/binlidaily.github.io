@@ -126,7 +126,13 @@ $$
 
 ### 3.2 多级组合
 ### 3.2.1 Stacking
-TODO
+　　Stacking 是一种使用串行的组合基学习器的方法，把前一个基学习器 (Base-learner) 的结果作为特征输出到下一个学习器 (Meta-learner)，最后的学习器作为融合模型进行最后结果的预测。
+
+<p align="center">
+<img width="" src="/img/media/15620593061827.jpg">
+</p>
+
+　　Meta-learner 的选取有很多，可以是常见的 Voting，也可以是容易解释的算法如 LR 等，具体可[参考](https://blog.csdn.net/g11d111/article/details/80215381)。Stacking 实践可以用 [mlxtend](https://rasbt.github.io/mlxtend/user_guide/classifier/StackingClassifier/) 的工具。
 
 ### 3.2.2 级联算法（cascading）
 TODO

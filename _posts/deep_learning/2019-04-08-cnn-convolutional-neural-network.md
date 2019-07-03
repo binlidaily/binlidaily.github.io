@@ -11,7 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
-　　卷积神经网络（Vanilla Neural Networks / Convolutional Neural Network, CNN）采用三种基本概念：局部感受野（Local Receptive Fields），共享权重（Shared Weights）和池化（Pooling）。三个重要网络层的作用：卷积层负责提取特征，采样层负责特征选择，全连接层负责分类
+　　卷积神经网络（Vanilla Neural Networks / Convolutional Neural Network, CNN）采用三种基本概念：局部感受野（Local Receptive Fields），共享权重（Shared Weights）和池化（Pooling）。三个重要网络层的作用：卷积层负责提取特征，采样层负责特征选择，全连接层负责分类。
 
 　　局部感受野就是利用卷积框提取特征的局部。每一个局部位置对应同一隐层的一个神经元（计算操作）。
 
@@ -20,7 +20,7 @@ typora-copy-images-to: ../../img/media
 　　使⽤卷积层的平移不变性似乎很可能减少全连接模型中达到同样性能的参数数量，使得训练更快，有助于建设深度网络。
 
 ## Convolutional Layers
-　　卷积层主要进行卷积计算从而进行特征提取。
+　　卷积层主要进行卷积计算从而进行特征提取。卷积操作的本质是**稀疏交互**和**参数共享**。
 
 <p align="center">
 <img src="/img/media/15547073032659.jpg" width="">
