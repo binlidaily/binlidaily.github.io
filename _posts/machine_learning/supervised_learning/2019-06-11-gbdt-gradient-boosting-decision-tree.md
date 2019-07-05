@@ -35,6 +35,7 @@ f _ { 0 } ( x ) =  \underset{ c }{ \arg \min }  \sum _ { i = 1 } ^ { m } L \left
 $$
 
 　　2）对于迭代轮数（基学习器个数） $t = 1,2 , \dots , M$：
+
 　　　a）对 $ i = 1,2 , \dots , m$，计算损失函数的负梯度：
 
 $$
@@ -194,7 +195,7 @@ $$
 　　对于 Huber 损失和分位数损失，主要用于健壮回归，也就是减少异常点对损失函数的影响。
 
 
-## GBDT的正则化
+## GBDT 的正则化
 　　和 Adaboost 一样，我们也需要对 GBDT 进行正则化，防止过拟合。GBDT 的正则化主要有三种方式。
 
 　　1) 第一种是和 Adaboost 类似的正则化项，即步长(learning rate)。定义为 $\nu$,对于前面的弱学习器的迭代
@@ -228,3 +229,8 @@ GBDT **优点**：
 
 GBDT **缺点**：
 1. 由于弱学习器之间存在依赖关系，难以并行训练数据。不过可以通过自采样的SGBT来达到部分并行。
+
+GBDT 需要看下如何做**预测**？
+
+## References
+1. [图解GBDT的构造和预测过程](https://blog.csdn.net/songyunli1111/article/details/83688360)

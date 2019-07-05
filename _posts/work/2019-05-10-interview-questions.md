@@ -304,7 +304,7 @@ Deep CNN, Deep RNN, RBM的典型应用与局限，看Hinton讲义和Paper去吧
 简单介绍 MapReduce 原理，有没有看过源码，说说 Map 阶段怎么实现的,
 MapReduce 实现统计出现次数最多的前 100 个访问 IP.
 MapReduce 实现统计不重复用户 ID,MapReduce 实现两个数据集求交集。
-HBase 行健怎么设计,spark 性能一般优化方法,spark streaming 和 storm 区别.给了一张笔试题， 10 道选择，一道大题。选择题是 java 基础知识，大题一个有三问：根据场景写出 Hive 建表语句； Hsql 从表中查询；
+HBase 行健怎么设计,spark 性能一般优化方法,spark streaming 和 storm 区别.给了一张笔试题， 10 道选择，一道大题。选择题是 java 基础知识，大题一个有三问：根据场景写出 Hive 建表语句； HQL 从表中查询；
 用MapReduce写好友推荐，在一堆单词里面找出现次数最多的k个
 用分布式的方法做采样怎么保证采样结果完全符合预期？
 后面又问了Hadoop,Spark,storm下面的产品，原理，适用场景，

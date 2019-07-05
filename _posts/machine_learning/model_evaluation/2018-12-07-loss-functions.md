@@ -68,8 +68,25 @@ $$
 
 　　想比之下，MAE 基本上忽略了偏离点的影响。在现实实践中，当我们剔除了数据集中的异常点后，模型往往对两端极值（极大值和极小值）拟合效果不好，可以将这个情况看成两端极值偏离较远，拟合起来有难度，对于偏离较大的我们可以采用 MSE 拟合，而对于中间正常部分则可以采用 MAE 进行拟合。也就是说，这种情况下将模型分别采用 MSE 和 MAE 训练，然后加权融合往往能够提高模型效果。
 
-### 对数误差
+### 1.5 Least Absolute Deviation
+　　最小绝对偏差 (Least Absolute Deviation，LAD) 就是采用 L1 范数作为损失函数：
 
+$$
+\sum_{i=1}^{m}\left|\left(y_{i}-\hat{y}_{i}\right)\right|
+$$
+
+　　MAE 就是在 LAD 的基础上做了一个平均。
+
+### 1.6 Least Squares Error
+　　最小二乘误差 (Least Squares Error, LSE) 就是采用 L2 范数作为损失函数：
+
+$$
+\sum_{i=1}^{m}\left(y_{i}-\hat{y}_{i}\right)^{2}
+$$
+
+　　MSE 就是在 LSE 的基础上做了平均。
+
+### 对数误差
 　　[对数损失](https://www.zhihu.com/question/27126057)是用于极大似然估计的。
 
 $$
