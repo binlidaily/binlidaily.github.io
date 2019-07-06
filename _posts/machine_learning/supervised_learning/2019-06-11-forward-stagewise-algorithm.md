@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Forward Stagewise Algorithm
-subtitle: 前向分布算法
+subtitle: 前向分步算法
 author: Bin Li
 tags: [Machine Learning]
 image: 

@@ -10,7 +10,7 @@ published: true
 typora-root-url: ../../../../binlidaily.github.io
 ---
 
-　　这里对算法与数据结构做一个整体的概论，方便自己有一个大局的整体意识。
+　　这里对算法与数据结构做一个整体的概论，方便自己有一个大局的整体意识。有一个左程云讲的[视频](https://v.youku.com/v_show/id_XMzMwMDMxNjc0OA==.html?spm=a2h1n.8251843.playList.5~5~A&f=51443490&o=1)可以看下，关键还是要自己能第一反应做题目，只图省事看视频没有什么作用，
 
 
 五大常用的算法：

@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/) 方法利用损失函数的负梯度作为残差拟合的方式，如果其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。GBDT 但是跟传统的Boosting 方法 Adaboost 有较大的不同，Adaboost 是利用前一轮迭代弱学习器的误差率来更新训练集的权重，如此迭代到收敛。
+　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/) 方法利用损失函数的负梯度作为残差拟合的方式，如果其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。GBDT 但是跟传统的 Boosting 方法 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 有较大的不同，Adaboost 是利用前一轮迭代弱学习器的误差率来更新训练集的权重，如此迭代到收敛。
 
 　　而在 GBDT 的迭代中，如果前一轮迭代得到的强学习器是 $f_{t-1}(x)$，损失函数是 $L\left(y, f_{t-1}(x)\right)$，那么我们本轮迭代的目标是找到一个弱学习器 $h_{t}(x)$，使得本轮损失函数 $L\left(y, f_{t}(x)=L\left(y, f_{t-1}(x)+h_{t}(x)\right)\right.$ 最小，以及本轮的弱学习器要让样本损失尽可能的小。
 
@@ -224,11 +224,11 @@ $$
 ## 总结
 GBDT **优点**：
 1. 可以灵活处理各种类型的数据，包括连续值和离散值。
-2. 在相对少的调参时间情况下，预测的准确率也可以比较高。这个是相对SVM来说的。
-3. 使用一些健壮的损失函数，对异常值的鲁棒性非常强。比如 Huber损失函数和Quantile损失函数。
+2. 在相对少的调参时间情况下，预测的准确率也可以比较高。这个是相对 SVM 来说的。
+3. 使用一些健壮的损失函数，对异常值的鲁棒性非常强。比如 Huber 损失函数和 Quantile 损失函数。
 
 GBDT **缺点**：
-1. 由于弱学习器之间存在依赖关系，难以并行训练数据。不过可以通过自采样的SGBT来达到部分并行。
+1. 由于弱学习器之间存在依赖关系，难以并行训练数据。不过可以通过自采样的 SGBT 来达到部分并行。
 
 GBDT 需要看下如何做**预测**？
 
