@@ -57,9 +57,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         - Averaged One-Dependence Estimators (AODE)
         - Hidden Markov Models
         - Conditional Random Fields (CRFs)
-
 * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
-
 * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
 
 ### 1.2 Unsupervised Learning
