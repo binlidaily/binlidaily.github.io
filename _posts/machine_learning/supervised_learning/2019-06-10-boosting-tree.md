@@ -9,16 +9,13 @@ comments: true
 published:  true
 ---
 
-　　在之前我们整理过了 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 算法的原理，当时还没有具体讨论改用什么样的基函数，本文就介绍以决策树作为基函数的提升方法，称为提升树（boosting tree）。一般的提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。对于分类问题决策树采用 CART 二叉分类树，回归问题即采用 CART 二叉回归树。我们采用一层的决策树，称之为[决策树桩](https://binlidaily.github.io/2019-06-04-decision-stump)（Decision Stump）。则提升树模型可以表示为决策树的加法模型：
+　　在之前我们整理过了 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 算法的原理，当时还没有具体讨论改用什么样的基函数，本文就介绍以决策树作为基函数的提升方法，称为提升树（boosting tree），即 **AdaBoost + 决策树 = 提升树**。一般的提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。对于分类问题决策树采用 CART 二叉分类树，回归问题即采用 CART 二叉回归树。我们采用一层的决策树，称之为[决策树桩](https://binlidaily.github.io/2019-06-04-decision-stump)（Decision Stump）。则提升树模型可以表示为决策树的加法模型：
 
 $$
 f_K(x) = \sum_{k=1}^K T(x;\Theta_k)
 $$
 
 　　其中 $T(x;\Theta_k)$ 表示二叉决策树，$\Theta_k$ 表示决策树的参数，$K$ 表示二叉决策树的个数。
-
-　　先捋清 Adaboost 和 Boosting Tree 的关系，**AdaBoost + 决策树 = 提升树**。
-
 
 
 ## 提升树算法
@@ -115,4 +112,4 @@ Therefore, gradient boosting will fit h to the residual ${\displaystyle y-F_{m}(
 
 
 ## References
-1. 统计学习方法
+1. 《统计学习方法》

@@ -88,6 +88,88 @@ $$
 
 　　目前考虑的是一维的情况，多维情况下可以对应的拓展。
 
+### 梯度下降为何是梯度负方向
+　　我们先回顾一下泰勒公式如下：
+
+$$
+\begin{aligned} f(x)_{\text {Taglor}} &=\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n !} \times(x-a)^{n} \\ &=f(a)+\frac{f^{\prime}(a)}{1 !}(x-a)+\frac{f^{(2)}(a)}{2 !}(x-a)^{2}+\cdots+\frac{f^{(n)}(a)}{n !}(x-a)^{n}+R_{n}(x) \end{aligned}
+$$
+
+
+　　那么泰勒一阶展开得到：
+
+$$
+f(\theta) \approx f\left(\theta_{0}\right)+\left(\theta-\theta_{0}\right) \cdot \nabla f\left(\theta_{0}\right)
+$$
+
+　　图解如下：
+
+<p align="center">
+  <img width="450" height="" src="/img/media/15625677142639.jpg">
+</p>
+
+　　我们看上式中 $\theta-\theta_0$ 是微小矢量，其大小其实就是所谓的步长 $\eta$，类比于下山过程中每次前进的一小步，我们将 $\theta-\theta_0$ 的单位向量用 $v$ 表示，可以得到：
+
+$$
+\theta-\theta_{0}=\eta v
+$$
+
+　　值得注意的是 $\theta-\theta_0$ 不能太大，一阶泰勒近似就不成立了，不然线性近似也就不够准确了。那么，替换之后的 $f(\theta)$ 表达式为：
+
+$$
+f(\theta) \approx f\left(\theta_{0}\right)+\eta v \cdot \nabla f\left(\theta_{0}\right)
+$$
+
+　　我们做局部下降的目的是希望每次更新 $\theta$ 都能是得函数值 $f(\theta)$ 降低。也就是说我们希望 $f(\theta)<f(\theta_0)$，则：
+
+$$
+f(\theta)-f\left(\theta_{0}\right) \approx \eta v \cdot \nabla f\left(\theta_{0}\right)<0
+$$
+
+　　而 $\eta$ 一般来说取正数，是个标量可以忽略：
+
+$$
+v \cdot \nabla f\left(\theta_{0}\right)<0
+$$
+
+　　我们希望更新的函数值降低尽量多，那么也就是说要 $v \cdot \nabla f\left(\theta_{0}\right)$ 尽可能负到最大程度，通过两个向量的乘积操作，我们很明显知道要 $v$ 和 $\nabla f\left(\theta_{0}\right)$ 方向相反才能达到负最大值。
+
+$$
+A \cdot B=\|A\| \cdot\|B\| \cdot \cos (\alpha)
+$$
+
+　　确定 $v$ 和 $\nabla f\left(\theta_{0}\right)$ 反向后，我们有：
+
+$$
+v=-\frac{\nabla f\left(\theta_{0}\right)}{\left\|\nabla f\left(\theta_{0}\right)\right\|}
+$$
+
+　　$v$ 是单位向量，所以要单位化，这里求出来的 $v$ 就可以认为是最优解，于是代回定义式子 $\theta-\theta_{0}=\eta v$ 中有：
+
+$$
+\theta=\theta_{0}-\eta \frac{\nabla f\left(\theta_{0}\right)}{\left\|\nabla f\left(\theta_{0}\right)\right\|}
+$$
+
+　　$\vert\vert \nabla f\left(\theta_{0}\right)\vert\vert$ 是标量，可将其归入到因子 $\eta$ 中，化简有：
+
+$$
+\theta=\theta_{0}-\eta \nabla f\left(\theta_{0}\right)
+$$
+
+　　即为梯度下降算法中参数 $\theta$ 的更新表达式，其具体优化过程是:
+
+$$
+\begin{array}{c}{\theta_{1}=\theta_{0}-\eta \frac{\partial f\left(\theta_{0}\right)}{\partial \theta_{0}}} \\ {\theta_{2}=\theta_{1}-\eta \frac{\partial f\left(\theta_{1}\right)}{\partial \theta_{1}}} \\ {\cdots} \\ {\theta_{M}=\theta_{M-1}-\eta \frac{\partial f\left(\theta_{M-1}\right)}{\partial \theta_{M}-1}}\end{array}
+$$
+
+　　等号两边相加，得到最终的优化结果：
+
+$$
+\theta_{M}=\theta_{0}+\eta \sum_{m=0}^{M-1}-\frac{\partial f\left(\theta_{m}\right)}{\partial \theta_{m}}
+$$
+
+　　这里是参数空间中优化，每次迭代得到参数的增量，这个增量就是负梯度呈上学习率。
+
 ### 批量梯度下降
 　　在日常使用时绝大多数情况下都是利用梯度下降找寻最优参数，于是这里改写成求参数 $\theta$ 的形式，假设样本个数为 $M$，样本 $x^{(i)}_j$ 的特征个数为 $n$，即 $j\in [1, n]$，损失函数为 $J(\theta)$。梯度下降求解参数的过程可写成（为了统一，这里步长用 $\alpha$ 代替）：
 
@@ -158,3 +240,6 @@ $$
 ## References
 1. [关于梯度下降法和牛顿法的数学推导](https://imlogm.github.io/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/gradientDescent/)
 2. [梯度下降、随机梯度下降与批梯度下降算法之间的比较](https://zhuanlan.zhihu.com/p/37714263)
+3. [为什么梯度反方向是函数值局部下降最快的方向？ - 忆臻的文章 - 知乎](https://zhuanlan.zhihu.com/p/24913912)
+2. [为什么梯度的负方向是局部下降最快的方向？ - 忆臻的文章 - 知乎](https://zhuanlan.zhihu.com/p/33260455)
+3. [为什么局部下降最快的方向就是梯度的负方向？](https://blog.csdn.net/red_stone1/article/details/80212814)
