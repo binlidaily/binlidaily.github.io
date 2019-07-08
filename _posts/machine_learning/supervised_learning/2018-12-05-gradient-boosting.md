@@ -74,8 +74,9 @@ $$
 　　那么梯度提升算法的思路如下：
 
 <p align="center">
-  <img width="450" height="" src="/img/media/15602352595888.jpg">
+  <img width="500" height="" src="/img/media/15625774976201.jpg">
 </p>
+
 
 
 　　详细的部分可以参考[原论文](/assets/trebst.pdf)，如果我们用决策树作为基函数来实现梯度提升算法的话就得到了闻名遐迩的 [GBDT](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree/)。
@@ -86,3 +87,4 @@ $$
 2. [梯度提升树(GBDT)原理小结](https://www.cnblogs.com/pinard/p/6140514.html)
 3. [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
 4. [gbdt的残差为什么用负梯度代替？ - 奥奥奥奥噢利的回答 - 知乎](https://www.zhihu.com/question/63560633/answer/581670747)
+5. [SIGAI Gradient Boosting](/assets/gradient_boosting.pdf)
