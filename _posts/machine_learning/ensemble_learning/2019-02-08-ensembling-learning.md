@@ -126,7 +126,7 @@ $$
 
 ### 3.2 多级组合
 ### 3.2.1 Stacking
-　　Stacking 是一种使用串行的组合基学习器的方法，把前一个基学习器 (Base-learner) 的结果作为特征输出到下一个学习器 (Meta-learner)，最后的学习器作为融合模型进行最后结果的预测。
+　　Stacking 是一种使用串行的组合基学习器的方法，把前一个基学习器 (Base-learner) 的结果**作为特征**输出到下一个学习器 (Meta-learner)，最后的学习器作为融合模型进行最后结果的预测。
 
 <p align="center">
 <img width="" src="/img/media/15620593061827.jpg">
