@@ -19,6 +19,9 @@ $$
 
 　　这些归一化算法的主要区别在于操作的 feature map 维度不同。
 
+## 1. Batch Normalization
+
+
 ## References
 1. [如何区分并记住常见的几种 Normalization 算法](http://www.tensorinfinity.com/paper_184.html)
 

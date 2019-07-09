@@ -151,3 +151,4 @@ $$
 3. [The Activation Function in Deep Learning 浅谈深度学习中的激活函数](https://www.cnblogs.com/rgvb178/p/6055213.html)
 4. [深度学习中的激活函数导引](https://zhuanlan.zhihu.com/p/22142013)
 5. [详解机器学习中的梯度消失、爆炸原因及其解决方法](https://blog.csdn.net/qq_25737169/article/details/78847691)
+6. [深度学习中的激活函数汇总](http://spytensor.com/index.php/archives/23/?qmheji=sq6sf2)

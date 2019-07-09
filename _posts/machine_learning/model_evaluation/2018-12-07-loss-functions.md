@@ -203,3 +203,4 @@ $$
 6. [机器学习中的各种“熵”](https://lumingdong.cn/various-entropies-in-machine-learning.html#%E4%BA%A4%E5%8F%89%E7%86%B5%EF%BC%88cross_entropy%EF%BC%89)
 7. [确定不收藏？机器学习必备的分类损失函数速查手册](https://redstonewill.com/1584/)
 8. [机器学习中常见的损失函数](https://blog.csdn.net/colourful_sky/article/details/80057445)
+9. [机器学习中的目标函数总结](https://zhuanlan.zhihu.com/p/44722270)
