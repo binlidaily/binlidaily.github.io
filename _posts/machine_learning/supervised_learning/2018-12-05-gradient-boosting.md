@@ -78,9 +78,9 @@ $$
 </p>
 
 
-
 　　详细的部分可以参考[原论文](/assets/trebst.pdf)，如果我们用决策树作为基函数来实现梯度提升算法的话就得到了闻名遐迩的 [GBDT](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree/)。
 
+　　rho 跟 beta 的关系？！$\beta$ 是各个弱学习器的权重（从加法模型的角度考虑），这个是放在每一次找最优当前弱学习器参数的时候，而 $rho$ 对的是找最佳路径的步长。
 
 ## References
 1. [Gradient Boosting from scratch](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
