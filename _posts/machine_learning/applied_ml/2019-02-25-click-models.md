@@ -16,5 +16,7 @@ published: true
 2. [Kaggle: Display Advertising Challenge](https://www.kaggle.com/c/criteo-display-ad-challenge)
 3. [Kaggle: Click-Through Rate Prediction](https://www.kaggle.com/c/avazu-ctr-prediction)
 4. [Kaggle: Avito Demand Prediction Challenge](https://www.kaggle.com/c/avito-demand-prediction) 
+5. [**CTR点击率预估之经典模型回顾**](http://www.tensorinfinity.com/paper_161.html)
+6. [LR+FTRL算法原理以及工程化实现](https://zhuanlan.zhihu.com/p/55135954)
 
 
