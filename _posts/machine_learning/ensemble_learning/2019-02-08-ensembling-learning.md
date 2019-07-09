@@ -61,7 +61,7 @@ Boosting **缺点**：
 
 Bagging **优点**：
 1. Bagging 是一个高效的集成学习算法，可以并行。
-2. Bagging 主要关注降低方差（variance）。
+2. Bagging 主要关注降低方差（Variance）。
 
 
 ### 2.1 Bagging 与 Boosting的区别
