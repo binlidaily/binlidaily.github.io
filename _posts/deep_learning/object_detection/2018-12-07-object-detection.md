@@ -18,3 +18,4 @@ published: true
 
 ## References
 1. [A paper list of object detection using deep learning.](https://github.com/hoya012/deep_learning_object_detection)
+2. [基于深度学习的目标检测算法综述](https://zhuanlan.zhihu.com/p/36485126)

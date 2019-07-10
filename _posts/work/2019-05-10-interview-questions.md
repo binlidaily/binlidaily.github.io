@@ -377,3 +377,5 @@ PageRank原理，怎么用模型来查找异常用户，我讲了一大堆我的
 4. [DeepLearning-500-questions](https://github.com/scutan90/DeepLearning-500-questions)
 5. [面试经验（机器学习）](http://www.icode9.com/content-4-117524.html)
 6. [机器学习岗面试总结](https://blog.csdn.net/zhihua_oba/article/details/78333650)
+7. [机器学习与深度学习常见面试题（上）](https://zhuanlan.zhihu.com/p/45091568)
+8. [机器学习与深度学习常见面试题（下）](https://zhuanlan.zhihu.com/p/47559203)
