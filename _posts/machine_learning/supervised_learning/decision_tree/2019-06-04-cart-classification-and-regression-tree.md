@@ -95,7 +95,7 @@ $$
 \hat { c } _ { m } = \operatorname { avg } \left( y _ { i } | x _ { i } \in R _ { m } \right)
 $$
 
-<details><summary markdown="span">　　具体证明可以展开查看！</summary>
+<details><summary markdown="span">具体证明可以展开查看！</summary>
 　　给定一个随机的数列 $\\{ x _ { 1 } , x _ { 2 } , \dots , x _ { n } \\}$，假设该空间中最优的输出值为 $a$，则根据最小平方误差准则，我们能得到有关 $a$ 的函数如下：
 
 $$
@@ -111,11 +111,12 @@ $$
 $$F ^ { \prime \prime } ( a ) = 2n > 0$$
 
 　　二阶导为正数，所以该函数为严格凸函数，那么令 $F ^ { \prime } ( a ) = 0$，得到 $a = \frac { 1 } { n } \sum _ { i = 1 } ^ { n } x _ { i }$，即最小值点为：
-</details>
 
 $$
 \hat { a } = \frac { 1 } { n } \sum _ { i = 1 } ^ { n } x _ { i }
 $$
+
+</details>
 
 </details>
 
