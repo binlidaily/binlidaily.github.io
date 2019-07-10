@@ -182,7 +182,7 @@ $$
 　　对应的负梯度误差为：
 
 $$
-r\left(y_{i}, f\left(x_{i}\right)\right)=\left\{\begin{array}{ll}{y_{i}-f\left(x_{i}\right)} & {\left|y_{i}-f\left(x_{i}\right)\right| \leq \delta} \\ {\delta s i g n\left(y_{i}-f\left(x_{i}\right)\right)} & {\left|y_{i}-f\left(x_{i}\right)\right|>\delta}\end{array}\right.
+r\left(y_{i}, f\left(x_{i}\right)\right)=\left\{\begin{array}{ll}{y_{i}-f\left(x_{i}\right)} & {\left|y_{i}-f\left(x_{i}\right)\right| \leq \delta} \\ {\delta \cdot \text{sign}\left(y_{i}-f\left(x_{i}\right)\right)} & {\left|y_{i}-f\left(x_{i}\right)\right|>\delta}\end{array}\right.
 $$
 
 　　4. **分位数损失**，它对应的是分位数回归的损失函数，表达式为
@@ -200,7 +200,7 @@ $$
 　　对于 Huber 损失和分位数损失，主要用于健壮回归，也就是减少异常点对损失函数的影响。
 
 
-## GBDT 的正则化
+## 4. GBDT 的正则化
 　　和 Adaboost 一样，我们也需要对 GBDT 进行正则化，防止过拟合。GBDT 的正则化主要有三种方式。
 
 　　1) 第一种是和 Adaboost 类似的正则化项，即步长(learning rate)。定义为 $\nu$,对于前面的弱学习器的迭代
@@ -221,7 +221,7 @@ $$
 
 　　使用了子采样的 GBDT 有时也称作随机梯度提升树 (Stochastic Gradient Boosting Tree, SGBT)。由于使用了子采样，程序可以通过采样分发到不同的任务去做 boosting 的迭代过程，最后形成新树，从而减少弱学习器难以并行学习的弱点。
 
-　　第三种是对于弱学习器即 CART 回归树进行正则化剪枝，可以参考之前对决策剪枝的[介绍](https://binlidaily.github.io/2018-09-11-decision-tree/#13-剪枝处理pruning)。
+　　3）第三种是对于弱学习器即 CART 回归树进行正则化剪枝，可以参考之前对决策剪枝的[介绍](https://binlidaily.github.io/2018-09-11-decision-tree/#13-剪枝处理pruning)。
 
 ## Parameter Tuning
 [参考](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 调参的过程。
