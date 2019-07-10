@@ -34,6 +34,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
     * [Gradient Boosting Decision Tree (GBDT) = Gradient Boosting + Decision Tree](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
+    * [LightGBM](https://binlidaily.github.io/2019-07-05-lightgbm/)
     - Chi-squared Automatic Interaction Detection (CHAID)
     - M5
     - Conditional Decision Trees
