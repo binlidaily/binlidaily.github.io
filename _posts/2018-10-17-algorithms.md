@@ -31,7 +31,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Random Forest = Bagging + Decision Tree](https://binlidaily.github.io/2018-12-11-random-forest/)
     * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
     * [Boosting Tree](https://binlidaily.github.io/2019-06-10-boosting-tree)
-    * [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
+    * [Gradient Boosting Machine (GBM)](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/)
     * [Gradient Boosting Decision Tree (GBDT) = Gradient Boosting + Decision Tree](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree)
     * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
     * [LightGBM](https://binlidaily.github.io/2019-07-05-lightgbm/)

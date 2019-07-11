@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Gradient Boosting
+title: Gradient Boosting Machine
 subtitle: 梯度提升算法
 author: Bin Li
 tags: [Machine Learning]
