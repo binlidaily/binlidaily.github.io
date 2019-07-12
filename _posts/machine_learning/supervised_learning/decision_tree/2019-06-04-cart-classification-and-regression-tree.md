@@ -16,7 +16,7 @@ published: true
 ⁉️ 为什么说会涉及到概率分布呢？
 
 ⁉️ 为什么想到一定要用二叉树？
-* 只是二分类能保证所有类别能在叶子结点上体现？继续细分是可以的！
+* 只是二分类能保证所有类别能在叶子结点上体现？继续细分是可以的！担心组合爆炸。
 
 CART 算法一般分两个步骤:
 1. 决策树生成：基于训练数据集生成决策树，生成的决策树要尽量大（怎么保证？）。
@@ -39,6 +39,8 @@ $$
 $$
 
 　　所得到的属性 $a$ 及其的属性值 $a^v$ 即为样本集 $D$ 的最优分裂属性以及最优分裂属性值。然后对划分的两个子结点迭代的进行该流程，直到满足停止条件。
+
+　　分类结果可以用概率表示，就计算对应分类叶子节点中该类别样本数占该叶子节点样本数目的比例即可。
 
 ### 1.2 回归树的生成
 　　回归树的预测结果（对比属性值为连续型）是连续型数据，那么有两个问题很直接的摆在面前：
@@ -218,3 +220,4 @@ CART **缺点**：
 1. [决策树之CART（分类回归树）详解](https://blog.csdn.net/zhihua_oba/article/details/72230427)
 2. [cart树怎么进行剪枝？ - zzhang27的回答 - 知乎](https://www.zhihu.com/question/22697086/answer/221954269)
 3. [機器學習經典算法優缺點總結](https://bigdatafinance.tw/index.php/392-2017-06-01-13-30-40)
+4. [Why are implementations of decision tree algorithms usually binary and what are the advantages of the different impurity metrics?](https://sebastianraschka.com/faq/docs/decision-tree-binary.html)
