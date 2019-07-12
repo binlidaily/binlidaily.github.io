@@ -42,6 +42,14 @@ $$
 
 　　分类结果可以用概率表示，就计算对应分类叶子节点中该类别样本数占该叶子节点样本数目的比例即可。
 
+　　为了方便对比，写下分类树的损失函数：
+
+$$
+J\left(k, t_{k}\right)=\frac{m_{\text { left }}}{m} G_{\text { left }}+\frac{m_{\text { right }}}{m} G_{\text { right }}
+$$
+
+　　$k$ 表示特征，$t_k$ 表示特征的一个阈值（大于、等于或小于 $t_k$）。
+
 ### 1.2 回归树的生成
 　　回归树的预测结果（对比属性值为连续型）是连续型数据，那么有两个问题很直接的摆在面前：
 1. 划分点怎么找？
@@ -135,6 +143,13 @@ $$
 　　其中 $I$ 为指示函数:
 
 $$I=\left\{\begin{array}{ll}{1} & {\text { if }\left(x \in R_{m}\right)} \\ {0} & {\text { if }\left(x \notin R_{m}\right)}\end{array}\right.$$
+
+
+　　回归的损失函数采用的是 MSE 作为衡量标准，不像分类树用 GINI 不纯度：
+
+$$
+J\left(k, t_{k}\right)=\frac{m_{\text { left }}}{m} \mathrm{MSE}_{\text { left }}+\frac{m_{\text { right }}}{m} \mathrm{MSE}_{\text { right }}
+$$
 
 ## 2. CART 剪枝——代价复杂性剪枝法
 　　CART 剪枝算法是想从“完全生长”的决策树的底端减去一些子树，使决策树变小 (模型变简单)。这里介绍 CART 应用最广泛的代价复杂性剪枝法 (Cost Complexity Pruning, CCP)。
