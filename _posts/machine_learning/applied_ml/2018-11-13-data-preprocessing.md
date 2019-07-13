@@ -55,6 +55,9 @@ train_df[col] = train_df[col].map(lambda x : p.log1p(x))
 ### 暴力特征
 采用各种批量的组合特征。
 
+### 如何判断数据是线性可分
+　　对于低维（一维、二维、三维）我们还可以画出来看是否线性可分。如果是高维的话，可以先找到两个部分的凸包，看两个凸包是否相交。根据类别将数据分成 A、B 两个部分，然后用 [quickhull](https://en.wikipedia.org/wiki/Convex_hull_algorithms) 算法来获得数据的凸包，接着使用 [sweepline](http://people.csail.mit.edu/indyk/6.838-old/handouts/lec2.pdf) 算法判断凸包边界是否相交。这两个算法的时间复杂度都是 $O(n\log(n))$。
+
 ----
 
 
@@ -361,3 +364,4 @@ sa_price = train_df.groupby('sub_area')[['work_share', 'price_doc']].mean()
 2. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)
 3. [经典比较篇之八：数据不正态怎么办？](https://zhuanlan.zhihu.com/p/26784184)
 4. [Python 特征工程](https://coladrill.github.io/2018/03/08/Python%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E7%AF%87/)
+5. [Determine whether the two classes are linearly separable (algorithmically in 2D)](https://stackoverflow.com/questions/9779179/determine-whether-the-two-classes-are-linearly-separable-algorithmically-in-2d)

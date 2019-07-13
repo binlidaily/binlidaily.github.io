@@ -14,6 +14,7 @@ typora-root-url: ../../../../binlidaily.github.io
 
 递归方式：
 ```python
+# 先序遍历
 def pre_order(self, node):
 	if node is None:
 		return
@@ -21,6 +22,7 @@ def pre_order(self, node):
 	self.pre_order(node.left)
 	self.pre_order(node.right)
 
+# 中序遍历
 def in_order(self, node):
 	if node is None:
 		return
@@ -28,6 +30,7 @@ def in_order(self, node):
 	print(node.val, end=' ')
 	self.in_order(node.right)
 
+# 后续遍历
 def post_order(self, node):
 	if node is None:
 		return
@@ -98,4 +101,4 @@ def post_order_stack(self, root):
 	return res[::-1]
 ```
 
-　　当然，不一定非要用到树，可以只用到其迭代的思想。
+　　当然，不一定非要用到递归，可以只用到其迭代的思想。
