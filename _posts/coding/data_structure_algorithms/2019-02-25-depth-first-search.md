@@ -85,6 +85,19 @@ def in_order_func(self, root):
         inorder(root)
         return res
 
+def inorderTraversal(self, root):
+        stack = []
+        node = root
+        res = []
+        while node or stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            res.append(node.val)
+            node = node.right
+        return res
+
 def post_order_stack(self, root):
 	stack = []
 	node = root
@@ -102,3 +115,8 @@ def post_order_stack(self, root):
 ```
 
 　　当然，不一定非要用到递归，可以只用到其迭代的思想。
+
+## References
+1. [144. Binary Tree Preorder Traversal](https://binlidaily.github.io/2019-07-13-(144)-binary-tree-preorder-traversal)
+2. [94. Binary Tree Inorder Traversal](https://binlidaily.github.io/2019-07-13-(94)-binary-tree-inorder-traversal)
+3. [145. Binary Tree Postorder Traversal](https://binlidaily.github.io/2019-07-13-(145)-binary-tree-postorder-traversal)
