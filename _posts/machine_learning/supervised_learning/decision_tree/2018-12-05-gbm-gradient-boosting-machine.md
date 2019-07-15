@@ -7,9 +7,55 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
-　　[提升树](https://binlidaily.github.io/2019-06-10-boosting-tree/)利用加法模型和前向分布算法实现学习的优化过程，且当损失函数是平方损失 (回归) 和指数损失 (分类) 时，每一步的优化是很简单的，但对一般损失函数 (损失函数类别可参考[这篇介绍](https://binlidaily.github.io/2018-12-07-loss-functions/)) 而言，往往每一步优化并不那么容易。为了可以扩展到更复杂的损失函数中，Freidman 提出了梯度提升算法 (Gradient Boosting)，这是利用最速梯度下降的近似方法来实现的，关键是利用**损失函数的负梯度在当前模型的值**作为回归问题提升树算法中的残差的近似值，拟合一个回归树。
+　　[提升树](https://binlidaily.github.io/2019-06-10-boosting-tree/)利用加法模型和前向分布算法实现学习的优化过程，且当损失函数是平方损失 (回归) 和指数损失 (分类) 时，每一步的优化是很简单的，但对一般损失函数 (损失函数类别可参考[这篇介绍](https://binlidaily.github.io/2018-12-07-loss-functions/)) 而言，往往每一步优化并不那么容易。
+
+　　为了可以扩展到更复杂的损失函数中，Freidman 提出了梯度提升算法 (Gradient Boosting)，这是利用最速梯度下降的近似方法来实现的，关键是利用**损失函数的负梯度在当前模型的值**作为回归问题提升树算法中的残差的近似值，拟合一个回归树。
+
+　　Adaboost 这种提升树我们可以从 Gradient Descent 角度来进行推导，得到目标如下：
+
+$$
+\min _{\eta} \min _{h} \frac{1}{N} \sum_{n=1}^{N} \exp \left(-y_{n}\left(\sum_{\tau=1}^{t-1} \alpha_{\tau} g_{\tau}\left(\mathbf{x}_{n}\right)+\eta h\left(\mathbf{x}_{n}\right)\right)\right)
+$$
+
+　　这个是针对二分类问题，而且限定了指数损失函数。如果我们想用不同的损失函数 (err)，顺着这样的思路是否可用？这个时候优化目标可以写成:
+
+$$
+\min _{\beta} \min _{h} \frac{1}{N} \sum_{i=1}^{N} \operatorname{L}\left(\sum_{k=1}^{m-1} \alpha_{k} f_{k}\left(\mathbf{x}_{i}\right)+\beta h\left(\mathbf{x}_{i}\right), y_{i}\right)
+$$
+
+　　按照梯度下降的思想，上式中的 $h(x_i)$ 是下一步前进的方向，$\eta$ 是步进长度，我们的目标就是求解这两个量。接下来，我们看如何求解 Regression 的 Gradient Boosting 问题，表达式如下：
+
+$$
+\min _{\beta} \min _{h} \frac{1}{N} \sum_{i=1}^{N} \operatorname{L}\left(\sum_{k=1}^{m-1} \underbrace{\alpha_{k} g_{k}\left(\mathbf{x}_{i}\right)}_{s_i}+\beta h\left(\mathbf{x}_{i}\right), y_{i}\right) \text { with err }(s, y)=(s-y)^{2}
+$$
+
+　　我们记 $s_i=\sum_{k=1}^{m-1} \alpha_{k} g_{k}\left(\mathbf{x}_{i}\right)
+$，Regression 采用均方误差 MSE，那么根据梯度下降的思想，我们将上式进行一阶泰勒展开，先只关注对 $h$ 的优化，写成梯度的形式如下：
+
+
+$$
+\begin{aligned} \min _{h}  &\frac{1}{N} \sum_{i=1}^{N} \operatorname{L}\left(\sum_{k=1}^{m-1} \alpha_{k} g_{k}\left(\mathbf{x}_{i}\right)+\beta h\left(\mathbf{x}_{i}\right), y_{i}\right)\\ 
+& \stackrel{\text {}}{\approx} \min _{h} \frac{1}{N} \sum_{i=1}^{N} \underbrace{\operatorname{L}\left(\sum_{k=1}^{m-1} \alpha_{k} g_{k}\left(\mathbf{x}_{i}\right), y_{i}\right)}_{\text { constant }}+\frac{1}{N} \sum_{i=1}^{N} \beta h\left(\mathbf{x}_{i}\right)\left.\frac{\partial \operatorname{L}\left(s, y_{i}\right)}{\partial s}\right|_{s=s_{i}} \\ &=\min _{h} \text { constants }+\frac{\beta}{N} \sum_{i=1}^{N} h\left(\mathbf{x}_{i}\right) \cdot 2\left(s_{i}-y_{i}\right) \end{aligned}
+$$
+　　我们知道常数对我们最小化的优化过程没有影响，所以可以忽略。要是上式最小化，我们先考虑方向 $h(x_n)$，只要其是梯度 $2\left(s_{n}-y_{n}\right)$ 的反方向即可，即 $h(x_n) = 2\left(s_{n}-y_{n}\right)$，因为是要最小化，所以尽量要使得结果为负数。
+
+
+$$
+\begin{array}{l}{\underset{h}{\min}  \quad \text { constants }+\frac{\eta}{N} \sum_{n=1}^{N}\left(2 h\left(\mathbf{x}_{n}\right)\left(s_{n}-y_{n}\right)+\left(h\left(\mathbf{x}_{n}\right)\right)^{2}\right)} \\ {\quad=\text { constants }+\frac{\eta}{N} \sum_{n=1}^{N}\left(\text { constant }+\left(h\left(\mathbf{x}_{n}\right)-\left(y_{n}-s_{n}\right)\right)^{2}\right)}\end{array}
+$$
+　　实际上 $h(x_n)$ 的大小并不重要，因为有步长 $\eta$ 来调节。我们上面的最小化问题中需要对 $h(x_n)$ 的大小做些限制。限制 $h(x_n)$ 的一种简单做法是把的大小当 $h(x_n)$成一个惩罚项 $(h^2(x_n))$ 添加到上面的最小化问题中，这种做法与regularization类似。如下图所示，经过推导和整理，忽略常数项，我们得到最关心的式子是：
+
+
+$$
+\min_h \sum_{n=1}^{N}\left(\left(h\left(x_{n}\right)-\left(y_{n}-s_{n}\right)\right)^{2}\right)
+$$
+
+
+　　此时问题就变成了在训练集 $\\{\mathbf{x}_n, y_n-s_n\\}$ 上损失函数为均方差的回归问题。
 
 　　先看一般情况，我们能通过一阶泰勒展开证明负梯度方向是下降最快的方向。对于函数 $f$:
 
@@ -49,7 +95,9 @@ $$
 
 　　注意这里还有一个 $\eta$，据此可知当前的弱学习器学习的是至此函数值的负梯度的近似值，最开始被提出来时定义的值如下：
 
-$$- \left[ \frac { \partial L \left( y _ { i } , f \left( x _ { i } \right) \right) } { \partial f \left( x _ { i } \right) } \right] _ { f ( x ) = f _ { m - 1 } ( x ) }$$
+$$
+-\left[ \frac { \partial L \left( y _ { i } , f \left( x _ { i } \right) \right) } { \partial f \left( x _ { i } \right) } \right] _ { f ( x ) = f _ { m - 1 } ( x ) }
+$$
 
 　　完成的优化过程是：
 
