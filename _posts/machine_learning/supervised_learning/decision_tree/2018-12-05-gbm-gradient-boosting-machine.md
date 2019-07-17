@@ -45,19 +45,47 @@ $$
 　　而梯度提升算法作为分布加法模型的特性有：
 
 $$
-F_{m}(x)=F_{m-1}(x) + \eta h(x)
+F_{m}(x)=F_{m-1}(x) + \beta h(x)
 $$
 
-　　对比上面两个式子，如果两式的 $\eta$ 取的一致（加法模型一般去 $\eta=1$，当时用 shrinkage 时，$\eta$ 取值可能不一样），那么就有：
+　　对比上面两个式子，很容易得到：
 
 $$
-h_{m}(x)=- \frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)}
+\beta h_{m}(x)=- \eta \frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)}
 $$
 
-　　即梯度提升算法每一轮就是拟合损失函数的负梯度。
+$$
+\frac{\beta}{\eta } h_{m}(x) = - \frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)} 
+$$
 
+　　设 $\alpha=\frac{\beta}{\eta }$，$g_m(x)=\frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)} $，则有 $\alpha h_{m}(x)= -g_m(x)$，通过上式可以看出梯度提升算法每一轮就是用损失函数对当前强学习器的负梯度来拟合当前轮的 $\alpha h_{m}(x)$（称为伪残差，当损失函数取最小二乘时为真正意义上的残差），那么我们可以用负梯度的方式来求解当前弱学习器的参数。
 
-　　完成的优化过程是：
+　　为了简化问题，我们将这个求解过程分两个步骤：
+1. 先求到当前学习器的优化方向，即 $h(x)$ 只是一个优化方向，可以不考虑其大小:
+
+　1) 可以直接将 $\alpha$ 设为 1，去计算：
+
+$$
+h_{m}=\arg \min _{h} \sum_{i=1}^{N}\left[\left(-g_{m}\left(x_{i}\right)\right)-h\left(x_{i}\right)\right]^{2}
+$$
+
+　2) 也可以带上参数，但是这个参数在优化时并不是很重要：
+
+$$
+\mathbf{\theta}_{m}=\arg \min _{\mathbf{\theta}, \alpha} \sum_{i=1}^{N}\left[-g_{m}\left(\mathbf{x}_{i}\right)-\alpha h\left(\mathbf{x}_{i} ; \mathbf{\theta}\right)\right]^{2}
+$$
+
+{:start="2"}
+
+2. 确定方向了，再利用**线性搜索**找到合适的步长。
+
+$$
+\beta_{m}=\arg \min _{\beta} \sum_{i=1}^{N} L\left(y_{i}, F_{m-1}\left(\mathbf{x}_{i}\right)+\beta h\left(\mathbf{x}_{i}\right)\right)
+$$
+
+　　我们看到这两步中都求到了有关 $h(x)$ 的参数，但是最终步长要由线性搜索得到，不能一步得到的原因是在第一步中的参数 $\alpha$ 与 $\beta$ 有差距？
+
+　　那么，最后完成的优化过程是：
 
 $$
 \begin{array}{c}{F_{1}(x)=F_{0}(x)-\eta \frac{\partial L\left(y, F_{0}(x)\right)}{\partial F_{0}(x)}, \quad \text{即 }  T_{1}(x)=-\eta \frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)}} \\ {\cdots} \\ {F_{M}(x)=F_{M-1}(x)-\eta \frac{\partial L\left(y, F_{M-1}(x)\right)}{\partial F_{M-1}(x)}, \quad \text{即 } T_{M}(x)=-\eta \frac{\partial L\left(y, F_{M-1}(x)\right)}{\partial F_{M-1}(x)}}\end{array}
@@ -91,7 +119,7 @@ $$
 ## References
 1. [Gradient Boosting from scratch](https://medium.com/mlreview/gradient-boosting-from-scratch-1e317ae4587d)
 2. [梯度提升树(GBDT)原理小结](https://www.cnblogs.com/pinard/p/6140514.html)
-3. [Greedy Function Approximation: A Gradient Boosting Machine](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf)
+3. [Greedy Function Approximation: A Gradient Boosting Machine](/assets/trebst.pdf)
 4. [gbdt的残差为什么用负梯度代替？ - 奥奥奥奥噢利的回答 - 知乎](https://www.zhihu.com/question/63560633/answer/581670747)
 5. [SIGAI Gradient Boosting](/assets/gradient_boosting.pdf)
 6. [理解AdaBoost算法](https://mp.weixin.qq.com/s?__biz=MzU4MjQ3MDkwNA==&mid=2247486478&idx=1&sn=8557d1ffbd2bc11027e642cc0a36f8ef&chksm=fdb69199cac1188ff006b7c4bdfcd17f15f521b759081813627be3b5d13715d7c41fccec3a3f&scene=21#wechat_redirect)
