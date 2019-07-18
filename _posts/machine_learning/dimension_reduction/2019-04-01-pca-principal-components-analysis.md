@@ -70,7 +70,12 @@ $$
 3. 对协方差矩阵进行特征值分解，将特征值从大到小排列。
     * 通过奇异值分解（SVD 求取 $\Sigma$ 的 特征向量（eigenvectors）
         * $\left(U, S, V^{T}\right)=SVD(\Sigma)$
-4. 从 $U$ 中取出前 $d$ 个左奇异特征向量 $U_\text{sub}= \\{\omega_{1}, \omega_{2}, \dots, \omega_{d}\\}$，通过以下映射将 $n$ 维样本映射到 $d$ 维
+
+![-w684](/img/media/15634382680452.jpg)
+
+{:start="4"}
+
+4. 从 $U$ 中取出前 $d$ 列左奇异特征向量 $U_\text{sub}= \\{\omega_{1}, \omega_{2}, \dots, \omega_{d}\\}$，通过以下映射将 $n$ 维样本映射到 $d$ 维
 
 $$
 \boldsymbol{x}_{i}^{\prime}=U_\text{sub}^T \cdot x_i=\left[\begin{array}{c}{\boldsymbol{\omega}_{1}^{\mathrm{T}} \boldsymbol{x}_{i}} \\ {\boldsymbol{\omega}_{2}^{\mathrm{T}} \boldsymbol{x}_{i}} \\ {\vdots} \\ {\boldsymbol{\omega}_{d}^{\mathrm{T}} \boldsymbol{x}_{i}}\end{array}\right]
@@ -92,13 +97,89 @@ $$
 $$
 
 　　PCA 通过线性变换将向量投影到低维空间。对向量进行投影就是对向量左乘一个矩阵，得到结果向量，所以其决策函数为：
-
 $$
 y=W x
 $$
 
+　　其中 $W=U_\text{sub}^T$。
+
 ## 2. PCA 最小平方误差理论
-**TODO**
+　　为什么说 PCA 是线性降维方法呢？可以看下其决策函数就可以看到，就是一个线性计算，那么我们就可以将其转换一下思路，其目标也是求解一个线性函数使得对应直线能够更好地拟合样本点集合。如果我们从这个角度定义PCA的目标，那么问题就会转化为一个回归问题。
+
+<p align="center">
+  <img width="400" height="" src="/img/media/15634349523772.jpg">
+</p>
+
+　　数据集中每个点 $x_k$ 到 $d$ 维超平面 $D$ 的距离为
+
+$$
+\operatorname{distance}\left(\boldsymbol{x}_{k}, D\right)=\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right\|_{2}
+$$
+
+　　其中 $\widetilde{\boldsymbol{x}_{k}}$ 表示 $x_k$ 在超平面 $D$ 上的投影向量。如果该超平面由 $d$ 个标准正交基构成，根据线性代数理论可以由这组基线性表示
+
+$$
+\widetilde{\boldsymbol{x}_{k}}=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}
+$$
+
+　　其中 $w_i^T x_k$ 表示 $x_k$ 在 $w _i$ 方向上投影的长度。因此，$\widetilde{\boldsymbol{x}_{k}}$ 实际上就是 $x_k$ 在 $W$ 这组标准正交基下的坐标。而 PCA 要优化的目标为
+
+
+$$
+\left\{\begin{array}{l}{\underset{\omega_{1}, \ldots, \omega_{d}}{\arg \min } \sum_{k=1}^{n}\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2}} \\ {\text {s.t. } \quad \omega_{i}^{\mathrm{T}} \omega_{j}=\delta_{i j}=\left\{\begin{array}{l}{1, i=j} \\ {0, i \neq j}\end{array}\right.}\end{array}\right.
+$$
+
+　　由向量内积的性质，我们知道 $\boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}}=\widetilde{\boldsymbol{x}_{k}}^{\mathrm{T}} \boldsymbol{x}_{k}$，于是将上式中的每一个距离展开
+
+$$
+\begin{aligned}\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2} &=\left(\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right)^{\mathrm{T}}\left(\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right) \\ &=\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}-\boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k}-\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}+\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} \\ &=\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}-2 \boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k}+\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k} \end{aligned}
+$$
+
+　　其中第一项 $x_k^Tx_k$ 与选取的 $W$ 无关，是常数，则有：
+
+$$
+\begin{aligned} \boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} &=\boldsymbol{x}_{k}^{\mathrm{T}} \sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i} \\ &=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i} \\ &=\sum_{i=1}^{d} \boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i} \end{aligned}
+$$
+
+$$
+\begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} & \widetilde{\boldsymbol{x}_{k}}=\left(\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\sum_{j=1}^{d}\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \\ &=\sum_{i=1}^{d} \sum_{j=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \end{aligned}
+$$
+
+　　注意到，其中 $\omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k}$ 和 $\omega_{j}^{\mathrm{T}} \boldsymbol{x}_{k}$ 表示投影长度，都是数字。且当 $i \neq j$ 时，$\omega_{i}^{\mathrm{T}} \omega_{j}=0$，因此有:
+
+$$
+\begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} &=\sum_{i=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \\ &=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i} \end{aligned}
+$$
+
+　　注意到，$\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}$ 实际上就是矩阵 $\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}$ 的迹（对角线元素之和），于是可以距离公式化简
+
+$$
+\begin{array}{c}{\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2}=-\sum_{i=1}^{d} \boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}+\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}} \\ {=-\operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)+\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}}\end{array}
+$$
+
+　　因此式之前式子可以写成
+
+$$
+\begin{aligned}
+\arg \min _{W} \sum_{k=1}^{n}\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right\|_{2}^{2}&=\sum_{k=1}^{n}\left(-\operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)+\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \\ &={-\sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)+C}
+\end{aligned}
+$$
+
+　　根据矩阵乘法的性质，因此优化问题可以转化为 $\arg \max _{W} \sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)$，这等价于求解带约束的优化问题：
+
+$$
+\left\{\begin{array}{ll}{\arg \max _{W} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{X} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{W}\right)} \\ {\text {s.t.}} \quad {\boldsymbol{W}^{\mathrm{T}} \boldsymbol{W}=I}\end{array}\right.
+$$
+
+　　如果我们对 $W$ 中的 $d$ 个基 $\omega_{1}, \omega_{2}, \ldots, \omega_{d}$ 依次求解，就会发现和最大方差理论的方法完全等价。比如当 $d=1$ 时，我们实际求解的问题是
+
+$$
+\left\{\begin{array}{ll}{\arg \max _{\omega} \boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{X} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{\omega}} \\ {\text {s.t.}}  {\boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{\omega}=1}\end{array}\right.
+$$
+
+　　最佳直线 $w$ 与最大方差法求解的最佳投影方向一致，即协方差矩阵的最大特征值所对应的特征向量，差别仅是协方差矩阵 $\Sigma$ 的一个倍数，以及常数 $\sum_{k=1}^{n} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}$ 偏差，但这并不影响我们对最大值的优化。
+
+
 ## 3. 核化 PCA
 　　传统的 PCA 只能做线性降维，对于非线性的情况效果就不尽人意。那么是不是可以像 SVM 那样，我们先把数据映射到高维空间，在高维空间就能用 PCA 线性降维了！
 
@@ -143,8 +224,66 @@ $$
 
 　　其中 $\boldsymbol{\alpha}_i$ 已经规范化，$\boldsymbol{\alpha}_i^j$ 是 $\boldsymbol{\alpha}_i$ 的第 $j$ 个分量。我们可以看到为获得投影后的坐标，KPCA 需要做所有样本的加和，计算开销比较大。
 
+## 4. 应用
+
+### 4.1 选择合适的维度
+
+　　看特征值累加的比例，比如我们去 95% 来选择维度，可以自己这么做：
+
+```python
+pca = PCA()
+pca.fit(X_train)
+cumsum = np.cumsum(pca.explained_variance_ratio_)
+d = np.argmax(cumsum >= 0.95) + 1
+```
+
+　　在 Sklearn 里初始化时就能选定：
+
+```python
+pca = PCA(n_components=0.95)
+X_reduced = pca.fit_transform(X_train)
+pca.n_components_
+np.sum(pca.explained_variance_ratio_)
+```
+
+
+
+### 4.2 核化 PCA
+
+```python
+from sklearn.decomposition import KernelPCA
+
+rbf_pca = KernelPCA(n_components = 2, kernel="rbf", gamma=0.04)
+X_reduced = rbf_pca.fit_transform(X)
+```
+
+选择合适的核并调整参数：
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+
+clf = Pipeline([
+        ("kpca", KernelPCA(n_components=2)),
+        ("log_reg", LogisticRegression(solver="liblinear"))
+    ])
+
+param_grid = [{
+        "kpca__gamma": np.linspace(0.03, 0.05, 10),
+        "kpca__kernel": ["rbf", "sigmoid"]
+    }]
+
+grid_search = GridSearchCV(clf, param_grid, cv=3)
+grid_search.fit(X, y)
+
+print(grid_search.best_params_)
+```
+
+
 
 ## References
+
 1. [Linear Discriminant Analysis – Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)
 2. 《机器学习》周志华
 3. [Kernel Principal Components Analysis](/assets/Kernel-PCA.pdf)
