@@ -60,16 +60,22 @@ $$
 
 　　设 $\alpha=\frac{\beta}{\eta }$，$g_m(x)=\frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F_{m-1}(x)} $，则有 $\alpha h_{m}(x)= -g_m(x)$，通过上式可以看出梯度提升算法每一轮就是用损失函数对当前强学习器的负梯度来拟合当前轮的 $\alpha h_{m}(x)$（称为伪残差，当损失函数取最小二乘时为真正意义上的残差），那么我们可以用负梯度的方式来求解当前弱学习器的参数。
 
+　　当然，还有另一种比较好解释的方式解释为什么要用负梯度方向来拟合当前函数：
+
+<p align="center">
+  <img width="600" height="" src="/img/media/15634305217481.jpg">
+</p>
+
 　　为了简化问题，我们将这个求解过程分两个步骤：
 1. 先求到当前学习器的优化方向，即 $h(x)$ 只是一个优化方向，可以不考虑其大小:
 
-　1) 可以直接将 $\alpha$ 设为 1，去计算：
+　　1) 可以直接将 $\alpha$ 设为 1，去计算：
 
 $$
 h_{m}=\arg \min _{h} \sum_{i=1}^{N}\left[\left(-g_{m}\left(x_{i}\right)\right)-h\left(x_{i}\right)\right]^{2}
 $$
 
-　2) 也可以带上参数，但是这个参数在优化时并不是很重要：
+　　2) 也可以带上参数，但是这个参数在优化时并不是很重要：
 
 $$
 \mathbf{\theta}_{m}=\arg \min _{\mathbf{\theta}, \alpha} \sum_{i=1}^{N}\left[-g_{m}\left(\mathbf{x}_{i}\right)-\alpha h\left(\mathbf{x}_{i} ; \mathbf{\theta}\right)\right]^{2}
@@ -125,3 +131,4 @@ $$
 6. [理解AdaBoost算法](https://mp.weixin.qq.com/s?__biz=MzU4MjQ3MDkwNA==&mid=2247486478&idx=1&sn=8557d1ffbd2bc11027e642cc0a36f8ef&chksm=fdb69199cac1188ff006b7c4bdfcd17f15f521b759081813627be3b5d13715d7c41fccec3a3f&scene=21#wechat_redirect)
 7. [Boosting Algorithm: GBM](https://towardsdatascience.com/boosting-algorithm-gbm-97737c63daa3)
 8. [**Gradient boosting performs gradient descent**](https://explained.ai/gradient-boosting/descent.html#sec:3.2.3)
+9. [GBDT Slides](/assets/gbdt.pdf)

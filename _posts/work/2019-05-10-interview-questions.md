@@ -171,29 +171,28 @@ CART（回归树用平方误差最小化准则，分类树用基尼指数最小�
 
 
 ### K-means
-```
-k-means 聚类的原理以及缺点及对应的改进；kmeans 算法的优缺点。。。。
-kmeans 的原理，优缺点以及改进；
-em 与 kmeans 的关系；
-kmeans 代码；
-说说 Kmeans 算法， Kmeans 算法 K 怎么设置、适用什么样数据集、怎么评价 Kmeans 聚类结果、 Kmeans 有什么优缺点？你的项目中使用 Kmeans 遇到哪些问题，怎么解决的 ?
-用 EM 算法推导解释 Kmeans。
-KMeans的算法伪代码
-如何判断自己实现的 LR、Kmeans 算法是否正确？
-如何优化kmeans算法
-如何用hadoop实现k-means
-手写k-means的伪代码（就6行）
-```
+1. k-means 聚类的原理以及缺点及对应的改进；kmeans 算法的优缺点。。。。
+2. kmeans 的原理，优缺点以及改进；
+3. em 与 kmeans 的关系；
+4. kmeans 代码；
+5. 说说 Kmeans 算法， Kmeans 算法 K 怎么设置、适用什么样数据集、怎么评价 Kmeans 聚类结果
+6. Kmeans 有什么优缺点？你的项目中使用 Kmeans 遇到哪些问题，怎么解决的 ?
+7. 用 EM 算法推导解释 Kmeans。
+8. KMeans的算法伪代码
+9. 如何判断自己实现的 LR、Kmeans 算法是否正确？
+10. 如何优化kmeans算法
+11. 如何用hadoop实现k-means
+12. 手写k-means的伪代码（就6行）
 
 ### 集成学习
-```
-bagging和boosting是怎么做的和他们的比较
-详细讨论了样本采样和bagging的问题
-聊的比较多的是如何知道一个特征的重要性，如何做ensemble哪些方法比较好。聊了聊计算广告方面FM，embedding。
-常见融合框架原理，优缺点，bagging，stacking，boosting，为什么融合能提升效果
-是否了解线性加权、bagging、boosting、cascade等模型融合方式
-K-means起始点http://www.cnki.com.cn/Article/CJFDTotal-DNZS200832067.htm
-```
+1. bagging和boosting是怎么做的和他们的比较
+2. 详细讨论了样本采样和bagging的问题
+3. 聊的比较多的是如何知道一个特征的重要性，如何做ensemble哪些方法比较好。聊了聊计算广告方面FM，embedding。
+4. 常见融合框架原理，优缺点，bagging，stacking，boosting，为什么融合能提升效果
+5. 是否了解线性加权、bagging、boosting、cascade等模型融合方式
+6. K-means起始点http://www.cnki.com.cn/Article/CJFDTotal-DNZS200832067.htm
+
+
 
 ### 贝叶斯
 1. 朴素贝叶斯分类器原理以及公式，出现估计概率值为 0 怎么处理（拉普拉斯平滑），缺点；
@@ -245,10 +244,8 @@ Deep CNN, Deep RNN, RBM的典型应用与局限，看Hinton讲义和Paper去吧
 有限状态自动机,然后要我画状态转移图.
 
 ### 聚类
-```
-用过哪些聚类算法，解释密度聚类算法。
-聚类算法中的距离度量有哪些？
-```
+1. 用过哪些聚类算法，解释密度聚类算法。
+2. 聚类算法中的距离度量有哪些？
 
 ### 优化
 1. 梯度下降的优缺点；主要问最优化方面的知识，梯度下降法的原理以及各个变种（批量梯度下降，随机梯度下降法， mini 梯度下降法），以及这几个方法会不会有局部最优问题，牛顿法原理和适用场景，有什么缺点，如何改进（拟牛顿法）
