@@ -63,7 +63,7 @@ $$
 　　当然，还有另一种比较好解释的方式解释为什么要用负梯度方向来拟合当前函数：
 
 <p align="center">
-  <img width="600" height="" src="/img/media/15634305217481.jpg">
+  <img width="650" height="" src="/img/media/15634305217481.jpg">
 </p>
 
 　　为了简化问题，我们将这个求解过程分两个步骤：
