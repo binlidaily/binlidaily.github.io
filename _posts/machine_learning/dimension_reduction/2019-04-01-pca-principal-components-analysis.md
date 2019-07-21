@@ -247,7 +247,6 @@ np.sum(pca.explained_variance_ratio_)
 ```
 
 
-
 ### 4.2 核化 PCA
 
 ```python
@@ -280,7 +279,12 @@ grid_search.fit(X, y)
 print(grid_search.best_params_)
 ```
 
+### 4.3 如何选择用什么类型的 PCA
 
+1. Vanilla PCA 是默认的 PCA 模式，一般只在数据能够全量放进内存的情况下使用。
+2. 增量 PCA 则能解决数据太大不能放进内存的情况，但是速度会相对稍逊一筹；并且对于一些在线任务，增量 PCA 能接受随时加入的新样本，会更加合适一些。
+3. 随机化 PCA 当你期望大剂量的降低数据维度时，且数据能放进内存时可做首选，此时比 Vanilla PCA 会更快。
+4. 而核化 PCA 主要针对的是非线性的数据集。
 
 ## References
 
