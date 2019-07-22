@@ -50,7 +50,7 @@ typora-copy-images-to: ../../img/media
 10. 检查数据大小和数据的类型（时间序列，样本，地理等）
 11. 单独采样出一个测试集。
 
-### 多在数据上实践
+### 2.1 多在数据上实践
 　　纯做学院派是不行的，要多在实际的数据中摸爬滚打，才能攒出一些经验，拔高自己的视野。幸运的是，有很多数据可供我们学习使用：
 1. 公开数据集
     * [UC Irvine Machine Learning Repository](http://archive.ics.uci.edu/ml/index.php)
