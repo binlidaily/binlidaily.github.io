@@ -151,4 +151,4 @@ typora-copy-images-to: ../../img/media
 
 
 ## References
-1. 《Hands-on》
+1. 《Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems》
