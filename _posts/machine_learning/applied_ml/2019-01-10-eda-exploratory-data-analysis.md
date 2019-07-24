@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-EDA 最重要的就是用来找到有用的特征。 kind : {point, bar, count, box, violin, strip}
+　　EDA 最重要的就是用来找到有用的特征。 kind : {point, bar, count, box, violin, strip}
 
 ### Confusion Matrix
 The left diagonal shows the number of correct predictions made for each class while the right diagonal shows the number of wrong prredictions made. 

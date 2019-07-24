@@ -98,11 +98,11 @@ data = pd.merge(data,ad_feature,on='aid',how='left') #键值左连接
 ### 3.2 缺失值处理
 
 ```python
-#对于大量缺失数据的列可直接删除
+# 对于大量缺失数据的列可直接删除
 df = df.drop(['PassengerId','Name','Ticket','Cabin'], axis=1) 
-#删除含有NaN数据的行 
+# 删除含有 NaN 数据的行 
 df = df.dropna()   
-#全部直接人工赋值                                            
+# 全部直接人工赋值                                            
 df = df.fillna('-1')                                           
 
 df['nkill'].fillna(0, inplace = True)   #单列直接人工赋值
@@ -114,10 +114,10 @@ df['Age'] = df['Age'].fillna(median_age)
 ### 3.3 数据转换
 
 ```python
-df.loc[ (df.Sex == 'male'), 'Sex' ] = 0    #令男为0
-df.loc[ (df.Sex == 'female'), 'Sex' ] = 1  #令女为1
+df.loc[ (df.Sex == 'male'), 'Sex' ] = 0    # 令男为0
+df.loc[ (df.Sex == 'female'), 'Sex' ] = 1  # 令女为1
 
-df['Sex'] = df['Sex'].map( {'male': 0, 'female': 1} ).astype(int) #这种写法更好
+df['Sex'] = df['Sex'].map( {'male': 0, 'female': 1} ).astype(int) # 这种写法更好
 ```
 
 ### 3.4 特征处理

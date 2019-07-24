@@ -24,7 +24,7 @@ typora-root-url: ../../../../binlidaily.github.io
     * 非结构化数据主要包括文本、图像、音频、视频数据，其包含的信息无法用一个简单的数值表示，也没有清晰的定义，并且每条数据的大小各不相同。
 
 
-　　特征工程一般分成特征提取 (Feature Extraction) 和[特征选择](https://binlidaily.github.io/2018-10-25-feature-selection/) (Feature Selection) 两个方面。
+　　特征工程一般分成[特征提取](https://binlidaily.github.io/2019-06-13-feature-extraction/) (Feature Extraction) 和[特征选择](https://binlidaily.github.io/2018-10-25-feature-selection/) (Feature Selection) 两个方面。
 
 2. If variable's distribution has a long tail, apply Box-Cox transformation (taking log() is a quick & dirty way).
 
