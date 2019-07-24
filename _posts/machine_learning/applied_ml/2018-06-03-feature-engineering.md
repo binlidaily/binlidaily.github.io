@@ -26,7 +26,7 @@ typora-root-url: ../../../../binlidaily.github.io
 
 　　特征工程一般分成[特征提取](https://binlidaily.github.io/2019-06-13-feature-extraction/) (Feature Extraction) 和[特征选择](https://binlidaily.github.io/2018-10-25-feature-selection/) (Feature Selection) 两个方面。
 
-2. If variable's distribution has a long tail, apply Box-Cox transformation (taking log() is a quick & dirty way).
+
 
 3. One could also perform analysis of residuals or log-odds (for linear model) to check for strong nonlinearities.
 

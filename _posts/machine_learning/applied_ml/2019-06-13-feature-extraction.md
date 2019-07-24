@@ -14,7 +14,7 @@ typora-root-url: ../../../../binlidaily.github.io
 {% include toc.html %}
 
 ## 1. 探索性数据分析 (Exploratory Data Analysis, EDA)
-EDA 的目的是尽可能地洞察数据集、发现数据的内部结构、提取重要的特征、检查异常值、检验基本假设、建立初步的模型。EDA 技术一般分为两类：
+　　EDA 的目的是尽可能地洞察数据集、发现数据的内部结构、提取重要的特征、检查异常值、检验基本假设、建立初步的模型。EDA 技术一般分为两类：
 * 可视化技术
     * 箱型图、直方图、多变量图、链图、帕累托图、散点图、茎叶图
     * 平行坐标、让步比、多维尺度分析、目标投影追踪
@@ -22,10 +22,12 @@ EDA 的目的是尽可能地洞察数据集、发现数据的内部结构、提�
 * 定量技术
     * 样本均值、方差分位数、峰度、偏度等
 
-细节可以参考之前整理过的有关 EDA 的[博文](https://binlidaily.github.io/2019-01-10-exploratory-data-analysis/)。
+　　细节可以参考之前整理过的有关 EDA 的[博文](https://binlidaily.github.io/2019-01-10-exploratory-data-analysis/)。
 
-## 2. 数值特征 /定量特征 (Numerical Features)
-对于数值特征，我们主要考虑的因素是它的**大小和分布**，一般分为`连续型`（身高体重等）和`离散型`（计数等）。对于那些目标变量为输入特征的**光滑函数**的模型，例如线性回归、逻辑回归等，其对输入特征的大小很敏感，所以需要归一化。也就是说我们需要进行特征变换来满足非线性模型的假设，还可以进行特征交叉提升模型的表达能力，让线性模型具有非线性模型的性质。以下介绍几种常见的数值特征的处理方法。
+## 2. 数值特征 / 定量特征 (Numerical Features)
+　　对于数值特征，我们主要考虑的因素是它的**大小**和**分布**，一般分为`连续型`（身高体重等）和`离散型`（计数等）。
+
+　　对于那些目标变量为输入特征的**光滑函数**的模型，例如线性回归、逻辑回归等，其对输入特征的大小很敏感，所以需要归一化。这些函数是线性的，那么就需要我们进行特征变换来满足非线性模型的假设，还可以进行特征交叉提升模型的表达能力，让线性模型具有非线性模型的性质。以下介绍几种常见的数值特征的处理方法。
 
 ### 2.1 截断 / 离群点盖帽
 * 对于连续型数值特征，超出合理范围的很可能是噪声，需要截断
@@ -775,14 +777,14 @@ array([ 0.01...,  0.25...,  0.46...,  0.60... ,  0.94...])
 
 **2.7.2 映射到正态分布 (Gaussian distribution) 上的转换**
 
-如果数据不是正态分布的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。这里主要采用一种叫做 [Power Transformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 的方法，这种转换通过一些列参数单调变换使得数据更符合正太分布。[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 现在支持两种转换，两者都有一个参数 $\lambda$ 需要设定：
+　　如果数据不是正态分布的，比如说出现长尾现象的，尤其是数据的平均数和中位数相差很大的时候（表示数据非常歪斜）。这里主要采用一种叫做 [Power Transformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 的方法，这种转换通过一些列参数单调变换使得数据更符合正态分布。[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 现在支持两种转换，两者都有一个参数 $\lambda$ 需要设定：
 
 * Box-Cox 转换：要求输入数据严格为正数。
 * Yeo-Johnson 变换：则正数或负数都。
 
 实践方法有四种：
 
-1、比较粗糙的版本可以直接查看对数缩放的实现。
+1、比较粗糙的版本可以先用 log(x) 变换，快速看下效果，最终还是以 Box-Cox 变换为宜。
 
 2、另一种方式是[`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) 类的 Box-Cox 转换操作，这个方法能够计算出能够最佳减小数据倾斜的指数变换方法。
 

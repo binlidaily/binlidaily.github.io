@@ -38,10 +38,10 @@ plt.rcParams['axes.unicode_minus'] = False # 用来正常显示负号
 ## 2. 文件格式数据读取
 
 ```python
-# CSV 文件
+# 1. CSV 文件
 train_df = pd.read_csv(data_dir + 'train_dataset.csv', sep=',', header=0)
 
-# 读取 json（理解为字典格式的封装）
+# 2. 读取 json（理解为字典格式的封装）
 import json
 for line in sys.stdin:
   line = ln.decode('gbk').strip().strip('\n')
@@ -57,7 +57,7 @@ for line in sys.stdin:
   Husky = json.dumps(Husky, ensure_ascii=False, encoding="gbk")  
   Husky = json.loads(Husky)
 
-#输出
+## 输出
 for key in dict_:
   print("\t".join([str(key), str(dict_[key]), str(ctr)]))
   print("{}\t{}\t{:.8f}".format(key, dict_[key], ctr))
