@@ -48,7 +48,7 @@ typora-copy-images-to: ../../img/media
 8. 在不改变数据的前提下，将数据转换为更好处理的格式。
 9. 确保敏感信息已经被删去，或者脱敏。
 10. 检查数据大小和数据的类型（时间序列，样本，地理等）
-11. 单独采样出一个测试集。
+11. 单独采样出一个**测试集**。
 
 　　纯做学院派是不行的，要多在实际的数据中摸爬滚打，才能攒出一些经验，拔高自己的视野。幸运的是，有很多数据可供我们学习使用：
 1. 公开数据集
@@ -64,6 +64,47 @@ typora-copy-images-to: ../../img/media
     * Quora.com question 
     * Datasets subreddit
 
+　　构造一个测试集用来离线快速测试自己的模型是非常重要的，而且先划分出训练、测试集后再去训练测试模型能避免 Data Snooping Bias。
+
+```python
+# 1. 自己实现划分测试集
+## 但是由于有 random 的操作，每次运行结果不一样，可以设定随机种子防止每次结果不一
+import numpy as np
+# np.random.seed(42)
+def split_train_test(data, test_ratio):
+	shuffled_indices = np.random.permutation(len(data)) 
+	test_set_size = int(len(data) * test_ratio) 
+	test_indices = shuffled_indices[:test_set_size] 
+	train_indices = shuffled_indices[test_set_size:] 
+	return data.iloc[train_indices], data.iloc[test_indices]
+
+train_set, test_set = split_train_test(housing, 0.2)
+
+# 2. 自己实现使用 ID 来划分
+## 第一种方式虽然能够设置随机种子，但当数据集更新后，结果依然是不一致的，这时可以用样本唯一 ID 来做为划分依据
+## 此时能够保证即使数据集更新，测试集中不会出现之前在训练集里的样本
+import hashlib 
+
+def test_set_check(identifier, test_ratio, hash):
+	return hash(np.int64(identifier)).digest()[-1] < 256 * test_ratio
+
+def split_train_test_by_id(data, test_ratio, id_column, hash=hashlib.md5):
+	ids = data[id_column] 
+	in_test_set = ids.apply(lambda id_: test_set_check(id_, test_ratio, hash)) 
+	return data.loc[~in_test_set], data.loc[in_test_set]
+
+housing_with_id = housing.reset_index() # adds an `index` column 
+train_set, test_set = split_train_test_by_id(housing_with_id, 0.2, "index")
+
+housing_with_id["id"] = housing["longitude"] * 1000 + 
+housing["latitude"] 
+train_set, test_set = split_train_test_by_id(housing_with_id, 0.2, "id")
+
+# 3. 使用 Sklearn 划分
+from sklearn.model_selection import train_test_split
+
+train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
+```
 
 ## 3. 探索数据
 　　获取到数据后我们需要对数据进行深一步探索，理解数据：
@@ -88,7 +129,6 @@ typora-copy-images-to: ../../img/media
 ## 4. 准备数据
 　　在为模型准备好数据之前，首先要注意几点：
 * 要在数据拷贝上进行操作，保证原数据原样。
-* 如果是比赛的话，可以从训练数据集中整理出一部分数据作为测试集，就不用完全靠线上的结果了。
 * 对所有的数据转换写成函数，这样做的好处是：
     * 当有新数据时能够很容易处理。
     * 基于重用的考虑，再以后的项目中也很好复用。

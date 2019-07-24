@@ -74,7 +74,12 @@ memory usage: 93.7+ MB
 * Date：
 
 
+## 代码模板
 
+```python
+# 检查是否线下的所有用户都在线上的数据集中
+dfoff['User_id'].isin(pd.to_numeric(dfon['User_id'], errors='coerce')).all()】
+```
 ## References
 1. [机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）](https://jiayi797.github.io/2017/03/08/机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）/)
 2. [1st Place Solution for O2O Coupon Usage Forecast](https://github.com/wepe/O2O-Coupon-Usage-Forecast)
