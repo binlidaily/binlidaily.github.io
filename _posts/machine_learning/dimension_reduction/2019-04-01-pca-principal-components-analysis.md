@@ -165,7 +165,7 @@ $$
 \end{aligned}
 $$
 
-　　根据矩阵乘法的性质，因此优化问题可以转化为 $\arg \max _W \sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_k \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{W}\right)$，这等价于求解带约束的优化问题：
+　　根据矩阵乘法的性质，因此优化问题可以转化为 $\arg \max _ {W} \sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_k \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{W}\right)$，这等价于求解带约束的优化问题：
 
 $$
 \left\{\begin{array}{ll}{\arg \max _{W} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{X} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{W}\right)} \\ {\text {s.t.}} \quad {\boldsymbol{W}^{\mathrm{T}} \boldsymbol{W}=I}\end{array}\right.
