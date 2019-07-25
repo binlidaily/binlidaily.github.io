@@ -122,14 +122,14 @@ $$
 \widetilde{\boldsymbol{x}_{k}}=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}
 $$
 
-　　其中 $w_i^T x_k$ 表示 $x_k$ 在 $w _i$ 方向上投影的长度。因此，$\widetilde{\boldsymbol{x}_{k}}$ 实际上就是 $x_k$ 在 $W$ 这组标准正交基下的坐标。而 PCA 要优化的目标为
+　　其中 $w_i^T x_k$ 表示 $x_k$ 在 $w _i$ 方向上投影的长度。因此，$\widetilde{\boldsymbol{x}_k}$ 实际上就是 $x_k$ 在 $W$ 这组标准正交基下的坐标。而 PCA 要优化的目标为
 
 
 $$
 \left\{\begin{array}{l}{\underset{\omega_{1}, \ldots, \omega_{d}}{\arg \min } \sum_{k=1}^{n}\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2}} \\ {\text {s.t. } \quad \omega_{i}^{\mathrm{T}} \omega_{j}=\delta_{i j}=\left\{\begin{array}{l}{1, i=j} \\ {0, i \neq j}\end{array}\right.}\end{array}\right.
 $$
 
-　　由向量内积的性质，我们知道 $\boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}}=\widetilde{\boldsymbol{x}_{k}}^{\mathrm{T}} \boldsymbol{x}_{k}$，于是将上式中的每一个距离展开
+　　由向量内积的性质，我们知道 $\boldsymbol{x}_k^{\mathrm{T}} \widetilde{\boldsymbol{x}_k}=\widetilde{\boldsymbol{x}_k}^{\mathrm{T}} \boldsymbol{x}_k$，于是将上式中的每一个距离展开
 
 $$
 \begin{aligned}\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2} &=\left(\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right)^{\mathrm{T}}\left(\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}_{k}}\right) \\ &=\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}-\boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k}-\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}+\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} \\ &=\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}-2 \boldsymbol{x}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k}+\widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}}_{k} \end{aligned}
@@ -145,13 +145,13 @@ $$
 \begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} & \widetilde{\boldsymbol{x}_{k}}=\left(\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\sum_{j=1}^{d}\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \\ &=\sum_{i=1}^{d} \sum_{j=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \end{aligned}
 $$
 
-　　注意到，其中 $\omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k}$ 和 $\omega_{j}^{\mathrm{T}} \boldsymbol{x}_{k}$ 表示投影长度，都是数字。且当 $i \neq j$ 时，$\omega_{i}^{\mathrm{T}} \omega_{j}=0$，因此有:
+　　注意到，其中 $\omega_{i}^{\mathrm{T}} \boldsymbol{x}_k$ 和 $\omega_{j}^{\mathrm{T}} \boldsymbol{x}_k$ 表示投影长度，都是数字。且当 $i \neq j$ 时，$\omega_i^{\mathrm{T}} \omega_{j}=0$，因此有:
 
 $$
 \begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} &=\sum_{i=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \\ &=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i} \end{aligned}
 $$
 
-　　注意到，$\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}$ 实际上就是矩阵 $\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}$ 的迹（对角线元素之和），于是可以距离公式化简
+　　注意到，$\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_k \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{\omega}_i$ 实际上就是矩阵 $\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_k \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{W}$ 的迹（对角线元素之和），于是可以距离公式化简
 
 $$
 \begin{array}{c}{\left\|\boldsymbol{x}_{k}-\widetilde{\boldsymbol{x}}_{k}\right\|_{2}^{2}=-\sum_{i=1}^{d} \boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}+\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}} \\ {=-\operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)+\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}}\end{array}
@@ -165,7 +165,7 @@ $$
 \end{aligned}
 $$
 
-　　根据矩阵乘法的性质，因此优化问题可以转化为 $\arg \max _{W} \sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{W}\right)$，这等价于求解带约束的优化问题：
+　　根据矩阵乘法的性质，因此优化问题可以转化为 $\arg \max _W \sum_{k=1}^{n} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{x}_k \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{W}\right)$，这等价于求解带约束的优化问题：
 
 $$
 \left\{\begin{array}{ll}{\arg \max _{W} \operatorname{tr}\left(\boldsymbol{W}^{\mathrm{T}} \boldsymbol{X} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{W}\right)} \\ {\text {s.t.}} \quad {\boldsymbol{W}^{\mathrm{T}} \boldsymbol{W}=I}\end{array}\right.
@@ -177,7 +177,7 @@ $$
 \left\{\begin{array}{ll}{\arg \max _{\omega} \boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{X} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{\omega}} \\ {\text {s.t.}}  {\boldsymbol{\omega}^{\mathrm{T}} \boldsymbol{\omega}=1}\end{array}\right.
 $$
 
-　　最佳直线 $w$ 与最大方差法求解的最佳投影方向一致，即协方差矩阵的最大特征值所对应的特征向量，差别仅是协方差矩阵 $\Sigma$ 的一个倍数，以及常数 $\sum_{k=1}^{n} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{x}_{k}$ 偏差，但这并不影响我们对最大值的优化。
+　　最佳直线 $w$ 与最大方差法求解的最佳投影方向一致，即协方差矩阵的最大特征值所对应的特征向量，差别仅是协方差矩阵 $\Sigma$ 的一个倍数，以及常数 $\sum_{k=1}^{n} \boldsymbol{x}_k^{\mathrm{T}} \boldsymbol{x}_k$ 偏差，但这并不影响我们对最大值的优化。
 
 
 ## 3. 核化 PCA
