@@ -145,7 +145,7 @@ $$
 \begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} & \widetilde{\boldsymbol{x}_{k}}=\left(\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\sum_{j=1}^{d}\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \\ &=\sum_{i=1}^{d} \sum_{j=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{j}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{j}\right) \end{aligned}
 $$
 
-　　注意到，其中 $\omega_{i}^{\mathrm{T}} \boldsymbol{x}_k$ 和 $\omega_{j}^{\mathrm{T}} \boldsymbol{x}_k$ 表示投影长度，都是数字。且当 $i \neq j$ 时，$\omega_i^{\mathrm{T}} \omega_{j}=0$，因此有:
+　　注意到，其中 $\omega_i^{\mathrm{T}} \boldsymbol{x}_k$ 和 $\omega_j^{\mathrm{T}} \boldsymbol{x}_k$ 表示投影长度，都是数字。且当 $i \neq j$ 时，$\omega_i^{\mathrm{T}} \omega_j=0$，因此有:
 
 $$
 \begin{aligned} \widetilde{\boldsymbol{x}}_{k}^{\mathrm{T}} \widetilde{\boldsymbol{x}_{k}} &=\sum_{i=1}^{d}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)^{\mathrm{T}}\left(\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right) \\ &=\sum_{i=1}^{d}\left(\boldsymbol{\omega}_{i}^{\mathrm{T}} \boldsymbol{x}_{k}\right)\left(\boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i}\right)=\sum_{i=1}^{d} \omega_{i}^{\mathrm{T}} \boldsymbol{x}_{k} \boldsymbol{x}_{k}^{\mathrm{T}} \boldsymbol{\omega}_{i} \end{aligned}
