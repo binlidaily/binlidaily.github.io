@@ -27,6 +27,10 @@ typora-root-url: ../../../../binlidaily.github.io
 　　特征工程一般分成[特征提取](https://binlidaily.github.io/2019-06-13-feature-extraction/) (Feature Extraction) 和[特征选择](https://binlidaily.github.io/2018-10-25-feature-selection/) (Feature Selection) 两个方面。
 
 
+　　在特征工程中有一个比较棘手的问题是，如何保证训练集、验证集和测试集的输入一直？
+
+　　为了不在训练中掺入测试数据，我们要求最好先单独对训练数据进行特征提取，其中包含归一化等操作，再对验证集或者测试集进行操作，但是问题是在验证集和测试集中对同一个特征做完特征提取后的结果维度可能不一样，这要怎么[处理](https://www.analyticsvidhya.com/blog/2017/07/covariate-shift-the-hidden-problem-of-real-world-data-science/)？
+
 
 3. One could also perform analysis of residuals or log-odds (for linear model) to check for strong nonlinearities.
 
