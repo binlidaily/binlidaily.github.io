@@ -146,6 +146,7 @@ train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
     * 分解特征（种类特征，日期/时间等）
     * 进行一些有效的特征变换（log(x), sqrt(x), x^2 等）
     * 聚合 (Aggregate) 统计量特征成新的有用特征
+    * 特征选择需要运用特征有效性分析的相关技术，如相关系数、卡方检验、平均互信息、条件熵、后验概率、逻辑回归权重等方法。
 4. 特征归一化
     * 归一化 (standardize) 或者正则化特征 (max-min)
 

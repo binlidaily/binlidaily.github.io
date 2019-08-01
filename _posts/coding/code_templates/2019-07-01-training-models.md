@@ -67,3 +67,47 @@ print('cv score for valid is: ', 1 / (1 + valid_best_l2_all))
 # show the importance of features
 # display_importances(feature_importance_df)
 ```
+
+## 保存训练好的机器学习模型
+　　训练好一个模型后可以存下来，下次直接用，省得花很多时间继续跑了。
+
+### 使用 Python 自带的 pickle
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import datasets
+import pickle
+
+#方法一:python自带的pickle
+(X,y) = datasets.load_iris(return_X_y=True)
+rfc = RandomForestClassifier(n_estimators=100,max_depth=100)
+rfc.fit(X,y)
+print(rfc.predict(X[0:1,:]))
+#save model
+f = open('saved_model/rfc.pickle','wb')
+pickle.dump(rfc,f)
+f.close()
+#load model
+f = open('saved_model/rfc.pickle','rb')
+rfc1 = pickle.load(f)
+f.close()
+print(rfc1.predict(X[0:1,:]))
+```
+
+### 使用 sklearn 中的模块 joblib
+　　说是 joblib 会更快速一点。
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import datasets
+from sklearn.externals import joblib
+#方法二：使用sklearn中的模块joblib
+(X,y) = datasets.load_iris(return_X_y=True)
+rfc = RandomForestClassifier(n_estimators=100,max_depth=100)
+rfc.fit(X,y)
+print(rfc.predict(X[0:1,:]))
+#save model
+joblib.dump(rfc, 'saved_model/rfc.pkl')
+#load model
+rfc2 = joblib.load('saved_model/rfc.pkl')
+print(rfc2.predict(X[0:1,:]))
+```

@@ -29,6 +29,16 @@ $$
 
 2. 如果是分类算法预测，则 $T$ 个基学习器投出最多票数的类别或者类别之一为最终类别。如果是回归算法，$T$ 个弱学习器得到的回归结果进行算术平均得到的值为最终的模型输出。
 
+特征 Random 的两种方式：
+1. Bagging + Random-Subspace CART
+2. Bagging + Random-Combination CART
+
+$E_{oob}$：self-validation of bagging
+
+除了一次性随机抽取部分特征用来构建一棵CART之外，还可以在CART每次branching的时候随机抽取一部分特征计算 Gini impurity 或均方误差来选择best split feature(RF作者使用的这种方法)。更进一步，在构建sub-space的时候，不仅可以使用feature selection，还可以使用feature transformation，每次 braching 随机选择一个变换矩阵将原始feature变换到低维空间。More randomness, more robust。
+
+
+
 ## 总结
 　　由于 Bagging 的思想可以分布式地实现若干个基学习器的学习，Random Forest 的一大优势是能够高度并行化，在大数据时可大有作为。一般可以用随机森林跑出一个模型，然后**查看特征的重要性**。
 

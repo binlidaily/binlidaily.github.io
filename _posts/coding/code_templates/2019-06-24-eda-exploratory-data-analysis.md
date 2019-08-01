@@ -9,7 +9,7 @@ comments: true
 published: true
 ---
 
-　　在[博文](http://gitlinux.net/2019-03-15-feature-engineering/)中做过了一些总结，这里主要对 EDA 做一个整理。
+　　在[博文](http://gitlinux.net/2019-03-15-feature-engineering/)中做过了一些总结，这里主要对 EDA 做一个整理。画图[这里](http://frankchen.xyz/2018/01/12/Data-Science-Notes/)整理的还不错。
 
 ## 1. 数据大局观
 ### 1.1 数据概览

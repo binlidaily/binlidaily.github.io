@@ -278,6 +278,7 @@ $$
 * 那就预测不出来啊
 </details>
 
+决策树的参数是什么？在实现的时候以什么形式存下来？
 
 ## References
 1. [Complete Guide to Parameter Tuning in XGBoost (with codes in Python)](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/)

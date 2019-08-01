@@ -1341,3 +1341,5 @@ print 'elapsed time: ', time.time() - start_time
 * S型/正切/对数转换 (Sigmoid / Tanh / Log Transformations)
 * 去相关性/转换变量 (decorrelation)
 
+## References
+1. [特征工程](https://tianchi.aliyun.com/mas-notebook/preview/36434/bffd10b0-18d3-11e9-bace-61d7df7cd8c1.ipynb/-1?lang=zh-cn)

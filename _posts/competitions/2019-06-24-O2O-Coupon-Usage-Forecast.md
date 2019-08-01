@@ -33,6 +33,7 @@ roc_auc_score(y_true, y_scores)
 
 　　预测会不会使用优惠券的概率，其实是一个二分类的概率问题。目标特征目前没有直接的数据，需要进一步找出目标特征，然后发现大部分都是负样本，正样本很少。所以用最朴素的逻辑回归都能得到 99% 的准确率，数据不平衡！
 
+
 ## 2. 数据探索
 ### 2.1 线下数据
 　　线下数据一共七列数据，三个 ID 类特征，两个日期类数据，一个字符串，一个连续型数据。
@@ -64,6 +65,7 @@ memory usage: 93.7+ MB
 **Discount_rate**
 * 转成比率后发现只有 20 类折扣的优惠券
 
+目标是领券后 15 日消费概率，这个 15 是怎么来的？我们尝试先画出领券后消费的和没领券后消费的情况。
 
 ### 缺失值处理
 线下数据
@@ -74,13 +76,22 @@ memory usage: 93.7+ MB
 * Date：
 
 ## 代码模板
-
 ```python
 # 检查是否线下的所有用户都在线上的数据集中
-dfoff['User_id'].isin(pd.to_numeric(dfon['User_id'], errors='coerce')).all()】
+dfoff['User_id'].isin(pd.to_numeric(dfon['User_id'], errors='coerce')).all()
 ```
+
+|  | 预测区间 | 特征区间 |
+| :-: | :-: | :-: |
+| 测试集 | Dataset3: 20160701-20160731 | feature3: 20160315-20160630 |
+| 训练集 1 | Dataset2: 20160515-20160615 | feature2: 20160201-20160514 |
+| 训练集 2 | Dataset1: 20160414-20160514 | feature1: 20160101-20160413 |
+
 
 ## References
 1. [机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）](https://jiayi797.github.io/2017/03/08/机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）/)
 2. [1st Place Solution for O2O Coupon Usage Forecast](https://github.com/wepe/O2O-Coupon-Usage-Forecast)
 3. [天池 O2O 优惠券使用预测思路解析与代码实战](https://redstonewill.com/1681/)
+4. [天池竞赛系列-O2O优惠券使用预测复赛第三名思路](https://blog.csdn.net/bryan__/article/details/53907292)
+5. [『 天池竞赛』O2O优惠券使用预测思路总结](https://blog.csdn.net/shine19930820/article/details/53995369)
+6. [Xgboost实践+天池比赛O2O优惠券auc接近天池第一名0.81（auc0.80，支持CPU、GPU源代码下载链接）](https://blog.csdn.net/myourdream2/article/details/86618120)

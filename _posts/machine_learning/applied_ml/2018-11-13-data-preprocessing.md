@@ -9,6 +9,19 @@ comments: true
 published: true
 ---
 
+　　这里总结处理数据一般操作，方便自己回顾。
+
+## 数据导入
+
+```python
+#如果没有keep_default_na=False，加载后空值处就是NAN，且类似coupon_id等处的类型都是float
+#判断是否是NAN的话是：off_train.date!=off_train.date结果是True即为NAN，否则是非空值
+#这里使用了keep_default_na=False，使coupon_id等字段的数据类型转化为object可以简单看作是字符串，空值变为null
+#这时候判断是否是空值便可用off_train.date=='null'
+off_train = pd.read_csv(os.path.join(DataPath,'ccf_offline_stage1_train.csv'),header=0,keep_default_na=False)
+```
+
+
  * 异常值处理
  * 平滑处理
  * 标准化处理
