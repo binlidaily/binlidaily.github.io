@@ -67,9 +67,9 @@ published: true
     * 边缘检测有了解嘛？
 
 
-```mermaid
+<code class="language-mermaid">
 graph TB
     A[把大象放进去] --> B{"冰箱小不小？"}
     B -->|不小| C[把冰箱门关上]
     B -->|小| D[换个大冰箱]
-```
+</code>
