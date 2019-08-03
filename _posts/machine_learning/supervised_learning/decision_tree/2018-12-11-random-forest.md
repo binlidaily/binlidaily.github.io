@@ -29,13 +29,23 @@ $$
 
 2. 如果是分类算法预测，则 $T$ 个基学习器投出最多票数的类别或者类别之一为最终类别。如果是回归算法，$T$ 个弱学习器得到的回归结果进行算术平均得到的值为最终的模型输出。
 
-特征 Random 的两种方式：
+在每一次 branching 时，做特征 Random 的两种方式：
 1. Bagging + Random-Subspace CART
+    * 每个结点都随机选择 $F$ 个属性作为候选属性
 2. Bagging + Random-Combination CART
+    * 使用输入特征的随机线性组合，不是随机选择一个特征子集，而是设定一个组合特征大小 $L$
+    * 随机选择 $L$ 个特征组合成一个新的特征，组合方式是随机从 $[-1, 1]$ 选取系数做线性加和
+    * 一共产生 $F$ 个线性组合的新特征，然后在其中找到最佳划分
+    * 此方法当只有少量特征可用，为了降低个体分类器之间的相关性，可用
+
+一般在选择特征子集的大小为 $\log_2n+1$，其中 $n$ 为样本特征总数。
 
 $E_{oob}$：self-validation of bagging
 
-除了一次性随机抽取部分特征用来构建一棵CART之外，还可以在CART每次branching的时候随机抽取一部分特征计算 Gini impurity 或均方误差来选择best split feature(RF作者使用的这种方法)。更进一步，在构建sub-space的时候，不仅可以使用feature selection，还可以使用feature transformation，每次 braching 随机选择一个变换矩阵将原始feature变换到低维空间。More randomness, more robust。
+　　除了一次性随机抽取部分特征用来构建一棵CART之外，还可以在CART每次branching的时候随机抽取一部分特征计算 Gini impurity 或均方误差来选择best split feature(RF作者使用的这种方法)。更进一步，在构建sub-space的时候，不仅可以使用feature selection，还可以使用feature transformation，每次 braching 随机选择一个变换矩阵将原始feature变换到低维空间。More randomness, more robust。
+
+　　如何计算对应特征重要性？
+
 
 
 
