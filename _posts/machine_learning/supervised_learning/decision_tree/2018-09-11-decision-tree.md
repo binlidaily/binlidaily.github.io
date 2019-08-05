@@ -128,8 +128,7 @@ $$\text{Gini}(D,a)={|D_1|\over{|D|}}\text{Gini}(D_1)+{|D_2|\over{|D|}}\text{Gini
 　　后剪枝方法又分为两种，一类是把训练数据集分成树的生长集和剪枝集；另一类算法则是使用同一数据集进行决策树生长和剪枝。后剪枝算法有很多种：
 * Reduced-Error Pruning (REP,错误率降低剪枝）
 * [Pessimistic Error Pruning (PEP，悲观剪枝）](http://gitlinux.net/2019-06-04-C45/)
-* [Cost-Complexity Pruning (CCP，代价复杂度剪枝)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/#2-cart-剪枝代价复杂性剪枝法
-)
+* [Cost-Complexity Pruning (CCP，代价复杂度剪枝)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/#2-cart-剪枝代价复杂性剪枝法)
 * Minimum Error Pruning (MEP)
 * Critical Value Pruning (CVP)
 * Optimal Pruning (OPP)

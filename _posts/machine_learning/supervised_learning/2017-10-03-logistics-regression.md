@@ -283,6 +283,7 @@ $$
 \min _{\boldsymbol{\beta}} \frac{\lambda}{N} \sum_{n=1}^{N} \sum_{m=1}^{N} \beta_{n} \beta_{m} K\left(\mathbf{x}_{n}, \mathbf{x}_{m}\right)+\frac{1}{N} \sum_{n=1}^{N} \log \left(1+\exp \left(-y_{n} \sum_{m=1}^{N} \beta_{m} K\left(\mathbf{x}_{m}, \mathbf{x}_{n}\right)\right)\right)
 $$
 
+　　LR 能否进行并行化？
 
 ## References
 

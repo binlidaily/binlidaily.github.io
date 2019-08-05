@@ -11,5 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
+
+
 ## References
-1. [理解triplet loss](http://frankchen.xyz/2017/12/01/understanding-triplet-loss-and-example-code/)
+1. [理解 triplet loss](http://frankchen.xyz/2017/12/01/understanding-triplet-loss-and-example-code/)

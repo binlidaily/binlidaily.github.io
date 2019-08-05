@@ -68,7 +68,7 @@ class Solution(object):
         res, dp = 0, 0
         prev = -1
         for i in range(len(A)):
-            if A[i] < L and i > 0:
+            if A[i] < L:
                 res += dp
             if A[i] > R:
                 dp = 0
