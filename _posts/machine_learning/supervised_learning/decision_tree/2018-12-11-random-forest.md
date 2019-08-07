@@ -31,7 +31,7 @@ $$
 
 在每一次 branching 时，做特征 Random 的两种方式：
 1. Bagging + Random-Subspace CART
-    * 每个结点都随机选择 $F$ 个属性作为候选属性
+    * 每个结点做划分的时候都随机选择 $F$ 个属性作为候选属性。
 2. Bagging + Random-Combination CART
     * 使用输入特征的随机线性组合，不是随机选择一个特征子集，而是设定一个组合特征大小 $L$
     * 随机选择 $L$ 个特征组合成一个新的特征，组合方式是随机从 $[-1, 1]$ 选取系数做线性加和
@@ -46,7 +46,12 @@ $E_{oob}$：self-validation of bagging
 
 　　如何计算对应特征重要性？
 
+　　可以利用基尼系数，计算所有利用了特征 $i$ 作为划分特征的结点，计算其划分前后基尼系数差值并累加起来，然后用这个加和除以在所有节点上使用对应特征划分结点时划分前后的基尼系数差值的累加和。具体可[参考](https://medium.com/@srnghn/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3)。
 
+![](/img/media/15651699443508.jpg)
+![](/img/media/15651699533571.jpg)
+![](/img/media/15651699588815.jpg)
+![](/img/media/15651699661631.jpg)
 
 
 ## 总结
