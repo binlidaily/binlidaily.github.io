@@ -19,27 +19,32 @@ typora-copy-images-to: ../../img/media
 
 　　使⽤卷积层的平移不变性似乎很可能减少全连接模型中达到同样性能的参数数量，使得训练更快，有助于建设深度网络。
 
-## Convolutional Layers
-　　卷积层主要进行卷积计算从而进行特征提取。卷积操作的本质是**稀疏交互**和**参数共享**。
 
-<p align="center">
-<img src="/img/media/15547073032659.jpg" width="">
-</p>
-<p style="margin-top:-2.5%" align="center">
-<em style="color:#808080;font-style:normal;font-size:80%;">卷积计算过程</em>
-</p>
 
-## Pooling Layers
+
+## 1. Convolutional Layers
+　　
+
+
+
+## 2. Pooling Layers
 　　混合层/采样层/池化层（Pooling layers）紧跟在卷积层后，用来简化卷积层输出信息。对特征图（Feature Map）进行特征选择，去除多余特征，重构新的特征图。
 
 　　池化层可以在一定程度上提高空间不变形，例如平移不变性，尺度不变形和形变不变形。平移不变性（Translation Invariant）就是图像经过一个小小的平移之后，依然产生相同的池化特征，当然这个平移是要在池化矩阵的范围内。好处就是不管在要检测的特征出现在图像的任何位置，池化后的结果都能保持一致。
 
 　　具体作用为：
 1. 特征不变性
-    * 使模型更关注包含一定的自由度，能容忍特征微小的位移
+    * 使模型更关注包含一定的自由度，能容忍特征微小的位移。（平移、伸缩、旋转）
 2. 特征降维
     * 降采样使后续操作的计算量得到减少
 3. 一定程度防止过拟合
+
+池化层会信息丢失？要怎么办？
+
+池化灾难->胶囊网络
+
+pooling肯定会导致网络获取信息的不足。在应用pooling的时候会减小图像的信息，所以是否使用pooling往往取决于你的目的。如果是希望进行图像分割，图像分类等等不需要关注图像细节的任务时，使用pooling往往可以加速训练或者获取更deep的feature，例如unet在downsamling的应用。但是如果你希望最终产生图像的细节，比如生成图像，补全信息等等任务，一定一定不要使用pooling，那样会导致最终结果变糊，因为经过了pooling之后要补全缺失的信息需要convolution kernel去拟合，也就是猜的过程，那样一定是不准确的。或者可以考虑unet的解决方式，加入一条横向的channel将pooling前的信息给到后面，用于恢复信息。
+
 
 ### Max Pooling
 　　选择区域内值最大的，认为其最能代表给定特征。我们可以把 Max Pooling 看作一种某个给定特征在图像区域中被发现的方式，其忽略特征的确切位置。直观上看，只是判断一个特征有没有，并不需要知道其确切位置，这样可以减少特征数量和参数数目。
@@ -129,3 +134,9 @@ CNN特征提取的误差主要来自两个方面：
 3. [CNN 入门讲解：什么是全连接层（Fully Connected Layer）?](https://zhuanlan.zhihu.com/p/33841176)
 4. [CNN入门讲解：什么是采样层（pooling）](https://zhuanlan.zhihu.com/p/32299939)
 5. [CNN 入门讲解：什么是卷积（Convolution）?](https://zhuanlan.zhihu.com/p/30994790)
+6. [如何通俗地理解卷积？](https://www.matongxue.com/madocs/32.html)
+7. [Understanding Convolutions](http://colah.github.io/posts/2014-07-Understanding-Convolutions/#fnref2)
+8. [最容易理解的对卷积(convolution)的解释](https://blog.csdn.net/bitcarmanlee/article/details/54729807)
+9. [如何通俗易懂地解释卷积？ - palet的回答 - 知乎](https://www.zhihu.com/question/22298352/answer/637156871)
+10. [如何通俗易懂地解释卷积？ - 张俊博的回答 - 知乎](https://www.zhihu.com/question/22298352/answer/34267457)
+11. [如何理解空洞卷积（dilated convolution）？ - 刘诗昆的回答 - 知乎](https://www.zhihu.com/question/54149221/answer/323880412)

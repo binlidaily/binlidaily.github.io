@@ -69,4 +69,5 @@ published: true
     * IOU 应对一定问题下的操作，比如值相同，但是重叠的方式有较大差别，怎么进行区分？KIOU
     * NMP 怎么找到那些簇？
     * Faster RCNN
+    * Attention 机制
 
