@@ -140,3 +140,4 @@ CNN特征提取的误差主要来自两个方面：
 9. [如何通俗易懂地解释卷积？ - palet的回答 - 知乎](https://www.zhihu.com/question/22298352/answer/637156871)
 10. [如何通俗易懂地解释卷积？ - 张俊博的回答 - 知乎](https://www.zhihu.com/question/22298352/answer/34267457)
 11. [如何理解空洞卷积（dilated convolution）？ - 刘诗昆的回答 - 知乎](https://www.zhihu.com/question/54149221/answer/323880412)
+12. [Understanding max-pooling and loss of information](https://stats.stackexchange.com/questions/245365/understanding-max-pooling-and-loss-of-information)
