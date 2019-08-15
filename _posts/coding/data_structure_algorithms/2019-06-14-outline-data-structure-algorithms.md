@@ -26,7 +26,11 @@ typora-root-url: ../../../../binlidaily.github.io
 搜索（BFS、DFS、Backtracking）
 动态规划（斐波那契数列、矩阵路径、数组区间、分割整数、最长递增子序列、最长公共子序列、0-1 背包、股票交易、字符串编辑）
 
+栈和队列用数组加指针实现。
 
+vector 用模板实现
+
+哈希表用数组加链表实现。
 
 
 ## References

@@ -15,3 +15,4 @@ FM->FFM->DeepFM, DCN, xDeepFM
 
 ## References
 1. [Best Practices on Recommendation Systems](https://github.com/Microsoft/Recommenders)
+2. [项亮图书代码](https://github.com/lpty/recommendation)

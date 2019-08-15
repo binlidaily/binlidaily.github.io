@@ -129,7 +129,6 @@ dfoff['User_id'].isin(pd.to_numeric(dfon['User_id'], errors='coerce')).all()
 
 
 
-
 ## References
 1. [机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）](https://jiayi797.github.io/2017/03/08/机器学习实践-O2O优惠券预测-对第一名的思路源码分析（一）/)
 2. [1st Place Solution for O2O Coupon Usage Forecast](https://github.com/wepe/O2O-Coupon-Usage-Forecast)
@@ -137,3 +136,4 @@ dfoff['User_id'].isin(pd.to_numeric(dfon['User_id'], errors='coerce')).all()
 4. [天池竞赛系列-O2O优惠券使用预测复赛第三名思路](https://blog.csdn.net/bryan__/article/details/53907292)
 5. [『 天池竞赛』O2O优惠券使用预测思路总结](https://blog.csdn.net/shine19930820/article/details/53995369)
 6. [Xgboost实践+天池比赛O2O优惠券auc接近天池第一名0.81（auc0.80，支持CPU、GPU源代码下载链接）](https://blog.csdn.net/myourdream2/article/details/86618120)
+7. [机器学习算法之 XGBoost](https://www.biaodianfu.com/xgboost.html)

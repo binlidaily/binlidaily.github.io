@@ -65,3 +65,4 @@ typora-root-url: ../../../../binlidaily.github.io
 ## References
 1. [Data Structures - Dynamic Programming](https://www.tutorialspoint.com/data_structures_algorithms/dynamic_programming.htm)
 2. [五大常用算法之二：动态规划算法](https://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741374.html)
+3. [算法-动态规划 Dynamic Programming](https://blog.csdn.net/u013309870/article/details/75193592)

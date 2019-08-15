@@ -33,3 +33,6 @@ y ( \mathbf { x } ) = w _ { 0 } + \sum _ { i = 1 } ^ { n } w _ { i } x _ { i } +
 $$
 
 其中，$n$ 代表样本的特征数量，$x_i$ 是第 $i$ 个特征的值，$w_0$、$w_i$、$w_{ij}$ 是模型参数。
+
+## References
+1. [从FM推演各深度学习CTR预估模型（附代码）](https://blog.csdn.net/han_xiaoyang/article/details/81031961)

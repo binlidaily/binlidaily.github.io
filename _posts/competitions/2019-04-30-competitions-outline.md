@@ -43,3 +43,4 @@ published: true
 ## References
 1. [GitHub 干货 | 各大数据竞赛 Top 解决方案开源汇总](http://tech.ifeng.com/a/20181116/45226492_0.shtml)
 2. [从情感分析到用户画像，CCF大数据与计算智能大赛 作品源码资料整理](https://blog.csdn.net/meyh0x5vDTk48P2/article/details/79492513)
+3. [competitions-reproduction](https://github.com/binlidaily/competitions-reproduction)
