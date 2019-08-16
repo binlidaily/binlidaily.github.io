@@ -32,6 +32,7 @@ vector 用模板实现
 
 哈希表用数组加链表实现。
 
+滚动数组
 
 ## References
 1. [五大常用算法之一：分治算法](https://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741370.html)
