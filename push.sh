@@ -35,5 +35,5 @@
 
 
 git add -A
-git commit -m 'batch push'
+git commit -m 'update posts'
 git push
