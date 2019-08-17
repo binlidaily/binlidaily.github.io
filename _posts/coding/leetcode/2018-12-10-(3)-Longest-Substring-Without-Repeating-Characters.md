@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 3. Longest Substring Without Repeating Characters
-subtitle:
+subtitle: 最长不重复子序列
 author: Bin Li
 tags: [Coding, LeetCode]
 image: 
@@ -36,7 +36,8 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 ```
 
 ## Solutions
-暴力求解法还是比较简单可以实现的，两重循环，外循环遍历，内循环从外循环的当前位置开始往后扫描，遇到重复的字符就终止当前遍历，统计大小。
+### 1. Brute Force
+　　暴力求解法还是比较简单可以实现的，两重循环，外循环遍历，内循环从外循环的当前位置开始往后扫描，遇到重复的字符就终止当前遍历，统计大小。
 ```python
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -61,13 +62,14 @@ class Solution(object):
         return num_max                         
 ```
 
-第二种方法：
+### 2. HashMap + Sliding Window
+<p align="center">
+  <img width="" height="" src="/img/media/15473606262679.png">
+</p>
 
-![](/img/media/15473606262679.png)
+　　如上图所示，这里的 End 可以表示为在遍历时的 i 的值，Max length 就是 $i-start+1$。那么参考这个表，我们需要搞清楚什么时候 start 更换赋值？很明显，如果当前位置的字母在之前的 Start 到 End 段中出现重复就需要调整，调整是从当前 Start 位置到 End 位置之间重复字母的第一个位置开始加上 1（这就要求我们在存字母的时候保证对应上字母的当前坐标位置）。为了保证是当前这个重复段的，我们还得要求重复的字母位置要比 start 的位置大！
 
-如上图所示，这里的 End 可以表示为在遍历时的 i 的值，Max length 就是 $i-start+1$。那么参考这个表，我们需要搞清楚什么时候 start 更换赋值？很明显，如果当前位置的字母在之前的 Start 到 End 段中出现重复就需要调整，调整是从当前 Start 位置到 End 位置之间重复字母的第一个位置开始加上1（这就要求我们在存字母的时候保证对应上字母的当前坐标位置）。为了保证是当前这个重复段的，我们还得要求重复的字母位置要比 start 的位置大！
-
-而比较大小的步骤，其实可以在每一次迭代下都进行，但是我们发现在更换 start 的位置的时候其实可以不用比较，因为刚开始，所以可以把比较大小的部分放到更换 start 值的 if 补集中。
+　　而比较大小的步骤，其实可以在每一次迭代下都进行，但是我们发现在更换 Start 的位置的时候其实可以不用比较，因为刚开始，所以可以把比较大小的部分放到更换 Start 值的 if 补集中。
 
 ```python
 class Solution(object):
@@ -92,3 +94,4 @@ class Solution(object):
 
 ## References
 1. [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+2. [LeetCode第三题(Longest Substring Without Repeating Characters)三部曲之一：解题思路](https://blog.csdn.net/boling_cavalry/article/details/86563586)
