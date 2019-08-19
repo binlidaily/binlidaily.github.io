@@ -25,5 +25,9 @@ published: true
 
 　　$\mu$ 是中轴基准线，$\sigma$ 可以看成张口，其值越大，分布曲线张口越大，就越矮胖。
 
+$$
+f\left(x | \mu, \sigma^{2}\right)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
+$$
+
 ## References
 1. [正态分布为什么常见？](http://www.ruanyifeng.com/blog/2017/08/normal-distribution.html)

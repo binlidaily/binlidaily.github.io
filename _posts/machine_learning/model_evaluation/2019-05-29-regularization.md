@@ -9,9 +9,11 @@ comments: true
 published: true
 ---
 
-　　正则化在机器学习中非常的重要，其是模型选择的典型方法。正则化不能提高模型在数据集上的效果，但是能提高泛化能力，解决过拟合问题。
+　　正则化在机器学习中非常的重要，其是模型选择的典型方法。正则化不能提高模型在数据集上的效果，但是能提高泛化能力，**解决过拟合问题**。
 
 　　可以先了解一下 L1 和 L2 范数的[形式](https://binlidaily.github.io/2019-05-29-norm)，L1 和 L2 范数不光可以用来做正则化还能当损失函数，用 L1 范数的就是最小绝对偏差 (Least Absolute Deviation，LAD)，用 L2 范数就是最小二乘误差 (Least Squares Error, LSE)。
+
+事实上如果从贝叶斯的观点，所有的正则化都是来自于对参数分布的先验。
 
 ## 1. L1 正则化
 　　L1 范数为：
@@ -26,7 +28,7 @@ $$
 L=L_{0}+\lambda\|w\|_{1}=L_{0}+\lambda \sum_{w}|w|
 $$
 
-　　将上式对参数 w 求导如下
+　　将上式对参数 $w$ 求导如下
 
 $$
 \frac{\partial L}{\partial w}=\frac{\partial L_{0}}{\partial w}+\lambda \operatorname{sign}(w)
@@ -46,8 +48,11 @@ $$
 L1 的**优点**: 
 * 能够获得更加**稀疏**的模型，可以看成做了一定的特征选择。对异常值更不敏感。
 
-L1 的缺点: 
+L1 的**缺点**: 
 * 加入 L1 后会使得目标函数**在原点不可导**，需要做特殊处理
+
+### Laplace 先验导出 L1 正则化
+
 
 ## 2. L2 正则化
 　　L2 范数为:
@@ -141,3 +146,6 @@ L0 范数是指向量中非零元素的个数
 2. [机器学习中使用正则化来防止过拟合是什么原理？](https://www.zhihu.com/question/20700829)
 3. [正则化为什么能防止过拟合](https://www.cnblogs.com/alexanderkun/p/6922428.html)
 4. [L1 Norms versus L2 Norms](https://www.kaggle.com/residentmario/l1-norms-versus-l2-norms)
+5. [L1 正则化及其推导](https://www.cnblogs.com/heguanyou/p/7582578.html)
+6. [Laplace（拉普拉斯）先验与L1正则化](https://www.cnblogs.com/heguanyou/p/7688344.html)
+7. [**A Probabilistic Interpretation of Regularization**](http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization/)

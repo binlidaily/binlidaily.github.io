@@ -17,7 +17,7 @@ published: true
 
 一面
 * 为什么在论文中使用了 Triple loss？具体原理是啥？
-* PCA 的具体原理？
+* PCA 的具体原理？PCA 求的是什么？
 
 二面
 * 基本上问了下项目的问题。
