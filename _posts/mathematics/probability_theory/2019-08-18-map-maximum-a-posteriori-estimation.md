@@ -71,3 +71,4 @@ $$
 ## References
 1. [如何通俗地解释贝叶斯线性回归的基本原理？](https://www.zhihu.com/question/22007264/answer/20014371)
 2. [A Probabilistic Interpretation of Regularization](http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization/)
+3. [Bayes’ Theorem: An Informal Derivation](https://www.probabilisticworld.com/anatomy-bayes-theorem/)

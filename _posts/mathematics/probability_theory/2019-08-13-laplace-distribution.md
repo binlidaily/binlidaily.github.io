@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Laplace Distribution
-subtitle:
+subtitle: 拉普拉斯分布
 author: Bin Li
 tags: [Mathematics, Probability Theory]
 image: 
@@ -21,7 +21,7 @@ $$
   <img width="" height="" src="/img/media/15656742029911.jpg">
 </p>
 
-
+　　L1 正则化其实就是加入了 Laplace 数据分布。
 
 
 ## References

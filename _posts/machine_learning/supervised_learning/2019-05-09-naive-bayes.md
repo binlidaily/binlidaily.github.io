@@ -44,15 +44,34 @@ $$
   <img width="500" height="" src="/img/media/15593028139966.jpg">
 </p>
 
-
 　　贝叶斯公式是建立在条件概率的基础上寻找事件发生的原因（即大事件 $A$ 已经发生的条件下，分割中的小事件 $B_i$ 在 $A$ 发生的条件下的概率），设 $B_1, B_2,\dots, B_n $ 是样本空间 $S$ 的一个划分，则对任一事件 $A$（$P(A)>0$）有：
 
 $$
 P\left(B_{i} | A\right)=\frac{P\left(AB_{i}\right)}{\sum_{j=1}^{n} P\left(AB_{j}\right)} =\frac{P\left(B_{i}\right) P\left(A | B_{i}\right)}{\sum_{j=1}^{n} P\left(B_{j}\right) P\left(A | B_{j}\right)}
 $$
 
-　　这就是贝叶斯公式（Bayes formula），$B_i$ 常被视为导致试验结果 $A$ 发生的“原因”，$P(B_i)$（$i=1,2,\dots, n$）表示各种原因发生的可能性大小，故称先验概率（权重）；$P(B_i\vert A)$（$i=1,2,\dots, n$）则反映当试验产生了结果 $A$ 之后，再对各种原因概率的新认识，故称后验概率。
+　　这就是贝叶斯公式（Bayes formula），$B_i$ 常被视为导致试验结果 $A$ 发生的“原因”，$P(B_i)$（$i=1,2,\dots, n$）表示各种原因发生的可能性大小，故称先验概率（权重）；$P(B_i\vert A)$（$i=1,2,\dots, n$）则反映当试验产生了结果 $A$ 之后，再对各种原因概率的新认识，故称后验概率。具体每一个部分的解释可以[参考](https://www.probabilisticworld.com/anatomy-bayes-theorem/)。
 
+　　还有一种比较容易的解释形式，贝叶斯定理的公式如下：
+
+$$
+P(\text { Hypothesis } | \text { Observation })=\frac{\text { P(Observation } | \text { Hypothesis) } \times P(\text { Hypothesis) }}{P(\text { Observation })}
+$$
+
+　　假如说所有的数据中有四种 Hypothesis（也就是四种类），那么在观察之前的空间如下图所示，这是假设情况下的，也就是**先验**的内容：
+![](/img/media/15662835074348.jpg)
+
+　　然后我们观察一批数据，因为现实中不可能把所有数据都拿来算概率，只能采样一部分数据作为观察样本，也就是下面图中暗色的框框：
+![](/img/media/15662834571040.jpg)
+
+　　然后我们只看观察的数据，那么这个就是**后验**的内容：
+![](/img/media/15662841983672.jpg)
+
+　　当然对于观察数据还有这样的联合概率加和的关系存在，比较好理解：
+
+![](/img/media/15662842343320.jpg)
+
+　　The likelihood reads as “the probability of the observation, given that the hypothesis is true”.
 ## 2. 朴素贝叶斯分类器
 　　为了方便讨论，这里用更加偏向机器学习的表示方式重写贝叶斯公式：
 
