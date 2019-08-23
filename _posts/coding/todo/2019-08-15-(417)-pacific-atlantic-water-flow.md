@@ -39,7 +39,14 @@ Return:
 ```
 
 ## Solutions
+![-w1195](/img/media/15663923164674.jpg)
 
+### DFS - 按照题目思路
+
+### DFS - 按照反向思维
+
+### DP
+还使用了滚动数组。
 
 ## References
 1. [417. Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)

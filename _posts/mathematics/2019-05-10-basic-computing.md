@@ -18,3 +18,8 @@ $$\ln x/y = \ln x - \ln y$$
 $$\ln x^{a} = a \ln x$$
 
 $$\ln \sqrt[a]{x} = \frac{1}{a}\ln x$$
+
+## 三角函数
+
+![-w1003](/img/media/15665289456460.jpg)
+
