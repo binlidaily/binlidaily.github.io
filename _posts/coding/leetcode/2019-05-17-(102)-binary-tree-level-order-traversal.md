@@ -12,7 +12,7 @@ published: true
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
 For example:
-Given binary tree [3,9,20,null,null,15,7],
+Given binary tree `[3,9,20,null,null,15,7]`,
 ```
     3
    / \
@@ -71,5 +71,40 @@ class Solution(object):
 # Memory Usage: 12.2 MB, less than 76.64% of Python online submissions for Binary Tree Level Order Traversal.
 ```
 
+### BFS 递归方法
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        res = []
+        self.bfs(root, 0, res)
+        return res
+    def bfs(self, root, level, lis):
+        if not root:
+            return
+        # 如果 level 遍历到下一层就要补充一个新的列表保存下一层的结点
+        if level >= len(lis):
+            sub_lis = [root.val]
+            lis.append(sub_lis)
+        else:
+            lis[level].append(root.val)
+        self.bfs(root.left, level + 1, lis)
+        self.bfs(root.right, level + 1, lis)
+# Runtime: 8 ms, faster than 99.95% of Python online submissions for Binary Tree Level Order Traversal.
+# Memory Usage: 12.6 MB, less than 11.76% of Python online submissions for Binary Tree Level Order Traversal.
+```
 ## References
 1. [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)

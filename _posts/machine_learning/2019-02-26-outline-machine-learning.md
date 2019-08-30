@@ -9,8 +9,6 @@ comments: true
 published: true
 ---
 
-
-
 这里记录待整理的一些概念或者问题！
 
 ![-w779](/img/media/15635978283880.jpg)
@@ -26,6 +24,7 @@ published: true
 
 
 ![](/img/media/15617050084091.jpg)
+
 
 
 1. Bagging + 决策树 = 随机森林
@@ -44,6 +43,49 @@ published: true
 
 
 ![](/img/media/15586905041983.jpg)
+
+
+## 算法分类汇总
+
+
+* 有监督学习
+    * 分类
+        1. 逻辑回归
+        2. 支持向量机
+        3. K 近邻
+        4. 朴素贝叶斯分类器
+        5. 决策树
+        6. Adaboost
+        7. Random Forest 分类
+        8. XGBoost 分类
+        9. LightGBM 分类
+        10. 线性判别分析
+        11. 高斯过程分类
+    * 回归
+        12. 线性回归
+        13. 多项式回归
+        14. 岭回归
+        15. 脊/套索回归
+        16. ElasticNet回归
+        17. 贝叶斯回归
+        18. SGD 回归
+        19. SVR
+        20. KNN 回归
+        21. 决策树回归
+        22. 神经网络
+        23. RandomForest 回归
+        24. XGBoost 回归
+        25. LightGBM 回归
+        26. 高斯过程回归
+* 无监督学习
+    * 聚类
+        1. K-Means
+        2. 高斯混合模型
+        3. DBSCAN
+    * 降维
+        4. 主成分分析
+        5. 线性判别分析
+        6. t-SNE
 
 
 ## Concepts of Machine Learning
