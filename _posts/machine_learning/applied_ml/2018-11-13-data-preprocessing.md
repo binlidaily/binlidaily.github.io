@@ -11,13 +11,13 @@ published: true
 
 　　这里总结处理数据一般操作，方便自己回顾。
 
-## 数据导入
-
+## 1. 数据导入
+### 1.1 CSV 数据格式
 ```python
-#如果没有keep_default_na=False，加载后空值处就是NAN，且类似coupon_id等处的类型都是float
-#判断是否是NAN的话是：off_train.date!=off_train.date结果是True即为NAN，否则是非空值
-#这里使用了keep_default_na=False，使coupon_id等字段的数据类型转化为object可以简单看作是字符串，空值变为null
-#这时候判断是否是空值便可用off_train.date=='null'
+# 如果没有 keep_default_na=False，加载后空值处就是 NAN，且类似 coupon_id 等处的类型都是 float
+# 判断是否是NAN的话是：off_train.date!=off_train.date结果是True即为NAN，否则是非空值
+# 这里使用了keep_default_na=False，使coupon_id等字段的数据类型转化为object可以简单看作是字符串，空值变为null
+# 这时候判断是否是空值便可用off_train.date=='null'
 off_train = pd.read_csv(os.path.join(DataPath,'ccf_offline_stage1_train.csv'),header=0,keep_default_na=False)
 ```
 
@@ -55,7 +55,7 @@ train_df[col][train_df[col] < low_limit] = low_limit
 ```python
 train_df[col] = train_df[col].map(lambda x : p.log1p(x))
 ```
-2. 应用Box-Cox转换
+2. 应用 Box-Cox 转换
 
 ### 长尾型并不是偏度正太的数据特征
 * 离散化数据，分区间处理，即分桶。

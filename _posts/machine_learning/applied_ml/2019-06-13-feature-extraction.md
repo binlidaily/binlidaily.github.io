@@ -993,6 +993,8 @@ array(['x0_Female', 'x0_Male', 'x1_1', 'x1_2', 'x1_3'], dtype=object)
 
 　　得到的结果大小是 $(特征个数 \times 每个特征的类别个数)$，例如这里的结果是 5 维的向量，前两个表示男女的特征，后三个是整数型特征。
 
+　　对于在测试集或者说预测的时候发现有之前没看见过的类别，可以在初始化 onehotencoder 类的时候，可以选择参数 `handle_unknown = 'ignore'`，或者指定特定的值（字符串类型），或者报错 'error'。
+
 2、使用 [LabelBinarizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelBinarizer.html) 类针对类别标签 (Target labels) 独热编码，输入大小为 $(\text{n_samples}, )$ 的数组：
 
 ```python

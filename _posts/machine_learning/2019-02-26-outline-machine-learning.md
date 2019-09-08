@@ -45,6 +45,18 @@ published: true
 ![](/img/media/15586905041983.jpg)
 
 
+![-w1181](/img/media/15673036119106.jpg)
+
+![-w1178](/img/media/15673037152066.jpg)
+![-w1187](/img/media/15673040257026.jpg)
+![-w1171](/img/media/15673042676385.jpg)
+![-w1195](/img/media/15673048473766.jpg)
+
+noise 可能来自x 也可能来自 y。 
+
+![-w1197](/img/media/15675196287275.jpg)
+
+
 ## 算法分类汇总
 
 
