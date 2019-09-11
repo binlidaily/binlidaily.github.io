@@ -36,7 +36,7 @@ Note:
 
 ## Solutions
 ### 拓扑排序-BFS
-
+　　从出入度的角度来计算，复杂度是 $O(n^2)$：
 ```python
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
