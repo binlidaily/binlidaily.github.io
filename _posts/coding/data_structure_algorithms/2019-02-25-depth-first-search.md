@@ -116,7 +116,23 @@ def post_order_stack(self, root):
 
 　　当然，不一定非要用到递归，可以只用到其迭代的思想。
 
+递归模板
+
+```python
+DFS（顶点） 
+{
+　　处理当前顶点，记录为已访问
+　　遍历与当前顶点相邻的所有未访问顶点
+　　{
+　　　　　　标记更改;
+　　　　　　DFS( 下一子状态);
+　　　　　　恢复更改;
+　　}
+}
+```
+
 ## References
 1. [144. Binary Tree Preorder Traversal](https://binlidaily.github.io/2019-07-13-(144)-binary-tree-preorder-traversal)
 2. [94. Binary Tree Inorder Traversal](https://binlidaily.github.io/2019-07-13-(94)-binary-tree-inorder-traversal)
 3. [145. Binary Tree Postorder Traversal](https://binlidaily.github.io/2019-07-13-(145)-binary-tree-postorder-traversal)
+4. [模板](http://chen-tao.github.io/2017/01/27/al-template/)

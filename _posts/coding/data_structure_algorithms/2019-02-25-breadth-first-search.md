@@ -13,7 +13,21 @@ typora-root-url: ../../../../binlidaily.github.io
 　　深度优先遍历 / 搜索（Breadth-First Search/Traversal）是树结构中常见的操作，有着广泛的用处，这里对不同的实现方式做了分别介绍。
 
 ## 迭代方式实现
-
+模板：
+```python
+queue<type> q;
+q.push(初始状态);
+while (!q.empty())
+{
+  type t = q.front() ;
+  q.pop();
+  遍历 t 的各个Next状态  next
+  { 
+    if (next is legal)
+      q.push(next); 计数或维护等; 
+  } 
+}
+```
 　　这里针对两种输出方式做了具体讨论，输出为一维数组：
 ```python
 def breadth_first_search(self, root):

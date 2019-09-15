@@ -34,6 +34,7 @@ $$y=\alpha_1x+\alpha_2x^2+\alpha_3x^3$$
 
 
 
+![-w1190](/img/media/15685304976413.jpg)
 
 
 ## References

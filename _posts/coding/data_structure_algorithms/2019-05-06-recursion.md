@@ -21,6 +21,21 @@ typora-root-url: ../../../../binlidaily.github.io
 2. 汉诺塔问题
 3. 爬台阶问题
 
+模板：
+
+```python
+void f()
+{
+     if(符合边界条件)
+    {
+        # ///////
+        return;
+    }
+    
+     # 某种形式的调用
+     f();
+}
+```
 
 ## 优缺点
 优点：

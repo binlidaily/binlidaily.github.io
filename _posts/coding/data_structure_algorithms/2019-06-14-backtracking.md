@@ -111,6 +111,29 @@ try(int i)
 }
 ```
 
+模板：
+
+```python
+void dfs(int 当前状态)
+{
+  if(当前状态为边界状态)
+  {
+    # 记录或输出
+    return;
+  }
+  for(i=0;i<n;i++)		# 横向遍历解答树所有子节点
+ {
+       # 扩展出一个子状态。
+       # 修改了全局变量
+       if(子状态满足约束条件)
+        {
+          dfs(子状态)
+       }
+        # 恢复全局变量//回溯部分
+    }
+}
+```
+
 应用回溯法有：
 1. 装载问题
 2. 批处理作业调度
@@ -126,6 +149,7 @@ try(int i)
 
 LeetCode 题目：
 1. [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
 ## References
 1. [Backtracking](https://www.1point3acres.com/bbs/thread-172641-1-1.html)
 2. [五大常用算法之四：回溯法](https://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741376.html)

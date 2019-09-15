@@ -310,6 +310,7 @@ $$
 10. [从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
 11. [公式推导](/assets/GenDiscr_LR_9-20-2012.pdf)
 12. [Regularization for Logistic Regression: L1, L2, Gauss or Laplace?](https://www.knime.com/blog/regularization-for-logistic-regression-l1-l2-gauss-or-laplace)
+13. [sklearn LR](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression)
 
 
 
