@@ -1345,3 +1345,7 @@ print 'elapsed time: ', time.time() - start_time
 
 ## References
 1. [特征工程](https://tianchi.aliyun.com/mas-notebook/preview/36434/bffd10b0-18d3-11e9-bace-61d7df7cd8c1.ipynb/-1?lang=zh-cn)
+2. [特征工程小结](http://lambda-xmu.club/2018/08/31/Data-competition-From-0-to-1-Part-II(%E8%A1%A5%E5%85%85)/)
+3. [Open Machine Learning Course. Topic 6. Feature Engineering and Feature Selection](https://medium.com/open-machine-learning-course/open-machine-learning-course-topic-6-feature-engineering-and-feature-selection-8b94f870706a)
+4. [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
+5. [竞赛专题（四）特征工程-竞赛中的必杀技](https://mp.weixin.qq.com/s/2wfOsOYOjbAEkWuF7r4KYA)
