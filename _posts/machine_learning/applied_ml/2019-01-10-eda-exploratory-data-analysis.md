@@ -9,10 +9,25 @@ comments: true
 published: true
 ---
 
+　　在拿到数据之后，首先要做的就是要数据分析(Exploratory Data Analysis,EDA)。数据分析是数据挖掘中重要的步骤，同时也在其他阶段反复进行。可以说数据分析是数据挖掘中至关重要的一步，它给之后的步骤提供了改进的方向，也是直接可以理解数据的方式。
+
+　　拿到数据之后，我们必须要明确以下几件事情：
+1. 数据是如何产生的，数据又是如何存储的；
+2. 数据是原始数据，还是经过人工处理(二次加工的)；
+3. 数据由那些业务背景组成的，数据字段又有什么含义；
+4. 数据字段是什么类型的，每个字段的分布是怎样的；
+5. 训练集和测试集的数据分布是否有差异;
+
+　　在分析数据的过程中，还必须要弄清楚的以下数据相关的问题：
+1. 数据量是否充分，是否有外部数据可以进行补充；
+2. 数据本身是否有噪音，是否需要进行数据清洗和降维操作；
+3. 赛题的评价函数是什么，和数据字段有什么关系；
+4. 数据字段与赛题标签的关系；
+
 　　EDA 最重要的就是用来找到有用的特征。 kind : {point, bar, count, box, violin, strip}
 
 ### Confusion Matrix
-The left diagonal shows the number of correct predictions made for each class while the right diagonal shows the number of wrong prredictions made. 
+The left diagonal shows the number of correct predictions made for each class while the right diagonal shows the number of wrong predictions made. 
 
 <p align="center">
   <img width="" height="" src="/img/media/15497143871291.jpg">

@@ -298,7 +298,7 @@ config1.gpu_options.allow_growth = True
 import os
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = 2
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 ```
 
 ### 2.3.3 保存与读取模型

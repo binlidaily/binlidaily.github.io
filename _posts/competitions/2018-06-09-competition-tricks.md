@@ -318,4 +318,5 @@ my_submission.to_csv('auto_ft_submission.csv', index=False)
 5. [A searchable compilation of Kaggle past solutions](https://github.com/EliotAndres/kaggle-past-solutions)
 6. [Kaggle Grandmaster是怎样炼成的](https://www.jiqizhixin.com/articles/Kaggle-Grandmaster-AMA-Vladimir-Iglovikov)
 7. [GitHub 干货 | 各大数据竞赛 Top 解决方案开源汇总](https://www.leiphone.com/news/201811/yb90nCORW2JK0L26.html)
-
+8. [Data competition Top Solution 数据竞赛Top解决方案开源整理](https://github.com/Smilexuhc/Data-Competition-TopSolution)
+9. [数据竞赛Tricks集锦](https://mp.weixin.qq.com/s/wsCZWExe1h6DlAbuNqFoRw)

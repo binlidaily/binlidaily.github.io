@@ -10,7 +10,7 @@ published: true
 ---
 
 
-
+hoeffding 不等式给出了随机变量的和与其期望值偏差的概率上限。
 
 
 ## References
