@@ -48,13 +48,32 @@ Note:
 
 ## Solutions
 　　首先要弄懂输入是什么意思，输入表示的是下标从0 开始的结点的相邻结点有哪些，比如例子 1 中，第一个 list 中的[1,3]表示与结点 0 相邻的结点是 1 和 3，以后一次类推。
-### 1. 染色法
+### 1. 染色法-递归
 　　可以通过染色，如果两个相邻的结点被染成同一种颜色那么就不是二分图，否则便是。
 
 ```python
-
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        colors = [0 for _ in range(len(graph))]
+        for i in range(len(colors)):
+            if colors[i] == 0 and not self.valid(graph, 1, i, colors):
+                return False
+        return True
+    
+    def valid(self, graph, color, cur_pos, colors):
+        if colors[cur_pos] != 0:
+            return colors[cur_pos] == color
+        colors[cur_pos] = color
+        for i in graph[cur_pos]:
+            if not self.valid(graph, -1*color, i, colors):
+                return False
+        return True
+# Runtime: 200 ms, faster than 95.60% of Python3 online submissions for Is Graph Bipartite?.
+# Memory Usage: 14 MB, less than 9.09% of Python3 online submissions for Is Graph Bipartite?.
 ```
 
+### 2. 染色法——BFS
+### 3. 并查集——Union Find
 ## References
 1. [785. Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/)
 2. [785. Is Graph Bipartite? 是二分图么？](https://www.cnblogs.com/grandyang/p/8519566.html)
