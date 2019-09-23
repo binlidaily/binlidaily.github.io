@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Object Detection
+title: Semantic Segmentation
 subtitle:
 author: Bin Li
 tags: [Deep Learning, Object Detection]

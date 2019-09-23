@@ -6,7 +6,7 @@ layout: post
 title: 
 subtitle: 
 author: Bin Li
-tags: [Coding, LeetCode, DFS, BFS]
+tags: [Coding, LeetCode]
 image: 
 comments: true
 published: true

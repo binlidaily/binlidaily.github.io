@@ -370,6 +370,19 @@ sa_price = train_df.groupby('sub_area')[['work_share', 'price_doc']].mean()
 
 
 
+```python
+# pip install sklearn-pandas
+from sklearn_pandas import DataFrameMapper
+mapper = DataFrameMapper(
+  [(continuous_col, StandardScaler()) for continuous_col in continuous_cols] +
+  [(categorical_col, LabelBinarizer()) for categorical_col in categorical_cols]
+)
+pipeline = Pipeline(
+  [("mapper", mapper),
+  ("estimator", estimator)]
+)
+pipeline.fit_transform(df, df["y"])
+```
 
 
 ## References
@@ -378,3 +391,4 @@ sa_price = train_df.groupby('sub_area')[['work_share', 'price_doc']].mean()
 3. [经典比较篇之八：数据不正态怎么办？](https://zhuanlan.zhihu.com/p/26784184)
 4. [Python 特征工程](https://coladrill.github.io/2018/03/08/Python%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E7%AF%87/)
 5. [Determine whether the two classes are linearly separable (algorithmically in 2D)](https://stackoverflow.com/questions/9779179/determine-whether-the-two-classes-are-linearly-separable-algorithmically-in-2d)
+6. [Feature preprocessing of both continuous and categorical variables (of integer type) with scikit-learn](https://stackoverflow.com/questions/43554821/feature-preprocessing-of-both-continuous-and-categorical-variables-of-integer-t)
