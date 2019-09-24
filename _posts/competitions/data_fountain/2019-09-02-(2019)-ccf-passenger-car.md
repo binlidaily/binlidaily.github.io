@@ -11,7 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
-　　首先，这是一个回归问题。
+　　首先，这是一个回归问题，同时也是一个时间序列的问题。
 
 
 
