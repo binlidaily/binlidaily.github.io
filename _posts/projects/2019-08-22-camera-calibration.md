@@ -154,7 +154,7 @@ $$
 
 
 $$
-Z_{c}\left[\begin{array}{c}{u} \\ {v} \\ {1}\end{array}\right]=\left[\begin{array}{ccc}{\frac{1}{d x}} & {0} & {u_{0}} \\ {0} & {\frac{1}{d y}} & {v_{0}} \\ {0} & {0} & {1}\end{array}\right]\left[\begin{array}{cccc}{f} & {0} & {0} & {0} \\ {0} & {f} & {0} & {0} \\ {0} & {0} & {1} & {0}\end{array}\right]\left[\begin{array}{cc}{X} & {T} \\ {0} & {1}\end{array}\right]\left[\begin{array}{c}{X_{w}} \\ {Y_{w}} \\ {Z_{w}} \\ {1}\end{array}\right]=\left[\begin{array}{cccc}{f_{x}} & {0} & {u_{0}} & {0} \\ {0} & {f_{y}} & {v_{0}} & {0} \\ {0} & {0} & {1} & {0}\end{array}\right]\left[\begin{array}{cc}{X_{w}} \\ {Y_{w}} \\ {Z_{w}} \\ {1}\end{array}\right]
+Z_{c}\left[\begin{array}{c}{u} \\ {v} \\ {1}\end{array}\right]=\left[\begin{array}{ccc}{\frac{1}{d x}} & {0} & {u_{0}} \\ {0} & {\frac{1}{d y}} & {v_{0}} \\ {0} & {0} & {1}\end{array}\right]\left[\begin{array}{cccc}{f} & {0} & {0} & {0} \\ {0} & {f} & {0} & {0} \\ {0} & {0} & {1} & {0}\end{array}\right]\left[\begin{array}{cc}{R} & {T} \\ {\overrightarrow{0}} & {1}\end{array}\right]\left[\begin{array}{c}{X_{w}} \\ {Y_{w}} \\ {Z_{w}} \\ {1}\end{array}\right]=\left[\begin{array}{cccc}{f_{x}} & {0} & {u_{0}} & {0} \\ {0} & {f_{y}} & {v_{0}} & {0} \\ {0} & {0} & {1} & {0}\end{array}\right]\left[\begin{array}{cc}{R} & {T} \\ {\overrightarrow{0}} & {1}\end{array}\right]\left[\begin{array}{c}{X_{w}} \\ {Y_{w}} \\ {Z_{w}} \\ {1}\end{array}\right]
 $$
 
 　　引入齐次的目的是把所有的变换（缩放、旋转、平移）统一起来，因为分开的话，平移是矩阵加法，旋转是矩阵乘法，引入齐次之后就变成乘法了。
