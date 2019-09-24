@@ -26,7 +26,7 @@ $$
 
 ![Note 2019-09-24 001](/img/media/Note%202019-09-24%20001.jpeg){:.center-images}
 
-
+　　然后就可以通过 OpenCV 的 findHomography 函数求得 $H$，并根据世界坐标系相对于靶标坐标系的变换对应的计算出变换矩阵，然后就可以求得图片中的像素坐标和世界坐标系中的地面坐标的对应关系了（2D->2D）。
 
 ## References
 1. [OpenCV: How-to calculate distance between camera and object using image?](https://stackoverflow.com/questions/14038002/opencv-how-to-calculate-distance-between-camera-and-object-using-image)
