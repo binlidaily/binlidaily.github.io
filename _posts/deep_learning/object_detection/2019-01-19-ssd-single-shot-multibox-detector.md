@@ -26,7 +26,7 @@ SSD 具有以下特点：
 * **SSD 使用感受野小的 feature map 检测小目标，使用感受野大的feature map检测更大目标**。
 
 
-![](/img/media/15541023500828.jpg){:.center-image}
+![](/img/media/15541023500828.jpg){:.center-images}
 
 　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
 
