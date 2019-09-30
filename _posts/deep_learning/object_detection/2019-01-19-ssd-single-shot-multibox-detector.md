@@ -27,7 +27,7 @@ SSD 具有以下特点：
 
 ![](/img/media/15541023500828.jpg)
 
-　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 c 个类的值。最后产生了 $(c+4)kmn$ 个值。
+　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
 
 
 ![](/img/media/15614581132951.jpg)
@@ -69,11 +69,22 @@ SSD 对背景也做了处理，所以在设定类别数时要加 1。
 
 每一个 feature map 的 default box 的尺寸大小是不同的。
 
+
+## SSD 论文一些其他的发现
+1. 更多的默认框能够得到更好的效果，在速度上会有较大的影响。
+2. MultiBox 应用在多个层上能得到更好的检测效果，因为提取到不同像素下的特征。
+3. 80% 的训练时间在 VGG 上，所以如果基网络还有提升的空间。
+4. SSD confuses objects with similar categories (e.g. animals). This is probably because locations are shared for multiple classes. ？？
+5. SSD-500 (the highest resolution variant using 512x512 input images) achieves best mAP on Pascal VOC2007 at 76.8%, but at the expense of speed, where its frame rate drops to 22 fps. SSD-300 is thus a much better trade-off with 74.3 mAP at 59 fps.
+6. SSD 在小物体上效果较差，因为他们可能在所有的 Feature Maps 中都没有出现。增大图片的像素在一定程度上能够缓解这个问题，但是不能完全解决。
+
 ## Q&A
 
 * 为什么要有图片大小限制？300x300？那么对于图片超过这个规格的怎么处理？
 * 每一个 feature map 需要同时做分类和回归？
 * 非最大化抑制是什么？
+* SSD 为什么用 L1 loss 计算 Location Loss？
+* 为什么正负比例特别大，而用上了 Hard Negative Mining。
 
 
 ## References

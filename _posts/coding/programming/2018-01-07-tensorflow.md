@@ -296,9 +296,10 @@ config1.gpu_options.allow_growth = True
 ### 2.3.2 设置 GPU 可见
 ```python
 import os
-
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True # 随着进程逐渐增加现存占用，而不是一下子占满
+session = tf.Session(config=config, ...)
 ```
 
 ### 2.3.3 保存与读取模型

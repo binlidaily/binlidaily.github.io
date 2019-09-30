@@ -15,6 +15,15 @@ typora-root-url: ../../../../binlidaily.github.io
 
 　　与分治法最大的差别是：适合于用动态规划法求解的问题，经分解后得到的子问题往往不是互相独立的（即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解）。
 
+
+* 递归与循环
+    * 从理论上说，所有的递归函数都可以转换为迭代函数，反之亦然，然而代价通常都是比较高的。当递归次数较多时，内存占用也会随之增加。
+* 递推与递归
+    1. 从程序上看，递归表现为自己调用自己，递推则没有这样的形式。
+    2. 递归是从问题的最终目标出发，逐渐将复杂问题化为简单问题，最终求得问题。递推是从简单问题出发，一步步的向前发展，最终求得问题。是正向的。
+    3. 递归中，问题的n要求是计算之前就知道的，而递推可以在计算中确定，不要求计算前就知道n。
+    4. 一般来说，递推的效率高于递归（当然是递推可以计算的情况下）。
+
 ## 动态规划使用场景
 　　区别在于这些子问题会有重叠，一个子问题在求解后，可能会再次求解，于是我们想到将这些子问题的解存储起来，当下次再次求解这个子问题时，直接拿过来用便是。也就是说，动态规划所解决的问题是分治策略所解决问题的一个子集，只是这个子集更适合用动态规划来解决从而得到更小的运行时间。
 
@@ -62,8 +71,13 @@ typora-root-url: ../../../../binlidaily.github.io
 2. 自底向上的方式，用迭代实现
 
 
+## 经典问题
+1. Longest Increasing Subsequence - 最长递增子序列
+
+
 ## References
 1. [Data Structures - Dynamic Programming](https://www.tutorialspoint.com/data_structures_algorithms/dynamic_programming.htm)
 2. [五大常用算法之二：动态规划算法](https://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741374.html)
 3. [算法-动态规划 Dynamic Programming](https://blog.csdn.net/u013309870/article/details/75193592)
 4. [动态规划总结【模板】](https://blog.csdn.net/lianai911/article/details/45424703)
+5. [动态规划问题总结](https://zhuanlan.zhihu.com/p/33574315)

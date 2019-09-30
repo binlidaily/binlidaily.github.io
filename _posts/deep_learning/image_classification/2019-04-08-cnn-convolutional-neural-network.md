@@ -23,8 +23,14 @@ typora-copy-images-to: ../../img/media
 
 
 ## 1. Convolutional Layers
-　　
+* 输入图片大小 W×W
+* Filter大小 F×F
+* 步长 S
+* padding的像素数 P
 
+$$N = \left\lfloor(W − F + 2P )/S+1 \right \rfloor$$
+
+　　这里加的 1 是表示原地的自己，比如说序列 $[1, 9]$ 一共多少个数的计算方法是 $9 - 1 + 1$，要记得 1 或者 9 那个数算上。
 
 
 ## 2. Pooling Layers

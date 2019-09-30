@@ -83,5 +83,8 @@ published: true
 2. 第二个就是尝试实现各个算法的简单版本，以期更好的了解算法原理。
 3. 刷题。
 
+
+![费曼技巧](/img/media/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7.jpg)
+
 ## 善用佳器
 * 画网络结构图，[参考](https://zhuanlan.zhihu.com/p/60146525)。

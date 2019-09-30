@@ -45,3 +45,5 @@ published: true
 2. [从情感分析到用户画像，CCF大数据与计算智能大赛 作品源码资料整理](https://blog.csdn.net/meyh0x5vDTk48P2/article/details/79492513)
 3. [competitions-reproduction](https://github.com/binlidaily/competitions-reproduction)
 4. [数据科学/人工智能比赛解决方案汇总 2019.9](https://blog.csdn.net/wizardforcel/article/details/100520874)
+5. [Kaggle首战Top 2%, APTOS 2019复盘总结+机器学习竞赛通用流程归纳](https://zhuanlan.zhihu.com/p/81695773)
+6. [python数据处理，特征工程，比赛等一定会用到的方法](https://www.twblogs.net/a/5b8364342b71776c51e2d0b2/zh-cn)

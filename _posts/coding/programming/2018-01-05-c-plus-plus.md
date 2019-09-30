@@ -1,17 +1,16 @@
 ---
 layout: post
-title: "C++ Primer"
-author: "Bin Li"
-tags: [C++]
+title: C++
+subtitle:
+author: Bin Li
+tags: [Programming]
+image: 
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
-published: false
+published: true
 ---
 
-The way to learn a new programming language is to write programs.
+　　The way to learn a new programming language is to write programs.
 
 
 
+**多态**

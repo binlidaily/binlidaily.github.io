@@ -23,6 +23,11 @@ published: true
 
 如果没有外部标签数据，如果评价两个聚类算法的优劣？
 
+Principal Component Analysis (PCA)
+Latent Dirichlet Allocation (LDA)
+Latent Semantic Analysis (LSA)
+
+
 ## 提问是最好的学习方法
 ### 降低数据维度的动机是什么？
 1. 加速随后的模型训练过程，在某些情况下，可以起到去除噪声和冗余特征的效果，使得模型效果更好。

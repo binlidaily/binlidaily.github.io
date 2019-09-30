@@ -157,6 +157,84 @@ $$
   <img width="420" height="" src="/img/media/image-20190324210041215.png">
 </p>
 
+## 2. 基于最大似然估计的理解
+　　线性回归使用最小二乘法的本质其实是利用最大似然估计得到的，接下来我们从一个假设开始探索。首先我们有这样的式子：
+
+$$
+t=y(\mathbf{x}, \mathbf{w})+\epsilon
+$$
+
+　　$t$ 是目标变量（即采样得到的目标值），$y(\mathbf{x}, \mathbf{w})=\sum_{j=0}^{M-1} w_{j} \phi_{j}(\mathbf{x})=\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}(\mathbf{x})$ 是生成函数（理想情况下的结果），$\epsilon$ 是误差。一般来讲，我们都假设误差服从零均值的高斯分布：
+
+$$
+\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)
+$$
+
+　　则有
+
+$$
+p(\epsilon) = \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{\left(\epsilon\right)^{2}}{2 \sigma^{2}}} = \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{\left(t-y(\mathbf{x}, \mathbf{w})\right)^{2}}{2 \sigma^{2}}} = \mathcal{N}\left(t | y(\mathbf{x}, \mathbf{w}), \sigma^{2}\right)
+$$
+
+　　我们按照统一的记号方法，记 $\frac{1}{\sigma^{2}}$ 为 $\beta$，为 precision (inverse variance)，有：
+
+$$
+p(t | \mathbf{x}, \mathbf{w}, \beta)=\mathcal{N}\left(t | y(\mathbf{x}, \mathbf{w}), \beta^{-1}\right)
+$$
+
+　　那么我们的目标就是求出参数 $w$ 和 $\beta$，对于已经收集到的数据集，我们可以假设样本之间相互独立，采用极大似然估计来估计参数，假设样本个数为 $N$。
+
+$$
+p(\mathbf{t} | \mathbf{X}, \mathbf{w}, \beta)=\prod_{n=1}^{N} \mathcal{N}\left(t_{n} | \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right)
+$$
+
+　　连乘不好操作，我们等价处理成连加:
+
+$$
+\begin{aligned} \ln p(\mathbf{t} | \mathbf{w}, \beta) &=\sum_{n=1}^{N} \ln \mathcal{N}\left(t_{n} | \mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right), \beta^{-1}\right) \\ &=\frac{N}{2} \ln \beta-\frac{N}{2} \ln (2 \pi)-\beta E_{D}(\mathbf{w}) \end{aligned}
+$$
+
+　　其中 $E_D$ 为最小二乘项，为了方便起见单独列出：
+
+$$
+E_{D}(\mathbf{w})=\frac{1}{2} \sum_{n=1}^{N}\left\{t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right\}^{2}
+$$
+
+　　那么极大似然是要最大化上面的等式，我们单独看 $w$ 时，前两项可以舍去，优化目标也就变成了最小化 $E_D$，即最小化最小二乘的结果，跟之前优化目标一致。
+
+　　然后求导：
+
+$$
+\nabla \ln p(\mathbf{t} | \mathbf{w}, \beta)=\sum_{n=1}^{N}\left\{t_{n}-\mathbf{w}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right\} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)^{\mathrm{T}}
+$$
+
+　　令导数为零：
+
+$$
+0=\sum_{n=1}^{N} t_{n} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)^{\mathrm{T}}-\mathbf{w}^{\mathrm{T}}\left(\sum_{n=1}^{N} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right) \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)^{\mathrm{T}}\right)
+$$
+
+　　求导最优的 $w$:
+
+$$
+\mathbf{w}_{\mathrm{ML}}=\left(\mathbf{\Phi}^{\mathrm{T}} \mathbf{\Phi}\right)^{-1} \mathbf{\Phi}^{\mathrm{T}} \mathbf{t}
+$$
+
+　　其中有：
+
+$$
+\mathbf{\Phi}=\left(\begin{array}{cccc}{\phi_{0}\left(\mathbf{x}_{1}\right)} & {\phi_{1}\left(\mathbf{x}_{1}\right)} & {\cdots} & {\phi_{M-1}\left(\mathbf{x}_{1}\right)} \\ {\phi_{0}\left(\mathbf{x}_{2}\right)} & {\phi_{1}\left(\mathbf{x}_{2}\right)} & {\cdots} & {\phi_{M-1}\left(\mathbf{x}_{2}\right)} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\phi_{0}\left(\mathbf{x}_{N}\right)} & {\phi_{1}\left(\mathbf{x}_{N}\right)} & {\cdots} & {\phi_{M-1}\left(\mathbf{x}_{N}\right)}\end{array}\right)
+$$
+
+　　求到最优的 $w$ 后，可以将其代入上面的等式，并以 $\beta$ 为参考变量，$w$ 为常量，经过上述同样的求导令零流程可以求得最优的 $\beta$ 等式，也就是方差 $\sigma^2$：
+
+$$
+\frac{1}{\beta_{\mathrm{ML}}}=\frac{1}{N} \sum_{n=1}^{N}\left\{t_{n}-\mathbf{w}_{\mathrm{ML}}^{\mathrm{T}} \boldsymbol{\phi}\left(\mathbf{x}_{n}\right)\right\}^{2}
+$$
+
+
+
+
 
 ## Implementation
 
@@ -221,7 +299,7 @@ class LinearRegression(Regression):
 * 对复杂数据拟合效果不好，欠拟合。
     * 多项式回归
     * 局部线性回归
-* 对异常值比较敏感。
+* 对异常值比较敏感
     * 正则化
 
 ### 注意点：
@@ -251,9 +329,5 @@ pred_y_ln = model_ln.predict(train_x)
 9. [scikit-learn : 线性回归，多元回归，多项式回归](https://blog.csdn.net/SA14023053/article/details/51703204)
 10. [盘点｜最实用的机器学习算法优缺点分析，没有比这篇说得更好了](https://juejin.im/post/5930cc4c2f301e006bd4b2a9)
 11. [機器學習經典算法優缺點總結](https://bigdatafinance.tw/index.php/392-2017-06-01-13-30-40)
-
-
-
-
-
-
+12. [Lecture 6: The Method of Maximum Likelihood for Simple Linear Regression](/assets/lecture-06.pdf)
+13. 《PRML》- p140
