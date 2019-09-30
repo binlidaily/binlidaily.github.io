@@ -13,7 +13,7 @@ typora-copy-images-to: ../../img/media
 
 　　Single Shot MultiBox Detector (SSD)，是 Wei Liu 在 ECCV 2016 上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比 Faster RCNN 有明显的速度优势，相比 YOLO 又有明显的 mAP 优势（不过已经被 CVPR 2017 的 YOLO9000 超越）。
 
-![总结](/img/media/15541000730952.jpg)
+![总结](/img/media/15541000730952.jpg){:.center-images}
 
 SSD 具有以下特点：
 

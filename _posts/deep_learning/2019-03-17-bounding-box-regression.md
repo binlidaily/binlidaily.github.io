@@ -13,7 +13,7 @@ typora-copy-images-to: ../../img/media
 
 　　在目标检测任务一个重要的任务是如何得到一个框得很合适的 Bounding Box？我们这里介绍一种叫做 Bounding Box Regression 的方法。首先我们给出这样的一幅图：
 
-![image-20190318212853845](/img/media/image-20190318212853845.png)
+![image-20190318212853845](/img/media/image-20190318212853845.png){:.center-images}
 
 * 黄色框 T 表示真实框 (Ground Truth)
 * 白色框 P 表示边界框 (Predicted Bounding Box)

@@ -20,8 +20,6 @@ typora-copy-images-to: ../../img/media
 　　使⽤卷积层的平移不变性似乎很可能减少全连接模型中达到同样性能的参数数量，使得训练更快，有助于建设深度网络。
 
 
-
-
 ## 1. Convolutional Layers
 * 输入图片大小 W×W
 * Filter大小 F×F

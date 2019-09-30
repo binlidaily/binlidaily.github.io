@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "TensorFlow"
+title: TensorFlow
 subtitle: 使用记录
 author: "Bin Li"
 tags: [Deep Learning, TensorFlow]
