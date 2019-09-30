@@ -51,10 +51,30 @@ $E_{oob}$：self-validation of bagging
 　　可以利用基尼系数，计算所有利用了特征 $i$ 作为划分特征的结点，计算其划分前后基尼系数差值并累加起来，然后用这个加和除以在所有节点上使用对应特征划分结点时划分前后的基尼系数差值的累加和。具体可[参考](https://medium.com/@srnghn/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3)。
 
 ![](/img/media/15651699443508.jpg)
+
+$$
+n i_{j}=w_{j} C_{j}-w_{l e f t(j)} C_{l e f t(j)}-w_{r i g h t(j)} C_{r i g h t(j)}
+$$
+
+
 ![](/img/media/15651699533571.jpg)
+
+$$
+f i_{i}=\frac{\sum_{j : n o d e j s p l i t s o n f e a t u r e i} n i_{j}}{\sum_{k \in a l l} n o d e s} n i_{k}
+$$
+
+
 ![](/img/media/15651699588815.jpg)
+
+$$
+f i_{i}=\frac{\sum_{j : n o d e j s p l i t s o n ~ f e a t u r e i} n i_{j}}{\sum_{k \in a l l ~ n o d e s} n i_{k}}
+$$
+
 ![](/img/media/15651699661631.jpg)
 
+$$
+\text {normfi}_{i}=\frac{f i_{i}}{\sum_{j \in \text {all features}} f i_{j}}
+$$
 
 ## 总结
 　　由于 Bagging 的思想可以分布式地实现若干个基学习器的学习，Random Forest 的一大优势是能够高度并行化，在大数据时可大有作为。一般可以用随机森林跑出一个模型，然后**查看特征的重要性**。

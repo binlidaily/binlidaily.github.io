@@ -85,7 +85,10 @@ $$ 1~pixel~ 纵向长度 = dy~mm$$
 
 　　Intrinsic Parameters 包括焦距（focal length）和光学中心（optical center, or principal point）和偏斜系数（skew coefficient）。相机的 intrinsic matrix 定义为：
 
-K = ![-w72](/img/media/15664587238468.jpg)
+$$
+K = \left[\begin{array}{ccc}{f_{x}} & {0} & {0} \\ {s} & {f_{y}} & {0} \\ {c_{x}} & {c_{y}} & {1}\end{array}\right]
+$$
+
 
 　　其中有：
 * $[c_x, c_y]$ 是以像素为单位的光学中心，通常是图片的中心
@@ -143,7 +146,10 @@ $$
 * $r^2=x^2+y^2$
 
 ## 测距
-![](/img/media/15665270936081.jpg)
+
+$$
+s\left[\begin{array}{c}{u} \\ {v} \\ {1}\end{array}\right]=\left[\begin{array}{ccc}{f_{x}} & {0} & {c_{x}} \\ {0} & {f_{y}} & {c_{y}} \\ {0} & {0} & {1}\end{array}\right]\left[\begin{array}{cccc}{r_{11}} & {r_{12}} & {r_{13}} & {t_{1}} \\ {r_{21}} & {r_{22}} & {r_{23}} & {t_{2}} \\ {r_{31}} & {r_{32}} & {r_{33}} & {t_{3}}\end{array}\right]\left[\begin{array}{c}{X} \\ {Y} \\ {Z} \\ {1}\end{array}\right]
+$$
 
 ![-w818](/img/media/15665279327674.jpg)
 
