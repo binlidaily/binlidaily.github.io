@@ -9,7 +9,7 @@ published: true
 ---
 
 
-链表作为算法中非常重要的数据结构，在面试中也是非常常用的。
+　　链表作为算法中非常重要的数据结构，在面试中也是非常常用的。
 
 ```python
 class ListNode:
@@ -20,7 +20,7 @@ class ListNode:
 
 ## 链表相关面试题
 
-### 如何判断一个链表中存在环？同时如何判断环的入口处？
+### 如何判断一个链表中存在环？
 
 ```c++
 //
@@ -153,3 +153,26 @@ int main(){
 }
 ```
 
+### 2. 判断有环链表的入口
+
+![](/img/media/15438386827938.jpg)
+
+We can conclude below from above diagram
+
+
+**Distance traveled by fast pointer = 2 * (Distance traveled by slow pointer)**
+
+$$(m + n*x + k) = 2*(m + n*y + k)$$
+
+Note that before meeting the point shown above, fast
+was moving at twice speed.
+
+> x -->  Number of complete cyclic rounds made by fast pointer before they meet first time
+
+> y -->  Number of complete cyclic rounds made by slow pointer before they meet first time
+
+From above equation, we can conclude below
+
+$$m + k = (x-2y)*n$$
+
+Which means m+k is a multiple of n. 
