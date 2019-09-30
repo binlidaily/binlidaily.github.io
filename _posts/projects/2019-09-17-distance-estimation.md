@@ -18,6 +18,7 @@ $$
 　　于是，我们这里的做法是，通过目标检测算法框出被检测物体，然后找到检测框下边线段中点作为被检测物体在图像中地面上的点。然后通过公式变换，由像素坐标系到世界坐标系转换得到世界坐标系下在地面上的那个点的二维平面坐标（此时第三维 $z=0$），所以可以不用考虑。
 
 　　也就是说，我们的核心是假设 $z=0$ 那么上面等式就可以变成：
+
 $$
 s\left[\begin{array}{c}{u} \\ {v} \\ {1}\end{array}\right]=A\left[\begin{array}{ccc}{r_1} & {r_2} & {r_3} & {t}\end{array}\right]\left[\begin{array}{c}{x} \\ {y} \\ {0} \\ {1}\end{array}\right]=A\left[\begin{array}{lll}{r_1} & {r_2} & {t}\end{array}\right]\left[\begin{array}{l}{x} \\ {y} \\ {1}\end{array}\right]
 $$
