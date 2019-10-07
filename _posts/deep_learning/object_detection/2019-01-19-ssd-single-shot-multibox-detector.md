@@ -25,10 +25,32 @@ SSD 具有以下特点：
 * 从 YOLO 中继承了将 Detection 转化为 Regression 的思路，一次完成目标定位与分类 (classification+bounding box regression，One Stage)。
 * 基于 Faster RCNN 中的 Anchor，提出了相似的 Prior Box。
 * 加入基于特征金字塔（Pyramidal Feature Hierarchy）的检测方式，即在不同感受野的 feature map 上预测目标。
+* 利用卷积进行检测
 
 注意：
 
 * **SSD 使用感受野小的 feature map 检测小目标，使用感受野大的feature map检测更大目标**。
+
+
+<p align="center">
+<img src="/img/media/15698355858687.jpg" width="">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">SSD 和 YOLO 网络结构</em>
+</p>
+
+## 1. SSD 的提升点
+### 1.2
+### 1.3 固定先验框
+　　结构
+<p align="center">
+<img src="/img/media/15547129370535.jpg" width="">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">SSD 默认先验框</em>
+</p>
+
+
 
 
 ![](/img/media/15541023500828.jpg)
@@ -67,9 +89,9 @@ SSD 提取了不同尺度的特征图来做检测，大尺度特征图（较靠�
 SSD 直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 $m\times n \times p$ 的特征图，只需要采用 $3\times 3 \times p$ 这样比较小的卷积核得到检测值。
 
 ### 3. 设置先验框
-![](/img/media/15547129370535.jpg)
 
-cell 有特定大小的像素矩阵组成。
+
+
 
 SSD 对背景也做了处理，所以在设定类别数时要加 1。
 

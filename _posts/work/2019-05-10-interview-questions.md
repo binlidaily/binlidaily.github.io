@@ -388,3 +388,4 @@ PageRank原理，怎么用模型来查找异常用户，我讲了一大堆我的
 6. [机器学习岗面试总结](https://blog.csdn.net/zhihua_oba/article/details/78333650)
 7. [机器学习与深度学习常见面试题（上）](https://zhuanlan.zhihu.com/p/45091568)
 8. [机器学习与深度学习常见面试题（下）](https://zhuanlan.zhihu.com/p/47559203)
+9. [算法工程师常见面试问题及相关资料汇总](https://github.com/lcylmhlcy/Awesome-algorithm-interview)
