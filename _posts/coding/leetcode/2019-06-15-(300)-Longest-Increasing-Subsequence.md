@@ -49,65 +49,72 @@ class Solution(object):
 ```
 
 ### 2. 加上 Binary Search 提升到 O(nlogn)
-　　按照前人的思考，我们可以维护一个数组 ends，这个数组用来记录遍历时得到的单调递增的数据序列，该序列大小即为想要的结果，而其对应的序列不一定为要对应的递增序列。
-1. 如果遍历到的数比 ends 首个数小，直接替换。
-2. 如果遍历到的数比 ends 末尾数大，那么就补充到 ends 末尾。
-3. 如果遍历到的数位于 ends 中间，就用二分法找到对应的位置替换。
+　　按照前人的思考，我们可以维护一个数组 tails 用来存储不同大小下的子序列最小的那个元素，tails[i] 表示长度为 i+1 的子序列中最小的最后一个数。举个栗子，当 `nums = [4,5,6,3]` 时：
 
 ```python
-class Solution(object):
-    def lengthOfLIS(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        if nums is None or len(nums) <= 0:
-            return 0
-        ends = [nums[0]]
-        for num in nums:
-            if num < ends[0]:
-                ends[0] = num
-            elif num > ends[-1]:
-                ends.append(num)
-            else:
-                left, right = 0, len(ends)
-                while left < right:
-                    mid = (left+ right) / 2
-                    if ends[mid] < num:
-                        left = mid + 1
-                    else:
-                        right = mid
-                ends[left] = num
-        return len(ends)
-# Runtime: 28 ms, faster than 91.63% of Python online submissions for Longest Increasing Subsequence.
-# Memory Usage: 12.1 MB, less than 12.60% of Python online submissions for Longest Increasing Subsequence.
+len = 1   :      [4], [5], [6], [3]   => tails[0] = 3
+len = 2   :      [4, 5], [5, 6]       => tails[1] = 5
+len = 3   :      [4, 5, 6]            => tails[2] = 6
 ```
 
-　　可以将上述解法修改成对应比较好理解的方式：
+　　因为不同大小的子序列下都是取最小元素，能想到 tails 数组肯定是递增的。那么在往后遍历时，我们就需要更新 tails 数组，在找合适位置更新时就可以用到二分法了。
+
+　　每一步我们都是采取下述其中之一的方式进行操作，遍历完得到最后的 tails 数组大小即可：
+
 ```python
+1. 如果 x 大于 tails 中所有的数，那么直接 append x 到 tails 中，大小增 1 即可
+2. 如果 tails[i-1] < x <= tails[i]，那么更新 tails[i]
+```
+
+```python
+# Time Complexity: O(nlogn)
+# Space Complexity: O(n)
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        tails = [0] * len(nums)
+        size = 0
+        for x in nums:
+            i, j = 0, size
+            while i != j:
+                m = (i + j) >> 1
+                if tails[m] < x:
+                    i = m + 1
+                else:
+                    j = m
+            tails[i] = x
+            size = max(i + 1, size)
+        return size
+# Runtime: 44 ms, faster than 96.94% of Python3 online submissions for Longest Increasing Subsequence.
+# Memory Usage: 13.8 MB, less than 5.13% of Python3 online submissions for Longest Increasing Subsequence.
+```
+
+　　可以将上述解法修改成保存 tails 数组的方式
+```python
+# Time Complexity: O(nlogn)
+# Space Complexity: O(n)
 class Solution(object):
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        dp = []
+        tails = []
         n = len(nums)
         for i in range(n):
-            left, right = 0, len(dp)
+            left, right = 0, len(tails)
             while left < right:
-                mid = (left + right) / 2
-                if dp[mid] < nums[i]:
+                mid = (left + right) >> 1
+                if tails[mid] < nums[i]:
                     left = mid + 1
                 else:
                     right = mid
-            if right >= len(dp):
-                dp.append(nums[i])
+            if right >= len(tails):
+                tails.append(nums[i])
             else:
-                dp[left] = nums[i]
-        return len(dp)
-# Runtime: 28 ms, faster than 91.63% of Python online submissions for Longest Increasing Subsequence.
-# Memory Usage: 11.9 MB, less than 54.04% of Python online submissions for Longest Increasing Subsequence.
+                tails[left] = nums[i]
+        return len(tails)
+# Runtime: 52 ms, faster than 79.46% of Python3 online submissions for Longest Increasing Subsequence.
+# Memory Usage: 14.1 MB, less than 5.13% of Python3 online submissions for Longest Increasing Subsequence.
 ```
 
 ## References
