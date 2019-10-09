@@ -2,7 +2,7 @@
 layout: post
 title: Resampling For Imbalanced Dataset
 subtitle: 不均衡样本集的重采样
-author: Bin
+author: Li Bin
 tags: [Machine Learning]
 comments: true
 published: true
@@ -35,3 +35,4 @@ typora-copy-images-to: ../../../img/media
 
 ## References
 1. [不平衡数据下的机器学习方法简介](http://baogege.info/2015/11/16/learning-from-imbalanced-data/)
+2. [Credit Fraud || Dealing with Imbalanced Datasets](https://www.kaggle.com/janiobachmann/credit-fraud-dealing-with-imbalanced-datasets)

@@ -40,9 +40,21 @@ SSD 具有以下特点：
 </p>
 
 ## 1. SSD 的提升点
-### 1.2
-### 1.3 固定先验框
-　　结构
+### 1.1 采用多尺度特征图
+　　如上图的网络结构，SSD 采用网络层中不同尺度的特征图，即能够在不同感受野的特征图上预测目标（定位和分类）。而 SSD 对于每一层特征图的每一个位置都采用了固定先验框的方式，那么在浅层的特征图中就能检测到相对较小的物体，深层的特征图检测相对较大的物体。
+
+![](/img/media/15541023500828.jpg)
+
+
+### 1.2 直接采用卷积进行定位和分类
+![](/img/media/15614581132951.jpg)
+
+　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
+
+
+### 1.3 固定默认先验框
+　　SSD 在不同的特征图中设定了不同的特征图个数，具体可以看网络结构图中有说明每层特征图对应的先验框个数。这样就大大提高了寻找先验框的效率，进而加速的训练过程。
+
 <p align="center">
 <img src="/img/media/15547129370535.jpg" width="">
 </p>
@@ -51,54 +63,36 @@ SSD 具有以下特点：
 </p>
 
 
+## 2. 训练目标
+　　SSD 的训练目标函数参考了 [MultiBox](/assets/Multibox.pdf) 的形式，分成两个部分：
 
+$$
+L(x, c, l, g)=\frac{1}{N}\left(L_{c o n f}(x, c)+\alpha L_{l o c}(x, l, g)\right)
+$$
 
-![](/img/media/15541023500828.jpg)
+　　其中：
+* $x_{i j}^{p}=\\{1, 0\\}$ 表示类别为 $p$ 的第 $i$ 个先验框与第 $j$ 个真实框匹配指示结果，$\sum_{i} x_{i j}^{p} \geq 1$。
+* $c$ 在这里为 classification 过程中卷积计算的结果，在 MultiBox 中这个为预测得分。
+* $l$ 在这里为 localization 过程中卷积计算的结果，即定位的 offsets，位置信息。
+* $g$ 为 ground truth，真实框的 offsets。
 
-　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
+　　对 loss 的两个部分分开看，首先看框回归的部分：
 
+$$
+\begin{aligned} L_{l o c}(x, l, g)=\sum_{i \in P o s}^{N} \sum_{m \in\{c x, c y, w, h\}} & x_{i j}^{k} \text { smooth }_{\mathrm{L} 1}\left(l_{i}^{m}-\hat{g}_{j}^{m}\right) \\ \hat{g}_{j}^{c x}=\left(g_{j}^{c x}-d_{i}^{c x}\right) / d_{i}^{w} & \quad \hat{g}_{j}^{c y}=\left(g_{j}^{c y}-d_{i}^{c y}\right) / d_{i}^{h} \\ \hat{g}_{j}^{w}=\log \left(\frac{g_{j}^{w}}{d_{i}^{w}}\right) & \quad \hat{g}_{j}^{h}=\log \left(\frac{g_{j}^{h}}{d_{i}^{h}}\right) \end{aligned}
+$$
 
-![](/img/media/15614581132951.jpg)
+　　主要采用了 Smooth L1 loss，相比于 MultiBox 的 L2 Loss，对异常值不敏感，且梯度变化较缓，训练时不会出现极速跌宕的情况。其中 $d$ 是默认先验框的 offsets。
 
+　　loss 的第二部分是分类：
 
-## 训练目标
-![](/img/media/15614598322939.jpg)
+$$
+L_{c o n f}(x, c)=-\sum_{i \in P o s}^{N} x_{i j}^{p} \log \left(\hat{c}_{i}^{p}\right)-\sum_{i \in N e g} \log \left(\hat{c}_{i}^{0}\right) \quad \text { where } \quad \hat{c}_{i}^{p}=\frac{\exp \left(c_{i}^{p}\right)}{\sum_{p} \exp \left(c_{i}^{p}\right)}
+$$
 
-真实边界框相对锚框的偏移量，简称偏移量（offset）
+　　跟 MultiBox 一样采用了交叉熵作为 loss，不同点是，不像 MultiBox 中 $c_i$ 直接采用预测得分，因为 SSD 直接将分类引入了，所以 SSD 采用了 Softmax Loss 来计算多类别的置信度（或者说得分）。其中上标 $0$ 表示背景。
 
-smooth L1 loss and cross entropy loss can be used for regression and classification. Regression outputs are offset with anchor box locations using the following formulae
-
-```
-t_{x} = (x - x_{a})/w_{a}
-t_{y} = (y - y_{a})/h_{a}
-t_{w} = log(w/ w_a)
-t_{h} = log(h/ h_a)
-```
-
-x, y , w, h are the ground truth box center co-ordinates, width and height. x_a, y_a, h_a and w_a and anchor boxes center cooridinates, width and height.
-
-### 1. 不同尺度的特征图来检测
-
-SSD 提取了不同尺度的特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体（如上图所示，因为粒度比较小，先验框框到的范围比较小），而小尺度特征图（较靠后的特征图）用来检测大物体；
-
-### 2. 采用卷积进行检测
-![](/img/media/15614635540499.jpg)
-
-![](/img/media/15547121194752.jpg)
-
-SSD 直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 $m\times n \times p$ 的特征图，只需要采用 $3\times 3 \times p$ 这样比较小的卷积核得到检测值。
-
-### 3. 设置先验框
-
-
-
-
-SSD 对背景也做了处理，所以在设定类别数时要加 1。
-
-每一个 feature map 的 default box 的尺寸大小是不同的。
-
-
-## SSD 论文一些其他的发现
+## 3. SSD 论文一些其他的发现
 1. 更多的默认框能够得到更好的效果，在速度上会有较大的影响。
 2. MultiBox 应用在多个层上能得到更好的检测效果，因为提取到不同像素下的特征。
 3. 80% 的训练时间在 VGG 上，所以如果基网络还有提升的空间。
@@ -116,14 +110,14 @@ SSD 对背景也做了处理，所以在设定类别数时要加 1。
 
 
 ## References
-1. [SSD: Single Shot MultiBox Detector](https://arxiv.org/abs/1512.02325)
+1. [SSD 论文](/assets/SSD-Single-Shot-MultiBox-Detector.pdf)
 2. [SSD 手写代码](https://github.com/xiaohu2015/DeepLearning_tutorials/tree/master/ObjectDetections/SSD)
 3. [目标检测 - SSD原理与实现](https://zhuanlan.zhihu.com/p/33544892)
 4. [SSD 目标检测](https://zhuanlan.zhihu.com/p/31427288)
 5. [目标检测：SSD](https://zhuanlan.zhihu.com/p/42159963)
 6. [Object Detection](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 7. [论文阅读：SSD: Single Shot MultiBox Detector](https://blog.csdn.net/u010167269/article/details/52563573)
-8. [SSD 论文](/assets/SSD-Single-Shot-MultiBox-Detector.pdf)
-9. [SSD深入理解](http://shartoo.github.io/SSD_detail/)
-10. [R-CNN & Fast R-CNN & Faster R-CNN](http://cs.unc.edu/~zhenni/blog/notes/R-CNN.html)
-11. [SSD object detection: Single Shot MultiBox Detector for real-time processing](https://medium.com/@jonathan_hui/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing-9bd8deac0e06)
+8. [SSD深入理解](http://shartoo.github.io/SSD_detail/)
+9. [R-CNN & Fast R-CNN & Faster R-CNN](http://cs.unc.edu/~zhenni/blog/notes/R-CNN.html)
+10. [SSD object detection: Single Shot MultiBox Detector for real-time processing](https://medium.com/@jonathan_hui/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing-9bd8deac0e06)
+11. [Understanding SSD MultiBox — Real-Time Object Detection In Deep Learning](https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab)
