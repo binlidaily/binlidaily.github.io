@@ -1,14 +1,13 @@
 ---
 layout: post
 title: 144. Binary Tree Preorder Traversal
-subtitle: 
+subtitle: 先序遍历（Medium）
 author: Bin Li
 tags: [Coding, LeetCode]
 image: 
 comments: true
 published: true
 ---
-
 
 
 Given a binary tree, return the preorder traversal of its nodes' values.
@@ -25,10 +24,11 @@ Output: [1,2,3]
 ```
 
 ## Solutions
-　　用一个辅助函数迭代的方式：
-
+### 1. 递归方法
 
 ```python
+# Time Complexity: O(logn)
+# Space Complexity: O(1)
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -56,10 +56,38 @@ class Solution(object):
 # Memory Usage: 11.9 MB, less than 9.67% of Python online submissions for Binary Tree Preorder Traversal.
 ```
 
-　　采用迭代的方式求解：
-
+### 2. 迭代
 
 ```python
+# Time Complextiy: O(logn)
+# Space Complexity: O(logn)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        stack = [root]
+        res = []
+        while stack:
+            node = stack.pop()
+            if not node:
+                continue
+            res.append(node.val)
+            stack.append(node.right)  # right first push, last pop
+            stack.append(node.left)
+        return res
+# Runtime: 40 ms, faster than 38.84% of Python3 online submissions for Binary Tree Preorder Traversal.
+# Memory Usage: 13.9 MB, less than 6.52% of Python3 online submissions for Binary Tree Preorder Traversal.
+```
+
+　　迭代就会难一些了，这里不能像一般的 DFS 那样 stack 直接放到 while 后面做条件判断了，这里加上 node。
+```python
+# Time Complexity: O(logn)
+# Space Complexity: O(n)
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):

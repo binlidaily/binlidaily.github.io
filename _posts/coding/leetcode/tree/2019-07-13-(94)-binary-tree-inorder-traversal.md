@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 94. Binary Tree Inorder Traversal
-subtitle: 
+subtitle: 中序遍历（Medium）
 author: Bin Li
 tags: [Coding, LeetCode]
 image: 
@@ -27,6 +27,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
 
 ## Solutions
+### 1. 递归
 　　用迭代的方式还是比较好解决：
 
 ```python
@@ -62,31 +63,29 @@ class Solution(object):
 
 ```python
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
+class Solution:
     def _inorderTraversal(self, root, res):
-        if root:
-            self._inorderTraversal(root.left, res)
-            res.append(root.val)
-            self._inorderTraversal(root.right, res)
-
-    def inorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
+        if not root:
+            return
+        self._inorderTraversal(root.left, res)
+        res.append(root.val)
+        self._inorderTraversal(root.right, res)
+        
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
         self._inorderTraversal(root, res)
         return res
-# Runtime: 20 ms, faster than 59.57% of Python online submissions for Binary Tree Inorder Traversal.
-# Memory Usage: 11.7 MB, less than 78.62% of Python online submissions for Binary Tree Inorder Traversal.
+# Runtime: 24 ms, faster than 99.88% of Python3 online submissions for Binary Tree Inorder Traversal.
+# Memory Usage: 13.9 MB, less than 6.56% of Python3 online submissions for Binary Tree Inorder Traversal.
 ```
 
+### 2. 迭代
 　　之前整理过的不是很好理解的方式跟上述效果一样：
 
 ```python
@@ -106,8 +105,8 @@ class Solution(object):
         stack = []
         node = root
         res = []
-        while node is not None or len(stack) > 0:
-            if node is not None:
+        while node or stack:
+            if node:
                 stack.append(node)
                 node = node.left
             else:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Depth-First Search
-subtitle:
+subtitle: 深度优先遍历
 author: Bin Li
 tags: [Data Structures]
 image: 

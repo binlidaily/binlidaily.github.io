@@ -131,19 +131,12 @@ Attention 的一个好处是可以提供解释和可视化训练模型在干啥�
 
 -->
 ## References
-
-[注意力机制（Attention Mechanism）在自然语言处理中的应用](http://www.cnblogs.com/robert-dlut/p/5952032.html)
-
-[Attention Mechanism 学习笔记1](http://tobiaslee.top/2017/08/15/Attention-Mechanism-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
-
-[Attention-based LSTM for Text Classification](http://tobiaslee.top/2017/08/29/Attention-based-LSTM-for-Text-Classification/)
-
-[sequence to sequence model小记](https://zhuanlan.zhihu.com/p/27766645)
-
-[Nlp中的attention mechanism](https://zhuanlan.zhihu.com/p/27766967)
-
-[Attention and Memory in Deep Learning and NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
-
-[What is 'attention' in the context of deep learning?](https://www.quora.com/What-is-attention-in-the-context-of-deep-learning)
+1. [注意力机制（Attention Mechanism）在自然语言处理中的应用](http://www.cnblogs.com/robert-dlut/p/5952032.html)
+2. [Attention Mechanism 学习笔记1](http://tobiaslee.top/2017/08/15/Attention-Mechanism-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
+3. [Attention-based LSTM for Text Classification](http://tobiaslee.top/2017/08/29/Attention-based-LSTM-for-Text-Classification/)
+4. [sequence to sequence model小记](https://zhuanlan.zhihu.com/p/27766645)
+5. [Nlp中的attention mechanism](https://zhuanlan.zhihu.com/p/27766967)
+6. [Attention and Memory in Deep Learning and NLP](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
+7. [What is 'attention' in the context of deep learning?](https://www.quora.com/What-is-attention-in-the-context-of-deep-learning)
 
 

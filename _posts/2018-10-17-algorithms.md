@@ -147,6 +147,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Image Classification
         * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
         * [Very Deep Convolutional Networks (VGG)](https://binlidaily.github.io/2019-04-08-cnn-convolutional-neural-network/)
+        * [Triplet Loss](http://binlidaily.github.io/2019-07-28-triplet-loss)
 
     * Object Location
         * [Non-Max Suppression](https://binlidaily.github.io/2019-06-26-non-max-suppression)
@@ -154,6 +155,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Object Detection
         * [Bounding Box Regression](https://binlidaily.github.io/2019-03-17-bounding-box-regression)
         * [Single Shot MultiBox Detector (SSD)](https://binlidaily.github.io/2019-01-19-ssd-single-shot-multibox-detector/)
+        * [Smooth L1 Loss](https://binlidaily.github.io/2019-10-08-smooth-l1-loss/)
     
     * Sequential Model
         * [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)

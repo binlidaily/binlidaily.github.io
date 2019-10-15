@@ -24,29 +24,23 @@ typora-root-url: ../../../../binlidaily.github.io
 
 　　Python 实现时可以分用不用左右边界坐标的方式，如利用递归的方式如下：
 ```python
-def binary_tree_margins(self, array, l, r, target):
-    if l == r:
-        return False
-
-    mid_idx = int((l + r) / 2)
-
-    if array[mid_idx] == target:
-        return True
-    elif array[mid_idx] > target:
-        return self.binary_tree_margins(array, l, mid_idx - 1, target)
+def search(self, nums: List[int], target: int) -> int:
+    if not nums:
+        return -1
+    left, right = 0, len(nums)-1
+    return self.binary_search(nums, left, right, target)
+    
+def binary_search(self, nums: List[int], left: int, right: int, target: int) -> int:
+    if left > right:
+        return -1
+    mid = (left + right) >> 1
+    if nums[mid] == target:
+        return mid
+    elif nums[mid] > target:
+        right = mid - 1
     else:
-        return self.binary_tree_margins(array, mid_idx + 1, r, target)
-
-def binary_tree_no_margins(self, array, target):
-    if len(array) == 0:
-        return False
-    mid_idx = len(array) / 2 
-    if array[mid_idx] == target:
-        return True
-    elif array[mid_idx] > target:
-        return self.binary_tree_no_margins(array[:mid_idx], target)
-    else:
-        return self.binary_tree_no_margins(array[mid_idx + 1:], target)
+        left = mid + 1
+    return self.binary_search(nums, left, right, target)
 ```
 
 　　迭代的方式如下：
@@ -78,6 +72,7 @@ def binarySearch(arr, l, r, x):
 1. [Binary Search - geeksforgeeks](https://www.geeksforgeeks.org/binary-search/)
 2. [二维数组中的查找](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 3. [【数据结构】折半查找（二分查找）](https://blog.csdn.net/coolingcoding/article/details/7983070)
+4. [704. Binary Search](https://leetcode.com/problems/binary-search/)
 
 
 
