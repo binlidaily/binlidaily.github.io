@@ -161,3 +161,5 @@ plt.ylabel('true value');
 
 ## References
 1. [拟合曲线图](https://mp.weixin.qq.com/s/r9DYiYvyx5QUqe40n6H2KA)
+2. [数据分析最有用的Top 50 Matplotlib图（带有完整的Python代码）(上)](https://mp.weixin.qq.com/s/bs1YfbOOK3EvjyQbTI-FYg)
+3. [数据分析最有用的Top 50 Matplotlib图（带有完整的Python代码）(下)](https://mp.weixin.qq.com/s/bs1YfbOOK3EvjyQbTI-FYg)
