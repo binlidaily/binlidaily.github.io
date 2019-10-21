@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Matrix
+title: Linear Algebra
 subtitle: 矩阵
 author: Bin Li
 tags: [Mathematics, Linear Algebra]

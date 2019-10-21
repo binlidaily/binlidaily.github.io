@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Random Forest
-subtitle:
+subtitle: 随机森林
 author: Bin Li
 tags: [Machine Learning]
 image: 
@@ -11,9 +11,15 @@ published: true
 
 　　随机森林（Random Forest，RF）基于 Bagging 的想法，做了一定的改进，其基学习器是 CART (强学习器)，然而在选择划分特征的时候，RF 采用了随机的策略。不像之前的决策树在当前结点上遍历所有 $n$ 个样本特征中找到最优的划分属性，RF 会固定一个特征子集大小 $n_{sub}$，在当前结点样本的所有特征中随机选择 $n_{sub}$ 个特征，从其中选出最优的一个划分特征来进行特征划分。如此能够提高模型的泛化能力。显然，当 $n_{sub}=n$ 时，RF 的 CART 跟传统的保持一致。
 
-　　一般来说，$n_{sub}=n$ 越小，模型就越健壮，当然此时对数据的拟合程度就会变差。即 $n_{sub}=n$ 越小，variance 越小，bias 越大。
+　　一般来说，$n_{sub}=n$ 越小，模型就越健壮，当然此时对数据的拟合程度就会变差。即 $n_{sub}=n$ 越小，variance 越小，bias 越大。随机性使得偏差增大，但由于随机森林集成“平均”的特性，使得方差变小的程度大过了偏差增大的程度，总体来说效果还是好的。
 
-## Random Forest 算法流程
+ 　　随机森林有四个部分需要掌握：
+1. 随机选择样本（放回抽样）；
+2. 随机选择特征；
+3. 构建决策树；
+4. 随机森林投票（平均）。 
+
+## 1. Random Forest 算法流程
 　　假设输入为样本集为
 
 $$
@@ -50,12 +56,9 @@ $E_{oob}$：self-validation of bagging
 
 　　可以利用基尼系数，计算所有利用了特征 $i$ 作为划分特征的结点，计算其划分前后基尼系数差值并累加起来，然后用这个加和除以在所有节点上使用对应特征划分结点时划分前后的基尼系数差值的累加和。具体可[参考](https://medium.com/@srnghn/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3)。
 
-![](/img/media/15651699443508.jpg)
-
 $$
 n i_{j}=w_{j} C_{j}-w_{l e f t(j)} C_{l e f t(j)}-w_{r i g h t(j)} C_{r i g h t(j)}
 $$
-
 
 ![](/img/media/15651699533571.jpg)
 
@@ -70,10 +73,9 @@ $$
 f i_{i}=\frac{\sum_{j : n o d e j s p l i t s o n ~ f e a t u r e i} n i_{j}}{\sum_{k \in a l l ~ n o d e s} n i_{k}}
 $$
 
-![](/img/media/15651699661631.jpg)
 
 $$
-\text {normfi}_{i}=\frac{f i_{i}}{\sum_{j \in \text {all features}} f i_{j}}
+\text {norm fi}_{i}=\frac{f i_{i}}{\sum_{j \in \text {all features}} f i_{j}}
 $$
 
 ## 总结
@@ -99,3 +101,4 @@ $$
 
 ## References
 1. [Bagging与随机森林算法原理小结](https://www.cnblogs.com/pinard/p/6156009.html)
+2. [RF、GBDT、XGBoost面试级整理](https://cloud.tencent.com/developer/article/1080189)
