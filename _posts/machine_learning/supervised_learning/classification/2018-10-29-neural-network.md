@@ -334,3 +334,4 @@ $$
 ## References
 1. [CHAPTER 1: Using neural nets to recognize handwritten digits](http://neuralnetworksanddeeplearning.com/chap1.html)
 2. [详解机器学习中的梯度消失、爆炸原因及其解决方法](https://blog.csdn.net/qq_25737169/article/details/78847691)
+3. [機器學習技法 NNet](https://www.youtube.com/watch?v=Z26n4YGNWvQ&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2&index=48)

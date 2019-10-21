@@ -3,7 +3,7 @@ layout: post
 title: 3. Longest Substring Without Repeating Characters
 subtitle: 最长不重复子序列
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Hash Table, Sliding Window]
 image: 
 comments: true
 published: true
@@ -72,26 +72,48 @@ class Solution(object):
 　　而比较大小的步骤，其实可以在每一次迭代下都进行，但是我们发现在更换 Start 的位置的时候其实可以不用比较，因为刚开始，所以可以把比较大小的部分放到更换 Start 值的 if 补集中。
 
 ```python
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        n = len(s)
-        num_max = start = 0
-        used_chars = {}
-        
-        for i in range(n):
-            if s[i] in used_chars and start <= used_chars[s[i]]:
-                start = used_chars[s[i]] + 1
-            else:
-                num_max = max(num_max, i - start + 1)
-            used_chars[s[i]] = i
-
-        return num_max
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        start = 0
+        hash_table = collections.defaultdict()
+        res = 0
+        for i in range(len(s)):
+            if s[i] in hash_table:
+                start = max(start, hash_table[s[i]] + 1)
+            hash_table[s[i]] = i
+            res = max(res, i - start + 1)
+        return res
+# Runtime: 72 ms, faster than 58.41% of Python3 online submissions for Longest Substring Without Repeating Characters.
+# Memory Usage: 13.9 MB, less than 5.10% of Python3 online submissions for Longest Substring Without Repeating Characters.
 ```
 
+### 3. 两个指针的方式
+
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left, right = 0, 0
+        chars = set()
+        n = len(s)
+        res = 0
+        while left < n and right < n:
+            if s[right] in chars:
+                if s[left] in chars:
+                    chars.remove(s[left])
+                left += 1
+            else:
+                chars.add(s[right])
+                right += 1
+                res = max(res, len(chars))
+        return res
+# Runtime: 84 ms, faster than 38.74% of Python3 online submissions for Longest Substring Without Repeating Characters.
+# Memory Usage: 13.9 MB, less than 5.10% of Python3 online submissions for Longest Substring Without Repeating Characters.
+```
 ## References
 1. [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 2. [LeetCode第三题(Longest Substring Without Repeating Characters)三部曲之一：解题思路](https://blog.csdn.net/boling_cavalry/article/details/86563586)
+3. [【LeetCode】3. Longest Substring Without Repeating Characters 解题报告（Python & C++）](https://blog.csdn.net/fuxuemingzhu/article/details/82022530)
