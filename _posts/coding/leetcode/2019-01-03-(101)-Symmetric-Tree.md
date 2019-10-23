@@ -3,7 +3,7 @@ layout: post
 title: 101. Symmetric Tree
 subtitle:
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Tree]
 image: 
 comments: true
 published: true

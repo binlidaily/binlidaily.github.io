@@ -38,7 +38,7 @@ p and q are different and both values will exist in the BST.
 
 
 ## Solutions
-### 迭代
+### 1. 迭代
 　　因为没有刷过类似的问题，在参考了 Discussion 后就恍然大悟了。其实这里考察的是 BST 的特性，比当前节点小的结点放左边，比当前节点大的放右边。我们的目标是要找到一个节点，其是给定两个结点的最近共同祖先，最近指的是离两者的距离最小。那么可以将 root，p，q 三个结点的大小情况分开考虑：
 
 1、root > max(p, q)
@@ -78,7 +78,7 @@ class Solution(object):
                 return root
 ```
 
-### 递归
+### 2. 递归
 　　下面这种理解需要一定的想法：
 
 ```python

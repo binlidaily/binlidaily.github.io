@@ -8,7 +8,7 @@ comments: true
 published: true
 ---
 
-每一个 grid cell 只检测一个物体。导致一些位置比较靠近目标物检测时会漏检。
+　　每一个 grid cell 只检测一个物体。导致一些位置比较靠近目标物检测时会漏检。
 
 ![-w1234](/img/media/15711246361131.jpg)
 
