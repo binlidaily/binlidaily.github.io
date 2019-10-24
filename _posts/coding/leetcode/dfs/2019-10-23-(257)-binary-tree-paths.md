@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 257. Binary Tree Paths
-subtitle: 
+subtitle: Easy
 author: Bin Li
 tags: [Coding, LeetCode]
 image: 
@@ -63,6 +63,81 @@ class Solution:
             self.dfs(root.right, path, res)
 # Runtime: 36 ms, faster than 88.05% of Python3 online submissions for Binary Tree Paths.
 # Memory Usage: 13.8 MB, less than 9.52% of Python3 online submissions for Binary Tree Paths.
+```
+
+### 2. DFS-迭代
+
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        if not root:
+            return []
+        res = []
+        stack = [('', root)]
+        while stack:
+            path, node = stack.pop()
+            if not node:
+                continue
+            if path == '':
+                path = str(node.val)
+            else:
+                path += '->' + str(node.val)
+            if not node.left and not node.right:
+                res.append(path)
+            if node.left:
+                stack.append((path, node.left))
+            if node.right:
+                stack.append((path, node.right))
+        return res
+# Runtime: 36 ms, faster than 88.12% of Python3 online submissions for Binary Tree Paths.
+# Memory Usage: 13.8 MB, less than 9.52% of Python3 online submissions for Binary Tree Paths.
+```
+
+### 3. BFS-迭代
+
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        if not root:
+            return []
+        res = []
+        queue = collections.deque()
+        queue.append(('', root))
+        while queue:
+            path, node = queue.popleft()
+            if not node:
+                continue
+            if path == '':
+                path = str(node.val)
+            else:
+                path += '->' + str(node.val)
+            if not node.left and not node.right:
+                res.append(path)
+            if node.left:
+                queue.append((path, node.left))
+            if node.right:
+                queue.append((path, node.right))
+        return res
+# Runtime: 36 ms, faster than 88.12% of Python3 online submissions for Binary Tree Paths.
+# Memory Usage: 13.9 MB, less than 9.52% of Python3 online submissions for Binary Tree Paths.
 ```
 
 ## References
