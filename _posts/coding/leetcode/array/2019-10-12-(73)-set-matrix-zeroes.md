@@ -3,7 +3,7 @@ layout: post
 title: 73. Set Matrix Zeroes
 subtitle: 矩阵赋零（Medium）
 author: Bin Li
-tags: [Coding, LeetCode, Array]
+tags: [Coding, LeetCode, Array, Medium]
 image: 
 comments: true
 published: true

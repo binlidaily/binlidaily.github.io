@@ -3,7 +3,7 @@ layout: post
 title: 144. Binary Tree Preorder Traversal
 subtitle: 先序遍历（Medium）
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Tree, DFS]
 image: 
 comments: true
 published: true
@@ -56,7 +56,7 @@ class Solution(object):
 # Memory Usage: 11.9 MB, less than 9.67% of Python online submissions for Binary Tree Preorder Traversal.
 ```
 
-### 2. 迭代
+### 2. DFS-迭代
 
 ```python
 # Time Complextiy: O(logn)

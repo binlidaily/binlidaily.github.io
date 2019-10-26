@@ -3,7 +3,7 @@ layout: post
 title: 94. Binary Tree Inorder Traversal
 subtitle: 中序遍历（Medium）
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Tree, DFS]
 image: 
 comments: true
 published: true
@@ -85,7 +85,7 @@ class Solution:
 # Memory Usage: 13.9 MB, less than 6.56% of Python3 online submissions for Binary Tree Inorder Traversal.
 ```
 
-### 2. 迭代
+### 2. DFS-迭代
 　　之前整理过的不是很好理解的方式跟上述效果一样：
 
 ```python
@@ -149,7 +149,7 @@ class Solution(object):
 # Memory Usage: 11.7 MB, less than 80.46% of Python online submissions for Binary Tree Inorder Traversal.
 ```
 
-　　先一直遍历到左子树的最左边节点，其没有左孩子了，所以保存自己节点的值，然后遍历其右子树。
+　　先一直遍历到左子树的最左边节点，其没有左孩子了，所以保存自己节点的值，然后遍历其右子树。注意中序遍历的时候
 
 ## References
 1. [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)

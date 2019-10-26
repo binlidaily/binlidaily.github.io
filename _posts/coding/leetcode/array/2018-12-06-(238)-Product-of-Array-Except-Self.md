@@ -3,7 +3,7 @@ layout: post
 title: 238. Product of Array Except Self
 subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, Array, DP]
+tags: [Coding, LeetCode, Array, DP, Medium]
 image: 
 comments: true
 published: true
