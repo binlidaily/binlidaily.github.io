@@ -28,7 +28,7 @@ $$
 
 　　其中：
 * 如果在第 i 个 cell 里面的第 j 个 boundary box 是用来检测对应物体的，那么有 $\mathbb{1} = 1$，否则为 $\mathbb{1} = 0$。
-* $\lambda_{\text {coord}$ 可以用来调节 boundary box coordinates 误差的关注度。
+* $\lambda_{\text {coord}}$ 可以用来调节 boundary box coordinates 误差的关注度。
 
 ## References
 1. [Paper](/asstes/YOLO-v1-You Only Look Once.pdf)

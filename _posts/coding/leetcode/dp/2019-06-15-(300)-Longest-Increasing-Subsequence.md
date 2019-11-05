@@ -3,7 +3,7 @@ layout: post
 title: 300. Longest Increasing Subsequence
 subtitle: 递增字串问题
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, DP, Binary Search]
 image: 
 comments: true
 published: true
@@ -45,7 +45,7 @@ class Solution(object):
                 if nums[j] < nums[i]:
                     dp[i] = max(dp[i], dp[j] + 1)
         
-        return max(dp) if dp else 0
+        return max(dp)
 ```
 
 ### 2. 加上 Binary Search 提升到 O(nlogn)
