@@ -25,7 +25,7 @@ SSD 具有以下特点：
 * 从 YOLO 中继承了将 Detection 转化为 Regression 的思路，一次完成目标定位与分类 (classification+bounding box regression，One Stage)。
 * 基于 Faster RCNN 中的 Anchor，提出了相似的 Prior Box。
 * 加入基于特征金字塔（Pyramidal Feature Hierarchy）的检测方式，即在不同感受野的 feature map 上预测目标。
-* 利用卷积进行检测
+* 直接利用卷积进行检测
 
 注意：
 
@@ -49,8 +49,43 @@ SSD 具有以下特点：
 ### 1.2 直接采用卷积进行定位和分类
 ![](/img/media/15614581132951.jpg)
 
-　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 mxn 个 cell，每个 cell 有默认 k 个 default boxes，最后的 predic box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
+　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 $m\times n$ 个 cell，每个 cell 有默认 $k$ 个 default boxes，最后的 predict box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
 
+
+```python
+def ssd_multibox_layer(inputs,
+                       num_classes,
+                       sizes,
+                       ratios=[1],
+                       normalization=-1,
+                       bn_normalization=False):
+    """Construct a multibox layer, return a class and localization predictions.
+    """
+    net = inputs
+    if normalization > 0:
+        net = custom_layers.l2_normalization(net, scaling=True)
+    # Number of anchors.
+    num_anchors = len(sizes) + len(ratios)
+
+    # Location.
+    num_loc_pred = num_anchors * 4
+    loc_pred = slim.conv2d(net, num_loc_pred, [3, 3], activation_fn=None,
+                           scope='conv_loc')
+    loc_pred = custom_layers.channel_to_last(loc_pred)
+    loc_pred = tf.reshape(loc_pred,
+                          tensor_shape(loc_pred, 4)[:-1]+[num_anchors, 4])
+    # Class prediction.
+    num_cls_pred = num_anchors * num_classes
+    cls_pred = slim.conv2d(net, num_cls_pred, [3, 3], activation_fn=None,
+                           scope='conv_cls')
+    cls_pred = custom_layers.channel_to_last(cls_pred)
+    cls_pred = tf.reshape(cls_pred,
+                          tensor_shape(cls_pred, 4)[:-1]+[num_anchors, num_classes])
+    return cls_pred, loc_pred
+```
+　　注意一下最后分类和回归的返回结果是一个三维的 Tensor，比如输出分类 cls_pred 结果大小为 `(batch, height, width, n_boxes*n_classes)`，reshape 之后为 `(batch, height*width*n_boxes, n_classes)`；类似的，对应位置 reshape 后的回归结果大小为 `(batch, height*width*n_boxes, 4)`。其实还有一个 Prior box 的结果大小为 `(batch, height*width*n_boxes, 8)`，这里 8 是因为除了 Prior box 的 4 个数值的初始坐标，还有对应的偏置（4 个 offsets）。
+
+　　那么最后的结果是 `(batch, height*width*n_boxes, n_classes + 4 + 8)`，每一行的结果就是正好分类概率加上定位坐标和 Prior box 信息，这样就可以找配对得到 Pos 和 Neg，然后计算 Loss，对应的训练。
 
 ### 1.3 固定默认先验框
 　　SSD 在不同的特征图中设定了不同的特征图个数，具体可以看网络结构图中有说明每层特征图对应的先验框个数。这样就大大提高了寻找先验框的效率，进而加速的训练过程。
