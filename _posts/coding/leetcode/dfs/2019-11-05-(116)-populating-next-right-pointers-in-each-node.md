@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 116. Populating Next Right Pointers in Each Node
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, DFS]
+tags: [Coding, LeetCode, DFS, BFS, Medium]
 image: 
 comments: true
 published: true
@@ -41,7 +41,85 @@ Explanation: Given the above perfect binary tree (Figure A), your function shoul
 * Recursive approach is fine, implicit stack space does not count as extra space for this problem.
 
 ## Solutions
+### 1. DFS-先序遍历-递归
+　　采用递归的方法，注意这里的递归条件。
+
+![-w546](/img/media/15730312397043.jpg)
 
 
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(logn)
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if not root:
+            return None
+        if not root.left:
+            return root
+        root.left.next = root.right
+        
+        if root.next:
+            root.right.next = root.next.left
+        
+        root.left = self.connect(root.left)
+        root.right = self.connect(root.right)
+        
+        return root
+# Runtime: 60 ms, faster than 98.51% of Python3 online submissions for Populating Next Right Pointers in Each Node.
+# Memory Usage: 14.8 MB, less than 100.00% of Python3 online submissions for Populating Next Right Pointers in Each Node.
+```
+
+
+### 2. BFS-迭代
+
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(logn)
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if not root:
+            return None
+        queue = collections.deque([root])
+        
+        while queue:
+            size = len(queue)
+            pre = None
+            for i in range(size):
+                node = queue.popleft()
+                if not pre:
+                    pre = node
+                else:
+                    pre.next = node
+                    pre = node
+                    
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return root
+# Runtime: 64 ms, faster than 93.22% of Python3 online submissions for Populating Next Right Pointers in Each Node.
+# Memory Usage: 14.8 MB, less than 100.00% of Python3 online submissions for Populating Next Right Pointers in Each Node.
+```
 ## References
 1. [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+2. [huahua](https://www.youtube.com/watch?v=YNu143ZN4qU)
+3. 相关题目
+    1. [117. Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii)

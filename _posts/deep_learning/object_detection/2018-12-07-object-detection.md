@@ -10,6 +10,8 @@ published: true
 ---
 
 
+## Q&A
+1. [解决目标检测中对输入图像大小的限制方法？ - 知乎](https://www.zhihu.com/question/265767103)
 
 
 ## 实践
