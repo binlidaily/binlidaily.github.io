@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 3. Longest Substring Without Repeating Characters
-subtitle: 最长不重复子序列
+subtitle: 最长不重复子序列 (Medium)
 author: Bin Li
-tags: [Coding, LeetCode, Hash Table, Sliding Window]
+tags: [Coding, LeetCode, Hash Table, Sliding Window, Medium]
 image: 
 comments: true
 published: true
@@ -89,7 +89,11 @@ class Solution:
 # Memory Usage: 13.9 MB, less than 5.10% of Python3 online submissions for Longest Substring Without Repeating Characters.
 ```
 
-### 3. 两个指针的方式
+### 3. 两个指针的方式 - Sliding Window
+　　右边指针指向的元素如果在字典中，判断左侧指针指向元素是否也在，在的话则删除左侧指针指向元素，不在则挪动 left 指针。
+
+　　right 指向元素不在字典中的话，就加入长度加 1，比较滑动窗口大小存下结果。
+
 
 ```python
 # Time Complexity: O(n)
