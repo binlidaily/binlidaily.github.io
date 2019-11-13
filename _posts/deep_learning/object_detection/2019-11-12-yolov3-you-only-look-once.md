@@ -37,9 +37,20 @@ published: true
 
 　　YOLOv3 在速度上还是很喜人的。
 
+{{Front}}
 
+.card {
+ font-family: arial;
+ font-size: 20px;
+ color: black;
+ background-color: white;
+}
 
+{{FrontSide}}
 
+<hr id=answer>
+
+{{Back}}
 
 
 ## References
