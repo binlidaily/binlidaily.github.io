@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Add Two Numbers
-subtitle: 
+title: 2. Add Two Numbers
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Medium, Linked List]
 image: 
 comments: true
 published: true
