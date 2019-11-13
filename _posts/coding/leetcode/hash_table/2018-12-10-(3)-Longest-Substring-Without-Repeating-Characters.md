@@ -3,7 +3,7 @@ layout: post
 title: 3. Longest Substring Without Repeating Characters
 subtitle: 最长不重复子序列 (Medium)
 author: Bin Li
-tags: [Coding, LeetCode, Hash Table, Sliding Window, Medium]
+tags: [Coding, LeetCode, Hash Table, Sliding Window, Medium, Two Pointers]
 image: 
 comments: true
 published: true

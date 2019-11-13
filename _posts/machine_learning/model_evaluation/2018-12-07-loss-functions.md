@@ -13,20 +13,33 @@ published: true
 
 ## 1. 回归问题
 　　回归问题的评价指标有 MSE，RMSE，MAE 等。
-### 1.1 Mean Squared Error
+
+### 1.1 Least Squares Error
+　　最小二乘误差 (Least Squares Error, LSE) 就是采用 L2 范数作为损失函数：
+
+$$
+\text{LSE} = \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
+$$
+
+　　MSE 就是在 LSE 的基础上做了平均。
+
+　　使用的算法：
+1. 线性回归
+
+### 1.2 (Mean) Squared Error
 　　均方误差（Mean Squared Error，MSE）用真实值减去预测值的结果求平方和。
 
 $$
-\frac{1}{m} \sum_{i=1}^{m}\left(y_{i}-\hat{y}_{i}\right)^{2}
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}
 $$
 
 　　这也正是线性回归的损失函数。
 
-### 1.2 Root Mean Squard Error
-　　均方根误差（Root Mean Squard Error，RMSE）在均方误差基础上求平方根。
+### 1.3 Root Mean Squard Error
+　　均方根误差（Root Mean Squard Error，RMSE）在均方误差 MSE 基础上求平方根。
 
 $$
-\sqrt{\frac{1}{m} \sum_{i=1}^{m}\left(y_{i}-\hat{y}_{i}\right)^{2}}
+\text{R M S E} = \sqrt{\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}}
 $$
 
 　　均方根误差跟均方误差效果差不多，为了在量纲上一致具有更好解释性，对强调量纲的结果可以用 RMSE。
@@ -37,24 +50,25 @@ $$
 2. 如果不认为这些离群点是噪声，就需要进一步提高模型的预测能力，将离群点产生的机制建模进去。
 3. 还可以找一个更合适的指标来评估该模型，比如平均绝对百分比误差 MAPE。
 
-### 1.3 Mean Absolute Percent Error
-　　平均绝对百分比误差（Mean Absolute Percent Error, MAPE）定义为：
+
+### 1.4 Least Absolute Deviation
+　　最小绝对偏差 (Least Absolute Deviation，LAD) 就是采用 L1 范数作为损失函数：
 
 $$
-R M S E=\sqrt{\frac{\sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}}{n}}
+\text{LAD} = \sum_{i=1}^{n}\left|\left(y_{i}-\hat{y}_{i}\right)\right|
 $$
 
-　　相比 RMSE，MAPE 相当于把每个点的误差都进行了归一化，降低了离群点带来的绝对误差的影响。
 
-
-### 1.4 Mean Absolute Error
+### 1.5 Mean Absolute Error
 　　平均绝对误差（Mean Absolute Error，MAE）采用衡量真实值和预测值的差值的绝对值方式：
 
 $$
-\frac{1}{m} \sum_{i=1}^{m}\left|\left(y_{i}-\hat{y}_{i}\right)\right|
+\text{MAE} = \frac{1}{n} \sum_{i=1}^{n}\left|\left(y_{i}-\hat{y}_{i}\right)\right|
 $$
 
-　　相比之下，MSE 对偏差较大的数据点惩罚较大，MAE 对偏差较小的数据点惩罚较大，如下图对同一批数据采用不同衡量指标的拟合结果：
+　　可见，MAE 就是在 LAD 的基础上做了一个平均。
+
+　　在于 MSE 的对比之下可见，MSE 对偏差较大的数据点惩罚较大，MAE 对偏差较小的数据点惩罚较大，如下图对同一批数据采用不同衡量指标的拟合结果：
 
 <p align="center">
   <img width="" height="" src="/img/media/15566915918190.jpg">
@@ -68,40 +82,40 @@ $$
 
 　　想比之下，MAE 基本上忽略了偏离点的影响。在现实实践中，当我们剔除了数据集中的异常点后，模型往往对两端极值（极大值和极小值）拟合效果不好，可以将这个情况看成两端极值偏离较远，拟合起来有难度，对于偏离较大的我们可以采用 MSE 拟合，而对于中间正常部分则可以采用 MAE 进行拟合。也就是说，这种情况下将模型分别采用 MSE 和 MAE 训练，然后加权融合往往能够提高模型效果。
 
-
-
-### 1.5 Least Absolute Deviation
-　　最小绝对偏差 (Least Absolute Deviation，LAD) 就是采用 L1 范数作为损失函数：
+### 1.6 Mean Absolute Percent Error
+　　平均绝对百分比误差（Mean Absolute Percent Error, MAPE）定义为：
 
 $$
-\sum_{i=1}^{m}\left|\left(y_{i}-\hat{y}_{i}\right)\right|
+\text{MAPE}=\frac{100 \%}{n} \sum_{i=1}^{n}\left|\frac{y_i-\hat{y}_{i}}{y_i}\right|
 $$
 
-　　MAE 就是在 LAD 的基础上做了一个平均。
+　　相比 RMSE，MAPE 相当于把每个点的误差都进行了归一化，降低了离群点带来的绝对误差的影响。
 
-### 1.6 Least Squares Error
-　　最小二乘误差 (Least Squares Error, LSE) 就是采用 L2 范数作为损失函数：
 
+
+
+## 2. 分类问题
+### 2.1 0-1 Loss
+　　对于二分类问题，如果预测值和真实值不同，则结果为 1，相同为 0。
 $$
-\sum_{i=1}^{m}\left(y_{i}-\hat{y}_{i}\right)^{2}
-$$
-
-　　MSE 就是在 LSE 的基础上做了平均。
-
-### 对数误差
-　　[对数损失](https://www.zhihu.com/question/27126057)是用于极大似然估计的。
-
-$$
-L(Y, P(Y | X))=-\log P(Y | X)
+L(y, \hat{y})=\{\begin{array}{ll}{0,} & {y \hat{y} \geq 0} \\ {1,} & {y \hat{y}<0}\end{array}
 $$
 
-　　其中 $P(Y | X)$ 是极大似然函数，一组参数在一堆数据下的似然值，等于每一条数据再这组参数下的条件概率之积。
+　　0-1 Loss 的曲线如下:
 
-而损失函数一般是每条数据的损失之和，为了把积变为和，就取了对数。
+<p align="center">
+  <img width="" height="" src="/img/media/15576324030915.jpg">
+</p>
 
-再加一个负号是为了让最大似然值和最小损失对应起来。
+0-1 loss **优点**
+1. 非常直观，容易理解。
 
-### 交叉熵损失
+**缺点**：
+1. 0-1 loss 对所有错分的样本都赋予同样的惩罚（损失为 1），这样对于那些犯错较大的点没有进行有效的惩罚，在一定程度上不太合理。
+2. 0-1 loss 不连续、非凸、不可导，难以用类似梯度下降的方法优化。故而 0-1 loss 很少被用到。
+
+
+### 2.2 交叉熵损失
 　　对于二分类问题，交叉熵损失有两种形式。第一种形式是基于输出标签为 $\{0,1\}$ 的表达方式，也是最常见的形式：
 
 $$
@@ -151,32 +165,27 @@ $$
 交叉熵优点：
 * 能够避免学习速率过慢
 
+
+### 2.3 对数误差
+　　[对数损失](https://www.zhihu.com/question/27126057)是用于极大似然估计的。
+
+$$
+L(Y, P(Y | X))=-\log P(Y | X)
+$$
+
+　　其中 $P(Y | X)$ 是极大似然函数，一组参数在一堆数据下的似然值，等于每一条数据再这组参数下的条件概率之积。
+
+而损失函数一般是每条数据的损失之和，为了把积变为和，就取了对数。
+
+再加一个负号是为了让最大似然值和最小损失对应起来。
+
+
 ### Softmax loss
 
 ### Sigmoid loss
 
 
 
-
-## 2. 分类问题
-### 0-1 Loss
-　　对于二分类问题，如果预测值和真实值不同，则结果为 1，相同为 0。
-$$
-L(y, \hat{y})=\{\begin{array}{ll}{0,} & {y \hat{y} \geq 0} \\ {1,} & {y \hat{y}<0}\end{array}
-$$
-
-　　0-1 Loss 的曲线如下:
-
-<p align="center">
-  <img width="" height="" src="/img/media/15576324030915.jpg">
-</p>
-
-0-1 loss **优点**
-1. 非常直观，容易理解。
-
-**缺点**：
-1. 0-1 loss 对所有错分的样本都赋予同样的惩罚（损失为 1），这样对于那些犯错较大的点没有进行有效的惩罚，在一定程度上不太合理。
-2. 0-1 loss 不连续、非凸、不可导，难以用类似梯度下降的方法优化。故而 0-1 loss 很少被用到。
 
 
 ### 焦损失函数

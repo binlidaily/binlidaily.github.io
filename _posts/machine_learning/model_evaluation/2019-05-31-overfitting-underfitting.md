@@ -65,3 +65,11 @@ $$
 
 1. 减小正则化系数。
     * 正则化是用来防止过拟合的，但当模型出现欠拟合现象时，则需要有针对性地减小正则化系数。
+
+
+## VC Dimensionality
+![](/img/media/15733755452384.jpg)
+
+"As the number of features or dimensions grows, the amount of data we need to generalize accurately grows exponentially."
+
+　　在一定程度上增加特征，是能够提升模型效果的。但是过了一个门槛后，增加特征就没有太大作用了，因为特征维度越大，要实现好的模型效果就需要指数级增长的数据支撑。这就是维度灾难，所以我们并不能一维的增加模型特征个数，需要做一定的特征选择。
