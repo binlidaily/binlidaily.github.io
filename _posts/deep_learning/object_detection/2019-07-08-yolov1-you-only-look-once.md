@@ -115,3 +115,4 @@ $$
 4. [Yolov3 Keras 版本从零到壹跑模型](https://blog.csdn.net/qq_39622065/article/details/86174142)
 5. [Understanding YOLO](https://hackernoon.com/understanding-yolo-f5a74bbc7967)
 6. [Real-time Object Detection with YOLO, YOLOv2 and now YOLOv3](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)
+7. [目标检测|YOLO原理与实现](https://zhuanlan.zhihu.com/p/32525231)
