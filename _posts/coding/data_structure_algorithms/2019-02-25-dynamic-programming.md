@@ -72,7 +72,16 @@ typora-root-url: ../../../../binlidaily.github.io
 
 
 ## 经典问题
-1. Longest Increasing Subsequence - 最长递增子序列
+1. [Longest Common Subsequence](https://www.techiedelight.com/longest-common-subsequence/)
+2. [Shortest Common Supersequence](https://www.techiedelight.com/shortest-common-supersequence-introduction-scs-length/)
+3. [Longest Increasing Subsequence problem](https://www.techiedelight.com/longest-increasing-subsequence-using-dynamic-programming/) -  最长递增子序列
+4. [The Levenshtein distance (Edit distance) problem](https://www.techiedelight.com/levenshtein-distance-edit-distance-problem/)
+5. [Matrix Chain Multiplication](https://www.techiedelight.com/matrix-chain-multiplication/)
+6. [0–1 Knapsack problem](https://www.techiedelight.com/0-1-knapsack-problem/)
+7. [Partition problem](https://www.techiedelight.com/partition-problem/)
+8. [Rod Cutting](https://www.techiedelight.com/rot-cutting/)
+9. [Coin change problem](https://www.techiedelight.com/coin-change-making-problem-unlimited-supply-coins/)
+10. [Word Break Problem](https://www.techiedelight.com/word-break-problem/)
 
 
 ## References
