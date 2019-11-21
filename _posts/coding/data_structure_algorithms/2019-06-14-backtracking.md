@@ -157,3 +157,4 @@ LeetCode 题目：
 4. [Leetcode - Backtracking回溯法(又称DFS,递归)全解](https://segmentfault.com/a/1190000006121957)
 5. [彻头彻尾的理解回溯算法](https://blog.csdn.net/ffmpeg4976/article/details/45007439)
 6. [数据结构与算法-回溯法-4](https://xiaozhuanlan.com/topic/0289571364)
+7. [A general approach to backtracking questions in Java (Subsets, Permutations, Combination Sum, Palindrome Partitioning)](https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning))
