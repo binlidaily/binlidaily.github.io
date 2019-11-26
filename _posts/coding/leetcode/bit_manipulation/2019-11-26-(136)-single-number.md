@@ -1,32 +1,56 @@
 ---
 layout: post
 title: 136. Single Number
-subtitle:
+subtitle: 
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Bit Manipulation, Hash Table]
 image: 
 comments: true
 published: true
 ---
 
-Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+## Description
 
-Note:
-> Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+Given a **non-empty** array of integers, every element appears *twice* except for one. Find that single one.
 
-Example 1:
+**Note:**
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+**Example 1:**
+
 ```
 Input: [2,2,1]
 Output: 1
 ```
-Example 2:
+
+**Example 2:**
+
 ```
 Input: [4,1,2,1,2]
 Output: 4
 ```
 
 ## Solutions
-这个在刷《剑指 offer》的时候接触过，用异或就能搞定了，比较简单。但是值得总结一下所有的处理方式。
+### 1. Bit Manipulation
+　　知道用异或做还是蛮简单的。
+
+```python
+# Time: O(n)
+# Space: O(1)
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        pivot = nums[0]
+        for i in range(1, n):
+            pivot = pivot ^ nums[i]
+        return pivot
+# 16/16 cases passed (80 ms)
+# Your runtime beats 99.13 % of python3 submissions
+# Your memory usage beats 9.84 % of python3 submissions (15.2 MB)
+```
+
+　　如果不取第一个数，可以用与零异或。
 
 ```python
 class Solution(object):
@@ -43,6 +67,7 @@ class Solution(object):
 # Memory Usage: 13.6 MB, less than 72.07% of Python online submissions for Single Number.
 ```
 
+### 2. Hash Table
 ```python
 class Solution(object):
     def singleNumber(self, nums):
@@ -60,6 +85,7 @@ class Solution(object):
 # Memory Usage: 15 MB, less than 5.20% of Python online submissions for Single Number.
 ```
 
+### 3. 其他神奇操作
 ```python
 class Solution(object):
     def singleNumber(self, nums):
@@ -96,5 +122,6 @@ class Solution(object):
 # Memory Usage: 13.6 MB, less than 66.20% of Python online submissions for Single Number.
 ```
 
+
 ## References
-1. [136. Single Number](https://leetcode.com/problems/single-number/)
+1. [136. Single Number](https://leetcode.com/problems/single-number)
