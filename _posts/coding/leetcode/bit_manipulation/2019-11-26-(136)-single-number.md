@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 136. Single Number
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode, Bit Manipulation, Hash Table]
+tags: [Coding, LeetCode, Bit Manipulation, Hash Table, Easy]
 image: 
 comments: true
 published: true

@@ -3,7 +3,7 @@ layout: post
 title: Logistic Regression
 subtitle: 逻辑斯特回归
 author: Bin
-tags: [Machine Learning]
+tags: [Machine Learning, Classification]
 comments: true
 published: true
 typora-root-url: ../../../../binlidaily.github.io
@@ -14,18 +14,104 @@ typora-copy-images-to: ../../../img/media
 
 　　逻辑斯特回归（或对数几率回归，Logistic Regression, LR）是机器学习中的一种**分类**模型，由于算法的简单高效，在实际运用中非常的广泛。
 
+　　就线性模型来说，我们在现实生活中四种需求：
 
-## 引入 Logistic Regression
-### Sigmoid Function
-　　在此之前我们有线性回归这样的模型来做回归，但是在前面的那些实际场合下，我们需要分类结果而非连续的实数结果。考虑到线性回归模型的简单高效，在处理大数据量问题上有其好处。我们看是否有可能在其基础上做一个拓展使之能够做分类问题，从简单的二分类开始。于是想到在线性回归的基础上我们再套上一个可以将实数映射到 $\{0，1\}​$ 两种结果上的函数，于是我们就想到了 Sigmoid 函数，形式如下：
+1. 预测实数：线性回归（Linear Regression）
+2. 预测正负二分类：线性分类（Linear Classification）
+3. 预测多分类：多个二分类组合（One Vs All）
+4. 预测概率：逻辑斯特回归（Logistic Regression）
 
-$${g(x) }= {1\over{1+e^{-x}}}​$$
+## 1. 创造 LR 的思维路径
+### 1.1 从需求入手
+　　这里我们想要实现预测的二分类结果是概率形式，于是我们就要尝试找到一种变换，将之前的线性模型（$h(x)=wx$）结果转换到 $[0,1]$ 内。幸运的是，伟大的数学就有这样的函数了，那就是 [logistic function](https://en.wikipedia.org/wiki/Logistic_function)：
+$$
+f(x)=\frac{L}{1+e^{-k\left(x-x_{0}\right)}}
+$$
+　　其中：
 
-　　从式子上可以看出，当 $x$ 接近与无穷大时，分母会接近于 $1$，则整体结果接近与 $1$；当 $x$ 接近于无穷小时，分母接近于无穷大，则整体结果接近于 $0$。这样就可以做二分类问题了。当然，也可以将结果当成概率来看待，概率值大于 $0.5$ 的认为是 $1$ ，小于 $0.5$ 的认为是 $0$.
+1. $e$ 是自然对数。
+2. $x_0$ 是该 S 型曲线的重点 $x$ 坐标，像 sigmoid 函数 $x_0=0$
+3. $L$ 是曲线的最大值
+4. $k$ 是 logistic 曲线增长率
 
-<p align="center">
-    <img width="445" length="" src="/img/media/15068430849483.jpg">
-</p>
+　　Sigmoid 函数就是特殊的 logistic function，其中 $x_0 = 0$，$k=1$，$L=1$。
+
+$$
+\sigma(s)=\frac{1}{1+e^{-s}}=\frac{e^{s}}{1+e^{s}} 
+$$
+
+　　原来结果范围在 $[-\infty, +\infty]$ 压缩到了 $[0, 1]$，我们再把之前的线性结果带进去看最终的决策函数：
+
+$$
+h(\mathbf{x})=\sigma\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}\right)=\frac{1}{1+e^{-\mathbf{w}^{\mathrm{T}}\mathbf{x}}}
+$$
+
+　　这边是从需求角度引入了 LR 的决策函数，当然我们还能从广义线性模型的角度来引入这个结果。
+
+### 1.2 广义线性模型导出 LR
+
+
+## 2. 构建 LR 模型
+　　到此我们知道了 LR 的决策函数，接下来我们就要构建非常重要的损失函数了。然后尝试去求解最优值，会用到求导和梯度下降的通用方法。
+
+### 2.1 极大似然估计构造损失函数
+　　我们先假设数据类标用的是 $\{0, 1\}$ 表示，对于二分类的对应结果概率为：
+
+$$
+{P(y = 1| x; \mathrm{w}) = g(\mathrm{w}^Tx)}={1\over{1+e^{-{\mathrm{w}^Tx}}}}=p
+$$
+
+$$
+{P(y = 0| x; \mathrm{w}) = 1 - g(\mathrm{w}^Tx)}={e^{-{\mathrm{w}^Tx}}\over{1+e^{-{\mathrm{w}^Tx}}}}=1-p
+$$
+
+　　当 $P(y=1 \vert x)>0.5$，则预测的结果 $y^*=1$。可以看特定的情况选择不同的阈值。如果对正例的判别准确性要求高一些，可以调大阈值。对正例的召回率要求高，则可以减小阈值。
+
+　　上面的两个式子可以写成:
+
+$$P(y|{x};\mathrm{w})=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.$$
+
+　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合**伯努利分布**，于是有下式:
+
+$$P(y_i|{x}_i;\mathrm{w}) = p^{y_i}(1-p)^{1-{y_i}}$$
+
+　　如果是 $y \in \{1，-1\}$ 就要注意下指数的写法。
+
+　　接下来就可以走极大似然估计的套路了，选择 $m$ 个训练集，最大化概率连乘，然后套上对数并加上负号，变成最小化交叉熵损失函数。
+
+$$
+\begin{aligned} L(\mathrm{w}) &=p({y} | X ; \mathrm{w}) \\ 
+&=\prod_{i=1}^{m} p\left(y_{i} | x_{i} ; \mathrm{w}\right) \\ 
+&=\prod_{i=1}^{m}\left(h_{\mathrm{w}}\left(x_{i}\right)\right)^{y_{i}}\left(1-h_{\mathrm{w}}\left(x_{i}\right)\right)^{1-y_{i}} \\
+&=\prod_{i=1}^{m}p_i^{y_{i}}\left(1-p_i\right)^{1-y_{i}}
+\end{aligned}
+$$
+
+　　加单调的对数，最大化似然：
+
+$$
+\begin{aligned} L^\prime(\mathrm{w}) &=\log L(\mathrm{w}) \\ 
+&=\sum_{i=1}^{m} y_{i} \log h\left(x_{i}\right)+\left(1-y_{i}\right) \log \left(1-h\left(x_{i}\right)\right) \\
+&=\sum_{i=1}^{m} y_{i} \log p_i+\left(1-y_{i}\right) \log \left(1-p_i\right)
+\end{aligned}
+$$
+
+　　加上负号，最小化交叉熵损失函数：
+
+$$
+\ell(\mathrm{w}) = -\sum_{i=1}^{m} y_{i} \log p_i+\left(1-y_{i}\right) \log \left(1-p_i\right)
+$$
+
+### 2.2 优化求导更新参数
+　　对于特定样本 $j$，计算损失函数对 $w$ 的偏导如下：
+$$
+\begin{aligned}
+\frac{\partial}{\partial \mathrm{w}_{j}} \ell(\mathrm{w}) &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) \frac{\partial}{\partial \mathrm{w}_{j}} g\left(\mathrm{w}^{T} x\right) \\ &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) g\left(\mathrm{w}^{T} x\right)\left(1-g\left(\mathrm{w}^{T} x\right)\right) \frac{\partial}{\partial \mathrm{w}_{j}} \mathrm{w}^{T} x \\ &=\left(y\left(1-g\left(\mathrm{w}^{T} x\right)\right)-(1-y) g\left(\mathrm{w}^{T} x\right)\right) x_{j} \\ &=\left(y-h_{\mathrm{w}}(x)\right) x_{j} \end{aligned}
+$$
+
+　　接着利用梯度下降法就可以进行模型参数更新优化。
+
+
 
 
 ### Logistic Regression 决策函数
@@ -77,24 +163,6 @@ $$
 $$
 
 　　这里就是用线性回归模型的预测结果去逼近真实类标的对数几率，故称该模型为对数几率回归 (logistic regression / logit regression)。所以本质上 LR 模型还是一个线性模型, 我们称之为广义线性模型。
-
-　　由此显然可以得到（除了以上推导，也可以直接如此假设，因为这里是二分类，非此即彼）：
-
-$${P(y = 1| x; \Theta) = g(\Theta^Tx)}={1\over{1+e^{-{\Theta^Tx}}}}=p$$
-
-$${P(y = 0| x; \Theta) = 1- g(\Theta^Tx)}={e^{-{\Theta^Tx}}\over{1+e^{-{\Theta^Tx}}}}=1-p$$
-
-　　当 $P(y=1 \vert x)>0.5$，则预测的结果 $y^*=1$。当然这个选定的阈值也不一定就必须是 $0.5$，可以看特定的情况选择不同的阈值。如果对正例的判别准确性要求高一些，可以选择阈值大一些。对正例的召回率要求高，则可以选择阈值小一些。
-
-　　上面的两个式子可以写成:
-
-$$P(y|{x};\Theta)=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.$$
-
-　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合**伯努利分布**，于是有下式:
-
-$$P(y_i|{x}_i;\Theta) = p^{y_i}(1-p)^{1-{y_i}}$$
-
-　　注意最后的转换是将 $y \in \{0，1\}​$ 的两种情况放到一起变成了一个式子，如果分情况来说的话就很麻烦了，这一转换从形式上来将应该是等价的。这两个部分在 $y​$ 取 $0​$ 或者 $1​$ 时，只会留下一个起作用的部分，另外的部分为 $1​$ ，对乘积没有影响，这种转换实在是很机智啊！🙃 如果是 $y \in \{1，-1\}​$ 就要注意下指数的写法。
 
 
 ### 求解 Logistic Regression 模型
@@ -238,7 +306,7 @@ $3.~ 达到最大迭代次数，或者损失降低到一定程度退出$
 
 　　这些问题都可以看成分类问题，准确地说是二分类问题。我们可以拿到数据集的特征和标签，就得到一组训练数据：
 
-$$D = (x^1, y^1),~(x^2, y^2),~...,~(x^N, y^N)​$$
+$$D = (x^1, y^1),~(x^2, y^2),~...,~(x^N, y^N)$$
 
 　　其中 $x^i$ 是一个 $m$ 维的向量，$x^i = [x_1^i, x_2^i, ..., x_m^i]$，$y$ 在 $\{0，1\}$ 中取值。至于如何去衡量一个分类器的好坏，我们可以用分类率这样的指标：${Err }= {1\over{N}}1[y^*]=y$。也可以通过准确率，召回率，AUC 等指标来衡量。
 

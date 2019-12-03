@@ -1,14 +1,15 @@
 ---
 layout: post
 title: 153. Find Minimum in Rotated Sorted Array
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Binary Search, Medium]
 image: 
 comments: true
 published: true
 ---
 
+## Description
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
 (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
@@ -30,6 +31,9 @@ Output: 0
 ```
 
 ## Solutions
+　　注意这里是没有重复数值的，如果有重复数值就会有问题，需要看 154 题看有重复的解法。
+
+### 1. Sort
 　　看到题目有些懵逼？直接从大到小排序取第一个不就 OK 了？
 
 ```python
@@ -71,28 +75,47 @@ class Solution(object):
 
 　　发现直接用 `sorted` 比自己实现快排要快好多……
 
+### 2. Binary Search
 　　后来看了下别人的解答，原来是用二分搜索：
 
 ```python
-class Solution(object):
-    def findMin(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        left, right = 0, len(nums) - 1
-        while left < right:
-            if nums[left] < nums[right]:
-                return nums[left]
-            mid = (left + right) / 2
-            if nums[mid] >= nums[left]:
-                left = mid + 1
+# Time: O(n)
+# Space: O(1)
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums)-1
+        while l <= r:
+            if nums[l] <= nums[r]:
+                return nums[l]
+            mid = (l + r) >> 1
+            if nums[mid] >= nums[r]:
+                l = mid + 1
             else:
-                right = mid
-        return nums[left]
-# Runtime: 32 ms, faster than 45.56% of Python online submissions for Find Minimum in Rotated Sorted Array.
-# Memory Usage: 12 MB, less than 62.86% of Python online submissions for Find Minimum in Rotated Sorted Array.
+                r = mid
+# 146/146 cases passed (40 ms)
+# Your runtime beats 91.62 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
+```
+
+　　当然也可以跟 154 一样，用 mid 跟 left 对比：
+
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums)-1
+        while l < r:
+            if nums[l] < nums[r]:
+                return nums[l]
+            mid = (l + r) >> 1
+            if nums[mid] == nums[l]:
+                l += 1
+            elif nums[mid] > nums[l]:
+                l = mid + 1
+            else:
+                r = mid
+        return nums[l]
 ```
 
 ## References
 1. [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+2. [huahua](http://zxi.mytechroad.com/blog/leetcode/leetcode-153-find-minimum-in-rotated-sorted-array/)
