@@ -1,15 +1,15 @@
 ---
 layout: post
 title: 22. Generate Parentheses
-subtitle:
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Backtracking, Medium]
 image: 
 comments: true
 published: true
 ---
 
-
+## Decription
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
 For example, given n = 3, a solution set is:
@@ -24,7 +24,8 @@ For example, given n = 3, a solution set is:
 ```
 
 ## Solutions
-　　所谓 Backtracking 都是这样的思路：在当前局面下，你有若干种选择。那么尝试每一种选择。如果已经发现某种选择肯定不行（因为违反了某些限定条件），就返回；如果某种选择试到最后发现是正确解，就将其加入解集
+### 1. Backtracking
+　　所谓 Backtracking 都是这样的思路：在当前局面下，你有若干种选择。那么尝试每一种选择。如果已经发现某种选择肯定不行（因为违反了某些限定条件），就返回；如果某种选择试到最后发现是正确解，就将其加入解集。
 
 　　所以你思考递归题时，只要明确三点就行：选择 (Options)，限制 (Restraints)，结束条件 (Termination)。
 
@@ -46,6 +47,7 @@ For example, given n = 3, a solution set is:
 　　限制和结束条件中有“用完”和“一样多”字样，因此你需要知道左右括号的数目。
 
 写出伪代码就是：
+
 ```python
 if (左右括号都已用完) {
   加入解集，返回
@@ -60,28 +62,32 @@ if (右括号小于左括号) {
 ```
 
 ```python
-class Solution(object):
-    def generateParenthesis(self, n):
-        """
-        :type n: int
-        :rtype: List[str]
-        """
+# Time: O()
+# Space: O()
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
         if n <= 0:
             return []
-        left, right, arr = n, n, []
-        self.backtracking(left, right, arr, '')
-        return arr
+        left, right = n, n
+        res = []
+        self.dfs(left, right, '', res)
+        return res
     
-    def backtracking(self, left, right, arr, string):
-        if left > right:
+    def dfs(self, left, right, path, res):
+        if left > right :
             return
-        if not left and not right:
-            arr.append(string)
-            return 
-        if left:
-            self.backtracking(left-1, right, arr, string+'(')
-        if right:
-            self.backtracking(left, right-1, arr, string+')')
+        if left <= 0 and right <= 0:
+            res.append(path)
+            return
+        
+        if left > 0:
+            self.dfs(left - 1, right, path + '(', res)
+        
+        if right > 0:
+            self.dfs(left, right - 1, path + ')', res)
+# 8/8 cases passed (36 ms)
+# Your runtime beats 74.71 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.8 MB)
 ```
 
 　　手写了一下返回的路径帮助理解，因为这里要求 left 的值要大于 right，也就是说右括号数目不能躲过左括号，不然就类似`())`这样不符合要求了。
