@@ -15,6 +15,9 @@ published: true
 
 在 Programming 那个子菜单下也有一个整理 LeetCode 问题的地方，那里做有甄选的陈列吧。
 
+找最优的一般用 DP，找所有可能的结果蛀牙欧勇 Backtracking。
+
+
 ## LeetCode
 ### 双指针问题
 双指针简化问题，优化复杂度的题目还是挺多的，这类题目的关键点是想到使用双指针，
