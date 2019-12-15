@@ -28,6 +28,7 @@ while (!q.empty())
   } 
 }
 ```
+
 　　这里针对两种输出方式做了具体讨论，输出为一维数组：
 ```python
 def breadth_first_search(self, root):
@@ -83,15 +84,12 @@ def breadth_first_search_level(self, root):
 
 class Solution(object):
     def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
         if not root:
             return []
         res = []
         self.bfs(root, 0, res)
         return res
+        
     def bfs(self, root, level, lis):
         if not root:
             return
