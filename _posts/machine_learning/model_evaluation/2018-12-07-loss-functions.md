@@ -15,7 +15,7 @@ published: true
 　　回归问题的评价指标有 MSE，RMSE，MAE 等。
 
 ### 1.1 Least Squares Error
-　　最小二乘误差 (Least Squares Error, LSE) 就是采用 L2 范数作为损失函数：
+　　最小二乘误差，或者叫（最小）平方误差 (Least Squares Error, LSE) 就是采用 L2 范数作为损失函数：
 
 $$
 \text{LSE} = \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}

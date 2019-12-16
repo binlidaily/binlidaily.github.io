@@ -11,7 +11,7 @@ typora-copy-images-to: ../../../img/media
 
 　　线性回归作为一种非常常见的离散值预测模型，却是非常基础且重要的算法，后续的很多机器学习的算法都是在此基础上做的，例如逻辑回归。当数据中特征个数超过 1 个时，线性回归又被称为多元线性回归（Multivariate linear regression）。
 
-## 线性回归算法
+## 1. 线性回归算法
 　　最基本的线性回归算法想法比较简单，就是拟合一个函数，预测对应的值。我们将样本画出来发现，数据可能呈现正相关的分布，那么我们可以通过一个最简单的线性模型来拟合。
 
 　　一般的线性模型（linear model）都是试图学习一个通过属性的线性组合来进行预测的函数，即：
@@ -234,8 +234,6 @@ $$
 
 
 
-
-
 ## Implementation
 
 　　对于线性回归的求解办法也是规规矩矩的几个步骤：
@@ -249,6 +247,7 @@ $$
 
 　　其中用 SVD 的部分还需要重新整理理解下！除了通过 SVD 的方式，还可以用 QR 分解来计算，而且在小规模的数据量下更建议用这两种分解方式来求。🤔
 
+<details><summary markdown="span">Click to show the Code</summary>
 ```python
 class LinearRegression(Regression):
     """
@@ -288,6 +287,7 @@ class LinearRegression(Regression):
         else:
             super(LinearRegression, self).fit(X, y)
 ```
+</details>
 
 **优点**：
 * 思路直观，解释性强。
@@ -316,6 +316,38 @@ model_ln = lm.LinearRegression()               # 构建线性回归器
 model_ln.fit(train_x, train_y)                 # 训练数据  不返回k和b model中存储
 pred_y_ln = model_ln.predict(train_x)
 ```
+
+## 总结
+* 核心思想
+    * 假设自变量和因变量有存在线性关系，通过优化算法去拟合这种线性关系
+    * 假设误差服从零均值的高斯分布，能够计算出损失函数为平方误差
+* 决策函数
+    * 线性计算：$$h(x) = x^T \hat{w}$$
+* 损失函数
+    * 平方损失（最小二乘）：$$\hat{w}=\text{argmin}_{w} \sum_{x, y}\left(y-x^{T} w\right)^{2}$$
+* 优化算法
+    * 解析解直接计算：$\hat { w } = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y$
+    * 逆不存在可以用梯度下降：
+        1. 输入 $X$, $y$, 初始化权重 $w_0$
+        2. 计算损失函数对参数 $w$ 的偏导并迭代更新
+        3. 达到最大迭代次数，或者损失降低到一定程度退出
+* **优点**：
+    * 实现简单，计算简单。
+* **缺点**：
+    * 不能拟合非线性数据。
+    * 对异常值非常敏感。（平方误差的缺点？）
+
+### 线性回归最重要的假设是什么？
+* A linear relationship
+* Restricted Multi-collinearity value
+* Homoscedasticity
+
+Firstly, there has to be a linear relationship between the dependent and the independent variables. To check this relationship, a scatter plot proves to be useful.
+
+Secondly, there must no or very little multi-collinearity between the independent variables in the dataset. The value needs to be restricted, which depends on the domain requirement.
+
+The third is the homoscedasticity. It is one of the most important assumptions which states that the errors are equally distributed.
+
 
 ## References
 1. [Matrix calculus in multiple linear regression OLS estimate derivation](https://math.stackexchange.com/questions/1968478/matrix-calculus-in-multiple-linear-regression-ols-estimate-derivation)
