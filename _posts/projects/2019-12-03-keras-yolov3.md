@@ -39,12 +39,16 @@ pyrcc5 -o libs/resources.py resources.qrc
 1. 修改 voc_annotation.py 里面的 classes，改成自己需要的类。
 2. 修改 model_data/voc_classes.txt 为需要的类
 
+　　然后运行 python voc_annotation.py，在根目录生成 txt 文件。
+
 ### 2.3 修改 yolo.cfg
 　　以 yolo 为关键词搜索，找到 `[yolo]` 上下有如下三个部分需要修改：
 1. filter：3 *（5+len（classes）
 2. classes：你要训练的类别数（要加上背景的 1）
 3. random：原来是 1，显存小改为 0
 
+### 2.4 修改 train.py
+　　修改 trian 的路径，看要不要加上 2007 等前缀。
 
 ## 问题解决
 ### 出现 val_loss 计算为 nan
