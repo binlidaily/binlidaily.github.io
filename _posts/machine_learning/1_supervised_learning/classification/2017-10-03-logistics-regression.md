@@ -24,9 +24,11 @@ typora-copy-images-to: ../../../img/media
 ## 1. 创造 LR 的思维路径
 ### 1.1 从需求入手
 　　这里我们想要实现预测的二分类结果是概率形式，于是我们就要尝试找到一种变换，将之前的线性模型（$h(x)=wx$）结果转换到 $[0,1]$ 内。幸运的是，伟大的数学就有这样的函数了，那就是 [logistic function](https://en.wikipedia.org/wiki/Logistic_function)：
+
 $$
 f(x)=\frac{L}{1+e^{-k\left(x-x_{0}\right)}}
 $$
+
 　　其中：
 
 1. $e$ 是自然对数。
