@@ -10,7 +10,7 @@ typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
 
-
+## 0. 广义线性模型
 　　先搞清楚 GLM 的三个重要假设：
 
 1. 服从参数为 $\eta$ 的指数簇分布
