@@ -81,12 +81,12 @@ $$
 
 　　这样就得出了 LR 的决策函数。
 
-<!--　　GLM 的好处是能够假设反应变量（response variables）可以服从任意的分布。
+GLM 的好处是能够假设反应变量（response variables）可以服从任意的分布。
 
 * dependent variables, or response variables: 都表示**因变量** $y$
 * independent variables, or predictor variable, or explanatory variable: 都表示**自变量** $x$
 
-
+## Old Explanation
 　　GLM 模型有三个元素组成：
 1. 随机成分（Random Component）
     * 模型服从一个指数分布簇中的某一个分布（特定自然参数），给定 $x$ 和 $w$，$y$ 的分布服从参数为 $\eta$ 指数簇分布
@@ -127,7 +127,7 @@ $$
 \mu_{i}=g^{-1}\left(\eta_{i}\right)=g^{-1}\left(\mathbf{w}^{T} \mathbf{x}_{i}\right)
 $$
 
-　　平均函数的逆函数 $g$ 就是连接函数，一般来说 $g$ 的选择只要是有逆的，并且逆函数取值在一定取值范围内的都可以。-->
+　　平均函数的逆函数 $g$ 就是连接函数，一般来说 $g$ 的选择只要是有逆的，并且逆函数取值在一定取值范围内的都可以。
 
 ## References
 1. [从广义线性模型(GLM)理解逻辑回归](https://fighterhit.oschina.io/2017/12/24/machine_learning_notes/%E4%BB%8E%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/)
