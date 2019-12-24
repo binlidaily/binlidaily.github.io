@@ -71,13 +71,15 @@ $$
 
 　　上面的两个式子可以写成:
 
-$$P(y|{x};\mathrm{w})=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.$$
+$$
+P(y|{x};\mathrm{w})=\left\{ \begin{aligned} p, y=1 \\ 1-p,y=0 \end{aligned} \right.
+$$
 
 　　在进一步可以合并到一个式子中，这里其实是因为逻辑回归假设样本符合**伯努利分布**，于是有下式:
 
 $$P(y_i|{x}_i;\mathrm{w}) = p^{y_i}(1-p)^{1-{y_i}}$$
 
-　　如果是 $y \in \{1，-1\}$ 就要注意下指数的写法。
+　　如果是 $y \in \\{1，-1\\}$ 就要注意下指数的写法。
 
 　　接下来就可以走极大似然估计的套路了，选择 $m$ 个训练集，最大化概率连乘，然后套上对数并加上负号，变成最小化交叉熵损失函数。
 
@@ -106,6 +108,7 @@ $$
 
 ### 2.2 优化求导更新参数
 　　对于特定样本 $j$，计算损失函数对 $w$ 的偏导如下：
+
 $$
 \begin{aligned}
 \frac{\partial}{\partial \mathrm{w}_{j}} \ell(\mathrm{w}) &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) \frac{\partial}{\partial \mathrm{w}_{j}} g\left(\mathrm{w}^{T} x\right) \\ &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) g\left(\mathrm{w}^{T} x\right)\left(1-g\left(\mathrm{w}^{T} x\right)\right) \frac{\partial}{\partial \mathrm{w}_{j}} \mathrm{w}^{T} x \\ &=\left(y\left(1-g\left(\mathrm{w}^{T} x\right)\right)-(1-y) g\left(\mathrm{w}^{T} x\right)\right) x_{j} \\ &=\left(y-h_{\mathrm{w}}(x)\right) x_{j} \end{aligned}
