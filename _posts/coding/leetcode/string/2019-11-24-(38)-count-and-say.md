@@ -3,7 +3,7 @@ layout: post
 title: 38. Count and Say
 subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode, Easy]
+tags: [Coding, LeetCode, Easy, String]
 image: 
 comments: true
 published: true

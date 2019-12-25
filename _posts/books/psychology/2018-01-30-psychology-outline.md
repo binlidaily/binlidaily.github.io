@@ -8,12 +8,12 @@ style: |
   .container {
         max-width: 44rem;
     } 
-published: false
+published: True
 ---
 
 本文作为心理学入门的笔记。
 
-
+视网膜效应
 
 
 ## 绪论
