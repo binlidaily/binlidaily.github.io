@@ -78,6 +78,18 @@ class Solution:
 # Your memory usage beats 100 % of python3 submissions (12.9 MB)
 ```
 
+```python
+# Python 2
+class Solution:
+    def largestNumber(self, numbers):
+        # write code here
+        if numbers is None:
+            return None
+        str_numbers = [str(i) for i in numbers]
+        res = sorted(str_numbers, cmp=lambda x, y: cmp(x+y, y+x))
+        return ''.join(res)
+```
+
 ### 3. 神操作
 
 ```python

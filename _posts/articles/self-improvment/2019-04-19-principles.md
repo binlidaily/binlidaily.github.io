@@ -19,7 +19,7 @@ published: true
 ## 2. 工作原则
 > Take advantage of every single obstacle standing in your way
 
-* 一次做一件事，做事情就要专注，一心一意
+* **一次做一件事**，做事情就要专注，一心一意
 * 想起来的事能马上处理就不要拖，过一会儿就忘了，强调执行力
 * 属于自己的东西一定要去争取，不要嫌麻烦
 * 过去的就让它过去，除了作为未来的教训，不再纠结

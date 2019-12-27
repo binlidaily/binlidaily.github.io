@@ -1,14 +1,15 @@
 ---
 layout: post
 title: 890. Find and Replace Pattern
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, String, Greedy]
 image: 
 comments: true
 published: true
 ---
 
+# Decription
 You have a list of words and a pattern, and you want to know which words in words matches the pattern.
 
 A word matches the pattern if there exists a permutation of letters p so that after replacing every letter x in the pattern with p(x), we get the desired word.
@@ -35,16 +36,14 @@ Note:
 ```
 
 ## Solutions
-　　理解题意就可以了，不是很难，但是写出来的代码就不够优雅，一堆 if。
+### 1. Greedy + Dict
+　　理解题意就可以了，不是很难，但是写出来的代码就不够优雅，一堆 if。用字典存映射关系，然后挨个字符去找对应！
 
 ```python
-class Solution(object):
-    def findAndReplacePattern(self, words, pattern):
-        """
-        :type words: List[str]
-        :type pattern: str
-        :rtype: List[str]
-        """
+# Time: O(n^2)
+# Space: O(n)
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
         res = []
         n = len(pattern)
         for item in words:
@@ -63,8 +62,9 @@ class Solution(object):
             if Flag:
                 res.append(item)
         return res
-# Runtime: 12 ms, faster than 98.90% of Python online submissions for Find and Replace Pattern.
-# Memory Usage: 11.6 MB, less than 96.80% of Python online submissions for Find and Replace Pattern.
+# 46/46 cases passed (32 ms)
+# Your runtime beats 79 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.7 MB)
 ```
 ## References
 1. [890. Find and Replace Pattern](https://leetcode.com/problems/find-and-replace-pattern/)

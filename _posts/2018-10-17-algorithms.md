@@ -117,6 +117,8 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 * Model Selection
     * Model Selection
 
+### 1.5 Information Theory
+* [Information Entropy](https://binlidaily.github.io/2019-11-26-information-entropy)
 
 ## 2. Applied Machine Learning
 * [Workflow of Machine Learning](https://binlidaily.github.io/2019-02-25-workflow-of-applying-ml-algorithms-offline-to-online/) 
