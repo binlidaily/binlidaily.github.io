@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 234. Palindrome Linked List
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode, Linked List]
+tags: [Coding, LeetCode, Linked List, Easy]
 image: 
 comments: true
 published: true

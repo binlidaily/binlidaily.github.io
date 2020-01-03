@@ -9,7 +9,11 @@ comments: true
 published:  true
 ---
 
-　　在之前我们整理过了 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 算法的原理，当时还没有具体讨论改用什么样的基函数，本文就介绍以决策树作为基函数的提升方法，称为提升树（boosting tree），即 **AdaBoost + 决策树 = 提升树**。一般的提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。对于分类问题决策树采用 CART 二叉分类树，回归问题即采用 CART 二叉回归树。我们采用一层的决策树，称之为[决策树桩](https://binlidaily.github.io/2019-06-04-decision-stump)（Decision Stump）。则提升树模型可以表示为决策树的加法模型：
+　　在之前我们整理过了 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 算法的原理，当时还没有具体讨论该用什么样的基函数，本文就介绍以决策树作为基函数的提升方法，称为提升树（boosting tree），即 **AdaBoost + 决策树 = 提升树**。
+
+　　一般的提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法，对于分类问题决策树采用 CART 二叉分类树，回归问题即采用 CART 二叉回归树。我们采用一层的决策树（[决策树桩](https://binlidaily.github.io/2019-06-04-decision-stump)，Decision Stump）。
+
+　　则提升树模型可以表示为决策树的加法模型：
 
 $$
 f_K(x) = \sum_{k=1}^K T(x;\Theta_k)
@@ -18,7 +22,7 @@ $$
 　　其中 $T(x;\Theta_k)$ 表示二叉决策树，$\Theta_k$ 表示决策树的参数，$K$ 表示二叉决策树的个数。
 
 
-## 提升树算法
+## 1. 提升树算法
 　　决策树采用前向分布算法，首先确定初始提升树 $f_0(x)=0$，第 $k$ 步的模型是：
 
 $$
@@ -31,7 +35,11 @@ $$
 \hat{\Theta}_k = \arg  \min_{\Theta_x} \sum _{i=1} ^{M} L(y_i, f_{x-1}+T(x_i; \Theta_k))
 $$
 
-　　针对不同问题的提升树算法，主要区别在损失函数不同。决策树用的 0/1 损失，对于分类问题一般采用指数损失函数，而对于回归问题则采用平方误差损失函数。对于二分类问题，只需将 Adaboost 算法中的基函数限制为二类分类树即可，所以接下来着重展开提升树回归问题的介绍。
+　　针对不同问题的提升树算法，主要区别在损失函数不同。对于分类问题一般采用指数损失函数，回归问题则采用平方误差损失函数。对于二分类问题，只需将 Adaboost 算法中的基函数限制为二类分类树即可。
+
+　　接下来着重展开提升树回归问题的介绍。
+
+## 2. 提升树的回归
 
 　　首先假设一些基本，数据集记作：
 
@@ -39,13 +47,15 @@ $$
 T = \left\{ \left( x_1 , y _ { 1 } \right) , \left( x _ { 2 } , y _ { 2 } \right) , \ldots . \left( x _ { m } , y _ { m } \right) \right\}
 $$
 
-　　其中 $x_i \in \mathcal{X} \subseteq \mathcal{R}^n$，$\mathcal{X}$ 为输入空间，$y_i \in \mathcal{Y} \subseteq \mathcal{R}$，$\mathcal{Y}$ 为输出空间。在讨论[决策树](https://binlidaily.github.io/2018-09-11-decision-tree/)的时候讨论过这个问题，如果将输入空间 $\mathcal{X}$ 划分为 $J$ 个互不相交的区域 $R_1, R_2, \dots, R_J$，并且在每个区域上都输出一个常量 $c_j$，那么树可以表示为：
+　　其中 $x_i \in \mathcal{X} \subseteq \mathcal{R}^n$，$\mathcal{X}$ 为输入空间，$y_i \in \mathcal{Y} \subseteq \mathcal{R}$，$\mathcal{Y}$ 为输出空间。
+
+　　在讨论[决策树](https://binlidaily.github.io/2018-09-11-decision-tree/)的时候讨论过这个问题，如果将输入空间 $\mathcal{X}$ 划分为 $J$ 个互不相交的区域 $R_1, R_2, \dots, R_J$，并且在每个区域上都输出一个常量 $c_j$，那么树可以表示为：
 
 $$
 T(x;\Theta) = \sum _{j=1} ^ J c_j I(x\in R_j)
 $$
 
-　　其中，参数 $\Theta=\{(R_1, c_1), (R_2, c_2), \dots, (R_J, c_J)\}$ 表示树的区域划分和各区域上的常数，$J$ 是回归树的复杂度即叶节点个数。
+　　其中，参数 $\Theta=\\{(R_1, c_1), (R_2, c_2), \dots, (R_J, c_J)\\}$ 表示树的区域划分和各区域上的常数，$J$ 是回归树的复杂度，即叶节点个数。
 
 　　回归问题提升树使用以下前向分布算法：
 
@@ -57,13 +67,13 @@ f_M(x)&=\sum_{m=1}^M T(x; \Theta_m)
 \end{aligned}
 $$
 
-　　在前向分布算法的第 $m$ 步，给定当前模型 $f_{m-1}(x)$，需求解：
+　　在前向分布算法的第 $m$ 步时，给定当前模型 $f_{m-1}(x)$，需求解：
 
 $$
 \hat{\Theta}_m=\arg \min_{\Theta_m} \sum_{i=1}^N L(y_i, f_{m-1}(x)+T(x_i;\Theta_m))
 $$
 
-　　从而得到 $\hat{\Theta}_m$，即第 $m$ 棵树的参数。
+　　从而得到 $\hat{\Theta}_m$，即第 $m$ 棵树的参数，每一步采用前向分步算法得到第 $m$ 个基模型，对于预测的话，采用加法模型的性质，集合所有的基学习器计算出结果。
 
 　　当采用平方误差损失函数时，
 
@@ -86,9 +96,11 @@ $$
 r=y-f_{m-1}(x)
 $$
 
-　　$r$ 便是当前模型需要拟合的数据残差（residual），该残差可以看成是前一个模型没有很好拟合的部分。残差越小，则当前模型需要拟合的结果越小（因为要损失 $L$ 最小，逼近零），即需要当前模型的几率就越低，那么说明模型已经慢慢训练好了。
+　　$r$ 便是当前模型需要拟合的数据残差（residual），该残差可以看成是前一个模型没有很好拟合的部分，这也是当前基学习器需要拟合的对象，即平时训练数据中 $(x, y)$ 中的 $y$。
 
-　　于是训练当前回归树的流程就变成了：
+　　当残差越小，当前模型需要拟合的结果越小（因为要损失 $L$ 最小，逼近零），即需要当前模型的几率就越低，那么说明模型已经慢慢训练好了。
+
+　　那么总结一下训练当前回归树的步骤：
 
 1. 利用前面的模型结果，计算出残差 $r_{mi}$
 2. 拟合残差 $r_{mi}$ 学习到当前的回归树，得到 $T(x;\Theta_m)$
@@ -96,20 +108,13 @@ $$
 
 　　迭代跑过了所有的回归树后就能得到最终的回归问题提升树：
 
-$$f_M(x)=\sum_{m=1}^M T(x; \Theta_m)$$
+$$
+f_M(x)=\sum_{m=1}^M T(x; \Theta_m)
+$$
 
-　　以此作为残差的估计值，这个估计值作为训练当前学习器的训练样本的 label！并且从第一个弱学习器训练的时候，这个残差估计值是样本 label 的平均值！
+　　看到这里不知道读者有没有这样一个问题，这里我们是采用的是平方损失才有 $r=y-f_{m-1}(x)$ 这样相减的残差形式，那如果换成其他的损失函数还有这样的残差出现吗？
 
-⁉️ 为什么要用残差做 label？
-
-At each stage ${\displaystyle m}$ , ${\displaystyle 1\leq m\leq M}$, of gradient boosting, it may be assumed that there is some imperfect model ${\displaystyle F_{m}}$ (at the outset, a very weak model that just predicts the mean y in the training set could be used). The gradient boosting algorithm improves on ${\displaystyle F_{m}}$ by constructing a new model that adds an estimator h to provide a better model: ${\displaystyle F_{m+1}(x)=F_{m}(x)+h(x)} $. To find ${\displaystyle h}$, the gradient boosting solution starts with the observation that a perfect h would imply
-
-${\displaystyle F_{m+1}(x)=F_{m}(x)+h(x)=y}$ or, equivalently,
-
-$${\displaystyle h(x)=y-F_{m}(x)} $$
-
-Therefore, gradient boosting will fit h to the residual ${\displaystyle y-F_{m}(x)}$. 
-
+　　这里便引出了梯度提升算法（Gradient Boosting Machine），从更全面的角度总结了每一步的基学习器学习的对象 $y$ 到底是什么，请移步[博文](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/)批评指正！
 
 ## References
 1. 《统计学习方法》

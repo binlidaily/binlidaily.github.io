@@ -27,6 +27,8 @@ $$
 \theta_{k+1}=\theta_{k}-\eta \frac{\partial f\left(\theta_{k}\right)}{\partial \theta_{k}}
 $$
 
+## 1. 引进
+## 1. 加法模型方式解读
 　　在梯度提升算法中，对损失函数展开：
 
 $$
@@ -69,13 +71,13 @@ $$
 　　为了简化问题，我们将这个求解过程分两个步骤：
 1. 先求到当前学习器的优化方向，即 $h(x)$ 只是一个优化方向，可以不考虑其大小:
 
-　　1) 可以直接将 $\alpha$ 设为 1，去计算：
+　　a) 可以直接将 $\alpha$ 设为 1，去计算：
 
 $$
 h_{m}=\arg \min _{h} \sum_{i=1}^{N}\left[\left(-g_{m}\left(x_{i}\right)\right)-h\left(x_{i}\right)\right]^{2}
 $$
 
-　　2) 也可以带上参数，但是这个参数在优化时并不是很重要：
+　　b) 也可以带上参数，但是这个参数在优化时并不是很重要：
 
 $$
 \mathbf{\theta}_{m}=\arg \min _{\mathbf{\theta}, \alpha} \sum_{i=1}^{N}\left[-g_{m}\left(\mathbf{x}_{i}\right)-\alpha h\left(\mathbf{x}_{i} ; \mathbf{\theta}\right)\right]^{2}
