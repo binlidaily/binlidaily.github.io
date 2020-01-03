@@ -68,6 +68,20 @@ def binarySearch(arr, l, r, x):
     return -1
 ```
 
+### 二分搜索常见考察点
+1. 对于边界条件的考察以及代码实现的能力
+2. 常见题目题目的变化
+    1. 给定处理货查找对象的不同，有无重复
+    2. 判断条件不同
+    3. 要求返回的要求不同
+3. 在有序循环数组中进行二分搜索
+
+注意：
+ 
+```python
+mid = (left+right) / 2 # 加和太大的话可能溢出
+mid = left + (right-left) / 2
+```
 ## References
 1. [Binary Search - geeksforgeeks](https://www.geeksforgeeks.org/binary-search/)
 2. [二维数组中的查找](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)

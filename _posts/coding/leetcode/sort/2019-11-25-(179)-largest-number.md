@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 179. Largest Number
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, Sort]
+tags: [Coding, LeetCode, Sort, Medium]
 image: 
 comments: true
 published: true
