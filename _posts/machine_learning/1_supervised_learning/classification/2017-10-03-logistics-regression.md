@@ -50,8 +50,14 @@ $$
 
 　　这边是从需求角度引入了 LR 的决策函数，当然我们还能从广义线性模型的角度来引入这个结果。
 
+　　值得注意的是 logistic function 的一个特性：
+
+$$
+1-\sigma(s) = \sigma(-s)
+$$
+
 ### 1.2 广义线性模型导出 LR
-　　然而从上面的直观理解，虽然输出的结果是在 [0, 1] 上，很难将输出结果跟概率值直接对应上。可以参考 GLM 的具体[介绍](https://binlidaily.github.io/2019-11-27-glm-generalized_linear_model)。
+　　然而从上面的直观理解，虽然输出的结果是在 [0, 1] 上，很难将输出结果跟概率值直接对应上。可以参考 GLM 的具体[介绍](https://binlidaily.github.io/2019-11-27-glm-generalized_linear_model)，看如何从 GLM 推导了 Sigmoid 函数。
 
 ## 2. 构建 LR 模型
 　　到此我们知道了 LR 的决策函数，接下来我们就要构建非常重要的损失函数了。然后尝试去求解最优值，会用到求导和梯度下降的通用方法。
@@ -79,9 +85,19 @@ $$
 
 $$P(y_i|{x}_i;\mathrm{w}) = p^{y_i}(1-p)^{1-{y_i}}$$
 
-　　如果是 $y \in \\{1，-1\\}$ 就要注意下指数的写法。
+　　接下来就可以走极大似然估计的套路了，选择 $m$ 个训练集:
 
-　　接下来就可以走极大似然估计的套路了，选择 $m$ 个训练集，最大化概率连乘，然后套上对数并加上负号，变成最小化交叉熵损失函数。
+$$
+D = \left\{ \left( x_1 , y _ { 1 } \right) , \left( x _ { 2 } , y _ { 2 } \right) , \ldots . \left( x _ { m } , y _ { m } \right) \right\}
+$$
+
+　　计算对应的似然，最大化概率连乘，其中每个样本的采样先验概率对最优化没有影响，可以忽略：
+
+$$
+{\arg \max}_w \text{Likelihood}(x, w, y) = \prod_{i=1}^m P(x_i)P(y_i|{x_i};\mathrm{w}) \Longrightarrow \prod_{i=1}^m P(y_i|{x_i};\mathrm{w})
+$$
+
+　　有了似然函数，再套上单调的对数并加上负号，就变成最小化交叉熵损失函数：
 
 $$
 \begin{aligned} L(\mathrm{w}) &=p({y} | X ; \mathrm{w}) \\ 
@@ -105,6 +121,26 @@ $$
 $$
 \ell(\mathrm{w}) = -\sum_{i=1}^{m} y_{i} \log p_i+\left(1-y_{i}\right) \log \left(1-p_i\right)
 $$
+
+　　当然，如果是 $y \in \\{1，-1\\}$ 就要注意似然函数的写法，因为有 $1-\sigma(s) = \sigma(-s)$，所以概率计算结果为：
+
+$$
+P(y|{x};\mathrm{w})=\left\{ \begin{aligned} g(\mathrm{w}^Tx)=g(y\mathrm{w}^Tx), y=1 \\ g(-\mathrm{w}^Tx)=g(y\mathrm{w}^Tx),y=-1 \end{aligned} \right.
+$$
+
+　　那么似然函数就变成：
+
+$$
+{\arg \max}_w \text{Likelihood}(x, w, y) = \prod_{i=1}^m g(y_i\mathrm{w}^Tx_i)
+$$
+
+  加对数和取符号后得到交叉熵损失函数：
+
+$$
+\frac{1}{N} \sum_{n=1}^{N} \log \left(1+\exp \left(-y_{n} w^{T} \mathbf{x}_{n}\right)\right)
+$$
+
+
 
 ### 2.2 优化求导更新参数
 　　对于特定样本 $j$，计算损失函数对 $w$ 的偏导如下：
