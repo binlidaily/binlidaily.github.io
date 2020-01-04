@@ -83,7 +83,7 @@ $$
 r_{t i}=-\left[\frac{\partial L\left(y, f\left(x_{i}\right)\right) )}{\partial f\left(x_{i}\right)}\right]_{f(x)=f_{t-1}(x)}=\frac{y_{i}} {1+\exp \left(y_{i} f\left(x_{i}\right)\right)}
 $$
 
-　　对于生成的决策树，我们各个叶子节点的最佳残差拟合值为
+　　对于生成的决策树，各个叶子节点的最佳残差拟合值为
 
 $$
 c_{t j}=\underset{c}{ \arg \min } \sum_{x_{i} \in R_{t j}} \log \left(1+\exp \left(-y_{i}\left(f_{t-1}\left(x_{i}\right)+c\right)\right)\right)
@@ -98,7 +98,7 @@ $$
 　　除了负梯度计算和叶子节点的最佳残差拟合的线性搜索，二元 GBDT 分类和 GBDT 回归算法过程相同。
 
 ### 2.2 GBDT 多分类算法
-　　多元 GBDT 要比二元 GBDT 复杂一些，在于多元逻辑回归和二元逻辑回归的复杂度差别。假设类别数为 $K$，则此时我们的对数似然损失函数为：
+　　多元 GBDT 要比二元 GBDT 复杂一些，在于多元逻辑回归和二元逻辑回归的复杂度差别。假设类别数为 $K$，则对数似然损失函数为：
 
 $$
 L ( y , f ( x ) ) = - \sum _ { k = 1 } ^ { K } y _ { k } \log p _ { k } ( x )
@@ -110,15 +110,15 @@ $$
 p _ { k } ( x ) = {\exp \left( f _ { k } ( x ) \right) \over \sum _ { l = 1 } ^ { K } \exp \left( f _ { l } ( x ) \right)}
 $$
 
-　　集合上两式，我们可以计算出第 $t$ 轮的第 $i$ 个样本对应类别 $l$ 的负梯度误差为
+　　结合上两式，可以计算出第 $t$ 轮的第 $i$ 个样本对应类别 $l$ 的负梯度为
 
 $$
 r_{t i l}=-\left[\frac{\partial L\left(y_{i}, f\left(x_{i}\right)\right) )}{\partial f\left(x_{i}\right)}\right]_{f_{k}(x)=f_{l, t-1}(x)}=y_{i l}-p_{l, t-1}\left(x_{i}\right)
 $$
 
-　　观察上面的式子可以看出，其实这里的误差就是样本 $i$ 对应的类别 $l$ 的真是概率和 $t-1$ 轮预测概率的差值。
+　　观察上式可以看出，这里的误差就是样本 $i$ 对应类别 $l$ 的真实概率和 $t-1$ 轮预测概率的差值。
 
-　　对于生成的决策树，我们各个叶子节点的最佳残差拟合值为
+　　对于生成的决策树，各个叶子节点的最佳伪残差拟合值为
 
 $$
 c_{t j l}=\underset{c_{j l}}{\arg \min } \sum_{i=0}^{m} \sum_{k=1}^{K} L\left(y_{k}, f_{t-1, l}(x)+\sum_{j=0}^{J} c_{j l} I\left(x_{i} \in R_{t j l}\right)\right)
@@ -130,7 +130,7 @@ $$
 c_{t j l}=\frac{K-1}{K} \frac{x_{i} \in R_{t i l}}{\sum_{x_{i} \in R_{t i l}}\left|r_{t i l}\right|\left(1-\left|r_{t i l}\right|\right)}
 $$
 
-　　同样的，除了负梯度计算和叶子节点的最佳残差拟合的线性搜索，多元 GBDT 分类和二元 GBDT 分类以及 GBDT 回归算法过程相同。
+　　同样的，除了负梯度计算和叶子节点最佳伪残差拟合的线性搜索，多元 GBDT 分类和二元 GBDT 分类以及 GBDT 回归算法过程相同。
 
 ## 3. GBDT 常见损失函数
 　　这里对 GBDT 常见损失函数做一个总结，对分类和回归任务分别整理。
@@ -138,7 +138,7 @@ $$
 ### 3.1 分类任务的损失函数
 　　对于分类算法，其损失函数一般有对数损失函数和指数损失函数两种:
 
-1. 如果是指数损失函数，则损失函数表达式为
+　　如果是**指数损失**函数，则损失函数表达式为
 
 $$
 L(y, f(x))=\exp (-y f(x))
@@ -146,13 +146,13 @@ $$
 
 　　其负梯度计算和叶子节点的最佳负梯度拟合可以参看 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)。
 
-{:start="2"}
 
-1. 如果是对数损失函数，分为二元分类和多元分类两种，参看上两小节内容。
+
+　　如果是**对数损失**函数，分为二元分类和多元分类两种，参看上两小节内容。
 
 ### 3.2 回归任务的损失函数
 
-　　1. **均方差**，这个是最常见的回归损失函数了
+　　1. **均方差**，这个是最常见的回归损失函数：
 
 $$
 L(y, f(x))=(y-f(x))^{2}
@@ -200,7 +200,7 @@ $$
 ## 4. GBDT 的正则化
 　　和 Adaboost 一样，我们也需要对 GBDT 进行正则化，防止过拟合。GBDT 的正则化主要有三种方式。
 
-　　1) 第一种是和 Adaboost 类似的正则化项，即步长(learning rate)。定义为 $\nu$,对于前面的弱学习器的迭代
+　　1）第一种是和 Adaboost 类似的正则化项，即步长(learning rate)。定义为 $\nu$,对于前面的弱学习器的迭代
 
 $$
 f_{k}(x)=f_{k-1}(x)+h_{k}(x)
