@@ -9,9 +9,7 @@ comments: true
 published: true
 ---
 
-　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/) 方法利用损失函数的负梯度作为残差拟合的方式，如果其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。GBDT 但是跟传统的 Boosting 方法 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 有较大的不同，Adaboost 是利用前一轮迭代弱学习器的误差率来更新训练集的权重，如此迭代到收敛。
-
-　　而在 GBDT 的迭代中，如果前一轮迭代得到的强学习器是 $f_{t-1}(x)$，损失函数是 $L\left(y, f_{t-1}(x)\right)$，那么我们本轮迭代的目标是找到一个弱学习器 $h_{t}(x)$，使得本轮损失函数 $L\left(y, f_{t}(x)=L\left(y, f_{t-1}(x)+h_{t}(x)\right)\right.$ 最小，以及本轮的弱学习器要让样本损失尽可能的小。
+　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/) 方法利用损失函数的负梯度（伪残差）作为拟合对象的方式，当其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。相比于传统的 Boosting 方法 [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/) 有较大的不同，Adaboost 是利用前一轮迭代弱学习器的分类误差率来更新训练集的权重，如此迭代到收敛；
 
 
 <p align="center">
@@ -19,16 +17,14 @@ published: true
 </p>
 
 
-　　GBDT 的思想可以用一个通俗的例子解释，假如有个人30岁，我们首先用20岁去拟合，发现损失有10岁，这时我们用6岁去拟合剩下的损失，发现差距还有4岁，第三轮我们用3岁拟合剩下的差距，差距就只有一岁了。如果我们的迭代轮数还没有完，可以继续迭代下面，每一轮迭代，拟合的岁数误差都会减小。
-
-　　通过例子来看似乎很简单，但是有一个问题是，这个损失的拟合不是很好实施，损失函数各种各样，如果统一起来呢？这就是[Gradient Boosting](https://binlidaily.github.io/2018-12-05-gradient-boosting/) 方法利用损失函数的负梯度作为残差拟合的方式的厉害之处。接下来我们分回归和分类的任务分别介绍。
+　　GBDT 的思想可以用一个通俗的例子解释，可以用打高尔夫球的例子形象解释，当然这也只限于回归任务，分类任务的话会退化为 Adaboost。接下来我们从回归和分类的任务上分别予以介绍。
 
 
 ## 1. GBDT 回归算法
-　　当我们采用的基学习器是决策树时，那么梯度提升就具象到了梯度提升决策树。那么还是从一些假设开始，数据集记作：
+　　当我们采用的基学习器是决策树时，那么梯度提升就具象到了梯度提升决策树。先还是从一些假设开始，数据集记作：
 
 $$
-T = \left\{ \left( x_1 , y _ { 1 } \right) , \left( x _ { 2 } , y _ { 2 } \right) , \ldots . \left( x _ { m } , y _ { m } \right) \right\}
+D = \left\{ \left( x_1 , y _ { 1 } \right) , \left( x _ { 2 } , y _ { 2 } \right) , \ldots . \left( x _ { m } , y _ { m } \right) \right\}
 $$
 
 　　其中 $x_i \in \mathcal{X} \subseteq \mathcal{R}^n$，$\mathcal{X}$ 为输入空间，$y_i \in \mathcal{Y} \subseteq \mathcal{R}$，$\mathcal{Y}$ 为输出空间，损失函数为 $L(y, f(x))$，我们的目标是得到最终的回归树 $\hat { f } ( x )$。
@@ -41,13 +37,13 @@ $$
 
 　　2）对于迭代轮数（基学习器个数） $t = 1,2 , \dots , M$：
 
-　　　a）对 $ i = 1,2 , \dots , m$，计算损失函数的负梯度：
+　　　a）对每一个样本 $ i = 1,2 , \dots , m$，计算损失函数的负梯度：
 
 $$
 r_{t i}=-\left[\frac{\partial L\left(y_{i}, f\left(x_{i}\right)\right) )}{\partial f\left(x_{i}\right)}\right]_{f(x)=f_{t-1}}
 $$
 
-　　　b）对于 $i=1,2, \dots m$，利用 $\left(x_{i}, r_{t i}\right)$ 拟合出一颗 CART 回归树，得到第 $t$ 颗回归树，其对应的叶子节点区域为 $R_{t j}$, $j=1,2, \dots, J$，其中 $J$ 为回归树 $t$ 的叶子节点的个数。
+　　　b）对 $i=1,2, \dots m$，利用 $\left(x_{i}, r_{t i}\right)$ 拟合出一颗 CART 回归树，得到第 $t$ 颗回归树，其对应的叶子节点区域为 $R_{t j}$, $j=1,2, \dots, J$，其中 $J$ 为回归树 $t$ 的叶子节点的个数。
 
 　　　c）对于 $J$ 个叶子节点区域 $j=1,2, \dots, J$，计算出最佳拟合值：
 
@@ -64,7 +60,7 @@ $$
 　　3）得到强学习器 $f(x)$ 的表达式：
 
 $$
-f(x)=f_{T}(x)=f_{0}(x)+\sum_{t=1}^{T} \sum_{j=1}^{J} c_{t j} I\left(x \in R_{t j}\right)
+\hat{f}(x)=\sum_{T} f(x)=f_{0}(x)+\sum_{t=1}^{T} \sum_{j=1}^{J} c_{t j} I\left(x \in R_{t j}\right)
 $$
 
 
