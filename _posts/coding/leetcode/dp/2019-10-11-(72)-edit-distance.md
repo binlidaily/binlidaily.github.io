@@ -3,12 +3,13 @@ layout: post
 title: 72. Edit Distance
 subtitle: 编辑距离 (Hard)
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Hard, DP]
 image: 
 comments: true
 published: true
 ---
 
+## Description
 Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
 
 You have the following 3 operations permitted on a word:
@@ -75,29 +76,31 @@ class Solution:
 　　注意状态转移方程有两个部分！！！
 
 ```python
-# Time Complextiy: O(nm)
-# Space Complextiy: O(nm)
+# Time: O(mn)
+# Space: O(mn)
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-        l1, l2 = len(word1), len(word2)
-        dp = [[0 for _ in range(l2+1)] for _ in range(l1+1)]
-        for i in range(1, l1+1):
-            dp[i][0] = i
-        for j in range(1, l2+1):
-            dp[0][j] = j
-        for i in range(1, l1+1):
-            for j in range(1, l2+1):
-                if word1[i-1] == word2[j-1]:
-                    dp[i][j] = dp[i-1][j-1]
+        n1, n2 = len(word1), len(word2)
+        dp = [[0 for _ in range(n2 + 1)] for _ in range(n1 + 1)]
+        dp[0][0] = 0
+        for i in range(1, n1 + 1):
+            dp[i][0] = dp[i - 1][0] + 1
+        for i in range(1, n2 + 1):
+            dp[0][i] = dp[0][i - 1] + 1
+        for i in range(1, n1 + 1):
+            for j in range(1, n2 + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
                 else:
                     dp[i][j] = 1 + min(dp[i-1][j-1],  # replace
                                       dp[i-1][j],     # delete
                                       dp[i][j-1])     # insert
-        return dp[l1][l2]
-# Runtime: 184 ms, faster than 62.60% of Python3 online submissions for Edit Distance.
-# Memory Usage: 17.7 MB, less than 15.38% of Python3 online submissions for Edit Distance.
+        return dp[n1][n2]
+# Runtime: 188 ms, faster than 60.15% 
+# Memory Usage: 16.4 MB, less than 80.77%
 ```
 
 ## References
 1. [72. Edit Distance](https://leetcode.com/problems/edit-distance/)
 2. [花花酱](https://www.youtube.com/watch?v=Q4i_rqON2-E)
+3. [不同操作不用权重的编辑距离问题](https://binlidaily.github.io/2020-01-06-(12-9)-最优编辑)
