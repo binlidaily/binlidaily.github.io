@@ -191,3 +191,4 @@ return dp(start)
 ## References
 1. [代码模板，刷题必会](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
 2. [14 Patterns to Ace Any Coding Interview Question](https://medium.com/hackernoon/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed)
+3. [花花酱 LeetCode DP Summary 动态规划总结](https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-dp-summary/)

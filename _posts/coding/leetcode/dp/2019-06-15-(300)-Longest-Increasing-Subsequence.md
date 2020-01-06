@@ -1,14 +1,15 @@
 ---
 layout: post
 title: 300. Longest Increasing Subsequence
-subtitle: 递增字串问题
+subtitle: 递增字串问题（Medium）
 author: Bin Li
-tags: [Coding, LeetCode, DP, Binary Search]
+tags: [Coding, LeetCode, DP, Binary Search, Medium]
 image: 
 comments: true
 published: true
 ---
 
+## Description
 Given an unsorted array of integers, find the length of longest increasing subsequence.
 
 Example:
@@ -29,23 +30,22 @@ Follow up: Could you improve it to O(n log n) time complexity?
 　　采用动态规划的解决方法，维护一个 dp 数组，其中 dp[i] 表示以 nums[i] 结尾的最长递增字串长度，对于每一个 nums[i]，我们从第一个数再搜索到 i，如果发现某个数小于 nums[i]，我们就更新 dp[i]，更新方法是 `dp[i] = max(dp[i], dp[j] + 1)`，即比较当前 dp[i] 的值和那个小于 num[i] 的数的 dp 值加 1 的大小，我们就这样不断的更新 dp数组，到最后 dp 数组中最大的值就是我们要返回的 LIS 的长度。
 
 ```python
-# Time Complexity: O(n^2)
-# Space Complexity: O(n)
-class Solution(object):
-    def lengthOfLIS(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+# Time: O(n^2)
+# Space: O(n)
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
         n = len(nums)
-        dp = [1] * n
-        
+        dp = [1 for _ in range(n)]
         for i in range(n):
             for j in range(i):
                 if nums[j] < nums[i]:
                     dp[i] = max(dp[i], dp[j] + 1)
-        
         return max(dp)
+# 24/24 cases passed (1224 ms)
+# Your runtime beats 21.57 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
 ```
 
 ### 2. 加上 Binary Search 提升到 O(nlogn)
