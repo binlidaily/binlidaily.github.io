@@ -98,6 +98,11 @@ DP 一般用来做计数、优化。
 1. 状态转移矩阵中只能取 f[i+1][*] 和 f[i][*], 这是使用滚动数组的前提。
 2. 外循环使用 i, 内循环使用 j 并同时使用逆推，这是滚动数组使用的具体实践。
 
+
+
+
+
+
 ## 经典问题
 1. [Longest Common Subsequence](https://www.techiedelight.com/longest-common-subsequence/)
 2. [Shortest Common Supersequence](https://www.techiedelight.com/shortest-common-supersequence-introduction-scs-length/)
@@ -132,6 +137,45 @@ DP 一般用来做计数、优化。
 18. [Dice Throw Problem](https://www.geeksforgeeks.org/dice-throw-problem/)
 19. [Box Stacking](https://www.geeksforgeeks.org/dynamic-programming-set-21-box-stacking-problem/)
 20. [Egg Dropping Puzzle](https://www.geeksforgeeks.org/dynamic-programming-set-11-egg-dropping-puzzle/)
+
+
+
+### 背包问题
+
+```c++
+# Knapsack using 2D DP Array
+int knapsack(int val[], int wt[], int n, int W)
+{
+   int dp[n+1][W+1];
+   memset(dp, 0, sizeof dp);
+   for (int i = 1; i <= n; i++)
+   {
+       for (w = 1; w <= W; w++)
+       {
+           dp[i][w] = dp[i-1][w];  //don't include the item
+           if (wt[i-1] <= w)
+                 dp[i][w] = max(dp[i][w], 
+                           val[i-1] + dp[i-1][w-wt[i-1]]);  
+       }
+   }
+   return dp[n][W];
+}
+```
+
+　　优化：
+
+
+```c++
+int knapsack(int val[], int wt[], int n, int W)
+{
+    int dp[W+1];
+    memset(dp, 0, sizeof(dp));
+    for(int i=0; i < n; i++) 
+        for(int j=W; j>=wt[i]; j--)
+            dp[j] = max(dp[j] , val[i] + dp[j-wt[i]]);
+    return dp[W];
+}
+```
 
 ## References
 
