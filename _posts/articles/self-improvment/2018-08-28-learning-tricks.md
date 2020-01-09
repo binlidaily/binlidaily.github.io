@@ -134,7 +134,10 @@ published: true
 ![费曼技巧](/img/media/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7.jpg)
 
 
-### 1.3 整理比赛
+### 1.3 练习编程
+　　对于写过的 LeetCode 的，用 Anki 复习时，最好能够同步在纸上回顾，
+
+### 1.4 整理比赛
 
 ```markdown
 ## 1. 赛题理解

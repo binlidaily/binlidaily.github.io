@@ -9,6 +9,7 @@ comments: true
 published: true
 ---
 
+## Description
 Given a binary tree, determine if it is height-balanced.
 
 For this problem, a height-balanced binary tree is defined as:
@@ -47,9 +48,9 @@ Return false.
 ### 1. 递归
 
 ```python
-# Time Complexity: O(nlogn)
-# Space Complexity: O(n)
 # Definition for a binary tree node.
+# Time: O(n)
+# Space: O(1)
 # class TreeNode:
 #     def __init__(self, x):
 #         self.val = x
@@ -58,18 +59,26 @@ Return false.
 
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
-        if not root:
-            return True
-        left_height = self.height(root.left)
-        right_height = self.height(root.right)
-        return abs(left_height - right_height) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
+        is_flag, height = self._is_balanced(root)
+        return True if is_flag else  False
     
-    def height(self, root):
+    def _is_balanced(self, root):
+        # return is_balanced, height
         if not root:
-            return 0
-        return max(self.height(root.left), self.height(root.right)) + 1
-# Runtime: 84 ms, faster than 13.97% of Python3 online submissions for Balanced Binary Tree.
-# Memory Usage: 18.7 MB, less than 37.14% of Python3 online submissions for Balanced Binary Tree.
+            return True, 0
+        
+        left_b, left_h = self._is_balanced(root.left)
+        right_b, right_h = self._is_balanced(root.right)
+        if not left_b or not right_b:
+            return False, -1
+        else:
+            if abs(left_h - right_h) > 1:
+                return False, -1
+            else:
+                return True, max(left_h, right_h) + 1
+# 227/227 cases passed (36 ms)
+# Your runtime beats 99.66 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (16.4 MB)
 ```
 ### 2. 递归-优化
 

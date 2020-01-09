@@ -3,11 +3,13 @@ layout: post
 title: 99. Recover Binary Search Tree
 subtitle: Hard
 author: Bin Li
-tags: [Coding, LeetCode, DFS]
+tags: [Coding, LeetCode, DFS, Tree, Hard]
 image: 
 comments: true
 published: true
 ---
+
+## Description
 
 Two elements of a binary search tree (BST) are swapped by mistake.
 
@@ -56,7 +58,80 @@ Follow up:
 
 ## Solutions
 ### 1. DFS-中序遍历
-　　这种方法可以应对所有的打乱顺序，但是，问题是用空间换时间的做法，定义了两个数组。
+　　首先明白如何判断发生了变化，可以通过中序遍历知道是否发生的改变。有两个数字位置发生了变化，有两种情况：
+1. 这俩结点相邻，中序遍历后的数组只有一次降序出现
+2. 这俩结点不相邻，则有两次降序
+    1. 第一次降序记录其中较大的
+    2. 第二次降序记录其中较小的
+
+　　找到这两个发生错误的元素后再遍历一遍二叉树做一下修正：
+
+```python
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def recoverTree(self, root: TreeNode) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        if not root:
+            return None
+        one, two = self.find_two_nodes(root)
+        print(one, two)
+        stack = []
+        node = root
+        while node or stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            if node.val == one:
+                node.val = two
+            elif node.val == two:
+                node.val = one
+            node = node.right
+        # return root
+
+    def find_two_nodes(self, root):
+        if not root:
+            return None, None
+        stack = []        
+        res = []
+        node = root
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            res.append(node.val)
+            node = node.right
+        n = len(res)
+        max_val, min_val = None, None
+        for i in range(1, n):
+            if res[i - 1] > res[i]:
+                if min_val is not None:
+                    min_val = res[i]
+                else:
+                    max_val, min_val = res[i - 1], res[i]
+        return max_val, min_val
+
+# 1917/1917 cases passed (80 ms)
+# Your runtime beats 15.52 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.8 MB)
+```
+
+
+
+### 2. DFS-中序遍历递归优化
+
+　　这里记录一种更加广泛的做法，不只打乱一对数，用空间换时间的做法，定义了两个数组。
 
 ```python
 # Time Complexity: O(n)
@@ -88,43 +163,6 @@ class Solution:
         self.inorder(root.right, seq, seq_p)
 # Runtime: 76 ms, faster than 67.66% of Python3 online submissions for Recover Binary Search Tree.
 # Memory Usage: 13.9 MB, less than 25.00% of Python3 online submissions for Recover Binary Search Tree.
-```
-
-### 2. DFS-中序遍历递归优化
-
-```python
-# Time Complexity: O(n)
-# Space Complexity: O(n)
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution:
-    def recoverTree(self, root: TreeNode) -> None:
-        """
-        Do not return anything, modify root in-place instead.
-        """
-        seq = []
-        self.inorder(root, seq)
-        first, second = None, None
-        for i in range(1, len(seq)):
-            if not first and seq[i-1].val > seq[i].val:
-                first, second = seq[i-1], seq[i]
-            if first and seq[i-1].val > seq[i].val:
-                second = seq[i]
-        first.val, second.val = second.val, first.val
-    
-    def inorder(self, root, seq):
-        if not root:
-            return
-        self.inorder(root.left, seq)
-        seq.append(root)
-        self.inorder(root.right, seq)
-# Runtime: 76 ms, faster than 67.66% of Python3 online submissions for Recover Binary Search Tree.
-# Memory Usage: 14.1 MB, less than 25.00% of Python3 online submissions for Recover Binary Search Tree.
 ```
 
 ### 3. DFS-迭代

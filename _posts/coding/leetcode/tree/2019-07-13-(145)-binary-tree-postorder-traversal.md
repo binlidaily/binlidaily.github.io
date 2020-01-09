@@ -3,7 +3,7 @@ layout: post
 title: 145. Binary Tree Postorder Traversal
 subtitle: 后序遍历（Hard）
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Tree, Hard]
 image: 
 comments: true
 published: true
@@ -116,5 +116,41 @@ class Solution(object):
 # Runtime: 16 ms, faster than 83.33% of Python online submissions for Binary Tree Postorder Traversal.
 # Memory Usage: 11.7 MB, less than 72.69% of Python online submissions for Binary Tree Postorder Traversal.
 ```
+
+　　不用先序的反转：
+
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def postorderTraversal(self, root):
+        if not root:
+            return []
+        stack = []
+        stack.append(root)
+        stack.append(root)
+        res = []
+        while stack:
+            node = stack.pop()
+            if stack and stack[-1] == node:
+                if node.right:
+                    stack.append(node.right)
+                    stack.append(node.right)
+                if node.left:
+                    stack.append(node.left)
+                    stack.append(node.left)
+            else:
+                res.append(node.val)
+        return res
+# Runtime: 28 ms, faster than 63.15% 
+# Memory Usage: 12.8 MB, less than 100.00%
+```
+
 ## References
 1. [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
