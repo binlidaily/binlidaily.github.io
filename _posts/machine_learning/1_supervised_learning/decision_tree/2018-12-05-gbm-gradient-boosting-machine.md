@@ -70,7 +70,6 @@ F_{m}(x)&=F_{m-1}(x)-\eta \frac{\partial L\left(y, F_{m-1}(x)\right)}{\partial F
 \end{aligned}
 $$
 
-
 　　结合梯度提升算法作为分布加法模型的特性有：
 
 $$
