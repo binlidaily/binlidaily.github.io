@@ -4,10 +4,6 @@ title: "Python 基础教程"
 author: "Bin Li"
 tags: [Programming, Python]
 comments: true
-style: |
-  .container {
-        max-width: 44rem;
-    } 
 published: true
 ---
 
