@@ -3,7 +3,7 @@ layout: post
 title: 499. Word Count (Map Reduce)
 subtitle: 
 author: Bin Li
-tags: [Coding, LintCode]
+tags: [Coding, LintCode, MapReduce]
 image: 
 comments: true
 published: true
