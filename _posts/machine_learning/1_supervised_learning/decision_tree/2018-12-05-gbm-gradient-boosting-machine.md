@@ -132,6 +132,7 @@ $$
 </p>
 
 
+
 　　详细的部分可以参考[原论文](/assets/papers/gbm-Freidman-1999.pdf)，如果我们用决策树作为基函数来实现梯度提升算法的话就得到了闻名遐迩的 [GBDT](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree/)。
 
 ## References
