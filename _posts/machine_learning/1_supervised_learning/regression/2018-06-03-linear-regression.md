@@ -138,7 +138,7 @@ $$
 
 
 $$
-\hat { w }^ = \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
+\hat { w }= \left( \gamma \mathbf { I } + X ^ { T } X \right) ^ { - 1 } X ^ { T } y
 $$
 
 　　对于求解办法，除了上面这种[最小二乘法求解](https://mp.weixin.qq.com/s?__biz=MzAwNjM1ODkxNQ==&mid=2650889909&idx=1&sn=e71820b81c167c5039b91a7a6f9083f7&chksm=80fb6c59b78ce54f946f9611fd08bbcef7154b0c7480684121780374f4056be4b83522963ed1&scene=21#wechat_redirect)的，还可以用梯度下降的方式求解。
