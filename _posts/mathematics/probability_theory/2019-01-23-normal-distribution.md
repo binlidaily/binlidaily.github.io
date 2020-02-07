@@ -29,5 +29,7 @@ $$
 f\left(x | \mu, \sigma^{2}\right)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
 $$
 
+　　标准正态分布的均值是0，标准差是1，但并不意味着均值为0，标准差为1的分布是标准正态分布。T分布的均值也0，标准差也可以为1。决定一个分布是否是标准正态分布的参数还有峰度和偏度，最重要的还是看概率密度函数吧。
+
 ## References
 1. [正态分布为什么常见？](http://www.ruanyifeng.com/blog/2017/08/normal-distribution.html)

@@ -352,7 +352,7 @@ imp.transform(X)
 
 
 
-### 2.5 缩放 / 归一化
+### 2.5 无量纲化
 
 　　为了消除数据特征之间的量纲影响，我们需要对特征进行归一化处理，使得不同指标之间具有可比性。而在 SKlearn 里面区别了标准化 (StandardScaler) 和归一化 (Normalizer) 等，要弄清楚这两者之间的[关系](http://benalexkeen.com/feature-scaling-with-scikit-learn/)。
 
