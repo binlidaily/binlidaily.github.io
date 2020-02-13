@@ -106,6 +106,9 @@ ET或Extra-Trees（Extremely randomized trees，极端随机树）是由PierreGe
 3. 训练好的模型比较大，预测时较慢
 4. 相比于单一决策树，它的随机性让我们难以对模型进行解释
 
+## Q & A
+
+
 ## References
 1. [Bagging与随机森林算法原理小结](https://www.cnblogs.com/pinard/p/6156009.html)
 2. [RF、GBDT、XGBoost面试级整理](https://cloud.tencent.com/developer/article/1080189)
