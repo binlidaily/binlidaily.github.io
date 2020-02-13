@@ -134,7 +134,7 @@ $$
 {\arg \max}_w \text{Likelihood}(x, w, y) = \prod_{i=1}^m g(y_i\mathrm{w}^Tx_i)
 $$
 
-  加对数和取符号后得到交叉熵损失函数：
+　　加对数和取符号后得到交叉熵损失函数：
 
 $$
 \frac{1}{N} \sum_{n=1}^{N} \log \left(1+\exp \left(-y_{n} w^{T} \mathbf{x}_{n}\right)\right)

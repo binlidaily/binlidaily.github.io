@@ -65,3 +65,4 @@ class KthLargest:
 
 ## References
 1. [703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/description/)
+2. [huahua](https://zxi.mytechroad.com/blog/divide-and-conquer/leetcode-169-majority-element/)
