@@ -1,6 +1,6 @@
 ---
 layout: post
-title:181. Employees Earning More Than Their Managers
+title: 181. Employees Earning More Than Their Managers
 subtitle: Easy
 author: Bin Li
 tags: [Coding, LeetCode, Easy, SQL]
