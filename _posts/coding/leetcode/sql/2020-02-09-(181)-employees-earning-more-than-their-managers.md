@@ -10,7 +10,6 @@ published: true
 ---
 
 ## Description
-
 SQL Schema
 
 The `Employee` table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id.
