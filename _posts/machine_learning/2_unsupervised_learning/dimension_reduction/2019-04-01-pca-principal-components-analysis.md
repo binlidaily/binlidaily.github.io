@@ -9,31 +9,48 @@ comments: true
 published: true
 ---
 
-　　主成分分析 (Principal Components Analysis, PCA) 旨在找到数据中的主成分，并利用这些主成分表征原始数据，从而达到降维的目的。一般从理论上解释 PCA 原理有两个方向，一是从最大方差理论，二是从最小平方误差理论。
+　　主成分分析（Principal Components Analysis, PCA）是一种常见的数据分析方式，常用于高维数据的降维，可用于提取数据的主要特征分量，其目标是找到一组低维的基来表示原数据。一般从理论上解释 PCA 原理有两个方向：
+1. 一是从最大方差理论（最大可分型）
+2. 二是从最小平方误差理论（最近重构性）。
 
 ## 1. PCA 最大方差理论
-　　我们想将高维空间的数据映射到一个低维空间，映射的结果考虑是要尽量使得数据分散得开，也就是**最大化投影方差**，最大化方差尽量使得投影后的数据之间具有较大的区分度。这样考虑的一个依据是来自信号处理领域的信噪比，我们认为信号具有较大方差，噪声具有较小方差，信号与噪声之比称为信噪比。信噪比越大意味着数据的质量越好，反之，信噪比越小意味着数据的质量越差。如下图拿二维数据为例：
+　　我们想将高维空间的数据映射到一个低维空间，映射的结果考虑是要尽量使得数据分散得开，因为如有数据重叠，那么可以看成信息丢失了。数值的分散程度可以用方差或协方差来衡量，于是目标也就是要**最大化投影方差**，最大化方差尽量使得投影后的数据之间具有较大的区分度。
+
+　　当然也可以从熵的角度进行理解，熵越大所含信息越多。这样考虑的一个依据是来自信号处理领域的信噪比，我们认为信号具有较大方差，噪声具有较小方差，信号与噪声之比称为信噪比。信噪比越大意味着数据的质量越好，反之，信噪比越小意味着数据的质量越差。如下图拿二维数据为例：
 
 <p align="center">
   <img width="400" height="" src="/img/media/15611834879719.jpg">
 </p>
 
+### 1.1 一维向量视角（拉格朗日乘子法）
 
-　　对于给定的一组数据点 $\\{v_1, v_2, \ldots, v_n \\}$，其中所有向量均为列向量，中心化后的表示为
+　　对于给定的一组数据点 $\\{v_1, v_2, \ldots, v_n \\}$，其中所有向量均为列向量，中心化（零均值化）后的表示为
 
 $$
 \left\{x_{1}, x_{2}, \ldots, x_{n}\right\}=\left\{v_{1}-\mu, v_{2}-\mu, \ldots, v_{n}-\mu\right\}
 $$
 
-　　其中 $\mu=\frac{1}{n} \sum_{i=1}^{n} v_{i}$。我们知道，向量内积在几何上表示为第一个向量投影到第二个向量上的长度，因此向量 $x_i$ 在单位方向向量 $w$ 上的投影坐标可以表示为 $\left(\boldsymbol{x}_i, \boldsymbol{\omega}\right)=\boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{\omega}$。所以我们的目标是找到一个投影方向 $w$，使得在 $w$ 上的投影方差尽可能大。
+　　其中：
 
-　　计算方差之前，我们先计算投影后的均值：
+$$
+\mu=\frac{1}{n} \sum_{i=1}^{n} v_{i}
+$$
+
+　　我们知道，向量内积在几何上表示为第一个向量投影到第二个向量上的长度，因此向量 $x_i$ 在单位方向向量 $w$ 上的投影坐标可以表示为：
+
+$$
+\left(\boldsymbol{x}_i, \boldsymbol{\omega}\right)=\boldsymbol{x}_i^{\mathrm{T}} \boldsymbol{\omega}
+$$
+
+　　所以我们的目标是寻找一个一维基 $w$，使得所有数据变换为这个基上的坐标表示后，方差值最大。
+
+　　计算方差之前，我们先计算投影后坐标矩阵的均值：
 
 $$
 \boldsymbol{\mu}^{\prime}=\frac{1}{n} \sum_{i=1}^{n} \boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{\omega}=\left(\frac{1}{n} \sum_{i=1}^{n} \boldsymbol{x}_{i}^{\mathrm{T}}\right) \boldsymbol{\omega}=0
 $$
 
-　　投影后的均值为 0，所以在计算方差时就不用考虑均值了，这也是为什么 PCA 要做中心化！那么方差计算如下：
+　　投影后的均值为 $0$，所以在计算方差时就不用考虑均值了，这也是为什么 PCA 要做中心化！那么方差计算如下：
 
 $$
 \begin{aligned}
@@ -64,7 +81,87 @@ $$
 
 　　熟悉线性代数的读者马上就会发现，原来，$x$ 投影后的方差就是协方差矩阵的特征值。我们要找到最大的方差也就是协方差矩阵最大的特征值，最佳投影方向就是最大特征值所对应的特征向量。次佳投影方向位于最佳投影方向的正交空间中，是第二大特征值对应的特征向量，以此类推。
 
+### 1.2 多维矩阵视角（矩阵对角化）
+　　设原始 $n\times m$ 维的数据矩阵 $V_{n\times m}$，对应的均值矩阵为 $U_{n\times m}=\frac{1}{n}V$，中心化后的矩阵记为 $X_{n \times m}=V-U$，则样本的协方差矩阵为 $C$：
+
+$$
+C = \frac{1}{n}XX^T
+$$
+
+　　可见 $C$ 是一个对称矩阵，其对角线分别对应各个变量的方差，而第 $i$ 行 $j$ 列和 $j$ 行 $i$ 列元素相同，表示 $i$ 和 $j$ 两个变量的协方差。
+
+　　再设 $P$ 是一组基按行组成的矩阵，设 $Y=PX$，则 $Y$ 为 $X$ 对 $P$ 做**基变换**后的数据。设 $Y$ 的协方差矩阵为 $D$，我们推导一下 数据变换前后的协方差 $C$ 与 $D$ 的关系：
+
+$$
+\begin{aligned} D &=\frac{1}{m} Y Y^{T} \\ &=\frac{1}{m}(P X)(P X)^{T} \\ &=\frac{1}{m} P X X^{T} P^{T} \\ &=P\left(\frac{1}{m} X X^{T}\right) P^{T} \\ &=P C P^{T} \end{aligned}
+$$
+
+　　有了这个公式后，我们再总结一下 PCA 的优化目标有两个：
+
+1. 将为后同一维度的方差最大
+2. 不同维度之间的相关性为零
+
+　　根据线性代数可知：
+
+1. 同一元素的协方差就表示该元素的方差
+2. 不同元素之间的协方差表示它们的相关性
+
+　　这两个优化目标偶可以用协方差矩阵来表示：
+$$
+\begin{array}{l}{C=\left[\begin{array}{cccc}{\operatorname{Cov}\left(x_{1}, x_{1}\right)} & {\operatorname{Cov}\left(x_{1}, x_{2}\right)} & {\ldots} & {\operatorname{Cov}\left(x_{1}, x_{R}\right)} \\ {\operatorname{Cov}\left(x_{2}, x_{1}\right)} & {\operatorname{Cov}\left(x_{2}, x_{2}\right)} & {\ldots} & {\operatorname{Cov}\left(x_{2}, x_{R}\right)} \\ {} & {\cdots} & {} & {\cdots} & {\cdots} \\ {\operatorname{Cov}\left(x_{R}, x_{1}\right)} & {\operatorname{Cov}\left(x_{R}, x_{2}\right)} & {\cdots} & {\operatorname{Cov}\left(x_{R}, x_{R}\right)}\end{array}\right]_{R \cdot R}} \\ ~~~{\Rightarrow} ~~{C_{Y}=\left[\begin{array}{cccc}{\delta_{11}} & {0} & {\ldots} & {0} \\ {0} & {\delta_{22}} & {\cdots} & {0} \\ {\cdots} & {\cdots} & {\cdots} & {\cdots} \\ {0} & {0} & {\ldots} & {\delta_{R R}}\end{array}\right]_{R \times R}}\end{array}
+$$
+
+
+　　样本降维后希望得到的最理想的协方差矩阵（包含最多信息），即优化目标就是令类似上面的 $C_Y$ 矩阵的 $D$ 矩阵的对角线元素之和最大，即 $\max \operatorname{tr}(D)$。当然，我们要求 $P$ 作为基是正交的，所以：
+
+$$
+P^T P = I
+$$
+
+　　则最终的优化目标可以表示为：
+
+$$
+\begin{array}{cl}{\max _{\mathbf{P}}} & {\operatorname{tr}\left(\mathbf{P}^{\mathrm{T}} \mathbf{X} \mathbf{X}^{\mathrm{T}} \mathbf{P}\right) = \operatorname{tr}\left(\mathbf{P}^{\mathrm{T}} \mathbf{C} \mathbf{P}\right)} \\ {\text { s.t. }} & {\mathbf{P}^{\mathrm{T}} \mathbf{P}=\mathbf{I}}\end{array}
+$$
+
+　　根据拉格朗日乘子法可以得到：
+
+$$
+f(P)=\operatorname{tr}\left(P^{T} C P\right)+\lambda\left(I-P^{T} P\right)
+$$
+
+　　其中迹（tr）表示对角线元素的和，这里用到其重要公式：
+
+$$
+\frac{\partial t r(A B)}{\partial A}=B^{T}
+$$
+
+$$
+\operatorname{tr}(U V)=\operatorname{tr}(V U)
+$$
+
+　　对拉格朗日乘子法结果求导并取零点有：
+
+$$
+\begin{aligned}
+\frac{\partial f}{\partial P}&=\frac{\partial \operatorname{tr}\left(P^{T} C P\right)}{\partial P}-\lambda \frac{\partial\left(P^{T} P\right)}{\partial P} \\
+&=\frac{\partial \operatorname{tr}\left(P P^{T} C\right)}{\partial P}-\lambda P \\
+&= (P^TC)^T - \lambda P\\
+&= C^TP - \lambda P
+\end{aligned}
+$$
+
+　　当 $\frac{\partial f}{\partial P} = 0$ 时，得到：
+
+$$
+CP=\lambda P
+$$
+
+　　即优化目标只要对协方差矩阵做特征值分解即可。
+
+
 总结一下 PCA 求解步骤：
+
 1. 对样本数据进行中心化处理。
 2. 求样本协方差矩阵：$\Sigma = \frac{1}{n} \sum_{i=1}^{n}  \boldsymbol{x}_i \boldsymbol{x}_i^{\mathrm{T}} $。
 3. 对协方差矩阵进行特征值分解，将特征值从大到小排列。
@@ -105,7 +202,7 @@ $$
 
 ![](/img/media/15691391187625.jpg)
 
-先找一个主成分，然后再找第二个一直往后找。再找第二个时，还要加上一个新的约束，与第一个主成分相互垂直，不然第二次还是找到第一个主成分。
+　　先找一个主成分，然后再找第二个一直往后找。在找第二个时，还要加上一个新的约束，与第一个主成分相互垂直，不然第二次还是找到第一个主成分。
 
 ## 2. PCA 最小平方误差理论
 　　为什么说 PCA 是线性降维方法呢？可以看下其决策函数就可以看到，就是一个线性计算，那么我们就可以将其转换一下思路，其目标也是求解一个线性函数使得对应直线能够更好地拟合样本点集合。如果我们从这个角度定义PCA的目标，那么问题就会转化为一个回归问题。
@@ -296,3 +393,5 @@ print(grid_search.best_params_)
 2. 《机器学习》周志华
 3. [Kernel Principal Components Analysis](/assets/Kernel-PCA.pdf)
 4. [Feature-Engineering中文版第6章：降维：用 PCA 压缩数据集](https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.12281897.0.0.698639a9P5jdJr&postId=62468)
+5. [降维——PCA（非常详细）](https://zhuanlan.zhihu.com/p/77151308)
+6. [PCA算法原理：为什么用协方差矩阵](https://www.imooc.com/article/29197)
