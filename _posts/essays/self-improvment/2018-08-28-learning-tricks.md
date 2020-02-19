@@ -66,10 +66,29 @@ published: true
 * 重述（Recite）
 * 复习（Review）
 
+**ML Algorithm Learning Template**
+- Why this algorithm is proposed?
+	- What **problem** does it solved?
+- Understand how it works and can explain it to other people
+	- Could you give an **example**?
+- What should we notice when we use it?
+	- How to deal with the input data, **categorical or numerical**?
+	- How to deal with the big data?
+	- Which **tools** should we choose when we wanna use this algorithm?
+- What **Pros and Cons** dose the algorithm have?
+	- For the drawbacks, how to reduce their influence?
+	- Compare this algorithm with other familiar ones
+
+
+
+
 **算法**的理解模板：
-1. 一个图例（如 SVM margin）
+1. 一个例子或者图例（如 SVM margin）
 2. 算法的**核心思想**要清楚
-3. 算法的创造思维
+    1. 你能向别人讲明白这个算法吗？
+    2. 举一个例子或者图例来辅助讲述
+3. 思考算法的创造思维
+    1. 这个算法是怎么样被提出来的？
 4. 关键表达式能写出（4 个）
     1. 决策/目标函数（其中含有一些待求参数）
     2. 损失函数（得到待求参数）
@@ -78,7 +97,9 @@ published: true
         2. 迭代公式（需要迭代计算偏导更新参数）
 5. 算法过程能通过文字伪代码的形式写出
 6. 算法优缺点，及缺点拓展
-7. 算法使用场景及**特征处理要求**
+7. 算法使用注意
+    1. 常见的使用场景是什么？
+    2. 及**特征处理要求**
 8. 实践示例及调参相关
 9. 看算法的原来 Paper 以及源代码（可以是 github 上的简单实现也可以是 Sklearn 的实现）
 
