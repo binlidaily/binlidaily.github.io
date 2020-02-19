@@ -73,7 +73,7 @@ $$
 
 　　其中 $\lambda$ 为拉格朗日乘子。
 
-　　注意到 $S_{b}w$ 的方向恒为 $\boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1}$，不妨令：
+　　注意到 $S_{b}w$ 的方向恒为 $\boldsymbol{\mu}_0-\boldsymbol{\mu}_1$，不妨令：
 
 $$
 S_{b} = \lambda \left( \boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1} \right)
@@ -114,7 +114,7 @@ $$
 \mathbf{s}_{b} \mathbf{w}=\lambda \mathbf{S}_{w} \mathbf{w}
 $$
 
-　　结果就是计算矩阵 $\mathbf{s}_{w}^{-1}\mathbf{s}_{b}$ 的最大的 $d$ 个特征值和对应的 $d$ 个特征向量 $(w_1, w_2, \dots, w_d)$，得到投影矩阵 $W= (w_1, w_2, \dots, w_d)$。
+　　结果就是计算矩阵 $\mathbf{s}_w^{-1}\mathbf{s}_b$ 的最大的 $d$ 个特征值和对应的 $d$ 个特征向量 $(w_1, w_2, \dots, w_d)$，得到投影矩阵 $W= (w_1, w_2, \dots, w_d)$。
 
 LDA 算法流程：
 
@@ -126,9 +126,9 @@ LDA 算法流程：
 
 2）计算类间散度矩阵 $S_w$
 
-3）计算矩阵 $\mathbf{s}_{w}^{-1}\mathbf{s}_{b}$
+3）计算矩阵 $\mathbf{s}_w^{-1}\mathbf{s}_b$
 
-4）计算矩阵 $\mathbf{s}_{w}^{-1}\mathbf{s}_{b}$ 的特征值与特征向量，按从小到大的顺序选取前 $d$ 个特征值和对应的 $d$ 个特征向量 $(w_1, w_2, \dots, w_d)$，得到投影矩阵 $W$.
+4）计算矩阵 $\mathbf{s}_{w}^{-1}\mathbf{s}_b$ 的特征值与特征向量，按从小到大的顺序选取前 $d$ 个特征值和对应的 $d$ 个特征向量 $(w_1, w_2, \dots, w_d)$，得到投影矩阵 $W$.
 
 5）对样本集中的每一个样本特征 $x_i$，转化为新的样本 $z_i = W^Tx_i$
 
@@ -156,11 +156,10 @@ LDA 算法流程：
 * LDA在样本分类信息依赖均值而不是方差的时候，比PCA算法较优。
 
 算法缺点:
-
-LDA与PCA均不适合对非高斯分布样本进行降维
-LDA降维算法最多降到类别数K-1的维度，当降维的维度大于K-1时，则不能使用LDA。当然目前有一些改进的LDA算法可以绕过这个问题
-LDA在样本分类信息依赖方差而非均值的时候，降维效果不好
-LDA可能过度拟合数据
+* LDA与PCA均不适合对非高斯分布样本进行降维
+* LDA降维算法最多降到类别数K-1的维度，当降维的维度大于K-1时，则不能使用LDA。当然目前有一些改进的LDA算法可以绕过这个问题
+* LDA在样本分类信息依赖方差而非均值的时候，降维效果不好
+* LDA可能过度拟合数据
 
 ## References
 1. [Linear Discriminant Analysis – Bit by Bit](https://sebastianraschka.com/Articles/2014_python_lda.html)
