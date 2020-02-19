@@ -9,7 +9,7 @@ comments: true
 published: false
 ---
 
-## 
+
 
 
 ![-w1284](/img/media/15388201936242.jpg)
@@ -20,6 +20,14 @@ published: false
 
 
 ![-w1432](/img/media/15390089793697.jpg)
+
+
+## Q & A
+### 如何在小数据集上是用深度学习
+1. 数据增强
+2. 用预训练的网络做特征提取
+3. 对预训练的网络进行微调
+
 
 ## References
 1. [deeplearning-models](https://github.com/rasbt/deeplearning-models)

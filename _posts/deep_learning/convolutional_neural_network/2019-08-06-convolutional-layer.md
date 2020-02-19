@@ -11,6 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
+卷积神经网络学得到是局部的、平移不变的特征。
 
 　　将卷积层之前我们先了解一下什么是卷积，卷积是对两个实变函数的数学运算，我们称 $(f*g)(n)$ 为 $f$、$g$ 的卷积。其连续定义为：
 
