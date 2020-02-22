@@ -9,6 +9,9 @@ comments: true
 published: true
 ---
 
+　　对于难题，先想出来 Brute Force 怎么做啊！在刷题的时候先把 BF 的写出来！
+
+思考一下面对不会做的题目，要如何想！
 
 ## 二分模板
 

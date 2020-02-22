@@ -73,5 +73,75 @@ class Solution:
 # Memory Usage: 13.7 MB, less than 100.00%
 ```
 
+### 2. DP-(从行的角度)
+
+```python
+# Time: O(mn*n)
+# Space: O(nm)
+class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        r, c = len(matrix), len(matrix[0])
+        # dp[i][j] := max length of all 1 sequence ends with col j, at the i-th row.
+        dp = [[0 for _ in range(c)] for _ in range(r)]
+        # Transition
+        for i in range(r):
+            for j in range(c):
+                if matrix[i][j] == '1':
+                    if j == 0:
+                        dp[i][j] = 1
+                    else:
+                        dp[i][j] = dp[i][j-1] + 1
+                # elif matrix[i][j] == '0':
+                #     dp[i][j] = 0
+        res = 0
+        for i in range(r):
+            for j in range(c):
+                size = float('inf')
+                for k in range(i, r):
+                    size = min(size, dp[k][j])
+                    if size == 0:
+                        break
+                    res = max(size * (k - i + 1), res)
+        return res
+
+# 66/66 cases passed (476 ms)
+# Your runtime beats 18.15 % of python3 submissions
+# Your memory usage beats 93.75 % of python3 submissions (13.8 MB)
+```
+
+### 3. DP-(从列的角度)
+
+```python
+# Time: O(mn)
+# Space: O(n)
+class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        r, c = len(matrix), len(matrix[0])
+        dp = [[0 for _ in range(c)] for _ in range(r)]
+        max_area = 0
+        for i in range(r):
+            for j in range(c):
+                if i == 0:
+                    dp[i][j] = 1 if matrix[i][j] == '1' else 0
+                else:
+                    if matrix[i][j] == '1':
+                        dp[i][j] = dp[i-1][j] + 1
+                    else:
+                        dp[i][j] = 0
+                min_col = dp[i][j]
+                for k in range(j, -1, -1):
+                    if min_col == 0:
+                        break
+                    if dp[i][k] < min_col:
+                        min_col = dp[i][k]
+                    max_area = max(max_area, min_col * (j - k + 1))
+        return max_area
+```
 ## References
 1. [85. Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle)
+2. [huahua](https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-85-maximal-rectangle/)
+3. [DP](https://leetcode.com/problems/maximal-rectangle/discuss/403093/Java-Simple-DP-Solution-with-state-table)
