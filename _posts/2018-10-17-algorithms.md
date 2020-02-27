@@ -162,6 +162,10 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Sequential Model
         * [Recurrent Neural Networks（RNN）](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/)
         * [Long Short Term Memory networks（LSTM）](https://binlidaily.github.io/2019-04-12-lstm-long-short-term-memory-networks/)
+        * YOLO
+            * [YOLOv1](https://binlidaily.github.io/2019-07-08-yolov1-you-only-look-once/)
+            * [YOLOv2](https://binlidaily.github.io/2019-11-12-yolov2-you-only-look-once/)
+            * [YOLOv3](https://binlidaily.github.io/2019-11-12-yolov3-you-only-look-once/)
 
 * Speech Recognition
 * 	Natural Language Processing
