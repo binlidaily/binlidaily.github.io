@@ -51,8 +51,8 @@ $$
 　　其中：
 * $P_{r}(\text {object})$ 表示一个框包含一个物体的概率，对于训练集来说，可以通过坐标容易知道物体在不在框中，在就为 1，不在就为 0
 * $IoU$ 就是预测框（卷积结果的坐标框部分值）和真实框的 $IoU$ 值
-* $P_{r}\left(\text {class}_i | \text {object}\right)$ 表示如果存在一个物体，那么这个物体属于第 $i$ 类的概率，这在每个 cell 中都能直接得到
-* $P_{r}\left(\text {class}_i\right)$ 表示类置信度，即物体属于某一个类的概率，可以通过框置信度和类条件概率算出来。
+* $P_r\left(\text {class}_i | \text {object}\right)$ 表示如果存在一个物体，那么这个物体属于第 $i$ 类的概率，这在每个 cell 中都能直接得到
+* $P_r\left(\text {class}_i\right)$ 表示类置信度，即物体属于某一个类的概率，可以通过框置信度和类条件概率算出来。
 
 ### 2.1 Localization Loss 
 　　定位损失用来衡量预测边界框的位置和大小，这里只考虑负责检测对应物体的边界框损失。YOLO 只关注真正例，所以在计算损失前，会选择与 Ground Truth 有着最大的 IoU 的边界框作为真正例去与待检物体匹配，计算对应损失。
@@ -120,4 +120,4 @@ $$
 4. [Yolov3 Keras 版本从零到壹跑模型](https://blog.csdn.net/qq_39622065/article/details/86174142)
 5. [Understanding YOLO](https://hackernoon.com/understanding-yolo-f5a74bbc7967)
 6. [Real-time Object Detection with YOLO, YOLOv2 and now YOLOv3](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)
-7. [目标检测|YOLO原理与实现](https://zhuanlan.zhihu.com/p/32525231)
+7. [目标检测-YOLO原理与实现](https://zhuanlan.zhihu.com/p/32525231)
