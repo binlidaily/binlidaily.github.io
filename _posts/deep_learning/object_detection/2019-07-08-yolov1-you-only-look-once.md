@@ -55,7 +55,7 @@ $$
 * $P_{r}\left(\text {class}_{i}\right)$ 表示类置信度，即物体属于某一个类的概率，可以通过框置信度和类条件概率算出来。
 
 ### 2.1 Localization Loss 
-　　定位损失用来衡量预测的边界框的位置和大小，这里只考虑负责检测对应物体的边界框损失。YOLO 只关注真正例，所以在计算损失前，会选择与 Ground Truth 有着最大的 IoU 的边界框作为真正例去与待检物体匹配，计算对应损失。
+　　定位损失用来衡量预测边界框的位置和大小，这里只考虑负责检测对应物体的边界框损失。YOLO 只关注真正例，所以在计算损失前，会选择与 Ground Truth 有着最大的 IoU 的边界框作为真正例去与待检物体匹配，计算对应损失。
 
 $$
 \begin{array}{l}{\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right]} \\ {\quad+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}})^{2}+(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}})^{2}\right]}\end{array}
@@ -65,7 +65,7 @@ $$
 * 如果在第 $i$ 个 cell 里面的第 $j$ 个 boundary box 是用来检测对应物体的，那么有 $\mathbb{1} = 1$，否则为 $\mathbb{1} = 0$。
 * $\lambda_{\text {coord}}$ 可以用来调节对边界框坐标预测误差的关注度。
 
-　　值得注意的是这里的计算宽和高的时候先求算术平方根，因为 w 和 h 归一化后，还是大物体的位置偏差要比小物体的要大，开方后相对来书减少了一定的误差。
+　　值得注意的是这里的计算宽和高的时候先求算术平方根，因为 $w$ 和 $h$ 归一化后，还是大物体的位置偏差要比小物体的要大，开方后相对来书减少了一定的误差。
 
 ### 2.2 Confidence Loss
 
