@@ -40,17 +40,30 @@ SSD 具有以下特点：
 </p>
 
 ## 1. SSD 的提升点
-### 1.1 采用多尺度特征图
-　　如上图的网络结构，SSD 采用网络层中不同尺度的特征图，即能够在不同感受野的特征图上预测目标（定位和分类）。而 SSD 对于每一层特征图的每一个位置都采用了固定先验框的方式，那么在浅层的特征图中就能检测到相对较小的物体，深层的特征图检测相对较大的物体。
 
-![](/img/media/15541023500828.jpg)
+### 1.1 固定默认先验框
+　　SSD 在不同的特征图中设定了不同的特征图个数，具体可以看网络结构图中有说明每层特征图对应的先验框个数。这样就大大提高了寻找先验框的效率，进而加速的训练过程。
 
+<p align="center">
+<img src="/img/media/15547129370535.jpg" width="">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">SSD 默认先验框</em>
+</p>
 
+　　对于每一个 cell 都会有对应该层先验框个数个先验结果作为训练的初始值。
+
+　　那么 default box 的 scale（大小）和 aspect ratio（横纵比）要怎么定呢？假设我们用 m 个 feature maps 做预测，那么对于每个 featuer map 而言其 default box 的 scale 是按以下公式计算的： 
+
+$$
+s_{k}=s_{\min }+\frac{s_{\max }-s_{\min }}{m-1}(k-1), \quad k \in[1, m]
+$$
+
+　　
 ### 1.2 直接采用卷积进行定位和分类
 ![](/img/media/15614581132951.jpg)
 
 　　SSD 的网络结构是在 VGG 的基础之上搭建的，从不同的卷积层提取出 feature map 直接连接到损失输出层。不同大小的每一个 feature map 被分成 $m\times n$ 个 cell，每个 cell 有默认 $k$ 个 default boxes，最后的 predict box 与default box 有 4 个 offset，并为每个 predict box 计算 $c$ 个类的值。最后产生了 $(c+4)kmn$ 个值。
-
 
 ```python
 def ssd_multibox_layer(inputs,
@@ -87,18 +100,40 @@ def ssd_multibox_layer(inputs,
 
 　　那么最后的结果是 `(batch, height*width*n_boxes, n_classes + 4 + 8)`，每一行的结果就是正好分类概率加上定位坐标和 Prior box 信息，这样就可以找配对得到 Pos 和 Neg，然后计算 Loss，对应的训练。
 
-### 1.3 固定默认先验框
-　　SSD 在不同的特征图中设定了不同的特征图个数，具体可以看网络结构图中有说明每层特征图对应的先验框个数。这样就大大提高了寻找先验框的效率，进而加速的训练过程。
+　　因为负类锚框数目可能远多于其他，我们可以只保留其中的一些。而且是保留那些目前预测最不确信它是负类的，就是对类0预测值排序，选取数值最小的那一些困难的负类锚框。
 
-<p align="center">
-<img src="/img/media/15547129370535.jpg" width="">
-</p>
-<p style="margin-top:-2.5%" align="center">
-    <em style="color:#808080;font-style:normal;font-size:80%;">SSD 默认先验框</em>
-</p>
+　　用卷积而不用全连接的好处是，这样可以同时在feature map 中提出分类和回归的特征。
+
+
+### 1.3 采用多尺度特征图
+　　如之前的网络结构，SSD 采用网络层中不同尺度的特征图，即能够在不同感受野的特征图上预测目标（定位和分类）。而 SSD 对于每一层特征图的每一个位置都采用了固定先验框的方式，那么在浅层的特征图中就能检测到相对较小的物体，深层的特征图检测相对较大的物体。
+
+![](/img/media/15541023500828.jpg)
+
+
+3.3 Matching Strategy
+
+       这一步是说训练需要的default box如何与GT框匹配的问题。MultiBox中用的是best jaccard overlap来配对，jaccard overlap跟IOU的概念类似，都是交集比上并集。MultiBox中采用jaccard overlap最大值的default box与GT（Ground Truth）配对。SSD中只要jaccard overlap大于0.5的default box都可以看做是正样本，因此一个GT可以与多个default box配对。当然，小于0.5的default box就看做是负例了。
+
+3.4 Hard Negative Mining
+
+经过上述的Matching Strategy可能产生多个与GT匹配的正样例的和数量更多的负例。负样例的数目远远多于正样例的数目，使正负样例数目不平衡，导致训练难以收敛。解决方法是：选取负样例的default box，将他们的得分从大大小进行排序，选取的得分最高的前几个负样例的default box，最终使正负样例比例为1：3。
+
 
 
 ## 2. 训练目标
+　　在训练模型时，我们需要在模型的前向计算过程中生成多尺度的锚框 anchors，并为每个锚框预测类别 cls_preds 和偏移量 bbox_preds。之后，我们根据标签信息 Y 为生成的每个锚框标注类别 cls_labels 和偏移量 bbox_labels。最后，我们根据类别和偏移量的预测和标注值计算损失函数。
+
+　　对于每一个输出 feature map 的层，先会用不同权重的 3x3 卷积，stride=1 的方式分别卷积出分类的结果和回归结果。每个结果长宽大小和 feature map 一值，但是通道数会不同，分类的通道数是 $k*(c+1)$，回归的通道数是 $k*4$。
+
+　　由于不同输出层下的尺度大小是不一样的，但是通道数和 batch size 是一样的，我们可以按照这两个维度，reshape 一下张量，使得在 flatten 后的结果中，分类是按照 batch 为大单位，里面以第一个输出层的第一个位置的一个先验框的分类概率值，接下来是 1、1、2，再是 1、1、3 这样的方式排列。回归结果同理，不过是连续四个值一起。
+
+　　这个是预测结果的形式，那么我们怎么知道预测的框和类别准不准呢？我们可以将真实的标注框信息作为模板，刷一遍我们的预测值，这样我们就可以通过计算 IoU 来找到正类和负类（背景），以及预测框与真实框偏移量（box_target），以及每个预测框的每一个坐标是否保留的掩码（box_mask），还有每一个预测框的真是类别序号（cls_target，背景是0），得出这三个量，我们就可以在根据预测的分类和回归结果来计算分类和回归损失了。
+
+![](/img/media/15827216993894.jpg)
+
+　　值得注意的是真是的 label 是包含真实类标和框值，共 5 个数。
+
 　　SSD 的训练目标函数参考了 [MultiBox](/assets/Multibox.pdf) 的形式，分成两个部分：
 
 $$
@@ -119,13 +154,17 @@ $$
 
 　　主要采用了 Smooth L1 loss，相比于 MultiBox 的 L2 Loss，对异常值不敏感，且梯度变化较缓，训练时不会出现极速跌宕的情况。其中 $d$ 是默认先验框的 offsets。
 
+$$
+\begin{array}{l}{\qquad L_{1}(x)=|x| ; \frac{d L_{1}(x)}{d x}=\left\{\begin{array}{ll}{1} & {\text { if } x \geq 0} \\ {-1} & {\text { otherwise }}\end{array}\right.} \\ {\qquad L_{1}(x)=x^{2} ; \frac{d L_{2}(x)}{d x}=2 x} \\ {\text { smooth }_{L_{1}}(x)=\left\{\begin{array}{ll}{0.5 x^{2}} & {\text { if }|x|<1} \\ {|x|-0.5} & {\text { otherwise }}\end{array} ; \frac{d s \text { mooth }_{L_{1}}}{d x}=\left\{\begin{array}{ll}{x} & {\text { if }|x|<1} \\ {|x|-0.5} & {\text { otherwise }}\end{array}\right.\right.}\end{array}
+$$
+
 　　loss 的第二部分是分类：
 
 $$
 L_{c o n f}(x, c)=-\sum_{i \in P o s}^{N} x_{i j}^{p} \log \left(\hat{c}_{i}^{p}\right)-\sum_{i \in N e g} \log \left(\hat{c}_{i}^{0}\right) \quad \text { where } \quad \hat{c}_{i}^{p}=\frac{\exp \left(c_{i}^{p}\right)}{\sum_{p} \exp \left(c_{i}^{p}\right)}
 $$
 
-　　跟 MultiBox 一样采用了交叉熵作为 loss，不同点是，不像 MultiBox 中 $c_i$ 直接采用预测得分，因为 SSD 直接将分类引入了，所以 SSD 采用了 Softmax Loss 来计算多类别的置信度（或者说得分）。其中上标 $0$ 表示背景。
+　　跟 MultiBox 一样采用了**交叉熵**作为 loss，不同点是，不像 MultiBox 中 $c_i$ 直接采用预测得分，因为 SSD 直接将分类引入了，所以 SSD 采用了 Softmax Loss 来计算多类别的置信度（或者说得分）。其中上标 $0$ 表示背景。
 
 ## 3. SSD 论文一些其他的发现
 1. 更多的默认框能够得到更好的效果，在速度上会有较大的影响。
@@ -143,7 +182,6 @@ $$
 * SSD 为什么用 L1 loss 计算 Location Loss？
 * 为什么正负比例特别大，而用上了 Hard Negative Mining。
 
-
 ## References
 1. [SSD 论文](/assets/SSD-Single-Shot-MultiBox-Detector.pdf)
 2. [SSD 手写代码](https://github.com/xiaohu2015/DeepLearning_tutorials/tree/master/ObjectDetections/SSD)
@@ -156,3 +194,6 @@ $$
 9. [R-CNN & Fast R-CNN & Faster R-CNN](http://cs.unc.edu/~zhenni/blog/notes/R-CNN.html)
 10. [SSD object detection: Single Shot MultiBox Detector for real-time processing](https://medium.com/@jonathan_hui/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing-9bd8deac0e06)
 11. [Understanding SSD MultiBox — Real-Time Object Detection In Deep Learning](https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab)
+12. [9.7. 单发多框检测（SSD）](https://zh.gluon.ai/chapter_computer-vision/ssd.html)
+13. [『MXNet』第十弹_物体检测SSD](https://www.cnblogs.com/hellcat/p/9108647.html)
+14. [](https://www.cnblogs.com/xuanyuyt/p/7222867.html)

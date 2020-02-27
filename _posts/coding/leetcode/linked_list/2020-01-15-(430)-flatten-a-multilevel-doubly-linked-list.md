@@ -32,7 +32,8 @@ The multilevel linked list in the input is as follows:
 
 After flattening the multilevel linked list it becomes:
 
-430. Flatten a Multilevel Doubly Linked List
+![](/img/media/15827260930970.jpg)
+
 
 **Example 2:**
 
@@ -101,6 +102,7 @@ Merging the serialization of each level and removing trailing nulls we obtain:
 
 ## Solutions
 ### 1. Coding Skill
+　　主要考验的是编程能力，看能不能够 bug free 了！
 
 ```python
 # Time: O(n)
@@ -142,7 +144,8 @@ class Solution:
 # Your memory usage beats 100 % of python3 submissions (12.8 MB)
 ```
 
-### 2. Stack
+### 2. Stack + two pointers
+　　总有一个先处理 child 后处理 next 的操作，就可以用 stack 来存。
 
 ```python
 class Solution:

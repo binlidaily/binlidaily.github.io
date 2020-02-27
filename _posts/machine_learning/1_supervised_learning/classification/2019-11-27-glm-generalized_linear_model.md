@@ -100,7 +100,7 @@ GLM 的好处是能够假设反应变量（response variables）可以服从任�
     * ${\displaystyle E(Y\mid X)=\mu =g^{-1}(\eta)}$
 
 
-式子可以写成：
+　　式子可以写成：
 
 $$
 {\displaystyle f_{Y}(\mathbf {y} \mid {\boldsymbol {\theta }},\tau )=h(\mathbf {y} ,\tau )\exp \left({\frac {\mathbf {b} ({\boldsymbol {\theta }})^{\rm {T}}\mathbf {T} (\mathbf {y} )-A({\boldsymbol {\theta }})}{d(\tau )}}\right).\,\!}
