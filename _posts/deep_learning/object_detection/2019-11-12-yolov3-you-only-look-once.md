@@ -1,7 +1,7 @@
 ---
 layout: post
 title: You Only Look Once
-subtitle: v3
+subtitle: YOLOv3
 author: Bin Li
 tags: [Deep Learning, Object Detection]
 comments: true
@@ -19,6 +19,11 @@ published: true
 ### 1.2 边界框检测和损失函数计算
 　　YOLOv3 采用逻辑回归计算每个边界框的框置信度，并且还修改了计算损失函数的方式。如果先验框（锚框）与 Ground Truth 真实对象的重叠程度大于其他先验框，则其框置信度应为 1。对于重叠程度大于预定义阈值（默认值为0.5）的其他先验框，则损失为0。每个 Ground Truth 物体仅与一个边界框相关联。如果一个先验框没有关联物体，则不会导致分类和定位丢失，而只会产生置信度损失。 我们使用tx和ty（而不是bx和by）来计算损失。YOLOv3 使用 $t_x$ 和 $t_y$ 而非 $b_x$ 和 $b_y$ 来计算损失。
 
+$$
+\begin{array}{c}\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right] \\ \quad+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}})^{2}+(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}})^{2}\right] \\ \quad+\sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\ \quad+\lambda_{\text {noobj }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {noobj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\ \quad+\sum_{i=0}^{S^{2}} \mathbb{1}_{i}^{\text {obj }} \sum_{c \in \text { classes }}\left(p_{i}(c)-\hat{p}_{i}(c)\right)^{2}\end{array}
+$$
+
+The last three terms in YOLO v2 are the squared errors, whereas in YOLO v3, they’ve been replaced by cross-entropy error terms. In other words, object confidence and class predictions in YOLO v3 are now predicted through logistic regression.
 
 ### 1.3 特征金字塔网络（Feature Pyramid Networks）
 　　YOLOv3 对于每一个位置预测三个结果，每一个预测结果包括一个边界框，一个物体，和 $80$ 个类预测概率，也就是 $N\times N \times [3 \times (4+1+80)]$ 个预测值。
@@ -51,9 +56,9 @@ published: true
 
 
 ## References
-1. [YOLOv1 Paper](/assets/YOLOv1.pdf)
-2. [YOLOv2 Paper](/assets/YOLOv2.pdf)
-3. [YOLOv3 Paper](/assets/YOLOv3.pdf)
+1. [YOLOv1 Paper](/assets/papers/YOLOv1.pdf)
+2. [YOLOv2 Paper](/assets/papers/YOLOv2.pdf)
+3. [YOLOv3 Paper](/assets/papers/YOLOv3.pdf)
 4. [Yolov3 Keras 版本从零到壹跑模型](https://blog.csdn.net/qq_39622065/article/details/86174142)
 5. [Real-time Object Detection with YOLO, YOLOv2 and now YOLOv3](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)
 6. [What’s new in YOLO v3?](https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b)

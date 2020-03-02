@@ -1,7 +1,7 @@
 ---
 layout: post
 title: You Only Look Once
-subtitle: v1
+subtitle: YOLOv1
 author: Bin Li
 tags: [Deep Learning, Object Detection]
 comments: true
@@ -120,9 +120,9 @@ $$
 * YOLO detects one object per grid cell. It enforces spatial diversity in making predictions.
 
 ## References
-1. [YOLOv1 Paper](/assets/YOLOv1.pdf)
-2. [YOLOv2 Paper](/assets/YOLOv2.pdf)
-3. [YOLOv3 Paper](/assets/YOLOv3.pdf)
+1. [YOLOv1 Paper](/assets/papers/YOLOv1.pdf)
+2. [YOLOv2 Paper](/assets/papers/YOLOv2.pdf)
+3. [YOLOv3 Paper](/assets/papers/YOLOv3.pdf)
 4. [Yolov3 Keras 版本从零到壹跑模型](https://blog.csdn.net/qq_39622065/article/details/86174142)
 5. [Understanding YOLO](https://hackernoon.com/understanding-yolo-f5a74bbc7967)
 6. [Real-time Object Detection with YOLO, YOLOv2 and now YOLOv3](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)

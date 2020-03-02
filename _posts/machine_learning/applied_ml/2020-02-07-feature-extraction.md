@@ -253,3 +253,4 @@ data_df[col] = data_df[col].map(lambda x : np.log1p(x))
 ## References
 1. [归一化和标准化的一些理解](https://www.jianshu.com/p/540d56ef350f)
 2. [Tips-of-Feature-engineering](https://github.com/Pysamlam/Tips-of-Feature-engineering)
+3. [使用sklearn做单机特征工程](https://www.cnblogs.com/jasonfreak/p/5448385.html)
