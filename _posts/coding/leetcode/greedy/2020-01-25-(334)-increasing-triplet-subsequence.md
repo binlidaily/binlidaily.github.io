@@ -37,6 +37,12 @@ Output: false
 
 ## Solutions
 ### 1. DP
+　　尝试用 DP 的方式，DP[i] 表示到 i 位置为止，一共有多少个递增的子序列。
+* 外层循环 $i$，从左到右扫描
+* 内层循环 $j$，从 $i$ 位置往左扫描：
+    * 如果有 nums[j] < nums[i]，说明有增序，需要更新 dp[i] 的值
+
+　　双层循环，是很难很快的，本题结果也是 TLE。
 
 ```python
 # Time: O(n^2)
@@ -59,6 +65,14 @@ class Solution:
 ```
 
 ### 2. Greedy
+　　使用贪心的算法，我们用两个变量 first 和 second 分别储存第一小和第二小（初始化都是无穷大）的数，然后第三个数 num 就通过遍历来获取，同时通过大小关系更新前面的两个变量：
+1. 如果 num <= first：更新 first = num
+2. 不满足 1 的前提下，如果 num <= second：更新 second = num
+3. 其他情况就满足 first < second < num，即满足条件，返回
+
+　　一定要注意条件 1 和 2 中的等于的情况！因为题目要求的是不含等于的情况。
+
+![](/img/media/15831525097133.jpg)
 
 ```python
 # Time: O(n)
@@ -81,5 +95,9 @@ class Solution:
 # Your runtime beats 82.14 % of python3 submissions
 # Your memory usage beats 100 % of python3 submissions (13.2 MB)
 ```
+
+　　这种方法没有办法拓展？如果子序列是其他数位呢？有没有更加泛化的解法？
+
 ## References
 1. [334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/description/)
+2. [huahua](http://zxi.mytechroad.com/blog/greedy/leetcode-334-increasing-triplet-subsequence/)
