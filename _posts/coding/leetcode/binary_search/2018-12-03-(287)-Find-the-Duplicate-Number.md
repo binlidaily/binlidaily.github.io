@@ -9,6 +9,7 @@ comments: true
 published: true
 ---
 
+## Description
 Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
 
 Example 1:
@@ -74,18 +75,17 @@ class Solution(object):
 　　分析了下原因很明显，因为用 list 的 in 来查找，其实就是 $O(n)$ 的时间复杂度啊！
 
 ### 2. 二分查找
-　　我们先找到对应的 mid 值，然后遍历数组中所有的数，统计小于等于 mid 的数的个数，如果个数个数小于等于 mid，说明重复的数实在 [mid+1, n] 之间，反之在 [1, m-1]。
+　　我们先找到对应的 mid 值，然后遍历数组中所有的数，统计小于等于 mid 的数的个数，如果个数小于等于 mid，说明重复的数是在 [mid+1, n] 之间，反之在 [1, m-1]。
 
 ```python
-# Time Complexity: O(nlogn)
-# Space Complexity: O(1)
+# Time: O(nlogn)
+# Space: O(1)
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        l, r = 0, len(nums)
-        cnt = 0
+        n = len(nums)
+        l, r = 0, n - 1
         while l <= r:
-            # mid = (l+r) // 2
-            mid = (l+r) >> 1
+            mid = l + ((r - l) >> 1)
             cnt = 0
             for num in nums:
                 if num <= mid:
@@ -95,15 +95,17 @@ class Solution:
             else:
                 r = mid - 1
         return l
-# Runtime: 92 ms, faster than 22.02% of Python3 online submissions for Find the Duplicate Number.
-# Memory Usage: 16.3 MB, less than 7.14% of Python3 online submissions for Find the Duplicate Number.
+
+# 53/53 cases passed (76 ms)
+# Your runtime beats 28.57 % of python3 submissions
+# Your memory usage beats 17.86 % of python3 submissions (15.2 MB)
 ```
 
 　　值得注意的是，除以 2 可以用位操作！
 
 ### 3. 链表有环找入口
 
-　　于是想办法找到空间复杂度为 $O(1)$ 的方式，看提示说可以将这个问题看成链表中判断是否有环的情况，然后有环的话找对应的环的入口。
+　　接着想办法找到空间复杂度为 $O(1)$ 的方式，看提示说可以将这个问题看成链表中判断是否有环的情况，然后有环的话找对应的环的入口。
 
 ```shell
 [1,3,4,2,2]
@@ -133,6 +135,8 @@ class Solution:
 # Memory Usage: 16.2 MB, less than 7.14% of Python3 online submissions for Find the Duplicate Number.
 ```
 
+　　这种想法的创作动机是什么呢？
+
 ### 4. 位操作
 　　什么骚操作，都没看懂。
 
@@ -156,6 +160,7 @@ class Solution:
 # Runtime: 216 ms, faster than 5.73% of Python3 online submissions for Find the Duplicate Number.
 # Memory Usage: 16.1 MB, less than 7.14% of Python3 online submissions for Find the Duplicate Number.
 ```
+　　参考中说对于每一位，0到 n-1 中所有数字中该位上的1的个数应该是固定的，如果 nums 数组中所有数字中该位上1的个数多了，说明重复数字在该位上一定是1，这样我们把重复数字的所有为1的位都累加起来，就可以还原出了这个重复数字。🤔
 
 ## References
 1. [287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)

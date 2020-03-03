@@ -498,9 +498,6 @@ return dp(start)
 * [101. Symmetric Tree](https://binlidaily.github.io/2019-01-03-(101)-Symmetric-Tree/)
 * [235. Lowest Common Ancestor of a Binary Search Tree](https://binlidaily.github.io/2018-12-30-(235)-Lowest-Common-Ancestor-of-a-Binary-Tree/)
 * [3. Longest Substring Without Repeating Characters](https://binlidaily.github.io/2018-12-10-(3)-Longest-Substring-Without-Repeating-Characters/)
-* [238. Product of Array Except Self](https://binlidaily.github.io/2018-12-06-(238)-Product-of-Array-Except-Self/)
-* [287. Find the Duplicate Number](https://binlidaily.github.io/2018-12-03-(287)-Find-the-Duplicate-Number/)
-* [1. Two Sum](https://binlidaily.github.io/2018-11-25-(1)-two-sum/)
 
 ## References
 1. [代码模板，刷题必会](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
