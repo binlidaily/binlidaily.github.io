@@ -9,6 +9,7 @@ comments: true
 published: true
 ---
 
+## Description
 Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
 
 Note:
@@ -26,30 +27,33 @@ Output: [1,2,2,3,5,6]
 ```
 
 ## Solutions
-　　从后往前进行判断：
+　　从后往前进行判断，注意在比较大小满足退出条件时，第二个数组可能还没有遍历完，需要补充进去。
 
 
 ```python
+# Time: O(n+m)
+# Space: O(1)
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        l1, l2 = m-1, n-1
-        i = 0
-        while l1 >=0 and l2 >= 0:
-            if nums1[l1] >= nums2[l2]:
-                nums1[m+n-1-i] = nums1[l1]
-                l1 -= 1
+        a, b = m - 1, n - 1
+        i = m + n - 1
+        while i >= 0 and a >= 0 and b >= 0:
+            if nums1[a] > nums2[b]:
+                nums1[i] = nums1[a]
+                a -= 1
             else:
-                nums1[m+n-1-i] = nums2[l2]
-                l2 -= 1
-            i += 1
-        if l2 >= 0:
-            nums1[:l2+1] = nums2[:l2+1]
-        return nums1
-# Runtime: 28 ms, faster than 99.79% of Python3 online submissions for Merge Sorted Array.
-# Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Merge Sorted Array.
+                nums1[i] = nums2[b]
+                b -= 1
+            i -= 1
+        if b >= 0:
+            nums1[:b+1] = nums2[:b+1]
+
+# 59/59 cases passed (36 ms)
+# Your runtime beats 56.75 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
 ```
 
 ## References
