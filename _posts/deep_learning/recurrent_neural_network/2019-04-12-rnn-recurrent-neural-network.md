@@ -110,7 +110,7 @@ $$
 \begin{array}{l}L\left(\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(\tau)}\right\},\left\{\boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(\tau)}\right\}\right) \\ =\sum_{t} L^{(t)} \\ =-\sum_{t} \log p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)\end{array}
 $$
 
-　　其中 $p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
+　　其中 $p_{\text {model }}\left(y^{(t)} \mid \left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
 
 　　以上过程就是 RNN **前向传播**的过程。
 
@@ -159,7 +159,7 @@ $$
 $$
 
 
-<details><summary markdown="span">　　另外，还有一种类似 CNN 后向传播时利用错误小恶魔的计算方式整理，点击 >>。</summary>
+<details><summary markdown="span">　　另外，还有一种类似 CNN 后向传播时利用错误小恶魔的计算方式整理，点击 >></summary>
 
 　　对于 RNN，由于我们在序列的每个位置都有损失函数，因此最终的损失 $L$ 为：
 
@@ -209,16 +209,19 @@ $$
 5. **输出**：代价函数的梯度由 $\frac{\partial C}{\partial w_{j k}^{l}}=a_{k}^{l-1} \delta_{j}^{l}$ 和 $\frac{\partial C}{\partial b_{j}^{l}}=\delta_{j}^{l}$ 得出，然后通过权重更新的公式更新 $w^l$ 和 $b^l$。
 
 ### 网络结构深入理解
-
-
-[dd](/img/media/dd.webp)
-
+　　我们也是用图片作为例子，看一下 RNN 是怎么操作的，我们把图片拉成一个一个 pixel，每个 pixel 对应一个输入，且每一个 pixel 有三通道。
 
 ![](/img/media/15560770783992.jpg)
+
+　　先思考一下 RNN 在这个图上是怎么运行的。
+
+![20180917195028940](/img/media/20180917195028940.gif)
+
+
+
 
 
 ## References
 1. [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 2. [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 3. [循环神经网络(RNN)模型与前向反向传播算法](https://www.cnblogs.com/pinard/p/6509630.html)
-4. 
