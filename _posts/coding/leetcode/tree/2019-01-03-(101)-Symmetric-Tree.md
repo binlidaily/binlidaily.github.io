@@ -33,7 +33,8 @@ Note:
 Bonus points if you could solve it both recursively and iteratively.
 
 ## Solutions
-第一印象是从根节点开始一个一个对比，应该用递归来做，但是发现如果将函数 isSymmetric 设计成递归的，似乎不好操作，因为可能会出现节点为 null 的情况。于是需要找到可以递归的部分，在对比查看对称的过程中，从当前结点开始，先检查左右子结点是否为空，如果都是空的，返回真，如果一个空返回假，其他情况表示子结点都不空，就继续递归。
+### 1. Recurrence
+　　先判断左右子节点是否相等，再判断左子节点的左子节点与右子节点的右子节点，还有左子节点的右子节点和右子节点的左子节点是否一样。
 
 ```
     0
@@ -44,40 +45,108 @@ l  r l  r
 ```
 
 ```python
+# Time: O(n)
+# Space: O(1)
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    
-        
-    def isSymmetric(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-        def compare(left, right):
-            if left is None and right is None:
-                return True
-            elif left is None or right is None:
-                return False
-            elif left.val != right.val:
-                return False
-            else:
-                left_bool = compare(left.left, right.right)
-                right_bool = compare(left.right, right.left)
-                return left_bool & right_bool
-            
-        if root is None:
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
             return True
-        else:
-            return compare(root.left, root.right)
+        return self.is_mirror(root.left, root.right)
+    
+    def is_mirror(self, left, right):
+        if not left or not right:
+            return left == right
+        if left.val != right.val:
+            return False
+        return self.is_mirror(left.left, right.right) and \
+            self.is_mirror(left.right, right.left)
+
+# 195/195 cases passed (32 ms)
+# Your runtime beats 69.89 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
 ```
 
+### 2. Iterative-Stack
+　　注意用两个栈！
+
+```python
+# Time: O(n)
+# Space: O(n)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        left_stack, right_stack = [root.left], [root.right]
+        while len(left_stack) > 0 and len(right_stack) > 0:
+            left = left_stack.pop()
+            right = right_stack.pop()
+            if not left and not right:
+                continue
+            elif not left or not right:
+                return False
+            if left.val != right.val:
+                return False
+            left_stack.append(left.left)
+            right_stack.append(right.right)
+            left_stack.append(left.right)
+            right_stack.append(right.left)
+        return len(left_stack) == 0 and len(right_stack) == 0
+
+# 195/195 cases passed (32 ms)
+# Your runtime beats 69.89 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
+```
+
+### 3. Iterative-Queue
+
+```python
+# Time: O(n)
+# Space: O(n)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        left_queue, right_queue = collections.deque([root.left]), collections.deque([root.right])
+        while len(left_queue) > 0 and len(right_queue) > 0:
+            left = left_queue.popleft()
+            right = right_queue.popleft()
+            if not left and not right:
+                continue
+            elif not left or not right:
+                return False
+            if left.val != right.val:
+                return False
+            left_queue.append(left.left)
+            right_queue.append(right.right)
+            left_queue.append(left.right)
+            right_queue.append(right.left)
+        return len(left_queue) == 0 and len(right_queue) == 0
+
+# 195/195 cases passed (36 ms)
+# Your runtime beats 33.94 % of python3 submissions
+# Your memory usage beats 100 % of python3 submissions (12.9 MB)
+```
 ## References
 1. [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
-
-
+2. [Python Version](https://blog.csdn.net/coder_orz/article/details/51579528)
