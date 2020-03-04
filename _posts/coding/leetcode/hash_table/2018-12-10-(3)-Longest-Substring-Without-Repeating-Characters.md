@@ -37,6 +37,7 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 
 ## Solutions
 ### 1. Brute Force
+
 　　暴力求解法还是比较简单可以实现的，两重循环，外循环遍历，内循环从外循环的当前位置开始往后扫描，遇到重复的字符就终止当前遍历，统计大小。
 ```python
 class Solution(object):
@@ -63,6 +64,7 @@ class Solution(object):
 ```
 
 ### 2. HashMap + Sliding Window
+
 <p align="center">
   <img width="" height="" src="/img/media/15473606262679.png">
 </p>
@@ -90,33 +92,38 @@ class Solution:
 ```
 
 ### 3. 两个指针的方式 - Sliding Window
+　　用集合储存不重复的字串个数，用两个指针框住的字串判断是否重复，一直往右移动。
+
 　　右边指针指向的元素如果在字典中，判断左侧指针指向元素是否也在，在的话则删除左侧指针指向元素，不在则挪动 left 指针。
 
 　　right 指向元素不在字典中的话，就加入长度加 1，比较滑动窗口大小存下结果。
-
 
 ```python
 # Time Complexity: O(n)
 # Space Complexity: O(1)
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        left, right = 0, 0
-        chars = set()
+        if not s:
+            return 0
+        visited = set()
+        l, r = 0, 0
         n = len(s)
         res = 0
-        while left < n and right < n:
-            if s[right] in chars:
-                if s[left] in chars:
-                    chars.remove(s[left])
-                left += 1
+        while l < n and r < n:
+            if s[r] in visited:
+                if s[l] in visited:
+                    visited.remove(s[l])
+                l += 1
             else:
-                chars.add(s[right])
-                right += 1
-                res = max(res, len(chars))
+                visited.add(s[r])
+                r += 1
+                res = max(res, len(visited))
+                # res = max(res, r - l)  # r add 1 first, not need add 1 here
         return res
 # Runtime: 84 ms, faster than 38.74% of Python3 online submissions for Longest Substring Without Repeating Characters.
 # Memory Usage: 13.9 MB, less than 5.10% of Python3 online submissions for Longest Substring Without Repeating Characters.
 ```
+
 ## References
 1. [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 2. [LeetCode第三题(Longest Substring Without Repeating Characters)三部曲之一：解题思路](https://blog.csdn.net/boling_cavalry/article/details/86563586)
