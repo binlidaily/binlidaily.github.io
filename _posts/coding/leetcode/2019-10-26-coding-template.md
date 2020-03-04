@@ -20,6 +20,10 @@ published: true
 
 滚动数组降低空间复杂度！
 
+## 结题总结
+* 求极值
+    * 最小路径：BFS
+
 ## 二分模板
 
 ```python
@@ -497,8 +501,6 @@ return dp(start)
 
 
 
-
-1+1+1+1
 
 ## References
 1. [代码模板，刷题必会](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
