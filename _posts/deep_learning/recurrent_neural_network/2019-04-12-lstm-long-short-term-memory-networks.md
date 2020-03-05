@@ -130,6 +130,9 @@ typora-copy-images-to: ../../img/media
 
 　　这样的好处是可以综合考虑该丢失和输入哪些信息，我们只有当决定要输入信息的时候才考虑遗忘一些信息，同样的，也只有当决定遗忘一些长期的信息后才考虑输入一些新的信息。
 
+### 2.3 Gated Recurrent Unit, GRU
+　　
+
 ## References
 1. [tensorflow笔记：多层LSTM代码分析](https://blog.csdn.net/u014595019/article/details/52759104)
 2. [Simple LSTM](http://nicodjimenez.github.io/2014/08/08/lstm.html)
