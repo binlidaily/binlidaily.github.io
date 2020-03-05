@@ -144,7 +144,7 @@ typora-copy-images-to: ../../img/media
 
 　　从上面的单元结构我们可以看出来 GRU 的特点：
 * 长期记忆状态和短期记忆状态被整合到了一个状态 $\bf{h}_t$
-* GRU 有一个旧状态“过滤门” $\bf{r}_t$，来控制上一个时间步的状态 $\bf{h}_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
+* GRU 有一个旧状态“过滤门” $\mathbf{r}_t$，来控制上一个时间步的状态 $\mathbf{h}_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
 * 将普通 LSTM 的输入门和遗忘门利用上一小节介绍的 Coupled forget and input gates 方式组合成一个新的“更新门” $\bf{z}_t$
 
 ## References
