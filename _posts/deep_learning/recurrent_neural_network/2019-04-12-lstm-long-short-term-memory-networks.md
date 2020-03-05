@@ -131,7 +131,22 @@ typora-copy-images-to: ../../img/media
 　　这样的好处是可以综合考虑该丢失和输入哪些信息，我们只有当决定要输入信息的时候才考虑遗忘一些信息，同样的，也只有当决定遗忘一些长期的信息后才考虑输入一些新的信息。
 
 ### 2.3 Gated Recurrent Unit, GRU
-　　
+　　GRU 是一个简化版的 LSTM，其效果还是比较好的。
+
+<p align="center">
+<img src="/img/media/15833913214081.jpg" width="500">
+</p>
+<p style="margin-top:-2.5%" align="center">
+<em style="color:#808080;font-style:normal;font-size:80%;">GRU 单元结构状态</em>
+</p>
+
+![](/img/media/15833912057711.jpg)
+
+　　从上面的单元结构我们可以看出来 GRU 的特点：
+* 长期记忆状态和短期记忆状态被整合到了一个状态 $\bf{h}_t$
+* GRU 有一个旧状态“过滤门” $\bf{r}_t$，来控制上一个时间步的状态 $\bf{h}_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
+* 将普通 LSTM 的输入门和遗忘门利用上一小节介绍的 Coupled forget and input gates 方式组合成一个新的“更新门” $\bf{z}_t$
+
 
 ## References
 1. [tensorflow笔记：多层LSTM代码分析](https://blog.csdn.net/u014595019/article/details/52759104)
