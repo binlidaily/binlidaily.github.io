@@ -23,6 +23,8 @@ published: true
 ## 结题总结
 * 求极值
     * 最小路径：BFS
+    * 最大或最小：DP
+    * 最大或最小：Greedy
 
 ## 二分模板
 
@@ -40,7 +42,6 @@ def binary_search(l, r, cond)
       l = m + 1
   return l
 ```
-
 
 ## 组合模板
 
@@ -221,7 +222,6 @@ return dp(start)
 * [621. Task Scheduler](https://binlidaily.github.io/2020-02-25-(621)-task-scheduler/)
 * [494. Target Sum](https://binlidaily.github.io/2020-02-25-(494)-target-sum/)
 * [560. Subarray Sum Equals K](https://binlidaily.github.io/2020-02-25-(560)-subarray-sum-equals-k/)
-* [448. Find All Numbers Disappeared in an Array](https://binlidaily.github.io/2020-02-25-(448)-find-all-numbers-disappeared-in-an-array/)
 * [617. Merge Two Binary Trees](https://binlidaily.github.io/2020-02-24-(617)-merge-two-binary-trees/)
 * [739. Daily Temperatures](https://binlidaily.github.io/2020-02-24-(739)-daily-temperatures/)
 * [338. Counting Bits](https://binlidaily.github.io/2020-02-24-(338)-counting-bits/)
@@ -500,7 +500,7 @@ return dp(start)
 * [84. Largest Rectangle in Histogram](https://binlidaily.github.io/2019-04-07-(84)-Largest-Rectangle-in-Histogram/)
 
 
-
+a
 
 ## References
 1. [代码模板，刷题必会](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)
