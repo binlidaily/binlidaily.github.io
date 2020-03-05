@@ -85,7 +85,7 @@ typora-copy-images-to: ../../img/media
 
 　　接下来讨论 LSTM 单元结构最主要的部分，输入信息环节，如何决定哪些信息需要存储下来，这份两个部分来进行：
 
-1. 根据短期记忆状态 $\bf{h}_t$ 和输入数据 $\bf{x}_t$ 利用激活层（tanh layer）创建一个候选值的向量 $\tilde{C}_{t}$（这个也就是上面图中的 $\bf{g}_t$），将其预备更新到当前的状态中
+1. 根据短期记忆状态 $\bf{h}_t$ 和输入数据 $\bf{x}_t$ 利用激活层（tanh layer）创建一个候选值的向量 $\tilde{C}_t$（这个也就是上面图中的 $\bf{g}_t$），将其预备更新到当前的状态中
 2. 利用输入门 $i_t$ 来控制决定更新哪些输入内容以及更新的程度
 
 <p align="center">
@@ -97,7 +97,7 @@ typora-copy-images-to: ../../img/media
 
 　　如果信息被放行，就可以被整合到长期记忆状态 $\bf{c}_t$ 中继续往后传播了。接下来看下是如何由遗忘门和输入门控制更新单元结构长期记忆的状态，即从旧状态 $\bf{c}_{t-1}$ 更新到新状态 $\bf{c}_t$。
 
-　　观察下图中的 $\bf{c}_t$ 公式，我们通过遗忘门 $f_t$ 来控制当前状态要不要保留，用输入门 $i_t$ 和候选状态 $\tilde{C}_{t}$ 来更新当前状态。
+　　观察下图中的 $\bf{c}_t$ 公式，我们通过遗忘门 $f_t$ 来控制当前状态要不要保留，用输入门 $i_t$ 和候选状态 $\tilde{C}_t$ 来更新当前状态。
 
 <p align="center">
 <img src="/img/media/15560906327659.jpg" width="">
@@ -146,7 +146,6 @@ typora-copy-images-to: ../../img/media
 * 长期记忆状态和短期记忆状态被整合到了一个状态 $\bf{h}_t$
 * GRU 有一个旧状态“过滤门” $\bf{r}_t$，来控制上一个时间步的状态 $\bf{h}_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
 * 将普通 LSTM 的输入门和遗忘门利用上一小节介绍的 Coupled forget and input gates 方式组合成一个新的“更新门” $\bf{z}_t$
-
 
 ## References
 1. [tensorflow笔记：多层LSTM代码分析](https://blog.csdn.net/u014595019/article/details/52759104)
