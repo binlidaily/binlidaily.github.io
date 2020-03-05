@@ -112,11 +112,16 @@ class Solution(object):
         return max_area 
 ```
 
-　　更简洁的写法，
+　　更简洁的写法，记忆的规律是这样：
+1. 使用单调栈记录连续递增的高度的位置索引，
+2. 如果出现递减了，就开始计算面积：
+    1. 确定高度，直接从单调栈中pop 一个结果就是目前为止最高位置的索引，得到高度
+    2. 确定底宽，右侧的位置就是当前索引减 1，因为右侧是最大侧，所以计算面积的时候，高度其实主要是受
+    3. 左侧位置是动态改变
 
 ```python
-# Time: O()
-# Space: O()
+# Time: O(n)
+# Space: O(n)
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         n = len(heights)
@@ -133,11 +138,28 @@ class Solution:
                 r_i = i - 1
                 l_i = (stack[-1] + 1) if stack else 0  # add 1 becuase pop first
                 width = r_i - l_i + 1 
-                max_area = max(max_area, height*width)
+                max_area = max(max_area, height * width)
         return max_area
 # Runtime: 116 ms, faster than 71.42%
 # Memory Usage: 14.4 MB, less than 100.00%
 ```
+
+
+```python
+class Solution:
+    def largestRectangleArea(self, xs):
+        xs.append(0)
+        ret = 0
+        stk = [-1]
+        for i, x in enumerate(xs):
+            while xs[stk[-1]] > x:
+                S = xs[stk.pop()] * (i - stk[-1] - 1)
+                if S > ret:
+                    ret = S                
+            stk.append(i)
+
+        return ret
+```
 ## References
 1. [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-2. [Largest Rectangular Area in a Histogram | Set 2](https://www.geeksforgeeks.org/largest-rectangle-under-histogram/)
+2. [Largest Rectangular Area in a Histogram - Set 2](https://www.geeksforgeeks.org/largest-rectangle-under-histogram/)
