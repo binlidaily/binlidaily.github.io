@@ -107,6 +107,7 @@ $$
 2. 不同元素之间的协方差表示它们的相关性
 
 　　这两个优化目标偶可以用协方差矩阵来表示：
+
 $$
 \begin{array}{l}{C=\left[\begin{array}{cccc}{\operatorname{Cov}\left(x_{1}, x_{1}\right)} & {\operatorname{Cov}\left(x_{1}, x_{2}\right)} & {\ldots} & {\operatorname{Cov}\left(x_{1}, x_{R}\right)} \\ {\operatorname{Cov}\left(x_{2}, x_{1}\right)} & {\operatorname{Cov}\left(x_{2}, x_{2}\right)} & {\ldots} & {\operatorname{Cov}\left(x_{2}, x_{R}\right)} \\ {} & {\cdots} & {} & {\cdots} & {\cdots} \\ {\operatorname{Cov}\left(x_{R}, x_{1}\right)} & {\operatorname{Cov}\left(x_{R}, x_{2}\right)} & {\cdots} & {\operatorname{Cov}\left(x_{R}, x_{R}\right)}\end{array}\right]_{R \cdot R}} \\ ~~~{\Rightarrow} ~~{C_{Y}=\left[\begin{array}{cccc}{\delta_{11}} & {0} & {\ldots} & {0} \\ {0} & {\delta_{22}} & {\cdots} & {0} \\ {\cdots} & {\cdots} & {\cdots} & {\cdots} \\ {0} & {0} & {\ldots} & {\delta_{R R}}\end{array}\right]_{R \times R}}\end{array}
 $$

@@ -494,6 +494,11 @@ return dp(start)
 
 
 
+### Hard to handle
+* [123. Best Time to Buy and Sell Stock III]
+* [137. Single Number II]
+* [164. Maximum Gap
+* [23. Merge k Sorted Lists
 
 
 
