@@ -62,8 +62,8 @@ if (右括号小于左括号) {
 ```
 
 ```python
-# Time: O()
-# Space: O()
+# Time: O(2^n)
+# Space: O(n)
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         if n <= 0:
@@ -94,5 +94,46 @@ class Solution:
 
 ![IMG_5368](/img/media/IMG_5368.jpg)
 
+　　二刷：
+
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        if n <= 0:
+            return []
+        res = []
+        self.dfs(n, 0, 0, '', res)
+        return res
+    
+    def dfs(self, n, l, r, path, res):
+        if l >= n and r >= n:
+            res.append(path)
+            return res
+        if l > n or r > n or l < r:
+            return
+        self.dfs(n, l+1, r, path+'(', res)
+        self.dfs(n, l, r+1, path+')', res)
+```
+
+### 2. BFS
+
+```python
+import collections
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        queue = collections.deque()
+        queue.append((0, 0, ''))
+        while queue:
+            l, r, seq = queue.popleft()
+            if l > n or r > n or l < r:
+                continue
+            if l == r and l + r == n << 1:
+                res.append(seq)
+            queue.append((l + 1, r, seq+'('))
+            queue.append((l, r + 1, seq+')'))
+        return res
+```
 ## References
 1. [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)

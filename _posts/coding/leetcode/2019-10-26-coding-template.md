@@ -482,7 +482,6 @@ return dp(start)
 * [69. Sqrt(x)](https://binlidaily.github.io/2019-07-13-(69)-sqrtx/)
 * [633. Sum of Square Numbers](https://binlidaily.github.io/2019-07-10-(633)-sum-of-square-numbers/)
 * [104. Maximum Depth of Binary Tree](https://binlidaily.github.io/2019-07-09-(104)-maximum-depth-of-binary-tree/)
-* [279. Perfect Squares](https://binlidaily.github.io/2019-07-03-(279)-Perfect-Squares/)
 * [890. Find and Replace Pattern](https://binlidaily.github.io/2019-06-29-(890)-find-and-replace-pattern/)
 * [198. House Robber](https://binlidaily.github.io/2019-06-25-(198)-House-Robber/)
 * [153. Find Minimum in Rotated Sorted Array](https://binlidaily.github.io/2019-06-23-(153)-find-minimum-in-rotated-sorted-array/)
@@ -490,17 +489,13 @@ return dp(start)
 * [204. Count Primes](https://binlidaily.github.io/2019-06-21-(204)-Count-Primes/)
 * [563. Binary Tree Tilt](https://binlidaily.github.io/2019-06-20-(563)-Binary-Tree-Tilt/)
 * [17. Letter Combinations of a Phone Number](https://binlidaily.github.io/2019-06-20-(17)-Letter-Combinations-of-a-Phone-Number/)
-* [284. Peeking Iterator](https://binlidaily.github.io/2019-06-19-(284)-Peeking-Iterator/)
-* [300. Longest Increasing Subsequence](https://binlidaily.github.io/2019-06-15-(300)-Longest-Increasing-Subsequence/)
-* [22. Generate Parentheses](https://binlidaily.github.io/2019-06-13-(22)-Generate-Parentheses/)
-* [900. RLE Iterator](https://binlidaily.github.io/2019-06-11-(900)-RLE-Iterator/)
-* [332. Reconstruct Itinerary](https://binlidaily.github.io/2019-05-27-(332)-reconstruct-itinerary/)
-* [380. Insert Delete GetRandom O(1)](https://binlidaily.github.io/2019-05-25-(380)-insert-delete-getrandom-O(1)/)
-* [102. Binary Tree Level Order Traversal](https://binlidaily.github.io/2019-05-17-(102)-binary-tree-level-order-traversal/)
 
 
 
-aa
+
+
+
+
 
 ## References
 1. [代码模板，刷题必会](https://blog.csdn.net/fuxuemingzhu/article/details/101900729)

@@ -1,17 +1,20 @@
 ---
 layout: post
 title: 284. Peeking Iterator
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Medium, Design]
 image: 
 comments: true
 published: true
 ---
 
-Given an Iterator class interface with methods: next() and hasNext(), design and implement a PeekingIterator that support the peek() operation -- it essentially peek() at the element that will be returned by the next call to next().
+## Description
 
-Example:
+Given an Iterator class interface with methods: `next()` and `hasNext()`, design and implement a PeekingIterator that support the `peek()` operation -- it essentially peek() at the element that will be returned by the next call to next().
+
+**Example:**
+
 ```
 Assume that the iterator is initialized to the beginning of the list: [1,2,3].
 
@@ -20,11 +23,13 @@ Now you call peek() and it returns 2, the next element. Calling next() after tha
 You call next() the final time and it returns 3, the last element. 
 Calling hasNext() after that should return false.
 ```
-Follow up: How would you extend your design to be generic and work with all types, not just integer?
+
+**Follow up**: How would you extend your design to be generic and work with all types, not just integer?
 
 ## Solutions
-　　倒是蛮容易写出来的，主要出现的一个问题是，我刚开始的时候将属性定义为 `self.peek` 因为类的函数中也有同名的，所以会出错，然后找了好半天才发现是这个问题，实在很无语！🤷‍♀️
+　　实现一个迭代器类，实现几个函数，注意要按照已有的 Iterator 类来展开。
 
+### 1. Design
 
 ``` python
 # Below is the interface for Iterator, which is already defined for you.

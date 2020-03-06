@@ -10,20 +10,24 @@ published: true
 ---
 
 ## Description
+
 Given an unsorted array of integers, find the length of longest increasing subsequence.
 
-Example:
+**Example:**
+
 ```
 Input: [10,9,2,5,3,7,101,18]
 Output: 4 
 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
 ```
-Note:
-```
-* There may be more than one LIS combination, it is only necessary for you to return the length.
-* Your algorithm should run in O(n2) complexity.
-```
-Follow up: Could you improve it to O(n log n) time complexity?
+
+**Note:**
+
+- There may be more than one LIS combination, it is only necessary for you to return the length.
+- Your algorithm should run in O(*n2*) complexity.
+
+**Follow up:** Could you improve it to O(*n* log *n*) time complexity?
+
 
 ## Solutions
 ### 1. DP
@@ -49,6 +53,7 @@ class Solution:
 ```
 
 ### 2. 加上 Binary Search 提升到 O(nlogn)
+
 　　按照前人的思考，我们可以维护一个数组 tails 用来存储不同大小下的子序列最小的那个元素，tails[i] 表示长度为 i+1 的子序列中最小的最后一个数。举个栗子，当 `nums = [4,5,6,3]` 时：
 
 ```python
@@ -117,8 +122,40 @@ class Solution(object):
 # Memory Usage: 14.1 MB, less than 5.13% of Python3 online submissions for Longest Increasing Subsequence.
 ```
 
+　　最优解：其实dp数组是单调递增，所以可以把内存循环的比较过程改成二分查找的方式，二分的时间复杂度为O(logn)，所以优化后的时间复杂度是O(nlogn)。
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        n = len(nums)
+        dp = []
+        for i in range(n):
+            idx = self.binary_search(dp, nums[i])
+            if idx == len(dp):
+                dp.append(nums[i])
+            else:
+                dp[idx] = nums[i]
+        return len(dp)
+    
+    def binary_search(self, dp, target):
+        if len(dp) == 0:
+            return 0
+        l, r = 0, len(dp) - 1
+        if dp[r] < target:
+            return len(dp)
+        while l <= r:
+            mid = l + ((r - l) >> 1)
+            if dp[mid] >= target:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return l
+```
 ## References
 1. [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 2. [Longest Increasing Subsequence ](http://bookshadow.com/weblog/2015/11/03/leetcode-longest-increasing-subsequence/)
 3. [Longest Increasing Subsequence 最长递增子序列](https://www.cnblogs.com/grandyang/p/4938187.html)
 4. [Java/Python Binary search O(nlogn) time with explanation](https://leetcode.com/problems/longest-increasing-subsequence/discuss/74824/JavaPython-Binary-search-O(nlogn)-time-with-explanation)
+5. [huahua](https://www.youtube.com/watch?v=7DKFpWnaxLI)
