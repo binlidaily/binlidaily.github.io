@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 714. Best Time to Buy and Sell Stock with Transaction Fee
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, DP]
+tags: [Coding, LeetCode, Medium, DP]
 image: 
 comments: true
 published: true

@@ -14,6 +14,17 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 {% include toc.html %}
 
 ## 1. Theoretical Machine Learning
+### 1.0 Model Metrics
+* Training vs Evaluation
+    * Training Metrics
+        * Global Training Metrics
+        * Local Training Metrics
+    * Evaluation Metrics
+* Problem Types
+    * [Classification Metrics](https://binlidaily.github.io/2019-04-01-classification-metrics)
+    * [Regression Metrics](https://binlidaily.github.io/2018-12-07-regression-metrics)
+    * Clustering Metrics
+
 ### 1.1 Supervised Learning
 * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
     * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)

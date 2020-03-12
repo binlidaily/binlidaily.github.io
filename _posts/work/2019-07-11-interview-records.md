@@ -252,3 +252,14 @@ published: true
 * XGBoost 如何分特征，如何优化的
 * Libucb
 
+
+## 面试
+
+* 小米
+    * MR 中的 Shuffle
+    * LFBS 和另外一个，与梯度下降的区别
+* 华为
+    * MR 思维训练 KMeans
+    * 尽量利用 CPU 资源
+    * 如何把 SVM 并行拆分有效利用
+    * LightGBM 的优化在哪里，为什么快？！

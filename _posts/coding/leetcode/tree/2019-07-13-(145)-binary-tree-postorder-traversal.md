@@ -9,9 +9,12 @@ comments: true
 published: true
 ---
 
-Given a binary tree, return the postorder traversal of its nodes' values.
+## Description
 
-Example:
+Given a binary tree, return the *postorder* traversal of its nodes' values.
+
+**Example:**
+
 ```
 Input: [1,null,2,3]
    1
@@ -22,7 +25,8 @@ Input: [1,null,2,3]
 
 Output: [3,2,1]
 ```
-Follow up: Recursive solution is trivial, could you do it iteratively?
+
+**Follow up:** Recursive solution is trivial, could you do it iteratively?
 
 ## Solutions
 ### 1. 递归
@@ -117,7 +121,7 @@ class Solution(object):
 # Memory Usage: 11.7 MB, less than 72.69% of Python online submissions for Binary Tree Postorder Traversal.
 ```
 
-　　不用先序的反转：
+　　不用先序的反转，入栈的时候加入两次。
 
 
 ```python

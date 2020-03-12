@@ -9,11 +9,12 @@ comments: true
 published: true
 ---
 
+## Description
 
+Given a binary tree, return the *inorder* traversal of its nodes' values.
 
-Given a binary tree, return the inorder traversal of its nodes' values.
+**Example:**
 
-Example:
 ```
 Input: [1,null,2,3]
    1
@@ -23,10 +24,12 @@ Input: [1,null,2,3]
    3
 
 Output: [1,3,2]
-Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
 
+**Follow up:** Recursive solution is trivial, could you do it iteratively?
+
 ## Solutions
+　　中序遍历二叉树。
 ### 1. 递归
 　　用迭代的方式还是比较好解决：
 

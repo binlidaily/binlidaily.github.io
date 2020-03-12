@@ -234,7 +234,6 @@ return dp(start)
 * [371. Sum of Two Integers](https://binlidaily.github.io/2020-02-21-(371)-sum-of-two-integers/)
 * [378. Kth Smallest Element in a Sorted Matrix](https://binlidaily.github.io/2020-02-21-(378)-kth-smallest-element-in-a-sorted-matrix/)
 * [412. Fizz Buzz](https://binlidaily.github.io/2020-02-21-(412)-fizz-buzz/)
-* [384. Shuffle an Array](https://binlidaily.github.io/2020-02-21-(384)-shuffle-an-array/)
 * [344. Reverse String](https://binlidaily.github.io/2020-02-20-(344)-reverse-string/)
 * [341. Flatten Nested List Iterator](https://binlidaily.github.io/2020-02-20-(341)-flatten-nested-list-iterator/)
 * [328. Odd Even Linked List](https://binlidaily.github.io/2020-02-20-(328)-odd-even-linked-list/)
@@ -371,7 +370,6 @@ return dp(start)
 * [126. Word Ladder II](https://binlidaily.github.io/2019-12-15-(126)-word-ladder-ii/)
 * [89. Gray Code](https://binlidaily.github.io/2019-12-14-(89)-gray-code/)
 * [472. Concatenated Words](https://binlidaily.github.io/2019-12-14-(472)-concatenated-words/)
-* [79. Word Search](https://binlidaily.github.io/2019-12-14-(79)-word-search/)
 * [60. Permutation Sequence](https://binlidaily.github.io/2019-12-13-(60)-permutation-sequence/)
 * [52. N-Queens II](https://binlidaily.github.io/2019-12-13-(52)-n-queens-ii/)
 * [44. Wildcard Matching](https://binlidaily.github.io/2019-12-13-(44)-wildcard-matching/)
@@ -379,7 +377,6 @@ return dp(start)
 * [77. Combinations](https://binlidaily.github.io/2019-12-12-(77)-combinations/)
 * [503. Next Greater Element II](https://binlidaily.github.io/2019-12-11-(503)-next-greater-element-ii/)
 * [496. Next Greater Element I](https://binlidaily.github.io/2019-12-11-(496)-next-greater-element-i/)
-* [1263. Minimum Moves to Move a Box to Their Target Location](https://binlidaily.github.io/2019-12-08-(1263)-minimum-moves-to-move-a-box-to-their-target-location/)
 * [140. Word Break II](https://binlidaily.github.io/2019-12-05-(140)-word-break-ii/)
 * [139. Word Break](https://binlidaily.github.io/2019-12-05-(139)-word-break/)
 * [213. House Robber II](https://binlidaily.github.io/2019-12-02-(213)-house-robber-ii/)
@@ -390,7 +387,6 @@ return dp(start)
 * [141. Linked List Cycle](https://binlidaily.github.io/2019-11-26-(141)-linked-list-cycle/)
 * [137. Single Number II](https://binlidaily.github.io/2019-11-26-(137)-single-number-ii/)
 * [136. Single Number](https://binlidaily.github.io/2019-11-26-(136)-single-number/)
-* [154. Find Minimum in Rotated Sorted Array II](https://binlidaily.github.io/2019-11-26-(154)-find-minimum-in-rotated-sorted-array-ii/)
 * [179. Largest Number](https://binlidaily.github.io/2019-11-25-(179)-largest-number/)
 * [38. Count and Say](https://binlidaily.github.io/2019-11-24-(38)-count-and-say/)
 * [23. Merge k Sorted Lists](https://binlidaily.github.io/2019-11-24-(23)-merge-k-sorted-lists/)
@@ -470,25 +466,13 @@ return dp(start)
 * [5. Longest Palindromic Substring](https://binlidaily.github.io/2019-08-26-(5)-longest-palindromic-substring/)
 * [107. Binary Tree Level Order Traversal II](https://binlidaily.github.io/2019-08-23-(107)-binary-tree-level-order-traversal-ii/)
 * [103. Binary Tree Zigzag Level Order Traversal](https://binlidaily.github.io/2019-08-23-(103)-binary-tree-zigzag-level-order-traversal/)
-* [212. Word Search II](https://binlidaily.github.io/2019-08-21-(212)-word-search-ii/)
-* [1155. Number of Dice Rolls With Target Sum](https://binlidaily.github.io/2019-08-15-(1155)-number-of-dice-rolls-with-target-sum/)
-* [417. Pacific Atlantic Water Flow](https://binlidaily.github.io/2019-08-15-(417)-pacific-atlantic-water-flow/)
-* [51. N-Queens](https://binlidaily.github.io/2019-07-18-(51)-n-queens/)
-* [78. Subsets](https://binlidaily.github.io/2019-07-15-(78)-subsets/)
-* [94. Binary Tree Inorder Traversal](https://binlidaily.github.io/2019-07-13-(94)-binary-tree-inorder-traversal/)
-* [145. Binary Tree Postorder Traversal](https://binlidaily.github.io/2019-07-13-(145)-binary-tree-postorder-traversal/)
-* [144. Binary Tree Preorder Traversal](https://binlidaily.github.io/2019-07-13-(144)-binary-tree-preorder-traversal/)
-* [98. Validate Binary Search Tree](https://binlidaily.github.io/2019-07-13-(98)-validate-binary-search-tree/)
-* [69. Sqrt(x)](https://binlidaily.github.io/2019-07-13-(69)-sqrtx/)
-* [633. Sum of Square Numbers](https://binlidaily.github.io/2019-07-10-(633)-sum-of-square-numbers/)
-* [104. Maximum Depth of Binary Tree](https://binlidaily.github.io/2019-07-09-(104)-maximum-depth-of-binary-tree/)
-* [890. Find and Replace Pattern](https://binlidaily.github.io/2019-06-29-(890)-find-and-replace-pattern/)
-* [198. House Robber](https://binlidaily.github.io/2019-06-25-(198)-House-Robber/)
-* [153. Find Minimum in Rotated Sorted Array](https://binlidaily.github.io/2019-06-23-(153)-find-minimum-in-rotated-sorted-array/)
-* [10. Regular Expression Matching](https://binlidaily.github.io/2019-06-23-(10)-regular-expression-matching/)
-* [204. Count Primes](https://binlidaily.github.io/2019-06-21-(204)-Count-Primes/)
-* [563. Binary Tree Tilt](https://binlidaily.github.io/2019-06-20-(563)-Binary-Tree-Tilt/)
-* [17. Letter Combinations of a Phone Number](https://binlidaily.github.io/2019-06-20-(17)-Letter-Combinations-of-a-Phone-Number/)
+
+
+
+
+
+
+
 
 
 
@@ -497,9 +481,12 @@ return dp(start)
 ### Hard to handle
 * [123. Best Time to Buy and Sell Stock III]
 * [137. Single Number II]
-* [164. Maximum Gap
-* [23. Merge k Sorted Lists
-
+* [164. Maximum Gap]
+* [23. Merge k Sorted Lists]
+* [10. Regular Expression Matching]
+* [417. Pacific Atlantic Water Flow]
+* [1263. Minimum Moves to Move a Box to Their Target Location](https://binlidaily.github.io/2019-12-08-(1263)-minimum-moves-to-move-a-box-to-their-target-location/)
+* [212. Word Search II](https://binlidaily.github.io/2019-08-21-(212)-word-search-ii/)
 
 
 ## References

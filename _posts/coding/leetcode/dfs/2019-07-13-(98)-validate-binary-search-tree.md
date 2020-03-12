@@ -1,24 +1,28 @@
 ---
 layout: post
 title: 98. Validate Binary Search Tree
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Medium, Tree]
 image: 
 comments: true
 published: true
 ---
 
+## Description
+
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is defined as follows:
 
-* The left subtree of a node contains only nodes with keys less than the node's key.
-* The right subtree of a node contains only nodes with keys greater than the node's key.
-* Both the left and right subtrees must also be binary search trees.
+- The left subtree of a node contains only nodes with keys **less than** the node's key.
+- The right subtree of a node contains only nodes with keys **greater than** the node's key.
+- Both the left and right subtrees must also be binary search trees.
+
  
 
-Example 1:
+**Example 1:**
+
 ```
     2
    / \
@@ -27,7 +31,9 @@ Example 1:
 Input: [2,1,3]
 Output: true
 ```
-Example 2:
+
+**Example 2:**
+
 ```
     5
    / \
@@ -40,9 +46,11 @@ Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 ```
 
-## Solutions
-![-w357](/img/media/15630758213031.jpg)
 
+## Solutions
+　　验证给定的二叉树是不是二叉搜索树，即满足，中间结点的数大于左子树所有结点的值，小于右子树所有结点的值。
+
+### 1. Recurrence
 　　采用递归的方法实现，子节点取值可以在最小值和最大值之间，左子树要比根节点小，右子树要比根节点大：
 
 ```python
@@ -102,6 +110,7 @@ class Solution(object):
 # Memory Usage: 16.3 MB, less than 73.10% of Python online submissions for Validate Binary Search Tree.
 ```
 
+### 2. 中序遍历有序
 　　使用中序的深度优先遍历，那么左子树，子节点，右子树的大小顺序是升序的：
 
 ```python
@@ -135,6 +144,7 @@ class Solution(object):
 # Memory Usage: 16.9 MB, less than 10.30% of Python online submissions for Validate Binary Search Tree.
 ```
 
+### 3. 中序遍历-Iterative
 　　采用迭代的方式再写一遍：
 
 ```python

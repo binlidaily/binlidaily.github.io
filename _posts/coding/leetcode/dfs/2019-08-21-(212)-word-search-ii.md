@@ -1,13 +1,15 @@
 ---
 layout: post
 title: 212. Word Search II
-subtitle: 
+subtitle: Hard
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Trie, DFS, Hard]
 image: 
 comments: true
 published: true
 ---
+
+## Description
 
 Given a 2D board and a list of words from the dictionary, find all words in the board.
 
@@ -15,7 +17,8 @@ Each word must be constructed from letters of sequentially adjacent cell, where 
 
  
 
-Example:
+**Example:**
+
 ```
 Input: 
 board = [
@@ -29,50 +32,53 @@ words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 ```
 
+ 
+
+**Note:**
+
+1. All inputs are consist of lowercase letters `a-z`.
+2. The values of `words` are distinct.
+
 ## Solutions
 ### 1. DFS
 　　用 DFS TLE 了……
 ```python
-class Solution(object):
-    def findWords(self, board, words):
-        """
-        :type board: List[List[str]]
-        :type words: List[str]
-        :rtype: List[str]
-        """
-        if not board or len(board) < 1:
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        if not board:
             return []
         res = []
-        self.r, self.c = len(board), len(board[0])
         for word in words:
             if self.exist(board, word):
                 res.append(word)
         return res
-    
-    def exist(self, board, word):
-        for i in range(self.r):
-            for j in range(self.c):
-                if self.search(board, word, 0, i, j):
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        if not board:
+            return False
+        r, c = len(board), len(board[0])
+        for i in range(r):
+            for j in range(c):
+                if self.dfs(board, word, i, j, r, c):
                     return True
         return False
-    
-    def search(self, board, word, depth, row, col):
-        if row < 0 or row >= self.r or col < 0 or col >= self.c or board[row][col] != word[depth]:
-            return False
-        # Found the last char of the word
-        if depth == len(word) - 1:
+
+    def dfs(self, board, word, i, j, r, c):
+        if not word:
             return True
-        # Avoid access the same character
-        char = board[row][col]
-        board[row][col] = '#'
-        bi_found = self.search(board, word, depth+1, row, col+1) or \
-                self.search(board, word, depth+1, row, col-1) or \
-                self.search(board, word, depth+1, row+1, col) or \
-                self.search(board, word, depth+1, row-1, col)
-        board[row][col] = char
-        return bi_found
+        if not (0 <= i < r) or not (0 <= j < c) or word[0] != board[i][j]:
+            return False
+        tmp = board[i][j]
+        board[i][j] = '#'
+        res = self.dfs(board, word[1:], i + 1, j, r, c) or \
+                self.dfs(board, word[1:], i - 1, j, r, c) or \
+                self.dfs(board, word[1:], i, j + 1, r, c) or \
+                self.dfs(board, word[1:], i, j - 1, r, c)
+        board[i][j] = tmp
+        return res
 # Time Limit Exceeded
 ```
+
 ### 2. Trie
 
 ```python
@@ -139,6 +145,7 @@ class Solution(object):
 # Runtime: 488 ms, faster than 25.75% of Python online submissions for Word Search II.
 # Memory Usage: 47.9 MB, less than 34.78% of Python online submissions for Word Search II.
 ```
+
 ## References
 1. [212. Word Search II](https://leetcode.com/problems/word-search-ii/)
 2. [huahua](https://zxi.mytechroad.com/blog/searching/leetcode-212-word-search-ii/)

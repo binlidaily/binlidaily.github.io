@@ -65,5 +65,6 @@ class Solution:
 # Your runtime beats 96.94 % of python3 submissions
 # Your memory usage beats 63.42 % of python3 submissions (13.9 MB)
 ```
+
 ## References
 1. [122. Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii)

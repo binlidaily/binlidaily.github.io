@@ -1,26 +1,31 @@
 ---
 layout: post
 title: 417. Pacific Atlantic Water Flow
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, DFS, DP, Graph]
+tags: [Coding, LeetCode, Graph, Search, DFS, DP, Medium]
 image: 
 comments: true
 published: true
 ---
 
-Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
+## Description
+
+Given an `m x n` matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
 
 Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
 
 Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
 
-Note:
+**Note:**
 
 1. The order of returned grid coordinates does not matter.
-2. Both m and n are less than 150.
+2. Both *m* and *n* are less than 150.
+
  
-Example:
+
+**Example:**
+
 ```
 Given the following 5x5 matrix:
 
@@ -37,18 +42,14 @@ Return:
 [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
 ```
 
+
 ## Solutions
+　　水可以从高数值位置往低数值位置流，留到边界就算能流到海洋（大西洋+太平洋），找到所有这些能够留到海洋中的点坐标。比较明显，这是一道 Graph 的题目。
 ![-w1195](/img/media/15663923164674.jpg)
 
-### DFS - 按照题目思路
 
-### DFS - 按照反向思维
-
-### DP
-还使用了滚动数组。
-
-### DFS - LeetCode 参考
-　　思路比较清晰：
+### 1. DFS
+　　从近邻着两大洋的边开始遍历，思路比较清晰：
 1. 从所有点开始做 DFS 遍历看是否它的邻居都是小于等于自己
 2. 维护两个布尔类型的矩阵，分别表示太平洋或大西洋是否能够抵达对应的点
 3. 最后遍历两个矩阵的每一个点，看是否同时能够到达太平洋和大西洋
@@ -99,6 +100,55 @@ class Solution(object):
 # Runtime: 280 ms, faster than 53.30% of Python online submissions for Pacific Atlantic Water Flow.
 # Memory Usage: 13.5 MB, less than 50.00% of Python online submissions for Pacific Atlantic Water Flow.
 ```
+
+### 2. BFS
+
+```Python
+class Solution:
+    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        if not matrix:
+            return []
+        
+        p_visited = set()
+        a_visited = set()
+
+        rows = len(matrix)
+        cols = len(matrix[0])
+        
+        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        for row in range(rows):
+            p_visited.add((row, 0))
+            a_visited.add((row, cols - 1))
+            
+        for col in range(cols):
+            p_visited.add((0, col))
+            a_visited.add((rows-1, col))
+            
+        self.bfs(matrix, p_visited, rows, cols)
+        self.bfs(matrix, a_visited, rows, cols)
+        
+        return list(p_visited.intersection(a_visited))
+    
+    def bfs(self, matrix, ocean, rows, cols):
+            q = collections.deque(ocean)
+            while q:
+                r, c = q.popleft()
+                for dirs in self.directions:
+                    next_r = r + dirs[0]
+                    next_c = c + dirs[1]
+                    
+                    if 0 <= next_r < rows and 0 <= next_c < cols:
+                        if (next_r, next_c) not in ocean:
+                            if matrix[next_r][next_c] >= matrix[r][c]:
+                                q.append((next_r, next_c))
+                                ocean.add((next_r, next_c))
+```
+
+### 3. 待整理
+1. DFS - 按照题目思路 - Brute Force
+2. DP
+    1. 还使用了滚动数组。
 
 ## References
 1. [417. Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)

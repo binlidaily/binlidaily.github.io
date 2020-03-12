@@ -3,16 +3,17 @@ layout: post
 title: 144. Binary Tree Preorder Traversal
 subtitle: 先序遍历（Medium）
 author: Bin Li
-tags: [Coding, LeetCode, Tree, DFS]
+tags: [Coding, LeetCode, Tree, DFS, Medium]
 image: 
 comments: true
 published: true
 ---
 
+## Description
 
-Given a binary tree, return the preorder traversal of its nodes' values.
+Given a binary tree, return the *preorder* traversal of its nodes' values.
 
-Example:
+**Example**:
 ```
 Input: [1,null,2,3]
    1
@@ -57,6 +58,7 @@ class Solution(object):
 ```
 
 ### 2. DFS-迭代
+　　三个遍历顺序基本上都是用 Stack 实现，后序可以按照先序的结果逆序就好。先序遍历时节点入栈的时候需要注意要右节点先，左节点后。
 
 ```python
 # Time Complextiy: O(logn)

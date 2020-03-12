@@ -69,18 +69,12 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         if not prices:
             return 0
-        
-        min_price = prices[0]
         max_profit = 0
-        
-        for elem in prices[1:]:
-            if elem < min_price:
-                min_price = elem
-                
-            if (elem - min_price) > max_profit:
-                max_profit = elem - min_price
-                
-        return max_profit 
+        lowest = float('inf')
+        for price in prices:
+            lowest = min(lowest, price)
+            max_profit = max(max_profit, price - lowest)
+        return max_profit
 # 200/200 cases passed (56 ms)
 # Your runtime beats 97.72 % of python3 submissions
 # Your memory usage beats 96.55 % of python3 submissions (13.8 MB)

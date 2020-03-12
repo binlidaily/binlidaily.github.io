@@ -1,17 +1,21 @@
 ---
 layout: post
 title: 103. Binary Tree Zigzag Level Order Traversal
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, BFS]
+tags: [Coding, LeetCode, BFS, Medium]
 image: 
 comments: true
 published: true
 ---
-Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+
+## Description
+
+Given a binary tree, return the *zigzag level order* traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
 
 For example:
 Given binary tree `[3,9,20,null,null,15,7]`,
+
 ```
     3
    / \
@@ -20,7 +24,10 @@ Given binary tree `[3,9,20,null,null,15,7]`,
    15   7
 ```
 
+
+
 return its zigzag level order traversal as:
+
 ```
 [
   [3],
@@ -30,7 +37,10 @@ return its zigzag level order traversal as:
 ```
 
 ## Solutions
-　　对之字操作放在最后的解法，就是广度优先遍历：
+　　之字形打印输出二叉树。
+
+### 1. BFS
+　　对之字操作放在最后的解法，先按层遍历，然后按照不同的奇偶行看要不要反向。就是广度优先遍历：
 
 ```python
 # Definition for a binary tree node.

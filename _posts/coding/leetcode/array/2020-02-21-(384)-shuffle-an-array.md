@@ -33,7 +33,8 @@ solution.shuffle();
 
 ## Solutions
 ### 1. Backtracking
-　　超时。
+　　想得太复杂了啊！果然超时了！
+
 ```python
 # Time: O(nlogn)
 # Space: O(n)
@@ -82,7 +83,31 @@ class Solution:
 # 2/10 cases passed (N/A)
 ```
 
-### 2. Rand
+### 2. 暴力搜索
+　　删减一个备份数组的元素，用其大小作为 random 的基数，选出的值放到最后结果数组的对应位置。
+
+```python
+class Solution:
+    def __init__(self, nums):
+        self.array = nums
+        self.original = list(nums)
+
+    def reset(self):
+        self.array = self.original
+        self.original = list(self.original)
+        return self.array
+
+    def shuffle(self):
+        aux = list(self.array)
+
+        for idx in range(len(self.array)):
+            remove_idx = random.randrange(len(aux))
+            self.array[idx] = aux.pop(remove_idx)
+
+        return self.array
+```
+
+### 3. Fisher-Yates 洗牌算法
 
 ```python
 # Time: O(n)
@@ -119,6 +144,27 @@ class Solution:
 # 10/10 cases passed (324 ms)
 # Your runtime beats 64.42 % of python3 submissions
 # Your memory usage beats 100 % of python3 submissions (18.1 MB)
+```
+
+　　还有基于暴力法思路的解法：
+
+
+```python
+class Solution:
+    def __init__(self, nums):
+        self.array = nums
+        self.original = list(nums)
+
+    def reset(self):
+        self.array = self.original
+        self.original = list(self.original)
+        return self.array
+
+    def shuffle(self):
+        for i in range(len(self.array)):
+            swap_idx = random.randrange(i, len(self.array))
+            self.array[i], self.array[swap_idx] = self.array[swap_idx], self.array[i]
+        return self.array
 ```
 
 ## References

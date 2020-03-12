@@ -10,21 +10,24 @@ published: true
 ---
 
 ## Description
+
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
-(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+(i.e.,  `[0,1,2,4,5,6,7]` might become  `[4,5,6,7,0,1,2]`).
 
 Find the minimum element.
 
 You may assume no duplicate exists in the array.
 
-Example 1:
+**Example 1:**
+
 ```
 Input: [3,4,5,1,2] 
 Output: 1
 ```
 
-Example 2:
+**Example 2:**
+
 ```
 Input: [4,5,6,7,0,1,2]
 Output: 0
@@ -34,7 +37,7 @@ Output: 0
 　　注意这里是没有重复数值的，如果有重复数值就会有问题，需要看 154 题看有重复的解法。
 
 ### 1. Sort
-　　看到题目有些懵逼？直接从大到小排序取第一个不就 OK 了？
+　　直接排序也可以，但是比较慢。
 
 ```python
 class Solution(object):
@@ -76,10 +79,14 @@ class Solution(object):
 　　发现直接用 `sorted` 比自己实现快排要快好多……
 
 ### 2. Binary Search
-　　后来看了下别人的解答，原来是用二分搜索：
+　　可以用二分法：
+1. 左指针指向的数小于等于右指针指向的数，说明此时已经是升序的，左指针指向的数就是最小的
+2. 如果中间的数大于左指针的数，那么最小值在右侧，左指针等于中间位置加 1
+3. 如果中间数小于左指针的书，那么最小值在左侧，右指针等于中间值位置
+    1. 有可能中间数自己就是最小值，所以这里不能在右指针基础上减 1
 
 ```python
-# Time: O(n)
+# Time: O(logn)
 # Space: O(1)
 class Solution:
     def findMin(self, nums: List[int]) -> int:

@@ -87,6 +87,8 @@ mid = left + (right-left) / 2
 ### LeetCode 题型总结
 * 查找有无重复，有重复找到重复的
     * [287. Find the Duplicate Number](https://binlidaily.github.io/2018-12-03-(287)-Find-the-Duplicate-Number/)
+* 查找最小值
+    * [153. Find Minimum in Rotated Sorted Array](https://binlidaily.github.io/2019-06-23-(153)-find-minimum-in-rotated-sorted-array/)
 
 ## References
 1. [Binary Search - geeksforgeeks](https://www.geeksforgeeks.org/binary-search/)

@@ -1,23 +1,26 @@
 ---
 layout: post
 title: 104. Maximum Depth of Binary Tree
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Easy, Tree]
 image: 
 comments: true
 published: true
 ---
 
+## Description
+
 Given a binary tree, find its maximum depth.
 
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
-Note: A leaf is a node with no children.
+**Note:** A leaf is a node with no children.
 
-Example:
+**Example:**
 
-Given binary tree [3,9,20,null,null,15,7],
+Given binary tree `[3,9,20,null,null,15,7]`,
+
 ```
     3
    / \
@@ -25,9 +28,12 @@ Given binary tree [3,9,20,null,null,15,7],
     /  \
    15   7
 ```
+
 return its depth = 3.
 
+
 ## Solutions
+### 1. 分层遍历
 　　刚好想到最近在看的二叉树分层打印，于是写了如下的解决办法：
 
 ```python
@@ -66,7 +72,8 @@ class Solution(object):
 # Memory Usage: 14.2 MB, less than 99.43% of Python online submissions for Maximum Depth of Binary Tree.
 ```
 
-　　发现其实用最简单的递归同样能做到啊：
+### 2. 递归
+　　更好的方法是递归？但是时间不是很高，可能调用函数花了比较多的时间。
 
 ```python
 # Definition for a binary tree node.

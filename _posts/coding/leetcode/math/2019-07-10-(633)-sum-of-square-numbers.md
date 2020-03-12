@@ -1,31 +1,42 @@
 ---
 layout: post
 title: 633. Sum of Square Numbers
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Easy, Two Pointers]
 image: 
 comments: true
 published: true
 ---
 
-Given a non-negative integer c, your task is to decide whether there're two integers a and b such that a2 + b2 = c.
+## Description
 
-Example 1:
+Given a non-negative integer `c`, your task is to decide whether there're two integers `a` and `b` such that a2 + b2 = c.
+
+**Example 1:**
+
 ```
 Input: 5
 Output: True
 Explanation: 1 * 1 + 2 * 2 = 5
 ```
 
-Example 2:
+ 
+
+**Example 2:**
+
 ```
 Input: 3
 Output: False
 ```
 
+
 ## Solutions
+　　判断一个数是不是两个数的平方和。
+
+### 1. Brute Force
 　　第一想法写出来的代码时间复杂度是 $O(n^2)$，过不了时间限制：
+
 ```python
 class Solution(object):        
     def judgeSquareSum(self, c):
@@ -43,11 +54,12 @@ class Solution(object):
             res = c - i ** 2
             n_res = int(sqrt(res))
             for j in range(n_res+1):
-                if j **2 == res:
+                if j ** 2 == res:
                     return True
         return False
 ```
 
+### 2. Two Pointers
 　　参考了别人做法，确实快好多。
 ```python
 class Solution(object):        
