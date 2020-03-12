@@ -26,32 +26,46 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Clustering Metrics
 
 ### 1.1 Supervised Learning
-* [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
-    * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)
-    * [Bayesian Linear Regression](https://binlidaily.github.io/2019-05-29-bayesian-linear-regression/)
-    * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
-    * [Ridge and Lasso Regression](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
-    * ElasticNet
+* Classification
 
-* [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
-* [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
-    - [Decision Stump](https://binlidaily.github.io/2019-06-04-decision-stump/)
-    - [Iterative Dichotomiser 3 (ID3)](https://binlidaily.github.io/2019-06-04-id3-iterative-dichotomiser-3/)
-    - [C4.5 and C5.0](https://binlidaily.github.io/2019-06-04-C45/)
-    * [Classification and Regression Tree (CART)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/)
-    * [Random Forest = Bagging + Decision Tree](https://binlidaily.github.io/2018-12-11-random-forest/)
-    * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
-    * [Boosting Tree = Adaboost + Decision Tree](https://binlidaily.github.io/2019-06-10-boosting-tree)
-    * [Gradient Boosting Machine (GBM)](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/)
-    * [Gradient Boosting Decision Tree (GBDT) = Gradient Boosting + Decision Tree](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree)
-    * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
-    * [LightGBM](https://binlidaily.github.io/2019-07-05-lightgbm/)
-    - Chi-squared Automatic Interaction Detection (CHAID)
-    - M5
-    - Conditional Decision Trees
+    * Binary Classificaxtion
+        * [Logistic Regression](https://binlidaily.github.io/2017-10-03-logistics-regression/)
+        * Perceptron
+        * [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
+        * [Factorization Machines (FM)](https://binlidaily.github.io/2019-06-26-fm-factorization-machines)
+        * [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
 
-* Perceptron
-* [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
+    * Multi-Class Classificatin
+        * [Decision Tree](https://binlidaily.github.io/2018-09-11-decision-tree/)
+            - [Decision Stump](https://binlidaily.github.io/2019-06-04-decision-stump/)
+            - [Iterative Dichotomiser 3 (ID3)](https://binlidaily.github.io/2019-06-04-id3-iterative-dichotomiser-3/)
+            - [C4.5 and C5.0](https://binlidaily.github.io/2019-06-04-C45/)
+            * [Classification and Regression Tree (CART)](https://binlidaily.github.io/2019-06-04-cart-classification-and-regression-tree/)
+            * [Random Forest = Bagging + Decision Tree](https://binlidaily.github.io/2018-12-11-random-forest/)
+            * [Adaboost](https://binlidaily.github.io/2018-10-29-adaboost/)
+            * [Boosting Tree = Adaboost + Decision Tree](https://binlidaily.github.io/2019-06-10-boosting-tree)
+            * [Gradient Boosting Machine (GBM)](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/)
+            * [Gradient Boosting Decision Tree (GBDT) = Gradient Boosting + Decision Tree](https://binlidaily.github.io/2019-06-11-gbdt-gradient-boosting-decision-tree)
+            * [XGBoost](https://binlidaily.github.io/2018-10-29-xgboost/)
+            * [LightGBM](https://binlidaily.github.io/2019-07-05-lightgbm/)
+            - Chi-squared Automatic Interaction Detection (CHAID)
+            - M5
+            - Conditional Decision Trees
+
+        - [Neural Network](https://binlidaily.github.io/2018-10-29-neural-network/)
+
+
+* Regression
+    * [Linear Regression](https://binlidaily.github.io/2018-06-03-linear-regression/)
+        * [Locally Weighted Linear Regression](https://binlidaily.github.io/2019-01-16-lwlr-locally-weighted-linear-regression/)
+        * [Bayesian Linear Regression](https://binlidaily.github.io/2019-05-29-bayesian-linear-regression/)
+        * [Polynomial Regression](https://binlidaily.github.io/2019-01-16-polynomial-regression/)
+        * [Ridge, Lasso Regression and ElasticNet](https://binlidaily.github.io/2019-01-16-ridge-lasso/)
+
+
+
+
+
 * Instance Based
     - K-Nearest Neighbor (KNN)
     - Learning Vector Quantization (LVQ)
@@ -69,8 +83,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
         - Averaged One-Dependence Estimators (AODE)
         - Hidden Markov Models
         - Conditional Random Fields (CRFs)
-* [Support Vector Machines](https://binlidaily.github.io/2019-01-10-support-vector-machines/)
-* [Field-aware Factorization Machines (FFM)](https://binlidaily.github.io/2018-10-29-ffm-field-aware-factorization-machines/)
+
 
 ### 1.2 Unsupervised Learning
 ### 1.2.1 Clustering

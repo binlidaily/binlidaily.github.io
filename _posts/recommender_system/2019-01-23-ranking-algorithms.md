@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ranking Algorithms
-subtitle:
+subtitle: 排序算法
 author: Bin Li
 tags: [Machine Learning]
 image: 
