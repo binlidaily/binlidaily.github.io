@@ -11,7 +11,7 @@ published: true
 
 　　场感知因子分解机（Field-aware Factorization Machine，FFM）就是在因子分解机上加入了场的概念。FM 中一个特征只对应一个隐向量，而在实际场景中特征和不同场的特征交互时应该使用不同的向量，这就是 FFM 的创作动机。
 
-　　FFM 需要实现将特征按照规则分成多个场（Field），每一个特征被映射到多个隐向量 $\mathbf{v}_{i 1}, \dots, \mathbf{v}_{i f}$，每个隐向量对应一个场。当两个特征 $x_i$ 和 $x_j$ 组合时，就采用对应场的隐向量做内积即可：
+　　FFM 需要实现将特征按照规则分成多个场（Field），每一个特征被映射到多个隐向量 $v_{i 1}, \dots, v_{i f}$，每个隐向量对应一个场。当两个特征 $x_i$ 和 $x_j$ 组合时，就采用对应场的隐向量做内积即可：
 
 $$
 w_{i j}=\mathbf{v}_{i, f_{j}}^{T} \mathbf{v}_{j, f_{i}}
@@ -74,7 +74,7 @@ $$
 \left(G_{j_{2}, f_{1}}\right)_{d} \leftarrow\left(G_{j_{2}, f_{1}}\right)_{d}+\left(g_{j_{2}, f_{1}}\right)_{d}^{2} \tag{8}
 $$
 
-　　最后，参数 $\left(w_{j_{1}, f_{2}}\right)_{d}$ 和 $\left(w_{j_{2}, f_{1}}\right)_{d}$ 得以更新：
+　　最后，参数 $\left(w_{j_1, f_2}\right)_{d}$ 和 $\left(w_{j_2, f_1}\right)_d$ 得以更新：
 
 $$
 \left(w_{j_{1}, f_{2}}\right)_{d} \leftarrow\left(w_{j_{1}, f_{2}}\right)_{d}-\frac{\eta}{\sqrt{\left(G_{j_{1}, f_{2}}\right)_{d}}}\left(g_{j_{1}, f_{2}}\right)_{d} \tag{9}

@@ -97,9 +97,9 @@ class Solution:
 ```python
 class Solution:
     def isValid(self, s: str) -> bool:
-        valid=dict(zip([')',"]","}"],["(","[","{"]))
-        s=list(s)
-        stack=list()
+        valid = dict(zip([')',"]","}"],["(","[","{"]))
+        s = list(s)
+        stack = list()
         for i in range(len(s)):
             if s[i] in valid.values():
                 stack.append(s[i])

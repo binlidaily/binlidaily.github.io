@@ -87,5 +87,6 @@ class Solution:
 # Runtime: 36 ms, faster than 97.61%
 # Memory Usage: 13.4 MB, less than 61.11%
 ```
+
 ## References
 1. [32. Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
