@@ -12,7 +12,7 @@ typora-copy-images-to: ../../../img/media
 
 {% include toc.html %}
 
-　　逻辑斯特回归（或对数几率回归，Logistic Regression, LR）是机器学习中的一种**分类**模型，由于算法的简单高效，在实际运用中非常的广泛。
+　　逻辑斯特回归/对数几率回归（Logistic Regression, LR）是机器学习中的一种**分类**模型，由于算法的简单高效，在实际运用中非常的广泛。
 
 　　就线性模型来说，我们在现实生活中四种需求：
 
@@ -36,7 +36,7 @@ $$
 3. $L$ 是曲线的最大值
 4. $k$ 是 logistic 曲线增长率
 
-　　Sigmoid 函数就是特殊的 logistic function，其中 $x_0 = 0$，$k=1$，$L=1$。
+　　之所以选取 Sigmoid 函数作为映射概率函数是因为其有较好的数学性质，Sigmoid 函数就是特殊的 logistic function，其中 $x_0 = 0$，$k=1$，$L=1$。
 
 $$
 \sigma(s)=\frac{1}{1+e^{-s}}=\frac{e^{s}}{1+e^{s}} 
@@ -48,7 +48,7 @@ $$
 h(\mathbf{x})=\sigma\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}\right)=\frac{1}{1+e^{-\mathbf{w}^{\mathrm{T}}\mathbf{x}}}
 $$
 
-　　这边是从需求角度引入了 LR 的决策函数，当然我们还能从广义线性模型的角度来引入这个结果。
+　　这便是从需求角度引入了 LR 的决策函数，当然我们还能从广义线性模型的角度来引入这个结果。
 
 　　值得注意的是 logistic function 的一个特性：
 
@@ -63,7 +63,7 @@ $$
 　　到此我们知道了 LR 的决策函数，接下来我们就要构建非常重要的损失函数了。然后尝试去求解最优值，会用到求导和梯度下降的通用方法。
 
 ### 2.1 极大似然估计构造交叉熵损失函数
-　　我们先假设数据类标用的是 $\{0, 1\}$ 表示，对于二分类的对应结果概率为：
+　　我们先假设数据类标用的是 $\\{0, 1 \\}$ 表示，对于二分类的对应结果概率为：
 
 $$
 {P(y = 1| x; \mathrm{w}) = g(\mathrm{w}^Tx)}={1\over{1+e^{-{\mathrm{w}^Tx}}}}=p
@@ -122,7 +122,7 @@ $$
 \ell(\mathrm{w}) = -\sum_{i=1}^{m} y_{i} \log p_i+\left(1-y_{i}\right) \log \left(1-p_i\right)
 $$
 
-　　当然，如果是 $y \in \\{1，-1\\}$ 就要注意似然函数的写法，因为有 $1-\sigma(s) = \sigma(-s)$，所以概率计算结果为：
+　　当然，如果是 $y \in \\{1, -1\\}$ 就要注意似然函数的写法，因为有 $1-\sigma(s) = \sigma(-s)$，所以概率计算结果为：
 
 $$
 P(y|{x};\mathrm{w})=\left\{ \begin{aligned} g(\mathrm{w}^Tx)=g(y\mathrm{w}^Tx), y=1 \\ g(-\mathrm{w}^Tx)=g(y\mathrm{w}^Tx),y=-1 \end{aligned} \right.
@@ -147,7 +147,7 @@ $$
 
 $$
 \begin{aligned}
-\frac{\partial}{\partial \mathrm{w}_{j}} \ell(\mathrm{w}) &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) \frac{\partial}{\partial \mathrm{w}_{j}} g\left(\mathrm{w}^{T} x\right) \\ &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) g\left(\mathrm{w}^{T} x\right)\left(1-g\left(\mathrm{w}^{T} x\right)\right) \frac{\partial}{\partial \mathrm{w}_{j}} \mathrm{w}^{T} x \\ &=\left(y\left(1-g\left(\mathrm{w}^{T} x\right)\right)-(1-y) g\left(\mathrm{w}^{T} x\right)\right) x_{j} \\ &=\left(y-h_{\mathrm{w}}(x)\right) x_{j} \end{aligned}
+\frac{\partial}{\partial \mathrm{w}_{j}} \ell(\mathrm{w}) &= \frac{\partial}{\partial \mathrm{w}_{j}} y \log g\left(\mathrm{w}^{T} x\right)+\left(1-y_{i}\right) \log \left(1-g\left(\mathrm{w}^{T} x\right)\right)\\&=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) \frac{\partial}{\partial \mathrm{w}_{j}} g\left(\mathrm{w}^{T} x\right) \\ &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) g\left(\mathrm{w}^{T} x\right)\left(1-g\left(\mathrm{w}^{T} x\right)\right) \frac{\partial}{\partial \mathrm{w}_{j}} \mathrm{w}^{T} x \\ &=\left(y\left(1-g\left(\mathrm{w}^{T} x\right)\right)-(1-y) g\left(\mathrm{w}^{T} x\right)\right) x_{j} \\ &=\left(y-h_{\mathrm{w}}(x)\right) x_{j} \end{aligned}
 $$
 
 　　接着利用梯度下降法就可以进行模型参数更新优化。

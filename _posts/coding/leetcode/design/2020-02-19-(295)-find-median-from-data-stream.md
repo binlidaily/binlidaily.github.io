@@ -46,6 +46,8 @@ findMedian() -> 2
 
 
 ## Solutions
+　　实现一个可以选择加数还是计算中位数的一个类。
+
 ### 1. List
 
 ```python

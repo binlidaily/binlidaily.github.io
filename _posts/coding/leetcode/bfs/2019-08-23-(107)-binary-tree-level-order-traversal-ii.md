@@ -1,18 +1,21 @@
 ---
 layout: post
 title: 107. Binary Tree Level Order Traversal II
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode, BFS]
+tags: [Coding, LeetCode, BFS, Easy]
 image: 
 comments: true
 published: true
 ---
 
-Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+## Description
+
+Given a binary tree, return the *bottom-up level order* traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
 For example:
-Given binary tree [3,9,20,null,null,15,7],
+Given binary tree `[3,9,20,null,null,15,7]`,
+
 ```
     3
    / \
@@ -20,7 +23,11 @@ Given binary tree [3,9,20,null,null,15,7],
     /  \
    15   7
 ```
+
+
+
 return its bottom-up level order traversal as:
+
 ```
 [
   [15,7],
@@ -30,6 +37,9 @@ return its bottom-up level order traversal as:
 ```
 
 ## Solutions
+　　先用 BFS 遍历，然后反着输出就行。
+
+### 1. BFS
 　　使用两个指针的方式判断什么时候换行，效果不是很好：
 
 ```python

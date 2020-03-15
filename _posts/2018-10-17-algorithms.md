@@ -128,7 +128,6 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 - [AdaBoost](https://binlidaily.github.io/2018-10-29-adaboost/)
 - Stacked Generalization (blending)
 - [Gradient Boosting Machines (GBM)](https://binlidaily.github.io/2018-12-05-gradient-boosting/)
-- Gradient Boosted Regression Trees (GBRT)
 - [Random Forest](https://binlidaily.github.io/2018-12-11-random-forest/)
 
 

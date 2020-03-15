@@ -75,8 +75,8 @@ $$
 
 
 
-## 3. tanh 函数
-　　比起 Sigmoid 函数，更常用的是 tanh 函数：
+## 3. Tanh 函数
+　　比起 Sigmoid 函数，更常用的是 Tanh 函数：
 
 $$
 \tanh (x)=\frac{1-e^{-2 x}}{1+e^{-2 x}}

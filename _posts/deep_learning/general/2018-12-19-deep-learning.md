@@ -31,3 +31,4 @@ published: false
 
 ## References
 1. [deeplearning-models](https://github.com/rasbt/deeplearning-models)
+2. [设置数据和Loss](https://blog.csdn.net/KangRoger/article/details/52650639#%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96)

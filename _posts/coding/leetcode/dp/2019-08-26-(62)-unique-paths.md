@@ -1,27 +1,30 @@
 ---
 layout: post
 title: 62. Unique Paths
-subtitle: 唯一路径
+subtitle: 唯一路径（Medium）
 author: Bin Li
-tags: [Coding, LeetCode, DP]
+tags: [Coding, LeetCode, DP, Medium]
 image: 
 comments: true
 published: true
 ---
 
-A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+## Description
+
+A robot is located at the top-left corner of a *m* x *n* grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
 How many possible unique paths are there?
-![](/img/media/15668161183071.jpg)
 
+![](/img/media/15668161183071.jpg)
 
 Above is a 7 x 3 grid. How many possible unique paths are there?
 
-Note: m and n will be at most 100.
+ 
 
-Example 1:
+**Example 1:**
+
 ```
 Input: m = 3, n = 2
 Output: 3
@@ -31,13 +34,25 @@ From the top-left corner, there are a total of 3 ways to reach the bottom-right 
 2. Right -> Down -> Right
 3. Down -> Right -> Right
 ```
-Example 2:
+
+**Example 2:**
+
 ```
 Input: m = 7, n = 3
 Output: 28
 ```
 
+ 
+
+**Constraints:**
+
+- `1 <= m, n <= 100`
+- It's guaranteed that the answer will be less than or equal to `2 * 10 ^ 9`.
+
 ## Solutions
+　　寻找从开始到结束位置，有多少可能的唯一路径，每一步只能向右或者向下走。
+
+### 1. DP
 　　这一题还是很好求解的，只要列出状态转移方程就好了，用二维的 DP：
 
 ```python
@@ -88,6 +103,7 @@ class Solution(object):
 # Runtime: 20 ms, faster than 49.22% of Python online submissions for Unique Paths.
 # Memory Usage: 11.8 MB, less than 31.03% of Python online submissions for Unique Paths.
 ```
+
 ## References
 1. [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
 2. [花花酱 LeetCode 62. Unique Paths](https://www.youtube.com/watch?v=fmpP5Ll0Azc)

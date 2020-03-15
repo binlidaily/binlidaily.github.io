@@ -1,15 +1,17 @@
 ---
 layout: post
 title: 63. Unique Paths II
-subtitle: 唯一路径
+subtitle: 唯一路径（Medium）
 author: Bin Li
-tags: [Coding, LeetCode, DP]
+tags: [Coding, LeetCode, DP, Medium]
 image: 
 comments: true
 published: true
 ---
 
-A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+## Description
+
+A robot is located at the top-left corner of a *m* x *n* grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
@@ -17,13 +19,13 @@ Now consider if some obstacles are added to the grids. How many unique paths wou
 
 ![](/img/media/15668945182340.jpg)
 
+An obstacle and empty space is marked as `1` and `0` respectively in the grid.
 
-An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+**Note:** *m* and *n* will be at most 100.
 
-Note: m and n will be at most 100.
+**Example 1:**
 
-Example 1:
-```python
+```
 Input:
 [
   [0,0,0],
@@ -38,7 +40,11 @@ There are two ways to reach the bottom-right corner:
 2. Down -> Down -> Right -> Right
 ```
 
+
 ## Solutions
+　　如果在路途中添加了一些
+
+### 1. DP
 　　在第一题的基础上改一下就好，还是很多 if，写出来不是很优雅：
 
 ```python
@@ -140,6 +146,7 @@ class Solution(object):
 # Runtime: 32 ms, faster than 69.02% of Python online submissions for Unique Paths II.
 # Memory Usage: 11.5 MB, less than 100.00% of Python online submissions for Unique Paths II.
 ```
+
 ## References
 1. [63. Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)
 2. [Python different solutions (O(m*n), O(n), in place).](https://leetcode.com/problems/unique-paths-ii/discuss/23410/Python-different-solutions-(O(m*n)-O(n)-in-place).)
