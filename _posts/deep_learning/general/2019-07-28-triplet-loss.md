@@ -21,7 +21,7 @@ $$
 
 　　其中：
 * $f(x) \in \mathbb{R}^{d}$ 是 FaceNet 里提出的 Embedding，即把一张图片表达到 $d$ 维的欧几里得空间。
-* a, p, n 分别表示 anchor, positive 和 negative
+* $a$, $p$, $n$ 分别表示 anchor, positive 和 negative
 * $\mathscr{T}$ 是具有基数为 $N$ 的训练集中的三元组集合
 * $\alpha$ 是横亘在正对和负对之间强制的边界大小
 
