@@ -1,33 +1,39 @@
 ---
 layout: post
 title: 111. Minimum Depth of Binary Tree
-subtitle:
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode, BFS, DFS]
+tags: [Coding, LeetCode, BFS, DFS, Easy]
 image: 
 comments: true
 published: true
 ---
 
+## Description
+
 Given a binary tree, find its minimum depth.
 
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
 
-Note: A leaf is a node with no children.
+**Note:** A leaf is a node with no children.
 
-Example:
+**Example:**
 
 Given binary tree `[3,9,20,null,null,15,7]`,
-```python
+
+```
     3
    / \
   9  20
     /  \
    15   7
 ```
+
 return its minimum depth = 2.
 
 ## Solutions
+　　找到最小的深度，即找到最小的没有左右子结点的那个节点的深度。
+
 ### 1. DFS 递归
 
 ```python
@@ -136,5 +142,6 @@ class Solution(object):
 # Runtime: 36 ms, faster than 45.93% of Python online submissions for Minimum Depth of Binary Tree.
 # Memory Usage: 14.6 MB, less than 79.49% of Python online submissions for Minimum Depth of Binary Tree.
 ```
+
 ## References
 1. [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)

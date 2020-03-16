@@ -10,12 +10,14 @@ published: true
 ---
 
 ## Description
-Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
 
-Note: You can only move either down or right at any point in time.
+Given a *m* x *n* grid filled with non-negative numbers, find a path from top left to bottom right which *minimizes* the sum of all numbers along its path.
 
-Example:
-```python
+**Note:** You can only move either down or right at any point in time.
+
+**Example:**
+
+```
 Input:
 [
   [1,3,1],
@@ -26,8 +28,11 @@ Output: 7
 Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 ```
 
+
 ## Solutions
-### 2D-DP
+　　找到从左上角到右下角所有路径和中最小的，移动操作只能是向下或者向右。
+
+### 1. 2D-DP
 
 ```python
 # Time: O(mn)

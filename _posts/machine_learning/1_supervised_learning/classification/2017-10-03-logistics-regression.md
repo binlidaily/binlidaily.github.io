@@ -150,6 +150,12 @@ $$
 \frac{\partial}{\partial \mathrm{w}_{j}} \ell(\mathrm{w}) &= \frac{\partial}{\partial \mathrm{w}_{j}} y \log g\left(\mathrm{w}^{T} x\right)+\left(1-y_{i}\right) \log \left(1-g\left(\mathrm{w}^{T} x\right)\right)\\&=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) \frac{\partial}{\partial \mathrm{w}_{j}} g\left(\mathrm{w}^{T} x\right) \\ &=\left(y \frac{1}{g\left(\mathrm{w}^{T} x\right)}-(1-y) \frac{1}{1-g\left(\mathrm{w}^{T} x\right)}\right) g\left(\mathrm{w}^{T} x\right)\left(1-g\left(\mathrm{w}^{T} x\right)\right) \frac{\partial}{\partial \mathrm{w}_{j}} \mathrm{w}^{T} x \\ &=\left(y\left(1-g\left(\mathrm{w}^{T} x\right)\right)-(1-y) g\left(\mathrm{w}^{T} x\right)\right) x_{j} \\ &=\left(y-h_{\mathrm{w}}(x)\right) x_{j} \end{aligned}
 $$
 
+　　记忆时有两个点，一个是之前介绍的 Sigmoid 函数导数，第二个是对数（自然数为底）的导数：
+
+$$
+{\displaystyle {\begin{aligned}{\frac {{\mbox{d}}\ln x}{{\mbox{d}}x}}&=\lim _{h\to 0}{\frac {\ln(x+h)-\ln x}{h}}\\&=\lim _{h\to 0}({\frac {1}{h}}\ln({\frac {x+h}{x}}))\\&=\lim _{h\to 0}({\frac {x}{xh}}\ln(1+{\frac {h}{x}}))\\&={\frac {1}{x}}\ln(\lim _{h\to 0}(1+{\frac {h}{x}})^{\frac {x}{h}})\\&={\frac {1}{x}}\ln e\\&={\frac {1}{x}}\end{aligned}}}
+$$
+
 　　接着利用梯度下降法就可以进行模型参数更新优化。
 
 ## 3. 正则化
