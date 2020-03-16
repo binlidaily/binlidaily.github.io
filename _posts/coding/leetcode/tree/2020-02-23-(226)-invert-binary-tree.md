@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 226. Invert Binary Tree
-subtitle: 
+subtitle: Easy
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Easy, Tree]
 image: 
 comments: true
 published: true
@@ -42,6 +42,8 @@ This problem was inspired by [this original tweet](https://twitter.com/mxcl/stat
 
 
 ## Solutions
+　　将二叉树翻转得到镜像结果。
+
 ### 1. DFS-Recursion
 
 ```python

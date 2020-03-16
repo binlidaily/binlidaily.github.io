@@ -194,14 +194,53 @@ $$
 1. 当 $\sigma(\beta x)$ 接近于 1 时，门处于“开”状态，激活函数的输出近似于 x 本身
 2. 当 $\sigma(\beta x)$ 接近于 0 时，门的状态为“关”，激活函数的输出近似于 0
 
-![-w596](/img/media/15843219654032.jpg)
+<p align="center">
+<img src="/img/media/15843219654032.jpg" width="500">
+</p>
+<p style="margin-top:-2.5%" align="center">
+<em style="color:#808080;font-style:normal;font-size:80%;">Swish 函数</em>
+</p>
 
-当 𝛽 = 0 时，Swish 函数变成线性函数 𝑥/2. 当 𝛽 = 1 时，Swish 函数在 𝑥 > 0 时近似线性，在 𝑥 < 0 时近似饱和，同时具有一定的非单调性. 当 𝛽 → +∞ 时，𝜎(𝛽𝑥) 趋向于离散的 0-1 函数，Swish 函数近似为 ReLU 函数. 因此，Swish 函数可以看作是线性函数和 ReLU 函数之间的非线性插值函数，其程度由参数 𝛽 控制.
+
+　　从上图可知：
+1. 当 $\beta = 0$ 时，Swish 函数变成线性函数 $x / 2$
+2. 当 $\beta = 1$ 时，Swish 函数在 $x>0$ 时近似线性，在 $x < 0$ 时近似饱和，同时具有一定的非单调性. 当 $\beta \rightarrow + \infty$ 时，$\sigma(\beta x)$ 趋向于离散的 0-1 函数，Swish 函数近似为 ReLU 函数.
+
+　　因此，Swish 函数可以看作是线性函数和 ReLU 函数之间的非线性插值函数，其程度由参数 $\beta$ 控制.
 
 ## 8. 高斯误差线性单元（Gaussian Error Linear Unit, GELU）
+　　高斯误差线性单元和 Swish 函数比较类似，也是一种通过门控机制来调整其输出值的激活函数：
 
+$$
+\operatorname{GELU}(x)=x P(X \leq x)
+$$
 
+　　其中 $P(X \le x)$ 是高斯分布 $\mathcal{N}\left(\mu, \sigma^{2}\right)$ 的累积分布函数，其中 $\mu$, $\sigma$ 为超参数，一般设 $\mu=0$, $\sigma=1$ 即可。由于高斯分布的累积分布函数为 S 型函数，因此 GELU 可以用 Tanh 函数或 Logistic 函数来近似：
 
+$$
+\begin{array}{l}\operatorname{GELU}(x) \approx 0.5 x\left(1+\tanh \left(\sqrt{\frac{2}{\pi}}\left(x+0.044715 x^{3}\right)\right)\right) \\ \operatorname{GELU}(x) \approx x \sigma(1.702 x)\end{array}
+$$
+
+　　当使用 Logistic 函数来近似时，GELU 相当于一种特殊的 Swish 函数。
+
+## 9. Maxout 单元
+　　Maxout 单元也是一种分段线性函数. Sigmoid 型 函数、ReLU 等激活函数的输入是神经元的净输入 $z$，是一个标量. 而 Maxout 单元 的输入是上一层神经元的全部原始输出，是一个向量 $\boldsymbol{x}=\left[x_{1} ; x_{2} ; \cdots ; x_{D}\right]$。
+
+　　每个 Maxout 单元有 $K$ 个权重向量 $\boldsymbol{w}_k \in \mathbb{R}^{D}$ 和偏置 $b_k(1\le k\le K)$。对于输入 $\boldsymbol{x}$，可以得到 $K$ 个净输入  $z_k(1\le k\le K)$。
+
+$$
+z_{k}=\boldsymbol{w}_{k}^{\top} \boldsymbol{x}+b_{k}
+$$
+
+　　其中 $\boldsymbol{w}_{k}=\left[w_{k, 1}, \cdots, w_{k, D}\right]^{\top}$ 为第 $k$ 个权重向量。
+
+　　Maxout 单元的非线性函数定义为
+
+$$
+\operatorname{maxout}(\boldsymbol{x})=\max _{k \in[1, K]}\left(z_{k}\right)
+$$
+
+　　Maxout 单元不单是净输入到输出之间的非线性映射，而是整体学习输入到输出之间的非线性映射关系。 Maxout 激活函数可以看作任意凸函数的分段线性近似，并且在有限的点上是不可微的。
 
 ### 梯度爆炸
 解决办法:
