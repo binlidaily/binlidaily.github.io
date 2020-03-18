@@ -73,7 +73,9 @@ $$
 
 **缺点**：
 1. 由于其软饱和性，容易产生梯度消失，导致训练出现问题。
-2. 其输出不是以 $0$ 为中心的。
+2. 其输出不是以 $0$ 为中心的
+    * 非零中心化的输出会使得其后一层的神经元的输入发生[偏置偏移](https://durhamgeo.com/pdf/documents/course%20material/bias-shift%20error.pdf)（Bias Shift），并进一步使得梯度下降的收敛速度变慢
+    * 这一情况将影响梯度下降的运作，因为如果输入神经元的数据总是正数，那么关于 $w$ 的梯度在反向传播的过程中，将会要么全部是正数，要么全部是负数，这样梯度下降权重更新时出现 $z$ 字型的下降。这样收敛会变得异常的慢。
 
 
 ### 2.1 为什么 Sigmoid 会出现梯度消失的现象呢？
@@ -101,7 +103,6 @@ $$
 **优点**：
 1. 比 Sigmoid 函数收敛速度更快。
 2. 相比 Sigmoid，Tanh 是以 $0$ 为中心。
-    1. 非零中心化的输出会使得其后一层的神经元的输入发生偏置偏移（Bias Shift），并进一步使得梯度下降的收敛速度变慢
 
 **缺点**：
 1. 没有改变 Sigmoid 的最大问题——由于软饱和性产生梯度消失问题。
@@ -260,3 +261,4 @@ $$
 5. [详解机器学习中的梯度消失、爆炸原因及其解决方法](https://blog.csdn.net/qq_25737169/article/details/78847691)
 6. [深度学习中的激活函数汇总](http://spytensor.com/index.php/archives/23/?qmheji=sq6sf2)
 7. 《神经网络与深度学习》邱锡鹏
+8. [Why do non-zero mean activations induce a bias shift for units in the next layer and why is that bad?](https://www.quora.com/Why-do-non-zero-mean-activations-induce-a-bias-shift-for-units-in-the-next-layer-and-why-is-that-bad)
