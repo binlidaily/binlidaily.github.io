@@ -19,13 +19,16 @@ published: true
 　　采用多类标（multi label）分类，一个对象的 label 可能同时是行人和孩子，所以累加的概率结果不一定是 1 了。在计算概率的时候，不在采用 softmax，而是采用了独立的 logistic 分类器去计算输入内容属于特定类的可能性。在训练的时候，对于类的预测，则采用了二元交叉熵损失。
 
 ### 1.2 边界框检测和损失函数计算
-　　YOLOv3 采用逻辑回归计算每个边界框的框置信度，并且还修改了计算损失函数的方式。如果先验框（锚框）与 Ground Truth 真实对象的重叠程度大于其他先验框，则其框置信度应为 1。对于重叠程度大于预定义阈值（默认值为0.5）的其他先验框，则损失为0。每个 Ground Truth 物体仅与一个边界框相关联。如果一个先验框没有关联物体，则不会导致分类和定位丢失，而只会产生置信度损失。 我们使用tx和ty（而不是bx和by）来计算损失。YOLOv3 使用 $t_x$ 和 $t_y$ 而非 $b_x$ 和 $b_y$ 来计算损失。
+　　YOLOv3 采用逻辑回归计算每个边界框的框置信度，并且还修改了计算损失函数的方式。如果先验框（锚框）与 Ground Truth 真实对象的重叠程度大于其他先验框，则其框置信度应为 1。对于重叠程度大于预定义阈值（默认值为0.5）的其他先验框，则损失为 0，每个 Ground Truth 物体仅与一个边界框相关联。
+
+　　如果一个先验框没有关联物体，则不会导致分类和定位丢失，而只会产生置信度损失。 我们使用 tx 和 ty（而不是 bx 和 by）来计算损失。YOLOv3 使用 $t_x$ 和 $t_y$ 而非 $b_x$ 和 $b_y$ 来计算损失。
 
 $$
 \begin{array}{c}\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[\left(x_{i}-\hat{x}_{i}\right)^{2}+\left(y_{i}-\hat{y}_{i}\right)^{2}\right] \\ \quad+\lambda_{\text {coord }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left[(\sqrt{w_{i}}-\sqrt{\hat{w}_{i}})^{2}+(\sqrt{h_{i}}-\sqrt{\hat{h}_{i}})^{2}\right] \\ \quad+\sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {obj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\ \quad+\lambda_{\text {noobj }} \sum_{i=0}^{S^{2}} \sum_{j=0}^{B} \mathbb{1}_{i j}^{\text {noobj }}\left(C_{i}-\hat{C}_{i}\right)^{2} \\ \quad+\sum_{i=0}^{S^{2}} \mathbb{1}_{i}^{\text {obj }} \sum_{c \in \text { classes }}\left(p_{i}(c)-\hat{p}_{i}(c)\right)^{2}\end{array}
 $$
 
-The last three terms in YOLO v2 are the squared errors, whereas in YOLO v3, they’ve been replaced by cross-entropy error terms. In other words, object confidence and class predictions in YOLO v3 are now predicted through logistic regression.
+
+　　在 YOLOv2 中损失函数的最后三项也都是平方误差，而在 YOLOv3 中最后三项替换成交叉熵损失，即表明锚框物体的置信度损失和类别损失都是采用逻辑回归来进行预测。
 
 ### 1.3 特征金字塔网络（Feature Pyramid Networks）
 　　YOLOv3 对于每一个位置预测三个结果，每一个预测结果包括一个边界框，一个物体，和 $80$ 个类预测概率，也就是 $N\times N \times [3 \times (4+1+80)]$ 个预测值。
@@ -37,32 +40,46 @@ The last three terms in YOLO v2 are the squared errors, whereas in YOLO v3, they
 
 　　为了决定先验框个数，YOLOv3 也是采用 k-means 聚类。结果预选了 9 个簇，即 9 个先验框，被分成 3 个组，对应分到上面 3 个尺度下。
 
-![The-framework-of-YOLOv3-neural-network-for-ship-detection](/img/media/The-framework-of-YOLOv3-neural-network-for-ship-detection.jpg)
+<p align="center">
+<img src="/img/media/The-framework-of-YOLOv3-neural-network-for-ship-detection.jpg" width="640">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">YOLOv3 网络结构示意图 1</em>
+</p>
 
-![](/img/media/15828111582496.jpg)
-
+<p align="center">
+<img src="/img/media/15828111582496.jpg" width="640">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">YOLOv3 网络结构示意图 2</em>
+</p>
 
 
 ### 1.4 特征提取器（Feature Extractor）
-　　用的新的 53 层的 Darknet-53 来提取特征，代替了原来在 YOLOv1 和 YOLOv2 中的 Darknet-19 层结构。
+　　YOLOv3 用 53 层的 Darknet-53 来提取特征，代替了原来在 YOLOv1 和 YOLOv2 中的 Darknet-19 层结构。
 
 <p align="center">
-<img src="/img/media/15846257865454.jpg" width="600">
+<img src="/img/media/15846257865454.jpg" width="400">
 </p>
 <p style="margin-top:-2.5%" align="center">
     <em style="color:#808080;font-style:normal;font-size:80%;">Darknet-53</em>
 </p>
 
 
-　　Darknet-53 主要主要由 $3\times3$ 和 $1\times1$ 卷积层组成，并采用了类似 ResNet 中的 shortcut 连接做加和。 与 ResNet-152 相比，Darknet-53 具有更少的 BFLOP（十亿浮点运算），但以 2 倍的速度实现了相同的分类精度。真是 Dark！
+　　Darknet-53 主要由 $3\times3$ 和 $1\times1$ 卷积层组成，并采用了类似 ResNet 中的 shortcut 连接做加和。与 ResNet-152 相比，Darknet-53 具有更少的 BFLOP（十亿浮点运算），但以 2 倍的速度实现了相同的分类精度。真是 Dark！
 
 
-## 性能
-![](/img/media/15735602763567.jpg)
+## 总结
+<p align="center">
+<img src="/img/media/15735602763567.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">YOLOv3 模型效果</em>
+</p>
+
 
 　　YOLOv3 在速度上还是很喜人的。
 
-## 总结
 
 ## References
 1. [YOLOv1 Paper](/assets/papers/YOLOv1.pdf)
