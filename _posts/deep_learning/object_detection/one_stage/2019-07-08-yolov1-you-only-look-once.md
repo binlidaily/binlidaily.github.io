@@ -37,14 +37,14 @@ published: true
 
 
 ## 2. 模型训练
-## 2.1 网络结构
+### 2.1 网络结构
 　　论文中是针对 PASCAL VOC 数据集，YOLO 采用 $7 \times 7$ 的网格划分方法。YOLO 的网络结构如下图所示：
 
 <p align="center">
 <img src="/img/media/15711246361131.jpg" width="600">
 </p>
 <p style="margin-top:-2.5%" align="center">
-    <em style="color:#808080;font-style:normal;font-size:80%;">YOLOv1网络结构</em>
+    <em style="color:#808080;font-style:normal;font-size:80%;">YOLOv1 网络结构</em>
 </p>
 
 　　YOLO 有 24 个卷积层和 2 个全连接层：
@@ -56,7 +56,7 @@ published: true
     3. 即一个 cell 的结果是 $5\times 2 +20=30$ 个值，然后算上 $7\times 7$ 个 cell 共 $1470$ 个值
     4. 这些值是在最后拉平的一串数中按照顺序排列
 
-## 2.2 Loss Function
+### 2.2 Loss Function
 　　模型整体的损失函数是这样，看起来非常恐怖，但是拆解看下来还是挺大胆的。
 
 $$
@@ -88,7 +88,7 @@ $$
 
 　　另外，这里计算宽和高的时候先要进行算术平方根，因为 $w$ 和 $h$ 开放后，对于相同的差距（比如都是两个像素的差距），大物体和小物体得到的不同的损失。如果对于相同的像素误差，大小物体的损失都一样，这样不是很合理！
 
-### 2.2.2 Confidence Loss
+## 2.2.2 Confidence Loss
 
 　　第二个部分的损失是框的置信度损失，就是来衡量这个框有没有效果。置信度损失分成两个部分，如果一个物体在边界框中被检测到，那么对应的置信度损失计算如下：
 

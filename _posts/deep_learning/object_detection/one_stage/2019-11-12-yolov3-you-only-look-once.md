@@ -10,11 +10,13 @@ published: true
 
 　　YOLOv3 在 YOLOv2 的基础上进一步做了优化，使之成为目标检测界非常重要的算法，也是目前业界最常用的目标检测算法之一。
 
-## 1. YOLOv3 的改进
-　　YOLOv3 在分类预测、边框检测和损失函数，以及网络结构上都做了优化。
+{% include toc.html %}
 
-### 1.1 分类预测
-　　采用多类标（multi label）分类，一个对象的 label 可能同时是行人和孩子，所以累加的概率结果不一定是 1 了。在计算概率的时候，不在采用 softmax，而是采用了独立的 logistic 分类器去计算输入内容属于特定类的可能性。而且在训练的时候，对于类的预测，采用了二元交叉熵损失。
+## 1. YOLOv3 的改进
+　　YOLOv3 在分类预测、边框检测、损失函数，以及网络结构上都做了优化。
+
+### 1.1 分类预测改进成多类标
+　　采用多类标（multi label）分类，一个对象的 label 可能同时是行人和孩子，所以累加的概率结果不一定是 1 了。在计算概率的时候，不在采用 softmax，而是采用了独立的 logistic 分类器去计算输入内容属于特定类的可能性。在训练的时候，对于类的预测，则采用了二元交叉熵损失。
 
 ### 1.2 边界框检测和损失函数计算
 　　YOLOv3 采用逻辑回归计算每个边界框的框置信度，并且还修改了计算损失函数的方式。如果先验框（锚框）与 Ground Truth 真实对象的重叠程度大于其他先验框，则其框置信度应为 1。对于重叠程度大于预定义阈值（默认值为0.5）的其他先验框，则损失为0。每个 Ground Truth 物体仅与一个边界框相关联。如果一个先验框没有关联物体，则不会导致分类和定位丢失，而只会产生置信度损失。 我们使用tx和ty（而不是bx和by）来计算损失。YOLOv3 使用 $t_x$ 和 $t_y$ 而非 $b_x$ 和 $b_y$ 来计算损失。
@@ -44,7 +46,13 @@ The last three terms in YOLO v2 are the squared errors, whereas in YOLO v3, they
 ### 1.4 特征提取器（Feature Extractor）
 　　用的新的 53 层的 Darknet-53 来提取特征，代替了原来在 YOLOv1 和 YOLOv2 中的 Darknet-19 层结构。
 
-![](/img/media/15735592302030.jpg)
+<p align="center">
+<img src="/img/media/15846257865454.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">Darknet-53</em>
+</p>
+
 
 　　Darknet-53 主要主要由 $3\times3$ 和 $1\times1$ 卷积层组成，并采用了类似 ResNet 中的 shortcut 连接做加和。 与 ResNet-152 相比，Darknet-53 具有更少的 BFLOP（十亿浮点运算），但以 2 倍的速度实现了相同的分类精度。真是 Dark！
 
@@ -54,6 +62,7 @@ The last three terms in YOLO v2 are the squared errors, whereas in YOLO v3, they
 
 　　YOLOv3 在速度上还是很喜人的。
 
+## 总结
 
 ## References
 1. [YOLOv1 Paper](/assets/papers/YOLOv1.pdf)
