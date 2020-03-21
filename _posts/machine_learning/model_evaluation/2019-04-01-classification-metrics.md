@@ -146,11 +146,17 @@ $$
 
 　　TODO 在目标检测领域做了一些改进。
 
-![](/img/media/15689788066970.jpg)
+<p align="center">
+<img src="/img/media/15689788066970.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">mAP 示意图</em>
+</p>
 
 
 　　常用来做目标检测的指标衡量，越大越好，mAP 是对多个类的 AP 取了平均。
 
+　　在多个类别的检测中，每一个类别都可以调整阈值，算出召回率从 0 到 1 时的准确率（同一召回率取最高的准确率），计算准确率的平均值，而后再对于所有类求平均得到 mAP。这个值介于 0 到 1 之间，且越大越好。
 
 ## 1.6 接收者操作特征 (Receiver Operation Characteristic, ROC)
 　　接收者操作特征（Receiver Operating Characteristic Curve, ROC）起源于军事，后广泛用于医学，是二分类的一种衡量指标。和 P-R 曲线有些类似，ROC 也想绘制出一定的曲线来衡量模型的性能。

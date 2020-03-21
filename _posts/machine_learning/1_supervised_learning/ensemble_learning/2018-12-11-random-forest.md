@@ -3,23 +3,22 @@ layout: post
 title: Random Forest
 subtitle: 随机森林
 author: Bin Li
-tags: [Machine Learning]
+tags: [Machine Learning, Ensemble Learning]
 image: 
 comments: true
 published: true
 ---
 
-　　随机森林（Random Forest，RF）基于 Bagging 的想法，做了一定的改进，其基学习器是 CART (强学习器)，然而在选择划分特征的时候，RF 采用了随机的策略。不像之前的决策树在当前结点上遍历所有 $n$ 个样本特征中找到最优的划分属性，RF 会固定一个特征子集大小 $n_{sub}$，在当前结点样本的所有特征中随机选择 $n_{sub}$ 个特征，从其中选出最优的一个划分特征来进行特征划分。如此能够提高模型的泛化能力。显然，当 $n_{sub}=n$ 时，RF 的 CART 跟传统的保持一致。
+　　随机森林（Random Forest，RF）基于 Bagging 的想法，训练多个学习器集成所有的方式降低模型在训练数据集上的方差，并且各个学习器可以并行操作。
 
-　　一般来说，$n_{sub}=n$ 越小，模型就越健壮，当然此时对数据的拟合程度就会变差。即 $n_{sub}=n$ 越小，variance 越小，bias 越大。随机性使得偏差增大，但由于随机森林集成“平均”的特性，使得方差变小的程度大过了偏差增大的程度，总体来说效果还是好的。
+{% include toc.html %}
 
- 　　随机森林有四个部分需要掌握：
-1. 随机选择样本（放回抽样）；
-2. 随机选择特征；
-3. 构建决策树；
-4. 随机森林投票（平均）。 
 
-## 1. Random Forest 算法流程
+## 1. Random Forest 算法
+　　随机森林算法的随机体现在两个方面：
+1. 每个学习器训练样本的随机
+2. 决策树划分节点时特征集选取的随机
+
 　　假设输入为样本集为
 
 $$
@@ -35,60 +34,102 @@ $$
 
 2. 如果是分类算法预测，则 $T$ 个基学习器投出最多票数的类别或者类别之一为最终类别。如果是回归算法，$T$ 个弱学习器得到的回归结果进行算术平均得到的值为最终的模型输出。
 
-在每一次 branching 时，做特征 Random 的两种方式：
+　　随机森林的其基学习器是 CART (强学习器)，选择特征子集而非全量特征集来划分节点的方式能够提高模型的泛化能力。一般来说，特征子集越小，模型就越健壮，当然此时对数据的拟合程度就会变差；即 variance 越小，bias 越大。随机性使得偏差增大，但由于随机森林集成“平均”的特性，使得方差变小的程度大过了偏差增大的程度，总体来说效果还是好的。
+
+
+　　在每一次 branching 时，做特征 Random 的两种方式：
 1. Bagging + Random-Subspace CART
     * 每个结点做划分的时候都随机选择 $F$ 个属性作为候选属性。
 2. Bagging + Random-Combination CART
     * 使用输入特征的随机线性组合，不是随机选择一个特征子集，而是设定一个组合特征大小 $L$
     * 随机选择 $L$ 个特征组合成一个新的特征，组合方式是随机从 $[-1, 1]$ 选取系数做线性加和
     * 一共产生 $F$ 个线性组合的新特征，然后在其中找到最佳划分
-    * 此方法当只有少量特征可用，为了降低个体分类器之间的相关性，可用
+    * 此方法当只有少量特征可用，为了降低个体分类器之间的相关性时可用
 
-　　之后就是对采样之后的数据使用完全分裂的方式建立出决策树，这样决策树的某一个叶子节点要么是无法继续分裂的，要么里面的所有样本的都是指向的同一个分类。一般很多的决策树算法都一个重要的步骤——剪枝，但是这里不这样干，由于之前的两个随机采样的过程保证了随机性，所以就算不剪枝，也不会出现over-fitting。
+　　之后就是对采样之后的数据使用**完全分裂**的方式建立出决策树，这样决策树的某一个叶子节点要么是无法继续分裂的，要么里面的所有样本的都是指向的同一个分类。一般很多的决策树算法有剪枝操作，这里不这样干，由于之前的两个随机采样的过程保证了随机性，所以就算不剪枝，也不会出现 over-fitting。
 
-一般在选择特征子集的大小为 $\log_2n+1$，其中 $n$ 为样本特征总数。
+　　一般选择特征子集的大小为 $\log_2n+1$，其中 $n$ 为样本特征总数。
 
-$E_{oob}$：self-validation of bagging
+## 2. 袋外数据（Out Of Bag, OOB）
+　　因为随机森林采用的是 Boostrap，有放回的抽样，一定会有一部分数据不会被抽到，那么在每次训练一个学习器的时候可以用没有被抽到的样本作为测试集。
 
-　　除了一次性随机抽取部分特征用来构建一棵CART之外，还可以在CART每次branching的时候随机抽取一部分特征计算 Gini impurity 或均方误差来选择best split feature(RF作者使用的这种方法)。更进一步，在构建sub-space的时候，不仅可以使用feature selection，还可以使用feature transformation，每次 braching 随机选择一个变换矩阵将原始feature变换到低维空间。More randomness, more robust。
 
-　　如何计算对应特征重要性？
+## 3. 随机森林的特征技巧
+　　因为 OOB 的存在，在训练好随机森林后，可以借用没有抽到的袋外数据找到特征的重要性，甚至可以做特征选择的工作。
 
-　　可以利用基尼系数，计算所有利用了特征 $i$ 作为划分特征的结点，计算其划分前后基尼系数差值并累加起来，然后用这个加和除以在所有节点上使用对应特征划分结点时划分前后的基尼系数差值的累加和。具体可[参考](https://medium.com/@srnghn/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3)。
+### 3.1 特征重要性
 
-$$
-n i_{j}=w_{j} C_{j}-w_{l e f t(j)} C_{l e f t(j)}-w_{r i g h t(j)} C_{r i g h t(j)}
-$$
-
-![](/img/media/15651699533571.jpg)
+　　特征重要性的计算可以利用基尼系数，计算所有使用特征 $i$ 作为划分特征的节点，计算其划分前后基尼系数差值并累加起来，然后用这个加和除以在所有节点上使用对应特征划分结点时划分前后的基尼系数差值的累加和。
 
 $$
-f i_{i}=\frac{\sum_{j : n o d e j s p l i t s o n f e a t u r e i} n i_{j}}{\sum_{k \in a l l} n o d e s} n i_{k}
+\text{ni}_{j}=w_{j} C_{j}-w_{\text{left}(j)} C_{\text{left}(j)}-w_{\text{right}(j)} C_{\text{right}(j)}
 $$
 
+　　其中有：
+* $\text{ni}_{j}$ 为节点 $j$ 的重要性
+* $w_j$ 是到达节点 $j$ 的加权样本数量
+* $C_j$ 是节点 $j$ 的不纯度值
+* $\text{left}(j)$ 表示在节点 $j$ 划分后的左子树
+* $\text{right}(j)$ 表示在节点 $j$ 划分后的右子树
 
-![](/img/media/15651699588815.jpg)
+　　一个决策树上的每一个特征重要性计算如下：
 
 $$
-f i_{i}=\frac{\sum_{j : n o d e j s p l i t s o n ~ f e a t u r e i} n i_{j}}{\sum_{k \in a l l ~ n o d e s} n i_{k}}
+\text{fi}_{i}=\frac{\sum_{j : \text{ node } j \text{ splits on feature } i} \text{ni}_{j}}{\sum_{k \in \text{all nodes}}  \text{ni}_{k}} 
 $$
 
+　　其中有：
+* $\text{fi}_{i}$ 表示特征 $i$ 的重要性
+* $\text{ni}_{i}$ 表示节点 $j$ 的重要性
+
+　　然后将特征重要性归一化一下：
 
 $$
-\text {norm fi}_{i}=\frac{f i_{i}}{\sum_{j \in \text {all features}} f i_{j}}
+\text {normfi}_{i}=\frac{\text{fi}_{i}}{\sum_{j \in \text {all features}} \text{fi}_{j}}
 $$
 
-## ExtraTree
-ET或Extra-Trees（Extremely randomized trees，极端随机树）是由PierreGeurts等人于2006年提出。该算法与随机森林算法十分相似，都是由许多决策树构成。但该算法与随机森林有两点主要的区别：
+　　最终在整个随机森林层面上的特征重要性就是每个决策树的平均结果：
 
-1、随机森林应用的是Bagging模型，而ET是使用所有的训练样本得到每棵决策树，也就是每棵决策树应用的是相同的全部训练样本；
+$$
+\text {RFfi}_{i}=\frac{\sum_{j \in \text {all trees}} \text{normfi}_{ij}}{T}
+$$
 
-2、随机森林是在一个随机子集内得到最佳分叉属性，而ET是完全随机的得到分叉值，从而实现对决策树进行分叉的。
+　　其中：
+* $\text {RFfi}_{i}$ 表示随机森林模型中特征 $i$ 的特征重要性
+* $\text{normfi}_{ij}$ 在第 $j$ 颗树上特征 $i$ 的归一化特征重要性
+* $T$ 表示树的数量
 
-## 总结
+### 3.2 特征选择
+　　特征选择一般有两个目标：
+1. 找到与应变量高度相关的特征变量
+2. 选择出数目较少的特征变量并且能够充分的预测应变量的结果
+
+　　随机森林特征选择的步骤：
+1. 初步估计和排序
+    1. 对随机森林中的特征变量按照 VI（Variable Importance）降序排序。
+    2. 确定删除比例，从当前的特征变量中剔除相应比例不重要的指标，从而得到一个新的特征集。
+    3. 用新的特征集建立新的随机森林，并计算特征集中每个特征的 VI，并排序。
+    4. 重复以上步骤,直到剩下 $m$ 个特征。
+2. 根据步骤 1 中得到的每个特征集和它们建立起来的随机森林，计算对应的袋外误差率(OOB err)，将袋外误差率最低的特征集作为最后选定的特征集。
+
+
+## 4. ExtraTree
+　　极端随机树（Extremely randomized trees，ET 或 Extra-Trees）是由 Pierre Geurts 等人于 2006 年提出。该算法与随机森林算法十分相似，都是由许多决策树构成。但该算法与随机森林有两点主要的区别：
+
+1. 随机森林应用的是Bagging模型，而ET是使用所有的训练样本得到每棵决策树，也就是每棵决策树应用的是相同的全部训练样本；
+
+2. 随机森林是在一个随机子集内得到最佳分叉属性，而ET是完全随机的得到分叉值，从而实现对决策树进行分叉的。
+
+## 5. 总结
+ 　　随机森林有四个部分需要掌握：
+1. 随机选择样本（放回抽样）；
+2. 随机选择特征；
+3. 构建决策树；
+4. 随机森林投票（平均）。 
+
 　　由于 Bagging 的思想可以分布式地实现若干个基学习器的学习，Random Forest 的一大优势是能够高度并行化，在大数据时可大有作为。一般可以用随机森林跑出一个模型，然后**查看特征的重要性**。
 
-随机森林的**优点**：
+　　随机森林的**优点**：
 1. 训练可以高度并行化，在大数据时代的大样本训练环境下极具优势
 2. 具有极高的准确率
 3. 随机性的引入，使得随机森林不容易过拟合
@@ -100,15 +141,19 @@ ET或Extra-Trees（Extremely randomized trees，极端随机树）是由PierreGe
 9. 对部分特征确实不敏感
 10. 实践中，既能处理离散型数据，也能处理连续型数据，可以对输入数据不用做太多处理（能够处理 binary features, categorical features, numerical features）
 
-随机森林的**缺点**：
+　　随机森林的**缺点**：
 1. 在某些噪声比较大的样本集上，容易陷入过拟合
 2. 对于有不同取值的属性的数据，取值划分较多的属性会对随机森林产生更大的影响（偏向取值较多的特征，随机选的时候选中的概率比较高！），所以随机森林在这种数据上产出的属性权值是不可信的
 3. 训练好的模型比较大，预测时较慢
 4. 相比于单一决策树，它的随机性让我们难以对模型进行解释
 
-## Q & A
-
+## 6. 问答思考（Q & A）
+### 6.1 GBDT 和 Random Forest 哪一个的决策树可以更深？
+　　随机森林的决策树训练可以更深，因为其每个基学习器的样本是随机抽取的子集，且划分节点的特征也是随机抽取的子集，这些操作降低了模型的方差，但是提高了偏差。那么随机森林可以在训练每个决策树时任其完全生长，尝试在一定程度上降低偏差。
 
 ## References
 1. [Bagging与随机森林算法原理小结](https://www.cnblogs.com/pinard/p/6156009.html)
 2. [RF、GBDT、XGBoost面试级整理](https://cloud.tencent.com/developer/article/1080189)
+3. [随机森林之特征选择](https://www.cnblogs.com/justcxtoworld/p/3447231.html)
+4. [The Mathematics of Decision Trees, Random Forest and Feature Importance in Scikit-learn and Spark](https://medium.com/@srnghn/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3)
+5. [Variable selection using Random Forests](https://hal.archives-ouvertes.fr/file/index/docid/755489/filename/PRLv4.pdf)

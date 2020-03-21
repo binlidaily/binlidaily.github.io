@@ -15,7 +15,7 @@ published: true
 
 　　下面是Faster RCNN工作的大致过程：
 1. 输入图像到卷积网络中，生成该图像的特征映射。
-2. 在特征映射上应用Region Proposal Network，返回object proposals和相应分数。
+2. 在特征映射上应用 Region Proposal Network，返回object proposals和相应分数。
 3. 应用Rol池化层，将所有proposals修正到同样尺寸。
 4. 最后，将proposals传递到完全连接层，生成目标物体的边界框。
 
@@ -45,3 +45,4 @@ published: true
 2. [What do we learn from region based object detectors (Faster R-CNN, R-FCN, FPN)?](https://medium.com/@jonathan_hui/what-do-we-learn-from-region-based-object-detectors-faster-r-cnn-r-fcn-fpn-7e354377a7c9)
 3. [Understanding Feature Pyramid Networks for object detection (FPN)](https://medium.com/@jonathan_hui/understanding-feature-pyramid-networks-for-object-detection-fpn-45b227b9106c)
 4. [基础目标检测算法介绍（一）：CNN、RCNN、Fast RCNN和Faster RCNN](https://zhuanlan.zhihu.com/p/46963225)
+5. [后R-CNN时代，Faster R-CNN、SSD、YOLO 各类变体统治下的目标检测综述：Faster R-CNN系列胜了吗？](https://mp.weixin.qq.com/s/8Vac8MRpmviVDKRrAeFR0A)
