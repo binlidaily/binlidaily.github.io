@@ -81,7 +81,6 @@ published: true
 
 
 
-
 **算法**的理解模板：
 1. 一个例子或者图例（如 SVM margin）
 2. 算法的**核心思想**要清楚
@@ -152,7 +151,13 @@ published: true
 
 在学习时多问自己是不是掌握了这个知识追深刻最本质的东西。
 
-![费曼技巧](/img/media/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7.jpg)
+<p align="center">
+<img src="/img/media/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">费曼技巧</em>
+</p>
+
 
 
 ### 1.3 练习编程
@@ -177,4 +182,11 @@ published: true
 ## References
 ```
 
+### 整理论文
 
+模板
+
+
+## 思路拓展
+* 脑图
+* 纸笔
