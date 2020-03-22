@@ -9,6 +9,8 @@ comments: true
 published: true
 ---
 
+{% include toc.html %}
+
 　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/) 方法利用损失函数的负梯度（伪残差）作为拟合对象的方式，当其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。
 
 <p align="center">
@@ -16,8 +18,6 @@ published: true
 </p>
 
 　　GBDT 的思想可以用一个通俗的例子解释，可以用打高尔夫球的例子形象解释，当然这也只限于回归任务，分类任务的话会退化为 Adaboost。接下来我们从回归和分类的任务上分别予以介绍。
-
-{% include toc.html %}
 
 ## 1. GBDT 回归算法
 　　当我们采用的基学习器是决策树时，那么梯度提升就具象到了梯度提升决策树。先还是从一些假设开始，数据集记作：
