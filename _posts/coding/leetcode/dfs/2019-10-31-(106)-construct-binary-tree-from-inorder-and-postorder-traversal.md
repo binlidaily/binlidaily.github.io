@@ -1,25 +1,30 @@
 ---
 layout: post
 title: 106. Construct Binary Tree from Inorder and Postorder Traversal
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode]
+tags: [Coding, LeetCode, Medium, DFS, Tree]
 image: 
 comments: true
 published: true
 ---
 
+## Description
+
 Given inorder and postorder traversal of a tree, construct the binary tree.
 
-Note:
+**Note:**
 You may assume that duplicates do not exist in the tree.
 
 For example, given
+
 ```
 inorder = [9,3,15,20,7]
 postorder = [9,15,7,20,3]
 ```
+
 Return the following binary tree:
+
 ```
     3
    / \
@@ -27,7 +32,10 @@ Return the following binary tree:
     /  \
    15   7
 ```
+
 ## Solutions
+　　给定中序和后序遍历的结果，求先序遍历的结果。
+
 ### 1. DFS-递归
 
 ```python

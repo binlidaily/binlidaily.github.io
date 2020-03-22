@@ -1,26 +1,30 @@
 ---
 layout: post
 title: 105. Construct Binary Tree from Preorder and Inorder Traversal
-subtitle: 
+subtitle: Medium
 author: Bin Li
-tags: [Coding, LeetCode, Medium]
+tags: [Coding, LeetCode, Medium, DFS, Tree]
 image: 
 comments: true
 published: true
 ---
 
+## Description
 
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
-Note:
+**Note:**
 You may assume that duplicates do not exist in the tree.
 
 For example, given
+
 ```
 preorder = [3,9,20,15,7]
 inorder = [9,3,15,20,7]
 ```
+
 Return the following binary tree:
+
 ```
     3
    / \
@@ -28,7 +32,6 @@ Return the following binary tree:
     /  \
    15   7
 ```
-
 
 
 ## Solutions
@@ -133,6 +136,7 @@ class Solution:
 # Runtime: 60 ms, faster than 95.61% of Python3 online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
 # Memory Usage: 14.7 MB, less than 86.84% of Python3 online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
 ```
+
 ## References
 1. [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 2. 相关题目

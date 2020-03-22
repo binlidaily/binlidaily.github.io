@@ -14,7 +14,12 @@ published: true
 3. 模型是由若干卷积层和池化层堆叠（stack）的方式构成，比较容易形成较深的网络结构（在2014年，16层已经被认为很深了）
 
 
-![](/img/media/15847104015793.jpg)
+<p align="center">
+<img src="/img/media/15847104015793.jpg" width="450">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">5x5 等价于两个 3x3</em>
+</p>
 
 
 
