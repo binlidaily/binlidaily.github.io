@@ -112,9 +112,11 @@ $$
 \begin{array}{l}L\left(\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(\tau)}\right\},\left\{\boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(\tau)}\right\}\right) \\ =\sum_{t} L^{(t)} \\ =-\sum_{t} \log p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)\end{array}
 $$
 
-　　其中 $p_{\text{model}}\left(y^{(t)} \mid \left\{x^{(1)}, \ldots, x^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
+　　其中 $p_{\text{model}}\left(y^{(t)} \mid \left\{x^{(1)}, \dots, x^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
 
-
+$$
+p_{\text{model}}\left(y^{(t)} \mid \left\{x^{(1)}, \dots, x^{(t)}\right\}\right)
+$$
 
 　　以上过程就是 RNN **前向传播**的过程。
 
