@@ -11,9 +11,6 @@ published: true
 
 {% include toc.html %}
 
-_测试下划线_
-~~测试~~
-
 　　之前我们介绍过 [Gradient Boosting](https://binlidaily.github.io/2018-12-05-gbm-gradient-boosting-machine/) 方法利用损失函数的负梯度（伪残差）作为拟合对象的方式，当其中的基函数采用决策树的话，就得到了梯度提升决策树 (Gradient Boosting Decision Tree, GBDT)。
 
 <p align="center">
