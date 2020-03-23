@@ -168,6 +168,10 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * [Model Training](https://binlidaily.github.io/2019-03-15-model-training)
 
 ## 3. Deep Learning
+* Deep Neural Network
+    * Regularizaton
+        * Normalization
+            * [Batch Nomalization](https://binlidaily.github.io/2020-03-23-batch-normalization)
 * Computer Vision
     * Image Classification
         * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)
