@@ -95,7 +95,7 @@ typora-copy-images-to: ../../img/media
 <em style="color:#808080;font-style:normal;font-size:80%;">LSTM  输入门结构</em>
 </p>
 
-　　如果信息被放行，就可以被整合到长期记忆状态 $\mathbf{c}_t$ 中继续往后传播了。接下来看下是如何由遗忘门和输入门控制更新单元结构长期记忆的状态，即从旧状态 $\mathbf{c}_{t-1}$ 更新到新状态 $\mathbf{c}_t$。
+　　如果信息被放行，就可以被整合到长期记忆状态 $c_t$ 中继续往后传播了。接下来看下是如何由遗忘门和输入门控制更新单元结构长期记忆的状态，即从旧状态 $c_{t-1}$ 更新到新状态 $c_t$。
 
 　　观察下图中的 $\mathbf{c}_t$ 公式，我们通过遗忘门 $f_t$ 来控制当前状态要不要保留，用输入门 $i_t$ 和候选状态 $\tilde{C}_t$ 来更新当前状态。
 
@@ -144,8 +144,8 @@ typora-copy-images-to: ../../img/media
 
 　　从上面的单元结构我们可以看出来 GRU 的特点：
 * 长期记忆状态和短期记忆状态被整合到了一个状态 $\mathbf{h}_t$
-* GRU 有一个旧状态“过滤门” $\mathbf{r}_t$，来控制上一个时间步的状态 $h_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
-* 将普通 LSTM 的输入门和遗忘门利用上一小节介绍的 Coupled forget and input gates 方式组合成一个新的“更新门” $\bf{z}_t$
+* GRU 有一个旧状态“过滤门” $r_t$，来控制上一个时间步的状态 $h_{t-1}$ 的信息需要决定保留多少输入给当前单元结构
+* 将普通 LSTM 的输入门和遗忘门利用上一小节介绍的 Coupled forget and input gates 方式组合成一个新的“更新门” $\mathbf{z}_t$
 
 ## References
 1. [tensorflow笔记：多层LSTM代码分析](https://blog.csdn.net/u014595019/article/details/52759104)
