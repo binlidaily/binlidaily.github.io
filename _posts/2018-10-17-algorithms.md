@@ -172,6 +172,7 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
     * Regularizaton
         * Normalization
             * [Batch Nomalization](https://binlidaily.github.io/2020-03-23-batch-normalization)
+    * [Optimizers](https://binlidaily.github.io/2019-02-26-optimizers)
 * Computer Vision
     * Image Classification
         * [Convolutional Neural Networks (CNN)](https://binlidaily.github.io/2018-08-27-vgg-very-deep-convolutional-networks/)

@@ -9,7 +9,9 @@ comments: true
 published: true
 ---
 
-　　整理一下常用的优化器，能够加速在深度学习中的训练速度（比传统的 GD 好很多）。本文整理的优化器方法主要分为两类：一是调整学习率，使得优化更稳定的；而是梯度估计修正，优化训练速度的。
+{% include toc.html %}
+
+　　整理一下常用的优化器，能够加速在深度学习中的训练速度（比传统的 GD 好很多）。本文整理的优化器方法主要分为两类：一是调整学习率，使得优化更稳定的；二是梯度估计修正，优化训练速度的。
 
 <p align="center">
 <img src="/img/media/15845085574343.jpg" width="600">
@@ -91,7 +93,7 @@ $$
 G_{t}=\sum_{\tau=1}^{t} \mathbf{g}_{\tau} \odot \mathbf{g}_{\tau}
 $$
 
-　　其中 $\odot$ 是按元素乘积，$\boldsymbol{g}_{\tau} \in \mathbb{R}^{|\theta|}$ 是第 $\tau$ 次迭代时的梯度。
+　　其中 $\odot$ 是按元素乘积，$\boldsymbol{g}_{\tau} \in \mathbb{R}^{\mid\theta\mid}$ 是第 $\tau$ 次迭代时的梯度。
 
 　　AdaGrad 算法的参数更新差值为
 
@@ -182,11 +184,18 @@ $$
 \Delta \theta_{t}=\rho \Delta \theta_{t-1}-\alpha g_{t}\left(\theta_{t-1}+\rho \Delta \theta_{t-1}\right)
 $$
 
-　　其中 $\mathfrak{g}_t\left(\theta_{t-1}+\rho \Delta \theta_{t-1}\right)$ 表示损失函数在点 $\hat{\theta}=\theta_{t-1}+\rho \Delta \theta_{t-1}$ 上的偏导数。
+　　其中 $g_t\left(\theta_{t-1}+\rho \Delta \theta_{t-1}\right)$ 表示损失函数在点 $\hat{\theta}=\theta_{t-1}+\rho \Delta \theta_{t-1}$ 上的偏导数。
 
 　　下图给出了动量法和 Nesterov 加速梯度在参数更新时的比较：
 
-![](/img/media/15845376355213.jpg)
+<p align="center">
+<img src="/img/media/15845376355213.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">动量法和 Nesterov 在更新时的比较</em>
+</p>
+
+
 
 
 ### 4.3 梯度截断
