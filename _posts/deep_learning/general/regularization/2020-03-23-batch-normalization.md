@@ -32,11 +32,30 @@ $$
 
 　　批量归一化可以看作在每一层输入和上一层输出之间加入了一个新的计算层，对数据的分布进行额外的约束，从而增强模型的泛化能力。但是批量归一化同时也降低了模型的拟合能力，归一化之后的输入分布被强制为 0 均值和 1 标准差。以 Sigmoid 激活函数为例，批量归一化之后数据整体处于函数的非饱和区域，只包含线性变换，破坏了之前学习到的特征分布。为了恢复原始数据分布，具体实现中引入了变换重构以及可学习参数 $\gamma$ 和 $\beta$：
 
+## 预测阶段的 BN 计算
+　　BN 预测时，采用全局的均值和方差的方式。在预测阶段，对于均值来说直接计算所有训练batch u值的平均值；然后对于标准偏差采用训练阶段每个batch σB的**无偏估计**。
+
+
+## 总结
 
 批归一化的好处：
-* 归一化之后的数据，能够减少计算复杂度，加快神经网络收敛
-* 避免造成梯度过饱和，可以说弱化了参数初始化的作用（不合适的参数初始化会造成梯度消失），使用Batch Normalization Layer可以有效降低深度网络对weight初始化的依赖
-* 还将数据归一化到以 0 为中心，激活函数的输出是以“零为中心”，便于后续迭代优化
+* 使得神经网络 的优化地形（Optimization Landscape）更加平滑，以及使梯度变得更加稳定， 从而允许我们使用更大的学习率，并提高收敛速度
+* 使得大部分神经层的输入处于不饱和区域，从而让梯度变大，避免梯度消失问题；
+    * 有效减少对参数初始化的依赖
+* 归一化方法也可以作为一种隐形的正则化方法，从而提高网络的泛化 能力，避免过拟合
+
+
+批量归一化的提出动机是为了解决内部协方差偏移问题，但后来的研究者发现其主要优点是归一化会导致更平滑的优化地形[Santurkaretal.,2018].
+
+
+　　
 
 ## References
 1. [Paper](/assets/papers/Batch Normalization Accelerating Deep Network Training by Reducing Internal Covariate Shift.pdf)
+2. [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604)
+3. [深入理解Batch Normalization批标准化](https://www.cnblogs.com/guoyaohua/p/8724433.html)
+4. [结构借鉴](https://zhuanlan.zhihu.com/p/89422962)
+5. [批量归一化](https://zh.d2l.ai/chapter_convolutional-neural-networks/batch-norm.html)
+    * 对全连接层、卷积层和预测时分别作了介绍如何做 BN
+    * 还有一些代码练习实现 BN，以及一些修改观察的实验
+6. [详解深度学习中的Normalization，BN/LN/WN](https://zhuanlan.zhihu.com/p/33173246)

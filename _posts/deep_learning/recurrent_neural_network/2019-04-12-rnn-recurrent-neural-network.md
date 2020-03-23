@@ -13,6 +13,8 @@ typora-copy-images-to: ../../img/media
 
 　　循环神经网络（Recurrent Neural Network, RNN）作为深度学习的一个重要网络，可以将其看成带记忆的神经网络，主要解决的是样本数据为序列的建模问题，如语音序列，语言序列。
 
+{% include toc.html %}
+
 　　之前的神经网路在输入和输入之间没有保存任何状态，他们的操作是将数据一次一股脑扔给网络，得到最后结果。然而对于有前后关联的数据，例如文本、语音，这样的做法可能不好，失去了上下文特征。那么我们需要一种串行输入数据的处理方式，并能够利用到之前输入的数据。
 
 　　RNN 就有这样的特性，可以将其视作带记忆的神经网络，输入数据的方式是按照时间轴的方式顺序串行处理。
@@ -110,7 +112,7 @@ $$
 \begin{array}{l}L\left(\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(\tau)}\right\},\left\{\boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(\tau)}\right\}\right) \\ =\sum_{t} L^{(t)} \\ =-\sum_{t} \log p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)\end{array}
 $$
 
-　　其中 $p_{\text {model }}\left(y^{(t)} \mid \left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
+　　其中 $p_{\text{model}}\left(y^{(t)} \mid \left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)$ 需要读取模型输出向量 $\widehat{y}^{(t)}$ 中对应于 $y^{(t)}$ 的项。
 
 　　以上过程就是 RNN **前向传播**的过程。
 
@@ -211,15 +213,31 @@ $$
 ### 2.3 网络结构深入理解
 　　我们也是用图片作为例子，看一下 RNN 是怎么操作的，我们把图片拉成一个一个 pixel，每个 pixel 对应一个输入，且每一个 pixel 有三通道。
 
-![](/img/media/15560770783992.jpg)
+<p align="center">
+<img src="/img/media/15560770783992.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">RNN 全连接结构</em>
+</p>
+
 
 　　先思考一下 RNN 在这个图上是怎么运行的。
 
-![20180917195028940](/img/media/20180917195028940.gif)
+<p align="center">
+<img src="/img/media/20180917195028940.gif" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">RNN 的动态运行过程</em>
+</p>
 
+　　可以从标不同颜色的部分看出，之前的状态能传到后面。
 
+## 3. 总结
+优点：
+* 能够处理时序性数据
 
-
+缺点：
+* 虽然简单循环网络理论上可以建立长时间间隔的状态之间的依赖关系，但是由于梯度爆炸或消失问题，实际上只能学习到短期（两个时间间隔不能太长）的依赖关系。
 
 ## References
 1. [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)

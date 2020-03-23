@@ -233,3 +233,5 @@ $$
 3. [梯度下降算法总结](https://blog.csdn.net/KangRoger/article/details/64622249)
 4. [详解梯度下降法的三种形式BGD、SGD以及MBGD](https://zhuanlan.zhihu.com/p/25765735)
 5. [深度学习优化函数详解（6）-- adagrad](https://blog.csdn.net/tsyccnh/article/details/76769232)
+6. [什么是指数加权平均、偏差修正？](https://www.cnblogs.com/guoyaohua/p/8544835.html)
+7. [深度学习——优化器算法Optimizer详解（BGD、SGD、MBGD、Momentum、NAG、Adagrad、Adadelta、RMSprop、Adam）](https://www.cnblogs.com/guoyaohua/p/8542554.html)
