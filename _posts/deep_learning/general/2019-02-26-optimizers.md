@@ -43,7 +43,7 @@ $$
 
 
 ## 1. 梯度下降法（Gradient Descent）
-　　常规的[梯度下降算法](https://binlidaily.github.io/2018-04-24-gradient-descent)需要使用全量的数据，在深度学习中很难做到使用全量数据，于是采用批量甚至随机选一个的方式进行优化。
+　　详细的[梯度下降算法](https://binlidaily.github.io/2018-04-24-gradient-descent)需要使用全量的数据，在深度学习中很难做到使用全量数据，于是采用批量甚至随机选一个的方式进行优化。
 
 　　先做一些假设：
 * $f(x;\theta)$ 表示模型，例如 SVM，深度神经网络等，$\theta$ 为参数
