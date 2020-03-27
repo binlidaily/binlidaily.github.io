@@ -11,9 +11,19 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
-　　在目标检测任务一个重要的任务是如何得到一个框得很合适的 Bounding Box？我们这里介绍一种叫做 Bounding Box Regression 的方法。首先我们给出这样的一幅图：
+　　在目标检测任务一个重要的任务是如何得到一个框得很合适的 Bounding Box？我们这里介绍一种叫做 Bounding Box Regression 的方法。
 
-![image-20190318212853845](/img/media/image-20190318212853845.png){:.center-images}
+## 边框回归（Bounding Box Regression）
+
+　　首先我们给出这样的一幅图：
+
+<p align="center">
+<img src="/img/media/image-20190318212853845.png" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">边框回归各种边框关系图</em>
+</p>
+
 
 * 黄色框 T 表示真实框 (Ground Truth)
 * 白色框 P 表示边界框 (Predicted Bounding Box)
@@ -59,14 +69,7 @@ $$
 
 　　当选择了一定的回归操作函数就可以利用梯度下降来求得结果了。
 
-## IoU(Intersection over Union) 交并比
-<p align="center">
-  <img width="400" height="" src="/img/media/n1AZj.png">
-</p>
 
-
-　　IoU 用于测量真实和预测之间的相关度，相关度越高，该值越高。
 
 ## References
-
 1. [目标检测：SSD](https://zhuanlan.zhihu.com/p/42159963)

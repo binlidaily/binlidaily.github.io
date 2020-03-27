@@ -455,7 +455,7 @@ return dp(start)
 * [199. Binary Tree Right Side View](https://binlidaily.github.io/2019-09-02-(199)-binary-tree-right-side-view/)
 * [130. Surrounded Regions](https://binlidaily.github.io/2019-08-30-(130)-surrounded-regions/)
 * [127. Word Ladder](https://binlidaily.github.io/2019-08-30-(127)-word-ladder/)
-* [639. Decode Ways II](https://binlidaily.github.io/2019-08-30-(639)-decode-ways-ii/)
+
 
 
 
@@ -484,6 +484,7 @@ return dp(start)
 * [212. Word Search II](https://binlidaily.github.io/2019-08-21-(212)-word-search-ii/)
 * [5. Longest Palindromic Substring](https://binlidaily.github.io/2019-08-26-(5)-longest-palindromic-substring/)
 * [322. Coin Change](https://binlidaily.github.io/2019-08-27-(322)-coin-change/)
+* [639. Decode Ways II](https://binlidaily.github.io/2019-08-30-(639)-decode-ways-ii/)
 
 
 

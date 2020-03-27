@@ -11,7 +11,7 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
-　　最近接到任务做钢轨轨道线的检测，于是试了下
+　　最近接到任务做钢轨轨道线的检测，于是试了下。
 
 
 ## References

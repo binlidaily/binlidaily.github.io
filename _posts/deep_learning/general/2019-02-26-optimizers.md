@@ -9,8 +9,11 @@ comments: true
 published: true
 ---
 
+　　本文整理目前常用的所有优化器，并对其原理和优缺点做了整理，有纰漏的地方烦请在留言处提醒。
+
 {% include toc.html %}
 
+## 0. 优化器概览
 　　整理一下常用的优化器，能够加速在深度学习中的训练速度（比传统的 GD 好很多）。本文整理的优化器方法主要分为两类：一是调整学习率，使得优化更稳定的；二是梯度估计修正，优化训练速度的。
 
 <p align="center">
@@ -40,10 +43,21 @@ $$
 
 
 ## 1. 梯度下降法（Gradient Descent）
-　　常规的梯度下降算法需要使用全量的数据，在深度学习中很难做到使用全量数据，于是采用小批量的方式进行优化。
+　　常规的[梯度下降算法](https://binlidaily.github.io/2018-04-24-gradient-descent)需要使用全量的数据，在深度学习中很难做到使用全量数据，于是采用批量甚至随机选一个的方式进行优化。
+
+　　先做一些假设：
+* $f(x;\theta)$ 表示模型，例如 SVM，深度神经网络等，$\theta$ 为参数
+* $\mathcal{L}(\cdot)$ 表示可谓分损失函数
 
 ### 1.1 批量梯度下降（Batch Gradient Descent, BGD）
-全量
+　　BGD 采用整个训练集全量数据来计算损失函数对参数的梯度：
+
+> Repeat until convergence{
+> 
+> $$\theta_j := \theta_j - \alpha \frac{\partial}{\theta_j}J(\theta)~~\text{(for every j)}$$
+> 
+> }
+
 ### 1.2 随机梯度下降量（Stochastic Gradient Descent, SGD）
 只用一个
 ### 1.3 小批量梯度下降法（Mini-Batch Gradient Descent, MBGD）

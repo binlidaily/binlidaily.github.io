@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Loss Functions & Metrics
-subtitle:
+title: Regression Metrics
+subtitle: 回归指标
 author: Bin Li
 tags: [Machine Learning]
 image: 
@@ -36,8 +36,8 @@ $$
 
 　　这也正是线性回归的损失函数。
 
-### 1.3 Root Mean Squard Error
-　　均方根误差（Root Mean Squard Error，RMSE）在均方误差 MSE 基础上求平方根。
+### 1.3 Root Mean Squared Error
+　　均方根误差（Root Mean Squared Error，RMSE）在均方误差 MSE 基础上求平方根。
 
 $$
 \text{R M S E} = \sqrt{\frac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_{i}\right)^{2}}
@@ -95,22 +95,88 @@ $$
 
 
 
-### $R^2$ 决定系数
+### 1.7 $R^2$ 决定系数
 
 
 ---
 
-分类问题：
-* Hinge loss
-* Cross Entropy loss
+## 2. 框回归指标
+### 2.1 IoU（Intersection over Union）交并比
 
-目标检测：
-* mAP
+
+<p align="center">
+<img src="/img/media/n1AZj.png" width="400">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">IoU 计算示意图</em>
+</p>
+
+　　IoU 用于测量真实和预测之间的相关度，相关度越高，该值越高。
+
+### 2.2 Generalized Intersection over Union（GIoU）
+　　使用 IoU 在一些情况下会有一些问题，比如下图的情况：
+
+<p align="center">
+<img src="/img/media/15852936486164.jpg" width="350">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">IoU vs GIoU</em>
+</p>
+
+　　可见，对于相同的 Ground Truth，不同的预测框能获得相同的 IoU 值，明显看出有些效果其实是比较差的，如 (a) 中的第一个子图，而通过 GIoU 就可以加以区分。
+
+　　IoU 作为损失，有两个难以解决：
+1. 预测值和 Ground Truth 没有重叠的话，IoU 始终为 0，那么就没有办法优化
+2. IoU 无法分辨不同方式的对齐，比如方向不一致，如上图所示。
+
+　　GIoU 的计算方式如下：
+
+$$
+GIoU=\frac{|A \cap B|}{|A \cup B|}-\frac{|C \backslash(A \cup B)|}{|C|}=I o U-\frac{|C \backslash(A \cup B)|}{|C|}
+$$
+
+　　其中：
+1. 限定 A 和 B 是任意两个凸形状
+2. $A, B \subseteq S \in R^{n}$，而 C 是包含 A 和 B 的最小凸形状
+3. $C \subseteq S \in R^{n}$，对于矩阵框来说，C 就是包含 A 和 B 的最小矩阵框
+
+　　总结来说，GIoU 有以下几个特性：
+1. 与 IoU 一样，GIoU 值大小看意思反映两个形状的重合程度，重合程度越大，值越大，所以 $1-GIoU$ 的结果可以用来作为优化的目标函数
+2. GIoU 和 IoU 一样对物体的尺度不敏感，这也是我们需要的
+3. GIoU 是 IoU 的下界，即：$GIoU(A, B) \le IoU(A,B)$
+4. IoU 的值范围为 $[0,1]$，但是 GIoU 的值范围是 $[-1,1]$，如果 A 和 B 完全重叠，那么 $GIoU=IoU=1$，这是上限，但是当 $A\cup B$ 相比 C 趋近于 0 时，GIoU 向 -1 逼近
+
+　　距离说明 GIoU，我们先看无重叠时，IoU 值为零的情况：
+
+<p align="center">
+<img src="/img/media/15852963688777.jpg" width="500">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">当边界框无重叠时，IoU 值为 0</em>
+</p>
+
+　　再来看当无重叠时，GIoU的情况：
+
+<p align="center">
+<img src="/img/media/15852964349258.jpg" width="500">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">当边界框无重叠时，GIoU 值有区分度</em>
+</p>
+
+
+---
+
+
+
 
 深度学习
 * [Softmax](https://www.zhihu.com/question/23765351)
 
-在激活函数是sigmoid之类的函数的时候，用平方损失的话会导致误差比较小的时候梯度很小，这样就没法继续训练了，这时使用交叉熵损失就可以避免这种衰退。如果是线性输出或别的激活函数神经元的话完全可以用平方损失。
+在激活函数是 Sigmoid 之类的函数的时候，用平方损失的话会导致误差比较小的时候梯度很小，这样就没法继续训练了，这时使用交叉熵损失就可以避免这种衰退。如果是线性输出或别的激活函数神经元的话完全可以用平方损失。
+
+
+
 
 ## References
 1. [5 Regression Loss Functions All Machine Learners Should Know](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0)
@@ -122,3 +188,4 @@ $$
 7. [确定不收藏？机器学习必备的分类损失函数速查手册](https://redstonewill.com/1584/)
 8. [机器学习中常见的损失函数](https://blog.csdn.net/colourful_sky/article/details/80057445)
 9. [机器学习中的目标函数总结](https://zhuanlan.zhihu.com/p/44722270)
+10. [GIoU](https://arxiv.org/abs/1902.09630)

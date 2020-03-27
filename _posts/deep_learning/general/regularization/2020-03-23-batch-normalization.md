@@ -39,16 +39,15 @@ $$
 ## 总结
 
 批归一化的好处：
-* 使得神经网络 的优化地形（Optimization Landscape）更加平滑，以及使梯度变得更加稳定， 从而允许我们使用更大的学习率，并提高收敛速度
+* 使得神经网络的优化地形（Optimization Landscape）更加平滑，以及使梯度变得更加稳定，从而允许我们使用更大的学习率，并提高收敛速度
 * 使得大部分神经层的输入处于不饱和区域，从而让梯度变大，避免梯度消失问题；
     * 有效减少对参数初始化的依赖
-* 归一化方法也可以作为一种隐形的正则化方法，从而提高网络的泛化 能力，避免过拟合
+* 归一化方法也可以作为一种隐形的正则化方法，从而提高网络的泛化能力，避免过拟合
 
 
-批量归一化的提出动机是为了解决内部协方差偏移问题，但后来的研究者发现其主要优点是归一化会导致更平滑的优化地形[Santurkaretal.,2018].
+　　批量归一化的提出动机是为了解决内部协方差偏移问题，但后来的研究者发现其主要优点是归一化会导致更平滑的优化地形[Santurkaretal.,2018].
 
 
-　　
 
 ## References
 1. [Paper](/assets/papers/Batch Normalization Accelerating Deep Network Training by Reducing Internal Covariate Shift.pdf)
