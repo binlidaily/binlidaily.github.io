@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Outline Of Competitions
+title: Competitions Reproduction
 subtitle: 比赛信息整理
 author: Bin Li
 tags: [Competitions]

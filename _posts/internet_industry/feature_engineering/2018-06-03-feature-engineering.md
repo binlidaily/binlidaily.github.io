@@ -136,3 +136,4 @@ deep auto encoders
 23. [python数据处理，特征工程，比赛等一定会用到的方法](https://www.twblogs.net/a/5b8364342b71776c51e2d0b2/zh-cn)
 24. [Feature Engineering: Data scientist's Secret Sauce !](https://www.linkedin.com/pulse/feature-engineering-data-scientists-secret-sauce-ashish-kumar)
 25. [多维时间序列](https://mp.weixin.qq.com/s/F1oSP-IZcKCgkxMCKo-bGQ)
+26. [「特征工程」之零基础入门数据挖掘](https://mp.weixin.qq.com/s/A2vChdNXRqlddyIY0iJ3zQ)

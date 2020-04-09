@@ -32,6 +32,8 @@ Output:
 
 
 ## Solutions
+　　找到同样字母组成的字符串，放到同一个 list 中。
+
 ### 1. Hash Table
 
 ```python
