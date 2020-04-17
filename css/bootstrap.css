@@ -1421,7 +1421,6 @@ ol ol {
   display: inline-block;
   padding-right: 5px;
   padding-left: 5px;
-  margin: 20px;
 }
 dl {
   margin-top: 0;
@@ -4610,6 +4609,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .pagination > li {
   display: inline;
+  margin: 20px;
 }
 .pagination > li > a,
 .pagination > li > span {
