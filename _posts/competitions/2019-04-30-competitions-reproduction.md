@@ -10,6 +10,7 @@ published: true
 ---
 
 
+
 ## 1. 分类
 ### 1.1 Data Fountain
 * 2019
@@ -57,3 +58,4 @@ published: true
 5. [Kaggle首战Top 2%, APTOS 2019复盘总结+机器学习竞赛通用流程归纳](https://zhuanlan.zhihu.com/p/81695773)
 6. [python数据处理，特征工程，比赛等一定会用到的方法](https://www.twblogs.net/a/5b8364342b71776c51e2d0b2/zh-cn)
 7. [Kaggle竞赛宝典方案汇总](https://mp.weixin.qq.com/s/xORgAcgChq1E05tGiuIymw)
+8. [Kaggle Solutions](http://ndres.me/kaggle-past-solutions/)
