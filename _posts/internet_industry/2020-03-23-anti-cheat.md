@@ -46,3 +46,4 @@ published: true
 1. [反作弊基本概念与机器学习的应用](https://blog.csdn.net/u011627980/article/details/85167034)
 2. [王者荣耀:全新外挂曝光,自动走位秒切名刀,连跪真不是你菜](https://zhuanlan.zhihu.com/p/75905087)
 3. [王者荣耀: 最恐怖的5种外挂, 别再怀疑了, 你输不是因为你菜，是因为别人有挂](https://www.bilibili.com/read/cv2015191/)
+4. [互联网潜规则一：作弊与反作弊](http://www.woshipm.com/it/422357.html)

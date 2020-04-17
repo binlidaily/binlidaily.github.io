@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Convolutional Layer
+title: Convolutional Neural Network
 subtitle: 卷积层
 author: Bin Li
 tags: [Deep Learning]
@@ -11,7 +11,15 @@ typora-root-url: ../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
-卷积神经网络学得到是局部的、平移不变的特征。
+{% include toc.html %}
+
+
+## 1. 卷积概念
+　　卷积神经网络学得到是局部的、平移不变的特征。
+
+
+## 2. 卷积层
+　　一副图像在经过卷积操作后得到结果称为特征映射/特征图（Feature Map）。
 
 　　将卷积层之前我们先了解一下什么是卷积，卷积是对两个实变函数的数学运算，我们称 $(f*g)(n)$ 为 $f$、$g$ 的卷积。其连续定义为：
 

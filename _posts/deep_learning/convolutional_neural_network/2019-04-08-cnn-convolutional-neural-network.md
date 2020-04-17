@@ -21,7 +21,7 @@ typora-copy-images-to: ../../img/media
 
 ## 知识点总结
 ### Image preprocessing
-#### 为什么要引入Image mean subtraction？
+#### 为什么要引 入Image mean subtraction？
 If your data is stationary (i.e., the statistics for each data dimension follow the same distribution), then you might want to consider subtracting the mean-value for each example (computed per-example).
 
 Example: In images, this normalization has the property of removing the average brightness (intensity) of the data point. In many cases, we are not interested in the illumination conditions of the image, but more so in the content; removing the average pixel value per data point makes sense here. Note: While this method is generally used for images, one might want to take more care when applying this to color images. In particular, the stationarity property does not generally apply across pixels in different color channels.
@@ -32,11 +32,11 @@ Example: In images, this normalization has the property of removing the average 
 对于一些边界检测等算法，不需要RGB特征，所以可以将图片灰度化，这样能减少到三通道的三分之一的计算量，很值。
 
 #### Why normalize data before training?
-一般在训练模型之前都要对数据进行标准化，用下面的式子使得所有数据具有 zero mean, unit variance（零均值，单位方差）。
+　　一般在训练模型之前都要对数据进行标准化，用下面的式子使得所有数据具有 zero mean, unit variance（零均值，单位方差）。
 
 $$X_{norm}={X-X_{min}\over{X_{man}-X_{min}}}$$
 
-灰度图的$X_{min}$就是0，$X_{max}$是255，$X_{norm}$则介于0到1之间。标准化的好处有两点：
+　　灰度图的$X_{min}$就是0，$X_{max}$是255，$X_{norm}$则介于0到1之间。标准化的好处有两点：
 * 有的特征数据比较大，这样会使得小数值的特征很难再特征中起到作用
 * 许多学习算法对标准化之后的数据能达到比较好的效果
 
@@ -74,7 +74,7 @@ with tf.name_scope('conv1_2') as scope:
     biases = bias_variable([64])
     output_conv1_2 = tf.nn.relu(conv2d(output_conv1_1, kernel) + biases, name=scope)
 ```
-如上面代码片段，第一层的卷积层和第二层的width大小变化了，输入的大小是[3, 3, 3, 64]，conv_layer的设置是[1, 1, 1, 1]。
+　　如上面代码片段，第一层的卷积层和第二层的width大小变化了，输入的大小是[3, 3, 3, 64]，conv_layer的设置是[1, 1, 1, 1]。
 
 
 ## 1. Convolutional Layers
@@ -86,10 +86,6 @@ with tf.name_scope('conv1_2') as scope:
 $$N = \left\lfloor(W − F + 2P )/S+1 \right \rfloor$$
 
 　　这里加的 1 是表示原地的自己，比如说序列 $[1, 9]$ 一共多少个数的计算方法是 $9 - 1 + 1$，要记得 1 或者 9 那个数算上。
-
-
-
-
 
 
 ## Activation Function
