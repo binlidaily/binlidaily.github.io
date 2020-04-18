@@ -8,48 +8,51 @@ comments: true
 published: true
 ---
 
-最近在使用 TensorFlow 跑一些模型，由于刚接触 TensorFlow，做一些笔记方便翻看。
-## 1. TensorFlow 基本概念
-总结起来 TensorFlow 是：
+　　最近在使用 TensorFlow 跑一些模型，由于刚接触 TensorFlow，做一些笔记方便翻看。
+
+# 1. TensorFlow 基本概念
+　　总结起来 TensorFlow 是：
 * 异步的：一处写，一处读，一处训练
 * 全局的：操作添加到全局的 Graph 中，监控添加到全局的 Summary 中，参数/损失添加到全局的 Collection 中
 * 符号式的：创建时没有具体值，运行时才传入
 
-TensorFlow 三大核心：Tensor, Graph, Operation。
+　　TensorFlow 三大核心：Tensor, Graph, Operation。
 
 ### 1.1 Tensor
-Tensor 可以看做一种符号化的句柄，指向操作的运算结果。在执行后返回：基本类型、numpy.ndarray 或者其组成的 list，tuple 等。
+　　Tensor 可以看做一种符号化的句柄，指向操作的运算结果。在执行后返回：基本类型、numpy.ndarray 或者其组成的 list，tuple 等。
 
-Tensor 和 NumPy array 的区别是，Tensor 是函数或者说是容器，需要我们去定义，当数据被喂给 Tensor，它就会发生计算最终得到一个值。而 NumPy array 则是一个数据结构，在坐标系中可以表示 Tensor。
+　　Tensor 和 NumPy array 的区别是，Tensor 是函数或者说是容器，需要我们去定义，当数据被喂给 Tensor，它就会发生计算最终得到一个值。而 NumPy array 则是一个数据结构，在坐标系中可以表示 Tensor。
 
-### 1.1.1 创建 Tensor
-可以用函数（参看 [constant_op](http://www.tensorfly.cn/tfdoc/api_docs/python/constant_op.html) 文档）创建：常数、随机或者数列是的 Tensor。
+#### 1.1.1 创建 Tensor
+　　可以用函数（参看 [constant_op](http://www.tensorfly.cn/tfdoc/api_docs/python/constant_op.html) 文档）创建：常数、随机或者数列式的 Tensor。
+
 ```python
 tf.zeros([3, 4], int32) # ==> [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 tf.linspace(10.0, 12.0, 3, name="linspace") # => [ 10.0  11.0  12.0]
 tf.random_normal([2, 3], stddev=0.35, name = "weights")
 ```
-### 1.1.2 Tensor 的内容
-常用数据顺序： `batch * height * width * channel`
 
-Tensor 的 rank 指维度，rank = 0 是标量。
+#### 1.1.2 Tensor 的内容
+　　常用数据顺序： `batch * height * width * channel`
 
-可以用下标访问 Tensor 的元素，结果 y 也是一个符号型运算结果：
+　　Tensor 的 rank 指维度，rank = 0 是标量。
+
+　　可以用下标访问 Tensor 的元素，结果 y 也是一个符号型运算结果：
 
 ```python
 y = x[0][2]
 ```
 
-注意，Tensor 对矩阵形状要求严格。长度为 1 的维度不会被自动缩减。
+　　注意，Tensor 对矩阵形状要求严格。长度为 1 的维度不会被自动缩减。
 ```python
 x1 = tf.constant(1.0, shape=[])      # 0D
 x2 = tf.constant(1.0, shape=[1])      # 1D
 x3 = tf.constant(1.0, shape=[1,1])    # 2D
 ```
 
-如果你想创建一个标量 Tensor，在指定 shape 时应该传入 []，而不是 [1]。
+　　如果你想创建一个标量 Tensor，在指定 shape 时应该传入 []，而不是 [1]。
 
-### 1.1.2 Tensor 的形状
+#### 1.1.3 Tensor 的形状
 两种方式获得 Tensor 输出结果的形状。
 
 静态方法：直接根据创建 Tensor 的方法推理出输出形状。

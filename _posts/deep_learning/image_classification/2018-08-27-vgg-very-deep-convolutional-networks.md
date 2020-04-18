@@ -8,7 +8,20 @@ comments: true
 published: true
 ---
 
-　　VGG
+　　VGG 网络结构是由牛津大学发表在 ICLR 2015 上发表的论文，其效果在当时还是不错，而且不少模型也是基于 VGG 做的拓展，比如目标检测的 SSD 等。
+
+## 网络结构
+　　VGG 网络结构的特点
+
+<p align="center">
+<img src="/img/media/15871113693801.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">VGG 网络结构</em>
+</p>
+
+
+
 
 
 特点：
@@ -33,10 +46,10 @@ VGG 优点：
 3. 验证了通过不断加深网络结构可以提升性能
 
 VGG 缺点：
-1. VGG耗费更多计算资源，并且使用了更多的参数，导致更多的内存占用（140M）。其中绝大多数的参数都是来自于第一个全连接层。并且单纯的增加神经网络的深度，会给训练带来困难，会出现梯度消失、不收敛等问题。
+1. VGG 耗费更多计算资源，并且使用了更多的参数，导致更多的内存占用（140M）。其中绝大多数的参数都是来自于第一个全连接层。并且单纯的增加神经网络的深度，会给训练带来困难，会出现梯度消失、不收敛等问题。
 
 ## References
-1. [VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION]()
+1. [VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION](/assets/papers/VGG.pdf)
 2. [Tensorflow VGG16 and VGG19](https://github.com/machrisaa/tensorflow-vgg)
 3. [tensorflow-vgg16-train-and-test](https://github.com/ppplinday/tensorflow-vgg16-train-and-test)
 4. [TensorFlow VGG-16 pre-trained model](https://github.com/ry/tensorflow-vgg16)
