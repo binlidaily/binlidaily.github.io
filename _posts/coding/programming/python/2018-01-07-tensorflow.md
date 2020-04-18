@@ -18,12 +18,12 @@ published: true
 
 　　TensorFlow 三大核心：Tensor, Graph, Operation。
 
-### 1.1 Tensor
+## 1.1 Tensor
 　　Tensor 可以看做一种符号化的句柄，指向操作的运算结果。在执行后返回：基本类型、numpy.ndarray 或者其组成的 list，tuple 等。
 
 　　Tensor 和 NumPy array 的区别是，Tensor 是函数或者说是容器，需要我们去定义，当数据被喂给 Tensor，它就会发生计算最终得到一个值。而 NumPy array 则是一个数据结构，在坐标系中可以表示 Tensor。
 
-#### 1.1.1 创建 Tensor
+### 1.1.1 创建 Tensor
 　　可以用函数（参看 [constant_op](http://www.tensorfly.cn/tfdoc/api_docs/python/constant_op.html) 文档）创建：常数、随机或者数列式的 Tensor。
 
 ```python
@@ -32,7 +32,7 @@ tf.linspace(10.0, 12.0, 3, name="linspace") # => [ 10.0  11.0  12.0]
 tf.random_normal([2, 3], stddev=0.35, name = "weights")
 ```
 
-#### 1.1.2 Tensor 的内容
+### 1.1.2 Tensor 的内容
 　　常用数据顺序： `batch * height * width * channel`
 
 　　Tensor 的 rank 指维度，rank = 0 是标量。
@@ -52,17 +52,18 @@ x3 = tf.constant(1.0, shape=[1,1])    # 2D
 
 　　如果你想创建一个标量 Tensor，在指定 shape 时应该传入 []，而不是 [1]。
 
-#### 1.1.3 Tensor 的形状
-两种方式获得 Tensor 输出结果的形状。
+### 1.1.3 Tensor 的形状
+　　两种方式获得 Tensor 输出结果的形状。
 
-静态方法：直接根据创建 Tensor 的方法推理出输出形状。
+　　1）**静态方法**：直接根据创建 Tensor 的方法推理出输出形状。
 
 ```python
 x = tf.random_normal([2, 3])
 print(x.get_shape())
 ```
 
-动态方法：创建一个获取形状的新 Tensor，运行得到结果。
+　　2）**动态方法**：创建一个获取形状的新 Tensor，运行得到结果。
+
 ```python
 x = tf.random_normal([2, 3])
 s = tf.shape(x)
@@ -70,10 +71,10 @@ sess = tf.Session()
 print(sess.run(s))
 ```
 
-### 1.2 Operation
-Operation 表示一种符号化的运算过程，是 TensorFlow 中的基本单元，即图中的节点。它的输入输出都是 Tensor。
+## 1.2 Operation
+　　Operation 表示一种符号化的运算过程，是 TensorFlow 中的基本单元，即图中的节点。它的输入输出都是 Tensor。
 
-考虑以下代码：
+　　考虑以下代码：
 
 ```python
 x = tf.constant(1, shape=[1, 2])
@@ -81,12 +82,12 @@ y = tf.constant(2, shape=[1, 2])
 z = tf.add(x, y)
 ```
 
-其中包含了三个 Operation 
+　　其中包含了三个 Operation 
 - 给 Tensor $x$ 赋常数值 
 - 给 Tensor $y$ 赋常数值 
 - Tensor $x$, $y$ 相加得到 Tensor $z$
 
-Operation 没法从函数返回值中得到，可以用如下方法，从全局 Graph 中查看当前所有 Operation：
+　　Operation 没法从函数返回值中得到，可以用如下方法，从全局 Graph 中查看当前所有 Operation：
 
 ```python
 g = tf.get_default_graph()
@@ -125,7 +126,7 @@ Out [1]:  The actual multiplication result::: 12
 
 这样就能得到想要的结果 12 了，当然我们向计算图传递数值的时候有两种方式：Variables 和 Placeholders，在后面会介绍。
 
-### 1.3 Graph
+## 1.3 Graph
 Tensor 和 Operation 都是 Graph 中的对象。Operation 是图的节点，Tensor 是图的边上流动的数据。
 
 <p align="center">
@@ -145,7 +146,7 @@ g3 = tf.get_default_graph()
 每一个结点（Node）采用零个或多个 Tensors 作为输入，并产生一个 Tensor 作为输出。
 
 
-### 1.4 Variable
+## 1.4 Variable
 除了核心三要素，TensorFlow 还有一个很重要的部分是变量（Variable），用来表示 Graph 中的个模型参数。Variables 可以用来存储模型的参数，后面在训练的时候可以更新，需要注意的是，这些变量需要显示地初始化，这样才能在模型训练时和训练后存到硬盘中。
 
 ```python
@@ -164,7 +165,7 @@ print(sess.run(variable))
 #===>[[ 0.  0.]]
 ```
 
-### 1.5 Placeholder
+## 1.5 Placeholder
 又叫占位符，同样是一个抽象的概念，用于表示输入输出数据的格式。告诉系统：这里有一个值/向量/矩阵，现在我没法给你具体数值，不过我正式运行的时候会补上的！例如上式中的x和y。因为没有具体数值，所以只要指定尺寸即可：
 
 ```python
@@ -172,11 +173,11 @@ x = tf.placeholder(tf.float32,[1, 5],name='input')
 y = tf.placeholder(tf.float32,[None, 5],name='input')
 ```
 
-### 1.6 Session
+## 1.6 Session
 以上的概念都是抽象的定义，那么我们需要具象化，于是就有了 Session。
 
-## 2. TensorFlow 运行调试相关
-### 2.1 TensorFlow 运行流程
+# 2. TensorFlow 运行调试相关
+## 2.1 TensorFlow 运行流程
 
 <p align="center">
 <img src="/img/media/15549831974385.jpg">
@@ -232,7 +233,7 @@ precision = sess.run(accuracy, feed_dict={x: mnist.test.images, y: mnist.test.la
 print(precision)
 ```
 
-### 2.2 TensorFlow 主要函数
+## 2.2 TensorFlow 主要函数
 ### 2.2.1 tf.nn.conv2d
 功能：给定 4 维的 input 和 filter，计算出一个 2 维的卷积结果。
 
@@ -288,7 +289,7 @@ W = tf.get_variable(name, shape=None, dtype=tf.float32, initializer=None,
 设定命名空间，tf.variable_scope 可以让变量有相同的命名，包括 tf.get_variable 得到的变量，还有 tf.Variable 的变量；tf.name_scope 可以让变量有相同的命名，只是限于 tf.Variable 的变量，代码可[参考](https://blog.csdn.net/UESTC_C2_403/article/details/72328815)。
 
 
-### 2.3 TensorFlow 代码相关
+## 2.3 TensorFlow 代码相关
 ### 2.3.1 设置内存增长方式
 在跑数据的时候，因为数据量比较大，刚开始跑模型时，任务一直被 terminated。猜想是内存使用量超额了，于是设定输出 log 确认情况后，选定 GPU 使用按照需求自动增长，如下的:
 
@@ -384,11 +385,11 @@ sudo lsof -nPi :yourPortNumber
 sudo kill -9 yourPIDnumber
 ```
 
-## Q&A
+# Q&A
 * with tf.variable_scope(scope)？
 tf.variable_scope() 的作用是为了实现变量共享，它和 tf.get_variable() 来完成变量共享的功能。
 
-## References
+# References
 1. [Awesome TensorFlow ](https://github.com/jtoy/awesome-tensorflow#tutorials)
 2. [基本概念: Tensor, Operation, Graph](https://blog.csdn.net/shenxiaolu1984/article/details/52813962)
 3. [tensorflow笔记：流程，概念和简单代码注释](https://blog.csdn.net/u014595019/article/details/52677412)
