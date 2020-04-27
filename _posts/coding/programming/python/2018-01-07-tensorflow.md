@@ -124,7 +124,7 @@ print ("The actual multiplication result:::", sess.run(mult))
 Out [1]:  The actual multiplication result::: 12
 ```
 
-这样就能得到想要的结果 12 了，当然我们向计算图传递数值的时候有两种方式：Variables 和 Placeholders，在后面会介绍。
+　　这样就能得到想要的结果 12 了，当然我们向计算图传递数值的时候有两种方式：Variables 和 Placeholders，在后面会介绍。
 
 ## 1.3 Graph
 Tensor 和 Operation 都是 Graph 中的对象。Operation 是图的节点，Tensor 是图的边上流动的数据。

@@ -32,7 +32,10 @@ Return **3**, which is the length of the path [4,2,1,3] or [5,2,1,3].
 
 
 ## Solutions
+　　题意是要找到树中两个结点之间最长的距离，可以用递归来做，总的最长距离可以拆成两个部分，左子树最长距离和右子树最长距离，然后为了找最大值，需要一个最大值的变量。
+
 ### 1. Recursion
+　　值得注意的是返回值的选定和 max_path 的计算。步骤是先找到最大的左右子树高度，然后在高度上加 1 即可。
 
 ```python
 # Time: O(n)
@@ -67,3 +70,4 @@ class Solution:
 
 ## References
 1. [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+2. [543. Diameter of Binary Tree 解题报告 (C++&Java&Python)](https://blog.csdn.net/fuxuemingzhu/article/details/70338312)

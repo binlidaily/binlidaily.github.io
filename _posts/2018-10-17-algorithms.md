@@ -87,17 +87,18 @@ In order to facilitate the search, I wrote this blog. I've collected all algorit
 
 ### 1.2 Unsupervised Learning
 ### 1.2.1 Clustering
-* Prototype-based Clustering
+* Centroid-based Clustering
     * [K-Means](https://binlidaily.github.io/2019-05-29-kmeans/)
     * Learning Vector Quantization (LVQ)
     * [Gaussian Mixed Model (GMM)](https://binlidaily.github.io/2019-06-23-gmm-gaussian-mixed-model)
 * Density-based Clustering
     * DBSCAN
-* Hierachical Clustering
-    * AGNES
-        * Single-linkage Clustering
-        * Complete-linkage Clustering
-        * Average-linkage Clustering
+* Connectivity-based clustering
+    * Hierachical Clustering
+    * Single-linkage Clustering
+    * Complete-linkage Clustering
+    * Average-linkage Clustering
+    * Divisive Clustering
 * [Expectation Maximization (EM)](https://binlidaily.github.io/2019-06-23-expectation-maximization)
 * [Self-Organizing Map (SOM)](2019-06-23-som-self-organizing-map)
 * K-Medians

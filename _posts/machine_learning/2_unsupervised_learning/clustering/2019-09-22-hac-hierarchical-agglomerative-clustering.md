@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hierarchical Agglomerative Clustering
-subtitle: 高斯混合模型
+subtitle: 层次聚类
 author: Bin Li
 tags: [Machine Learning]
 image: 
