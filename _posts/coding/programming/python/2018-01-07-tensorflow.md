@@ -289,6 +289,9 @@ W = tf.get_variable(name, shape=None, dtype=tf.float32, initializer=None,
 设定命名空间，tf.variable_scope 可以让变量有相同的命名，包括 tf.get_variable 得到的变量，还有 tf.Variable 的变量；tf.name_scope 可以让变量有相同的命名，只是限于 tf.Variable 的变量，代码可[参考](https://blog.csdn.net/UESTC_C2_403/article/details/72328815)。
 
 
+### 2.2.5 tf.argmax 用法
+计算其中最大值的索引，第二个参数 0 表示行，1 表示列。
+
 ## 2.3 TensorFlow 代码相关
 ### 2.3.1 设置内存增长方式
 在跑数据的时候，因为数据量比较大，刚开始跑模型时，任务一直被 terminated。猜想是内存使用量超额了，于是设定输出 log 确认情况后，选定 GPU 使用按照需求自动增长，如下的:
@@ -312,16 +315,16 @@ session = tf.Session(config=config, ...)
 保存模型的方法：
 
 ```python
-# 之前是各种构建模型graph的操作(矩阵相乘，sigmoid等等....)
+# 之前是各种构建模型graph的操作(矩阵相乘，sigmoid 等等....)
 
 saver = tf.train.Saver() # 生成saver
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer()) # 先对模型初始化
 
-    # 然后将数据丢入模型进行训练blablabla
+    # 然后将数据丢入模型进行训练 blablabla
 
-    # 训练完以后，使用saver.save 来保存
+    # 训练完以后，使用 saver.save 来保存
     saver.save(sess, "save_path/file_name") #file_name如果不存在的话，会自动创建
 ```
 
@@ -400,3 +403,4 @@ tf.variable_scope() 的作用是为了实现变量共享，它和 tf.get_variabl
 8. [TensorFlow-Tutorials](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
 9. [handson-ml](https://github.com/ageron/handson-ml)
 10. [tensorflow里面name_scope, variable_scope等如何理解？](https://www.zhihu.com/question/54513728)
+11. [金色传说！发现一套稀有 TensorFlow2 教程，GitHub已获3.5k星](https://zhuanlan.zhihu.com/p/138418931)

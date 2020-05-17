@@ -25,8 +25,8 @@ published: true
 ![](/img/media/15617050405329.jpg)
 
 
-![](/img/media/15617050084091.jpg)
 
+![](/img/media/15892675855623.jpg)
 
 
 1. Bagging + 决策树 = 随机森林

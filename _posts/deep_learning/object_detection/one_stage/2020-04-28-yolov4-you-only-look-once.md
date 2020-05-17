@@ -11,4 +11,4 @@ published: true
 
 
 # References
-1. []()
+1. [想读懂YOLOV4，你需要先了解下列技术(一)](https://zhuanlan.zhihu.com/p/139764729)

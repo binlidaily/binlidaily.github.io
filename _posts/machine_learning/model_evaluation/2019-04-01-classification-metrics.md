@@ -47,6 +47,9 @@ $$
     <em style="color:#808080;font-style:normal;font-size:80%;">二分类混淆矩阵</em>
 </p>
 
+![](/img/media/15892691231563.jpg)
+
+
 　　精确率（查准率，Precision）是指真的正例数（正确被预测为正例的实例数）占所有预测被为属于正例的实例数（即真的正例数和假的正例数之和，假的正例是指被错误地预测为正例的实例）的比例，精确率是相较于对预测结果而言，尝试表达这样的效果：“**有多少被预测为正例的样本是正确的？**”
 
 $$
@@ -454,3 +457,4 @@ Skewed Datasets：Imbalanced classes，outliers， and Rare Data
     1. [map](https://arleyzhang.github.io/articles/c521a01c/)
     2. [5 losses](https://heartbeat.fritz.ai/5-regression-loss-functions-all-machine-learners-should-know-4fb140e9d4b0)
     3. [losses 必看](https://zhuanlan.zhihu.com/p/72589970)
+9. [精确率、召回率、F1 值、ROC、AUC 各自的优缺点是什么？](https://www.zhihu.com/question/30643044/answer/1205433761)

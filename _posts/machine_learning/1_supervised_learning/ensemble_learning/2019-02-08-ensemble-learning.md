@@ -9,9 +9,10 @@ comments: true
 published: true
 ---
 
+{% include toc.html %}
+
 　　在监督学习中，机器学习的目标是学习出一个效果稳定、在各方面表现都好的模型，然而实际情况往往不理想。集成学习采用了“三个臭皮匠顶个诸葛亮”的想法，采用多个弱学习器组合的方式达到一个强学习器的效果。弱学习器各有其优势，组合在一起后可能达到高准确率、高泛化能力的效果。
 
-{% include toc.html %}
 
 　　当然这里的强弱学习器的说法是为了说明方便，基学习器的说法比弱学习器（分类的话准确率在 50% 左右的分类器）更准确一些，因为有时候为了能用较少的基学习器组合出好结果，基学习器不一定选用弱学习器而是较强的学习器。值得注意的是若干个基学习器应当具有一定的准确性，同时也需要有一定的多样性，即好而不同，当然准确性和多样性其实是相互矛盾的，需要找到平衡。
 
@@ -309,3 +310,5 @@ print('The cross validated score for bagged Decision Tree is:',result.mean())
 6. [Sklearn Ensemble methods](https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator)
 7. [【机器学习】决策树（中）——Random Forest、Adaboost、GBDT （非常详细）](https://zhuanlan.zhihu.com/p/86263786)
 8. [What are the best methods for combining different machine learning models to get a better prediction than any individual model?](https://www.quora.com/What-are-the-best-methods-for-combining-different-machine-learning-models-to-get-a-better-prediction-than-any-individual-model)
+9. [**使用sklearn进行集成学习——理论**](https://www.cnblogs.com/jasonfreak/p/5657196.html)
+10. [使用sklearn进行集成学习——实践](https://www.cnblogs.com/jasonfreak/p/5720137.html)

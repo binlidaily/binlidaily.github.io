@@ -9,14 +9,16 @@ comments: true
 published: true
 ---
 
+{% include toc.html %}
+
 　　支持向量机（Support Vector Machines, SVM）是一种二分类模型，是定义在特征空间上间隔最大的线性分类器，间隔最大使之有别于感知机，感知机是对误分类集合样本相关的损失函数越小越好。
 
 　　在给定训练样本 $D=\\{(x_i,y_i)\\}_1^m$，$y_i \in \\{-1, +1\\}$ 中，支持向量机的初始想法是找到一个超平面划分正负样本，使得划分超平面对训练样本局部扰动的容忍性最好。如何体现对局部扰动容忍性最好？
 
 　　可以想象圈住正负例分别有一个边界线，像国家的国界一样，我们想子啊两个国家的边界之间建一条直线河，让这两个国家尽量离得远，井水不犯河水，那么我们能找到的最宽的那条河的中心线就是我们想要的超平面。
 
-## 1. 线性可分情况
-### 1.1 Primal Optimization Problem
+# 1. 线性可分情况
+## 1.1 原始优化问题（Primal Optimization Problem）
 
 　　在样本空间中，划分超平面可以用如下线性方程描述：
 
@@ -41,12 +43,14 @@ $$
 　　如果所有样本满足以上式子，表示线性可分。但是几何函数加上这个不等式约束不好优化处理，我们尝试进一步简化。几何函数可以表达成：
 
 $$
-\rho=\max _{\mathbf{w}, b: y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right) \geq 0} \min _{i \in[m]} \frac{\left|\mathbf{w} \cdot \mathbf{x}_{i}+b\right|}{\|\mathbf{w}\|}=\max _{\mathbf{w}, b} \min _{i \in[m]} \frac{y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)}{\|\mathbf{w}\|}
+\begin{aligned} \rho &=\max _{\mathbf{w}, b: y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right) \geq 0} \min _{i \in[m]} \frac{\left|\mathbf{w} \cdot \mathbf{x}_{i}+b\right|}{\|\mathbf{w}\|} \\ &=\max _{\mathbf{w}, b} \min _{i \in[m]} \frac{y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)}{\|\mathbf{w}\|}\\
+&=\max _{\mathbf{w}, b} \{ \frac{1}{\|\mathbf{w}\|} \min _{i \in[m]} y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right) \} 
+\end{aligned}
 $$
 
-　　后面的 min 表示离着超平面最近的样本距离，前面的 max 说明这个最小距离都要尽可能的大，这就是我们的优化目标。因为 $y_i \in \\{-1, +1\\}$，大小不对结果造成影响，且可以平衡正负，使得可以把绝对值符号去掉。
+　　后面的 $\min$ 表示离着超平面最近的样本距离，前面的 $\max$ 说明这个最小距离都要尽可能的大，这就是我们的优化目标。因为 $y_i \in \\{-1, +1\\}$，大小不对结果造成影响，且可以平衡正负，使得可以把绝对值符号去掉。
 
-　　再观察上面优化式子的分子部分，如果我们同时对 $w$ 和 $b$ 乘以一个正数，其实是不影响这个优化的式子的，那么，我们就尝试让使得分子部分最小的样本带进去后分子结果为定值 1。这里选择使得分子最小的那个样本做了归一化操作，是不会对其他样本最终的优化结果造成影响，即：
+　　再观察上面优化式子的分子部分，如果我们同时对 $w$ 和 $b$ 乘以一个正数，此时分子分母都会乘以该数，上下可以约分，这是不影响这个优化的式子的。那么，我们就尝试让使得分子部分最小的样本代入式子后分子结果为定值 $1$。这里选择使得分子最小的那个样本做了归一化操作，当然最后的 $w$ 大小也会对应做了一定归一化，但是不会对其他样本最终的优化结果造成影响（PRML p328），即：
 
 $$
 \rho=\max _{\mathbf{w}, b: \atop \min_{i\in [m]}~ y_{i} \left(\mathbf{w} \mathbf{x}_{i}+b\right)=1} \frac{1}{\|\mathbf{w}\|}=\max _{\forall i \in[m], y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right) \geq 1} \frac{1}{\|\mathbf{w}\|}
@@ -70,7 +74,7 @@ $$
 \begin{array}{ll}{\nabla_{\mathbf{w}} \mathcal{L}=\mathbf{w}-\sum_{i=1}^{m} \alpha_{i} y_{i} \mathbf{x}_{i}=0} & {\Longrightarrow \quad \mathbf{w}=\sum_{i=1}^{m} \alpha_{i} y_{i} \mathbf{x}_{i}} \\ {\nabla_{b} \mathcal{L}=-\sum_{i=1}^{m} \alpha_{i} y_{i}=0} & {\Longrightarrow \quad \sum_{i=1}^{m} \alpha_{i} y_{i}=0} \\ {\forall i, \alpha_{i}\left[y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)-1\right]=0} & {\Longrightarrow \quad \alpha_{i}=0 \vee y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)=1}\end{array}
 $$
 
-### 1.2 Dual Optimization Problem
+## 1.2 Dual Optimization Problem
 　　为了得到对偶形式的优化，我们将用拉格朗日乘子计算式表示 primal 的变量 $w$ 和 $b$：
 
 $$
@@ -91,7 +95,7 @@ $$
 
 　　想要了解具体拉格朗日变换的，可以参考。
 
-## 2. 线性不可分情况
+# 2. 线性不可分情况
 　　然而在实际的数据中，常出现线性不可分的情况，即不是所有样本都满足一下的式子：
 
 $$
@@ -104,11 +108,16 @@ $$
 y_{i}\left[\mathbf{w} \cdot \mathbf{x}_{i}+b\right] \geq 1-\xi_{i}
 $$
 
-![](/img/media/15826896628741.jpg)
+<p align="center">
+<img src="/img/media/15826896628741.jpg" width="600">
+</p>
+<p style="margin-top:-2.5%" align="center">
+    <em style="color:#808080;font-style:normal;font-size:80%;">线性不可分示意图</em>
+</p>
 
 　　这个时候的间隔 $\rho=1 /\|\mathbf{w}\|$ 称为软间隔（soft margin），如上图所示，相对的，之前的线性可分的约束可称为硬间隔（hard margin）。
 
-### Primal Optimization Problem
+## 2.1 Primal Optimization Problem
 　　基于相对宽松的约束，我们可以整理出原始的优化问题，优化目标在原来的基础上需要尽量使得我们的松弛变量之和尽量小。
 
 $$
@@ -129,7 +138,7 @@ $$
 \begin{aligned} \nabla_{\mathbf{w}} \mathcal{L}=\mathbf{w}-\sum_{i=1}^{m} \alpha_{i} y_{i} \mathbf{x}_{i}=0 & \Longrightarrow \mathbf{w}=\sum_{i=1}^{m} \alpha_{i} y_{i} \mathbf{x}_{i} \\ \nabla_{b} \mathcal{L}=-\sum_{i=1}^{m} \alpha_{i} y_{i}=0 & \Longrightarrow \sum_{i=1}^{m} \alpha_{i} y_{i}=0 \\ \nabla_{\xi_{i}} \mathcal{L}=C-\alpha_{i}-\beta_{i}=0 & \Longrightarrow \alpha_{i}+\beta_{i}=C \\ \forall i, \alpha_{i}\left[y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)-1+\xi_{i}\right]=0 & \Longrightarrow \alpha_{i}=0 \vee y_{i}\left(\mathbf{w} \cdot \mathbf{x}_{i}+b\right)=1-\xi_{i} \\ \forall i, \beta_{i} \xi_{i}=0 & \Longrightarrow \beta_{i}=0 \vee \xi_{i}=0 \end{aligned}
 $$
 
-### Dual Optimization Problem
+## 2.2 Dual Optimization Problem
 　　为了转换为对偶形式，我们只采用拉格朗日乘子作为参数变量：
 
 $$
@@ -185,6 +194,7 @@ Hinge loss 对 outlier 不那么敏感。
 Kernel Trick
 
 取 1 的时候，Hinge loss 才會是 ideal loss 的一個 type 的 upper bound，如果用其他的值的话，就不会是那么 tight 的 upper bound。
+
 ![-w1437](/img/media/15662192478583.jpg)
 
 ![-w1429](/img/media/15662197118358.jpg)
