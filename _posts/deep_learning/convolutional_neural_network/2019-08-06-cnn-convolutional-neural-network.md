@@ -7,7 +7,7 @@ tags: [Deep Learning]
 image: 
 comments: true
 published: true
-typora-root-url: ../../../binlidaily.github.io
+typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../img/media
 ---
 
@@ -52,7 +52,6 @@ $$
 <p align="center">
 <img src="/img/media/15649932452765.jpg" width="">
 </p>
-
 
 
 　　我们令 $x=\tau$，$y=n-\tau$，那么 $x+y=n$ 就是 $n$ 取不同值的一堆直线。
@@ -179,7 +178,9 @@ with tf.name_scope('conv1_2') as scope:
 * 步长 S
 * padding的像素数 P
 
-$$N = \left\lfloor(W − F + 2P )/S+1 \right \rfloor$$
+$$
+N = \left\lfloor(W − F + 2P )/S+1 \right \rfloor
+$$
 
 　　这里加的 1 是表示原地的自己，比如说序列 $[1, 9]$ 一共多少个数的计算方法是 $9 - 1 + 1$，要记得 1 或者 9 那个数算上。
 

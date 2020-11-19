@@ -10,6 +10,7 @@ published: true
 ---
 
 ## 欧式距离平方（Squared Euclidean Distance）
+
 $$
 \begin{aligned}
 d(x_i, x_j) &= \sum _ {k=1} ^ n (x_{ki} - x_{kj})^2 \\
