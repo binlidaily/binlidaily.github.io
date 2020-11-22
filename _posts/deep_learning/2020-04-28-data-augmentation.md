@@ -6,6 +6,8 @@ author: Bin Li
 tags: [Deep Learning]
 comments: true
 published: true
+typora-root-url: ../../../binlidaily.github.io
+typora-copy-images-to: ../../img/media
 ---
 
 　　数据增强的意义是提高训练数据的多样性，使得模型能够在不同环境条件下都有较高的鲁棒性。
