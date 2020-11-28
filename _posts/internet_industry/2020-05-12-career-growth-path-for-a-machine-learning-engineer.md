@@ -7,9 +7,11 @@ tags: [Internet Industry]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../binlidaily.github.io
+typora-copy-images-to: ../../img/media
 ---
 
-有商业洞察力，抓住产品方向，了解行业发展前景。
+　　有商业洞察力，抓住产品方向，了解行业发展前景。
 
 
 ![](/img/media/15895604589435.jpg)

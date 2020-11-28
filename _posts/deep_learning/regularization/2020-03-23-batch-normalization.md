@@ -7,6 +7,8 @@ tags: [Deep Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
 　　神经网络训练过程的本质是学习数据的分布，如果训练数据与测试数据的分布不同将大大降低网络的泛化能力，因为我们需要在训练开始前对所有输入数据进行归一化处理。
