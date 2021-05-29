@@ -7,8 +7,8 @@ tags: [Deep Learning]
 image: 
 comments: true
 published: true
-typora-root-url: ../../../binlidaily.github.io
-typora-copy-images-to: ../../img/media
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
 　　因为传统的 RNN [很难](http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf)学到离着当前时刻较远的状态信息，于是提出了长短期记忆网络（Long Short Term Memory networks, LSTMs），其是一种 [RNN](https://binlidaily.github.io/2019-04-12-rnn-recurrent-neural-network/) 的变种，传统的 RNN 结构如下：

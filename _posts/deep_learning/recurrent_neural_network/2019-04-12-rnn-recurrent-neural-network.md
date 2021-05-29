@@ -7,8 +7,8 @@ tags: [Deep Learning]
 image: 
 comments: true
 published: true
-typora-root-url: ../../../binlidaily.github.io
-typora-copy-images-to: ../../img/media
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
 　　循环神经网络（Recurrent Neural Network, RNN）作为深度学习的一个重要网络，可以将其看成带记忆的神经网络，主要解决的是样本数据为序列的建模问题，如语音序列，语言序列。
@@ -233,10 +233,13 @@ $$
 <p style="margin-top:-2.5%" align="center">
     <em style="color:#808080;font-style:normal;font-size:80%;">RNN 的动态运行过程</em>
 </p>
-
 　　可以从标不同颜色的部分看出，之前的状态能传到后面。
 
-## 3. 总结
+## 3. 双向循环神经网络（BiRNN）
+
+　　
+
+## 4. 总结
 优点：
 * 能够处理时序性数据
 
