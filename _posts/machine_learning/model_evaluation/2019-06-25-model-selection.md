@@ -7,6 +7,7 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
 ---
 
 交叉验证，分层交叉验证（训练集和测试集中的不同类平衡问题），留一法。
@@ -23,3 +24,5 @@ folder = StratifiedKFold(n_splits=3, shuffle=True)
 
 ## References
 1. 《机器学习与优化》
+2. [如何评估模型的好坏](https://easyai.tech/blog/comparing-machine-learning/)
+

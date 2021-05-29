@@ -84,6 +84,11 @@ typora-root-url: ../../../../binlidaily.github.io
 <p align="center">
     <img src="/img/media/15557543479138.jpg">
 </p>
+````python
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
+````
+
 
 
 
@@ -91,3 +96,4 @@ typora-root-url: ../../../../binlidaily.github.io
 ## References
 1. [特征选择](https://zhuanlan.zhihu.com/p/32749489)
 2. [为何推荐sklearn做单机特征工程？【下】](https://mp.weixin.qq.com/s/1RHBQMlC8eyJcbNcArTtCQ)
+3. [【机器学习】特征选择(Feature Selection)方法汇总](https://zhuanlan.zhihu.com/p/74198735)
