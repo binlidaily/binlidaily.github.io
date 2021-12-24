@@ -7,6 +7,8 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../binlidaily.github.io
+typora-copy-images-to: ../../img/media
 ---
 
 　　数据预处理是对原始数据进行变换，使其满足模型训练的要求。这里总结处一下数据预处理的一般操作，方便自己回顾。一般来说数据预处理包括几点：

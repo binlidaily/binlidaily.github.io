@@ -1354,3 +1354,4 @@ print 'elapsed time: ', time.time() - start_time
 3. [Open Machine Learning Course. Topic 6. Feature Engineering and Feature Selection](https://medium.com/open-machine-learning-course/open-machine-learning-course-topic-6-feature-engineering-and-feature-selection-8b94f870706a)
 4. [Fundamental Techniques of Feature Engineering for Machine Learning](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114)
 5. [竞赛专题（四）特征工程-竞赛中的必杀技](https://mp.weixin.qq.com/s/2wfOsOYOjbAEkWuF7r4KYA)
+6. [特征工程系列：GBDT特征构造以及聚类特征构造](https://cloud.tencent.com/developer/article/1530229)
