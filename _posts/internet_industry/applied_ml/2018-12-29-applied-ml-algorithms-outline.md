@@ -7,6 +7,8 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../img/media
 ---
 
 概率统计推断：分类/回归（CTR预估，推荐系统）聚类(用户群分析，异常检测)。 

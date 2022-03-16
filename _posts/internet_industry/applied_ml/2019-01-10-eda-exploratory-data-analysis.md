@@ -7,8 +7,8 @@ tags: [Machine Learning]
 image: 
 comments: true
 published: true
-typora-root-url: ../../../binlidaily.github.io
-typora-copy-images-to: ../../img/media
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 ---
 
 　　在拿到数据之后，首先要做的就是要数据分析(Exploratory Data Analysis,EDA)。数据分析是数据挖掘中重要的步骤，同时也在其他阶段反复进行。可以说数据分析是数据挖掘中至关重要的一步，它给之后的步骤提供了改进的方向，也是直接可以理解数据的方式。
