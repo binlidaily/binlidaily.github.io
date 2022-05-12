@@ -97,4 +97,4 @@ title: ${title}${fmtags}${fmcats}
 			}
 		});
 	}
-})(); 
+})();
