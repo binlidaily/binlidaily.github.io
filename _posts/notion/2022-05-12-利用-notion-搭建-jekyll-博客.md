@@ -1,10 +1,11 @@
 ---
 layout: post
-comments: true
+comments: false
 date: 2022-05-12
 title: 利用 Notion 搭建 Jekyll 博客
 tags:
   - Blog
+  - Tools
 
 ---
 
