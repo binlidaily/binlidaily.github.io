@@ -5,6 +5,8 @@ author: "Bin Li"
 tags: [Open Courses, Machine Learning]
 category: ""
 comments: true
+typora-root-url: ../../../../binlidaily.github.io
+typora-copy-images-to: ../../../img/media
 published: false
 ---
 
