@@ -9,6 +9,8 @@ style: |
         max-width: 44rem;
     } 
 published: false
+typora-root-url: ../../../binlidaily.github.io
+typora-copy-images-to: ../../../binlidaily.github.io/img/media
 ---
 
 本文是耶鲁大学的[《心理学导论》](http://open.163.com/special/sp/introductiontopsychology.html)的公开课观看笔记，可能有点儿乱，看日后在整理吧。
