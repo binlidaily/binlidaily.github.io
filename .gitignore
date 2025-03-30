@@ -3,4 +3,4 @@ _site
 .jekyll-metadata
 .DS_Store
 .MWebMetaData
-./_data/try-to-publish/
+_data/try-to-publish/*
