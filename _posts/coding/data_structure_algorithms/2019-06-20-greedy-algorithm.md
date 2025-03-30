@@ -12,4 +12,4 @@ typora-root-url: ../../../../binlidaily.github.io
 
 
 ### 常见贪心题
-* [334. Increasing Triplet Subsequence](http://gitlinux.net/2020-01-25-(334)-increasing-triplet-subsequence/)
+* [334. Increasing Triplet Subsequence](http://hi-bin.com/2020-01-25-(334)-increasing-triplet-subsequence/)

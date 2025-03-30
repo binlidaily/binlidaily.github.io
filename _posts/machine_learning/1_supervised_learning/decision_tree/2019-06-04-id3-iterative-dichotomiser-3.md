@@ -23,7 +23,7 @@ published: true
     * 则 $T$ 为单节点树（树桩），将类 $C_k$ 作为该节点的类标记，返回 $T$。
 2. elif $A=\varnothing$：
     * 则 $T$ 为单节点树（树桩），将 $D$ 中样本数最多的类 $C_k$ 作为该节点的类标记，返回 $T$。
-3. else: 计算 $A$ 中个特征对 $D$ 的[信息增益](http://gitlinux.net/2018-09-11-decision-tree/#111-%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A-information-gain)，选择信息增益最大的特征 $A_g$。endif
+3. else: 计算 $A$ 中个特征对 $D$ 的[信息增益](http://hi-bin.com/2018-09-11-decision-tree/#111-%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A-information-gain)，选择信息增益最大的特征 $A_g$。endif
 4. if $A_g$ 的信息增益小于阈值 $\epsilon$：
     * 则置 $T$ 为单节点树（树桩），并将 $D$ 中样本数最多的类 $C_k$ 作为该节点的类标记，返回 $T$。
 5. else: 对 $A_g$ 的每个可能值 $a_i$，依据  $A_g=a_i$ 将 $D$ 拆分为若干个非空子集 $D_i$，将 $D_i$ 中最大的类作为类标记，构建子节点，由节点及其子节点构成树 $T$，返回 $T$。 endif
@@ -52,6 +52,6 @@ published: true
     * 划分过程会由于子集规模过小而造成统计特征不充分而停止（咋理解？）
 
 ## References
-1. [Decision Tree 🌲](http://gitlinux.net/2018-09-11-decision-tree/)
+1. [Decision Tree 🌲](http://hi-bin.com/2018-09-11-decision-tree/)
 2. [决策树算法中，CART与ID3、C4.5特征选择之间的区别会对实际应用有哪些影响？哪种的结果会更好些？](https://www.zhihu.com/question/27205203)
 3. [值得一看，对决策树划分方法找到了损失函数的对应](https://www.benkuhn.net/tree-imp)
