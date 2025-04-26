@@ -16,7 +16,7 @@ Feel free to leave a message if you’d like to connect! 💬📩
 If you found this blog helpful, consider buying me a coffee to keep the tips brewing! ☕️
 
 <p align="center">
-  <img width="" height="" src="/img/支付信息.png">
+  <img width="500" height="" src="/img/支付信息.png">
 </p>
 
 <!--## Publications
