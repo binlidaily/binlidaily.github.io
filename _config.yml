@@ -4,8 +4,8 @@ css: /css/jupyter.css
 # url is the full website URL
 # baseurl is the website's URL without the hostname
 
-# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
-url: "https://binlidaily.github.io"
+# If you are building a simple GitHub user page (http://username.github.io) then use these settings: url: "https://hi-bin.com"
+url: "https://hi-bin.com"
 baseurl: ""
 
 # If you are building a GitHub project page then use these settings:
@@ -24,13 +24,13 @@ description: Focus On ML & DL & DM
 
 # List of links in the navigation bar
 navbar-links:
-  Blogs: "https://binlidaily.github.io"
+  Blogs: "https://hi-bin.com"
   Outlines:
-    - Algorithms: "https://binlidaily.github.io/2018-10-17-algorithms/"
-    - Projects: "https://binlidaily.github.io/2019-01-14-projects/"
-    - Coding: "https://binlidaily.github.io/2018-10-23-coding/"
-    - Reading: "https://binlidaily.github.io/2019-04-18-reading/"
-    - Essays: "https://binlidaily.github.io/2019-05-24-essays/"
+    - Algorithms: "https://hi-bin.com/2018-10-17-algorithms/"
+    - Projects: "https://hi-bin.com/2019-01-14-projects/"
+    - Coding: "https://hi-bin.com/2018-10-23-coding/"
+    - Reading: "https://hi-bin.com/2019-04-18-reading/"
+    - Essays: "https://hi-bin.com/2019-05-24-essays/"
   About Me: "aboutme"
   # search: "search"
 
