@@ -11,12 +11,14 @@ subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-
 
 I enjoy reading, coffee, classical music, contemplating, hiking, swimming, and skiing. 
 
-Feel free to leave a message if you’d like to connect! 💬📩
+Feel free to leave a message if you’d like to connect! 💬
 
 If you found this blog helpful, consider buying me a coffee to keep the tips brewing! ☕️
 
+如果您觉得有所帮助，希望考虑支持一杯咖啡~☕️
+
 <p align="center">
-  <img width="300" height="" src="/img/支付信息.png">
+  <img width="350" height="" src="/img/支付信息.png">
 </p>
 
 <!--## Publications
