@@ -25,12 +25,12 @@ description: Focus On ML & DL & DM
 # List of links in the navigation bar
 navbar-links:
   Blogs: "https://hi-bin.com"
-  Outlines:
-    - Algorithms: "https://hi-bin.com/2018-10-17-algorithms/"
-    - Projects: "https://hi-bin.com/2019-01-14-projects/"
-    - Coding: "https://hi-bin.com/2018-10-23-coding/"
-    - Reading: "https://hi-bin.com/2019-04-18-reading/"
-    - Essays: "https://hi-bin.com/2019-05-24-essays/"
+  # Outlines:
+  #   - Algorithms: "https://hi-bin.com/2018-10-17-algorithms/"
+  #   - Projects: "https://hi-bin.com/2019-01-14-projects/"
+  #   - Coding: "https://hi-bin.com/2018-10-23-coding/"
+  #   - Reading: "https://hi-bin.com/2019-04-18-reading/"
+  #   - Essays: "https://hi-bin.com/2019-05-24-essays/"
   About Me: "aboutme"
   # search: "search"
 
