@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About me
+comments: true
 subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
 ---
 
@@ -8,8 +9,13 @@ subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-
   <img width="200" height="" src="/img/media/4f33da32d6b5f.jpg">
 </p>
 
+程序员一枚，热爱阅读、思考、古典乐、咖啡、爬山、游泳、滑雪，博客记录一些思考和生活。
 
-I enjoy reading, coffee, classical music, contemplating, hiking, swimming, and skiing. 
+有任何想交流的话题，请随意留言。💬
+
+公众号**思成言**，欢迎关注交流~☕️
+
+<!-- I enjoy reading, coffee, classical music, contemplating, hiking, swimming, and skiing. 
 
 Feel free to leave a message if you’d like to connect! 💬
 
@@ -19,7 +25,7 @@ If you found this blog helpful, consider buying me a coffee to keep the tips bre
 
 <p align="center">
   <img width="350" height="" src="/img/支付信息.png">
-</p>
+</p> -->
 
 <!--## Publications
 
