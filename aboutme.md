@@ -11,9 +11,8 @@ subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-
 
 程序员一枚，热爱阅读、思考、古典乐、咖啡、爬山、游泳、滑雪，博客记录一些思考和生活。
 
-有任何想交流的话题，请随意留言。💬
+公众号**思成言**，欢迎关注交流~ 有任何想交流的话题，请随意留言。💬
 
-公众号**思成言**，欢迎关注交流~☕️
 
 <!-- I enjoy reading, coffee, classical music, contemplating, hiking, swimming, and skiing. 
 
