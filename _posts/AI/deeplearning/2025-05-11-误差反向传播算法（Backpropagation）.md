@@ -6,7 +6,7 @@ tags: [算法]
 author: 思成言
 comments: true
 published: true
-bigimg: /img/AI/deeplearning/2025-05-11-误差反向传播算法（Backpropagation）/backpropagation.jpeg
+bigimg: /img/AI/10-algorithms-machine-learning-engineers-need-to-know-article.jpeg
 typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
