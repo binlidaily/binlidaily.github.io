@@ -6,7 +6,7 @@ tags: [深度学习]
 author: 思成言
 comments: true
 published: false
-bigimg: /img/reading/成功，动机与目标.jpg
+bigimg: /img/bgimage.png
 typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
