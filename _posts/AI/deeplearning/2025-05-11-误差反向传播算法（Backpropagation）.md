@@ -6,7 +6,7 @@ tags: [深度学习]
 author: 思成言
 comments: true
 published: true
-bigimg: /img/bgimage.png
+bigimg: /img/AI/10-algorithms-machine-learning-engineers-need-to-know-article.jpeg
 typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
