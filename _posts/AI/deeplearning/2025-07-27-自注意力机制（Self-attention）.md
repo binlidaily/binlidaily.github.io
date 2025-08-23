@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 自注意力机制（Self-attention）
-subtitle: 大模型的重点概念
+subtitle: 大模型基石
 tags: [深度学习]
 author: 思成言
 comments: true
