@@ -77,3 +77,6 @@ $$
 $$
 Attention=Softmax({{QK^T}\over{d_k}})V
 $$
+
+# 参考文献
+* [Understanding Attention Mechanism in Transformer Neural Networks](https://learnopencv.com/attention-mechanism-in-transformer-neural-networks/)
