@@ -6,6 +6,7 @@ tags: [深度学习]
 author: 思成言
 comments: true
 published: true
+bigimg: /img/default_wallpaper.jpeg
 typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
@@ -21,7 +22,7 @@ typora-copy-images-to: ../../../img/media
 当前要填的空为Query，上下文每个生词为Key，上下文对应的信息为Value。
 
 那么，抽离成两个重点：
-1. 找上下文的相关性：当前空为Q，找与上下文K的相关性Attention Scores(${{QK^T}}$)。
+1. 找上下文的相关性：当前空为Q，找与上下文K的相关性Attention Scores(${QK^T}$)。
 2. 选合适的结果：基于Attention Scores算出概率分布，在对上下文的表征V提取信息。
 
 核心公式是：
