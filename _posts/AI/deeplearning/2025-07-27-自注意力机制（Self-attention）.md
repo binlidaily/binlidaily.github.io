@@ -27,7 +27,7 @@ typora-copy-images-to: ../../../img/media
 
 核心公式是：
 $$
-Attention=Softmax({ {QK^T}\over{d_k}})V
+Attention=Softmax({ {QK^T}\over{d_k} })V
 $$
 
 # 算法过程
@@ -65,7 +65,7 @@ $$
 点乘结果不好衡量，需归一化为分数，这里用softmax：
 
 $$
-Attention\ Scores=Softmax({ {QK^T}\over{d_k}})
+Attention\ Scores=Softmax({ {QK^T}\over{d_k} })
 $$
 
 除一个$d_k$主要是为了防止数值太大，训练时会有问题。
@@ -75,7 +75,7 @@ $$
 有的得分后，就可以在原本的V中提取信息了：
 
 $$
-Attention=Softmax({ {QK^T}\over{d_k}})V
+Attention=Softmax({ {QK^T}\over{d_k} })V
 $$
 
 # 参考文献
