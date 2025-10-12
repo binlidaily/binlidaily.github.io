@@ -6,7 +6,6 @@ tags: [深度学习]
 author: 思成言
 comments: true
 published: true
-bigimg: /img/default_wallpaper.jpeg
 typora-root-url: ../../../../binlidaily.github.io
 typora-copy-images-to: ../../../img/media
 ---
