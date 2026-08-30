@@ -69,6 +69,7 @@ button { font: inherit; }
 .blog-post p { margin: 1.05em 0; }
 .blog-post p { text-indent: 2em; }
 .blog-post li > p, .blog-post blockquote p, .blog-post figure p, .blog-post p:has(> img:only-child) { text-indent: 0; }
+.blog-post p.has-manual-indent { text-indent: 0; }
 .blog-post blockquote { margin: 2em 0; padding: 8px 0 8px 24px; color: var(--muted); border-left: 2px solid var(--accent); }
 .blog-post code { padding: .15em .35em; background: #ebe7df; border-radius: 3px; font-size: .88em; }
 .blog-post pre { overflow-x: auto; padding: 22px; background: #252521; border-radius: 5px; color: #f3f0e9; font-size: 14px; line-height: 1.65; }
