@@ -1,24 +1,13 @@
 ---
 layout: default
-title: "Search posts"
-css: "/css/search.css"
+title: "搜索文章"
 ---
 
-# Search Posts
-
-### Using the Amazing Google
-
-<div id="google-custom-search">
-<script>
-  (function() {
-    var cx = '001243985770856967468:e4jatwq1c3g';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
-</div>
+<form class="search-form" action="https://www.google.com/search" method="get">
+  <label for="site-search">在思成言中搜索</label>
+  <div class="search-row">
+    <input id="site-search" name="q" type="search" placeholder="输入关键词…" required>
+    <input type="hidden" name="sitesearch" value="hi-bin.com">
+    <button type="submit">搜索</button>
+  </div>
+</form>

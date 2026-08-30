@@ -1,8 +1,8 @@
 ---
 layout: page
 title: About me
-comments: true
-subtitle: Theme by <a href="https://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+comments: false
+subtitle: 关于我与这个博客
 ---
 
 <p align="center">

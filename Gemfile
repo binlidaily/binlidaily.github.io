@@ -1,13 +1,9 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem "github-pages", '163', group: :jekyll_plugins
+gem "jekyll", "~> 3.10"
+gem "jekyll-paginate", "~> 1.1"
+gem "jekyll-sitemap", "~> 1.4"
+gem "ffi", "~> 1.16.3"
 
-# enable tzinfo-data for local build
-# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'jekyll-paginate'
-
-# gem 'jekyll-toc'
-# gem "nokogiri", ">= 1.8.5"
-gem "nokogiri", ">= 1.10.8"
-gem "jekyll", ">= 3.6.3"
-gem "ffi", ">= 1.9.24"
+# Ruby 3 includes this by default; Ruby 2.6 needs it explicitly.
+gem "webrick", "~> 1.8"
