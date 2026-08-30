@@ -58,9 +58,20 @@
     return contours.length ? [{contours:contours}] : [];
   }
 
+  function vectorizeSafely(file, smoothness) {
+    if (!window.Worker) return vectorize(file, smoothness);
+    return new Promise(function (resolve, reject) {
+      var worker = new Worker("/js/paper2ink-worker.js?v=1");
+      var timer = setTimeout(function () { worker.terminate(); reject(new Error("处理时间过长，请裁剪到笔记区域或降低图片分辨率后重试")); }, 15000);
+      worker.onmessage = function (event) { clearTimeout(timer); worker.terminate(); if (event.data.error) reject(new Error(event.data.error)); else resolve(event.data.shapes); };
+      worker.onerror = function () { clearTimeout(timer); worker.terminate(); reject(new Error("浏览器无法启动图像处理，请刷新页面后重试")); };
+      worker.postMessage({ file:file, smoothness:smoothness });
+    });
+  }
+
   $("convert").addEventListener("click", async function () {
     if (!state.file) return; var button=this; button.disabled=true; $("processing").hidden=false; $("ready-badge").hidden=true; setStatus("正在清理背景并构建矢量轮廓…");
-    try { await new Promise(function(r){setTimeout(r,30);}); state.shapes=await vectorize(state.file,Number($("smoothness").value)); state.strokes=[];state.erasures=[];state.ready=true;render();artboard.classList.add("is-converted");$("ready-badge").hidden=false;$("export-svg").disabled=false;$("export-json").disabled=false;var count=state.shapes.reduce(function(n,s){return n+s.contours.length;},0);setStatus("转换完成：重建了 "+count+" 个轮廓。可继续擦除或补画。",true);button.textContent="重新转换";
+    try { await new Promise(function(r){setTimeout(r,30);}); state.shapes=await vectorizeSafely(state.file,Number($("smoothness").value)); state.strokes=[];state.erasures=[];state.ready=true;render();artboard.classList.add("is-converted");$("ready-badge").hidden=false;$("export-svg").disabled=false;$("export-json").disabled=false;var count=state.shapes.reduce(function(n,s){return n+s.contours.length;},0);setStatus("转换完成：重建了 "+count+" 个轮廓。可继续擦除或补画。",true);button.textContent="重新转换";
     } catch (error) { setStatus("转换失败："+(error.message||"无法读取这张图片")); } finally { button.disabled=false;$("processing").hidden=true; }
   });
 
