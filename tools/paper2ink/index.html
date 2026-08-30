@@ -1,0 +1,65 @@
+---
+layout: base
+title: Paper2Ink
+subtitle: 把纸上笔迹转成可编辑的矢量墨迹
+---
+<link rel="stylesheet" href="/css/paper2ink.css">
+<section class="ink-hero">
+  <div>
+    <p class="ink-eyebrow">HANDWRITING DIGITIZER · BETA</p>
+    <h1>Paper<span>2</span>Ink</h1>
+    <p>让纸上的思考继续流动。上传手写笔记，在浏览器中转换成可编辑、可缩放的数字墨迹。</p>
+  </div>
+  <ol aria-label="使用步骤"><li><b>01</b> 上传</li><li><b>02</b> 转换</li><li><b>03</b> 修整与导出</li></ol>
+</section>
+
+<main class="ink-shell" id="paper2ink-app">
+  <label class="ink-drop" id="drop-zone">
+    <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp">
+    <span class="ink-drop-icon" aria-hidden="true">↥</span>
+    <strong>把手写笔记放到这里</strong>
+    <span>拖放图片，或点击从设备选择</span>
+    <small>PNG · JPG · WEBP / 最大 25MB · 文件仅在本机处理</small>
+  </label>
+
+  <section class="ink-workspace" id="workspace" hidden>
+    <aside class="ink-settings">
+      <p class="ink-label">原始文件</p>
+      <div class="ink-file"><span>IMG</span><div><b id="file-name"></b><small id="file-size"></small></div><button id="remove-file" type="button" aria-label="移除文件">×</button></div>
+      <div class="ink-controls">
+        <p class="ink-label">转换设置</p>
+        <label>轮廓平滑度 <output id="smooth-value">68</output><input id="smoothness" type="range" min="0" max="100" value="68"></label>
+      </div>
+      <p class="ink-status" id="status" aria-live="polite">图片已就绪，可以开始转换。</p>
+      <button class="ink-convert" id="convert" type="button">开始转换 →</button>
+    </aside>
+    <div class="ink-canvas-panel">
+      <div class="ink-toolbar">
+        <div class="ink-tools" aria-label="编辑工具">
+          <button class="is-active" type="button" data-mode="pen" title="画笔">画笔</button>
+          <button type="button" data-mode="eraser" title="橡皮擦">擦除</button>
+        </div>
+        <div class="ink-zoom"><button id="zoom-out" type="button" aria-label="缩小">−</button><span id="zoom-value">100%</span><button id="zoom-in" type="button" aria-label="放大">＋</button></div>
+        <div class="ink-export"><button id="export-json" type="button" disabled>JSON</button><button id="export-svg" type="button" disabled>导出 SVG ↗</button></div>
+      </div>
+      <div class="ink-stage"><div class="ink-artboard" id="artboard">
+        <img id="source-image" alt="上传的手写笔记">
+        <svg id="vector-preview" viewBox="0 0 1200 800" role="img" aria-label="矢量转换结果"></svg>
+        <canvas id="edit-layer" width="1200" height="800"></canvas>
+        <div class="ink-processing" id="processing" hidden><i></i><b>正在识别笔迹结构</b><span>清理背景并构建矢量路径…</span></div>
+        <span class="ink-ready" id="ready-badge" hidden>✓ SVG 路径已就绪</span>
+      </div></div>
+    </div>
+  </section>
+</main>
+
+<section class="ink-capabilities">
+  <div><p class="ink-eyebrow">WHAT IT DOES</p><h2>保留手写的感觉，<br>获得数字内容的自由。</h2></div>
+  <div class="ink-cap-grid">
+    <article><span>01</span><h3>本地矢量化</h3><p>所有计算均在浏览器内完成，原图不会离开设备。</p></article>
+    <article><span>02</span><h3>智能清理</h3><p>均衡纸张光照、过滤背景，并重建封闭墨迹轮廓。</p></article>
+    <article><span>03</span><h3>轻松修整</h3><p>用橡皮擦去除杂线，也可以补充新的数字笔迹。</p></article>
+    <article><span>04</span><h3>开放导出</h3><p>导出标准 SVG 或笔迹 JSON，继续用于设计与归档。</p></article>
+  </div>
+</section>
+<script src="/js/paper2ink.js"></script>
