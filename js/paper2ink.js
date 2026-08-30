@@ -27,7 +27,7 @@
     if (!/^image\/(png|jpeg|webp)$/.test(file.type) || file.size > 25 * 1024 * 1024) { alert("请选择 25MB 以内的 PNG、JPG 或 WebP 图片。"); return; }
     if (state.url) URL.revokeObjectURL(state.url);
     state.file = file; state.url = URL.createObjectURL(file); state.ready = false; state.shapes = []; state.strokes = []; state.erasures = [];
-    $("source-image").src = state.url; $("file-name").textContent = file.name; $("file-size").textContent = (file.size / 1024 / 1024).toFixed(2) + " MB";
+    var sourceImage=$("source-image");sourceImage.classList.remove("is-loaded");sourceImage.onload=function(){sourceImage.classList.add("is-loaded");};sourceImage.onerror=function(){sourceImage.classList.remove("is-loaded");};sourceImage.src=state.url; $("file-name").textContent = file.name; $("file-size").textContent = (file.size / 1024 / 1024).toFixed(2) + " MB";
     drop.hidden = true; workspace.hidden = false; artboard.classList.remove("is-converted"); $("ready-badge").hidden = true;
     $("export-svg").disabled = true; $("export-json").disabled = true; setStatus("图片已就绪，可以开始转换。"); render();
   }

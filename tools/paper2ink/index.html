@@ -3,7 +3,7 @@ layout: base
 title: Paper2Ink
 subtitle: 把纸上笔迹转成可编辑的矢量墨迹
 ---
-<link rel="stylesheet" href="/css/paper2ink.css?v=2">
+<link rel="stylesheet" href="/css/paper2ink.css?v=3">
 <section class="ink-hero">
   <div>
     <p class="ink-eyebrow">HANDWRITING DIGITIZER · BETA</p>
@@ -43,7 +43,7 @@ subtitle: 把纸上笔迹转成可编辑的矢量墨迹
         <div class="ink-export"><button id="export-json" type="button" disabled>JSON</button><button id="export-svg" type="button" disabled>导出 SVG ↗</button></div>
       </div>
       <div class="ink-stage"><div class="ink-artboard" id="artboard">
-        <img id="source-image" alt="上传的手写笔记">
+        <img id="source-image" alt="">
         <svg id="vector-preview" viewBox="0 0 1200 800" role="img" aria-label="矢量转换结果"></svg>
         <canvas id="edit-layer" width="1200" height="800"></canvas>
         <div class="ink-processing" id="processing" hidden><i></i><b>正在识别笔迹结构</b><span>清理背景并构建矢量路径…</span></div>
