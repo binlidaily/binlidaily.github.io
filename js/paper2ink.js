@@ -45,13 +45,13 @@
   function traceShapes(binary,w,h) { var edges=[], key=function(x,y){return y*(w+1)+x;}, ink=function(x,y){return x>=0&&y>=0&&x<w&&y<h&&binary[y*w+x]===1;}; for(var y=0;y<h;y++)for(var x=0;x<w;x++){if(!ink(x,y))continue;if(!ink(x,y-1))edges.push([key(x,y),key(x+1,y)]);if(!ink(x+1,y))edges.push([key(x+1,y),key(x+1,y+1)]);if(!ink(x,y+1))edges.push([key(x+1,y+1),key(x,y+1)]);if(!ink(x-1,y))edges.push([key(x,y+1),key(x,y)]);} var outgoing=new Map();edges.forEach(function(e){var list=outgoing.get(e[0])||[];list.push(e[1]);outgoing.set(e[0],list);});var loops=[];while(outgoing.size){var start=outgoing.keys().next().value,current=start,loop=[start];for(var guard=0;guard<edges.length+1;guard++){var list=outgoing.get(current);if(!list||!list.length)break;var next=list.pop();if(!list.length)outgoing.delete(current);current=next;if(current===start)break;loop.push(current);}if(loop.length>=4)loops.push(loop);}return loops; }
 
   async function vectorize(file, smoothness) {
-    var bitmap=await createImageBitmap(file), maxEdge=520, ratio=Math.min(1,maxEdge/Math.max(bitmap.width,bitmap.height)), w=Math.max(1,Math.round(bitmap.width*ratio)), h=Math.max(1,Math.round(bitmap.height*ratio));
+    var bitmap=await createImageBitmap(file), maxEdge=1200, ratio=Math.min(1,maxEdge/Math.max(bitmap.width,bitmap.height)), w=Math.max(1,Math.round(bitmap.width*ratio)), h=Math.max(1,Math.round(bitmap.height*ratio));
     var c=document.createElement("canvas");c.width=w;c.height=h;var cctx=c.getContext("2d",{willReadFrequently:true});cctx.drawImage(bitmap,0,0,w,h);bitmap.close();
     var rgba=cctx.getImageData(0,0,w,h).data,gray=new Uint8Array(w*h);for(var i=0;i<gray.length;i++)gray[i]=Math.round(.299*rgba[i*4]+.587*rgba[i*4+1]+.114*rgba[i*4+2]);
     var integral=new Float64Array((w+1)*(h+1));for(var y=1;y<=h;y++){var row=0;for(var x=1;x<=w;x++){row+=gray[(y-1)*w+x-1];integral[y*(w+1)+x]=integral[(y-1)*(w+1)+x]+row;}}
     var normalized=new Uint8Array(gray.length),radius=12;for(y=0;y<h;y++)for(x=0;x<w;x++){var x0=Math.max(0,x-radius),y0=Math.max(0,y-radius),x1=Math.min(w-1,x+radius),y1=Math.min(h-1,y+radius),area=(x1-x0+1)*(y1-y0+1),mean=(integral[(y1+1)*(w+1)+x1+1]-integral[y0*(w+1)+x1+1]-integral[(y1+1)*(w+1)+x0]+integral[y0*(w+1)+x0])/area;normalized[y*w+x]=Math.max(0,Math.min(255,Math.round(gray[y*w+x]*255/(mean||255))));}
     await new Promise(function(resolve){setTimeout(resolve,0);});
-    var threshold=otsu(normalized),binary=new Uint8Array(w*h);for(i=0;i<binary.length;i++)binary[i]=normalized[i]<threshold?1:0;var closed=removeNoise(morphology(morphology(binary,w,h,true),w,h,false),w,h,8);
+    var threshold=otsu(normalized),binary=new Uint8Array(w*h);for(i=0;i<binary.length;i++)binary[i]=normalized[i]<threshold?1:0;var closed=removeNoise(morphology(morphology(binary,w,h,true),w,h,false),w,h,3);
     await new Promise(function(resolve){setTimeout(resolve,0);});
     var raw=traceShapes(closed,w,h);if(raw.length>12000)throw new Error("图片背景过于复杂，请先裁剪到笔记区域后重试");var epsilon=.45+(smoothness/100)*2.2,scale=Math.min(1200/w,800/h),offsetX=(1200-w*scale)/2,offsetY=(800-h*scale)/2;
     var contours=raw.map(function(loop){var step=Math.max(1,Math.ceil(loop.length/1600)),sampled=step===1?loop:loop.filter(function(_,index){return index%step===0;});return rdp(sampled.map(function(n){return{x:(n%(w+1))*scale+offsetX,y:Math.floor(n/(w+1))*scale+offsetY};}),Math.max(.3,epsilon*.55)*scale);}).filter(function(cn){return cn.length>=3;});
@@ -61,7 +61,7 @@
   function vectorizeSafely(file, smoothness) {
     if (!window.Worker) return vectorize(file, smoothness);
     return new Promise(function (resolve, reject) {
-      var worker = new Worker("/js/paper2ink-worker.js?v=1");
+      var worker = new Worker("/js/paper2ink-worker.js?v=2");
       var timer = setTimeout(function () { worker.terminate(); reject(new Error("处理时间过长，请裁剪到笔记区域或降低图片分辨率后重试")); }, 15000);
       worker.onmessage = function (event) { clearTimeout(timer); worker.terminate(); if (event.data.error) reject(new Error(event.data.error)); else resolve(event.data.shapes); };
       worker.onerror = function () { clearTimeout(timer); worker.terminate(); reject(new Error("浏览器无法启动图像处理，请刷新页面后重试")); };
