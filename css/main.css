@@ -64,7 +64,7 @@ button { font: inherit; }
 
 .blog-post { font-size: 20px; line-height: 1.68; }
 .blog-post h1, .blog-post h2, .blog-post h3, .content-shell > h1, .content-shell > h2 { margin: 2em 0 .7em; line-height: 1.35; font-weight: 600; }
-.blog-post h2 { padding-bottom: .35em; border-bottom: 1px solid var(--line); font-size: 28px; }
+.blog-post h1, .blog-post h2 { padding-bottom: .35em; border-bottom: 1px solid var(--line); font-size: 28px; }
 .blog-post h3 { font-size: 22px; }
 .blog-post p { margin: 1.05em 0; }
 .blog-post p { text-indent: 2em; }
