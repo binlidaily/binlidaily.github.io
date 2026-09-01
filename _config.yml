@@ -5,9 +5,9 @@ description: "阅读、技术与生活札记"
 timezone: "Asia/Shanghai"
 
 navbar-links:
-  Blogs: ""
+  博客: ""
   工具: "tools/paper2ink/"
-  About Me: "aboutme"
+  关于我: "aboutme"
 
 avatar: "/img/avatar-icon.png"
 author:
