@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">大模型第一课复习总图</title>
+  <desc id="desc">总结文本经过 Tokenizer、Token ID、Embedding、Transformer、Hidden State、LM Head、Softmax，生成下一个 Token 的完整过程，并说明核心概念、形状变化与五个重点。</desc>
+  <defs>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#10233f"/><stop offset="1" stop-color="#285382"/></linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#edf3f8"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#233753" flood-opacity=".10"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#3f75b7"/></marker>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#172b45}
+      .white{fill:#fff}.light{fill:#d8e6f6}.muted{fill:#60738c}.blue{fill:#326fc3}.green{fill:#238d7e}
+      .h1{font-size:38px;font-weight:700}.h2{font-size:23px;font-weight:700}.h3{font-size:18px;font-weight:700}
+      .body{font-size:16px}.small{font-size:14px}.tiny{font-size:12px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,"PingFang SC",monospace}
+      .center{text-anchor:middle}.right{text-anchor:end}.mid{dominant-baseline:middle}
+      .line{stroke:#d7e2ed;stroke-width:1}.flow-arrow{stroke:#3f75b7;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1040" rx="24" fill="url(#paper)"/>
+  <path d="M24 0h1552a24 24 0 0 1 24 24v112H0V24A24 24 0 0 1 24 0z" fill="url(#head)"/>
+  <text x="52" y="58" class="h1 white">大模型第一课：一句话进入 LLM 后，到底发生了什么？</text>
+  <text x="52" y="94" class="body light">复习总图 · 从“法国的首都是”到“巴黎”</text>
+  <text x="1548" y="63" class="h3 white right">核心任务</text>
+  <text x="1548" y="94" class="body light right">预测下一个 Token</text>
+
+  <!-- Complete flow -->
+  <text x="52" y="176" class="h2">01　完整流程</text>
+  <text x="1548" y="176" class="small muted right">每次生成一个 Token，追加后再次预测</text>
+
+  <g filter="url(#shadow)">
+    <rect x="52" y="202" width="170" height="138" rx="14" fill="#fff"/><rect x="242" y="202" width="170" height="138" rx="14" fill="#fff"/>
+    <rect x="432" y="202" width="170" height="138" rx="14" fill="#fff"/><rect x="622" y="202" width="170" height="138" rx="14" fill="#fff"/>
+    <rect x="812" y="202" width="170" height="138" rx="14" fill="#fff"/><rect x="1002" y="202" width="170" height="138" rx="14" fill="#fff"/>
+    <rect x="1192" y="202" width="170" height="138" rx="14" fill="#fff"/><rect x="1382" y="202" width="166" height="138" rx="14" fill="#fff"/>
+  </g>
+  <g fill="#326fc3"><rect x="52" y="202" width="170" height="5" rx="3"/><rect x="242" y="202" width="170" height="5" rx="3"/><rect x="432" y="202" width="170" height="5" rx="3"/><rect x="622" y="202" width="170" height="5" rx="3"/></g>
+  <g fill="#238d7e"><rect x="812" y="202" width="170" height="5" rx="3"/><rect x="1002" y="202" width="170" height="5" rx="3"/><rect x="1192" y="202" width="170" height="5" rx="3"/><rect x="1382" y="202" width="166" height="5" rx="3"/></g>
+  <path class="flow-arrow" d="M222 271h15M412 271h15M602 271h15M792 271h15M982 271h15M1172 271h15M1362 271h15"/>
+
+  <g class="center">
+    <text x="137" y="232" class="small blue">1 · Text</text><text x="137" y="272" class="h3">法国的首都是</text><text x="137" y="316" class="small muted">输入文字</text>
+    <text x="327" y="232" class="small blue">2 · Tokenizer</text><text x="327" y="266" class="body">法国｜的｜首都｜是</text><text x="327" y="316" class="small muted">切成 Token</text>
+    <text x="517" y="232" class="small blue">3 · Token ID</text><text x="517" y="266" class="body mono">10321, 342,</text><text x="517" y="289" class="body mono">8921, 271</text><text x="517" y="316" class="small muted">词表编号</text>
+    <text x="707" y="232" class="small blue">4 · Embedding</text><text x="707" y="266" class="body mono">0.21, −0.73,</text><text x="707" y="289" class="body mono">0.14, …</text><text x="707" y="316" class="small muted">初始向量</text>
+    <text x="897" y="232" class="small green">5 · Transformer × N</text><text x="897" y="266" class="body">Attention + FFN</text><text x="897" y="316" class="small muted">上下文交互</text>
+    <text x="1087" y="232" class="small green">6 · Hidden State</text><text x="1087" y="272" class="h3 mono">[B,T,d]</text><text x="1087" y="316" class="small muted">上下文表示</text>
+    <text x="1277" y="232" class="small green">7 · LM Head</text><text x="1277" y="265" class="body">Logits → Softmax</text><text x="1277" y="291" class="small">巴黎 0.82</text><text x="1277" y="316" class="small muted">词表概率</text>
+    <text x="1465" y="232" class="small green">8 · Next Token</text><text x="1465" y="274" class="h2">巴黎</text><text x="1465" y="316" class="small muted">追加并循环</text>
+  </g>
+
+  <!-- Four concepts -->
+  <text x="52" y="394" class="h2">02　四个核心概念</text>
+  <g filter="url(#shadow)">
+    <rect x="52" y="420" width="360" height="242" rx="16" fill="#fff"/>
+    <rect x="432" y="420" width="360" height="242" rx="16" fill="#fff"/>
+    <rect x="812" y="420" width="360" height="242" rx="16" fill="#fff"/>
+    <rect x="1192" y="420" width="356" height="242" rx="16" fill="#fff"/>
+  </g>
+  <g>
+    <circle cx="82" cy="453" r="17" fill="#326fc3"/><text x="82" y="453" class="small white center mid">1</text>
+    <text x="112" y="460" class="h3">Tokenizer 与 Token ID</text>
+    <text x="78" y="505" class="body">• Token 是模型处理文本的基本单位</text>
+    <text x="78" y="540" class="body">• Token ID 只是词表中的整数索引</text>
+    <text x="78" y="575" class="body">• 编号没有大小、距离和语义</text>
+    <rect x="78" y="600" width="308" height="40" rx="8" fill="#edf4fc"/>
+    <text x="232" y="621" class="small blue center mid mono">[10321, 342, 8921, 271]</text>
+
+    <circle cx="462" cy="453" r="17" fill="#326fc3"/><text x="462" y="453" class="small white center mid">2</text>
+    <text x="492" y="460" class="h3">Embedding：ID → 向量</text>
+    <text x="458" y="505" class="body">• 在可学习的 Embedding Matrix 中查表</text>
+    <text x="458" y="540" class="body">• 参数由训练和反向传播逐渐学出</text>
+    <text x="458" y="575" class="body">• 此时仍是 Token 的初始表示</text>
+    <rect x="458" y="600" width="308" height="40" rx="8" fill="#edf4fc"/>
+    <text x="612" y="621" class="small blue center mid mono">[B,T] → [B,T,d_model]</text>
+
+    <circle cx="842" cy="453" r="17" fill="#238d7e"/><text x="842" y="453" class="small white center mid">3</text>
+    <text x="872" y="460" class="h3">Transformer：结合上下文</text>
+    <text x="838" y="505" class="body">• Attention：Token 之间交换信息</text>
+    <text x="838" y="540" class="body">• FFN：进一步加工每个位置的信息</text>
+    <text x="838" y="575" class="body">• 多层处理后得到上下文表示</text>
+    <rect x="838" y="600" width="308" height="40" rx="8" fill="#eaf7f4"/>
+    <text x="992" y="621" class="small green center mid">Embedding ≠ Contextual Representation</text>
+
+    <circle cx="1222" cy="453" r="17" fill="#238d7e"/><text x="1222" y="453" class="small white center mid">4</text>
+    <text x="1252" y="460" class="h3">自回归生成</text>
+    <text x="1218" y="505" class="body">• LM Head 将向量映射到整个词表</text>
+    <text x="1218" y="540" class="body">• Softmax 把 Logits 变成概率</text>
+    <text x="1218" y="575" class="body">• 选择、追加，再预测下一个 Token</text>
+    <rect x="1218" y="600" width="304" height="40" rx="8" fill="#eaf7f4"/>
+    <text x="1370" y="621" class="small green center mid">预测 → 追加 → 再预测</text>
+  </g>
+
+  <!-- Shapes -->
+  <text x="52" y="716" class="h2">03　关键形状变化</text>
+  <g filter="url(#shadow)"><rect x="52" y="742" width="868" height="218" rx="16" fill="#fff"/></g>
+  <rect x="52" y="742" width="868" height="47" rx="16" fill="#e9f0f8"/>
+  <path d="M52 773h868v16H52z" fill="#e9f0f8"/>
+  <g class="body">
+    <text x="86" y="771" class="h3">阶段</text><text x="350" y="771" class="h3">形状</text><text x="610" y="771" class="h3">含义</text>
+    <text x="86" y="824">Token IDs</text><text x="350" y="824" class="mono">[B,T]</text><text x="610" y="824">输入编号序列</text>
+    <text x="86" y="863">Embedding</text><text x="350" y="863" class="mono">[B,T,d_model]</text><text x="610" y="863">Token 初始向量</text>
+    <text x="86" y="902">Transformer</text><text x="350" y="902" class="mono">[B,T,d_model]</text><text x="610" y="902">多层上下文处理</text>
+    <text x="86" y="941">LM Head / Softmax</text><text x="350" y="941" class="mono">[B,T,V]</text><text x="610" y="941">词表分数 / 概率</text>
+  </g>
+  <path class="line" d="M52 789h868M52 838h868M52 877h868M52 916h868M300 742v218M558 742v218"/>
+
+  <!-- Key takeaways -->
+  <text x="964" y="716" class="h2">04　记住这 5 件事</text>
+  <g filter="url(#shadow)"><rect x="964" y="742" width="584" height="218" rx="16" fill="#fff"/></g>
+  <g class="body">
+    <circle cx="1000" cy="784" r="14" fill="#326fc3"/><text x="1000" y="784" class="small white center mid">1</text><text x="1030" y="790">核心任务是预测下一个 Token</text>
+    <circle cx="1000" cy="822" r="14" fill="#326fc3"/><text x="1000" y="822" class="small white center mid">2</text><text x="1030" y="828">Token ID 是编号，向量才参与计算</text>
+    <circle cx="1000" cy="860" r="14" fill="#326fc3"/><text x="1000" y="860" class="small white center mid">3</text><text x="1030" y="866">Embedding 是可学习的查找表</text>
+    <circle cx="1000" cy="898" r="14" fill="#238d7e"/><text x="1000" y="898" class="small white center mid">4</text><text x="1030" y="904">Transformer 让 Token 交换上下文信息</text>
+    <circle cx="1000" cy="936" r="14" fill="#238d7e"/><text x="1000" y="936" class="small white center mid">5</text><text x="1030" y="942">生成循环：预测 → 追加 → 再预测</text>
+  </g>
+
+  <text x="800" y="1003" class="body muted center">先看懂整条链路，再逐步打开 Transformer、Attention 与推理优化这些黑盒。</text>
+</svg>
