@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">一句话进入大模型后的完整流程</title>
+  <desc id="desc">法国的首都是，依次经过 Tokenizer、Token ID、Embedding、Transformer、Hidden State、LM Head 和 Softmax，最终预测出巴黎。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef3f8"/>
+    </linearGradient>
+    <linearGradient id="header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10233f"/>
+      <stop offset="1" stop-color="#234c7b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#233753" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b73e8"/>
+    </marker>
+    <style>
+      .title{font:700 32px -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#ffffff}
+      .sub{font:400 17px -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#d7e5f5}
+      .step{font:700 17px -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#142842}
+      .num{font:700 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:white;text-anchor:middle;dominant-baseline:middle}
+      .label{font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#203550;text-anchor:middle}
+      .small{font:400 13px -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#53657c;text-anchor:middle}
+      .cell{font:500 14px ui-monospace,SFMono-Regular,Menlo,"PingFang SC",monospace;fill:#203550;text-anchor:middle;dominant-baseline:middle}
+      .arrow{stroke:#4a78b8;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="560" rx="24" fill="url(#bg)"/>
+  <path d="M24 0h1552a24 24 0 0 1 24 24v76H0V24A24 24 0 0 1 24 0z" fill="url(#header)"/>
+  <text x="44" y="52" class="title">一句话进入 LLM 后，到底发生了什么？</text>
+  <text x="44" y="82" class="sub">从输入文字到预测“巴黎”：模型每次只完成一个 Next Token Prediction</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M204 287 H224"/>
+  <path class="arrow" d="M398 287 H418"/>
+  <path class="arrow" d="M592 287 H612"/>
+  <path class="arrow" d="M786 287 H806"/>
+  <path class="arrow" d="M980 287 H1000"/>
+  <path class="arrow" d="M1174 287 H1194"/>
+  <path class="arrow" d="M1368 287 H1388"/>
+
+  <!-- 1 input -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/>
+  </g>
+  <rect x="30" y="116" width="174" height="6" rx="3" fill="#3978d2"/><circle cx="54" cy="143" r="15" fill="#3978d2"/><text x="54" y="143" class="num">1</text>
+  <text x="79" y="149" class="step">输入文字</text>
+  <rect x="49" y="202" width="136" height="76" rx="13" fill="white" stroke="#abcbea"/>
+  <text x="117" y="235" class="label">法国的首都是</text>
+  <text x="117" y="258" class="small">自然语言</text>
+  <rect x="79" y="310" width="76" height="58" rx="10" fill="#cfe5ff"/>
+  <path d="M97 328h40M97 340h30M97 352h36" stroke="#4f83d9" stroke-width="4" stroke-linecap="round"/>
+  <text x="117" y="424" class="small">人类输入的句子</text>
+
+  <!-- 2 tokenizer -->
+  <g filter="url(#shadow)"><rect x="224" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/></g>
+  <rect x="224" y="116" width="174" height="6" rx="3" fill="#3978d2"/>
+  <circle cx="248" cy="143" r="15" fill="#3c67c9"/><text x="248" y="143" class="num">2</text>
+  <text x="273" y="149" class="step">Tokenizer</text>
+  <g fill="white" stroke="#8db9f0">
+    <rect x="255" y="191" width="112" height="42" rx="8"/><rect x="255" y="241" width="112" height="42" rx="8"/>
+    <rect x="255" y="291" width="112" height="42" rx="8"/><rect x="255" y="341" width="112" height="42" rx="8"/>
+  </g>
+  <text x="311" y="212" class="cell">法国</text><text x="311" y="262" class="cell">的</text>
+  <text x="311" y="312" class="cell">首都</text><text x="311" y="362" class="cell">是</text>
+  <text x="311" y="424" class="small">把文字切成 Token</text>
+
+  <!-- 3 ids -->
+  <g filter="url(#shadow)"><rect x="418" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/></g>
+  <rect x="418" y="116" width="174" height="6" rx="3" fill="#3978d2"/><circle cx="442" cy="143" r="15" fill="#3978d2"/><text x="442" y="143" class="num">3</text>
+  <text x="467" y="149" class="step">Token ID</text>
+  <g fill="white" stroke="#c5b5ed">
+    <rect x="449" y="191" width="112" height="42" rx="8"/><rect x="449" y="241" width="112" height="42" rx="8"/>
+    <rect x="449" y="291" width="112" height="42" rx="8"/><rect x="449" y="341" width="112" height="42" rx="8"/>
+  </g>
+  <text x="505" y="212" class="cell">10321</text><text x="505" y="262" class="cell">342</text>
+  <text x="505" y="312" class="cell">8921</text><text x="505" y="362" class="cell">271</text>
+  <text x="505" y="414" class="small">每个 Token 对应</text><text x="505" y="434" class="small">一个整数编号</text>
+
+  <!-- 4 embedding -->
+  <g filter="url(#shadow)"><rect x="612" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/></g>
+  <rect x="612" y="116" width="174" height="6" rx="3" fill="#3978d2"/><circle cx="636" cy="143" r="15" fill="#3978d2"/><text x="636" y="143" class="num">4</text>
+  <text x="661" y="149" class="step">Embedding</text>
+  <rect x="631" y="191" width="136" height="192" rx="10" fill="white" stroke="#e5bad0"/>
+  <g stroke="#ead1df"><path d="M676 191v192M721 191v192M631 239h136M631 287h136M631 335h136"/></g>
+  <text x="653" y="215" class="cell">0.21</text><text x="699" y="215" class="cell">−0.73</text><text x="744" y="215" class="cell">0.14</text>
+  <text x="653" y="263" class="cell">0.11</text><text x="699" y="263" class="cell">0.53</text><text x="744" y="263" class="cell">−0.26</text>
+  <text x="653" y="311" class="cell">0.67</text><text x="699" y="311" class="cell">−0.12</text><text x="744" y="311" class="cell">0.91</text>
+  <text x="653" y="359" class="cell">0.08</text><text x="699" y="359" class="cell">0.22</text><text x="744" y="359" class="cell">−0.37</text>
+  <text x="699" y="414" class="small">查表得到初始向量</text><text x="699" y="434" class="small">[B,T] → [B,T,d]</text>
+
+  <!-- 5 transformer -->
+  <g filter="url(#shadow)"><rect x="806" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#d3e7e3"/></g>
+  <rect x="806" y="116" width="174" height="6" rx="3" fill="#299786"/>
+  <circle cx="830" cy="143" r="15" fill="#299786"/><text x="830" y="143" class="num">5</text>
+  <text x="855" y="149" class="step">Transformer × N</text>
+  <g fill="white" stroke="#84d7cc">
+    <rect x="832" y="188" width="122" height="42" rx="7"/><rect x="832" y="241" width="122" height="42" rx="7"/>
+    <rect x="832" y="294" width="122" height="42" rx="7"/><rect x="832" y="347" width="122" height="42" rx="7"/>
+  </g>
+  <text x="893" y="209" class="cell">Attention</text><text x="893" y="262" class="cell">Add &amp; Norm</text>
+  <text x="893" y="315" class="cell">Feed Forward</text><text x="893" y="368" class="cell">Add &amp; Norm</text>
+  <text x="893" y="414" class="small">Token 之间交换信息</text><text x="893" y="434" class="small">形成上下文表示</text>
+
+  <!-- 6 hidden -->
+  <g filter="url(#shadow)"><rect x="1000" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#d3e7e3"/></g>
+  <rect x="1000" y="116" width="174" height="6" rx="3" fill="#299786"/><circle cx="1024" cy="143" r="15" fill="#299786"/><text x="1024" y="143" class="num">6</text>
+  <text x="1049" y="149" class="step">Hidden State</text>
+  <g fill="#bdcad8">
+    <circle cx="1038" cy="216" r="7"/><circle cx="1063" cy="216" r="7"/><circle cx="1088" cy="216" r="7"/><circle cx="1113" cy="216" r="7"/><circle cx="1138" cy="216" r="7"/>
+    <circle cx="1038" cy="254" r="7"/><circle cx="1063" cy="254" r="7"/><circle cx="1088" cy="254" r="7"/><circle cx="1113" cy="254" r="7"/><circle cx="1138" cy="254" r="7"/>
+    <circle cx="1038" cy="292" r="7"/><circle cx="1063" cy="292" r="7"/><circle cx="1088" cy="292" r="7"/><circle cx="1113" cy="292" r="7"/><circle cx="1138" cy="292" r="7"/>
+    <circle cx="1038" cy="330" r="7"/><circle cx="1063" cy="330" r="7"/><circle cx="1088" cy="330" r="7"/><circle cx="1113" cy="330" r="7"/><circle cx="1138" cy="330" r="7"/>
+  </g>
+  <text x="1087" y="382" class="label">…</text>
+  <text x="1087" y="414" class="small">每个位置都有一个</text><text x="1087" y="434" class="small">带上下文的向量</text>
+
+  <!-- 7 head -->
+  <g filter="url(#shadow)"><rect x="1194" y="116" width="174" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/></g>
+  <rect x="1194" y="116" width="174" height="6" rx="3" fill="#3978d2"/><circle cx="1218" cy="143" r="15" fill="#3978d2"/><text x="1218" y="143" class="num">7</text>
+  <text x="1243" y="143" class="step">LM Head</text><text x="1243" y="164" class="step">+ Softmax</text>
+  <rect x="1222" y="194" width="118" height="191" rx="10" fill="white" stroke="#c7cdef"/>
+  <g stroke="#e1e4f4"><path d="M1222 232h118M1222 270h118M1222 308h118M1222 346h118"/></g>
+  <text x="1258" y="214" class="cell">巴黎</text><text x="1313" y="214" class="cell">0.82</text>
+  <text x="1258" y="252" class="cell">北京</text><text x="1313" y="252" class="cell">0.07</text>
+  <text x="1258" y="290" class="cell">伦敦</text><text x="1313" y="290" class="cell">0.05</text>
+  <text x="1258" y="328" class="cell">东京</text><text x="1313" y="328" class="cell">0.03</text>
+  <text x="1281" y="369" class="cell">…</text>
+  <text x="1281" y="414" class="small">得到下一个 Token</text><text x="1281" y="434" class="small">的概率分布</text>
+
+  <!-- 8 output -->
+  <g filter="url(#shadow)"><rect x="1388" y="116" width="182" height="360" rx="18" fill="#ffffff" stroke="#dbe5ef"/></g>
+  <rect x="1388" y="116" width="182" height="6" rx="3" fill="#3978d2"/>
+  <circle cx="1412" cy="143" r="15" fill="#3978d2"/><text x="1412" y="143" class="num">8</text>
+  <text x="1437" y="149" class="step">输出结果</text>
+  <rect x="1415" y="210" width="128" height="72" rx="14" fill="white" stroke="#aacbe8"/>
+  <text x="1479" y="254" class="label" style="font-size:23px">巴黎</text>
+  <circle cx="1479" cy="336" r="35" fill="#d3e9ff"/>
+  <path d="M1459 337q20 20 40 0M1461 323h1M1496 323h1" stroke="#3478df" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <text x="1479" y="414" class="small">选择一个 Token</text><text x="1479" y="434" class="small">追加后继续预测</text>
+
+  <path d="M1479 488 C1479 536 117 536 117 488" stroke="#7999cf" stroke-width="2" stroke-dasharray="8 7" fill="none" marker-end="url(#arrow)"/>
+  <text x="800" y="532" text-anchor="middle" style="font:500 17px -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;fill:#526982">Next Token → Append → 再次预测（自回归循环）</text>
+</svg>
