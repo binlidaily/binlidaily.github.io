@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">Attention 完整计算流程</title>
+  <desc id="desc">输入 Token 向量经过 QKV 投影、相关性计算、因果遮罩、Softmax 和 Value 加权求和，得到上下文表示。</desc>
+  <defs>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#10233f"/><stop offset="1" stop-color="#285382"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#edf3f8"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#233753" flood-opacity=".1"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#3f75b7"/></marker>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#172b45}.white{fill:#fff}.light{fill:#d8e6f6}.muted{fill:#61738a}.blue{fill:#326fc3}.green{fill:#238d7e}.purple{fill:#7658bd}.orange{fill:#c47a28}.h1{font-size:36px;font-weight:700}.h2{font-size:22px;font-weight:700}.h3{font-size:18px;font-weight:700}.body{font-size:16px}.small{font-size:14px}.tiny{font-size:12px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.center{text-anchor:middle}.mid{dominant-baseline:middle}.arrow{stroke:#3f75b7;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1600" height="720" rx="24" fill="url(#bg)"/>
+  <path d="M24 0h1552a24 24 0 0 1 24 24v102H0V24A24 24 0 0 1 24 0z" fill="url(#head)"/>
+  <text x="50" y="53" class="h1 white">Attention：Token 如何从上下文中取信息？</text>
+  <text x="50" y="87" class="body light">以“它”为 Query，在“小猫趴在窗边，因为它”中寻找相关信息</text>
+
+  <g filter="url(#shadow)"><rect x="46" y="142" width="224" height="212" rx="16" fill="#fff"/><rect x="316" y="142" width="300" height="212" rx="16" fill="#fff"/><rect x="662" y="142" width="244" height="212" rx="16" fill="#fff"/><rect x="952" y="142" width="250" height="212" rx="16" fill="#fff"/><rect x="1248" y="142" width="306" height="212" rx="16" fill="#fff"/></g>
+  <path class="arrow" d="M270 248h40M616 248h40M906 248h40M1202 248h40"/>
+  <g class="center">
+    <text x="158" y="178" class="h3">1 · 输入向量 X</text><text x="158" y="220" class="body">小猫　趴在　窗边</text><text x="158" y="252" class="body">因为　它</text><text x="158" y="318" class="small muted mono">[B,T,d_model]</text>
+    <text x="466" y="178" class="h3">2 · 生成 Q、K、V</text><text x="360" y="224" class="body blue" text-anchor="start">Q：我需要什么？</text><text x="360" y="258" class="body purple" text-anchor="start">K：我有什么特征？</text><text x="360" y="292" class="body green" text-anchor="start">V：取走什么信息？</text><text x="466" y="328" class="small muted mono">XW_Q　XW_K　XW_V</text>
+    <text x="784" y="178" class="h3">3 · 相关性</text><text x="784" y="226" class="h2 mono">QKᵀ</text><line x1="734" y1="241" x2="834" y2="241" stroke="#172b45" stroke-width="2"/><text x="784" y="270" class="h3 mono">√dₖ</text><text x="784" y="318" class="small muted">Query 与所有 Key 比较</text>
+    <text x="1077" y="178" class="h3">4 · Mask + Softmax</text><text x="1077" y="226" class="body">未来位置 → 0</text><text x="1077" y="260" class="body">每行权重和 → 1</text><text x="1077" y="318" class="small muted mono">A = Softmax(Scores)</text>
+    <text x="1401" y="178" class="h3">5 · 加权求和</text><text x="1401" y="225" class="h2 mono">A × V</text><text x="1401" y="267" class="body">取回相关 Token 的信息</text><text x="1401" y="318" class="small muted">得到上下文表示</text>
+  </g>
+
+  <text x="48" y="408" class="h2">“它”对前文的注意力权重（示意）</text>
+  <g filter="url(#shadow)"><rect x="48" y="438" width="928" height="220" rx="16" fill="#fff"/><rect x="1018" y="438" width="536" height="220" rx="16" fill="#fff"/></g>
+  <g>
+    <text x="90" y="486" class="body">小猫</text><rect x="180" y="468" width="660" height="22" rx="11" fill="#e8eef5"/><rect x="180" y="468" width="528" height="22" rx="11" fill="#326fc3"/><text x="884" y="486" class="body">0.56</text>
+    <text x="90" y="526" class="body">趴在</text><rect x="180" y="508" width="660" height="22" rx="11" fill="#e8eef5"/><rect x="180" y="508" width="75" height="22" rx="11" fill="#7fa6d8"/><text x="884" y="526" class="body">0.08</text>
+    <text x="90" y="566" class="body">窗边</text><rect x="180" y="548" width="660" height="22" rx="11" fill="#e8eef5"/><rect x="180" y="548" width="113" height="22" rx="11" fill="#7fa6d8"/><text x="884" y="566" class="body">0.12</text>
+    <text x="90" y="606" class="body">因为</text><rect x="180" y="588" width="660" height="22" rx="11" fill="#e8eef5"/><rect x="180" y="588" width="85" height="22" rx="11" fill="#7fa6d8"/><text x="884" y="606" class="body">0.09</text>
+    <text x="90" y="646" class="body">它</text><rect x="180" y="628" width="660" height="22" rx="11" fill="#e8eef5"/><rect x="180" y="628" width="141" height="22" rx="11" fill="#7fa6d8"/><text x="884" y="646" class="body">0.15</text>
+  </g>
+  <text x="1058" y="486" class="h3">完整公式</text>
+  <rect x="1058" y="516" width="456" height="68" rx="10" fill="#edf4fb"/>
+  <text x="1286" y="552" class="h3 blue center mid mono">Softmax(QKᵀ / √dₖ + Mask)V</text>
+  <text x="1058" y="618" class="body">结果：“它”的新向量吸收了“小猫”等</text>
+  <text x="1058" y="646" class="body">上下文信息，不再只是初始 Embedding。</text>
+</svg>
