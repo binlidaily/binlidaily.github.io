@@ -12,7 +12,7 @@ bigimg: /img/default_wallpaper.jpeg
 <style>
 .blog-post pre code{font-size:1.05rem!important;line-height:1.75!important}.blog-post table{display:table;width:min(100%,860px);margin:24px auto}.blog-post h2{scroll-margin-top:88px}.lesson-toc{position:fixed;top:118px;right:22px;z-index:30}.lesson-toc>summary{display:flex;align-items:center;justify-content:center;width:58px;height:42px;margin-left:auto;border-radius:22px;background:linear-gradient(135deg,#17345a,#2f6598);box-shadow:0 8px 24px rgba(25,54,87,.2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;list-style:none}.lesson-toc>summary::-webkit-details-marker{display:none}.lesson-toc nav{width:310px;margin-top:10px;padding:14px 10px;border:1px solid #dbe5ef;border-radius:14px;background:rgba(255,255,255,.97);box-shadow:0 16px 42px rgba(25,54,87,.18)}.lesson-toc nav strong,.lesson-toc nav a{display:block;padding:7px 10px}.lesson-toc nav a{border-radius:8px;color:#405874;font-size:14px;text-decoration:none}.lesson-toc nav a:hover{background:#edf4fb;color:#1f5f9d}.rope-lab{max-width:920px;margin:28px auto;padding:22px;border:1px solid #dce5ef;border-radius:18px;background:#f8fbff;color:#172b45}.rope-lab .controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px}.rope-lab label{display:block;font-weight:600}.rope-lab input{width:100%}.rope-lab .readout{display:flex;justify-content:space-between;color:#5e7188;font-size:14px}.rope-lab svg{display:block;width:100%;height:auto;background:#fff;border-radius:14px}.rope-lab .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.rope-lab .metric{padding:12px;text-align:center;background:#fff;border-radius:12px}.rope-lab .metric strong{display:block;font-size:20px;color:#245f9f}.rope-lab .note{margin:14px 0 0;color:#5e7188;font-size:14px;line-height:1.7}.rope-lab button{margin-top:14px;padding:9px 15px;border:0;border-radius:18px;background:#245f9f;color:#fff}.video-board td:first-child{white-space:nowrap}@media(max-width:900px){.lesson-toc{top:auto;right:12px;bottom:16px}.lesson-toc nav{position:absolute;right:0;bottom:52px;max-height:65vh;overflow:auto}}@media(max-width:620px){.rope-lab .controls,.rope-lab .metrics{grid-template-columns:1fr}.rope-lab{padding:16px}}
 </style>
-<details class="lesson-toc" markdown="0"><summary>目录</summary><nav><strong>第十二课目录</strong><a href="#先记住一句话">先记住一句话</a><a href="#1rope-改了哪里">1、RoPE 改了哪里</a><a href="#2把两维看成一个平面">2、把两维看成一个平面</a><a href="#3关键是角度差">3、关键是角度差</a><a href="#4动手改变两个位置">4、交互实验</a><a href="#5真实模型不只转一个平面">5、多种频率</a><a href="#6为什么不旋转-v">6、为什么不旋转 V</a><a href="#7长上下文为什么仍需验证">7、长上下文</a><a href="#8一分钟视频讲解">8、视频讲解</a><a href="#第十二课复习总图">复习总图</a></nav></details>
+<details class="lesson-toc" markdown="0"><summary>目录</summary><nav><strong>第十二课目录</strong><a href="#先记住一句话">先记住一句话</a><a href="#1rope-改了哪里">1、RoPE 改了哪里</a><a href="#疑问旋转后原来的-embedding-变了吗">常见疑问：Embedding 变了吗</a><a href="#2把两维看成一个平面">2、把两维看成一个平面</a><a href="#3关键是角度差">3、关键是角度差</a><a href="#4动手改变两个位置">4、交互实验</a><a href="#5真实模型不只转一个平面">5、多种频率</a><a href="#6为什么不旋转-v">6、为什么不旋转 V</a><a href="#7长上下文为什么仍需验证">7、长上下文</a><a href="#8一分钟视频讲解">8、视频讲解</a><a href="#第十二课复习总图">复习总图</a></nav></details>
 
 　　先看两个短语：
 
@@ -53,6 +53,43 @@ Q′ · K′       → 带位置信息的分数
 ```
 
 　　标准 RoPE 不直接修改 V。
+
+## 疑问：旋转后，原来的 Embedding 变了吗？
+
+　　不会。RoPE 改变的是 Q 和 K，不是原始 Token Embedding。
+
+```text
+Token ID
+  ↓
+Token Embedding
+  ↓
+Hidden State
+  ├─ Wq → Q ── RoPE → Q′
+  ├─ Wk → K ── RoPE → K′
+  └─ Wv → V ─────────→ V
+```
+
+　　这里有三层不同的表示：
+
+| 表示 | 它是什么 |
+| --- | --- |
+| Token Embedding | Token 刚进入模型时的初始向量 |
+| Hidden State | 模型结合上下文后得到的表示 |
+| Q、K、V | Hidden State 经过三组线性投影得到的临时工作向量 |
+
+　　RoPE 位于 Q、K 生成之后。它不会回头修改 Token Embedding，也不会直接覆盖 Hidden State。
+
+　　Q、K 旋转后，数值确实发生了变化。但旋转不是压缩，也不是删除信息。
+
+$$\lVert R_\theta q\rVert=\lVert q\rVert$$
+
+　　旋转改变方向，不改变向量长度。它也是可逆的：
+
+$$R_\theta^{-1}=R_{-\theta}$$
+
+　　RoPE 真正要改变的是 Q 与 K 的夹角。夹角改变后，点积就会包含位置信息，从而影响 Attention 选择“关注谁”。
+
+> Q 和 K 原本表达“我在找什么”和“我能提供什么”。RoPE 让它们在比较时，同时带上“我们相隔多远”。
 
 ## 2、把两维看成一个平面
 
