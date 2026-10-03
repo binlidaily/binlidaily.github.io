@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">RoPE 第十二课复习总图</title>
+  <desc id="desc">RoPE 的作用位置、二维旋转、相对位置、多频率、V 与长上下文注意事项。</desc>
+  <defs><linearGradient id="head" x2="1"><stop stop-color="#102946"/><stop offset="1" stop-color="#285d8e"/></linearGradient><filter id="s"><feDropShadow dy="5" stdDeviation="7" flood-color="#183650" flood-opacity=".1"/></filter><style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#172c45}.white{fill:#fff}.light{fill:#dbeafe}.muted{fill:#60738b}.h1{font-size:38px;font-weight:700}.h2{font-size:22px;font-weight:700}.h3{font-size:18px;font-weight:700}.body{font-size:16px}.small{font-size:14px}.formula{font-family:"SFMono-Regular",Consolas,monospace;font-size:18px}</style></defs>
+  <rect width="1600" height="900" rx="26" fill="#f3f7fb"/><path d="M26 0h1548a26 26 0 0 1 26 26v126H0V26A26 26 0 0 1 26 0z" fill="url(#head)"/>
+  <text x="52" y="62" class="h1 white">第十二课复习：RoPE</text><text x="52" y="104" class="body light">旋转对象、核心公式、频率与长上下文，一张图快速回忆</text>
+  <g filter="url(#s)">
+    <rect x="48" y="190" width="470" height="260" rx="18" fill="#fff"/><rect x="565" y="190" width="470" height="260" rx="18" fill="#fff"/><rect x="1082" y="190" width="470" height="260" rx="18" fill="#fff"/>
+    <rect x="48" y="490" width="470" height="260" rx="18" fill="#fff"/><rect x="565" y="490" width="470" height="260" rx="18" fill="#fff"/><rect x="1082" y="490" width="470" height="260" rx="18" fill="#fff"/>
+  </g>
+  <text x="78" y="234" class="h2">01 · 作用位置</text><text x="78" y="284" class="body">Hidden State → Q、K、V</text><text x="78" y="320" class="body">Q、K → RoPE 旋转 → 点积</text><text x="78" y="374" class="small muted">标准 RoPE 不直接旋转 V。</text>
+  <text x="595" y="234" class="h2">02 · 二维旋转</text><text x="595" y="294" class="formula">Q′ = RₘQ</text><text x="595" y="334" class="formula">K′ = RₙK</text><text x="595" y="384" class="small muted">每两个维度组成一个旋转平面。</text>
+  <text x="1112" y="234" class="h2">03 · 相对位置</text><text x="1112" y="294" class="formula">(RₘQ)ᵀ(RₙK)</text><text x="1112" y="334" class="formula">= QᵀRₙ₋ₘK</text><text x="1112" y="384" class="small muted">共同旋转抵消，只留下 n−m。</text>
+  <text x="78" y="534" class="h2">04 · 多种频率</text><text x="78" y="588" class="body">高频：区分邻近位置</text><text x="78" y="626" class="body">低频：覆盖更长距离</text><text x="78" y="682" class="small muted">像同时使用多把不同刻度的尺子。</text>
+  <text x="595" y="534" class="h2">05 · 不要混淆</text><text x="595" y="584" class="body">不是旋转 Token ID</text><text x="595" y="620" class="body">不是给 Embedding 加位置向量</text><text x="595" y="656" class="body">Causal Mask 也不能替代 RoPE</text><text x="595" y="702" class="small muted">RoPE 把位置放进 Q、K 的相关性。</text>
+  <text x="1112" y="534" class="h2">06 · 长上下文</text><text x="1112" y="584" class="body">能计算更大位置 ≠ 能理解长文本</text><text x="1112" y="620" class="body">缩放方法会调整位置或频率</text><text x="1112" y="656" class="body">必须做长文本任务评测</text><text x="1112" y="702" class="small muted">不要只看配置中的最大长度。</text>
+  <rect x="180" y="800" width="1240" height="64" rx="18" fill="#e6eff9"/><text x="800" y="840" text-anchor="middle" class="h3">RoPE 用绝对位置旋转 Q 和 K，让 Attention 的点积看见相对距离。</text>
+</svg>
