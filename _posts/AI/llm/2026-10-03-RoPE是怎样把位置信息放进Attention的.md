@@ -12,7 +12,7 @@ bigimg: /img/default_wallpaper.jpeg
 <style>
 .blog-post pre code{font-size:1.05rem!important;line-height:1.75!important}.blog-post table{display:table;width:min(100%,860px);margin:24px auto}.blog-post h2{scroll-margin-top:88px}.lesson-toc{position:fixed;top:118px;right:22px;z-index:30}.lesson-toc>summary{display:flex;align-items:center;justify-content:center;width:58px;height:42px;margin-left:auto;border-radius:22px;background:linear-gradient(135deg,#17345a,#2f6598);box-shadow:0 8px 24px rgba(25,54,87,.2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;list-style:none}.lesson-toc>summary::-webkit-details-marker{display:none}.lesson-toc nav{width:310px;margin-top:10px;padding:14px 10px;border:1px solid #dbe5ef;border-radius:14px;background:rgba(255,255,255,.97);box-shadow:0 16px 42px rgba(25,54,87,.18)}.lesson-toc nav strong,.lesson-toc nav a{display:block;padding:7px 10px}.lesson-toc nav a{border-radius:8px;color:#405874;font-size:14px;text-decoration:none}.lesson-toc nav a:hover{background:#edf4fb;color:#1f5f9d}.rope-lab{max-width:920px;margin:28px auto;padding:22px;border:1px solid #dce5ef;border-radius:18px;background:#f8fbff;color:#172b45}.rope-lab .controls{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px}.rope-lab label{display:block;font-weight:600}.rope-lab input{width:100%}.rope-lab .readout{display:flex;justify-content:space-between;color:#5e7188;font-size:14px}.rope-lab svg{display:block;width:100%;height:auto;background:#fff;border-radius:14px}.rope-lab .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.rope-lab .metric{padding:12px;text-align:center;background:#fff;border-radius:12px}.rope-lab .metric strong{display:block;font-size:20px;color:#245f9f}.rope-lab .note{margin:14px 0 0;color:#5e7188;font-size:14px;line-height:1.7}.rope-lab button{margin-top:14px;padding:9px 15px;border:0;border-radius:18px;background:#245f9f;color:#fff}.video-board td:first-child{white-space:nowrap}@media(max-width:900px){.lesson-toc{top:auto;right:12px;bottom:16px}.lesson-toc nav{position:absolute;right:0;bottom:52px;max-height:65vh;overflow:auto}}@media(max-width:620px){.rope-lab .controls,.rope-lab .metrics{grid-template-columns:1fr}.rope-lab{padding:16px}}
 </style>
-<details class="lesson-toc" markdown="0"><summary>目录</summary><nav><strong>第十二课目录</strong><a href="#先记住一句话">先记住一句话</a><a href="#1rope-改了哪里">1、RoPE 改了哪里</a><a href="#2把两维看成一个平面">2、把两维看成一个平面</a><a href="#3关键是角度差">3、关键是角度差</a><a href="#4动手改变两个位置">4、交互实验</a><a href="#5真实模型不只转一个平面">5、多种频率</a><a href="#6为什么不旋转-v">6、为什么不旋转 V</a><a href="#7长上下文为什么仍需验证">7、长上下文</a><a href="#8一分钟讲解视频脚本">8、视频脚本</a><a href="#第十二课复习总图">复习总图</a></nav></details>
+<details class="lesson-toc" markdown="0"><summary>目录</summary><nav><strong>第十二课目录</strong><a href="#先记住一句话">先记住一句话</a><a href="#1rope-改了哪里">1、RoPE 改了哪里</a><a href="#2把两维看成一个平面">2、把两维看成一个平面</a><a href="#3关键是角度差">3、关键是角度差</a><a href="#4动手改变两个位置">4、交互实验</a><a href="#5真实模型不只转一个平面">5、多种频率</a><a href="#6为什么不旋转-v">6、为什么不旋转 V</a><a href="#7长上下文为什么仍需验证">7、长上下文</a><a href="#8一分钟视频讲解">8、视频讲解</a><a href="#第十二课复习总图">复习总图</a></nav></details>
 
 　　先看两个短语：
 
@@ -165,7 +165,14 @@ $$
 4. 点积中的共同旋转会抵消，留下相对位置。
 5. 多种频率负责不同距离尺度。
 
-## 8、一分钟讲解视频脚本
+## 8、一分钟视频讲解
+
+<video controls preload="metadata" poster="/img/AI/llm-learning/2026-10-03-RoPE是怎样把位置信息放进Attention的/rope-explainer-poster.png" style="display:block;width:min(100%,960px);margin:26px auto;border-radius:14px;background:#0d223b;box-shadow:0 12px 32px rgba(20,45,72,.16);">
+  <source src="/img/AI/llm-learning/2026-10-03-RoPE是怎样把位置信息放进Attention的/rope-explainer.mp4" type="video/mp4">
+  当前浏览器不支持 MP4 视频，请使用视频链接直接打开。
+</video>
+
+　　视频时长约 71 秒。画面、旁白和字幕按下面的分镜同步生成。
 
 <table class="video-board">
   <thead><tr><th>时间</th><th>画面</th><th>旁白</th></tr></thead>
