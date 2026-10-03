@@ -10,7 +10,7 @@ bigimg: /img/default_wallpaper.jpeg
 ---
 
 <style>
-.blog-post pre code{font-size:1.05rem!important;line-height:1.75!important}.blog-post table{display:table;width:auto;max-width:100%;margin:24px auto}.blog-post h2{scroll-margin-top:88px}.lesson-toc{position:fixed;top:118px;right:22px;z-index:30}.lesson-toc>summary{display:flex;align-items:center;justify-content:center;width:58px;height:42px;margin-left:auto;border-radius:22px;background:linear-gradient(135deg,#17345a,#2f6598);box-shadow:0 8px 24px rgba(25,54,87,.2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;list-style:none}.lesson-toc>summary::-webkit-details-marker{display:none}.lesson-toc nav{width:315px;margin-top:10px;padding:14px 10px;border:1px solid #dbe5ef;border-radius:14px;background:rgba(255,255,255,.97);box-shadow:0 16px 42px rgba(25,54,87,.18)}.lesson-toc nav strong,.lesson-toc nav a{display:block;padding:7px 10px}.lesson-toc nav a{border-radius:8px;color:#405874;font-size:14px;text-decoration:none}.lesson-toc nav a:hover{background:#edf4fb;color:#1f5f9d}.ffn-lab{margin:30px auto;padding:22px;border:1px solid #dce6f0;border-radius:18px;background:linear-gradient(145deg,#f8fbff,#f5f8fc)}.ffn-tokens{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.ffn-lab button{padding:9px 17px;border:1px solid #bfd1e3;border-radius:18px;background:#fff;color:#31516f;cursor:pointer}.ffn-lab button.active{border-color:#286cab;background:#286cab;color:#fff}.ffn-flow{display:grid;grid-template-columns:1fr 48px 1.3fr 48px 1fr;align-items:center;gap:8px}.ffn-box{padding:16px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(35,66,98,.08);text-align:center}.ffn-arrow{text-align:center;color:#5681aa;font-size:25px}.gate-row{display:grid;grid-template-columns:86px 1fr 46px;align-items:center;gap:8px;margin:8px 0;text-align:left}.gate-track{height:11px;border-radius:7px;background:#e7edf3;overflow:hidden}.gate-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,#7658c8,#b292ef);transition:width .25s}.ffn-result{margin:16px 0 0;padding:13px;border-radius:12px;background:#eaf2fa;color:#34506c;text-align:center}@media(max-width:900px){.lesson-toc{top:auto;right:12px;bottom:16px}.lesson-toc nav{position:absolute;right:0;bottom:52px;max-height:65vh;overflow:auto}}@media(max-width:680px){.ffn-flow{grid-template-columns:1fr}.ffn-arrow{transform:rotate(90deg)}}
+.blog-post pre code{font-size:1.05rem!important;line-height:1.75!important}.blog-post table{display:table;width:auto;max-width:100%;margin:24px auto}.blog-post h2{scroll-margin-top:88px}.paper-cite a{color:#2869aa;text-decoration:none}.paper-refs{padding-left:1.8em}.paper-refs li{margin:0 0 14px;padding-left:5px;line-height:1.7}.paper-refs .ref-back{margin-left:6px;text-decoration:none}.lesson-toc{position:fixed;top:118px;right:22px;z-index:30}.lesson-toc>summary{display:flex;align-items:center;justify-content:center;width:58px;height:42px;margin-left:auto;border-radius:22px;background:linear-gradient(135deg,#17345a,#2f6598);box-shadow:0 8px 24px rgba(25,54,87,.2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;list-style:none}.lesson-toc>summary::-webkit-details-marker{display:none}.lesson-toc nav{width:315px;margin-top:10px;padding:14px 10px;border:1px solid #dbe5ef;border-radius:14px;background:rgba(255,255,255,.97);box-shadow:0 16px 42px rgba(25,54,87,.18)}.lesson-toc nav strong,.lesson-toc nav a{display:block;padding:7px 10px}.lesson-toc nav a{border-radius:8px;color:#405874;font-size:14px;text-decoration:none}.lesson-toc nav a:hover{background:#edf4fb;color:#1f5f9d}.ffn-lab{margin:30px auto;padding:22px;border:1px solid #dce6f0;border-radius:18px;background:linear-gradient(145deg,#f8fbff,#f5f8fc)}.ffn-tokens{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.ffn-lab button{padding:9px 17px;border:1px solid #bfd1e3;border-radius:18px;background:#fff;color:#31516f;cursor:pointer}.ffn-lab button.active{border-color:#286cab;background:#286cab;color:#fff}.ffn-flow{display:grid;grid-template-columns:1fr 48px 1.3fr 48px 1fr;align-items:center;gap:8px}.ffn-box{padding:16px;border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(35,66,98,.08);text-align:center}.ffn-arrow{text-align:center;color:#5681aa;font-size:25px}.gate-row{display:grid;grid-template-columns:86px 1fr 46px;align-items:center;gap:8px;margin:8px 0;text-align:left}.gate-track{height:11px;border-radius:7px;background:#e7edf3;overflow:hidden}.gate-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,#7658c8,#b292ef);transition:width .25s}.ffn-result{margin:16px 0 0;padding:13px;border-radius:12px;background:#eaf2fa;color:#34506c;text-align:center}@media(max-width:900px){.lesson-toc{top:auto;right:12px;bottom:16px}.lesson-toc nav{position:absolute;right:0;bottom:52px;max-height:65vh;overflow:auto}}@media(max-width:680px){.ffn-flow{grid-template-columns:1fr}.ffn-arrow{transform:rotate(90deg)}}
 </style>
 <details class="lesson-toc" markdown="0"><summary>目录</summary><nav><strong>第十四课目录</strong><a href="#attention-已经交流过了为什么还需要-ffn">1、为什么还需要 FFN</a><a href="#ffn-究竟做了什么">2、FFN 做了什么</a><a href="#为什么中间必须有非线性">3、为什么需要非线性</a><a href="#从-glu-到-swiglu多加一扇门">4、SwiGLU</a><a href="#动手试试不同-token-会打开不同的门">5、交互实验</a><a href="#ffn-真的在存知识吗">6、知识存储的边界</a><a href="#为什么-ffn-又大又贵">7、参数与计算</a><a href="#第十四课复习总图">8、复习总图</a></nav></details>
 
@@ -43,7 +43,7 @@ bigimg: /img/default_wallpaper.jpeg
 
 ## FFN 究竟做了什么
 
-　　经典 Transformer FFN 可以写成：
+　　经典 Transformer 在每一层中使用逐位置前馈网络：所有 Token 共享同一套参数，但各位置独立计算。<sup id="cite-1" class="paper-cite"><a href="#ref-1">[1]</a></sup> 它可以写成：
 
 $$
 \operatorname{FFN}(x)=W_2\,\sigma(W_1x+b_1)+b_2
@@ -71,7 +71,7 @@ $$
 
 ## 从 GLU 到 SwiGLU：多加一扇门
 
-　　SwiGLU 不再只计算一条升维支路，而是把输入送进两条支路：
+　　SwiGLU 是 Shazeer 对 Transformer FFN 中 GLU 变体进行系统比较后提出并验证的结构之一。<sup id="cite-2" class="paper-cite"><a href="#ref-2">[2]</a></sup> 它不再只计算一条升维支路，而是把输入送进两条支路：
 
 $$
 \operatorname{SwiGLU}(x)=W_{down}\left(\operatorname{SiLU}(W_{gate}x)\odot(W_{up}x)\right)
@@ -111,7 +111,7 @@ $$
 
 　　这里的 $a_i$ 是输入与第 $i$ 个模式的匹配强度，$v_i$ 是它被激活后写回模型表示的方向。
 
-　　Geva 等人的实验发现，一些“Key”会响应可解释的文本模式，低层往往偏向浅层模式，高层更偏语义；对应的“Value”会推动某些词的输出概率。后续模型编辑研究也发现，中间层 FFN 对部分事实关联很重要。
+　　Geva 等人的实验发现，一些“Key”会响应可解释的文本模式，低层往往偏向浅层模式，高层更偏语义；对应的“Value”会推动某些词的输出概率。<sup id="cite-3" class="paper-cite"><a href="#ref-3">[3]</a></sup> 后续 ROME 模型编辑研究也发现，中间层 FFN 的计算对部分事实关联十分重要。<sup id="cite-4" class="paper-cite"><a href="#ref-4">[4]</a></sup>
 
 　　但“知识存储”是**解释视角，不是硬盘地址**。不能把它理解成“巴黎是法国首都”完整地放在某一个神经元里：
 
@@ -144,12 +144,14 @@ $$
 
 <video controls preload="metadata" poster="/img/AI/llm-learning/2026-10-03-FFN-SwiGLU与模型的知识存储/ffn-swiglu-poster.png" style="display:block;width:min(100%,960px);margin:24px auto;border-radius:14px;background:#0d1726;box-shadow:0 14px 36px rgba(20,40,65,.18)"><source src="/img/AI/llm-learning/2026-10-03-FFN-SwiGLU与模型的知识存储/ffn-swiglu-explainer.mp4" type="video/mp4">你的浏览器暂不支持 HTML5 视频。</video>
 
-## 参考资料
+## 参考文献（References）
 
-- [Attention Is All You Need：Position-wise Feed-Forward Networks](https://arxiv.org/abs/1706.03762)
-- [GLU Variants Improve Transformer：SwiGLU](https://arxiv.org/abs/2002.05202)
-- [Transformer Feed-Forward Layers Are Key-Value Memories](https://aclanthology.org/2021.emnlp-main.446/)
-- [Locating and Editing Factual Associations in GPT：ROME](https://arxiv.org/abs/2202.05262)
+<ol class="paper-refs">
+  <li id="ref-1">Vaswani, A., Shazeer, N., Parmar, N., et al. “<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>.” <em>Advances in Neural Information Processing Systems 30</em>, 2017. arXiv:1706.03762.<a class="ref-back" href="#cite-1" aria-label="返回正文引用 1">↩</a></li>
+  <li id="ref-2">Shazeer, N. “<a href="https://arxiv.org/abs/2002.05202" target="_blank" rel="noopener">GLU Variants Improve Transformer</a>.” arXiv preprint arXiv:2002.05202, 2020.<a class="ref-back" href="#cite-2" aria-label="返回正文引用 2">↩</a></li>
+  <li id="ref-3">Geva, M., Schuster, R., Berant, J., and Levy, O. “<a href="https://aclanthology.org/2021.emnlp-main.446/" target="_blank" rel="noopener">Transformer Feed-Forward Layers Are Key-Value Memories</a>.” <em>Proceedings of EMNLP 2021</em>, pp. 5484–5495, 2021. doi:10.18653/v1/2021.emnlp-main.446.<a class="ref-back" href="#cite-3" aria-label="返回正文引用 3">↩</a></li>
+  <li id="ref-4">Meng, K., Bau, D., Andonian, A., and Belinkov, Y. “<a href="https://arxiv.org/abs/2202.05262" target="_blank" rel="noopener">Locating and Editing Factual Associations in GPT</a>.” <em>Advances in Neural Information Processing Systems 35</em>, 2022. arXiv:2202.05262.<a class="ref-back" href="#cite-4" aria-label="返回正文引用 4">↩</a></li>
+</ol>
 
 ## 第十四课复习总图
 
