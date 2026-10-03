@@ -88,7 +88,7 @@ $$
 
 　　下面是一个二维玩具模型。Q 和 K 使用相同的单位向量，只保留位置带来的影响。真实模型的分数还包含 Token 内容、不同维度和缩放。
 
-<div class="rope-lab" id="rope-lab">
+<div class="rope-lab" id="rope-lab" markdown="0">
   <div class="controls">
     <label>Q 的位置 m <span class="readout"><span>0</span><strong id="rope-m-value">2</strong><span>12</span></span><input id="rope-m" type="range" min="0" max="12" value="2" step="1"></label>
     <label>K 的位置 n <span class="readout"><span>0</span><strong id="rope-n-value">5</strong><span>12</span></span><input id="rope-n" type="range" min="0" max="12" value="5" step="1"></label>
