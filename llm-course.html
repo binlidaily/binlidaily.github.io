@@ -1,0 +1,93 @@
+---
+title: LLM 系列课程
+subtitle: 从一句话进入模型，到亲手训练与部署
+permalink: /llm-course/
+---
+
+<style>
+.llm-course { --ink:#17263d; --muted:#68768a; --line:#dce5ef; --blue:#2867d8; --soft:#f4f8fd; max-width: 920px; margin: 0 auto; color:var(--ink); }
+.course-lead { margin: 0 0 32px; font-size: 18px; line-height: 1.9; color:#40516a; }
+.course-overview { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:26px 0 42px; }
+.course-stat { padding:20px; text-align:center; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#fff,var(--soft)); }
+.course-stat strong { display:block; color:var(--blue); font-size:30px; line-height:1.15; }
+.course-stat span { color:var(--muted); font-size:14px; }
+.course-phase { margin:44px 0; }
+.phase-head { display:flex; gap:16px; align-items:flex-start; margin-bottom:18px; }
+.phase-no { flex:0 0 auto; display:grid; place-items:center; width:48px; height:48px; border-radius:15px; color:#fff; background:linear-gradient(135deg,#3278e8,#174aab); font-weight:700; }
+.phase-head h2 { margin:0 0 4px; font-size:24px; }
+.phase-head p { margin:0; color:var(--muted); font-size:15px; }
+.course-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.course-item { position:relative; display:block; min-height:112px; padding:19px 18px 17px 64px; border:1px solid var(--line); border-radius:15px; background:#fff; color:var(--ink); text-decoration:none!important; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+a.course-item:hover { transform:translateY(-2px); border-color:#91b8ef; box-shadow:0 10px 26px rgba(35,83,148,.12); }
+.lesson-no { position:absolute; left:18px; top:18px; display:grid; place-items:center; width:32px; height:32px; border-radius:10px; color:var(--blue); background:#eaf2ff; font-weight:700; font-size:13px; }
+.course-item h3 { margin:0 0 11px; font-size:16px; line-height:1.55; }
+.course-status { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
+.course-status::before { content:""; width:7px; height:7px; border-radius:50%; background:#a9b4c2; }
+.is-published .course-status { color:#147449; }
+.is-published .course-status::before { background:#20a66a; }
+.is-current { border-color:#e7bd62; background:#fffbf1; }
+.is-current .course-status { color:#9a6500; }
+.is-current .course-status::before { background:#e5a51f; }
+.course-note { margin:42px 0 8px; padding:18px 20px; border-left:4px solid var(--blue); border-radius:0 12px 12px 0; background:var(--soft); color:#536278; line-height:1.75; }
+@media (max-width:700px) { .course-overview { grid-template-columns:1fr; } .course-list { grid-template-columns:1fr; } .phase-head h2 { font-size:21px; } }
+</style>
+
+<div class="llm-course">
+  <p class="course-lead">这是一条从直觉到实践的 LLM 学习路线。每一课只回答一个核心问题，尽量用简单的例子把概念讲清楚；已发布的课程可以直接点击阅读。</p>
+
+  <div class="course-overview">
+    <div class="course-stat"><strong>24</strong><span>节课程</span></div>
+    <div class="course-stat"><strong>4</strong><span>个学习阶段</span></div>
+    <div class="course-stat"><strong>6</strong><span>篇已发布</span></div>
+  </div>
+
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">01</span><div><h2>建立整体认识</h2><p>先看懂模型怎样工作，再理解一次训练怎样发生。</p></div></div>
+    <div class="course-list">
+      <a class="course-item is-published" href="/2026-09-23-一句话进入-LLM-后到底发生了什么/"><span class="lesson-no">01</span><h3>一句话进入 LLM 后，到底发生了什么？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <a class="course-item is-published" href="/2026-10-01-Attention-为什么能让-Token-彼此看见/"><span class="lesson-no">02</span><h3>Attention 为什么能让 Token 彼此“看见”？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <a class="course-item is-published" href="/2026-10-02-大模型是怎样学会预测下一个-Token-的/"><span class="lesson-no">03</span><h3>大模型怎样学会预测下一个 Token？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <a class="course-item is-published" href="/2026-10-02-训练数据是怎样送进-GPU-的/"><span class="lesson-no">04</span><h3>训练数据怎样送进 GPU？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <a class="course-item is-published" href="/2026-10-03-训练大模型为什么这么吃显存/"><span class="lesson-no">05</span><h3>训练大模型为什么这么吃显存？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <a class="course-item is-published" href="/2026-10-03-一张GPU放不下模型时多张GPU怎么分工/"><span class="lesson-no">06</span><h3>一张 GPU 放不下时，多张 GPU 怎么分工？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <div class="course-item is-current"><span class="lesson-no">07</span><h3>FP32、FP16、BF16 和混合精度有什么区别？</h3><span class="course-status">整理中</span></div>
+      <div class="course-item"><span class="lesson-no">08</span><h3>从零实现一次完整训练循环</h3><span class="course-status">计划中</span></div>
+    </div>
+  </section>
+
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">02</span><div><h2>拆开 Transformer</h2><p>进入模型内部，理解关键组件为什么这样设计。</p></div></div>
+    <div class="course-list">
+      <div class="course-item"><span class="lesson-no">09</span><h3>一个 Transformer Block 内部到底有什么？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">10</span><h3>Residual、LayerNorm 和 RMSNorm 为什么重要？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">11</span><h3>位置编码：模型如何知道 Token 的顺序？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">12</span><h3>RoPE 是怎样把位置信息放进 Attention 的？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">13</span><h3>MHA、MQA、GQA 和 MLA 有什么区别？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">14</span><h3>FFN、SwiGLU 与模型的“知识存储”</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">15</span><h3>MoE：为什么只激活一部分专家？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">16</span><h3>FlashAttention 为什么更快、更省显存？</h3><span class="course-status">计划中</span></div>
+    </div>
+  </section>
+
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">03</span><div><h2>理解推理与部署</h2><p>从生成策略到推理加速，看懂模型在线上怎样运行。</p></div></div>
+    <div class="course-list">
+      <div class="course-item"><span class="lesson-no">17</span><h3>Temperature、Top-K、Top-P 怎样改变生成结果？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">18</span><h3>KV Cache 为什么能加速逐 Token 生成？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">19</span><h3>Prefill 与 Decode：推理为什么分成两个阶段？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">20</span><h3>量化：INT8、INT4 到底损失了什么？</h3><span class="course-status">计划中</span></div>
+    </div>
+  </section>
+
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">04</span><div><h2>微调、对齐与项目</h2><p>把前面的知识连起来，完成一次可以落地的模型实践。</p></div></div>
+    <div class="course-list">
+      <div class="course-item"><span class="lesson-no">21</span><h3>SFT：怎样把基础模型训练成聊天助手？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">22</span><h3>LoRA 与 QLoRA：普通显卡怎样微调模型？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">23</span><h3>RLHF、DPO 与偏好对齐到底在做什么？</h3><span class="course-status">计划中</span></div>
+      <div class="course-item"><span class="lesson-no">24</span><h3>终期项目：训练、评估并部署一个小型语言模型</h3><span class="course-status">计划中</span></div>
+    </div>
+  </section>
+
+  <p class="course-note">课程会按学习进度持续更新。发布新课后，这一页会同步补上阅读链接。</p>
+</div>
