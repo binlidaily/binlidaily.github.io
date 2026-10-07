@@ -1,0 +1,63 @@
+---
+layout: page
+title: 多模态学习课程
+subtitle: 从图片进入 Transformer，到图文理解与视频实践
+permalink: /multimodal-course/
+---
+
+<style>
+.llm-course { --ink:#17263d; --muted:#68768a; --line:#dce5ef; --blue:#2867d8; --soft:#f4f8fd; max-width: 920px; margin: 0 auto; color:var(--ink); }
+.course-lead { margin: 0 0 32px; font-size: 18px; line-height: 1.9; color:#40516a; }
+.course-overview { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:26px 0 42px; }
+.course-stat { padding:20px; text-align:center; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#fff,var(--soft)); }
+.course-stat strong { display:block; color:var(--blue); font-size:30px; line-height:1.15; }
+.course-stat span { color:var(--muted); font-size:14px; }
+.course-phase { margin:44px 0; }
+.phase-head { display:flex; gap:16px; align-items:flex-start; margin-bottom:18px; }
+.phase-no { flex:0 0 auto; display:grid; place-items:center; width:48px; height:48px; border-radius:15px; color:#fff; background:linear-gradient(135deg,#3278e8,#174aab); font-weight:700; }
+.phase-head h2 { margin:0 0 4px; font-size:24px; }
+.phase-head p { margin:0; color:var(--muted); font-size:15px; }
+.course-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.course-item { position:relative; display:block; min-height:112px; padding:19px 18px 17px 64px; border:1px solid var(--line); border-radius:15px; background:#fff; color:var(--ink); text-decoration:none!important; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+a.course-item:hover { transform:translateY(-2px); border-color:#91b8ef; box-shadow:0 10px 26px rgba(35,83,148,.12); }
+.lesson-no { position:absolute; left:18px; top:18px; display:grid; place-items:center; width:32px; height:32px; border-radius:10px; color:var(--blue); background:#eaf2ff; font-weight:700; font-size:13px; }
+.course-item h3 { margin:0 0 11px; font-size:16px; line-height:1.55; }
+.course-status { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
+.course-status::before { content:""; width:7px; height:7px; border-radius:50%; background:#a9b4c2; }
+.is-published .course-status { color:#147449; }
+.is-published .course-status::before { background:#20a66a; }
+.is-current { border-color:#e7bd62; background:#fffbf1; }
+.is-current .course-status { color:#9a6500; }
+.is-current .course-status::before { background:#e5a51f; }
+.course-note { margin:42px 0 8px; padding:18px 20px; border-left:4px solid var(--blue); border-radius:0 12px 12px 0; background:var(--soft); color:#536278; line-height:1.75; }
+@media (max-width:700px) { .course-overview { grid-template-columns:1fr; } .course-list { grid-template-columns:1fr; } .phase-head h2 { font-size:21px; } }
+</style>
+
+<div class="llm-course">
+  <p class="course-lead">接着 LLM 课程，学习模型怎样处理图片、连接语言，再理解视频。每一课从一个具体问题出发，用直觉、公式和代码把过程讲清楚。</p>
+  <div class="course-overview">
+    <div class="course-stat"><strong>12</strong><span>周学习路线</span></div>
+    <div class="course-stat"><strong>1</strong><span>篇已发布</span></div>
+    <div class="course-stat"><strong>ViT</strong><span>从第一课开始</span></div>
+  </div>
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">01</span><div><h2>视觉基础</h2><p>第 1–2 周：图片怎样变成向量，视觉编码器怎样学习表示。</p></div></div>
+    <div class="course-list">
+      <a class="course-item is-published" href="{{ '/2026-10-07-ViT图片是怎么变成Token的/' | relative_url }}"><span class="lesson-no">01</span><h3>ViT：图片是怎么变成 Token 的？</h3><span class="course-status">已发布 · 阅读课程</span></a>
+      <div class="course-item"><span class="lesson-no">02</span><h3>Vision Encoder：不同训练目标怎样塑造视觉表示？</h3><span class="course-status">计划中</span></div>
+    </div>
+  </section>
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">02</span><div><h2>图文对齐</h2><p>第 3–4 周：CLIP、对比学习与 SigLIP，图片和文字如何比较。</p></div></div>
+  </section>
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">03</span><div><h2>视觉连接语言</h2><p>第 5–7 周：Projector、Q-Former、LLaVA 与 Qwen-VL，视觉信息怎样进入 LLM。</p></div></div>
+  </section>
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">04</span><div><h2>图像与视频理解</h2><p>第 8–10 周：OCR、定位、分辨率与时间关系，从单张图片走向视频。</p></div></div>
+  </section>
+  <section class="course-phase">
+    <div class="phase-head"><span class="phase-no">05</span><div><h2>多模态实践</h2><p>第 11–12 周：多模态 Agent 与游戏视频分析，建立数据、证据和评估闭环。</p></div></div>
+  </section>
+  <p class="course-note">课程持续更新。已发布的文章可以直接点击，后续主题将随学习进度展开。</p>
+</div>

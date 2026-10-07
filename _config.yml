@@ -7,6 +7,7 @@ timezone: "Asia/Shanghai"
 navbar-links:
   博客: ""
   LLM 课程: "llm-course/"
+  多模态课程: "multimodal-course/"
   工具: "tools/paper2ink/"
   关于我: "aboutme"
 

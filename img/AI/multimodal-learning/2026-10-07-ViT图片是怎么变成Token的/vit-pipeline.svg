@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+<title id="title">图片如何变成 ViT Token</title><desc id="desc">224乘224的RGB图片切成196个16乘16的块，每块768个像素值，共享投影到D维，加CLS和位置后进入Transformer。</desc>
+<rect width="1200" height="440" rx="24" fill="#f5f9fe"/>
+<g font-family="Arial,Microsoft YaHei,sans-serif" fill="#17345a">
+<text x="50" y="55" font-size="28" font-weight="bold">ViT：先组织输入，再学习视觉关系</text>
+<g fill="#fff" stroke="#c7d9ec" stroke-width="2"><rect x="40" y="100" width="230" height="240" rx="16"/><rect x="310" y="100" width="230" height="240" rx="16"/><rect x="580" y="100" width="230" height="240" rx="16"/><rect x="850" y="100" width="310" height="240" rx="16"/></g>
+<g font-size="23" font-weight="bold"><text x="60" y="140">① 切成网格</text><text x="330" y="140">② 每块变成向量</text><text x="600" y="140">③ 加位置与 CLS</text><text x="870" y="140">④ 交换信息</text></g>
+<rect x="90" y="165" width="126" height="126" fill="#b7d2e9"/>
+<path d="M108 165V291 M126 165V291 M144 165V291 M162 165V291 M180 165V291 M198 165V291 M90 183H216 M90 201H216 M90 219H216 M90 237H216 M90 255H216 M90 273H216" stroke="#fff" stroke-width="2"/>
+<rect x="90" y="165" width="18" height="18" fill="#dc8b50"/>
+<g font-size="20"><text x="330" y="195">16 × 16 × 3</text><text x="330" y="230">↓ 768 个像素值</text><text x="330" y="267">共享线性投影</text><text x="330" y="305">→ D 维视觉表示</text><text x="600" y="195">196 个 Patch</text><text x="600" y="230">+ 1 个 CLS</text><text x="600" y="267">+ 位置向量</text><text x="600" y="305">→ [B, 197, D]</text><text x="870" y="195">双向 Attention + MLP</text><text x="870" y="230">局部 → 上下文表示</text><text x="870" y="267">分类 / 图文对齐</text><text x="870" y="305">或连接语言模型</text></g>
+<g font-size="32"><text x="276" y="228">→</text><text x="546" y="228">→</text><text x="816" y="228">→</text></g>
+<text x="50" y="385" font-size="20">例：224 ÷ 16 = 14，14 × 14 = 196 块。隐藏宽度 D 是模型配置，不是像素数。</text>
+<text x="50" y="417" font-size="17" fill="#5b718a">网格为示意；Patch 不是物体边界。进入 LLM 的视觉 Token 数还取决于连接器与图像处理策略。</text>
+</g></svg>
