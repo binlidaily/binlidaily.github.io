@@ -51,8 +51,7 @@ flowchart TD
   A --> R[解释、实现与验证]
 </pre>
 
-<details markdown="1">
-<summary>查看可复制的 Mermaid 源码</summary>
+### 可复制的 Mermaid 源码
 
 ```mermaid
 flowchart TD
@@ -67,7 +66,6 @@ flowchart TD
   Evidence --> Agent
 ```
 
-</details>
 
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
