@@ -94,6 +94,121 @@ mermaid.initialize({startOnLoad:true,securityLevel:'strict',theme:'default'});
 
 　　Unknowns 的意义是把未解决部分显式保留下来。例如，静态结构显示某模块引用数据库接口，并不等于已经观察到每次搜索都执行数据库查询。源码里的调查记录和证据账本可从 [src/application/investigation/](https://github.com/morluto/rea/tree/main/src/application/investigation) 与 [src/domain/](https://github.com/morluto/rea/tree/main/src/domain) 继续阅读。
 
+## REA 到底怎样实现逆向分析？——沿一次调用走进源码
+
+　　前面的架构图回答了“有哪些模块”，但还没有回答“程序里的信息怎样被提取出来”。这一节把 REA 拆到实际操作层面。源码阅读基于提交 [`91f6840`](https://github.com/morluto/rea/tree/91f6840c35e99e5f23612920d790a30d324ac115)，下面的源码链接固定到这个版本，方便逐项对照。
+
+### 1. 自然语言不会直接进入反编译器
+
+　　当你问 Codex“搜索功能怎么实现”，模型先根据 REA 的工具说明选择操作，生成带参数的工具请求。REA 收到的是“对哪个路径执行哪个操作”这样的结构化输入，而不是让 Ghidra直接理解中文。
+
+　　以 JavaScript 应用为例，下面是调用形状示意；路径要替换为实际文件位置：
+
+```json
+{
+  "name": "analyze_javascript_application",
+  "arguments": { "input_path": "/absolute/path/to/app" }
+}
+```
+
+　　Codex 的 MCP 客户端通过 stdio 与 REA 服务进程交换协议消息。服务端注册工具名、输入约束和处理函数，校验参数后调用应用层工作流。[registerElectronTools.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/server/registerElectronTools.ts) 中可以直接看到 `server.registerTool(...)`，以及处理函数如何转入 `analyzeJavaScriptApplicationValidated(...)`。
+
+　　这意味着 REA 的一次工具调用不需要内置一个大模型来猜程序行为。即使不使用 Codex，也可以通过 CLI 执行同一类分析。**模型的推理循环在 Agent 一侧，文件解析和反编译在工具一侧。**
+
+<pre class="mermaid">
+sequenceDiagram
+  participant C as Codex / 模型
+  participant R as REA MCP 服务
+  participant W as 应用工作流
+  participant P as 解析器或 Ghidra
+  C->>R: 工具名 + 路径或函数地址
+  R->>R: 校验输入与可用能力
+  R->>W: 调用对应工作流
+  W->>P: 请求程序结构或函数分析
+  P-->>W: 模块、调用关系或伪代码
+  W->>W: 校验并生成 Evidence
+  W-->>R: 结构化证据
+  R-->>C: 工具结果
+  C->>C: 解释结果、提出下一次查询
+</pre>
+
+### 2. JavaScript 路线：文本 → AST → 模块图与语义图
+
+　　假设应用里有两个文件：
+
+```javascript
+// search.js
+export function search(items, query) {
+  return items.filter(item => item.includes(query));
+}
+
+// main.js
+import { search } from './search.js';
+export function run(items, query) {
+  return search(items, query);
+}
+```
+
+　　这里的信息不是靠模型逐字符阅读后凭印象拼起来的。REA 的静态分析链路可以拆成以下步骤：
+
+1. **枚举产物。** 检查输入路径，扫描目录或读取 ASAR 容器，建立文件清单，保留文件身份与摘要。ASAR 是 Electron 常见的资源归档；读取容器并不等于执行应用。
+2. **读取 JavaScript。** 找到相关资源，读取源码，并在受限制的分析工作进程中处理，避免一个很大的文件无限占用主进程资源。
+3. **解析语法树。** Babel parser 将文本转换成 AST（抽象语法树）。例如 `import` 是导入节点，函数是函数节点，`search(items, query)` 是调用表达式节点。节点的类型、参数和源码位置都是可程序化读取的字段。
+4. **提取结构事实。** 根据节点提取模块、导入导出、声明和可识别的调用等信息。`main.js` 对 `search.js` 的依赖可以由导入表达式及路径解析建立；函数与调用等事实进入语义结构。
+5. **构建并校验图。** 应用图表达模块和跨边界关系，语义图保存更细的静态关系。系统检查图结构和跨图绑定，再将结果封装成 Evidence。
+
+　　可以把“图”理解为带出处的关系表：哪些节点存在、它们之间有什么边、边来自哪个文件位置。上面的例子中，`main.js → search.js` 是依赖关系；具体的 `run`、调用表达式与 `search` 之间能建立哪些语义关系，要以解析器实际支持和输出为准。动态生成的模块路径、间接调用或复杂混淆都可能留下未解析部分。
+
+　　沿源码阅读的顺序是：[JavaScriptApplicationService.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/application/javascript/JavaScriptApplicationService.ts) → [JavaScriptArtifactReconstruction.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/application/javascript/JavaScriptArtifactReconstruction.ts) → [JavaScriptAnalysisWorker.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/javascript/analysis/JavaScriptAnalysisWorker.ts) → [javascriptSourceParser.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/domain/javascript/javascriptSourceParser.ts)。最后一个文件明确引入了 `@babel/parser`。
+
+　　因此，JavaScript 路线的核心是**从交付的代码产物恢复结构**。静态分析不运行这个 `search` 函数，所以只能说明代码结构及可识别语义，不能证明某次用户操作真的执行过它。
+
+### 3. 原生路线：机器码 → Ghidra 分析 → 桥接结果
+
+　　原生程序里通常没有 JavaScript 那样可以直接解析的文本。编译后主要留下机器指令、数据、导入导出以及可能存在的符号信息。这时 REA 把底层分析交给 Ghidra 等引擎。
+
+　　以 Ghidra Provider 为例，执行链如下：
+
+1. `open_binary` 选择目标及 Provider，保存会话绑定。选择成功本身不代表反编译已经完成。
+2. 首次需要引擎的查询触发启动流程。REA 准备受管理的运行环境，导入目标到 Ghidra 项目，执行分析和桥接脚本，并等待连接就绪。
+3. Ghidra 根据目标格式及处理器语言解释字节，识别指令、函数和引用，并提供反编译能力。函数边界和类型等结果也可能存在分析误差。
+4. REA 的 Java 桥接脚本在 Ghidra 内部运行，接收操作请求，调用 Ghidra API，并通过本地传输把结果送回 TypeScript Provider。
+5. 应用层整理函数分析结果，返回可供 Agent 阅读和后续查询使用的证据。
+
+　　最关键的代码位于 [ReaGhidraBridge.java](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/bridge/ghidra/ReaGhidraBridge.java)。下面是其中调用关系的简化摘录，省略了异常处理：
+
+```java
+DecompileResults results = decompiler.decompileFunction(function, 0, monitor);
+DecompiledFunction value = results.getDecompiledFunction();
+return value == null ? null : value.getC();
+```
+
+　　这里的 `decompiler` 是 Ghidra 的 `DecompInterface`，`getC()` 返回反编译生成的 C 风格伪代码。**REA 没有自己从零实现反编译算法；它将成熟引擎的结果接入统一调查工作流。** 桥接脚本还读取函数、指令、引用以及 Ghidra 的 HighFunction/p-code 信息，供具体分析操作使用。
+
+　　启动与通信可继续看 [GhidraLauncher.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/ghidra/GhidraLauncher.ts)、[GhidraClient.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/ghidra/GhidraClient.ts) 和 [GhidraTransport.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/ghidra/GhidraTransport.ts)。函数调查如何组合这些能力，可从 [EnhancedTools.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/application/EnhancedTools.ts) 进入。
+
+　　反编译出的函数名、变量名和类型可能是推断结果，优化后的程序也可能丢失原始结构。因此“得到伪代码”不等于“找回作者原始源码”。
+
+### 4. 功能追踪：沿图找相关代码，再由 Agent 解释
+
+　　拿到结构图以后，REA 可以围绕一个模块种子追踪关系。例如从 `search.js` 出发，检查与它相连的应用节点，形成与搜索功能相关的局部结构。源码 [JavaScriptApplicationWorkflowService.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/application/javascript/JavaScriptApplicationWorkflowService.ts) 会先验证输入 Evidence，再调用领域层的 [javascriptFeatureTrace.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/domain/javascript/javascriptFeatureTrace.ts) 派生追踪结果。
+
+　　图遍历负责缩小调查范围，模型负责把代码与用户的问题联系起来。例如模型可能发现搜索入口调用一个 native addon，于是继续调查对应动态库；若静态证据不足，再请求运行时观察。**“理解功能”来自多轮工具查询与解释，不是一次图遍历就自动得到完整答案。**
+
+### 5. 证据账本：保存工具观察，不自动证明模型结论
+
+　　结果返回前，REA 对输出做结构校验，并建立包含目标、Provider、操作、参数、分析配置及结果等信息的 Evidence。保留记录可通过 `evidence_id` 继续引用，避免后续工具凭空接收模型重新编写的“分析事实”。
+
+　　[EvidenceLedger.ts](https://github.com/morluto/rea/blob/91f6840c35e99e5f23612920d790a30d324ac115/src/application/investigation/EvidenceLedger.ts) 以 Evidence ID 保存记录，校验记录并处理重复或冲突，同时管理未解决问题。这些机制帮助确认“后续引用的是哪一次工具结果”。它们不保证反编译器从未出错，也不保证模型对结果的解释正确。
+
+| 层次 | 示例 | 怎样验证 |
+|---|---|---|
+| 工具观察 | 某函数存在数据库相关引用 | 查看引用、地址和对应 Evidence |
+| 模型推断 | 搜索可能通过数据库执行 | 检查完整调用路径及替代解释 |
+| 运行时观察 | 某次搜索交互触发了相关操作 | 捕获行为并关联具体场景 |
+
+　　至此，REA 的实现可以归纳成一条具体链路：**接收结构化请求 → 用解析器或专业引擎提取事实 → 构建和查询关系 → 校验并保存证据 → 交给 Agent 解释和继续调查。** 每个环节都有清楚的责任边界，才能判断哪里是真实观察，哪里仍需验证。
+
 ## 第三阶段：实践理解——从 JavaScript 静态分析开始
 
 ### 1. 检查环境并安装
