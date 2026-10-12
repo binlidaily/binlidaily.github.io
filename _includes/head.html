@@ -5,6 +5,15 @@
   <meta name="author" content="{{ site.author.name }}">
   <meta name="description" content="{% if page.subtitle %}{{ page.subtitle | strip_html | escape }}{% else %}{{ site.description | escape }}{% endif %}">
   <meta name="theme-color" content="#f6f3ed">
+  <script>
+    (function () {
+      var theme = 'light';
+      try { if (localStorage.getItem('blog-theme') === 'dark') theme = 'dark'; } catch (e) {}
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#191b1f' : '#f6f3ed';
+    })();
+  </script>
   <link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
   <link rel="icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}">
