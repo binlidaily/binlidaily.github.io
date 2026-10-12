@@ -1,0 +1,28 @@
+#p01-notebook{max-width:960px;margin:34px auto;color:#18354e;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+#p01-notebook *{box-sizing:border-box}
+#p01-notebook .p01nb-head{padding:20px 22px;border-radius:16px 16px 0 0;background:#163b5b;color:#fff}
+#p01-notebook .p01nb-head h3{margin:0 0 5px;color:#fff;font-size:21px}
+#p01-notebook .p01nb-head p{margin:0;color:#dceaf3;font-size:14px;line-height:1.6}
+#p01-notebook .p01nb-toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:11px 18px;border:1px solid #dbe6ef;border-top:0;background:#eff5f9;font-size:13px;color:#49647b}
+#p01-notebook .p01nb-cell{padding:18px 20px;border:1px solid #dbe6ef;border-top:0;background:#fff}
+#p01-notebook .p01nb-cell:last-child{border-radius:0 0 16px 16px}
+#p01-notebook .p01nb-title{margin:0 0 8px;font-size:17px;font-weight:650;color:#18354e}
+#p01-notebook .p01nb-task{margin:0 0 12px;color:#536d82;font-size:14px;line-height:1.6}
+#p01-notebook textarea{display:block;width:100%;min-height:185px;resize:vertical;padding:13px 15px;border:1px solid #cbdbe7;border-radius:9px;background:#10293d;color:#ecf5fa;font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;tab-size:4}
+#p01-notebook textarea:focus-visible,#p01-notebook button:focus-visible{outline:3px solid #8ec2e3;outline-offset:2px}
+#p01-notebook .p01nb-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:10px 0}
+#p01-notebook button{min-height:38px;padding:7px 12px;border:1px solid #a9c2d4;border-radius:9px;background:#fff;color:#174d74;font-size:13px;font-weight:600;cursor:pointer}
+#p01-notebook button[data-run]{border-color:#1f6d9e;background:#1f6d9e;color:#fff}
+#p01-notebook button:hover{filter:brightness(.94)}
+#p01-notebook button:disabled{opacity:.55;cursor:wait}
+#p01-notebook pre{margin:0;padding:12px 14px;min-height:46px;max-height:270px;overflow:auto;border-left:3px solid #2d8d87;border-radius:0 7px 7px 0;background:#f0f7f5;color:#214a4a;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+#p01-notebook details{margin-top:9px;color:#49647b;font-size:13px}
+#p01-notebook details summary{cursor:pointer}
+@media(max-width:650px){#p01-notebook .p01nb-cell{padding:14px}#p01-notebook textarea{font-size:13px;min-height:220px}#p01-notebook .p01nb-head{padding:16px}}
+:root[data-theme="dark"] #p01-notebook{color:#e9e5dc}
+:root[data-theme="dark"] #p01-notebook .p01nb-cell{background:#252a30;border-color:#45525d}
+:root[data-theme="dark"] #p01-notebook .p01nb-toolbar{background:#2d343b;border-color:#45525d;color:#bac8d3}
+:root[data-theme="dark"] #p01-notebook .p01nb-title{color:#e9e5dc}
+:root[data-theme="dark"] #p01-notebook .p01nb-task,:root[data-theme="dark"] #p01-notebook details{color:#bac8d3}
+:root[data-theme="dark"] #p01-notebook pre{background:#223d3c;color:#e1f5ef}
+:root[data-theme="dark"] #p01-notebook button:not([data-run]){background:#303d47;color:#e3eff5;border-color:#586c79}
