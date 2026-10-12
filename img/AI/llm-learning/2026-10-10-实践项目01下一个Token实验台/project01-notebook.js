@@ -25,7 +25,7 @@
     if (worker) return;
     setStatus("正在加载 Python 运行环境，首次打开可能需要一些时间……");
     try {
-      worker = new Worker("/img/AI/llm-learning/2026-10-10-实践项目01下一个Token实验台/project01-notebook-worker.js");
+      worker = new Worker("/img/AI/llm-learning/2026-10-10-实践项目01下一个Token实验台/project01-notebook-worker.js?v=local-runtime-1");
     } catch (error) {
       stopWorker("浏览器无法启动 Python 运行环境：" + String(error));
       return;
