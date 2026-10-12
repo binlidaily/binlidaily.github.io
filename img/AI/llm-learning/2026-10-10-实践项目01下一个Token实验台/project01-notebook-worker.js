@@ -4,8 +4,8 @@ self.onmessage = async function (event) {
   var data = event.data || {};
   if (data.type === "init") {
     try {
-      importScripts("https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js");
-      py = await loadPyodide({indexURL: "https://cdn.jsdelivr.net/pyodide/v314.0.7/full/"});
+      importScripts("./pyodide/v314.0.7/pyodide.js");
+      py = await loadPyodide({indexURL: new URL("./pyodide/v314.0.7/", self.location.href).href});
       self.postMessage({type: "ready"});
     } catch (error) {
       self.postMessage({type: "fatal", message: String(error)});

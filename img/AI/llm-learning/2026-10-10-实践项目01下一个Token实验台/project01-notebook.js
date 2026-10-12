@@ -9,6 +9,12 @@
     root.querySelectorAll("[data-run]").forEach(function (b) { b.disabled = !enabled; });
   }
   function stopWorker(message) {
+    if (pending) {
+      var cell = root.querySelector('[data-cell="' + pending.id + '"]');
+      if (cell && cell.querySelector("[data-output]").textContent === "运行中……") {
+        cell.querySelector("[data-output]").textContent = "运行未完成。";
+      }
+    }
     if (worker) worker.terminate();
     worker = null; ready = false; pending = null;
     if (timeout) clearTimeout(timeout);
