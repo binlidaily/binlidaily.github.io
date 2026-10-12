@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateThemeButton() {
     if (!themeButton) return;
     var dark = document.documentElement.dataset.theme === 'dark';
-    themeButton.textContent = dark ? '常规' : '暗色';
+    themeButton.innerHTML = '<span aria-hidden="true">' + (dark ? '☀' : '☾') + '</span>';
+    themeButton.title = dark ? '切换到常规配色' : '切换到暗色配色';
     themeButton.setAttribute('aria-label', dark ? '切换到常规配色' : '切换到暗色配色');
     themeButton.setAttribute('aria-pressed', String(dark));
   }

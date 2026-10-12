@@ -1,7 +1,7 @@
 <nav class="site-nav" aria-label="主导航">
   <div class="nav-inner">
     <a class="site-brand" href="{{ '/' | prepend: site.baseurl }}" aria-label="返回首页"><span class="brand-mark" aria-hidden="true">思</span><span>{{ site.title }}</span></a>
-    <button class="theme-toggle" type="button" aria-label="切换到暗色配色" aria-pressed="false">暗色</button>
+    <button class="theme-toggle" type="button" aria-label="切换到暗色配色" aria-pressed="false" title="切换到暗色配色"><span aria-hidden="true">☾</span></button>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navbar"><span></span><span></span><span class="sr-only">展开菜单</span></button>
     <div class="nav-links" id="main-navbar">
       {% for link in site.navbar-links %}{% unless link[1].first %}{% include navbarlink.html link=link %}{% endunless %}{% endfor %}
