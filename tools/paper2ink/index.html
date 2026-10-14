@@ -3,7 +3,7 @@ layout: base
 title: Paper2Ink
 subtitle: 把纸上笔迹转成可编辑的矢量墨迹
 ---
-<link rel="stylesheet" href="/css/paper2ink.css?v=3">
+<link rel="stylesheet" href="/css/paper2ink.css?v=20261014.1">
 <section class="ink-hero">
   <div>
     <p class="ink-eyebrow">HANDWRITING DIGITIZER · BETA</p>
@@ -29,6 +29,10 @@ subtitle: 把纸上笔迹转成可编辑的矢量墨迹
       <div class="ink-controls">
         <p class="ink-label">转换设置</p>
         <label>轮廓平滑度 <output id="smooth-value">10</output><input id="smoothness" type="range" min="0" max="100" value="10"></label>
+        <label>背景清理 <output id="cleanup-value">55</output><input id="background-cleanup" type="range" min="0" max="100" value="55"></label>
+        <label>笔迹强度 <output id="strength-value">0</output><input id="ink-strength" type="range" min="-50" max="50" value="0"></label>
+        <label class="ink-toggle"><span>阴影修复</span><input id="shadow-removal" type="checkbox"></label>
+        <p class="ink-setting-hint">阴影修复适合手写文字；印章、粗填充图形请关闭。浅字可提高笔迹强度，噪点多时提高背景清理。调整后重新转换。</p>
       </div>
       <p class="ink-status" id="status" aria-live="polite">图片已就绪，可以开始转换。</p>
       <button class="ink-convert" id="convert" type="button">开始转换 →</button>
@@ -62,4 +66,5 @@ subtitle: 把纸上笔迹转成可编辑的矢量墨迹
     <article><span>04</span><h3>开放导出</h3><p>导出标准 SVG 或笔迹 JSON，继续用于设计与归档。</p></article>
   </div>
 </section>
-<script src="/js/paper2ink.js?v=6"></script>
+<script src="/js/paper2ink-core.js?v=20261014"></script>
+<script src="/js/paper2ink.js?v=20261014"></script>
